@@ -1,0 +1,30 @@
+{
+  "name": "VIỆT SỬ",
+  "slogan": "BẢN ĐỒ THỜI GIAN",
+  "han": "越史",
+  "sections": {
+    "main": {
+      "title": "KHÁM PHÁ DÒNG LỊCH SỬ",
+      "description": "Khám phá các thời kỳ Việt Nam, Trung Quốc và phương Tây trên cùng một trục thời gian."
+    },
+    "hcm": {
+      "title": "CHỦ TỊCH HỒ CHÍ MINH",
+      "description": "Dòng thời gian cuộc đời Chủ tịch Hồ Chí Minh và những sự kiện liên quan."
+    },
+    "spaces": {
+      "title": "KHÔNG GIAN LỊCH SỬ",
+      "description": "Mỗi điểm pin đại diện cho một địa danh, di tích hoặc chiến trường có thể mở thành không gian 3D"
+    },
+    "school": {
+      "title": "SÁCH GIÁO KHOA LỊCH SỬ",
+      "description": "Hệ thống bài học lớp 6–12 liên kết với dòng thời gian và nhân vật."
+    }
+  },
+  "version": "3.0",
+  "editorial_notes": [
+    "Có thể tham khảo zhonghua.5000yan.com để chuyển ngữ và đối chiếu học liệu Việt – Trung trong các vòng biên tập sau."
+  ],
+  "tagline": "BẢN ĐỒ THỜI GIAN",
+  "font_family": "\"Be Vietnam Pro\", system-ui, sans-serif",
+  "logo_url": ""
+}

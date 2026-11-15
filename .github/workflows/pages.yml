@@ -1,10 +1,13 @@
-# Tự đăng thư mục web/ lên GitHub Pages mỗi khi có thay đổi trên nhánh main.
+# Tự đăng bản xem thử lên GitHub Pages mỗi khi có thay đổi trên nhánh main:
+#   /                                  → giao diện Việt Sử V4.1 (bản tĩnh, không có CMS/API)
+#   /khong-gian/thanh-co-quang-tri/    → sa bàn 3D Thành cổ Quảng Trị
+# Bản đầy đủ (CMS, API, SGK) chạy bằng máy chủ Python: xem vietsu/HUONG_DAN_LOCAL_MAC.md.
 # Bật một lần: Settings → Pages → Source: "GitHub Actions".
-name: Deploy web lên GitHub Pages
+name: Deploy bản xem thử lên GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['web/**', '.github/workflows/pages.yml']
+    paths: ['vietsu/static/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,9 +24,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Gom file tĩnh
+        run: |
+          mkdir -p _site
+          cp vietsu/static/Viet_Su_Timeline_V4.1_Offline.html _site/index.html
+          cp -r vietsu/static/khong-gian _site/khong-gian
+          touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: web
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

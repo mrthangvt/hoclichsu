@@ -1,0 +1,42 @@
+[
+  {
+    "id": "co-loa",
+    "name": "Thành Cổ Loa",
+    "lat": 21.112,
+    "lon": 105.872,
+    "year": -208,
+    "kind": "heritage",
+    "category": "Di tích – thành cổ",
+    "source_note": "Tọa độ chỉ là vị trí tham khảo, cần đối chiếu tọa độ khu di tích trước khi xuất bản."
+  },
+  {
+    "id": "lang-sen",
+    "kind": "heritage",
+    "lat": 18.681,
+    "lon": 105.516,
+    "name": "Làng Sen – Kim Liên",
+    "year": 1890,
+    "category": "Di tích – tuổi thơ",
+    "source_note": "Vị trí đại diện cho khu vực Kim Liên, chưa định vị chính xác từng hiện vật."
+  },
+  {
+    "id": "quang-tri",
+    "kind": "battle",
+    "lat": 16.756,
+    "lon": 107.191,
+    "name": "Thành cổ Quảng Trị",
+    "year": 1972,
+    "category": "Chiến sự – di tích",
+    "source_note": "Vị trí đại diện cho di tích, không phải vị trí từng đơn vị quân."
+  },
+  {
+    "id": "rach-gam",
+    "kind": "battle",
+    "lat": 10.422,
+    "lon": 106.234,
+    "name": "Rạch Gầm – Xoài Mút",
+    "year": 1785,
+    "category": "Chiến trận – sa bàn",
+    "source_note": "Tọa độ đại diện khu vực diễn ra trận đánh, địa hình phục dựng cần thẩm định."
+  }
+]

@@ -2,8 +2,8 @@
 
 Tạo trong OUT các file CHƯA nén: static.glb, thuvien.glb, rai.json, thuyen.glb, qdnd.glb.
 Sau đó nén và chép vào repo:
-    for f in static thuvien thuyen qdnd; do gltf-transform meshopt OUT/$f.glb web/models/$f.glb; done
-    cp OUT/rai.json web/data/
+    for f in static thuvien thuyen qdnd; do gltf-transform meshopt OUT/$f.glb vietsu/static/khong-gian/thanh-co-quang-tri/models/$f.glb; done
+    cp OUT/rai.json vietsu/static/khong-gian/thanh-co-quang-tri/data/
 KHÔNG dùng `gltf-transform optimize` (làm mất UV và tên vật liệu).
 """
 import bpy, os, json

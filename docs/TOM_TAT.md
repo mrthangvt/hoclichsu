@@ -1,4 +1,4 @@
-# Thành cổ Quảng Trị 1972 — sa bàn 3D web: tóm tắt dự án
+# Việt Sử V4.1 + sa bàn 3D Thành cổ Quảng Trị 1972: tóm tắt dự án
 
 Cập nhật: 16/11/2026. Đây là bản tóm tắt chính; mọi AI đọc trước khi làm.
 
@@ -10,17 +10,23 @@ Lưu ý lịch sử: kịch bản này khớp đợt giải phóng Quảng Trị
 
 ## 2. Cấu trúc repo
 ```
-web/index.html        khung HTML (importmap three 0.160, chỗ chèn <!--ASSETS-->)
-web/css/style.css     giao diện
-web/js/app.js         toàn bộ logic three.js (một module)
-web/models/*.glb      static (cảnh tĩnh), qdnd (lính QĐND + toàn bộ clip), vnch (lính VNCH, không có clip riêng),
-                      thuvien (35 mẫu đổ nát), thuyen (Thuyen + MaiCheo) — đều đã nén meshopt
-web/data/rai.json     12.861 instance đổ nát: [chỉ số tên, x,y,z Blender, quat x,y,z,w Blender, scale]
-web/data/scene.json   hiện chỉ còn dùng fx.smoke (lính, lửa sinh trong app.js)
-web/tex/*.webp        texture đất, gạch (+ normal map)
-blender/xuat_web.py   script xuất GLB/rai.json từ file .blend
-tools/build_artifact.py  đóng gói web/ thành bản base64 cho artifact Claude
+vietsu/                         website Việt Sử V4.1 (FastAPI). Trang chủ "/" = static/Viet_Su_Timeline_V4.1_Offline.html
+  main.py                       có route /khong-gian (StaticFiles html=True) + CSP riêng cho sa bàn ('wasm-unsafe-eval', blob:)
+  frontend/khong-gian-3d.js     thêm nút "Vào sa bàn 3D" vào popup scene:<id> (bảng KHONG_GIAN_3D); đã chèn vào V4.1_Offline.html và v39.js
+  data/experiences_seed.json    quang-tri.asset_url = /khong-gian/thanh-co-quang-tri/
+  start_local.command           chạy website đầy đủ trên Mac (tự tạo .env, .venv)
+vietsu/static/khong-gian/thanh-co-quang-tri/    sa bàn (gọi tắt <SA_BAN>)
+  index.html                    khung HTML, importmap → vendor/three (three.js 0.160 tự host, không dùng CDN)
+  css/style.css, js/app.js      giao diện, toàn bộ logic three.js (một module)
+  models/*.glb                  static, qdnd (+ toàn bộ clip), vnch, thuvien (35 mẫu đổ nát), thuyen — đã nén meshopt
+  data/rai.json                 12.861 instance đổ nát: [chỉ số tên, x,y,z Blender, quat x,y,z,w Blender, scale]
+  data/scene.json               chỉ còn dùng fx.smoke
+  tex/*.webp                    texture đất, gạch
+blender/xuat_web.py             xuất GLB/rai.json từ file .blend
+tools/build_artifact.py         đóng gói <SA_BAN> thành bản base64 cho artifact Claude
 ```
+Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3`, `vietsu/static/uploads/`, `vietsu/.venv/`.
+Đường dẫn trong giao diện dùng dạng tương đối (`khong-gian/...`, `../../`) để chạy được cả ở "/" (máy chủ Việt Sử) lẫn "/hoclichsu/" (GitHub Pages).
 
 ## 3. Nội dung web hiện có (app.js)
 - **Cảnh tĩnh (static.glb):** địa hình, sông/hào (nước xanh `0x2e78ae`), tường thành vỡ GD4 (dày 8,5 m, mặt trong ±245,5 m, mặt ngoài ±254,5 m), Cổng Tiền chi tiết, 3 cổng còn lại dạng khối, 237 hố bom có viền đất, 9 nhà đổ nát, tháp nước, 2 tháp sắt quan sát (140,120 đứng; 120,−140 gãy), dây thép gai, xác xe, 4 xe tăng M41, 2 máy bay A-37.
@@ -33,7 +39,8 @@ tools/build_artifact.py  đóng gói web/ thành bản base64 cho artifact Claud
 - **Hiệu ứng:** nổ ngẫu nhiên 0,5–1,8 s theo vùng (bãi đổ bộ, sông → cột nước, hào, mặt thành, trong thành); máy bay bay elip tâm (−130,−360), thả loạt 4 bom có tiếng rít; xe tăng bắn ra ngoài; 130 đường đạn lửa; 24 đám cháy; khói cột.
 - **Âm thanh:** nút "Âm thanh" (mặc định tắt). Tổng hợp bằng WebAudio, không có file âm thanh: súng, liên thanh, nổ (trễ theo khoảng cách 340 m/s), nước bắn, bom rít, động cơ máy bay (âm thanh vị trí), nền chiến trường.
 - **Góc nhìn:** Toàn cảnh, Cổng Tiền, Trong thành, Mũi tấn công QĐND, Bơi vượt sông, Thuyền vào thành, Tháp sắt, VNCH cố thủ, Xe tăng. Chế độ đi bộ (lưới độ cao 2 m, chặn bởi tường/nhà).
-- **Hiệu năng** (đo bằng phần mềm): ~2.500 draw call, ~2,5 triệu tam giác/khung → cần kiểm tra máy thật.
+- **Hiệu năng:** cắt nhân vật ngoài khung nhìn (frustum), mixer xa cập nhật 4–10 lần/giây, địa hình/hố bom/đổ nát nhỏ không đổ bóng, 3 đèn lửa, biên dịch shader trước khi tắt màn tải, tự hạ chất lượng khi < 28 khung/giây (mức 3 → 0: độ phân giải, bóng, tầm nhìn nhân vật). Đo bằng phần mềm: ~750–1.400 draw call (trước đó ~2.700).
+- **Lỗi đã sửa 16/11/2026:** khi tắt âm thanh, tiếng nổ đầu tiên đọc `SND.boom[...]` chưa có → lỗi trong vòng vẽ → trang đứng hình sau ~1 giây. Đã chặn bằng `(SND.boom||[])[...]`.
 
 ## 4. Quy ước kỹ thuật
 - Toạ độ Blender→three: `B(x,y,z) = (x, z, -y)`; hướng Blender (dx,dy) → `rotation.y = atan2(dx, −dy)` (hàm `faceTo`). Lính Mixamo và xe tăng nhìn về −Y Blender.
@@ -56,4 +63,4 @@ tools/build_artifact.py  đóng gói web/ thành bản base64 cho artifact Claud
 3. Cảnh cập bờ: bộ đội bơi tới bờ (BoiVaoBo), thuyền cập bờ rồi bộ đội lên bờ; lính trúng đạn ngã (TrungDan/NgaXuong).
 4. Chốt cách ghi mốc thời gian lịch sử cho kịch bản.
 5. Tuỳ chọn: Cổng Hậu/Tả/Hữu chi tiết như Cổng Tiền; cầu qua hào; chỉnh sông/thành theo dữ liệu bản đồ thật (tâm thành 16.7538404, 107.1895488).
-6. Ghép vào site Việt Sử.
+6. ~~Ghép vào site Việt Sử~~ — đã gắn: popup Không gian lịch sử → Thành cổ Quảng Trị → "Vào sa bàn 3D". Lưu ý sẵn có của V4.1: CSP chặn Leaflet từ unpkg nên bản đồ OpenStreetMap không tải (rơi về bản đồ véc-tơ offline) — cần tự host Leaflet hoặc mở CSP cho unpkg.
