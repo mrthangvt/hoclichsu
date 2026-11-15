@@ -1,0 +1,59 @@
+# Thành cổ Quảng Trị 1972 — sa bàn 3D web: tóm tắt dự án
+
+Cập nhật: 16/11/2026. Đây là bản tóm tắt chính; mọi AI đọc trước khi làm.
+
+## 1. Mục tiêu
+Không gian 3D khám phá được trên web cho mục "Không gian lịch sử" của site Việt Sử: xem từng góc, chế độ đi bộ, lính hai bên chuyển động, xe tăng, máy bay, khói lửa, âm thanh. Gắn nhãn "Tái dựng mô phỏng — cần đối chiếu". Không cần video.
+
+**Kịch bản sa bàn (anh Thắng chốt 16/11/2026):** Quân VNCH cố thủ trong thành (trên mặt thành, lô cốt), xe tăng và máy bay ở vòng sau; Quân đội Nhân dân Việt Nam bơi và chèo thuyền vượt sông Thạch Hãn, đánh vào chiếm thành.
+Lưu ý lịch sử: kịch bản này khớp đợt giải phóng Quảng Trị (cuối 4 – 1/5/1972) hơn là 81 ngày đêm (28/6–16/9/1972, khi QĐND giữ thành). Phụ đề hiện ghi "Sa bàn mô phỏng · kịch bản: QĐND vượt sông đánh vào thành"; cách ghi mốc thời gian chưa chốt.
+
+## 2. Cấu trúc repo
+```
+web/index.html        khung HTML (importmap three 0.160, chỗ chèn <!--ASSETS-->)
+web/css/style.css     giao diện
+web/js/app.js         toàn bộ logic three.js (một module)
+web/models/*.glb      static (cảnh tĩnh), qdnd (lính QĐND + toàn bộ clip), vnch (lính VNCH, không có clip riêng),
+                      thuvien (35 mẫu đổ nát), thuyen (Thuyen + MaiCheo) — đều đã nén meshopt
+web/data/rai.json     12.861 instance đổ nát: [chỉ số tên, x,y,z Blender, quat x,y,z,w Blender, scale]
+web/data/scene.json   hiện chỉ còn dùng fx.smoke (lính, lửa sinh trong app.js)
+web/tex/*.webp        texture đất, gạch (+ normal map)
+blender/xuat_web.py   script xuất GLB/rai.json từ file .blend
+tools/build_artifact.py  đóng gói web/ thành bản base64 cho artifact Claude
+```
+
+## 3. Nội dung web hiện có (app.js)
+- **Cảnh tĩnh (static.glb):** địa hình, sông/hào (nước xanh `0x2e78ae`), tường thành vỡ GD4 (dày 8,5 m, mặt trong ±245,5 m, mặt ngoài ±254,5 m), Cổng Tiền chi tiết, 3 cổng còn lại dạng khối, 237 hố bom có viền đất, 9 nhà đổ nát, tháp nước, 2 tháp sắt quan sát (140,120 đứng; 120,−140 gãy), dây thép gai, xác xe, 4 xe tăng M41, 2 máy bay A-37.
+- **Vật liệu web** gán theo TÊN vật liệu glTF (bảng `BYMAT`) vì vật liệu procedural của Blender xuất ra bị trắng.
+- **Đổ nát rải:** InstancedMesh từ `thuvien.glb` + `rai.json` (quat three = (qx, qz, −qy, qw)). Mobile bỏ gạch rời và cục đất.
+- **Nhân vật** (hàm `spawn()`; desktop ~296, mobile ~một nửa qua hệ số `MUL`):
+  - VNCH: ~102 trên mặt thành (Nam 46, Tây 36, Đông/Bắc 10), 18 lô cốt (`BUNKERS`) × 2 lính, 4 xe tăng (`TANKS`) chuyển vào trong thành × 3 lính.
+  - QĐND: 36 bơi qua sông + 12 bơi qua hào; 6 thuyền × (1 quỳ bắn + 3 chèo, mái chèo đặt theo xương tay mỗi khung); 46 ở trận địa bắn ngoài hào; 30 tổ xung kích chạy từ bờ sông lên rồi quỳ bắn.
+  - Ẩn nhân vật xa > 1150 m (mobile 650 m); chỉ đổ bóng nhân vật trong 170 m.
+- **Hiệu ứng:** nổ ngẫu nhiên 0,5–1,8 s theo vùng (bãi đổ bộ, sông → cột nước, hào, mặt thành, trong thành); máy bay bay elip tâm (−130,−360), thả loạt 4 bom có tiếng rít; xe tăng bắn ra ngoài; 130 đường đạn lửa; 24 đám cháy; khói cột.
+- **Âm thanh:** nút "Âm thanh" (mặc định tắt). Tổng hợp bằng WebAudio, không có file âm thanh: súng, liên thanh, nổ (trễ theo khoảng cách 340 m/s), nước bắn, bom rít, động cơ máy bay (âm thanh vị trí), nền chiến trường.
+- **Góc nhìn:** Toàn cảnh, Cổng Tiền, Trong thành, Mũi tấn công QĐND, Bơi vượt sông, Thuyền vào thành, Tháp sắt, VNCH cố thủ, Xe tăng. Chế độ đi bộ (lưới độ cao 2 m, chặn bởi tường/nhà).
+- **Hiệu năng** (đo bằng phần mềm): ~2.500 draw call, ~2,5 triệu tam giác/khung → cần kiểm tra máy thật.
+
+## 4. Quy ước kỹ thuật
+- Toạ độ Blender→three: `B(x,y,z) = (x, z, -y)`; hướng Blender (dx,dy) → `rotation.y = atan2(dx, −dy)` (hàm `faceTo`). Lính Mixamo và xe tăng nhìn về −Y Blender.
+- Sông: trục `RIVER_A=[-430,-420]`→`RIVER_B=[-80,-640]`, lòng sông ~±122 m; s>0 bờ Nam (xa), s<0 bờ phía thành (`crossPath(t,s0,s1)`). Hào d≈262–296 m. Mặt nước y = −1,1.
+- Mixamo: xương `mixamorig:` (three bỏ dấu `:` → `mixamorigLeftHand`); action 30 fps, scene 24 fps → `timeScale = 30/24`.
+- Clip trong qdnd.glb: QuyBan, DiNgamBan_TaiCho, NemLuuDan_TaiCho, Boi_TaiCho, ChayLonNhao_TaiCho, NhayTuongXuong_TaiCho, DiNgangBan_TaiCho, ChevThuyen. Clip khác có trong .blend (chưa xuất): Boi, BoiVaoBo, DapNuoc, ChayBan, NhaoRaTruoc, TrungDan, NgaXuong (+ `_TaiCho`).
+- Xuất glTF: nhân vật `export_animation_mode='NLA_TRACKS'`; cảnh tĩnh `export_vertex_color='ACTIVE'`, `export_image_format='NONE'`. Nén `gltf-transform meshopt` (KHÔNG dùng `optimize`).
+- Shader khói Points cần `#include <common>` + chunk logdepthbuf (renderer dùng logarithmic depth buffer).
+
+## 5. File Blender (ngoài repo)
+- Ổ ngoài: `/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/Thành cổ Quảng Trị/3D_GiaiDoan1/` — `ThanhCoQuangTri_1972_GD5.blend` mới nhất (GD4 = sau bước tường; GD3 trước đó), `boat/`, `NhanVat_Mixamo/`.
+- Tên thư mục "Thành cổ…" dạng Unicode NFD trên macOS: dùng `os.path.dirname(bpy.data.filepath)`.
+- Collection chính: `08_GD4_TuongVo_CongTien`, `09_GD5_MatDatDoNat` (HoBom_VienDat_GD5, RaiDoNat_GD5 + Geometry Nodes, tháp sắt), `09_GD5_ThuVien` (mẫu đổ nát, exclude), `10_ThuyenVuotSong`, `00_ThuVien_NhanVat` (Rig_QDND/Rig_VNCH, NLA tracks).
+- Địa hình đã bị hạ ở lòng hố bom; bản gốc ở mesh `DiaHinh_ChienTruong_GD4_backup`.
+- Vị trí lính trong .blend vẫn theo kịch bản cũ; web tự sinh nhân vật theo kịch bản mới.
+
+## 6. Việc tiếp theo
+1. **Vật liệu (bước 3):** cháy sém/ám khói/bụi, bake vào texture cho tường, gạch, đá viền cổng, ngói, đống gạch, đất hố bom, sắt/tôn → xuất lại static.glb.
+2. Kiểm tra hiệu năng trên laptop và điện thoại thật; nếu giật: giảm số lính xa, LOD, gộp nhân vật xa.
+3. Cảnh cập bờ: bộ đội bơi tới bờ (BoiVaoBo), thuyền cập bờ rồi bộ đội lên bờ; lính trúng đạn ngã (TrungDan/NgaXuong).
+4. Chốt cách ghi mốc thời gian lịch sử cho kịch bản.
+5. Tuỳ chọn: Cổng Hậu/Tả/Hữu chi tiết như Cổng Tiền; cầu qua hào; chỉnh sông/thành theo dữ liệu bản đồ thật (tâm thành 16.7538404, 107.1895488).
+6. Ghép vào site Việt Sử.

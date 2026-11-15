@@ -1,0 +1,11 @@
+# File Blender để ngoài repo (ổ xMABUx), quá nặng
+*.blend
+*.blend1
+# Bản đóng gói artifact sinh tự động
+dist_artifact/
+# Bản xuất chưa nén
+*.raw.glb
+node_modules/
+.DS_Store
+._*
+__pycache__/
