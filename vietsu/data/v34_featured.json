@@ -1,0 +1,127 @@
+{
+  "vanlang": [
+    "kinhduong",
+    "laclongquan",
+    "auco",
+    "hungvuong"
+  ],
+  "aulac": [
+    "anduong",
+    "caolo",
+    "mychau"
+  ],
+  "namviet": [
+    "trieuda"
+  ],
+  "hamthuoc": [],
+  "haitrung": [
+    "trungtrac",
+    "trungnhi",
+    "thigsach"
+  ],
+  "donghan-thuoc": [],
+  "si-nhiep": [
+    "sinhiep"
+  ],
+  "ngo-tan-nam-trieu": [
+    "batrieu"
+  ],
+  "vanxuan": [
+    "lybi",
+    "phamtuu"
+  ],
+  "vietnamphuc": [
+    "trieuquangphuc"
+  ],
+  "hau-ly": [
+    "lyphattu"
+  ],
+  "tuy-duong": [
+    "maithucloan",
+    "phunghung"
+  ],
+  "khuc-duong": [
+    "khucthuadu",
+    "khuchao",
+    "duongdinhnghe"
+  ],
+  "ngo": [
+    "ngoquyen"
+  ],
+  "su-quan": [
+    "dinhbolinh"
+  ],
+  "dinh": [
+    "dinhbolinh",
+    "nguyenbac"
+  ],
+  "tienle": [
+    "lehoan",
+    "phamculuong"
+  ],
+  "ly": [
+    "lythaito",
+    "lythuongkiet",
+    "tohienthanh"
+  ],
+  "tran": [
+    "tranthudo",
+    "trannhatduat",
+    "tranquangkhai",
+    "hungdao"
+  ],
+  "ho": [
+    "hoquyly"
+  ],
+  "hau-tran": [
+    "tranngoi",
+    "tranquykhoang"
+  ],
+  "minhthuoc": [
+    "leloi",
+    "nguyentrai"
+  ],
+  "leso": [
+    "leloi",
+    "nguyentrai",
+    "lethanhtong"
+  ],
+  "mac": [
+    "macdangdung"
+  ],
+  "letrung": [
+    "trinhtung"
+  ],
+  "tayson": [
+    "tranquangdieu",
+    "buithixuan",
+    "ngothinham"
+  ],
+  "nguyen": [
+    "gialong",
+    "minhmang",
+    "nguyenphuong"
+  ],
+  "battle938": [
+    "ngoquyen"
+  ],
+  "battle981": [
+    "lehoan",
+    "phamculuong"
+  ],
+  "battle1075": [
+    "lythuongkiet"
+  ],
+  "battle1285": [
+    "trannhatduat",
+    "tranquangkhai",
+    "hungdao"
+  ],
+  "battle1288": [
+    "hungdao"
+  ],
+  "battle1785": [],
+  "battle1789": [
+    "ngothinham"
+  ]
+}

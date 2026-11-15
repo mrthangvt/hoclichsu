@@ -1,0 +1,16 @@
+{
+  "lessons": [
+    {
+      "id": "g7-b13-p1",
+      "grade": 7,
+      "title": "Nước Đại Việt ở thế kỉ XIII",
+      "summary": "Nhà Trần thành lập, củng cố bộ máy nhà nước và phát triển kinh tế – xã hội trong thế kỉ XIII.",
+      "content": "## Nhà Trần thành lập\nNăm 1226, nhà Lý suy yếu, Trần Cảnh lên ngôi...\n\n## Tổ chức bộ máy nhà nước\n- Chế độ Thái thượng hoàng\n- Hệ thống quan lại\n\n> Ghi chú: thay đoạn mẫu này bằng nội dung đã biên tập.",
+      "key_points": ["Năm 1226 nhà Trần thành lập", "Chế độ Thái thượng hoàng"],
+      "review_questions": ["Nhà Trần được thành lập trong hoàn cảnh nào?"],
+      "sources": [{"title": "Sách giáo khoa Lịch sử và Địa lí 7", "url": ""}],
+      "year": 1226,
+      "entity_id": "tran"
+    }
+  ]
+}

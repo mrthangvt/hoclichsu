@@ -1,0 +1,126 @@
+[
+  {
+    "id": "lang-sen",
+    "title": "Làng Sen – Kim Liên",
+    "period": "Cuối thế kỷ XIX – đầu thế kỷ XX",
+    "entity_id": "hcm:1890",
+    "timeline_year": 1890,
+    "mode": "tour3d",
+    "reconstruction_level": "concept",
+    "asset_url": "",
+    "notes": "Tour di tích: xác định rõ hiện trạng, hình tái dựng, thuyết minh, quyền hiện vật và ảnh. Giai đoạn đầu chưa có asset 3D.",
+    "source_urls": [
+      "https://baotanghochiminh.vn/khu-di-tich-kim-lien-xa-kim-lien-huyen-nam-dan-tinh-nghe-an.htm"
+    ],
+    "status": "concept",
+    "hotspots": [
+      {
+        "id": "house",
+        "name": "Ngôi nhà quê nội",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "heritage",
+        "text": "Không gian cư trú năm 1901–1906 theo giới thiệu của Bảo tàng Hồ Chí Minh.",
+        "reconstruction_level": "concept",
+        "source_urls": [
+          "https://baotanghochiminh.vn/khu-di-tich-kim-lien-xa-kim-lien-huyen-nam-dan-tinh-nghe-an.htm"
+        ]
+      },
+      {
+        "id": "hoang-tru",
+        "name": "Làng Hoàng Trù",
+        "position": [
+          5,
+          0,
+          2
+        ],
+        "kind": "place",
+        "text": "Quê ngoại, nơi sinh Chủ tịch Hồ Chí Minh.",
+        "source_urls": [
+          "https://baotanghochiminh.vn/khu-di-tich-kim-lien-xa-kim-lien-huyen-nam-dan-tinh-nghe-an.htm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rach-gam",
+    "title": "Rạch Gầm – Xoài Mút",
+    "period": "1785",
+    "entity_id": "battle1785",
+    "timeline_year": 1785,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "",
+    "notes": "Địa hình, đội hình và thời tiết chỉ được hiển thị như giả thuyết khi thiếu chứng cứ cụ thể.",
+    "source_urls": [],
+    "status": "concept",
+    "hotspots": [
+      {
+        "id": "river",
+        "name": "Sông Tiền",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "terrain",
+        "text": "Khu vực cần tái dựng theo tài liệu lịch sử và địa hình."
+      }
+    ]
+  },
+  {
+    "id": "quang-tri",
+    "title": "Thành cổ Quảng Trị",
+    "period": "1972",
+    "entity_id": "war1972",
+    "timeline_year": 1972,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/thanh-co-quang-tri/",
+    "notes": "NPC chiến đấu cần được thuyết minh trong bối cảnh lịch sử, phân biệt tư liệu và cảnh mô phỏng. Có chế độ giáo dục không bạo lực đồ họa. Sa bàn 3D thử nghiệm (three.js) tại /khong-gian/thanh-co-quang-tri/ — tái dựng mô phỏng, cần đối chiếu tư liệu.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "citadel",
+        "name": "Thành cổ",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "heritage",
+        "text": "Tái dựng kiến trúc và các điểm thuyết minh."
+      }
+    ]
+  },
+  {
+    "id": "co-loa",
+    "title": "Thành Cổ Loa",
+    "period": "Thời Âu Lạc",
+    "entity_id": "aulac",
+    "timeline_year": -208,
+    "mode": "heritage3d",
+    "reconstruction_level": "concept",
+    "asset_url": "",
+    "notes": "Cần phân biệt lớp khảo cổ và truyền thuyết nỏ thần.",
+    "source_urls": [],
+    "status": "concept",
+    "hotspots": [
+      {
+        "id": "wall",
+        "name": "Vòng thành",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "architecture",
+        "text": "Dữ liệu khảo cổ và các cấp độ tái dựng."
+      }
+    ]
+  }
+]

@@ -3,9 +3,20 @@
 *.blend1
 # Bản đóng gói artifact sinh tự động
 dist_artifact/
-# Bản xuất chưa nén
 *.raw.glb
+# Việt Sử: bí mật, môi trường và dữ liệu chạy (KHÔNG đưa lên GitHub)
+.env
+vietsu/.venv/
+vietsu/data/*.sqlite3
+vietsu/data/*.sqlite3-*
+vietsu/data/*.tmp
+vietsu/data/ads_config.json
+vietsu/static/uploads/
+vietsu/backups/
+vietsu/sao-luu/
+# Chung
 node_modules/
+__pycache__/
+*.pyc
 .DS_Store
 ._*
-__pycache__/

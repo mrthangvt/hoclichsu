@@ -1,0 +1,633 @@
+[
+  {
+    "id": "v41-dongson-hair",
+    "title": "Tóc và trang sức Đông Sơn (minh họa)",
+    "start": -700,
+    "end": 200,
+    "periods": [
+      "vanlang",
+      "hongbang",
+      "aulac",
+      "thuc"
+    ],
+    "kind": "mu-toc",
+    "description": "Minh họa hình dung trang sức và kiểu tóc gợi cảm hứng Đông Sơn. Không phải bản phục dựng được chứng thực khảo cổ.",
+    "image_url": "/media/costume/v41-dongson-hair",
+    "source_image": "Bộ hình minh họa AI do người dùng đặt tạo cho Việt Sử",
+    "credit": "Minh họa AI; cần thẩm định độ xác thực phục trang trước khi xuất bản",
+    "source_type": "tranh minh họa kỹ thuật số; không phải tư liệu gốc"
+  },
+  {
+    "id": "v41-ly-court-lady",
+    "title": "Nữ phục cung đình (minh họa)",
+    "start": 1009,
+    "end": 1225,
+    "periods": [
+      "ly"
+    ],
+    "kind": "phuc-trang",
+    "description": "Hình minh họa nghệ thuật về nữ phục gợi liên tưởng thời Lý; không xác nhận trang phục chuẩn xác của thế kỷ XI–XIII.",
+    "image_url": "/media/costume/v41-ly-court-lady",
+    "source_image": "Bộ hình minh họa AI do người dùng đặt tạo cho Việt Sử",
+    "credit": "Minh họa AI; cần thẩm định độ xác thực phục trang trước khi xuất bản",
+    "source_type": "tranh minh họa kỹ thuật số; không phải tư liệu gốc"
+  },
+  {
+    "id": "v41-tran-scholar",
+    "title": "Quan văn áo lam (minh họa)",
+    "start": 1225,
+    "end": 1400,
+    "periods": [
+      "tran"
+    ],
+    "kind": "quan-phuc",
+    "description": "Quan văn hư cấu mặc áo lam; dùng để gợi nhớ hình thức quan phục, không phải chân dung người thật.",
+    "image_url": "/media/costume/v41-tran-scholar",
+    "source_image": "Bộ hình minh họa AI do người dùng đặt tạo cho Việt Sử",
+    "credit": "Minh họa AI; cần thẩm định độ xác thực phục trang trước khi xuất bản",
+    "source_type": "tranh minh họa kỹ thuật số; không phải tư liệu gốc"
+  },
+  {
+    "id": "v41-tran-warrior",
+    "title": "Võ tướng giáp đỏ (minh họa)",
+    "start": 1225,
+    "end": 1400,
+    "periods": [
+      "tran"
+    ],
+    "kind": "binh-phuc",
+    "description": "Võ tướng giả tưởng trong giáp trụ trang trí, không phải mẫu giáp trụ thời Trần đã xác thực.",
+    "image_url": "/media/costume/v41-tran-warrior",
+    "source_image": "Bộ hình minh họa AI do người dùng đặt tạo cho Việt Sử",
+    "credit": "Minh họa AI; cần thẩm định độ xác thực phục trang trước khi xuất bản",
+    "source_type": "tranh minh họa kỹ thuật số; không phải tư liệu gốc"
+  },
+  {
+    "id": "v41-le-court-musician",
+    "title": "Nữ nhạc công cung đình (minh họa)",
+    "start": 1527,
+    "end": 1789,
+    "periods": [
+      "mac",
+      "letrung",
+      "le-trung-hung"
+    ],
+    "kind": "phuc-trang",
+    "description": "Trang phục minh họa nghệ thuật cho nhạc công; không khẳng định trang phục cụ thể giai đoạn Mạc – Lê Trung hưng.",
+    "image_url": "/media/costume/v41-le-court-musician",
+    "source_image": "Bộ hình minh họa AI do người dùng đặt tạo cho Việt Sử",
+    "credit": "Minh họa AI; cần thẩm định độ xác thực phục trang trước khi xuất bản",
+    "source_type": "tranh minh họa kỹ thuật số; không phải tư liệu gốc"
+  },
+  {
+    "id": "v41-nguyen-emperor",
+    "title": "Hoàng phục rồng vàng (minh họa)",
+    "start": 1802,
+    "end": 1945,
+    "periods": [
+      "nguyen",
+      "nguyenvn"
+    ],
+    "kind": "trieu-phuc",
+    "description": "Hoàng phục rồng vàng do AI minh họa, gợi nhớ nghi lễ triều Nguyễn; không thay thế tư liệu phục trang gốc.",
+    "image_url": "/media/costume/v41-nguyen-emperor",
+    "source_image": "Bộ hình minh họa AI do người dùng đặt tạo cho Việt Sử",
+    "credit": "Minh họa AI; cần thẩm định độ xác thực phục trang trước khi xuất bản",
+    "source_type": "tranh minh họa kỹ thuật số; không phải tư liệu gốc"
+  },
+  {
+    "id": "v41-nguyen-princess",
+    "title": "Quý nữ trong áo đỏ (minh họa)",
+    "start": 1802,
+    "end": 1945,
+    "periods": [
+      "nguyen",
+      "nguyenvn"
+    ],
+    "kind": "phuc-trang",
+    "description": "Tranh AI quý nữ áo đỏ và khăn vành gợi thời Nguyễn. Không khẳng định chi tiết y phục đúng từng đời vua.",
+    "image_url": "/media/costume/v41-nguyen-princess",
+    "source_image": "Bộ hình minh họa AI do người dùng đặt tạo cho Việt Sử",
+    "credit": "Minh họa AI; cần thẩm định độ xác thực phục trang trước khi xuất bản",
+    "source_type": "tranh minh họa kỹ thuật số; không phải tư liệu gốc"
+  },
+  {
+    "id": "v41-nguyen-hair",
+    "title": "Mũ và tóc quý nữ thời Nguyễn (minh họa)",
+    "start": 1802,
+    "end": 1945,
+    "periods": [
+      "nguyen",
+      "nguyenvn"
+    ],
+    "kind": "mu-toc",
+    "description": "Chân dung minh họa cách đội mũ, búi tóc trong trang phục cung đình; không phải ảnh chụp hiện vật lịch sử.",
+    "image_url": "/media/costume/v41-nguyen-hair",
+    "source_image": "Bộ hình minh họa AI do người dùng đặt tạo cho Việt Sử",
+    "credit": "Minh họa AI; cần thẩm định độ xác thực phục trang trước khi xuất bản",
+    "source_type": "tranh minh họa kỹ thuật số; không phải tư liệu gốc"
+  },
+  {
+    "id": "dongson-trangphuc",
+    "title": "Phục sức văn hóa Đông Sơn",
+    "start": -700,
+    "end": 200,
+    "periods": [
+      "vanlang",
+      "hongbang",
+      "aulac",
+      "thuc",
+      "namviet"
+    ],
+    "kind": "phuc-trang",
+    "description": "Hình minh họa Đông Sơn từ 2.000 TCN đến 200 SCN trên tranh gốc; không thể đồng nhất với phục sức cụ thể của Vua Hùng.",
+    "image_url": "/media/costume/dongson-trangphuc",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "ly-hoang-thai-hau",
+    "title": "Phục sức hoàng thái hậu thời Lý",
+    "start": 1009,
+    "end": 1225,
+    "periods": [
+      "ly"
+    ],
+    "kind": "phuc-trang",
+    "description": "Minh họa hoàng thái hậu thời Lý.",
+    "image_url": "/media/costume/ly-hoang-thai-hau",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "ly-quan-vo",
+    "title": "Giáp trụ binh sĩ thời Lý",
+    "start": 1009,
+    "end": 1225,
+    "periods": [
+      "ly"
+    ],
+    "kind": "binh-phuc",
+    "description": "Tranh minh họa binh sĩ thời Lý.",
+    "image_url": "/media/costume/ly-quan-vo",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "ly-nu-11-13",
+    "title": "Nữ phục thế kỷ XI–XIII",
+    "start": 1009,
+    "end": 1225,
+    "periods": [
+      "ly"
+    ],
+    "kind": "phuc-trang",
+    "description": "Minh họa phụ nữ thế kỷ XI–XIII trong bối cảnh thời Lý.",
+    "image_url": "/media/costume/ly-nu-11-13",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "ly-nu-y",
+    "title": "Nữ phục thời Lý",
+    "start": 1009,
+    "end": 1225,
+    "periods": [
+      "ly"
+    ],
+    "kind": "phuc-trang",
+    "description": "Một cách thể hiện nữ phục theo tranh phục dựng thời Lý.",
+    "image_url": "/media/costume/ly-nu-y",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "tran-hoang-phuc",
+    "title": "Triều phục hoàng đế thời Trần",
+    "start": 1225,
+    "end": 1400,
+    "periods": [
+      "tran"
+    ],
+    "kind": "trieu-phuc",
+    "description": "Ảnh gốc ghi phục sức hoàng đế thời Trần, ví dụ thế kỷ XIV.",
+    "image_url": "/media/costume/tran-hoang-phuc",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "tran-quan-phuc",
+    "title": "Quan phục thời Trần",
+    "start": 1225,
+    "end": 1400,
+    "periods": [
+      "tran"
+    ],
+    "kind": "quan-phuc",
+    "description": "Minh họa quan lại thời Trần.",
+    "image_url": "/media/costume/tran-quan-phuc",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "tran-nu-13-15",
+    "title": "Nữ phục thế kỷ XIII–XV",
+    "start": 1225,
+    "end": 1400,
+    "periods": [
+      "tran",
+      "ho"
+    ],
+    "kind": "phuc-trang",
+    "description": "Mẫu trang phục nữ bối cảnh thế kỷ XIII–XV, có thể trùng các chính quyền chuyển tiếp.",
+    "image_url": "/media/costume/tran-nu-13-15",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "tran-phat-tu",
+    "title": "Trang phục tín đồ Phật giáo thời Trần",
+    "start": 1225,
+    "end": 1400,
+    "periods": [
+      "tran"
+    ],
+    "kind": "ton-giao",
+    "description": "Minh họa người thuộc giới Phật giáo thời Trần.",
+    "image_url": "/media/costume/tran-phat-tu",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "le-so-hoang-phuc",
+    "title": "Hoàng phục thời Lê sơ",
+    "start": 1428,
+    "end": 1527,
+    "periods": [
+      "leso",
+      "le-so"
+    ],
+    "kind": "trieu-phuc",
+    "description": "Hình gốc thể hiện hoàng phục 1460–1497, đời Lê Thánh Tông.",
+    "image_url": "/media/costume/le-so-hoang-phuc",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "le-so-quan-vo",
+    "title": "Binh phục thời Lê",
+    "start": 1428,
+    "end": 1527,
+    "periods": [
+      "leso",
+      "le-so"
+    ],
+    "kind": "binh-phuc",
+    "description": "Minh họa binh phục thời Lê trên bảng trang phục.",
+    "image_url": "/media/costume/le-so-quan-vo",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "le-so-thuong-dan",
+    "title": "Trang phục dân gian thời Lê",
+    "start": 1428,
+    "end": 1527,
+    "periods": [
+      "leso",
+      "le-so"
+    ],
+    "kind": "dan-phuc",
+    "description": "Hình minh họa trang phục dân gian thời Hậu Lê.",
+    "image_url": "/media/costume/le-so-thuong-dan",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "le-mac-nu-16",
+    "title": "Nữ phục thế kỷ XVI",
+    "start": 1527,
+    "end": 1592,
+    "periods": [
+      "mac"
+    ],
+    "kind": "phuc-trang",
+    "description": "Tranh ghi nữ phục thế kỷ XVI thuộc thời Mạc; không đại diện cho tất cả dân cư.",
+    "image_url": "/media/costume/le-mac-nu-16",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "le-trung-hung-quan",
+    "title": "Quan phục cuối thế kỷ XVIII",
+    "start": 1533,
+    "end": 1789,
+    "periods": [
+      "letrung",
+      "le-trung-hung"
+    ],
+    "kind": "quan-phuc",
+    "description": "Hình gốc ghi quan phục giai đoạn 1751–1757, thuộc Lê Trung hưng.",
+    "image_url": "/media/costume/le-trung-hung-quan",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "le-trung-hung-vo",
+    "title": "Binh phục thế kỷ XVI–XVIII",
+    "start": 1533,
+    "end": 1789,
+    "periods": [
+      "letrung",
+      "le-trung-hung"
+    ],
+    "kind": "binh-phuc",
+    "description": "Tranh minh họa binh phục thời Hậu Lê.",
+    "image_url": "/media/costume/le-trung-hung-vo",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "le-trung-hung-nu-17",
+    "title": "Nữ phục thế kỷ XVII",
+    "start": 1600,
+    "end": 1700,
+    "periods": [
+      "letrung",
+      "le-trung-hung"
+    ],
+    "kind": "phuc-trang",
+    "description": "Bức tranh gốc chú thích khoảng năm 1632 thời Lê Trung hưng.",
+    "image_url": "/media/costume/le-trung-hung-nu-17",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "le-trung-hung-nu-1645",
+    "title": "Nữ phục thời Lê – Trịnh",
+    "start": 1600,
+    "end": 1700,
+    "periods": [
+      "letrung",
+      "le-trung-hung"
+    ],
+    "kind": "phuc-trang",
+    "description": "Tranh minh họa bối cảnh khoảng 1645.",
+    "image_url": "/media/costume/le-trung-hung-nu-1645",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "trinh-nguyen-cong-chua",
+    "title": "Phục sức quý nữ thế kỷ XVII",
+    "start": 1600,
+    "end": 1800,
+    "periods": [
+      "letrung",
+      "le-trung-hung"
+    ],
+    "kind": "trieu-phuc",
+    "description": "Hình gốc ghi trang phục quý nữ thế kỷ XVII trong bối cảnh Trịnh – Nguyễn.",
+    "image_url": "/media/costume/trinh-nguyen-cong-chua",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "tay-son-nu-18",
+    "title": "Nữ phục thế kỷ XVIII – Tây Sơn",
+    "start": 1750,
+    "end": 1802,
+    "periods": [
+      "tayson"
+    ],
+    "kind": "phuc-trang",
+    "description": "Ảnh gốc ghi bối cảnh Lê Trung hưng – Tây Sơn, không phải quân phục Tây Sơn.",
+    "image_url": "/media/costume/tay-son-nu-18",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "nguyen-hoang-phuc",
+    "title": "Hoàng phục thời Nguyễn",
+    "start": 1802,
+    "end": 1945,
+    "periods": [
+      "nguyenvn",
+      "nguyen"
+    ],
+    "kind": "trieu-phuc",
+    "description": "Ảnh gốc ghi phục sức hoàng đế cuối triều Nguyễn; chỉ gắn cho bối cảnh triều Nguyễn.",
+    "image_url": "/media/costume/nguyen-hoang-phuc",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "nguyen-cong-chua",
+    "title": "Trang phục công chúa thời Nguyễn",
+    "start": 1802,
+    "end": 1945,
+    "periods": [
+      "nguyenvn",
+      "nguyen"
+    ],
+    "kind": "trieu-phuc",
+    "description": "Minh họa công chúa năm 1931; phục trang không đại diện cả thời Nguyễn.",
+    "image_url": "/media/costume/nguyen-cong-chua",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "nguyen-quan-phuc",
+    "title": "Quan phục thời Nguyễn",
+    "start": 1802,
+    "end": 1945,
+    "periods": [
+      "nguyenvn",
+      "nguyen"
+    ],
+    "kind": "quan-phuc",
+    "description": "Trang phục quan lại thời Nguyễn.",
+    "image_url": "/media/costume/nguyen-quan-phuc",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "nguyen-ngu-lam",
+    "title": "Lính hộ vệ cung đình 1926",
+    "start": 1880,
+    "end": 1945,
+    "periods": [
+      "nguyenvn",
+      "nguyen"
+    ],
+    "kind": "binh-phuc",
+    "description": "Tranh gốc ghi binh lính cung đình năm 1926.",
+    "image_url": "/media/costume/nguyen-ngu-lam",
+    "source_image": "trang-phuc-lich-su-viet-nam-02.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "nguyen-ao-dai-19",
+    "title": "Phục sức phụ nữ cuối thế kỷ XIX",
+    "start": 1830,
+    "end": 1945,
+    "periods": [
+      "nguyenvn",
+      "nguyen"
+    ],
+    "kind": "phuc-trang",
+    "description": "Hình gốc chú thích khoảng 1884–1885, không phải áo dài hiện đại.",
+    "image_url": "/media/costume/nguyen-ao-dai-19",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "nguyen-ao-dai-1830",
+    "title": "Áo dài thời Minh Mạng",
+    "start": 1820,
+    "end": 1841,
+    "periods": [
+      "nguyenvn",
+      "nguyen"
+    ],
+    "kind": "dan-phuc",
+    "description": "Tranh gốc ghi trang phục sau cải cách thời Minh Mạng.",
+    "image_url": "/media/costume/nguyen-ao-dai-1830",
+    "source_image": "trang-phuc-lich-su-viet-nam-03.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "hats-ly-1009",
+    "title": "Mũ tóc thời Lý",
+    "start": 1009,
+    "end": 1225,
+    "periods": [
+      "ly"
+    ],
+    "kind": "mu-toc",
+    "description": "Hình mũ tóc thời Lý trên bảng tư liệu.",
+    "image_url": "/media/costume/hats-ly-1009",
+    "source_image": "hats_and_hair_fashion_history__vietnam_by_lilsuika.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "hats-tran-1225",
+    "title": "Mũ tóc thời Trần",
+    "start": 1225,
+    "end": 1400,
+    "periods": [
+      "tran"
+    ],
+    "kind": "mu-toc",
+    "description": "Hình mũ tóc thời Trần trên bảng tư liệu.",
+    "image_url": "/media/costume/hats-tran-1225",
+    "source_image": "hats_and_hair_fashion_history__vietnam_by_lilsuika.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "hats-le-1460",
+    "title": "Mũ quan thời Lê",
+    "start": 1428,
+    "end": 1527,
+    "periods": [
+      "leso",
+      "le-so"
+    ],
+    "kind": "mu-toc",
+    "description": "Tranh gốc thể hiện mũ quan trên dòng mũ tóc Việt Nam.",
+    "image_url": "/media/costume/hats-le-1460",
+    "source_image": "hats_and_hair_fashion_history__vietnam_by_lilsuika.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "hats-le-trung-hung",
+    "title": "Mũ thời Lê – Trịnh",
+    "start": 1600,
+    "end": 1789,
+    "periods": [
+      "letrung",
+      "le-trung-hung"
+    ],
+    "kind": "mu-toc",
+    "description": "Mẫu mũ trong hàng thế kỷ XVII–XVIII.",
+    "image_url": "/media/costume/hats-le-trung-hung",
+    "source_image": "hats_and_hair_fashion_history__vietnam_by_lilsuika.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "hats-tay-son-18",
+    "title": "Mũ tóc thế kỷ XVIII",
+    "start": 1750,
+    "end": 1802,
+    "periods": [
+      "tayson"
+    ],
+    "kind": "mu-toc",
+    "description": "Hình vẽ mũ tóc thế kỷ XVIII (tham chiếu giai đoạn Tây Sơn).",
+    "image_url": "/media/costume/hats-tay-son-18",
+    "source_image": "hats_and_hair_fashion_history__vietnam_by_lilsuika.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "hats-nguyen-1830",
+    "title": "Mũ quan thời Nguyễn",
+    "start": 1802,
+    "end": 1945,
+    "periods": [
+      "nguyenvn",
+      "nguyen"
+    ],
+    "kind": "mu-toc",
+    "description": "Mẫu mũ quan thời Nguyễn trên bảng mũ tóc.",
+    "image_url": "/media/costume/hats-nguyen-1830",
+    "source_image": "hats_and_hair_fashion_history__vietnam_by_lilsuika.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  },
+  {
+    "id": "hats-nguyen-nu-19",
+    "title": "Mũ tóc phụ nữ thế kỷ XIX",
+    "start": 1802,
+    "end": 1945,
+    "periods": [
+      "nguyenvn",
+      "nguyen"
+    ],
+    "kind": "mu-toc",
+    "description": "Hình vẽ kiểu tóc phụ nữ thế kỷ XIX.",
+    "image_url": "/media/costume/hats-nguyen-nu-19",
+    "source_image": "hats_and_hair_fashion_history__vietnam_by_lilsuika.jpg",
+    "credit": "Tranh phục dựng do người dùng cung cấp; cần xác minh quyền sử dụng trước khi công bố",
+    "source_type": "tranh minh họa, không phải hiện vật xác minh"
+  }
+]

@@ -13,17 +13,22 @@ Repo này là **bản gốc duy nhất** của mã nguồn web. Artifact Claude 
 6. **Chia vùng file để tránh xung đột.** Trước khi sửa một file đang có PR mở của bên kia, đọc PR đó trước.
 
 ## Ai thường làm phần nào (có thể đổi)
+`<SA_BAN>` = `vietsu/static/khong-gian/thanh-co-quang-tri`
+
 | Phần | File | Gợi ý |
 |---|---|---|
-| Mô hình, vật liệu, xuất GLB từ Blender | `blender/`, `web/models/`, `web/data/rai.json` | Claude (có kết nối Blender MCP trên máy anh) |
-| Logic web, nhân vật, hiệu ứng, âm thanh | `web/js/app.js` | Bên nào nhận việc thì ghi vào PR |
-| Giao diện, chữ, chú thích lịch sử | `web/index.html`, `web/css/style.css`, phần `INFO` trong `app.js` | Bên nào nhận việc thì ghi vào PR |
+| Mô hình, vật liệu, xuất GLB từ Blender | `blender/`, `<SA_BAN>/models/`, `<SA_BAN>/data/rai.json` | Claude (có kết nối Blender MCP trên máy anh) |
+| Logic web, nhân vật, hiệu ứng, âm thanh | `<SA_BAN>/js/app.js` | Bên nào nhận việc thì ghi vào PR |
+| Website Việt Sử (FastAPI, CMS, SGK, giao diện dòng thời gian) | `vietsu/` (trừ `static/khong-gian/`) | Bên nào nhận việc thì ghi vào PR |
+| Giao diện, chữ, chú thích lịch sử của sa bàn | `<SA_BAN>/index.html`, `<SA_BAN>/css/style.css`, phần `INFO` trong `app.js` | Bên nào nhận việc thì ghi vào PR |
 
 ## Xem kết quả
-- **GitHub Pages** (tự cập nhật sau mỗi lần merge vào `main`): bật một lần ở Settings → Pages → Source: "GitHub Actions".
-- **Chạy trên máy**: `cd web && python3 -m http.server 8000` rồi mở http://localhost:8000
-- **Artifact Claude**: `python3 tools/build_artifact.py` rồi Claude đăng thư mục `dist_artifact/`.
+- **Website Việt Sử đầy đủ trên Mac** (CMS, API, SGK, sa bàn): `cd vietsu && bash start_local.command` → http://127.0.0.1:8000 (sa bàn: http://127.0.0.1:8000/khong-gian/thanh-co-quang-tri/). Hướng dẫn: `vietsu/HUONG_DAN_LOCAL_MAC.md`.
+- **Chỉ sa bàn**: `cd vietsu/static/khong-gian/thanh-co-quang-tri && python3 -m http.server 8000`.
+- **GitHub Pages** (bản tĩnh, tự cập nhật sau khi merge vào `main`): trang chủ là giao diện Việt Sử V4.1 (không có CMS/API), sa bàn ở `/khong-gian/thanh-co-quang-tri/`. Bật một lần: Settings → Pages → Source: "GitHub Actions".
+- **Artifact Claude** (chỉ sa bàn): `python3 tools/build_artifact.py` rồi Claude đăng thư mục `dist_artifact/`.
 
-## Tài nguyên nặng
+## Tài nguyên nặng và dữ liệu riêng
+- KHÔNG đưa lên repo: `vietsu/.env` (mã quản trị, khóa API), `vietsu/data/vietsucms.sqlite3` (dữ liệu CMS), `vietsu/static/uploads/`, `vietsu/.venv/`. Đã chặn trong `.gitignore`. Sao lưu dữ liệu bằng `vietsu/sao_luu_local.command`.
 - File `.blend` không đưa lên repo (nằm ở ổ xMABUx, xem `docs/TOM_TAT.md`).
-- GLB đã nén meshopt, mỗi file < 10 MB, để thẳng trong `web/models/`. Nếu sau này file > 50 MB thì chuyển sang Git LFS.
+- GLB đã nén meshopt, mỗi file < 10 MB, để thẳng trong `<SA_BAN>/models/`. Nếu sau này file > 50 MB thì chuyển sang Git LFS.

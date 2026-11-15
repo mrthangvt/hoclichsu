@@ -1,0 +1,280 @@
+{
+  "6": [
+    {
+      "id": "g6-1",
+      "grade": 6,
+      "title": "Vì sao cần học lịch sử?",
+      "year": null,
+      "summary": "Khám phá dấu vết quá khứ, nguồn sử liệu và ý nghĩa của môn học.",
+      "entity_id": "lop-6",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g6-2",
+      "grade": 6,
+      "title": "Cách tính thời gian trong lịch sử",
+      "year": null,
+      "summary": "Thế kỷ, thiên niên kỷ, trước và sau Công nguyên.",
+      "entity_id": "lop-6",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g6-3",
+      "grade": 6,
+      "title": "Thời Văn Lang – Hùng Vương",
+      "year": -700,
+      "summary": "Đời sống cư dân và quá trình hình thành những thiết chế nhà nước sớm.",
+      "entity_id": "vanlang",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g6-4",
+      "grade": 6,
+      "title": "Nước Âu Lạc và thành Cổ Loa",
+      "year": -257,
+      "summary": "Không gian Cổ Loa, An Dương Vương và tranh luận về niên đại.",
+      "entity_id": "aulac",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g6-5",
+      "grade": 6,
+      "title": "Khởi nghĩa Hai Bà Trưng",
+      "year": 40,
+      "summary": "Bối cảnh Giao Châu thế kỷ I và cuộc nổi dậy của Hai Bà Trưng.",
+      "entity_id": "haibatrung",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g6-6",
+      "grade": 6,
+      "title": "Chiến thắng Bạch Đằng 938",
+      "year": 938,
+      "summary": "Ngô Quyền, Nam Hán và bước ngoặt tự chủ.",
+      "entity_id": "ngo",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    }
+  ],
+  "7": [
+    {
+      "id": "g7-1",
+      "grade": 7,
+      "title": "Nhà Ngô – Đinh – Tiền Lê",
+      "year": 968,
+      "summary": "Hình thành và củng cố nền tự chủ, quốc hiệu Đại Cồ Việt.",
+      "entity_id": "dinh",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g7-2",
+      "grade": 7,
+      "title": "Nhà Lý và sự phát triển của Đại Việt",
+      "year": 1009,
+      "summary": "Thăng Long, thể chế Đại Việt và quan hệ với Tống.",
+      "entity_id": "ly",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g7-3",
+      "grade": 7,
+      "title": "Ba lần kháng chiến chống Mông – Nguyên",
+      "year": 1258,
+      "summary": "Từ quân Mông Cổ tới nhà Nguyên, diễn biến các cuộc kháng chiến.",
+      "entity_id": "tran",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g7-4",
+      "grade": 7,
+      "title": "Nhà Lê sơ và thời Hồng Đức",
+      "year": 1460,
+      "summary": "Quản trị, luật pháp và văn hóa thời Lê Thánh Tông.",
+      "entity_id": "leso",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    }
+  ],
+  "8": [
+    {
+      "id": "g8-1",
+      "grade": 8,
+      "title": "Những cuộc cách mạng tư sản đầu tiên",
+      "year": 1640,
+      "summary": "Bối cảnh cách mạng Hà Lan, Anh, Bắc Mỹ; đối chiếu thời Trịnh–Nguyễn.",
+      "entity_id": "letrung",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g8-2",
+      "grade": 8,
+      "title": "Phong trào Tây Sơn",
+      "year": 1771,
+      "summary": "Tây Sơn khởi nghĩa, Rạch Gầm – Xoài Mút và Ngọc Hồi – Đống Đa.",
+      "entity_id": "tayson",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g8-3",
+      "grade": 8,
+      "title": "Pháp bắt đầu xâm lược Việt Nam",
+      "year": 1858,
+      "summary": "Liên quân Pháp – Tây Ban Nha tấn công Đà Nẵng.",
+      "entity_id": "nguyenvn",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    }
+  ],
+  "9": [
+    {
+      "id": "g9-1",
+      "grade": 9,
+      "title": "Thế giới sau Chiến tranh thế giới thứ hai",
+      "year": 1945,
+      "summary": "Trật tự quốc tế sau 1945 và Chiến tranh Lạnh.",
+      "entity_id": "vnmodern",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g9-2",
+      "grade": 9,
+      "title": "Chiến thắng Điện Biên Phủ",
+      "year": 1954,
+      "summary": "Chiến dịch 1954 và Hiệp định Genève.",
+      "entity_id": "vnmodern",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g9-3",
+      "grade": 9,
+      "title": "Chiến tranh Việt Nam 1954–1975",
+      "year": 1968,
+      "summary": "Bối cảnh chiến tranh và quá trình kết thúc năm 1975.",
+      "entity_id": "vietnamwar",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    }
+  ],
+  "10": [
+    {
+      "id": "g10-1",
+      "grade": 10,
+      "title": "Sự xuất hiện của loài người và xã hội nguyên thủy",
+      "year": null,
+      "summary": "Các giai đoạn tiến hóa và dấu tích khảo cổ.",
+      "entity_id": "lop-10",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g10-2",
+      "grade": 10,
+      "title": "Các quốc gia cổ đại",
+      "year": -700,
+      "summary": "Khám phá nhiều nền văn minh và so sánh quá trình hình thành nhà nước.",
+      "entity_id": "vanlang",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    }
+  ],
+  "11": [
+    {
+      "id": "g11-1",
+      "grade": 11,
+      "title": "Nhật Bản và cuộc Duy tân Minh Trị",
+      "year": 1868,
+      "summary": "Những cải cách cuối thế kỷ XIX và liên hệ cục diện châu Á.",
+      "entity_id": "nguyenvn",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g11-2",
+      "grade": 11,
+      "title": "Chủ nghĩa đế quốc và quá trình xâm lược thuộc địa",
+      "year": 1884,
+      "summary": "Sự mở rộng của các cường quốc công nghiệp và hệ quả tại Việt Nam.",
+      "entity_id": "nguyenvn",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    }
+  ],
+  "12": [
+    {
+      "id": "g12-1",
+      "grade": 12,
+      "title": "Trật tự thế giới sau năm 1945",
+      "year": 1945,
+      "summary": "Quan hệ quốc tế sau Chiến tranh thế giới thứ hai.",
+      "entity_id": "vnmodern",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g12-2",
+      "grade": 12,
+      "title": "Cách mạng tháng Tám năm 1945",
+      "year": 1945,
+      "summary": "Diễn biến, nhân vật, tuyên bố độc lập.",
+      "entity_id": "vnmodern",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g12-3",
+      "grade": 12,
+      "title": "Kháng chiến chống Pháp 1946–1954",
+      "year": 1946,
+      "summary": "Những mốc chính, chiến dịch và kết quả.",
+      "entity_id": "vnmodern",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    },
+    {
+      "id": "g12-4",
+      "grade": 12,
+      "title": "Việt Nam 1954–1975",
+      "year": 1975,
+      "summary": "Những biến động và diễn biến tới 30/4/1975.",
+      "entity_id": "vietnamwar",
+      "source_url": "",
+      "status": "đề cương tham khảo",
+      "curriculum": "Chưa đối chiếu sách giáo khoa hiện hành"
+    }
+  ]
+}

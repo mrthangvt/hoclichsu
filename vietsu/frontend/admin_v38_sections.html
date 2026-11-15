@@ -1,0 +1,121 @@
+
+<section id="sgk" class="hidden">
+<h2>Sách giáo khoa lịch sử — biên tập bài học</h2>
+<p class="note">Chọn lớp → chọn bài → soạn nội dung → <b>Lưu nháp</b> (chưa hiện lên web) → <b>Xuất bản</b> (cần mã thẩm định). Bài có nội dung ≥ 150 ký tự và ít nhất 1 nguồn sẽ hiện nhãn “Đã có bài học” trong menu Sách giáo khoa và có trang riêng chuẩn SEO tại <code>/sach-giao-khoa/lop-N/ten-bai</code>.</p>
+<div class="sgk-layout">
+  <div class="sgk-list-col">
+    <div class="sgk-filters">
+      <select id="sgkGrade" aria-label="Chọn lớp"><option value="6">Lớp 6</option><option value="7">Lớp 7</option><option value="8">Lớp 8</option><option value="9">Lớp 9</option><option value="10">Lớp 10</option><option value="11">Lớp 11</option><option value="12">Lớp 12</option></select>
+      <select id="sgkState" aria-label="Lọc trạng thái"><option value="">Tất cả</option><option value="published">Đã xuất bản</option><option value="dirty">Có thay đổi chưa xuất bản</option><option value="outline">Chỉ có đề cương</option><option value="hidden">Bài mới chưa hiển thị</option></select>
+    </div>
+    <input id="sgkSearch" type="search" placeholder="Tìm tên bài, chương…" aria-label="Tìm bài">
+    <div class="sgk-list-actions"><button class="btn" type="button" id="sgkNew">+ Bài mới</button><button class="btn secondary" type="button" id="sgkReload">Tải lại</button></div>
+    <div id="sgkCount" class="note"></div>
+    <div id="sgkList" class="sgk-list" role="list"></div>
+  </div>
+  <div class="sgk-editor-col">
+    <div id="sgkEmpty" class="sgk-empty">Chọn một bài ở danh sách bên trái, hoặc bấm “+ Bài mới”.</div>
+    <form id="sgkForm" class="hidden" autocomplete="off">
+      <div class="sgk-head"><div><div class="tag" id="sgkIdLabel"></div><h3 id="sgkHeading">Bài học</h3><div id="sgkBadges"></div></div>
+        <div class="sgk-head-actions"><a id="sgkViewLive" class="btn secondary hidden" target="_blank" rel="noopener">Xem trang công khai ↗</a></div></div>
+      <div class="grid3">
+        <div><label for="sgkF_grade">Lớp</label><select id="sgkF_grade"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>
+        <div><label for="sgkF_lesson_number">Số bài</label><input id="sgkF_lesson_number" type="number" min="0" max="999"></div>
+        <div><label for="sgkF_sort_order">Thứ tự hiển thị</label><input id="sgkF_sort_order" type="number" min="0" step="1"></div>
+        <div><label for="sgkF_year">Năm trên timeline (TCN: số âm)</label><input id="sgkF_year" type="number" min="-5000" max="2100"></div>
+        <div><label for="sgkF_entity_id">ID hồ sơ liên quan</label><input id="sgkF_entity_id" placeholder="tran, tayson, hcm:1911…"></div>
+        <div><label for="sgkF_author">Người biên soạn</label><input id="sgkF_author" maxlength="120"></div>
+      </div>
+      <div class="grid">
+        <div><label for="sgkF_part">Phần</label><input id="sgkF_part" list="sgkParts" maxlength="240"><datalist id="sgkParts"></datalist></div>
+        <div><label for="sgkF_chapter">Chương</label><input id="sgkF_chapter" list="sgkChapters" maxlength="240"><datalist id="sgkChapters"></datalist></div>
+      </div>
+      <label for="sgkF_title">Tên bài (H1)</label><input id="sgkF_title" required maxlength="240">
+      <div class="grid">
+        <div><label for="sgkF_toc_title">Tên trong mục lục (ví dụ “Bài 3: …”)</label><input id="sgkF_toc_title" maxlength="260"></div>
+        <div><label for="sgkF_slug">Đường dẫn (slug) — để trống sẽ tự tạo</label><input id="sgkF_slug" maxlength="140" pattern="[a-z0-9\-]*"></div>
+      </div>
+      <label for="sgkF_summary">Tóm tắt ngắn (hiện ở danh sách và đầu bài) <span class="count" data-for="sgkF_summary" data-max="2000"></span></label>
+      <textarea id="sgkF_summary" maxlength="2000" rows="3"></textarea>
+
+      <label>Ảnh bìa</label>
+      <div class="sgk-cover">
+        <img id="sgkCoverPreview" alt="" hidden>
+        <div class="sgk-cover-fields">
+          <input id="sgkF_cover_image" placeholder="https://… hoặc bấm Tải ảnh lên" maxlength="600">
+          <input id="sgkF_cover_caption" placeholder="Chú thích / nguồn ảnh" maxlength="400">
+          <div><button class="btn secondary" type="button" id="sgkCoverUpload">Tải ảnh lên</button><button class="btn secondary" type="button" id="sgkCoverClear">Bỏ ảnh</button></div>
+        </div>
+      </div>
+
+      <label for="sgkF_content">Nội dung bài học (Markdown đơn giản) <span class="count" data-for="sgkF_content" data-max="200000"></span></label>
+      <div class="md-toolbar" role="toolbar" aria-label="Định dạng">
+        <button type="button" data-md="h2">Tiêu đề lớn</button><button type="button" data-md="h3">Tiêu đề nhỏ</button>
+        <button type="button" data-md="b"><b>Đậm</b></button><button type="button" data-md="i"><i>Nghiêng</i></button>
+        <button type="button" data-md="ul">• Danh sách</button><button type="button" data-md="ol">1. Danh sách</button>
+        <button type="button" data-md="quote">❝ Trích dẫn</button><button type="button" data-md="link">Liên kết</button>
+        <button type="button" data-md="img">Chèn ảnh</button><button type="button" data-md="hr">Đường kẻ</button>
+        <span class="md-sp"></span>
+        <button type="button" id="sgkPreviewToggle" aria-pressed="false">Xem trước</button>
+      </div>
+      <textarea id="sgkF_content" class="body md" rows="18" spellcheck="true" placeholder="## Bối cảnh&#10;Viết đoạn văn…&#10;&#10;## Diễn biến chính&#10;- Ý thứ nhất&#10;- Ý thứ hai&#10;&#10;> Trích dẫn tư liệu"></textarea>
+      <div id="sgkPreview" class="md-preview hidden"></div>
+      <details class="md-help"><summary>Cách định dạng</summary>
+        <p class="note"><code>## Tiêu đề</code> · <code>### Tiêu đề nhỏ</code> · <code>**đậm**</code> · <code>*nghiêng*</code> · dòng bắt đầu bằng <code>- </code> hoặc <code>1. </code> là danh sách · <code>&gt; </code> là trích dẫn · <code>[chữ](https://…)</code> là liên kết · <code>![mô tả](https://…)</code> là ảnh · <code>---</code> là đường kẻ. Để trống một dòng để tách đoạn. Mọi thẻ HTML gõ vào đều bị vô hiệu hoá để bảo mật.</p></details>
+
+      <div class="grid">
+        <div><label for="sgkF_key_points">Ý chính cần nhớ — mỗi dòng một ý</label><textarea id="sgkF_key_points" rows="5"></textarea></div>
+        <div><label for="sgkF_review_questions">Câu hỏi ôn tập — mỗi dòng một câu</label><textarea id="sgkF_review_questions" rows="5"></textarea></div>
+      </div>
+      <label for="sgkF_sources">Nguồn tư liệu — mỗi dòng: <code>Tên tài liệu | https://đường-dẫn</code> (đường dẫn có thể bỏ trống)</label>
+      <textarea id="sgkF_sources" rows="4" placeholder="Sách giáo khoa Lịch sử 7 – Kết nối tri thức&#10;Đại Việt sử ký toàn thư | https://…"></textarea>
+      <div class="grid">
+        <div><label for="sgkF_seo_title">Tiêu đề SEO <span class="count" data-for="sgkF_seo_title" data-max="65"></span></label><input id="sgkF_seo_title" maxlength="180"></div>
+        <div><label for="sgkF_meta_description">Mô tả SEO <span class="count" data-for="sgkF_meta_description" data-max="160"></span></label><input id="sgkF_meta_description" maxlength="320"></div>
+      </div>
+      <div class="sgk-actions">
+        <button class="btn" type="submit" id="sgkSave">Lưu nháp</button>
+        <button class="btn publish" type="button" id="sgkPublish">Xuất bản</button>
+        <button class="btn secondary" type="button" id="sgkUnpublish">Gỡ xuất bản</button>
+        <button class="btn secondary" type="button" id="sgkHistoryBtn">Lịch sử phiên bản</button>
+        <button class="btn danger" type="button" id="sgkDelete">Xóa bài</button>
+      </div>
+      <p id="sgkStatus" class="status" role="status" aria-live="polite"></p>
+      <div id="sgkHistory" class="items hidden"></div>
+    </form>
+  </div>
+</div>
+<details class="sgk-tools"><summary>Nhập / xuất hàng loạt (JSON)</summary>
+  <p class="note">Xuất toàn bộ bản nháp để lưu trữ hoặc biên tập ngoài, rồi nhập lại. Bài nhập vào chỉ là <b>bản nháp</b>. Mẫu tối thiểu: <code>{"lessons":[{"grade":7,"title":"…","summary":"…","content":"## …","sources":[{"title":"…","url":"https://…"}]}]}</code>. Có trường <code>id</code> trùng bài cũ + bật ghi đè → cập nhật bản nháp bài đó.</p>
+  <div class="actions"><button class="btn secondary" type="button" id="sgkExport">Tải file xuất (JSON)</button>
+    <input id="sgkImportFile" type="file" accept=".json,application/json" aria-label="Chọn file JSON">
+    <label class="inline"><input type="checkbox" id="sgkImportOverwrite"> Ghi đè bản nháp bài trùng id</label>
+    <button class="btn secondary" type="button" id="sgkImport">Nhập file</button></div>
+  <p id="sgkImportStatus" class="status"></p>
+</details>
+</section>
+
+<section id="ads" class="hidden">
+<h2>Quảng cáo Google AdSense</h2>
+<p class="note">Giao diện đã chừa sẵn các vị trí quảng cáo (không nằm trong cửa sổ bật lên — đúng chính sách AdSense). Khung chỉ tải quảng cáo khi người xem cuộn tới, nên không làm chậm trang. Khi chưa bật, website không tải bất kỳ mã nào của Google.</p>
+<ol class="note steps">
+  <li>Đăng ký AdSense bằng tên miền thật (HTTPS), đặt <code>SITE_URL</code> trong <code>.env</code> đúng tên miền.</li>
+  <li>Nhập mã nhà xuất bản <code>ca-pub-…</code>, bấm <b>Lưu</b> → máy chủ tự tạo <a href="/ads.txt" target="_blank" rel="noopener">/ads.txt</a> và chèn mã xác minh vào trang.</li>
+  <li>Sau khi Google duyệt: tạo các “Đơn vị quảng cáo hiển thị” trong AdSense, dán mã <code>data-ad-slot</code> (chỉ phần số) vào bảng dưới. Có thể bật thêm Quảng cáo tự động trong bảng điều khiển AdSense.</li>
+</ol>
+<div class="grid">
+  <div><label for="adsClient">Mã nhà xuất bản</label><input id="adsClient" placeholder="ca-pub-1234567890123456" maxlength="40"></div>
+  <div class="checks">
+    <label class="inline"><input type="checkbox" id="adsEnabled"> Bật quảng cáo trên website</label>
+    <label class="inline"><input type="checkbox" id="adsTest"> Chế độ thử (data-adtest, không tính tiền)</label>
+    <label class="inline"><input type="checkbox" id="adsPreview"> Hiện khung giữ chỗ để xem vị trí</label>
+    <label class="inline"><input type="checkbox" id="adsAuto"> Đang dùng Quảng cáo tự động (ghi chú)</label>
+  </div>
+</div>
+<h3>Mã đơn vị quảng cáo theo vị trí</h3>
+<div id="adsSlots" class="ads-slots"></div>
+<label for="adsTxtExtra">Dòng bổ sung cho ads.txt (mạng quảng cáo khác, nếu có)</label>
+<textarea id="adsTxtExtra" rows="3" placeholder="example.com, pub-0000, DIRECT, abc123"></textarea>
+<div class="actions"><button class="btn" type="button" id="adsSave">Lưu cấu hình quảng cáo</button><button class="btn secondary" type="button" id="adsLoad">Tải lại</button></div>
+<p id="adsStatus" class="status" role="status" aria-live="polite"></p>
+</section>
