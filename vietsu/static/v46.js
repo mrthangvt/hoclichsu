@@ -3,11 +3,11 @@
   'use strict';
 
   // Chỉ công bố lối vào sa bàn khi có trang 3D thực sự trong repository.
-  const SCENES = Object.freeze({
+  const SCENES = {
     'quang-tri': { title: 'Thành cổ Quảng Trị 1972',
                    href: 'khong-gian/thanh-co-quang-tri/',
                    subtitle: 'Sa bàn tương tác Three.js · tái dựng mô phỏng, chưa phải tư liệu hiện trường' }
-  });
+  };
   const CHINA = new Set(['hotatliet','bao','qinthuyhoang','sohan','tamquoc','thoduong','genghis','hongwu','thanhdrama']);
   const neutralSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Chưa có chân dung xác thực"><rect width="256" height="256" rx="34" fill="#283a40"/><circle cx="128" cy="91" r="41" fill="#abafa4"/><path d="M40 228c6-56 37-82 88-82s82 26 88 82" fill="#838f87"/><path d="M33 230h190" stroke="#d2b078" stroke-width="5"/></svg>';
   const NEUTRAL = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(neutralSvg);
@@ -117,7 +117,8 @@
     document.querySelectorAll('#v23SpaceCards .v23-space-card').forEach(card => {
       if (card.querySelector('.v46-3d-card-label')) return;
       const onclick = card.getAttribute('onclick') || '';
-      if (!onclick.includes("scene:quang-tri")) return;
+      const match = onclick.match(/scene:([a-z0-9_-]+)/i);
+      if (!match || !SCENES[match[1]]) return;
       const marker = document.createElement('span');
       marker.className = 'v46-3d-card-label';
       marker.textContent = '◈ Có sa bàn 3D — chọn để xem';
@@ -138,6 +139,22 @@
       for (const [id, item] of Object.entries(data.overrides || {})) REGISTRY[id] = item;
       decorateCharacters();refreshPopup();
     } catch (_) { /* Bản offline/GitHub Pages không có CMS. */ }
+  }
+
+  async function loadSceneAssets() {
+    try {
+      const response = await fetch('/api/v4.6/scene-assets', {cache:'no-store',credentials:'same-origin'});
+      if (!response.ok) return;
+      const data = await response.json();
+      for (const [id, scene] of Object.entries(data.scenes || {})) {
+        if (!/^[a-z0-9_-]{1,64}$/.test(id) || !scene || typeof scene.href !== 'string') continue;
+        if (!/^khong-gian\/[a-z0-9_\/-]+\/$/.test(scene.href)) continue;
+        SCENES[id] = { title: String(scene.title || 'Sa bàn lịch sử').slice(0,120),
+                       subtitle: String(scene.subtitle || 'Tái dựng mô phỏng').slice(0,200),
+                       href: scene.href };
+      }
+      decorateCards();refreshPopup();
+    } catch (_) { /* Bản Offline/GitHub Pages sử dụng bản đồ asset tĩnh. */ }
   }
 
   function init() {
@@ -175,6 +192,7 @@
     }
     decorateCharacters();decorateCards();refreshPopup();
     loadPublicOverrides();
+    loadSceneAssets();
     document.documentElement.dataset.vietsuVersion = '4.6';
   }
 
