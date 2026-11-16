@@ -65,6 +65,8 @@ def public_scene_assets():
             continue
         item_id = str(item.get("id", ""))
         url = str(item.get("asset_url") or "")
+        if item.get("status") not in ("prototype", "published", "ready"):
+            continue
         if not ID_PATTERN.fullmatch(item_id):
             continue
         # Cấm URL ngoài hoặc URL có dấu chấm, tham số, ký tự lạ.
