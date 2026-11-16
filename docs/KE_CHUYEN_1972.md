@@ -61,3 +61,30 @@ Các mốc đã đối chiếu: 30/3/1972 mở màn chiến dịch Trị–Thiê
 3. Mưa, nước đọng → cảnh 08; lớp hướng tiến công/khu vực kiểm soát → cảnh 02, 03.
 4. Cảnh 09 với nhãn thời gian mềm; cảnh 10 cần ảnh có quyền sử dụng.
 5. Đo FPS thiết bị thật, LOD nhân vật xa nếu cần.
+
+
+---
+# Giai đoạn B (16/11/2026) — nhánh `claude/quang-tri-1972-giai-doan-b`
+
+## Đã làm
+- **Đủ 10 phân cảnh chạy thật** (~14 phút 51 giây): 01 Trước cơn bão lửa · 02 Tiến công mùa xuân · 03 Phản công 28/6 · 04 Dưới hoả lực · 05 Vượt sông tiếp viện · 06 Giành giật từng đoạn tường · 07 Một đêm trong công sự · 08 Mưa, nước dâng · 09 Những ngày cuối · 10 Nơi tưởng niệm.
+- **Nút ⛈ Mưa giông** (mọi chế độ): mưa theo camera, sấm chớp ngẫu nhiên 5–13 s (tia sét, sáng trời, tiếng sấm trễ theo khoảng cách), trời tối và sương dày, mặt đất/tường ướt, mặt nước gợn mạnh. **Không đổi nhóm nhân vật** — thuyền, người bơi, tổ tiếp viện vẫn qua sông. "Giảm chớp" giảm còn ~22% độ sáng tia chớp.
+- **Động tác mới** (từ `NhanVat_Mixamo` + Basic Shooter Pack): QĐND thêm 14 (TruonToi_TaiCho, BoThap_TaiCho, ThaXuong, NhatDo, VuonLay, QuyNghi, KeoVat, NgoiNghi, KhomChe, DungNgam, DungBan, DungNapDan, TrungDanNhe, NemLuuDanDung) → `qdnd.glb` 35 clip. VNCH thêm 9 (chuyển từ rig QĐND mới) → `vnch.glb` 19 clip.
+- **Nhóm mới:** `vCrawl` (VNCH trườn), `vBreach` (VNCH lên góc Đông Nam mặt thành), `qShelter` (QĐND khom che dưới hoả lực), `qRest` (đêm trong công sự + đèn dầu + vật dụng), `qRepair` (gia cố công sự trong mưa), `qLand` (bến tiếp viện: kéo thuyền, nhặt/chuyển thùng; 2 thuyền cập bờ), `qBack` + `qSwimBack` (rút về bờ sông, bơi sang bờ Tây).
+- **Trạng thái mới:** `spring`, `counter_start`, `under_fire`, `bunker_night`, `rain_ruins`, `final`, `memorial`.
+- **Trước/Sau tàn phá (giản lược):** tường liền + ẩn đổ nát, hố bom, cây cháy, khói lửa. Nút Trước/Sau ở cảnh 01, 04; ô "Trước tàn phá" trong Khám phá tự do. Tường GD1–GD3 trong Blender đã đổ nát và lệch hình nên không dùng được.
+- **Lớp hướng** (nút ➶): mũi tên nổi trên sa bàn — `spring` (đỏ: QĐND tiến công; vàng: VNCH rút), `counter` (vàng: hướng phản công; khung đỏ: khu QĐND giữ), `final`.
+- **Cờ VNCH trên cổng Tây** (cảnh 09, theo chú thích ảnh USMC; ngày 15 hoặc 16/9 tuỳ nguồn). **Nước dâng** (`flood`) cảnh 08. **Hoa đăng** biểu tượng trên sông (cảnh 10) + chú thích Đài tưởng niệm (vị trí OSM).
+- Màn hình dọc: tự mở rộng góc nhìn camera.
+- File Blender `ThanhCoQuangTri_1972_GD8.blend`.
+
+## Kiểm thử (SwiftShader, không GPU)
+- 1440×810 và 390×844: 10 cảnh, Khám phá tự do, góc nhìn nhân vật — không lỗi JavaScript.
+- 3 vòng qua 10 cảnh + đổi chế độ, **bật âm thanh và mưa giông**: mixer 598 / NPC 574 không đổi; texture ổn định sau vòng 1; heap 136–169 MB không tăng dần.
+- Chưa có FPS thiết bị thật. Mưa: desktop 6.500 vệt, mobile 2.200.
+
+## Còn lại (giai đoạn C)
+- Đối chiếu lịch sử với người biên tập; ảnh tư liệu có quyền sử dụng cho bảng Tư liệu và cảnh 10.
+- Động tác chưa có: vác trên vai, băng bó, uống nước, nói chuyện.
+- Nước đọng trong từng hố bom, bùn; công trình bên trong thành ở trạng thái trước tàn phá.
+- Đo FPS thật; LOD/gộp nhân vật xa nếu cần.

@@ -21,7 +21,7 @@ export function createStoryAudio(api){
   return {
     set(mix){if(mix)Object.assign(target,mix)},
     reset(){Object.assign(target,{battle:1,wind:0,water:0,rain:0})},
-    tick(dt){const k=Math.min(1,dt*1.2);for(const n in cur)cur[n]+=(target[n]-cur[n])*k;
+    tick(dt){const k=Math.min(1,dt*1.2);const w=api.weather().k;const eff={battle:target.battle,wind:Math.max(target.wind,w*.8),water:target.water,rain:Math.max(target.rain,w)};for(const n in cur)cur[n]+=(eff[n]-cur[n])*k;
       api.AMB.battle=cur.battle;const {SND,on}=api.audio();if(!on)return;
       if(SND.ambNode)SND.ambNode.setVolume(.55*cur.battle);
       if(layers)for(const n in layers)layers[n].setVolume(BASE[n]*cur[n])}

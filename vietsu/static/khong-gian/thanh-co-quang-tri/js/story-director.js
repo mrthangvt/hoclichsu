@@ -44,8 +44,8 @@ export async function start(api){
     seekFrac:f=>{const T=f*total;let i=0;while(i<list.length-1&&starts[i+1]<=T)i++;goto(i,T-starts[i],true)},
     gotoId:id=>{const i=list.findIndex(e=>e.id===id);if(i>=0){if(D.mode!=='story')setMode('story');goto(i,0)}},
     docsOpen:o=>{if(o&&D.playing&&D.mode==='story'){D.autoPaused=true;setPlaying(false)}else if(!o&&D.autoPaused){D.autoPaused=false;setPlaying(true)}},
-    setPeriod:st=>{api.setState(st);ui.map(st);audio.set(st==='night_river_supply'?{battle:.45,water:.8,wind:.3,rain:0}:st==='overview'?{battle:0,wind:.7,water:.25,rain:0}:{battle:1,wind:.2,water:0,rain:0})},
-    setWitness:id=>{D.wit=(data.witness||[]).find(w=>w.id===id)||data.witness[0];D.witI=0;api.setState(D.wit.state);ui.map(D.wit.state);ui.setWitness(D.wit.id,D.wit.note);
+    setPeriod:st=>{api.setState(st);ui.map(st);const p=(data.free_periods||[]).find(x=>x.state===st);if(p&&p.env)api.setEnv(p.env);const A={night_river_supply:{battle:.45,water:.8,wind:.3},overview:{battle:0,wind:.7,water:.25},spring:{battle:0,wind:.6,water:.2},memorial:{battle:0,wind:.4,water:.5},bunker_night:{battle:.3,wind:.3,water:0},rain_ruins:{battle:.3,wind:.4,water:0}};audio.set(Object.assign({battle:1,wind:.2,water:0,rain:0},A[st]||{}))},
+    setWitness:id=>{D.wit=(data.witness||[]).find(w=>w.id===id)||data.witness[0];D.witI=0;api.setState(D.wit.state);ui.map(D.wit.state);ui.setWitness(D.wit.id,D.wit.note);if(D.wit.env)api.setEnv(D.wit.env);
       audio.set(D.wit.state==='night_river_supply'?{battle:.5,water:.9,wind:.3}:{battle:1,water:0,wind:.2});ui.setDate(D.wit.state==='night_river_supply'?'MỘT ĐÊM TIẾP VIỆN · THÁNG 7–9/1972':'THÁNG 7–9/1972 · TỔNG HỢP')},
     nextWitness:()=>{D.witI++}
   };
@@ -53,7 +53,7 @@ export async function start(api){
   ui.setTicks(starts.map(s=>s/total));
 
   function setPlaying(p){D.playing=p;ui.setPlaying(p)}
-  function goto(i,t=0,seeking=false){if(i<0||i>=list.length)return;const changed=i!==D.i||D.envIdx===-1||!seeking;D.i=i;const e=list[i];
+  function goto(i,t=0,seeking=false){if(i<0||i>=list.length)return;const changed=true;/* luôn đặt lại trạng thái: tua lùi không giữ hiệu ứng của mốc sau */D.i=i;const e=list[i];
     if(changed){api.setState(e.state);ui.map(e.state);ui.setEpisode(e);audio.reset()}
     D.t=t;D.envIdx=-1;applyEnv(e,t,true);D.fired=new Set((e.cues||[]).filter(c=>c.t<t).map(c=>c.t+c.do));D.line=-1;
     if(!seeking){D.userCam=false;ui.showReturn(false)}

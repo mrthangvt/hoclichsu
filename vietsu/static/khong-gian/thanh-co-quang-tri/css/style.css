@@ -94,3 +94,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (max-width:380px){.sb-chip#sbPick{display:none}.sb-btn{width:34px;height:34px}.sb-btn.big{width:42px;height:42px}}
 .sb-chip .sm{display:none}
 @media (max-width:640px){#sub{left:14px;right:14px;transform:none;max-width:none;width:auto}.sb-chip .lg{display:none}.sb-chip .sm{display:inline}.sb-title{min-width:90px}}
+.sb-ba{display:flex;border:1px solid var(--edge);border-radius:9px;overflow:hidden;flex:0 0 auto}
+.sb-ba button{background:rgba(255,255,255,.05);border:0;padding:8px 10px;font-size:12.5px;font-weight:600}.sb-ba button.on{background:var(--gold);color:#23190d}
+.periods .chk{display:flex;gap:5px;align-items:center;font-size:12px;color:var(--fg)}
+#wx.on{background:#9db4d6;border-color:#9db4d6;color:#121820}
+@media (max-width:640px){.tools #wx,.tools #ly{padding:7px 8px}}

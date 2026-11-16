@@ -1,4 +1,4 @@
-"""Xuất dữ liệu web từ ThanhCoQuangTri_1972_GD7.blend (chạy trong Blender: Scripting → Run Script).
+"""Xuất dữ liệu web từ ThanhCoQuangTri_1972_GD8.blend (chạy trong Blender: Scripting → Run Script).
 
 Tạo trong OUT các file CHƯA nén: static.glb, thuvien.glb, rai.json, thuyen.glb, qdnd.glb, vnch.glb.
 Sau đó nén và chép vào repo:
@@ -8,7 +8,7 @@ KHÔNG dùng `gltf-transform optimize` (làm mất UV và tên vật liệu).
 """
 import bpy, os, json
 
-OUT = '/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/ThanhCoQT_web/demo7'
+OUT = '/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/ThanhCoQT_web/demo8'
 os.makedirs(OUT, exist_ok=True)
 vl = bpy.context.view_layer
 
