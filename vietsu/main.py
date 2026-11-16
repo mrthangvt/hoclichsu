@@ -27,6 +27,7 @@ from pydantic import BaseModel, Field, field_validator
 import vs_ads
 import vs_textbook
 import avatar_v46
+import dynasty_v47
 from vs_core import (ALLOWED_HOSTS, BASE, DATA, ENABLE_DOCS, MAX_BODY_BYTES, SITE_URL, STATIC, UPLOADS, VERSION,
                      ai_limiter, api_limiter, clean_url_list, client_ip, db, decode_image_data, init_db_pragmas,
                      is_safe_url, now, read_json, require_role, site_is_public, slugify, write_json)
@@ -36,7 +37,8 @@ app = FastAPI(title="Việt Sử CMS", version=VERSION,
               docs_url="/docs" if ENABLE_DOCS else None, redoc_url=None,
               openapi_url="/openapi.json" if ENABLE_DOCS else None)
 
-app.include_router(avatar_v46.router)  # V4.6: CMS avatar + API ảnh công khai
+app.include_router(avatar_v46.router)  # V4.6
+app.include_router(dynasty_v47.router)  # V4.7: nội dung triều đại & CMS
 
 
 # ============================================================ static files
@@ -574,7 +576,7 @@ def admin():
 
 
 # ------------------------------------------------------------ home page
-HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V4.6_Offline.html", STATIC / "Viet_Su_Timeline_V4.5_Offline.html", STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
+HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V4.7_Offline.html", STATIC / "Viet_Su_Timeline_V4.6_Offline.html", STATIC / "Viet_Su_Timeline_V4.5_Offline.html", STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
                    STATIC / "Viet_Su_Timeline_V3.7_Offline.html"]
 _home_cache: dict = {}
 
