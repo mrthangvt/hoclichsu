@@ -1,0 +1,42 @@
+name: Kiểm tra Việt Sử V4.7
+on:
+  pull_request:
+    branches: [main, "gpt/v4.6-avatar-cms-scenes"]
+    paths:
+      - 'vietsu/dynasty_v47.py'
+      - 'vietsu/static/v47*'
+      - 'vietsu/static/dynasty_admin_v47.html'
+      - 'vietsu/tools/build_v47.py'
+      - '.github/workflows/check-v47.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python compile
+        run: python3 -m py_compile vietsu/dynasty_v47.py vietsu/tools/build_v47.py
+      - name: JavaScript syntax and data
+        run: |
+          node --check vietsu/static/v47.js
+          node --check vietsu/static/v47-data.js
+          node - <<'JS'
+          const fs=require('fs');
+          global.window=global;global.details={};
+          eval(fs.readFileSync('vietsu/static/v47-data.js','utf8'));
+          const ids=new Set(global.V47_DYNASTIES.map(x=>x.id));
+          if(ids.size!==19||!ids.has('tran')||!ids.has('nguyenvn'))throw Error('Dữ liệu triều đại không hợp lệ');
+          const html=fs.readFileSync('vietsu/static/dynasty_admin_v47.html','utf8');
+          const inline=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+          if(!inline)throw Error('Thiếu script CMS');
+          new Function(inline);
+          console.log('19 giai đoạn, JavaScript CMS hợp lệ');
+          JS
+      - name: Check CMS links
+        run: |
+          test -f vietsu/data/dynasty_crosswalk.json
+          grep -q 'include_router(dynasty_v47.router)' vietsu/main.py
+          grep -q 'build_v47.py' vietsu/start_local.command
+          grep -q 'dynasty_v47_local.json' .gitignore
