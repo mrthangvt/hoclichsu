@@ -77,16 +77,30 @@ export async function start(api){
     const a=api.anchor(w.follow,D.witI*7+3);if(!a)return;const d=a.dir,s=new THREE.Vector3(-d.z,0,d.x);
     camera.position.copy(a.head).addScaledVector(d,-1.3).addScaledVector(s,.45).addScaledVector(UP,.32);controls.target.copy(a.head).addScaledVector(d,40).addScaledVector(UP,-2.5)}
 
+  /* ---------- nhạc của phân cảnh (chỉ phát khi người xem bật Âm thanh; thiếu tệp thì bỏ qua) ---------- */
+  const MUS={el:null,src:null,ok:true};
+  function musicTick(e){const m=e&&e.music;const want=!!m&&D.mode==='story'&&D.playing&&api.audio().on;
+    if(!m){if(MUS.el&&!MUS.el.paused)MUS.el.pause();return}
+    if(MUS.src!==m.src){if(MUS.el)MUS.el.pause();MUS.el=new Audio(m.src);MUS.el.preload='auto';MUS.src=m.src;MUS.ok=true;MUS.el.onerror=()=>{MUS.ok=false}}
+    const el=MUS.el;if(!MUS.ok)return;const t=D.t-m.start;const dur=isFinite(el.duration)?el.duration:1e9;
+    if(!want||t<0||t>dur){if(!el.paused)el.pause();return}
+    if(el.readyState>=1&&Math.abs(el.currentTime-t)>1.2)el.currentTime=Math.max(0,t);
+    if(el.paused)el.play().catch(()=>{});
+    const end=e.duration_sec-m.start;let v=m.volume??.85;v*=Math.min(1,t/(m.fade_in||3));v*=Math.min(1,Math.max(0,(end-t)/(m.fade_out||5)));el.volume=Math.max(0,Math.min(1,v))}
+  window.__MUS=MUS;
+
   /* ---------- vòng lặp ---------- */
   api.tickHooks.push(rawDt=>{const dt=Math.min(rawDt,.1);audio.tick(dt);ui.tick(dt);
     if(D.mode==='story'){if(api.walking()){setMode('free');return}
       const e=list[D.i];if(D.playing){D.t+=dt;if(D.t>=e.duration_sec){if(D.i<list.length-1){goto(D.i+1,0);return}D.t=e.duration_sec;setPlaying(false)}}
       for(const c of e.cues||[]){const key=c.t+c.do;if(c.t<=D.t&&!D.fired.has(key)){D.fired.add(key);fire(c)}}
       applyEnv(e,D.t,false);
-      const n=lineAt(e,D.t);if(n!==D.line){D.line=n;ui.subtitle(n>=0?e.lines[n].text:'')}
+      const hint=!!e.music&&!api.audio().on&&MUS.ok;const n=lineAt(e,D.t);const key=n+(hint?'h':'');
+      if(key!==D.line){D.line=key;const tx=n>=0?e.lines[n].text:'';ui.subtitle(hint?(tx?tx+' · ':'')+'🔊 Bật “Âm thanh” để nghe bài hát của chương này':tx)}
       if(!D.userCam){const c=camAt(e,D.t);if(c){camera.position.copy(c.p);controls.target.copy(c.l)}}
       ui.setProgress((starts[D.i]+D.t)/total,D.t,e.duration_sec)}
-    else if(D.mode==='witness')witnessCam()});
+    else if(D.mode==='witness')witnessCam();
+    musicTick(D.mode==='story'?list[D.i]:null)});
 
   setMode('story');goto(0,0);
   window.__STORY={D,list,goto,setMode,H};   // để kiểm thử

@@ -95,3 +95,9 @@ Các mốc đã đối chiếu: 30/3/1972 mở màn chiến dịch Trị–Thiê
 - **Hai trạng thái**: nguyên vẹn khi `INTACT` (cảnh 01, nút Trước) và ở `spring`, `memorial`; chiến tranh ở các trạng thái còn lại: ~2/3 nhà tốc mái, tường thấp, ám khói; 30% cây trụi lá; thêm **hào giao thông chữ chi + ụ bao cát** ngoài thành.
 - Trạng thái trước tàn phá còn có **~40 dãy nhà dài trong thành** (doanh trại, công sở như ảnh) + cây.
 - Còn thiếu: chợ, nhà thờ, công trình nhận diện riêng; mái nhà chưa có texture.
+
+## Cập nhật nội dung (16/11/2026 tối, theo anh Thắng)
+- Lời dẫn: "chiến tranh Việt Nam" → "cuộc kháng chiến chống Mỹ" (cảnh 01).
+- Cảnh 06: thêm vai trò chính trị, ngoại giao của Thành cổ và liên hệ Hội nghị Paris (trích VnExpress do biên tập cung cấp; đối chiếu thêm Báo Pháp Luật về lệnh cắm cờ trước phiên họp 13/7, Tạp chí Quản lý nhà nước).
+- Cảnh 10 dài 215 s: thêm đoạn trích Tạp chí Cộng sản (thị xã nhỏ → tâm điểm cả nước và thế giới; số liệu tổng kết); bảng Tư liệu ghi số liệu khác của Báo Nhân Dân để người đọc đối chiếu. **Cần bổ sung đường dẫn bài cụ thể của Tạp chí Cộng sản và VnExpress** (hiện để trang chủ).
+- **Nhạc chương cuối:** "Dòng sông phẳng lặng" (Phạm Thu Hà), khai báo trong `episodes.json` → `music` (bắt đầu giây 2, hiện/lặng dần, âm lượng 0,85). Tệp `audio/dong-song-phang-lang.mp3` **chỉ để trên máy** (`.gitignore`, `build_artifact.py` bỏ qua *.mp3) vì là bản ghi có bản quyền; khi có xác nhận quyền sử dụng thì xoá dòng trong `.gitignore`. Thiếu tệp → sa bàn tự bỏ qua. Nhạc chỉ phát khi người xem bật Âm thanh; nếu chưa bật, phụ đề nhắc. Máy chủ cần hỗ trợ tải theo đoạn (FastAPI, GitHub Pages có) để tua giữa bài.

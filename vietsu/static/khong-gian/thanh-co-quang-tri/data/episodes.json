@@ -80,6 +80,26 @@
   "usmcphoto": {
    "title": "USMC History – Quang Tri City Regained (ảnh: Tiểu đoàn 6 TQLC VNCH kéo cờ trên cổng Tây)",
    "url": "https://www.marines.mil/Portals/1/Publications/U.S.%20Marines%20in%20Vietnam%20The%20war%20that%20would%20not%20end%201971-1973%20PCN%2019000311200_6.pdf"
+  },
+  "tccs": {
+   "title": "Tạp chí Cộng sản (tapchicongsan.org.vn) – đoạn trích về Quảng Trị 1972 (do người biên tập cung cấp; cần bổ sung đường dẫn bài cụ thể)",
+   "url": "https://www.tapchicongsan.org.vn"
+  },
+  "vnexpressParis": {
+   "title": "VnExpress – vai trò chính trị, ngoại giao của Thành cổ với Hội nghị Paris (do người biên tập cung cấp; cần bổ sung đường dẫn bài cụ thể)",
+   "url": "https://vnexpress.net"
+  },
+  "ploParis": {
+   "title": "Báo Pháp Luật – Huyền thoại Thành cổ: Công phá chiến thuật 'lấn dũi' (lệnh cắm cờ trước phiên họp Paris 13/7)",
+   "url": "https://baophapluat.vn/huyen-thoai-thanh-co-cong-pha-chien-thuat-lan-dui-post221661.html"
+  },
+  "qlnn": {
+   "title": "Tạp chí Quản lý nhà nước – Chiến dịch giải phóng Quảng Trị và 81 ngày đêm bảo vệ Thành cổ",
+   "url": "https://www.quanlynhanuoc.vn/2022/04/25/chien-dich-giai-phong-quang-tri-va-cuoc-chien-dau-81-ngay-dem-bao-ve-thanh-co-nam-1972-diem-hoi-tu-nhung-sang-tao-ve-su-lanh-dao-chi-dao-chien-luoc-sac-ben-cua-dang"
+  },
+  "nhandan2": {
+   "title": "Báo Nhân Dân – Thành cổ Quảng Trị, 81 ngày đêm máu và hoa (số liệu tổng kết)",
+   "url": "https://special.nhandan.vn/bao-ve-Thanh-co-Quang-Tri/index.html"
   }
  },
  "episodes": [
@@ -186,7 +206,7 @@
     },
     {
      "t": 25,
-     "text": "Năm 1972, khu vực này trở thành một trong những tâm điểm giao tranh khốc liệt nhất của chiến tranh Việt Nam."
+     "text": "Năm 1972, khu vực này trở thành một trong những tâm điểm giao tranh khốc liệt nhất của cuộc kháng chiến chống Mỹ."
     },
     {
      "t": 40,
@@ -1295,19 +1315,31 @@
      "text": "Từ ngày 28/6/1972, Quân lực Việt Nam Cộng hoà mở cuộc phản công tái chiếm Quảng Trị, có không quân và hải quân Mỹ yểm trợ hoả lực."
     },
     {
-     "t": 22,
+     "t": 17,
      "text": "Lực lượng Quân đội Nhân dân Việt Nam giữ thị xã và Thành cổ, bám từng đoạn tường và công sự."
     },
     {
+     "t": 30,
+     "text": "Thành cổ Quảng Trị có vai trò quan trọng về mặt chính trị, ngoại giao, là biểu tượng cho ý chí của mỗi bên."
+    },
+    {
      "t": 40,
+     "text": "Mọi thành bại trên chiến trường này sẽ tác động trực tiếp tới vị thế các bên trong cuộc đàm phán ở Paris."
+    },
+    {
+     "t": 50,
+     "text": "“Ta giữ được thành cổ càng lâu, lợi thế phái đoàn ngoại giao của ta tại Hội nghị Paris càng lớn.”"
+    },
+    {
+     "t": 59,
+     "text": "“Mỹ muốn sớm cắm được cờ ở thành cổ để ép ta ký hiệp ước với điều khoản có lợi cho họ, nhưng ta không để điều đó xảy ra.”"
+    },
+    {
+     "t": 70,
      "text": "Giữa những công trình đổ nát, từng đoạn tường và từng vị trí trú ẩn trở thành nơi giằng co."
     },
     {
-     "t": 58,
-     "text": "Giao tranh diễn ra theo từng đợt: những lúc tạm lắng xen giữa các đợt pháo kích và tiến công."
-    },
-    {
-     "t": 76,
+     "t": 82,
      "text": "Ở phía tiến công, các đơn vị Việt Nam Cộng hoà phải vượt khoảng trống trước hào nước dưới hoả lực."
     },
     {
@@ -1335,6 +1367,24 @@
       "src": [
        "usmc",
        "wiki"
+      ]
+     },
+     {
+      "text": "Thành cổ có vai trò quan trọng về chính trị, ngoại giao; thành bại ở đây tác động trực tiếp tới vị thế các bên tại Hội nghị Paris. Trích: “Ta giữ được thành cổ càng lâu, lợi thế phái đoàn ngoại giao của ta tại Hội nghị Paris càng lớn. Mỹ muốn sớm cắm được cờ ở thành cổ để ép ta ký hiệp ước với điều khoản có lợi cho họ, nhưng ta không để điều đó xảy ra.”",
+      "src": [
+       "vnexpressParis"
+      ]
+     },
+     {
+      "text": "Trước phiên họp Hội nghị Paris ngày 13/7/1972, phía VNCH được lệnh tìm mọi cách cắm cờ lên Thành cổ để khẳng định vị thế trong đàm phán.",
+      "src": [
+       "ploParis"
+      ]
+     },
+     {
+      "text": "Cuộc chiến đấu 81 ngày đêm trở thành vấn đề chính trị trung tâm, diễn ra khi Hội nghị Paris đang bước vào giai đoạn quyết định.",
+      "src": [
+       "qlnn"
       ]
      }
     ],
@@ -1856,7 +1906,7 @@
    "title": "Từ chiến trường đến nơi tưởng niệm",
    "date_label": "TỪ 1972 ĐẾN NAY",
    "period": "memorial",
-   "duration_sec": 75,
+   "duration_sec": 215,
    "plan": "Âm thanh tắt dần, camera lên cao; cần ảnh hiện trạng có quyền sử dụng hoặc mô hình biểu tượng; phân biệt rõ di tích hiện tại và phần tái dựng.",
    "panel": {
     "seeing": "Hoàng hôn trên sông Thạch Hãn với hoa đăng (biểu tượng); máy quay nâng dần lên toàn cảnh Thành cổ.",
@@ -1885,11 +1935,31 @@
       "src": [
        "dtn"
       ]
+     },
+     {
+      "text": "Từ một thị xã nhỏ, Quảng Trị trở thành trung tâm thu hút sự chú ý của cả nước và thế giới. Số liệu tổng kết theo trích dẫn: diệt hơn 24.000 quân, bắn rơi 180 máy bay, phá huỷ 140 xe quân sự (90 xe tăng, xe bọc thép), 20 khẩu pháo.",
+      "src": [
+       "tccs"
+      ]
+     },
+     {
+      "text": "Lượng bom đạn trong 81 ngày đêm khoảng 328.000 tấn, thường được so sánh tương đương 7 quả bom nguyên tử ném xuống Hiroshima.",
+      "src": [
+       "plo2",
+       "vov"
+      ]
+     },
+     {
+      "text": "Số liệu tổng kết khác nhau giữa các nguồn: Báo Nhân Dân ghi 26.000 quân, 205 máy bay, 349 xe quân sự (200 xe tăng, thiết giáp).",
+      "src": [
+       "nhandan2"
+      ]
      }
     ],
     "simulated": [
      "Mô hình vẫn là Thành cổ năm 1972, không phải hiện trạng di tích hôm nay (đã có công viên, đài tưởng niệm, tháp chuông…).",
-     "Hoa đăng, ánh hoàng hôn là hình ảnh biểu tượng."
+     "Hoa đăng, ánh hoàng hôn là hình ảnh biểu tượng.",
+     "Bài hát “Dòng sông phẳng lặng” (trình bày: Phạm Thu Hà) phát trong chương này khi bật âm thanh; tệp nhạc chỉ có ở bản chạy trên máy, chưa đưa lên bản công khai khi chưa xác nhận quyền sử dụng."
     ]
    },
    "state": "memorial",
@@ -1908,7 +1978,7 @@
      ]
     },
     {
-     "t": 20,
+     "t": 24,
      "p": [
       -520,
       -140,
@@ -1921,27 +1991,66 @@
      ]
     },
     {
-     "t": 40,
+     "t": 50,
      "p": [
-      -420,
-      -420,
-      180
+      -430,
+      -380,
+      120
      ],
      "l": [
-      -150,
+      -180,
       0,
       0
      ]
     },
     {
-     "t": 75,
+     "t": 90,
      "p": [
-      -360,
-      -700,
+      -120,
+      -620,
+      260
+     ],
+     "l": [
+      -40,
+      0,
+      0
+     ]
+    },
+    {
+     "t": 130,
+     "p": [
+      380,
+      -480,
+      300
+     ],
+     "l": [
+      -40,
+      0,
+      0
+     ]
+    },
+    {
+     "t": 170,
+     "p": [
+      420,
+      260,
+      340
+     ],
+     "l": [
+      -80,
+      0,
+      0
+     ]
+    },
+    {
+     "t": 215,
+     "p": [
+      -300,
+      700,
       520
      ],
      "l": [
-      -60,
+      -120,
       0,
       0
      ]
@@ -1952,30 +2061,74 @@
      "t": 0,
      "audio": {
       "battle": 0,
-      "wind": 0.35,
-      "water": 0.6,
+      "wind": 0.25,
+      "water": 0.45,
       "rain": 0
      }
     }
    ],
    "lines": [
     {
-     "t": 2,
+     "t": 3,
      "text": "Ngày nay, bên sông Thạch Hãn, người dân, cựu chiến binh và du khách thả hoa đăng tri ân các liệt sĩ."
     },
     {
-     "t": 22,
+     "t": 17,
      "text": "Thành cổ Quảng Trị là nơi tưởng niệm và tìm hiểu lịch sử; ngày 16/9 hằng năm được chọn làm ngày giỗ chung."
     },
     {
-     "t": 42,
+     "t": 31,
+     "text": "“Từ một thị xã nhỏ ít ai biết đến, Quảng Trị trở thành trung tâm thu hút sự chú ý của nhân dân cả nước và thế giới…"
+    },
+    {
+     "t": 43,
+     "text": "…bởi sự hung bạo của kẻ thù và tinh thần anh dũng vô song của đồng bào, chiến sĩ ta."
+    },
+    {
+     "t": 55,
+     "text": "Địch đã huy động vào đây những sư đoàn thiện chiến nhất, những đơn vị binh chủng được trang bị tối tân, hiện đại nhất,"
+    },
+    {
+     "t": 67,
+     "text": "được chi viện tối đa hoả lực với khối lượng bom đạn tương đương ‘7 quả bom nguyên tử ném xuống Hiroshima’."
+    },
+    {
+     "t": 80,
+     "text": "Nhưng quân ta đã làm chủ thị xã trong một thời gian dài, ‘diệt hơn 24.000 tên địch, phần lớn là quân dù và thuỷ quân lục chiến,"
+    },
+    {
+     "t": 93,
+     "text": "bắn rơi 180 máy bay, phá huỷ 140 xe quân sự trong đó có 90 xe tăng, xe bọc thép, 20 khẩu pháo cùng nhiều đồ dùng quân sự khác’.”"
+    },
+    {
+     "t": 106,
+     "text": "(Theo Tạp chí Cộng sản)"
+    },
+    {
+     "t": 118,
      "text": "Những dấu tích còn lại nhắc về tổn thất của con người và giá trị của hoà bình."
     },
     {
-     "t": 60,
+     "t": 132,
      "text": "Sa bàn không dựng hiện trạng hôm nay; hoa đăng là hình ảnh biểu tượng."
+    },
+    {
+     "t": 148,
+     "text": "Bài hát: Dòng sông phẳng lặng · Trình bày: Phạm Thu Hà"
+    },
+    {
+     "t": 160,
+     "text": ""
     }
-   ]
+   ],
+   "music": {
+    "src": "audio/dong-song-phang-lang.mp3",
+    "start": 2,
+    "fade_in": 5,
+    "fade_out": 8,
+    "volume": 0.85,
+    "credit": "Bài hát: Dòng sông phẳng lặng · Trình bày: Phạm Thu Hà"
+   }
   }
  ],
  "witness": [
