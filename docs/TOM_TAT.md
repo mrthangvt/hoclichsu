@@ -28,6 +28,14 @@ tools/build_artifact.py         đóng gói <SA_BAN> thành bản base64 cho art
 Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3`, `vietsu/static/uploads/`, `vietsu/.venv/`.
 Đường dẫn trong giao diện dùng dạng tương đối (`khong-gian/...`, `../../`) để chạy được cả ở "/" (máy chủ Việt Sử) lẫn "/hoclichsu/" (GitHub Pages).
 
+
+## 2b. Địa hình theo OpenStreetMap (16/11/2026, file GD6)
+- Dữ liệu: `docs/du-lieu/thanh_co_quang_tri_osm.geojson` (kinh–vĩ độ gốc) và `docs/du-lieu/osm_local.json` (toạ độ sa bàn). © OpenStreetMap contributors (ODbL). Lấy bằng API openstreetmap.org (`/api/0.6/map`) qua trình duyệt trên máy anh Thắng; Overpass trả 406.
+- Hệ toạ độ sa bàn: gốc = tâm Thành cổ (≈16.75376, 107.18941), **OSM xoay +16,6°** để các mặt thành thẳng trục X/Y (thành thật xoay 16,6° theo chiều kim đồng hồ). Vì vậy "Bắc" của sa bàn lệch 16,6° so với Bắc thật.
+- Sông Thạch Hãn chạy gần Bắc–Nam ở **phía Tây** thành: bờ Đông x≈−480…−530, bờ Tây x≈−700…−740 (|y|<800), đáy −1,45…−4,6 m. Lòng sông cũ (Tây Nam) đã lấp. Trục web: `RIVER_A=[-668,746]` → `RIVER_B=[-606,-728]`.
+- File `ThanhCoQuangTri_1972_GD6.blend`: địa hình sửa (bản trước lưu ở mesh `DiaHinh_ChienTruong_GD5_backup`), 214 mặt cây cháy rơi vào sông đã xoá, collection `11_GD6_NhaDan` với `NhaDan_1972`: 123 nhà dân thưa dọc các trục đường OSM (52 mái ngói, 32 mái tôn, 39 nhà đổ nát; bờ Tây gần thành chủ yếu nhà đổ nát; chừa dải trận địa x −350…−290). Vật liệu tường `M_TuongVoi`.
+- Web: QĐND bơi/chèo từ bờ Tây sang, đổ bộ, trận địa ngoài hào **mặt Tây**; VNCH dồn mặt Tây (46 lính), xe tăng hướng Tây; máy bay quần trên sông phía Tây; nước sẫm `0x1b4560`.
+
 ## 3. Nội dung web hiện có (app.js)
 - **Cảnh tĩnh (static.glb):** địa hình, sông/hào (nước xanh `0x2e78ae`), tường thành vỡ GD4 (dày 8,5 m, mặt trong ±245,5 m, mặt ngoài ±254,5 m), Cổng Tiền chi tiết, 3 cổng còn lại dạng khối, 237 hố bom có viền đất, 9 nhà đổ nát, tháp nước, 2 tháp sắt quan sát (140,120 đứng; 120,−140 gãy), dây thép gai, xác xe, 4 xe tăng M41, 2 máy bay A-37.
 - **Vật liệu web** gán theo TÊN vật liệu glTF (bảng `BYMAT`) vì vật liệu procedural của Blender xuất ra bị trắng.
