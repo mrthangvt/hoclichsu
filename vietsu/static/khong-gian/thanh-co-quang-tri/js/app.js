@@ -24,9 +24,9 @@ controls.enableDamping=true;controls.maxPolarAngle=Math.PI*0.495;controls.minDis
 
 // bầu trời chiều khói lửa
 const sky=new THREE.Mesh(new THREE.SphereGeometry(20000,32,16),new THREE.ShaderMaterial({side:THREE.BackSide,depthWrite:false,fog:false,
-  uniforms:{sun:{value:new THREE.Vector3(-1,.16,.25).normalize()}},
+  uniforms:{sun:{value:new THREE.Vector3(-1,.16,.25).normalize()},night:{value:0}},
   vertexShader:`varying vec3 vd;void main(){vd=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);gl_Position.z=gl_Position.w;}`,
-  fragmentShader:`varying vec3 vd;uniform vec3 sun;
+  fragmentShader:`varying vec3 vd;uniform vec3 sun;uniform float night;
   float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
   float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
   float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p*=2.1;a*=.5;}return v;}
@@ -35,10 +35,14 @@ const sky=new THREE.Mesh(new THREE.SphereGeometry(20000,32,16),new THREE.ShaderM
   float s=max(dot(vd,sun),0.);c+=vec3(1.,.55,.25)*pow(s,40.)*1.4+vec3(1.,.45,.2)*pow(s,6.)*.25;
   float cl=fbm(vd.xz/(y+.25)*2.2);c=mix(c,c*vec3(.35,.3,.28),smoothstep(.45,.8,cl)*smoothstep(.0,.15,y)*.85);
   if(y<0.)c=mix(vec3(.6,.4,.27),vec3(.3,.2,.15),clamp(-y*4.,0.,1.));
+  vec3 nc=mix(vec3(.09,.06,.05),vec3(.01,.014,.028),smoothstep(-.05,.45,y));nc+=vec3(.32,.12,.04)*exp(-abs(y)*14.)*.55;
+  nc+=step(.9986,h(floor(vd.xz/(y+.3)*260.)))*smoothstep(.12,.4,y)*.45*(1.-smoothstep(.45,.8,cl));
+  c=mix(c,nc,night);
   gl_FragColor=vec4(c,1.);}`}));
+const SKY=sky.material.uniforms;
 sky.renderOrder=-1;scene.add(sky);
 
-scene.add(new THREE.HemisphereLight(0xffd2a8,0x5a4030,1.7));
+const hemi=new THREE.HemisphereLight(0xffd2a8,0x5a4030,1.7);scene.add(hemi);
 const sun=new THREE.DirectionalLight(0xffb070,3.4);
 sun.position.copy(B(-1000,-250,160));sun.castShadow=!MOBILE;
 sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-120,right:120,top:120,bottom:-120,near:10,far:2500});sun.shadow.bias=-0.0005;
@@ -131,7 +135,8 @@ function setQuality(lv){Q.lv=lv;PR_MAX=[.85,1,1.25,1.75][lv];renderer.setPixelRa
 const groundAt=(bx,by)=>{const p=B(bx,by,0);return sampleH(HG.h,p.x,p.z)};
 const faceTo=(dx,dy)=>Math.atan2(dx,-dy);              // hướng (Blender) → rotation.y
 const UP14=new THREE.Vector3(0,1.4,0);
-const ARVN_PTS=[],PAVN_PTS=[];
+// Mỗi nhân vật/hiệu ứng thuộc một NHÓM; trạng thái chiến trường (setState) bật/tắt nhóm. PTS[nhóm] = điểm đầu/cuối đường đạn.
+let GRP='legacy';const PTS={},GSIDE={},ACT=new Set();const PT=v=>{(PTS[GRP]||(PTS[GRP]=[])).push(v)};
 function spawn(side,clip,bx,by,rot,{z=null,gun=true,flash=false,parent=scene,mirror=false,extra=null}={}){
   const inst=SkeletonUtils.clone(side==='Q'?gQ.scene:gV.scene);const h=new THREE.Group();h.add(inst);
   if(mirror)inst.scale.x=-1;
@@ -142,8 +147,8 @@ function spawn(side,clip,bx,by,rot,{z=null,gun=true,flash=false,parent=scene,mir
   h.userData.acts=acts;h.userData.meshes=[];inst.traverse(o=>{if(o.isMesh){o.castShadow=false;h.userData.meshes.push(o)}});h.userData.sh=false;
   if(!gun)inst.traverse(o=>{if(/^Sung_/.test(o.name))o.visible=false});
   if(flash&&gun){let g=null;inst.traverse(o=>{if(/^Sung_/.test(o.name))g=o});
-    if(g){const sp=new THREE.Sprite(FLASH_MAT);sp.scale.setScalar(.55);sp.position.set(0,.03,.95);sp.visible=false;sp.userData={per:.35+Math.random()*.6,t:Math.random(),side};g.add(sp);flashes.push(sp)}}
-  if(parent===scene)NPC.push(h);return h}
+    if(g){const sp=new THREE.Sprite(FLASH_MAT);sp.scale.setScalar(.55);sp.position.set(0,.03,.95);sp.visible=false;sp.userData={per:.35+Math.random()*.6,t:Math.random(),side,grp:GRP};g.add(sp);flashes.push(sp)}}
+  h.userData.grp=GRP;GSIDE[GRP]=side;if(parent===scene)NPC.push(h);return h}
 
 /* ---- sông Thạch Hãn: trục và đường vượt sông ---- */
 const RIVER_A=[-668,746],RIVER_B=[-606,-728];   // trục sông Thạch Hãn phía Tây thành, theo OpenStreetMap (s>0: bờ Tây xa, s<0: bờ phía thành)
@@ -152,17 +157,17 @@ function crossPath(t,s0,s1){const ax=RIVER_A[0],ay=RIVER_A[1],bx=RIVER_B[0],by=R
 
 /* ---- VNCH: phòng ngự trên mặt thành (hướng Nam, Tây đông nhất) ---- */
 const VCLIPS=['QuyBan','QuyBan','DiNgamBan_TaiCho','NemLuuDan_TaiCho','DiNgangBan_TaiCho','QuyBan'];
-const WALLS=[{n:[-1,0],k:46},{n:[0,-1],k:26},{n:[0,1],k:12},{n:[1,0],k:8}];
+const WALLS=[{n:[-1,0],k:46},{n:[0,-1],k:26},{n:[0,1],k:12},{n:[1,0],k:8}];GRP='vWall';
 for(const w of WALLS){const k=Math.round(w.k*MUL);for(let i=0;i<k;i++){let t=R(-232,232);if(Math.abs(t)<15)t+=t<0?-15:15;
   const d=R(248.5,251);const bx=w.n[0]?w.n[0]*d:t,by=w.n[1]?w.n[1]*d:t;
-  const h=spawn('V',VCLIPS[i%VCLIPS.length],bx,by,faceTo(w.n[0],w.n[1])+R(-.25,.25),{flash:true});ARVN_PTS.push(h.position.clone().add(UP14))}}
+  const h=spawn('V',VCLIPS[i%VCLIPS.length],bx,by,faceTo(w.n[0],w.n[1])+R(-.25,.25),{flash:true});PT(h.position.clone().add(UP14))}}
 
 /* ---- lô cốt bê tông + bao cát ---- */
 const M_CONC=new THREE.MeshStandardMaterial({map:tex(ASSETS.tex+'dat.webp',.6,true),color:0xa49e94,roughness:.95});
 const M_SAND=new THREE.MeshStandardMaterial({color:0x6e5c42,roughness:1,flatShading:true});
 const BG={body:new THREE.CylinderGeometry(2.3,2.7,2.1,12),roof:new THREE.CylinderGeometry(2.85,2.85,.35,12),slit:new THREE.CylinderGeometry(2.36,2.46,.32,12,1,true,-1.1,2.2),sand:new THREE.TorusGeometry(3.4,.55,5,16)};
 const BUNKERS=[[-229,-20],[-229,205],[-229,-215],[-180,-228],[-110,-229],[-45,-228],[40,-228],[110,-229],[180,-228],[-24,-214],[24,-214],[-214,-214],[-229,-160],[-229,-85],[-229,70],[-229,150],[-150,-185],[60,-172],[-170,40],[229,-120],[0,229]];
-const bunkers=[];
+const bunkers=[];GRP='vBunker';
 for(const [bx,by] of BUNKERS){const ox=Math.abs(bx)>Math.abs(by)?Math.sign(bx):0,oy=ox?0:Math.sign(by);
   const g=new THREE.Group();g.position.copy(B(bx,by,0));g.position.y=groundAt(bx,by)-.15;g.rotation.y=faceTo(ox,oy);
   const body=new THREE.Mesh(BG.body,M_CONC);body.position.y=1.05;const roof=new THREE.Mesh(BG.roof,M_CONC);roof.position.y=2.25;
@@ -170,42 +175,66 @@ for(const [bx,by] of BUNKERS){const ox=Math.abs(bx)>Math.abs(by)?Math.sign(bx):0
   for(const m of [body,roof,sand]){m.castShadow=!MOBILE;m.receiveShadow=!MOBILE}
   g.add(body,roof,slit,sand);scene.add(g);bunkers.push(g);
   const tx=-oy,ty=ox;for(const sgn of MOBILE?[1]:[1,-1]){const px=bx+tx*3.5*sgn+ox*.6,py=by+ty*3.5*sgn+oy*.6;
-    const h=spawn('V',sgn>0?'QuyBan':'DiNgamBan_TaiCho',px,py,faceTo(ox,oy)+R(-.3,.3),{flash:true});ARVN_PTS.push(h.position.clone().add(UP14))}}
+    const h=spawn('V',sgn>0?'QuyBan':'DiNgamBan_TaiCho',px,py,faceTo(ox,oy)+R(-.3,.3),{flash:true});PT(h.position.clone().add(UP14))}}
 
 /* ---- xe tăng M41 của VNCH: chuyển vào trong thành, nòng hướng ra ngoài ---- */
 const TANKS=[{n:'XeTang_VNCH_0',p:[-203,-150],o:[-1,0]},{n:'XeTang_VNCH_1',p:[-60,-202],o:[-.15,-1]},{n:'XeTang_VNCH_2',p:[-200,-40],o:[-1,-.1]},{n:'XeTang_VNCH_3',p:[-198,115],o:[-1,0]}];
-const tankObjs=[];
+const tankObjs=[];GRP='vTank';
 for(const t of TANKS){const o=world.getObjectByName(t.n);if(!o)continue;o.position.copy(B(t.p[0],t.p[1],0));o.position.y=groundAt(t.p[0],t.p[1])+.05;o.rotation.set(0,faceTo(t.o[0],t.o[1]),0);
-  tankObjs.push({o,next:R(2,8)});ARVN_PTS.push(o.position.clone().add(new THREE.Vector3(0,2.2,0)));
+  const tp=o.position.clone().add(new THREE.Vector3(0,2.2,0));tankObjs.push({o,next:R(2,8),def:t,pt:tp});(PTS.tanks||(PTS.tanks=[])).push(tp);GSIDE.tanks='V';
   for(let k=0;k<(MOBILE?1:3);k++){const a=R(0,6.28);spawn('V','DiNgamBan_TaiCho',t.p[0]+Math.cos(a)*5,t.p[1]+Math.sin(a)*5,faceTo(t.o[0],t.o[1]),{flash:true})}}
 
 /* ---- QĐND: bơi vượt sông Thạch Hãn vào bờ phía thành ---- */
-const NSW=Math.round(36*MUL);
+GRP='qSwim';const NSW=Math.round(36*MUL);
 for(let k=0;k<NSW;k++){const t=.28+.25*k/NSW+R(0,.006);const p=crossPath(t,R(70,80),R(-108,-100));
   const h=spawn('Q','Boi_TaiCho',0,0,0,{z:-1.85});h.userData.swim={a:p.a.setY(-1.85),b:p.b.setY(-1.85),ph:Math.random(),per:R(95,130)};
   h.rotation.y=Math.atan2(p.b.x-p.a.x,p.b.z-p.a.z);swimmers.push(h)}
 /* bơi qua hào nước (mặt Nam, Tây) để áp sát chân thành */
+GRP='qMoat';
 for(let k=0;k<Math.round(12*MUL);k++){const south=k%4===3;const t=R(-200,200);if(Math.abs(t)<20)continue;
   const a=south?[t,-298]:[-298,t*.6],b=south?[t,-263]:[-263,t*.6];
   const h=spawn('Q','Boi_TaiCho',a[0],a[1],faceTo(south?0:1,south?1:0),{z:-1.85});h.userData.swim={a:B(a[0],a[1],-1.85),b:B(b[0],b[1],-1.85),ph:Math.random(),per:R(35,50)};swimmers.push(h)}
 
 /* ---- QĐND: trận địa bắn bên ngoài hào (mặt Nam và Tây) ---- */
 const QCLIPS=['QuyBan','QuyBan','DiNgamBan_TaiCho','NemLuuDan_TaiCho','QuyBan'];
-let placed=0,tries=0;const NFIRE=Math.round(46*MUL);
+GRP='qFire';let placed=0,tries=0;const NFIRE=Math.round(46*MUL);
 while(placed<NFIRE&&tries++<800){const west=Math.random()<.8;const bx=west?R(-338,-302):R(-240,0),by=west?R(-240,240):R(-335,-303);
   if(groundAt(bx,by)<-.9)continue;const tgt=west?[-250,by+R(-20,20)]:[bx+R(-20,20),-250];
-  const h=spawn('Q',QCLIPS[placed%QCLIPS.length],bx,by,faceTo(tgt[0]-bx,tgt[1]-by),{flash:true});PAVN_PTS.push(h.position.clone().add(UP14));placed++}
+  const h=spawn('Q',QCLIPS[placed%QCLIPS.length],bx,by,faceTo(tgt[0]-bx,tgt[1]-by),{flash:true});PT(h.position.clone().add(UP14));placed++}
 
 /* ---- QĐND: các tổ xung kích từ bờ sông chạy lên áp sát thành rồi quỳ bắn ---- */
-for(let k=0;k<Math.round(30*MUL);k++){const t=R(.30,.72);const p=crossPath(t,-112,-135);
+GRP='qRun';for(let k=0;k<Math.round(30*MUL);k++){const t=R(.30,.72);const p=crossPath(t,-112,-135);
   let tx=R(-335,-305),ty=Math.max(-235,Math.min(235,p.pa[1]+R(-40,40)));for(let j=0;j<20&&groundAt(tx,ty)<-.9;j++){tx=R(-335,-305)}
   const h=spawn('Q','ChayLonNhao_TaiCho',p.pa[0],p.pa[1],0,{extra:['QuyBan']});
   const a=p.a.clone(),b=B(tx,ty,0);const dist=a.distanceTo(b);
   h.userData.run={a,b,dur:dist/R(3,4.2),hold:R(8,18),ph:R(0,60),rot:Math.atan2(b.x-a.x,b.z-a.z)};
-  h.rotation.y=h.userData.run.rot;runners.push(h);PAVN_PTS.push(b.clone().setY(groundAt(tx,ty)+1.4))}
-function updRunners(T){for(const h of runners){const u=h.userData.run;const cyc=u.dur+u.hold;const k=(T+u.ph)%cyc;const run=h.userData.acts.ChayLonNhao_TaiCho,fire=h.userData.acts.QuyBan;
+  h.rotation.y=h.userData.run.rot;runners.push(h);PT(b.clone().setY(groundAt(tx,ty)+1.4))}
+function updRunners(T){for(const h of runners){if(!ACT.has(h.userData.grp))continue;const u=h.userData.run;const cyc=u.dur+u.hold;const k=(T+u.ph)%cyc;const run=h.userData.acts[u.cr||'ChayLonNhao_TaiCho'],fire=h.userData.acts[u.ch||'QuyBan'];
   if(k<u.dur){h.position.lerpVectors(u.a,u.b,k/u.dur);h.position.y=Math.max(sampleH(HG.h,h.position.x,h.position.z),-1.7);h.rotation.y=u.rot;run.setEffectiveWeight(1);fire.setEffectiveWeight(0)}
   else{h.position.copy(u.b);h.position.y=sampleH(HG.h,u.b.x,u.b.z);h.rotation.y=u.rot+Math.PI*0;run.setEffectiveWeight(0);fire.setEffectiveWeight(1)}}}
+
+/* ================= NHÓM CHO CHẾ ĐỘ KỂ CHUYỆN (81 ngày đêm: QĐND giữ thành, VNCH phản công) ================= */
+const freeAt=(bx,by)=>{const g=groundAt(bx,by);const p=B(bx,by,0);return g>-.9&&sampleH(HG.ob,p.x,p.z)<g+.6};
+/* QĐND phòng thủ trên mặt thành — mặt Nam và Đông là hướng phản công chính của VNCH */
+GRP='qWall';{const QW=[{n:[0,-1],k:30},{n:[1,0],k:12},{n:[-1,0],k:8},{n:[0,1],k:5}];const CL=['QuyBan','NupQuanSat','QuyBan','DiNgamBan_TaiCho','NemLuuDan_TaiCho','NupQuanSat'];
+  for(const w of QW){const k=Math.round(w.k*MUL);for(let i=0;i<k;i++){let t=R(-232,232);if(Math.abs(t)<15)t+=t<0?-15:15;const d=R(248.5,251);
+    const bx=w.n[0]?w.n[0]*d:t,by=w.n[1]?w.n[1]*d:t;const h=spawn('Q',CL[i%CL.length],bx,by,faceTo(w.n[0],w.n[1])+R(-.25,.25),{flash:true});PT(h.position.clone().add(UP14))}}}
+/* QĐND trong các lô cốt, công sự sát chân thành */
+GRP='qBunker';for(const [bx,by] of BUNKERS){const ox=Math.abs(bx)>Math.abs(by)?Math.sign(bx):0,oy=ox?0:Math.sign(by);
+  const h=spawn('Q',Math.random()<.5?'QuyBan':'NupQuanSat',bx-oy*3.5+ox*.6,by+ox*3.5+oy*.6,faceTo(ox,oy)+R(-.3,.3),{flash:true});PT(h.position.clone().add(UP14))}
+/* VNCH tiến công từ phía Nam (và một phần phía Đông), ngoài hào nước */
+GRP='vAtk';{let n=0,tries=0;const N=Math.round(54*MUL);const CL=['QuyBan','DiNgamBan_TaiCho','QuyBan','NemLuuDan_TaiCho','DiNgangBan_TaiCho'];
+  while(n<N&&tries++<1500){const east=Math.random()<.22;const bx=east?R(312,420):R(-230,230),by=east?R(-200,120):R(-430,-312);if(!freeAt(bx,by))continue;
+    const tg=east?[250,by+R(-30,30)]:[bx+R(-30,30),-250];const h=spawn('V',CL[n%CL.length],bx,by,faceTo(tg[0]-bx,tg[1]-by),{flash:true});PT(h.position.clone().add(UP14));n++}}
+/* VNCH: các tổ tiến lên theo đợt, chạy từ xa về sát hào rồi quỳ bắn */
+GRP='vRun';for(let k=0;k<Math.round(26*MUL);k++){let ax=R(-200,200),ay=R(-640,-520),tx=ax+R(-25,25),ty=R(-335,-305);for(let j=0;j<25&&!freeAt(tx,ty);j++){tx=R(-220,220)}
+  const h=spawn('V','ChayLonNhao_TaiCho',ax,ay,0,{extra:['QuyBan'],flash:true});const a=B(ax,ay,0),b=B(tx,ty,0);
+  h.userData.run={a,b,dur:a.distanceTo(b)/R(2.6,3.6),hold:R(14,30),ph:R(0,90),rot:Math.atan2(b.x-a.x,b.z-a.z)};h.rotation.y=h.userData.run.rot;runners.push(h);PT(b.clone().setY(groundAt(tx,ty)+1.4))}
+/* QĐND tiếp viện: sau khi qua sông, đi khom từ bờ phía thành tới chân thành mặt Tây (gần cổng Tây) rồi núp chờ */
+GRP='qSupply';for(let k=0;k<Math.round(24*MUL);k++){const t=R(.40,.62);const p=crossPath(t,-104,-112);let tx=R(-318,-302),ty=R(-60,60);for(let j=0;j<20&&!freeAt(tx,ty);j++){tx=R(-320,-300);ty=R(-70,70)}
+  const h=spawn('Q','DiKhom_TaiCho',p.pa[0],p.pa[1],0,{extra:['NupQuanSat'],gun:Math.random()<.6});const a=p.a.clone(),b=B(tx,ty,0);
+  h.userData.run={a,b,dur:a.distanceTo(b)/R(1.3,1.8),hold:R(10,25),ph:R(0,200),rot:Math.atan2(b.x-a.x,b.z-a.z),cr:'DiKhom_TaiCho',ch:'NupQuanSat'};h.rotation.y=h.userData.run.rot;runners.push(h)}
+GRP='legacy';
 
 /* ---------------- đổ nát rải (InstancedMesh) ---------------- */
 {const groups={};rai.items.forEach(it=>{(groups[it[0]]||(groups[it[0]]=[])).push(it)});
@@ -222,7 +251,7 @@ function updRunners(T){for(const h of runners){const u=h.userData.run;const cyc=
 /* ---------------- thuyền vượt sông (chèo vào bờ phía thành) ---------------- */
 const boatSrc=gBoat.scene.getObjectByName('Thuyen'),paddleSrc=gBoat.scene.getObjectByName('MaiCheo');
 [boatSrc,paddleSrc].forEach(o=>o.traverse(m=>{if(m.isMesh){m.castShadow=!MOBILE;m.receiveShadow=!MOBILE}}));
-const boats=[],paddles=[];const WATER_Y=-1.1;
+GRP='boats';const boats=[],paddles=[];const WATER_Y=-1.1;
 const BOAT_T=MOBILE?[.58,.66,.74]:[.56,.61,.66,.71,.76,.81];
 BOAT_T.forEach((t,i)=>{const g=new THREE.Group();const hull=boatSrc.clone();g.add(hull);
   const crew=[{z:1.45,clip:'QuyBan',gun:true},{z:.35,clip:'ChevThuyen',row:true},{z:-.7,clip:'ChevThuyen',row:true,mirror:true},{z:-1.3,clip:'ChevThuyen',row:true}];
@@ -230,14 +259,14 @@ BOAT_T.forEach((t,i)=>{const g=new THREE.Group();const hull=boatSrc.clone();g.ad
     if(c.row){const s=h.children[0];let L=null,Rh=null;s.traverse(o=>{if(/LeftHand$/.test(o.name))L=o;if(/RightHand$/.test(o.name))Rh=o});const pd=paddleSrc.clone();scene.add(pd);paddles.push({pd,L,R:Rh,g})}}
   const p=crossPath(t,78,-100);scene.add(g);g.userData.boat={a:p.a,b:p.b,ph:i*.17+Math.random()*.1,per:R(130,170)};boats.push(g)});
 const pa=new THREE.Vector3(),pb=new THREE.Vector3(),pdir=new THREE.Vector3(),DOWN=new THREE.Vector3(0,-1,0);
-function updBoats(T){for(const g of boats){const u=g.userData.boat;const k=((T/u.per)+u.ph)%1;g.position.lerpVectors(u.a,u.b,k);
+function updBoats(T){const on=ACT.has('boats');for(const g of boats){if(!on){g.visible=false;continue}const u=g.userData.boat;const k=((T/u.per)+u.ph)%1;g.position.lerpVectors(u.a,u.b,k);
     const vx=u.b.x-u.a.x,vz=u.b.z-u.a.z;g.rotation.set(0,0,0);g.rotation.y=Math.atan2(vx,vz);g.rotateZ(Math.sin(T*1.7+u.ph*9)*.035);g.rotateX(Math.sin(T*1.3+u.ph*5)*.02);
     g.position.y=WATER_Y-.22+Math.sin(T*2+u.ph*7)*.04;_sph.center.copy(g.position);g.visible=k<.985&&g.position.distanceToSquared(camera.position)<Q.far**2&&_fr.intersectsSphere(_sph)}
-  for(const p of paddles){if(!p.L||!p.R)continue;p.pd.visible=p.g.visible;if(!p.g.visible)continue;p.L.getWorldPosition(pa);p.R.getWorldPosition(pb);pdir.subVectors(pb,pa).normalize();
+  for(const p of paddles){if(!p.L||!p.R)continue;p.pd.visible=on&&p.g.visible;if(!p.g.visible)continue;p.L.getWorldPosition(pa);p.R.getWorldPosition(pb);pdir.subVectors(pb,pa).normalize();
     p.pd.position.copy(pa).addScaledVector(pdir,-.18);p.pd.quaternion.setFromUnitVectors(DOWN,pdir)}}
 
 /* ---------------- điểm cháy & cột khói mới ---------------- */
-const FIRE_PTS=[];
+GRP='legacy';const FIRE_PTS=[];
 world.traverse(o=>{if(/^NhaDoNat_/.test(o.name)&&o.parent===world){FIRE_PTS.push([o.position.x,-o.position.z])}});
 [[-120,-238],[60,-240],[-238,-30],[-238,120],[-238,-160],[-150,-185],[60,-172],[-330,-60],[-360,-150],[-345,30],[-330,-200],[310,40],[380,-95],[-30,40],[100,90]].forEach(p=>FIRE_PTS.push(p));
 data.fx.fire=FIRE_PTS.map(([x,y])=>[x,y,groundAt(x,y)]);
@@ -272,15 +301,15 @@ const sMat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,fog:true,
   vec3 col=mix(vec3(.07,.06,.055),vec3(.32,.26,.22),vs*.6);gl_FragColor=vec4(col,t.a*va*1.6);
   #include <fog_fragment>
   }`});
-scene.add(new THREE.Points(sGeo,sMat));
-function updSmoke(dt){let i=0;for(const s of smokeSrc){for(let k=0;k<SMOKE_N;k++,i++){sAge[i]+=dt;if(sAge[i]>sLife[i])sAge[i]-=sLife[i];
+const smokePts=new THREE.Points(sGeo,sMat);scene.add(smokePts);
+function updSmoke(dt){if(!smokePts.visible)return;let i=0;for(const s of smokeSrc){for(let k=0;k<SMOKE_N;k++,i++){sAge[i]+=dt;if(sAge[i]>sLife[i])sAge[i]-=sLife[i];
   const t=sAge[i]/sLife[i],H=s.h*1.15;const y=t*H;const sw=Math.sin(sSeed[i]*30+t*4)*(1+t*6);
   sPos[i*3]=s.p.x+s.lean.x*y+sw;sPos[i*3+1]=s.p.y+y;sPos[i*3+2]=s.p.z+s.lean.z*y+Math.cos(sSeed[i]*20+t*3)*(1+t*6);
   sSize[i]=6+t*t*60+sSeed[i]*6;sAlpha[i]=Math.min(t*6,1)*(1-t)*(.55+.45*sSeed[i])}}
   sGeo.attributes.position.needsUpdate=sGeo.attributes.size.needsUpdate=sGeo.attributes.alpha.needsUpdate=true}
 
 /* ---------------- âm thanh: tổng hợp bằng WebAudio (không cần file) ---------------- */
-let audioOn=false,listener=null,AC=null,live=0,shotBudget=0;const SND={};
+let audioOn=false,listener=null,AC=null,live=0,shotBudget=0;const SND={};const AMB={battle:1};
 function mkBuf(sec,fn){const sr=AC.sampleRate,n=Math.floor(sec*sr),b=AC.createBuffer(1,n,sr),d=b.getChannelData(0);fn(d,sr,n);for(let i=0;i<n;i++)d[i]=Math.max(-1,Math.min(1,d[i]));return b}
 function buildSounds(){const rnd=()=>Math.random()*2-1;
   SND.shot=[0,1,2].map(v=>mkBuf(.4,(d,sr,n)=>{let lp=0;const f=.3+v*.12;for(let i=0;i<n;i++){const t=i/sr;const e=Math.exp(-t*(26+v*7));lp+=(rnd()-lp)*f;d[i]=(lp*1.4+Math.sin(2*Math.PI*(95-v*12)*t)*Math.exp(-t*28)*.7)*e}}));
@@ -299,11 +328,12 @@ function playAt(buf,pos,{vol=1,ref=30,rate=1,delay=true}={}){if(!audioOn||!buf||
   const go=()=>{const o=new THREE.Object3D();o.position.copy(pos);scene.add(o);o.updateMatrixWorld();const s=new THREE.PositionalAudio(listener);s.setBuffer(buf);s.setRefDistance(ref);s.setRolloffFactor(1);s.setMaxDistance(6000);s.setVolume(vol);s.setPlaybackRate(rate);o.add(s);s.updateMatrixWorld();live++;
     s.onEnded=function(){this.isPlaying=false;live--;o.remove(s);scene.remove(o);try{s.disconnect()}catch(e){}};s.play()};
   if(delay&&dist>80)setTimeout(go,Math.min(dist/340,4)*1000);else go()}
+const audioHooks=[];
 function setAudio(on){audioOn=on;const b=$('snd');b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.textContent=on?'🔊 Âm thanh':'🔇 Âm thanh';
   if(on&&!listener){listener=new THREE.AudioListener();camera.add(listener);AC=listener.context;buildSounds();
-    const amb=new THREE.Audio(listener);amb.setBuffer(SND.amb);amb.setLoop(true);amb.setVolume(.55);amb.play();
-    planes.forEach(p=>{const s=new THREE.PositionalAudio(listener);s.setBuffer(SND.engine);s.setLoop(true);s.setRefDistance(90);s.setRolloffFactor(1);s.setMaxDistance(6000);s.setVolume(1.6);p.add(s);s.play()})}
-  if(AC)(on?AC.resume():AC.suspend()).catch(()=>{})}
+    const amb=new THREE.Audio(listener);amb.setBuffer(SND.amb);amb.setLoop(true);amb.setVolume(.55*AMB.battle);amb.play();SND.ambNode=amb;
+    planes.forEach(p=>{const s=new THREE.PositionalAudio(listener);p.userData.snd=s;s.setBuffer(SND.engine);s.setLoop(true);s.setRefDistance(90);s.setRolloffFactor(1);s.setMaxDistance(6000);s.setVolume(1.6);p.add(s);if(PL.on)s.play()})}
+  if(AC)(on?AC.resume():AC.suspend()).catch(()=>{});for(const f of audioHooks)f(on)}
 $('snd').onclick=()=>setAudio(!audioOn);
 
 /* ---------------- lửa cháy ---------------- */
@@ -317,27 +347,33 @@ const WHITE_SPLASH=new THREE.SpriteMaterial({map:softTex,depthWrite:false,transp
 function spawnBoom(p,big=false){const water=sampleH(HG.h,p.x,p.z)<-1.15;const y0=water?-1.1:sampleH(HG.h,p.x,p.z);p=p.clone();p.y=y0+(water?0:1);const k=big?1.8:1;
   const s=new THREE.Sprite(new THREE.SpriteMaterial({map:flashTex,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,color:water?0xfff0d0:0xffc070}));s.position.copy(p);scene.add(s);
   const d=new THREE.Sprite(water?WHITE_SPLASH.clone():new THREE.SpriteMaterial({map:softTex,depthWrite:false,transparent:true,color:0x3a2c22}));d.position.copy(p);scene.add(d);
-  boomFx.push({s,d,t:0,k,water});boomLight.position.copy(p).y+=6;boomLight.intensity=big?7000:4000;
+  if(FX.reduce)s.material.opacity=.35;boomFx.push({s,d,t:0,k,water});boomLight.position.copy(p).y+=6;boomLight.intensity=(big?7000:4000)*(FX.reduce?.12:1);
   playAt(water?SND.splash:(SND.boom||[])[(Math.random()*3)|0],p,{vol:big?3.2:2.2,ref:big?70:45,rate:R(.8,1.15)});
   if(water)playAt((SND.boom||[])[2],p,{vol:1.4,ref:40,rate:R(.7,.9)})}
 function updBoom(dt){for(let i=boomFx.length-1;i>=0;i--){const b=boomFx[i];b.t+=dt;const t=b.t,k=b.k;
-  b.s.scale.setScalar((4+t*60)*k);b.s.material.opacity=Math.max(0,1-t*3);
+  b.s.scale.setScalar((4+t*60)*k*(FX.reduce?.5:1));b.s.material.opacity=Math.max(0,(FX.reduce?.35:1)-t*3);
   if(b.water){b.d.scale.set((5+t*8)*k,(4+Math.min(t,.6)*45)*k,1);b.d.position.y=-1.1+b.d.scale.y*.42;b.d.material.opacity=Math.max(0,.95-t*.45)}
   else{b.d.scale.setScalar((6+t*22)*k);b.d.position.y+=dt*4;b.d.material.opacity=Math.max(0,.9-t*.3)}
   if(t>3){scene.remove(b.s,b.d);b.s.material.dispose();b.d.material.dispose();boomFx.splice(i,1)}}boomLight.intensity*=Math.pow(.02,dt)}
-// vị trí nổ ngẫu nhiên theo vùng (toạ độ Blender)
-function randomTarget(){const r=Math.random();
-  if(r<.32)return B(R(-480,-300),R(-300,300),0);                                  // bãi đổ bộ, trận địa QĐND
-  if(r<.52){const p=crossPath(R(.2,.85),R(-100,70),0);return p.a}                  // trên sông
-  if(r<.62)return Math.random()<.7?B(R(-296,-264),R(-220,220),0):B(R(-220,220),R(-296,-264),0);  // hào nước
-  if(r<.85)return Math.random()<.65?B(R(-255,-205),R(-240,240),0):B(R(-240,240),R(-255,-205),0);  // mặt thành Nam/Tây
-  return B(R(-230,230),R(-230,230),0)}                                             // trong thành
+// vị trí nổ theo VÙNG (toạ độ Blender). Trạng thái chiến trường chọn vùng + trọng số qua FX.zones.
+const ZONES={
+  landing:()=>B(R(-480,-300),R(-300,300),0),                                   // bờ phía thành giữa sông và hào (mặt Tây)
+  river:()=>crossPath(R(.2,.85),R(-100,70),0).a,                               // trên sông Thạch Hãn
+  riverNear:()=>crossPath(R(.42,.66),R(-95,70),0).a,                           // đoạn sông có thuyền qua (gần camera cảnh 05)
+  moatW:()=>B(R(-296,-264),R(-220,220),0), moatS:()=>B(R(-220,220),R(-296,-264),0),
+  wallW:()=>B(R(-255,-205),R(-240,240),0), wallS:()=>B(R(-240,240),R(-255,-205),0), wallE:()=>B(R(205,255),R(-240,240),0),
+  citadel:()=>B(R(-230,230),R(-230,230),0),
+  southFar:()=>B(R(-260,260),R(-650,-340),0),                                  // phía Nam ngoài hào (hướng phản công)
+  westBank:()=>B(R(-900,-760),R(-500,500),0)};                                 // bờ Tây xa
+const FX={on:true,gap:[.5,1.8],zones:{landing:.32,river:.2,moatW:.07,moatS:.03,wallW:.15,wallS:.08,citadel:.15},fire:1,reduce:false,fires:true,smoke:true,big:.15};
+function randomTarget(){const z=FX.zones;let sum=0;for(const k in z)sum+=z[k];let r=Math.random()*sum;for(const k in z){r-=z[k];if(r<=0)return ZONES[k]()}return ZONES.citadel()}
 
 /* ---------------- máy bay A-37 bổ nhào ném bom xuống sông và bãi đổ bộ ---------------- */
 const BOMB_GEO=new THREE.CapsuleGeometry(.18,1.1,3,6);const BOMB_MAT=new THREE.MeshStandardMaterial({color:0x2b2d24,roughness:.6,metalness:.4});
 const bombs=[];const planeState=planes.map((p,i)=>({cool:R(3,8)+i*5,stick:0,next:0,prev:p.position.clone(),vel:new THREE.Vector3()}));
-function inStrikeZone(p){const bx=p.x,by=-p.z;return bx<-300&&bx>-760&&Math.abs(by)<450}
-function updPlanes(T,dt){planes.forEach((p,i)=>{const st=planeState[i];const a=T*(i?.16:.2)+i*2.4;const cx=-470,cy=-20,ax=i?380:300,ay=i?560:480,hh=i?190:160;
+const PL={on:true,cx:-470,cy:-20,rx:[300,380],ry:[480,560],zone:(bx,by)=>bx<-300&&bx>-760&&Math.abs(by)<450};
+function inStrikeZone(p){return PL.zone(p.x,-p.z)}
+function updPlanes(T,dt){planes.forEach((p,i)=>{if(p.visible!==PL.on){p.visible=PL.on;const s=p.userData.snd;if(s){try{PL.on?(!s.isPlaying&&s.play()):s.pause()}catch(e){}}}const st=planeState[i];if(!PL.on){st.stick=0;return}const a=T*(i?.16:.2)+i*2.4;const cx=PL.cx,cy=PL.cy,ax=PL.rx[i?1:0],ay=PL.ry[i?1:0],hh=i?190:160;
     const bx=cx+Math.cos(a)*ax,by=cy+Math.sin(a)*ay;p.position.copy(B(bx,by,hh+12*Math.sin(2*a)));
     const dx=-Math.sin(a)*ax,dy=Math.cos(a)*ay;p.rotation.set(0,faceTo(dx,dy),0);p.rotateZ(.5);
     st.vel.copy(p.position).sub(st.prev).divideScalar(Math.max(dt,1e-3));st.prev.copy(p.position);
@@ -350,18 +386,20 @@ function updPlanes(T,dt){planes.forEach((p,i)=>{const st=planeState[i];const a=T
 
 /* ---------------- xe tăng VNCH bắn ra ngoài thành ---------------- */
 const tankFlash=new THREE.Sprite(new THREE.SpriteMaterial({map:flashTex,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,color:0xffd090,fog:false}));tankFlash.visible=false;scene.add(tankFlash);let tankFlashT=0;
-function updTanks(dt){tankFlashT-=dt;tankFlash.visible=tankFlashT>0;tankFlash.scale.setScalar(6+Math.random()*3);
+const TK={on:true,target:()=>B(R(-470,-310),R(-240,240),0)};
+function updTanks(dt){tankFlashT-=dt;tankFlash.visible=tankFlashT>0&&!FX.reduce;tankFlash.scale.setScalar(6+Math.random()*3);if(!TK.on)return;
   for(const t of tankObjs){t.next-=dt;if(t.next>0)continue;t.next=R(4,9);const muzzle=t.o.localToWorld(new THREE.Vector3(0,1.75,4.8));tankFlash.position.copy(muzzle);tankFlashT=.09;
-    playAt((SND.boom||[])[1],muzzle,{vol:2.6,ref:45,rate:1.35});const tg=B(R(-470,-310),R(-240,240),0);setTimeout(()=>spawnBoom(tg),R(500,900))}}
+    playAt((SND.boom||[])[1],muzzle,{vol:2.6,ref:45,rate:1.35});const tg=TK.target();setTimeout(()=>{if(TK.on)spawnBoom(tg)},R(500,900))}}
 
 /* ---------------- đường đạn lửa giữa 2 bên ---------------- */
 const TR=MOBILE?60:130;const trGeo=new THREE.BufferGeometry();const trPos=new Float32Array(TR*6);trGeo.setAttribute('position',new THREE.BufferAttribute(trPos,3));
 const trMat=new THREE.LineBasicMaterial({color:0xffc070,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,fog:false});
 scene.add(new THREE.LineSegments(trGeo,trMat));
-const pavnPts=PAVN_PTS,arvnPts=ARVN_PTS;
+let pavnPts=[],arvnPts=[];
+function rebuildTracerPts(){pavnPts=[];arvnPts=[];for(const g of ACT){const a=PTS[g];if(!a)continue;(GSIDE[g]==='Q'?pavnPts:arvnPts).push(...a)}for(const r of tracers)r.t=1+Math.random()}
 const tracers=[];for(let i=0;i<TR;i++)tracers.push({t:1+Math.random()});
 function updTracers(dt){for(let i=0;i<TR;i++){const r=tracers[i];r.t+=dt*(r.sp||1);
-  if(r.t>=1){const f=Math.random()<.5;r.a=(f?pavnPts:arvnPts)[(Math.random()*(f?pavnPts.length:arvnPts.length))|0];
+  if(r.t>=1){if(!pavnPts.length||!arvnPts.length||Math.random()>FX.fire){r.a=null;r.t=-Math.random()*1.2;trPos.fill(0,i*6,i*6+6);continue}const f=Math.random()<.5;r.a=(f?pavnPts:arvnPts)[(Math.random()*(f?pavnPts.length:arvnPts.length))|0];
     r.b=(f?arvnPts:pavnPts)[(Math.random()*(f?arvnPts.length:pavnPts.length))|0].clone().add(new THREE.Vector3((Math.random()-.5)*14,(Math.random()-.3)*5,(Math.random()-.5)*14));
     r.t=-Math.random()*1.2;r.sp=1.4+Math.random()*1.2}
   const a=r.a,b=r.b;if(!a||r.t<0){trPos.fill(0,i*6,i*6+6);continue}
@@ -369,41 +407,93 @@ function updTracers(dt){for(let i=0;i<TR;i++){const r=tracers[i];r.t+=dt*(r.sp||
   trGeo.attributes.position.needsUpdate=true}
 const tmpV=new THREE.Vector3();
 function updFlashes(dt){shotBudget=Math.min(shotBudget+dt*16,16);
-  for(const f of flashes){const u=f.userData;u.t+=dt;let fired=false;if(u.t>u.per){u.t=0;u.per=.25+Math.random()*1.2;fired=true}f.visible=u.t<.06;
+  for(const f of flashes){const u=f.userData;if(!ACT.has(u.grp)||FX.fire<=0){f.visible=false;continue}u.t+=dt;let fired=false;if(u.t>u.per){u.t=0;u.per=(.25+Math.random()*1.2)/Math.max(FX.fire,.05);fired=true}f.visible=u.t<.06&&!FX.reduce;
     if(f.visible)f.material.rotation=Math.random()*6;
     if(fired&&audioOn&&shotBudget>=1){f.getWorldPosition(tmpV);const d=tmpV.distanceTo(camera.position);if(d<500&&Math.random()<.7){shotBudget--;
       playAt(Math.random()<.18?SND.burst:(SND.shot||[])[(Math.random()*3)|0],tmpV,{vol:.9,ref:14,rate:R(.85,1.15)})}}}}
+/* ================= TRẠNG THÁI CHIẾN TRƯỜNG ================= */
+// Mỗi trạng thái bật đúng nhóm nhân vật, vùng nổ, máy bay, xe tăng, ngày/đêm. Không sinh thêm đối tượng khi đổi trạng thái.
+const TANK_FRONT=[[-150,-470,0,1],[-40,-505,.1,1],[80,-462,-.1,1],[175,-490,-.2,1]];
+const C_DAY={hemi:new THREE.Color(0xffd2a8),hg:new THREE.Color(0x5a4030),sun:new THREE.Color(0xffb070),fog:HAZE.clone(),wem:new THREE.Color(0x061826)};
+const C_NIGHT={hemi:new THREE.Color(0x7a8cb4),hg:new THREE.Color(0x1a1612),sun:new THREE.Color(0x8ea4d8),fog:new THREE.Color(0x0b0f17),wem:new THREE.Color(0x01060b)};
+let NIGHT=0;
+function setNight(k){NIGHT=k;SKY.night.value=k;const L=(a,b)=>a+(b-a)*k;
+  hemi.intensity=L(1.7,.95);hemi.color.copy(C_DAY.hemi).lerp(C_NIGHT.hemi,k);hemi.groundColor.copy(C_DAY.hg).lerp(C_NIGHT.hg,k);
+  sun.intensity=L(3.4,1.1);sun.color.copy(C_DAY.sun).lerp(C_NIGHT.sun,k);scene.fog.color.copy(C_DAY.fog).lerp(C_NIGHT.fog,k);scene.fog.density=L(.00062,.0008);
+  renderer.toneMappingExposure=L(1.18,1.25);M_WATER.emissive.copy(C_DAY.wem).lerp(C_NIGHT.wem,k)}
+const STATES={
+  legacy:{grp:['vWall','vBunker','vTank','qSwim','qMoat','qFire','qRun','boats','tanks'],tanks:'legacy',night:0,
+    fx:{on:true,gap:[.5,1.8],zones:{landing:.32,river:.2,moatW:.07,moatS:.03,wallW:.15,wallS:.08,citadel:.15},fire:1,fires:true,smoke:true,big:.15},
+    pl:{on:true,cx:-470,cy:-20,rx:[300,380],ry:[480,560],zone:(x,y)=>x<-300&&x>-760&&Math.abs(y)<450},tk:()=>B(R(-470,-310),R(-240,240),0)},
+  overview:{grp:[],tanks:null,night:0,fx:{on:false,fire:0,fires:false,smoke:false},pl:{on:false}},
+  night_river_supply:{grp:['boats','qSwim','qSupply','qWall'],tanks:null,night:1,
+    fx:{on:true,gap:[3.5,7],zones:{citadel:.35,wallW:.2,southFar:.25,river:.12,landing:.08},fire:.12,fires:true,smoke:true,big:.25},pl:{on:false}},
+  wall_fight:{grp:['qWall','qBunker','vAtk','vRun','tanks'],tanks:'front',night:0,
+    fx:{on:true,gap:[.8,2.2],zones:{wallS:.3,citadel:.22,moatS:.1,southFar:.2,wallE:.1,wallW:.05,landing:.03},fire:1,fires:true,smoke:true,big:.2},
+    pl:{on:true,cx:-20,cy:-80,rx:[360,420],ry:[420,500],zone:(x,y)=>Math.abs(x)<260&&Math.abs(y)<260},tk:()=>B(R(-210,210),R(-262,-238),0)}};
+let STATE='legacy';let T=0;
+function setTanks(mode){tankObjs.forEach((t,i)=>{const o=t.o;if(!mode){o.visible=false;return}o.visible=true;
+  let x,y,ox,oy;if(mode==='front'){[x,y,ox,oy]=TANK_FRONT[i%TANK_FRONT.length]}else{[x,y]=t.def.p;[ox,oy]=t.def.o}
+  o.position.copy(B(x,y,0));o.position.y=groundAt(x,y)+.05;o.rotation.set(0,faceTo(ox,oy),0);t.pt.copy(o.position).y+=2.2;t.next=R(1,6)})}
+function clearTransient(){for(const b of boomFx){scene.remove(b.s,b.d);b.s.material.dispose();b.d.material.dispose()}boomFx.length=0;
+  for(const m of bombs){if(m.userData.snd){try{m.userData.snd.stop()}catch(e){}}scene.remove(m)}bombs.length=0;boomLight.intensity=0;for(const f of flares)f.life=0}
+function setState(name){const st=STATES[name]||STATES.legacy;STATE=name in STATES?name:'legacy';
+  ACT.clear();st.grp.forEach(g=>ACT.add(g));if(!st.tanks)ACT.delete('tanks');
+  setTanks(st.tanks);TK.on=!!st.tanks;if(st.tk)TK.target=st.tk;
+  Object.assign(FX,{on:false,gap:[1,2],zones:{citadel:1},fire:0,fires:true,smoke:true,big:.15},st.fx);smokePts.visible=FX.smoke;
+  Object.assign(PL,{on:false},st.pl);setNight(st.night);clearTransient();rebuildTracerPts();nextBoom=T+R(FX.gap[0],FX.gap[1]);
+  for(const f of stateHooks)f(STATE)}
+// ghi đè một phần hiệu ứng (bộ dẫn chuyện điều nhịp trong phân cảnh)
+function setEnv(e){if(!e)return;if(e.gap)FX.gap=e.gap;if(e.zones)FX.zones=e.zones;if('fire' in e)FX.fire=e.fire;if('booms' in e)FX.on=e.booms;if('big' in e)FX.big=e.big;
+  if('planes' in e)PL.on=e.planes&&!!STATES[STATE].pl.zone;if('tanks' in e)TK.on=e.tanks&&!!STATES[STATE].tanks;if('night' in e)setNight(e.night)}
+const stateHooks=[];
+/* pháo sáng (đêm): rơi chậm, chiếu sáng vùng sông */
+const flares=[];const flareLight=new THREE.PointLight(0xfff2d0,0,700,1.3);scene.add(flareLight);
+const FLARE_MAT=new THREE.SpriteMaterial({map:flashTex,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,color:0xfff4dc,fog:false});
+function flare(bx,by,h=170){const s=new THREE.Sprite(FLARE_MAT);s.position.copy(B(bx,by,h));s.scale.setScalar(9);scene.add(s);flares.push({s,life:28,t:0})}
+function updFlares(dt){let best=null;for(let i=flares.length-1;i>=0;i--){const f=flares[i];f.t+=dt;f.life-=dt;f.s.position.y-=dt*3.2;f.s.position.x+=dt*1.2;
+  const k=Math.min(1,f.t/1.5)*Math.min(1,f.life/4);f.s.material.opacity=1;f.s.scale.setScalar((7+Math.random()*2.5)*Math.max(k,.01));f.k=k;
+  if(f.life<=0||f.s.position.y<2){scene.remove(f.s);flares.splice(i,1);continue}if(!best||f.k>best.k)best=f}
+  if(best){flareLight.position.copy(best.s.position);flareLight.intensity=best.k*(FX.reduce?60000:160000)*(.85+Math.random()*.15)}else flareLight.intensity=0}
+let nextBoom=1;
+
 /* ---------------- chú thích & tư liệu ---------------- */
+// st: các trạng thái chiến trường hiển thị nhãn (bỏ trống = mọi trạng thái)
 const INFO={
- gate:{t:'Cổng Tiền (cổng Nam)',p:B(0,-250,10),h:`<p>Thành cổ Quảng Trị được xây từ đầu thế kỷ XIX thời Nguyễn, ban đầu bằng đất, sau được xây lại bằng gạch. Thành có 4 cổng ở giữa 4 mặt; ảnh tư liệu năm 1972 cho thấy các vòm cổng bị bắn thủng, tường đổ nát.</p>`},
- wall:{t:'Tường thành kiểu Vauban',p:B(-250,180,8),h:`<p>Mặt bằng thành hình vuông, 4 góc có pháo đài nhô ra theo kiểu Vauban, bao quanh là hào nước. Trong 81 ngày đêm năm 1972, tường thành và các công trình bên trong bị bom đạn phá hủy gần như hoàn toàn.</p>`},
-attack:{t:'Mũi tấn công QĐND',p:B(-330,-40,7),h:`<p>Kịch bản sa bàn: sau khi vượt sông Thạch Hãn, các tổ xung kích Quân đội Nhân dân Việt Nam đổ bộ lên bờ, triển khai trận địa bắn ngoài hào nước và bơi qua hào để áp sát mặt Tây (và một phần mặt Nam) của thành. Vị trí sông, hào và thành theo dữ liệu OpenStreetMap.</p>`},
- bunker:{t:'Lô cốt',p:B(-229,-85,6),h:`<p>Lô cốt bê tông có lỗ châu mai và bao cát, bố trí dọc chân thành phía trong. Trong kịch bản sa bàn, đây là các điểm hoả lực phòng ngự của quân VNCH.</p>`},
- river:{t:'Sông Thạch Hãn',p:B(-610,-200,6),h:`<p>Con sông chảy qua thị xã Quảng Trị. Năm 1972, bộ đội Quân đội Nhân dân Việt Nam vượt sông nhiều lần, chủ yếu vào ban đêm, bằng thuyền và bơi; nhiều người đã hy sinh trên sông. Ngày nay đây là nơi thả hoa đăng tưởng niệm.</p><p>Kịch bản sa bàn: các tổ bộ đội bơi và chèo thuyền gỗ vượt sông dưới bom đạn, từ bờ Tây sang, đổ bộ lên bờ phía thành để tấn công. Lòng sông dựng theo dữ liệu OpenStreetMap.</p>`},
- towers:{t:'Tháp sắt quan sát',p:B(140,120,24),h:`<p>Tháp giàn thép dùng để quan sát, tham khảo theo sa bàn trưng bày. Một tháp còn đứng, một tháp bị gãy gập vì bom đạn.</p>`},
- arvn:{t:'Quân VNCH cố thủ',p:B(-245,10,14),h:`<p>Kịch bản sa bàn: quân Việt Nam Cộng hòa phòng ngự trên mặt thành và trong các lô cốt; phía sau có xe tăng M41, trên không có máy bay cường kích A-37 ném bom xuống sông và bãi đổ bộ.</p>`},
+ gate:{t:'Cổng Tiền (cổng Nam)',p:B(0,-250,10),h:`<p>Thành cổ Quảng Trị được xây đầu thế kỷ XIX thời Nguyễn, ban đầu bằng đất, sau xây lại bằng gạch. Thành có 4 cổng ở giữa 4 mặt. Ảnh tư liệu năm 1972 cho thấy các vòm cổng bị bắn thủng, tường đổ nát.</p>`},
+ wall:{t:'Tường thành kiểu Vauban',p:B(-250,180,8),h:`<p>Mặt bằng thành hình vuông, 4 góc có pháo đài nhô ra theo kiểu Vauban, bao quanh là hào nước. Trong 81 ngày đêm (28/6–16/9/1972), tường thành và các công trình bên trong bị bom đạn phá huỷ gần như hoàn toàn.</p>`},
+ qdef:{t:'Tuyến phòng thủ QĐND',p:B(0,-236,15),st:['wall_fight'],h:`<p>Từ 28/6/1972, lực lượng Quân đội Nhân dân Việt Nam tổ chức phòng thủ thị xã và Thành cổ trước cuộc phản công của Quân lực Việt Nam Cộng hoà. Trên sa bàn, vị trí từng người lính trên mặt thành và trong công sự là <b>bố trí minh hoạ</b>, không theo sơ đồ đơn vị cụ thể.</p>`},
+ vatk:{t:'Hướng phản công VNCH',p:B(0,-420,10),st:['wall_fight'],h:`<p>Cuộc hành quân "Lam Sơn 72" của Quân lực Việt Nam Cộng hoà mở màn ngày 28/6/1972, có không quân và hải quân Mỹ yểm trợ hoả lực. Giai đoạn cuối, Sư đoàn Thuỷ quân Lục chiến VNCH đảm nhận mũi tiến công vào Thành cổ. Trên sa bàn, đội hình phía Nam và phía Đông là <b>minh hoạ hướng tiến công</b>; quân phục dùng tạm mẫu VNCH chung.</p>`},
+ bunker:{t:'Lô cốt, công sự',p:B(-229,-85,6),h:`<p>Lô cốt bê tông có lỗ châu mai và bao cát dọc chân thành phía trong. Vị trí và số lượng trên sa bàn là minh hoạ.</p>`},
+ river:{t:'Sông Thạch Hãn',p:B(-610,-200,6),h:`<p>Sông chảy qua thị xã Quảng Trị, phía Tây Thành cổ. Trong 81 ngày đêm, đây là tuyến vượt sông đưa quân và vật tư vào thị xã, chủ yếu vào ban đêm, bằng thuyền và bơi, dưới hoả lực pháo và không quân; nhiều người đã hy sinh trên sông. Ngày nay là nơi thả hoa đăng tưởng niệm.</p><p>Lòng sông dựng theo dữ liệu OpenStreetMap.</p>`},
+ supply:{t:'Bến tiếp viện (minh hoạ)',p:B(-470,-20,8),st:['night_river_supply'],h:`<p>Sau khi qua sông, người và vật tư được đưa vào các vị trí trong thị xã và Thành cổ. Vị trí bến, số thuyền và lối đi trên sa bàn là <b>dựng minh hoạ</b>, không mô phỏng một đêm cụ thể.</p>`},
+ attack:{t:'Mũi vượt sông (giả định)',p:B(-330,-40,7),st:['legacy'],h:`<p><b>Phân cảnh giả định</b> giữ lại từ bản sa bàn trước: QĐND vượt sông, đổ bộ và áp sát mặt Tây. Đây không phải diễn biến của 81 ngày đêm (khi đó QĐND giữ thành và vượt sông để tiếp viện).</p>`},
+ arvn:{t:'VNCH trên mặt thành (giả định)',p:B(-245,10,14),st:['legacy'],h:`<p><b>Phân cảnh giả định</b> từ bản sa bàn trước. Trong 81 ngày đêm, Thành cổ do QĐND giữ; quân VNCH ở phía tiến công.</p>`},
+ towers:{t:'Tháp sắt quan sát',p:B(140,120,24),h:`<p>Tháp giàn thép dùng để quan sát, tham khảo theo sa bàn trưng bày. Một tháp còn đứng, một tháp bị gãy gập.</p>`},
  tower:{t:'Tháp nước',p:B(40,60,24),h:`<p>Tháp nước bằng thép bên trong thành xuất hiện trong nhiều ảnh tư liệu năm 1972, là một trong số ít công trình còn đứng giữa đống đổ nát.</p>`},
- moat:{t:'Hào nước',p:B(-280,150,4),h:`<p>Hào nước bao quanh tường thành; trong mô phỏng, nhiều hố bom quanh thành cũng đọng nước như mô tả trong hồi ký và ảnh tư liệu.</p>`}};
+ moat:{t:'Hào nước',p:B(-280,150,4),h:`<p>Hào nước bao quanh tường thành; nhiều hố bom quanh thành cũng đọng nước như mô tả trong hồi ký và ảnh tư liệu.</p>`}};
 const SRC='<p class="src">Nội dung tóm tắt phục vụ học tập, cần đối chiếu tư liệu chính thức. Cảnh vật, nhân vật là tái dựng mô phỏng.</p>';
-const lbls=[];for(const [k,v] of Object.entries(INFO)){const d=document.createElement('div');d.className='lbl';d.innerHTML=`<b>${v.t}</b><i></i>`;d.onclick=()=>showInfo(k);$('labels').append(d);lbls.push({d,p:v.p})}
-function showInfo(k){$('infobody').innerHTML=`<h2>${INFO[k].t}</h2>${INFO[k].h}${SRC}`;$('info').hidden=false}
+const lbls=[];for(const [k,v] of Object.entries(INFO)){const d=document.createElement('div');d.className='lbl';d.innerHTML=`<b>${v.t}</b><i></i>`;d.onclick=()=>showInfo(k);$('labels').append(d);lbls.push({d,p:v.p,st:v.st})}
+function showInfo(k){$('infobody').innerHTML=`<h2>${INFO[k].t}</h2>${INFO[k].h}${SRC}`;$('info').hidden=false;for(const f of infoHooks)f(k)}
+const infoHooks=[],tickHooks=[];
 $('infox').onclick=()=>$('info').hidden=true;
 let showLbl=true;$('lbtn').onclick=function(){showLbl=!showLbl;this.classList.toggle('on',showLbl);this.setAttribute('aria-pressed',showLbl)};
 const pv=new THREE.Vector3();
-function updLabels(){const w=innerWidth,h=innerHeight;for(const l of lbls){pv.copy(l.p).project(camera);const vis=showLbl&&pv.z<1&&Math.abs(pv.x)<1.1&&Math.abs(pv.y)<1.1&&camera.position.distanceTo(l.p)<2200;
+function updLabels(){const w=innerWidth,h=innerHeight;for(const l of lbls){pv.copy(l.p).project(camera);const vis=showLbl&&(!l.st||l.st.includes(STATE))&&pv.z<1&&Math.abs(pv.x)<1.1&&Math.abs(pv.y)<1.1&&camera.position.distanceTo(l.p)<2200;
   l.d.classList.toggle('hidden',!vis);if(vis){l.d.style.left=((pv.x+1)/2*w)+'px';l.d.style.top=((1-pv.y)/2*h)+'px'}}}
 
 /* ---------------- góc nhìn ---------------- */
 const VIEWS={all:[B(-1250,-650,380),B(-250,-30,10)],gate:[B(10,-345,7),B(0,-250,5)],inside:[B(-80,-120,6),B(60,80,6)],
-  trench:[B(-470,-95,9),B(-300,-40,4)],towers:[B(170,90,14),B(140,120,9)],boat:[B(0,0,0),B(0,0,0)],river:[B(-262,-470,5),B(-304,-499,-1.5)],arvn:[B(-236,-35,14.5),B(-300,10,8)],tank:[B(-183,-128,7),B(-203,-150,2)]};
-let tween=null;
+  trench:[B(-470,-95,9),B(-300,-40,4)],towers:[B(170,90,14),B(140,120,9)],boat:[B(0,0,0),B(0,0,0)],river:[B(-262,-470,5),B(-304,-499,-1.5)],arvn:[B(-236,-35,14.5),B(-300,10,8)],tank:[B(-183,-128,7),B(-203,-150,2)],
+  front:[B(-40,-247,12.8),B(-15,-345,1)],vatk:[B(40,-470,5),B(0,-262,8)],bastion:[B(-262,-262,24),B(80,-300,2)],landing:[B(-470,-140,7),B(-300,0,3)]};
+let tween=null;const viewHooks=[];
 function go(v){setWalk(false);let [p,t]=VIEWS[v];
   if(v==='river'){const sw=scene.children.find(h=>h.userData.swim);if(sw){const d=sw.userData.swim.b.clone().sub(sw.userData.swim.a).normalize();const sd=new THREE.Vector3(-d.z,0,d.x);p=sw.position.clone().addScaledVector(d,-4.5).addScaledVector(sd,2.2).add(new THREE.Vector3(0,1.5,0));t=sw.position.clone().addScaledVector(d,30).add(new THREE.Vector3(0,.4,0))}}
   if(v==='boat'){const g=boats[1];const d=g.userData.boat.b.clone().sub(g.userData.boat.a).normalize();const sd=new THREE.Vector3(-d.z,0,d.x);
     p=g.position.clone().addScaledVector(d,-5.5).addScaledVector(sd,3.6).setY(WATER_Y+2.3);t=g.position.clone().addScaledVector(d,3).setY(WATER_Y+.5)}
   tween={p0:camera.position.clone(),t0:controls.target.clone(),p,t,s:performance.now()}}
 camera.position.copy(VIEWS.all[0]);controls.target.copy(VIEWS.all[1]);
-$('views').onclick=e=>{const b=e.target.closest('button[data-v]');if(!b)return;document.querySelectorAll('#views button').forEach(x=>x.classList.toggle('on',x===b));go(b.dataset.v)};
+$('views').onclick=e=>{for(const f of viewHooks)f();const b=e.target.closest('button[data-v]');if(!b)return;document.querySelectorAll('#views button').forEach(x=>x.classList.toggle('on',x===b));go(b.dataset.v)};
 
 /* ---------------- chế độ đi bộ ---------------- */
 let walking=false,yaw=0,pitch=0;const keys={};const joy={x:0,y:0};
@@ -434,27 +524,45 @@ let paused=false;$('pause').onclick=function(){paused=!paused;this.textContent=p
 /* ---------------- vòng lặp ---------------- */
 function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();sMat.uniforms.scale.value=h/2}
 addEventListener('resize',resize);resize();
-const clock=new THREE.Clock();let T=0,nextBoom=1;
+const clock=new THREE.Clock();
+/* ---------------- giao diện cho bộ dẫn chuyện (story-director.js) ---------------- */
+const _fwd=new THREE.Vector3();
+function npcHead(h){if(!h.userData.head){h.traverse(o=>{if(!h.userData.head&&/Head$/.test(o.name))h.userData.head=o})}const v=new THREE.Vector3();(h.userData.head||h).getWorldPosition(v);return v}
+// anchor: vị trí + hướng tiến của một đối tượng đang chuyển động (thuyền, người bơi, nhân vật theo nhóm)
+function anchor(kind,i=0){
+  if(kind==='boat'){const g=boats[i%boats.length];const u=g.userData.boat;return {pos:g.position.clone(),dir:u.b.clone().sub(u.a).setY(0).normalize(),obj:g}}
+  const list=kind==='swimmer'?swimmers.filter(h=>h.userData.grp==='qSwim'):NPC.filter(h=>h.userData.grp===kind);if(!list.length)return null;
+  const h=list[i%list.length];let dir;if(h.userData.swim){const u=h.userData.swim;dir=u.b.clone().sub(u.a).setY(0).normalize()}else{const r=h.rotation.y;dir=new THREE.Vector3(Math.sin(r),0,Math.cos(r))}
+  return {pos:h.position.clone(),head:npcHead(h),dir,obj:h,count:list.length}}
+const API={RIVER:[RIVER_A,RIVER_B],AMB,THREE,scene,camera,controls,renderer,B,R,MOBILE,VIEWS,INFO,STATES,WATER_Y,
+  setState,setEnv,getState:()=>STATE,flare,boomAt:(bx,by,big)=>spawnBoom(B(bx,by,0),big),anchor,go,showInfo,groundAt,
+  setReduce:v=>{FX.reduce=!!v},setLabels:v=>{showLbl=!!v;$('lbtn').classList.toggle('on',showLbl)},
+  audio:()=>({on:audioOn,AC,listener,SND,mkBuf}),setAudio,onAudio:f=>audioHooks.push(f),
+  stopTween:()=>{tween=null},setWalk,walking:()=>walking,tickHooks,stateHooks,infoHooks,viewHooks,counts:()=>({npc:NPC.length,mixers:mixers.length,boom:boomFx.length,bombs:bombs.length,flares:flares.length,children:scene.children.length,calls:renderer.info.render.calls,geo:renderer.info.memory.geometries,tex:renderer.info.memory.textures})};
+window.__QT=API;   // để kiểm thử
+setState('wall_fight');
 $('loadtxt').textContent='Đang chuẩn bị đồ hoạ…';
 try{if(renderer.compileAsync)await renderer.compileAsync(scene,camera)}catch(e){}
 if(/\/khong-gian\//.test(location.pathname))$('back').hidden=false;
 $('load').classList.add('done');
+try{const m=await import('./story-director.js');m.start(API)}catch(e){console.error('Không tải được bộ dẫn chuyện',e)}
 renderer.setAnimationLoop(()=>{
   const rawDt=clock.getDelta();const dt=Math.min(rawDt,.1);
   if(!document.hidden){Q.acc+=rawDt;Q.n++;if(Q.acc>2.5){const fps=Q.n/Q.acc;Q.acc=0;Q.n=0;if(fps<28&&Q.lv>0)setQuality(Q.lv-1)}}
   if(!paused){T+=dt;
     const camP=camera.position;
-    WN.offset.set(T*.004,T*.0025);for(const h of swimmers){const s=h.userData.swim;const t=((T/s.per)+s.ph)%1;h.position.lerpVectors(s.a,s.b,t)}
+    WN.offset.set(T*.004,T*.0025);for(const h of swimmers){if(!ACT.has(h.userData.grp))continue;const s=h.userData.swim;const t=((T/s.per)+s.ph)%1;h.position.lerpVectors(s.a,s.b,t)}
     updRunners(T);updBoats(T);
     const FAR2=Q.far**2;_pm.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);_fr.setFromProjectionMatrix(_pm);
     for(const m of mixers){const r=m.getRoot().parent;r.getWorldPosition(tmpV);const d2=tmpV.distanceToSquared(camP);
-      if(r.parent===scene){_sph.center.copy(tmpV);_sph.center.y+=1;r.visible=d2<FAR2&&_fr.intersectsSphere(_sph);if(!r.visible)continue}else if(!r.parent.visible)continue;
+      if(r.parent===scene){if(!ACT.has(r.userData.grp)){r.visible=false;continue}_sph.center.copy(tmpV);_sph.center.y+=1;r.visible=d2<FAR2&&_fr.intersectsSphere(_sph);if(!r.visible)continue}else if(!r.parent.visible)continue;
       const sh=!MOBILE&&d2<170*170;if(r.userData.sh!==sh&&r.userData.meshes){r.userData.sh=sh;for(const o of r.userData.meshes)o.castShadow=sh}
       m._acc=(m._acc||0)+dt;if(d2<150*150||(d2<500*500?m._acc>.1:m._acc>.25)){m.update(m._acc);m._acc=0}}
     updFlashes(dt);
     updSmoke(dt);updTracers(dt);updBoom(dt);updPlanes(T,dt);updTanks(dt);
-    if(T>nextBoom){spawnBoom(randomTarget(),Math.random()<.15);nextBoom=T+R(.5,1.8)}
-    for(const g of fires){for(const s of g.children)if(s.isSprite){const k=Math.sin(T*9+s.userData.ph)*.5+.5;s.scale.set(3+k*2,4+k*3,1)}if(g.userData.L)g.userData.L.intensity=45+Math.sin(T*13+g.position.x)*15}
+    if(FX.on&&T>nextBoom){spawnBoom(randomTarget(),Math.random()<FX.big);nextBoom=T+R(FX.gap[0],FX.gap[1])}
+    updFlares(dt);for(const f of tickHooks)f(dt,T);
+    for(const g of fires){g.visible=FX.fires;if(!FX.fires)continue;for(const s of g.children)if(s.isSprite){const k=Math.sin(T*9+s.userData.ph)*.5+.5;s.scale.set(3+k*2,4+k*3,1)}if(g.userData.L)g.userData.L.intensity=45+Math.sin(T*13+g.position.x)*15}
     turrets.forEach(t=>t.o.rotation.y=t.base+Math.sin(T*.4+t.ph)*.15);
   }
   if(tween){const k=Math.min((performance.now()-tween.s)/1800,1),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;camera.position.lerpVectors(tween.p0,tween.p,e);controls.target.lerpVectors(tween.t0,tween.t,e);if(k>=1)tween=null}

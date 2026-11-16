@@ -44,6 +44,12 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - **Mỗi phe một bộ clip:** `qdnd.glb` (21 clip, 966 KB) và `vnch.glb` (10 clip, 333 KB, NLA trên `Rig_VNCH`). `app.js`: `clips` (QĐND) và `clipsV` (VNCH); `spawn()` chọn theo phe.
 - Rig cũ `Rig_QDND` vẫn giữ trong .blend làm nguồn chuyển động; các lính đặt sẵn trong .blend (render) vẫn dùng mẫu cũ.
 
+## 2d. Chế độ kể chuyện 1972 — giai đoạn A (16/11/2026)
+- Chi tiết, bảng đối chiếu 10 cảnh và kết quả kiểm thử: **`docs/KE_CHUYEN_1972.md`**. Yêu cầu gốc do ChatGPT soạn.
+- Sửa sai lịch sử của bản trước: trong 81 ngày đêm (28/6–16/9/1972) **QĐND giữ thành, VNCH phản công**; vượt sông Thạch Hãn là **tiếp viện**. Kịch bản cũ "QĐND vượt sông đánh vào thành" giữ lại trong Khám phá tự do với nhãn *Minh hoạ giả định* (trạng thái `legacy`).
+- File mới: `data/episodes.json`, `js/story-director.js`, `js/story-ui.js`, `js/story-audio.js`. `app.js` thêm nhóm nhân vật + `setState/setEnv/setNight`, pháo sáng, API `window.__QT`.
+- Trang mở vào chế độ "Theo dòng lịch sử", tự phát cảnh 01 → 05 → 06.
+
 ## 3. Nội dung web hiện có (app.js)
 - **Cảnh tĩnh (static.glb):** địa hình, sông/hào (nước xanh `0x2e78ae`), tường thành vỡ GD4 (dày 8,5 m, mặt trong ±245,5 m, mặt ngoài ±254,5 m), Cổng Tiền chi tiết, 3 cổng còn lại dạng khối, 237 hố bom có viền đất, 9 nhà đổ nát, tháp nước, 2 tháp sắt quan sát (140,120 đứng; 120,−140 gãy), dây thép gai, xác xe, 4 xe tăng M41, 2 máy bay A-37.
 - **Vật liệu web** gán theo TÊN vật liệu glTF (bảng `BYMAT`) vì vật liệu procedural của Blender xuất ra bị trắng.
@@ -74,6 +80,7 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - Vị trí lính trong .blend vẫn theo kịch bản cũ; web tự sinh nhân vật theo kịch bản mới.
 
 ## 6. Việc tiếp theo
+0. **Giai đoạn B kể chuyện:** xem `docs/KE_CHUYEN_1972.md` mục 6 (động tác Mixamo cần tải thêm, tường nguyên vẹn, mưa, cảnh 02–04, 07–10).
 1. **Vật liệu (bước 3):** cháy sém/ám khói/bụi, bake vào texture cho tường, gạch, đá viền cổng, ngói, đống gạch, đất hố bom, sắt/tôn → xuất lại static.glb.
 2. Kiểm tra hiệu năng trên laptop và điện thoại thật; nếu giật: giảm số lính xa, LOD, gộp nhân vật xa.
 3. Cảnh cập bờ: bộ đội bơi tới bờ (BoiVaoBo), thuyền cập bờ rồi bộ đội lên bờ; lính trúng đạn ngã (TrungDan/NgaXuong).
