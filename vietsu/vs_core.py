@@ -21,7 +21,7 @@ BASE = Path(__file__).resolve().parent
 DATA = BASE / "data"
 STATIC = BASE / "static"
 UPLOADS = STATIC / "uploads"
-VERSION = "4.6.0"
+VERSION = "4.7.0"
 
 
 def _load_dotenv() -> None:
