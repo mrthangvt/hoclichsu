@@ -1,0 +1,79 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Biên tập thời đại · Việt Sử CMS V4.7</title>
+<link rel="stylesheet" href="/static/fonts/be-vietnam-pro.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#10242b;color:#eee0c8;font:14px/1.7 'Be Vietnam Pro',system-ui,sans-serif}
+header{padding:20px clamp(14px,3vw,40px);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid #496465}header h1{font-size:23px;color:#e8c78b;margin:0}a{color:#e8c78b}
+main{max-width:1440px;margin:0 auto;padding:24px clamp(12px,2vw,28px)}.layout{display:grid;grid-template-columns:220px minmax(0,1fr) 295px;gap:16px;align-items:start}
+.panel{border:1px solid #496266;background:#183239;border-radius:15px;padding:19px;min-width:0}h2{font-size:17px;margin:0 0 15px;color:#e8c78b}h3{margin:0;color:#f1d59f;font-size:15px}
+nav{max-height:78vh;overflow:auto}nav button{width:100%;margin:3px 0;text-align:left;background:#233c43;color:#eee1ca;border:1px solid transparent;border-radius:8px;padding:10px;font:650 11px 'Be Vietnam Pro',sans-serif;cursor:pointer}nav button[aria-current=true]{background:#d7b47b;color:#253337}
+label{font-size:12px;font-weight:650;color:#e6c791;display:block;margin:14px 0 6px}input,select,textarea{width:100%;background:#10262c;border:1px solid #557073;border-radius:8px;color:#f7e6cc;padding:10px;font:inherit}textarea{min-height:270px;resize:vertical;line-height:1.9}textarea.sources{min-height:110px}
+button{cursor:pointer;border-radius:9px;border:1px solid #e3c08a;padding:10px 13px;font:700 12px 'Be Vietnam Pro',sans-serif;background:#e1bd7f;color:#243338}button.secondary{border-color:#748a88;background:#2c4950;color:#f2dcb9}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}.help,.muted{color:#b6c7c1;font-size:12px;line-height:1.8}.status{color:#e8c78b;min-height:24px;white-space:pre-wrap}.bad{color:#ffb3a6}#preview{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9;font-size:12px;color:#d6dfd4;border-top:1px solid #536a65;padding-top:12px;max-height:450px;overflow-y:auto}.stats{border:1px solid #4a6562;border-radius:10px;padding:12px;color:#d4c49e;font-size:12px;margin:12px 0}
+@media(max-width:1150px){.layout{grid-template-columns:200px minmax(0,1fr)}.layout>.panel:last-child{grid-column:2}}
+@media(max-width:740px){.layout{grid-template-columns:1fr}.layout>.panel:last-child{grid-column:1}nav{display:flex;overflow-x:auto;max-height:none;gap:6px}nav button{flex:0 0 auto;width:auto;white-space:nowrap}main{padding:14px}.panel{padding:15px}}
+</style></head><body>
+<header><h1>VIỆT SỬ · BIÊN TẬP THỜI ĐẠI V4.7</h1><a href="/admin">← Quay về quản trị CMS</a></header>
+<main><p class="help">Biên tập từng chuyên mục cho một thời đại. Lưu nháp không tự xuất bản; chỉ mã thẩm định mới có thể công bố nội dung đã có nguồn. Dữ liệu biên tập lưu riêng, không sửa dữ liệu thời đại gốc.</p>
+<div class="layout"><section class="panel"><h2>13 chuyên mục</h2><nav id="sections" aria-label="Danh sách chuyên mục"></nav><div class="stats" id="stats">Chưa kết nối</div></section>
+<section class="panel"><h2>Hồ sơ biên tập</h2><label for="token">Mã quản trị / mã thẩm định</label><input type="password" id="token" autocomplete="off" placeholder="Nhập mã đang dùng trong CMS"><div class="controls"><button id="connect" type="button" class="secondary">Kết nối & tải dữ liệu</button></div>
+<label for="era">Thời đại / triều đại</label><select id="era"><option value="">Chọn thời đại…</option></select>
+<label for="topic">Chuyên mục đang biên tập</label><input id="topic" disabled value="Tổng quan">
+<label for="body">Nội dung (nhiều đoạn cách nhau một dòng)</label><textarea id="body" maxlength="14000" placeholder="Nội dung đã đối chiếu tư liệu…"></textarea>
+<label for="sources">Nguồn tư liệu – mỗi dòng: Tên tài liệu | https://...</label><textarea id="sources" class="sources" placeholder="Bảo tàng Lịch sử Quốc gia | https://baotanglichsu.vn/... "></textarea>
+<div class="controls"><button type="button" id="draft" class="secondary">Lưu nháp</button><button type="button" id="review" class="secondary">Gửi thẩm định</button><button type="button" id="publish">Duyệt & công bố</button></div><p id="status" class="status" role="status" aria-live="polite"></p>
+<p class="help">Mục Nguồn tư liệu hiển thị các nguồn đã lưu kèm các chuyên mục. Muốn trích dẫn chính xác theo trang sách, anh bổ sung số trang và bản in trong phần chú thích.</p></section>
+<section class="panel"><h2>Kiểm tra trước xuất bản</h2><h3 id="previewTitle">Tổng quan</h3><p class="help" id="previewStatus">Chưa có dữ liệu</p><div id="preview"></div><p class="help">Tóm tắt học thuật phải phân biệt dữ liệu xác nhận, giả thuyết và truyền thuyết. Tranh AI không được trình bày như chân dung lịch sử xác thực.</p><p><a href="/" target="_blank" rel="noopener">Mở website trong tab mới ↗</a></p></section></div></main>
+<script src="/static/v47-data.js"></script><script>
+(function(){
+'use strict';
+const KEYS=[['overview','Tổng quan'],['foundation','Bối cảnh hình thành'],['politics','Chính trị'],['economy','Kinh tế'],['military','Quân sự'],['culture','Văn hóa – Giáo dục'],['religion','Tôn giáo – Tín ngưỡng'],['costume','Trang phục'],['figures','Nhân vật'],['heritage','Di tích'],['events','Sự kiện'],['transition','Chuyển giao – Suy vong'],['sources','Nguồn tư liệu']];
+const $=id=>document.getElementById(id);let topic='overview', records={}, seed={},connected=false;
+for(const p of (window.V47_DYNASTIES||[]))seed[p.id]=p;
+for(const [id,name] of KEYS){const b=document.createElement('button');b.textContent=name;b.dataset.topic=id;b.type='button';b.setAttribute('aria-current',String(topic===id));b.addEventListener('click',()=>{topic=id;display()});$('sections').append(b)}
+function feedback(text,error=false){$('status').textContent=text;$('status').classList.toggle('bad',error)}
+function current(){const id=$('era').value;return records[id]?.sections?.[topic]||null}
+function display(){
+ const id=$('era').value,unit=current(),first=seed[id]?.sections?.[topic]||{};
+ $('sections').querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',String(b.dataset.topic===topic)));
+ $('topic').value=KEYS.find(x=>x[0]===topic)?.[1]||topic;
+ $('body').value=unit?.text||first.text||'';
+ $('sources').value=(unit?.references||((seed[id]?.references)||[])).map(x=>x.title+' | '+x.url).join('\n');
+ updatePreview();
+ const count=Object.values(records[id]?.sections||{}).filter(x=>x.status==='published').length;
+ $('stats').textContent=(id?('Có '+count+' chuyên mục đã công bố.'):'Chưa chọn triều đại.')+'\nDữ liệu hiện tại trên website là bản biên tập sơ bộ.';
+}
+function updatePreview(){
+ $('previewTitle').textContent=KEYS.find(x=>x[0]===topic)?.[1]||topic;
+ $('preview').textContent=$('body').value.trim()||'Chưa có nội dung';
+ $('previewStatus').textContent=current()?.status==='published'?'Đã xuất bản':'Bản biên tập / chờ xác nhận';
+}
+$('body').addEventListener('input',updatePreview);$('era').addEventListener('change',display);
+async function api(url,opts={}){
+ const headers={'X-Admin-Token':$('token').value.trim(),...(opts.body?{'Content-Type':'application/json'}:{})};
+ const result=await fetch(url,{...opts,headers,cache:'no-store',credentials:'same-origin'});
+ const data=await result.json().catch(()=>({}));if(!result.ok)throw Error(data.detail||'HTTP '+result.status);return data;
+}
+$('connect').addEventListener('click',async()=>{
+ if(!$('token').value.trim())return feedback('Anh cần nhập mã quản trị.',true);
+ try{const d=await api('/api/v4.7/dynasties/admin');records=d.records||{};
+ const select=$('era');select.replaceChildren();
+ for(const p of d.periods||[]){const o=document.createElement('option');o.value=p.id;o.textContent=p.name||p.id;select.append(o)}
+ connected=true;display();feedback('Đã tải danh mục '+(d.periods||[]).length+' thời đại từ CMS.');
+ }catch(e){feedback(e.message,true)}
+});
+function parseSources(){return $('sources').value.split('\n').map(x=>x.trim()).filter(Boolean).map(x=>{const i=x.indexOf('|');if(i<0)throw Error('Nguồn phải ghi: Tên nguồn | https://...');return {title:x.slice(0,i).trim(),url:x.slice(i+1).trim()}})}
+async function save(status){
+ if(!connected)return feedback('Hãy kết nối CMS trước.',true);
+ const id=$('era').value;if(!id)return feedback('Chưa chọn thời đại.',true);
+ try{const body={section:topic,text:$('body').value,status,references:parseSources()};
+ const result=await api('/api/v4.7/dynasties/'+encodeURIComponent(id),{method:'PUT',body:JSON.stringify(body)});
+ records[id]??={sections:{}};records[id].sections[topic]={...body};display();
+ feedback('Đã lưu '+result.section+' · '+result.status+'. '+(status==='published'?'Đã xuất hiện trên API công khai của Backend Local.':'Chưa công bố.'));
+ }catch(e){feedback(e.message,true)}
+}
+$('draft').addEventListener('click',()=>save('draft'));
+$('review').addEventListener('click',()=>save('review'));
+$('publish').addEventListener('click',()=>save('published'));
+})();
+</script></body></html>
