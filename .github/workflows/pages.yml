@@ -29,7 +29,7 @@ jobs:
           python3 vietsu/tools/build_v47.py
           mkdir -p _site/static
           cp vietsu/static/Viet_Su_Timeline_V4.7_Offline.html _site/index.html
-          cp vietsu/static/v42.css vietsu/static/v42.js vietsu/static/v43.css vietsu/static/v43.js vietsu/static/v44.js vietsu/static/v45.css vietsu/static/v45.js vietsu/static/v46.css vietsu/static/v46.js vietsu/static/v47.css vietsu/static/v47.js vietsu/static/v47-periods.json _site/static/
+          cp vietsu/static/v42.css vietsu/static/v42.js vietsu/static/v43.css vietsu/static/v43.js vietsu/static/v44.js vietsu/static/v45.css vietsu/static/v45.js vietsu/static/v46.css vietsu/static/v46.js _site/static/
           cp -r vietsu/static/avatar-v45 _site/static/avatar-v45
           cp -r vietsu/static/v43 _site/static/v43
           cp -r vietsu/static/assets _site/assets

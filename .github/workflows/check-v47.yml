@@ -1,10 +1,10 @@
-name: Kiểm tra Việt Sử V4.7
+name: Kiểm tra Việt Sử V4.7 và khóa giao diện V4.6
 on:
   push:
     branches: ["gpt/v4.7-period-profiles"]
   pull_request:
     paths:
-      - "vietsu/static/v47*"
+      - "vietsu/static/v47-periods.json"
       - "vietsu/periods_v47.py"
       - "vietsu/tools/build_v47.py"
       - ".github/workflows/check-v47.yml"
@@ -16,35 +16,59 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Kiểm tra cú pháp
-        run: |
-          node --check vietsu/static/v47.js
-          python3 -m py_compile vietsu/periods_v47.py vietsu/tools/build_v47.py
-      - name: Kiểm tra bộ dữ liệu, liên kết và an toàn HTML
+      - name: Kiểm tra cú pháp Python
+        run: python3 -m py_compile vietsu/periods_v47.py vietsu/tools/build_v47.py
+      - name: Khóa giao diện (V4.7 phải trùng từng byte với V4.6)
         run: |
           python3 - <<'PY'
-          import json, pathlib
-          d=json.loads(pathlib.Path("vietsu/static/v47-periods.json").read_text())
-          assert len(d["periods"]) == 19
-          assert len(d["categories"]) == 13
-          ids=[x["id"] for x in d["periods"]]
-          assert len(ids)==len(set(ids))
-          cats={x["id"] for x in d["categories"]}
-          assert all(set(p["sections"]) == cats for p in d["periods"])
-          assert sum(p["reviewed"] for p in d["periods"]) == 7
-          assert all((v and isinstance(v,str)) for p in d["periods"] for v in p["sections"].values())
-          for p in d["periods"]:
-              for s in p["links"]["scenes"]:
-                  assert (pathlib.Path("vietsu/static") / s["href"] / "index.html").exists()
-          print("V4.7: 19 giai đoạn, 13 chuyên mục, 7 hồ sơ mở rộng, liên kết sa bàn hợp lệ")
+          import importlib.util
+          from pathlib import Path
+          from tempfile import TemporaryDirectory
+          spec=importlib.util.spec_from_file_location("b47", "vietsu/tools/build_v47.py")
+          module=importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          with TemporaryDirectory() as tmp:
+              root=Path(tmp)
+              src=root/"Viet_Su_Timeline_V4.6_Offline.html"
+              dst=root/"Viet_Su_Timeline_V4.7_Offline.html"
+              sample=("<!doctype html><html><head><style>same-v46-style</style></head>"
+                      "<body>Giao diện V4.6 cố định</body></html>").encode()
+              src.write_bytes(sample)
+              digest=module.freeze_v46(src,dst)
+              assert src.read_bytes()==dst.read_bytes()==sample
+              assert len(digest)==64
+              module.validate_content()
+          print("PASS: V4.7 sao chép nguyên vẹn HTML V4.6; dữ liệu hợp lệ")
           PY
-      - name: Kiểm tra có đủ 41 ảnh trước khi build toàn bộ
+      - name: Kiểm tra 19 thời đại, 13 chuyên mục và liên kết thật
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("vietsu/static")
+          d=json.loads((root/"v47-periods.json").read_text(encoding="utf8"))
+          assert len(d["periods"])==19 and len(d["categories"])==13
+          ids=[p["id"] for p in d["periods"]]
+          assert len(ids)==len(set(ids))
+          cats={c["id"] for c in d["categories"]}
+          assert all(set(p["sections"])==cats for p in d["periods"])
+          assert sum(p["reviewed"] for p in d["periods"])==7
+          for p in d["periods"]:
+              for scene in p["links"]["scenes"]:
+                  assert (root/scene["href"]/"index.html").is_file()
+          # Không có CSS/JS V4.7 chèn UI trái phép.
+          source=Path("vietsu/tools/build_v47.py").read_text()
+          assert 'v47.css' not in source and 'v47.js' not in source
+          assert not (root/"Preview_Viet_Su_V4.7_Offline.html").exists()
+          print("PASS: 19×13; dữ liệu ẩn không làm đổi giao diện")
+          PY
+      - name: Kiểm tra tài nguyên ảnh V4.6
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          # Nếu thiếu tài nguyên, báo trạng thái và KHÔNG thay bằng ảnh giả.
           p=Path("vietsu/static")
           missing=[x for x in ("avatar-v45/emperor-256.webp","avatar-v45/official-256.webp","v43/outfit-ly.webp") if not (p/x).is_file()]
           if missing:
-              print("CẢNH BÁO: chưa thể xác nhận build offline hoàn chỉnh vì thiếu:", *missing)
+              print("CHƯA BUILD FULL: thiếu ảnh kế thừa V4.6:", *missing)
+              # Không đánh dấu full build PASS khi chưa có ảnh.
           PY
