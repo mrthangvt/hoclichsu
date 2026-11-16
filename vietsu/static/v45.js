@@ -7,6 +7,7 @@ const MIL_FEMALE=new Set(['trungtrac','trungnhi','batrieu','buithixuan']);
 const ROYAL_FEMALE=new Set(['auco','mychau','ylan','lychieuhoang']);
 const VN=new Set('hungdao nhantong quangtrung leloi gialong hochiminh vonguyengiap ngothisi kinhduong laclongquan auco hungvuong anduong caolo mychau trungtrac trungnhi batrieu sinhiep lybi trieuquangphuc lyphattu khucthuadu khuchao duongdinhnghe ngoquyen dinhbolinh lehoan lythaito lythuongkiet tranthaitong tranthudo hoquyly tranngoi tranquykhoang nguyentrai lethanhtong macdangdung trinhtung thigsach phamtuu maithucloan phunghung nguyenbac phamculuong tohienthanh trannhatduat tranquangkhai tranquangdieu buithixuan ngothinham minhmang nguyenphuong vanhanh lephunghieu duongtuminh thancanhphuc ylan lychieuhoang levanthinh nguyenbinhkhiem phungkhackhoan lequydon lehuutrac phanboichau huynhthuckhang phamvandong hoangvanthai lynhantong'.split(' '));
 const CN=new Set('hotatliet qinthuyhoang sohan tamquoc thoduong genghis hongwu thanhdrama bao'.split(' '));
+const KEEP_ORIGINAL=new Set(['hochiminh','vonguyengiap','phanboichau','huynhthuckhang','phamvandong','hoangvanthai']);
 const TEMPLATES={emperor:'emperor',official:'official',warrior:'warrior',queen:'queen',femaleWarrior:'female-warrior',woman:'woman'};
 const esc=s=>typeof safe==='function'?safe(String(s)):String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function category(id,p){
@@ -23,7 +24,7 @@ function resolve(id,p){
  const own=window.V45_IMAGE_OVERRIDES?.[id]||null;
  if(own?.approved===true && typeof own.url==='string'&&/^(https:\/\/|\/|data:image\/(webp|png|jpeg);base64,)/.test(own.url))return {src:own.url,type:'specific'};
  // Non-Vietnamese portraits remain as in V4.4.
- if(!VN.has(id))return {src:p?.avatar||'',type:'legacy'};
+ if(!VN.has(id)||KEEP_ORIGINAL.has(id))return {src:p?.avatar||'',type:'legacy'};
  return {src:ROOT+TEMPLATES[category(id,p)]+'-256.webp',type:'template'};
 }
 function mark(id,p){
