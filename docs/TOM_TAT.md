@@ -1,3 +1,5 @@
+> **Bổ sung V4.3 — đang chờ duyệt:** chuyển ba avatar Hồ Chí Minh giữa các chặng 1924–1941, 1941–1945, 1954–1969; bổ sung 17 ảnh WebP biểu tượng trang phục và Mũ & Tóc theo từng triều đại và quân phục năm 1972. CSS/JS, build, Backend và cấu hình Pages đã nằm trên nhánh `gpt/v4.3-icons-hcm`, **nhưng 17 tệp ảnh cần được anh chép từ ZIP lên GitHub trước khi merge**. Xem `docs/CHANGELOG_V4.3.md` và `HUONG_DAN_UPLOAD_MAC.md` trong gói ZIP. Nhánh V4.3 kế thừa V4.2, vì vậy cần nhập V4.2 trước. Các ảnh là tranh minh họa chưa được thẩm định sử học hoàn toàn.
+
 > **Nâng cấp V4.2 (nhánh gpt/v4.2-timeline-khong-gian-ui, chờ duyệt):** bản đồ véc-tơ cố định, 2 nút lọc, thumbnail vector trong cột địa điểm, nút sa bàn Thành cổ Quảng Trị ngay trên Timeline 1972, cải thiện thư viện trang phục/Mũ & tóc và các liên kết nhân vật, nới chặng Hồ Chí Minh 1941–1945, tối ưu mobile, build tĩnh V4.2 và Backend. Xem [CHANGELOG_V4.2.md](CHANGELOG_V4.2.md). **Không thay đổi mô hình GLB hay kịch bản chiến đấu; ảnh đại diện chưa phải ảnh tư liệu.**
 
 # Việt Sử V4.1 + sa bàn 3D Thành cổ Quảng Trị 1972: tóm tắt dự án
