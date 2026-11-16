@@ -50,6 +50,9 @@ if [ ! -f .venv/.vietsu_dependencies_ready ]; then
   touch .venv/.vietsu_dependencies_ready
 fi
 
+echo "Tạo giao diện Việt Sử V4.2 (giữ nguyên V4.1 và dữ liệu CMS)..."
+.venv/bin/python tools/build_v42.py
+
 PORT="${PORT:-8000}"
 if [ "${LAN:-0}" = "1" ]; then
   HOST=0.0.0.0
