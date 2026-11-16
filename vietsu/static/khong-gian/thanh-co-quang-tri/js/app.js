@@ -115,7 +115,7 @@ function sampleH(arr,x,z){const H=HG.size/2,xi=Math.floor((x+H)/HG.cell),zi=Math
 
 /* ---------------- kịch bản sa bàn: VNCH cố thủ trong thành · QĐND vượt sông tấn công ---------------- */
 for(const m of solid)raster(m,HG.h);for(const m of obstacles)raster(m,HG.ob);   // lưới độ cao cần trước khi đặt nhân vật
-const clips={};for(const c of gQ.animations)clips[c.name]=c;
+const clips={},clipsV={};for(const c of gQ.animations)clips[c.name]=c;for(const c of gV.animations)clipsV[c.name]=c;   // mỗi phe một bộ động tác (rig QĐND mới khác hệ trục xương VNCH)
 const mixers=[],flashes=[],NPC=[],runners=[],swimmers=[];const SPEED=30/24;const MUL=MOBILE?.5:1;
 const flashTex=(()=>{const cv=document.createElement('canvas');cv.width=cv.height=64;const x=cv.getContext('2d');const g=x.createRadialGradient(32,32,0,32,32,32);
   g.addColorStop(0,'rgba(255,240,200,1)');g.addColorStop(.3,'rgba(255,170,60,.9)');g.addColorStop(1,'rgba(255,90,0,0)');x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(cv)})();
@@ -137,7 +137,8 @@ function spawn(side,clip,bx,by,rot,{z=null,gun=true,flash=false,parent=scene,mir
   if(mirror)inst.scale.x=-1;
   h.position.copy(B(bx,by,0));h.position.y=z??groundAt(bx,by);h.rotation.y=rot;parent.add(h);
   const m=new THREE.AnimationMixer(inst);m.timeScale=SPEED;mixers.push(m);const acts={};
-  for(const cn of [clip,...(extra||[])]){const c=clips[cn]||clips.QuyBan;const a=m.clipAction(c);a.play();a.time=Math.random()*c.duration;acts[cn]=a;if(cn!==clip)a.setEffectiveWeight(0)}
+  const CL=(side==='V'&&gV.animations.length)?clipsV:clips;
+  for(const cn of [clip,...(extra||[])]){const c=CL[cn]||CL.QuyBan;const a=m.clipAction(c);a.play();a.time=Math.random()*c.duration;acts[cn]=a;if(cn!==clip)a.setEffectiveWeight(0)}
   h.userData.acts=acts;h.userData.meshes=[];inst.traverse(o=>{if(o.isMesh){o.castShadow=false;h.userData.meshes.push(o)}});h.userData.sh=false;
   if(!gun)inst.traverse(o=>{if(/^Sung_/.test(o.name))o.visible=false});
   if(flash&&gun){let g=null;inst.traverse(o=>{if(/^Sung_/.test(o.name))g=o});
