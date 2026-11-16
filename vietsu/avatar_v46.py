@@ -54,6 +54,30 @@ def public_avatar_overrides():
                         headers={"Cache-Control": "no-store", "X-Robots-Tag": "noindex"})
 
 
+
+
+@router.get("/api/v4.6/scene-assets")
+def public_scene_assets():
+    """Tự lấy các địa điểm có sa bàn 3D thật từ dữ liệu CMS/seed."""
+    scenes = {}
+    for item in read_json(DATA / "experiences_seed.json", []) or []:
+        if not isinstance(item, dict):
+            continue
+        item_id = str(item.get("id", ""))
+        url = str(item.get("asset_url") or "")
+        if not ID_PATTERN.fullmatch(item_id):
+            continue
+        # Cấm URL ngoài hoặc URL có dấu chấm, tham số, ký tự lạ.
+        if not re.fullmatch(r"/khong-gian/[a-z0-9_/-]+/", url):
+            continue
+        scenes[item_id] = {
+            "title": str(item.get("title", "Sa bàn lịch sử"))[:120],
+            "subtitle": "Sa bàn 3D tương tác · tái dựng mô phỏng, cần kiểm chứng tư liệu",
+            "href": url.lstrip("/")
+        }
+    return JSONResponse({"scenes": scenes}, headers={"Cache-Control": "no-store"})
+
+
 @router.get("/api/v4.6/avatar-admin")
 def admin_avatar_list(request: Request, x_admin_token: str | None = Header(default=None)):
     require_role(x_admin_token, request=request)
