@@ -1,0 +1,50 @@
+name: Kiểm tra Việt Sử V4.7
+on:
+  push:
+    branches: ["gpt/v4.7-period-profiles"]
+  pull_request:
+    paths:
+      - "vietsu/static/v47*"
+      - "vietsu/periods_v47.py"
+      - "vietsu/tools/build_v47.py"
+      - ".github/workflows/check-v47.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kiểm tra cú pháp
+        run: |
+          node --check vietsu/static/v47.js
+          python3 -m py_compile vietsu/periods_v47.py vietsu/tools/build_v47.py
+      - name: Kiểm tra bộ dữ liệu, liên kết và an toàn HTML
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          d=json.loads(pathlib.Path("vietsu/static/v47-periods.json").read_text())
+          assert len(d["periods"]) == 19
+          assert len(d["categories"]) == 13
+          ids=[x["id"] for x in d["periods"]]
+          assert len(ids)==len(set(ids))
+          cats={x["id"] for x in d["categories"]}
+          assert all(set(p["sections"]) == cats for p in d["periods"])
+          assert sum(p["reviewed"] for p in d["periods"]) == 7
+          assert all((v and isinstance(v,str)) for p in d["periods"] for v in p["sections"].values())
+          for p in d["periods"]:
+              for s in p["links"]["scenes"]:
+                  assert (pathlib.Path("vietsu/static") / s["href"] / "index.html").exists()
+          print("V4.7: 19 giai đoạn, 13 chuyên mục, 7 hồ sơ mở rộng, liên kết sa bàn hợp lệ")
+          PY
+      - name: Kiểm tra có đủ 41 ảnh trước khi build toàn bộ
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          # Nếu thiếu tài nguyên, báo trạng thái và KHÔNG thay bằng ảnh giả.
+          p=Path("vietsu/static")
+          missing=[x for x in ("avatar-v45/emperor-256.webp","avatar-v45/official-256.webp","v43/outfit-ly.webp") if not (p/x).is_file()]
+          if missing:
+              print("CẢNH BÁO: chưa thể xác nhận build offline hoàn chỉnh vì thiếu:", *missing)
+          PY

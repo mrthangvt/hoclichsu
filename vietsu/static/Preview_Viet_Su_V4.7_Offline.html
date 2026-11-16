@@ -1,0 +1,872 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Việt Sử V4.7 — Bản xem thử offline</title><style>
+*{box-sizing:border-box}body{margin:0;background:#091a22;color:#efe6d5;font:14px/1.6 system-ui,sans-serif}.top{background:#142d37;border-bottom:1px solid #6d614c;padding:18px clamp(16px,4vw,50px);display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.top h1{margin:0;font-size:23px;color:#f1d29f}.top p{margin:0;font-size:12px;color:#bdcac3}.layout{max-width:1600px;margin:auto;padding:22px;display:grid;grid-template-columns:minmax(250px,320px) minmax(0,1fr);gap:22px}.picker{border:1px solid #41565a;padding:16px;border-radius:16px;background:#132c34;max-height:calc(100vh - 142px);overflow:auto}.picker h2{font-size:15px;color:#e8c78e}.period-choice{width:100%;text-align:left;margin:4px 0;padding:10px;border-radius:8px;background:#1e3a41;color:#e6ece3;border:1px solid #3e5c60;cursor:pointer}.period-choice strong,.period-choice small{display:block}.period-choice small{font-size:10px;opacity:.7}.period-choice.selected{border-color:#efc589;background:#355154}.main{min-width:0;border-radius:16px;border:1px solid #3e5253;background:#10252e;padding:22px}.tabs{display:flex;gap:8px;overflow-x:auto;padding:0 0 16px}.tabs button{border-radius:8px;border:1px solid #526e71;background:#183941;color:#e8e9dd;padding:10px;white-space:nowrap;cursor:pointer}.tabs button.active{background:#ead09d;color:#253631;font-weight:700}.help{font-size:12px;color:#b4c8c4;margin-top:22px}#link-info{font-size:13px;color:#f7d39c}@media(max-width:850px){.layout{grid-template-columns:1fr;padding:12px}.picker{max-height:195px}.main{padding:12px}.top h1{font-size:18px}}
+/* Việt Sử 4.7 — hồ sơ nhiều chuyên mục, không thay thế các tab truyền thống. */
+.v47-profile{--v47-ink:#f2e8d0;--v47-border:#a98b58;margin:0 0 28px;padding:clamp(15px,2vw,28px);border:1px solid var(--v47-border);border-radius:17px;background:linear-gradient(140deg,#19343b,#10262d 85%);color:var(--v47-ink);box-shadow:0 16px 28px #0002}
+.v47-profile *{box-sizing:border-box}
+.v47-topline{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.v47-kicker{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#deb87a;font-weight:750}
+.v47-profile h2{color:#f3cf97!important;font-size:clamp(20px,2.2vw,29px);margin:2px 0!important}
+.v47-legend{font-size:11px;color:#ced8d1}
+.v47-menu{display:flex;gap:7px;overflow:auto;scrollbar-width:thin;padding:5px 1px 13px;margin:12px 0 13px;border-bottom:1px solid #ffffff28;scroll-snap-type:x proximity}
+.v47-menu button{white-space:nowrap;flex:0 0 auto;border:1px solid #668083;color:#e5e6dc;background:#244149;padding:9px 12px;border-radius:100px;font-size:12px;cursor:pointer;scroll-snap-align:start}
+.v47-menu button[aria-selected=true]{color:#212c2c;background:#edd09f;border-color:#ffdfac;font-weight:800}
+.v47-menu button:focus-visible,.v47-link:focus-visible{outline:3px solid #f1c786;outline-offset:3px}
+.v47-area{min-height:125px}
+.v47-area h3{margin:0 0 9px;color:#f0dcb4;font-size:17px}
+.v47-area p{line-height:1.85;color:#e5e4da;font-size:14px;white-space:pre-line;margin:0 0 13px}
+.v47-pending{color:#ddc39a!important;font-style:italic}
+.v47-related{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 2px}
+.v47-link{border:1px solid #947950;background:#263c3c;color:#f4d59c!important;padding:9px 13px;border-radius:9px;cursor:pointer;text-decoration:none!important;font-size:12px}
+.v47-sources{border-top:1px solid #ffffff33;margin-top:20px;padding-top:12px}
+.v47-sources summary{cursor:pointer;font-size:12px;color:#efd29b}
+.v47-sources ul{margin:8px 0 0;padding-left:22px;color:#d4d9d1;font-size:12px;line-height:1.7}
+.v47-advice{font-size:11px;color:#bccac5;margin:12px 0 0}
+body.theme-light .v47-profile{color:#2b3b39;background:linear-gradient(145deg,#f5edde,#e8e0cf);border-color:#c5a779}
+body.theme-light .v47-profile h2,body.theme-light .v47-area h3,body.theme-light .v47-kicker{color:#76512d!important}
+body.theme-light .v47-legend,body.theme-light .v47-area p,body.theme-light .v47-advice{color:#475956}
+body.theme-light .v47-menu button{background:#eee6d5;color:#314441;border-color:#9da8a0}
+body.theme-light .v47-menu button[aria-selected=true]{background:#3a514d;color:#fff3df}
+body.theme-light .v47-link{background:#eee3cc;color:#634728!important}
+body.theme-light .v47-sources summary,body.theme-light .v47-sources ul{color:#584835}
+@media(max-width:640px){.v47-profile{margin:0 0 18px;padding:14px}.v47-menu{margin-inline:-3px}.v47-menu button{font-size:11px;padding:8px 10px}.v47-area p{font-size:13px}}</style></head><body>
+<header class="top"><div><h1>VIỆT SỬ 4.7 · HỒ SƠ THỜI ĐẠI</h1><p>Xem thử độc lập · không cần máy chủ hay Internet</p></div><p>19 giai đoạn · 13 chuyên mục · 7 hồ sơ có nội dung mở rộng</p></header>
+<div class="layout"><aside class="picker"><h2>Chọn thời đại / triều đại</h2><div id="periods-list"><button class="period-choice" data-id="xichquy"><strong>Xích Quỷ / truyền thuyết Hồng Bàng</strong><small>2879 TCN – 700 TCN</small></button><button class="period-choice" data-id="vanlang"><strong>Văn Lang – Hùng Vương</strong><small>700 TCN – 257 TCN</small></button><button class="period-choice" data-id="aulac"><strong>Âu Lạc</strong><small>257 TCN – 179 TCN</small></button><button class="period-choice" data-id="bacthuoc"><strong>Thời Bắc thuộc</strong><small>179 TCN – 939</small></button><button class="period-choice" data-id="trungvuong"><strong>Trưng Vương</strong><small>40 – 43</small></button><button class="period-choice" data-id="vanxuan"><strong>Vạn Xuân – Tiền Lý</strong><small>544 – 602</small></button><button class="period-choice" data-id="ngo"><strong>Ngô</strong><small>939 – 965</small></button><button class="period-choice" data-id="dinh"><strong>Đinh</strong><small>968 – 980</small></button><button class="period-choice" data-id="tienle"><strong>Tiền Lê</strong><small>980 – 1009</small></button><button class="period-choice selected" data-id="ly"><strong>Lý</strong><small>1009 – 1225</small></button><button class="period-choice" data-id="tran"><strong>Trần</strong><small>1225 – 1400</small></button><button class="period-choice" data-id="ho"><strong>Hồ</strong><small>1400 – 1407</small></button><button class="period-choice" data-id="hautran"><strong>Hậu Trần</strong><small>1407 – 1414</small></button><button class="period-choice" data-id="leso"><strong>Lê sơ</strong><small>1428 – 1527</small></button><button class="period-choice" data-id="mac"><strong>Mạc</strong><small>1527 – 1592</small></button><button class="period-choice" data-id="letrung"><strong>Lê Trung hưng</strong><small>1533 – 1789</small></button><button class="period-choice" data-id="tayson"><strong>Tây Sơn</strong><small>1771 – 1802</small></button><button class="period-choice" data-id="nguyenvn"><strong>Nguyễn</strong><small>1802 – 1945</small></button><button class="period-choice" data-id="hiendai"><strong>Việt Nam từ 1945 đến nay</strong><small>1945 – 2026</small></button></div></aside>
+<main class="main"><nav id="tabs" class="tabs" aria-label="Các tab gốc"><button data-tab="overview" class="active">Tổng quan</button><button data-tab="people">Nhân vật</button><button data-tab="events">Sự kiện</button><button data-tab="culture">Văn hóa</button><button data-tab="quiz">Trắc nghiệm</button></nav><div id="modalbody"></div><p id="link-info" role="status"></p><p class="help">Đây là bản demo riêng của lớp V4.7, không chứa toàn bộ dữ liệu, bản đồ, ảnh và sa bàn của V4.6. Trên website, các tab gốc tiếp tục sử dụng nội dung hiện tại.</p></main></div>
+<script type="application/json" id="v47-data">{
+  "version": "4.7",
+  "updated": "2026-11-17",
+  "editorial_note": "Bảy giai đoạn có bản thảo mở rộng dựa trên sử liệu; chưa thay thế thẩm định chuyên môn. Các mục còn lại đang biên tập.",
+  "categories": [
+    {
+      "id": "overview",
+      "title": "Khái quát"
+    },
+    {
+      "id": "context",
+      "title": "Bối cảnh lịch sử"
+    },
+    {
+      "id": "territory",
+      "title": "Lãnh thổ \u0026 kinh đô"
+    },
+    {
+      "id": "state",
+      "title": "Tổ chức nhà nước"
+    },
+    {
+      "id": "economy",
+      "title": "Kinh tế \u0026 đời sống"
+    },
+    {
+      "id": "military",
+      "title": "Quân sự \u0026 chiến tranh"
+    },
+    {
+      "id": "foreign",
+      "title": "Ngoại giao"
+    },
+    {
+      "id": "law",
+      "title": "Pháp luật"
+    },
+    {
+      "id": "culture",
+      "title": "Văn hóa \u0026 nghệ thuật"
+    },
+    {
+      "id": "religion",
+      "title": "Tín ngưỡng \u0026 tôn giáo"
+    },
+    {
+      "id": "education",
+      "title": "Giáo dục \u0026 khoa cử"
+    },
+    {
+      "id": "people",
+      "title": "Nhân vật \u0026 sự kiện"
+    },
+    {
+      "id": "heritage",
+      "title": "Di sản \u0026 trải nghiệm"
+    }
+  ],
+  "periods": [
+    {
+      "id": "xichquy",
+      "name": "Xích Quỷ / truyền thuyết Hồng Bàng",
+      "start": -2879,
+      "end": -700,
+      "status": "truyền thuyết",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "vanlang",
+      "name": "Văn Lang – Hùng Vương",
+      "start": -700,
+      "end": -257,
+      "status": "niên đại ước lệ",
+      "reviewed": true,
+      "sections": {
+        "overview": "Văn Lang gắn với truyền thống các vua Hùng. Niên đại ở đây mang tính quy ước; cần phân biệt truyền thuyết Hồng Bàng với bằng chứng khảo cổ.",
+        "context": "Các cộng đồng cư dân thuộc khu vực Bắc Bộ và Bắc Trung Bộ phát triển trước thời Âu Lạc. Chưa thể gán mọi hiện vật khảo cổ cho một quốc gia thống nhất.",
+        "territory": "Địa bàn thường được mô tả tại lưu vực sông Hồng và các vùng lân cận. Ranh giới hành chính cụ thể chưa thể xác định chắc chắn.",
+        "state": "Đang biên tập",
+        "economy": "Các di vật khảo cổ cho thấy hoạt động nông nghiệp, luyện kim và thủ công tại nhiều địa điểm.",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Văn hóa Đông Sơn được nghiên cứu qua trống đồng, công cụ và đồ dùng; mối liên hệ với các truyền thuyết cần được trình bày thận trọng.",
+        "religion": "Tục thờ cúng Hùng Vương tiếp nối trong đời sống văn hóa Việt Nam; nên phân biệt lịch sử tín ngưỡng với chứng cứ cùng thời.",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Tư liệu khảo cổ và không gian tín ngưỡng Hùng Vương là những hướng tìm hiểu, không phải chân dung xác thực các vua Hùng."
+      },
+      "sources": [
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim (mục Hồng Bàng; cần đối chiếu khảo cổ)",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "hungvuong",
+            "name": "Hùng Vương"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "vanlang"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aulac",
+      "name": "Âu Lạc",
+      "start": -257,
+      "end": -179,
+      "status": "niên đại còn tranh luận",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "anduong",
+            "name": "An Dương Vương"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "aulac"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bacthuoc",
+      "name": "Thời Bắc thuộc",
+      "start": -179,
+      "end": 939,
+      "status": "nhiều giai đoạn",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "trungvuong",
+      "name": "Trưng Vương",
+      "start": 40,
+      "end": 43,
+      "status": "giai đoạn chồng lấn",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "vanxuan",
+      "name": "Vạn Xuân – Tiền Lý",
+      "start": 544,
+      "end": 602,
+      "status": "giai đoạn chồng lấn",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "ngo",
+      "name": "Ngô",
+      "start": 939,
+      "end": 965,
+      "status": "lịch sử",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "ngoquyen",
+            "name": "Ngô Quyền"
+          }
+        ],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "dinh",
+      "name": "Đinh",
+      "start": 968,
+      "end": 980,
+      "status": "lịch sử",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "dinhbolinh",
+            "name": "Đinh Bộ Lĩnh"
+          }
+        ],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "tienle",
+      "name": "Tiền Lê",
+      "start": 980,
+      "end": 1009,
+      "status": "lịch sử",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "lehoan",
+            "name": "Lê Hoàn"
+          }
+        ],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "ly",
+      "name": "Lý",
+      "start": 1009,
+      "end": 1225,
+      "status": "lịch sử",
+      "reviewed": true,
+      "sections": {
+        "overview": "Nhà Lý tồn tại từ năm 1009 đến năm 1225, gắn với thời kỳ củng cố nhà nước Đại Việt.",
+        "context": "Lý Công Uẩn lên ngôi năm 1009, mở đầu triều Lý; năm 1010 dời đô từ Hoa Lư ra Đại La, đổi tên Thăng Long.",
+        "territory": "Kinh đô Thăng Long trở thành trung tâm chính trị của triều đình.",
+        "state": "Triều đình vận hành hệ thống quan lại và tổ chức hành chính, tiếp tục củng cố thiết chế quân chủ.",
+        "economy": "Nông nghiệp giữ vai trò nền tảng; thủ công nghiệp và trao đổi hàng hóa phát triển tại nhiều địa bàn.",
+        "military": "Chiến tranh với nhà Tống năm 1075–1077 là một sự kiện lớn trong lịch sử quân sự thời Lý.",
+        "foreign": "Quan hệ với các chính quyền Tống và láng giềng gồm bang giao và xung đột theo từng giai đoạn.",
+        "law": "Bộ Hình thư được ban hành năm 1042 theo ghi chép sử truyền thống.",
+        "culture": "Nghệ thuật kiến trúc, điêu khắc và Phật giáo để lại nhiều dấu tích quan trọng.",
+        "religion": "Phật giáo có ảnh hưởng sâu rộng trong đời sống cung đình và xã hội.",
+        "education": "Văn Miếu được xây dựng năm 1070; Quốc Tử Giám thường được ghi nhận thành lập năm 1076.",
+        "people": "Lý Thái Tổ, Lý Thường Kiệt là hai nhân vật được nhắc tới trong nhiều sử liệu.",
+        "heritage": "Tìm hiểu Hoàng thành Thăng Long và hiện vật thời Lý; ảnh trang phục hiện có là phục dựng tham khảo."
+      },
+      "sources": [
+        {
+          "title": "Đại Việt sử ký toàn thư – kỷ Nhà Lý",
+          "url": ""
+        },
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "lythaito",
+            "name": "Lý Thái Tổ"
+          },
+          {
+            "id": "lythuongkiet",
+            "name": "Lý Thường Kiệt"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "ly"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tran",
+      "name": "Trần",
+      "start": 1225,
+      "end": 1400,
+      "status": "lịch sử",
+      "reviewed": true,
+      "sections": {
+        "overview": "Nhà Trần tồn tại từ năm 1225 đến 1400, nổi bật với những cuộc kháng chiến chống Mông – Nguyên.",
+        "context": "Triều Trần kế tiếp triều Lý trong thế kỷ XIII; có nhiều biến đổi chính trị và quân sự.",
+        "territory": "Thăng Long tiếp tục là kinh đô; hành chính và phòng thủ được tổ chức theo nhu cầu từng thời kỳ.",
+        "state": "Thiết chế Thái thượng hoàng giữ vị trí quan trọng trong hoạt động chính trị triều Trần.",
+        "economy": "Nông nghiệp, ruộng đất và các điền trang là những chủ đề cần tìm hiểu qua sử liệu và nghiên cứu chuyên ngành.",
+        "military": "Các cuộc kháng chiến 1258, 1285 và 1287–1288 là các dấu mốc tiêu biểu.",
+        "foreign": "Quan hệ với triều Nguyên vừa mang tính bang giao vừa diễn ra xung đột quân sự.",
+        "law": "Đang biên tập",
+        "culture": "Văn chương và tinh thần thời Trần được phản ánh qua nhiều trước tác và di tích.",
+        "religion": "Thiền phái Trúc Lâm gắn với Trần Nhân Tông trong lịch sử Phật giáo Việt Nam.",
+        "education": "Khoa cử và đội ngũ nho sĩ tiếp tục phát triển qua các triều vua.",
+        "people": "Trần Thái Tông, Trần Hưng Đạo, Trần Nhân Tông là các nhân vật tiêu biểu.",
+        "heritage": "Di sản liên quan triều Trần cần được giới thiệu kèm nguồn hiện vật và mức độ phục dựng."
+      },
+      "sources": [
+        {
+          "title": "Đại Việt sử ký toàn thư – kỷ Nhà Trần",
+          "url": ""
+        },
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "hungdao",
+            "name": "Trần Hưng Đạo"
+          },
+          {
+            "id": "nhantong",
+            "name": "Trần Nhân Tông"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "tran"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho",
+      "name": "Hồ",
+      "start": 1400,
+      "end": 1407,
+      "status": "lịch sử",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "hoquyly",
+            "name": "Hồ Quý Ly"
+          }
+        ],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "hautran",
+      "name": "Hậu Trần",
+      "start": 1407,
+      "end": 1414,
+      "status": "kháng chiến",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "leso",
+      "name": "Lê sơ",
+      "start": 1428,
+      "end": 1527,
+      "status": "lịch sử",
+      "reviewed": true,
+      "sections": {
+        "overview": "Lê sơ được tính từ năm 1428 đến 1527, mở đầu sau thắng lợi của cuộc khởi nghĩa Lam Sơn.",
+        "context": "Lê Lợi lên ngôi năm 1428, đánh dấu sự phục hồi chính quyền độc lập sau thời Minh thuộc.",
+        "territory": "Thăng Long (Đông Kinh) là trung tâm chính trị quan trọng dưới triều Lê sơ.",
+        "state": "Thời Lê Thánh Tông có nhiều cải cách hành chính và tổ chức bộ máy.",
+        "economy": "Các chính sách ruộng đất, nông nghiệp và quản lý hộ tịch cần được đối chiếu văn bản quy phạm từng đời vua.",
+        "military": "Khởi nghĩa Lam Sơn là nền tảng hình thành triều đại; quân đội được tổ chức lại trong thời bình.",
+        "foreign": "Triều đình duy trì bang giao với nhà Minh trong khuôn khổ quan hệ khu vực.",
+        "law": "Quốc triều hình luật thường được gọi là Bộ luật Hồng Đức; cần phân biệt các thời kỳ soạn định.",
+        "culture": "Nho học giữ vị trí nổi bật trong đời sống chính trị và văn hóa.",
+        "religion": "Nho giáo có vai trò lớn trong thể chế; tín ngưỡng dân gian và các tôn giáo khác vẫn tồn tại.",
+        "education": "Khoa cử phát triển, đặc biệt dưới thời Lê Thánh Tông.",
+        "people": "Lê Lợi, Nguyễn Trãi, Lê Thánh Tông là các nhân vật tiêu biểu.",
+        "heritage": "Di sản Lam Kinh, văn bia tiến sĩ và tư liệu thời Lê sơ là nguồn tiếp cận quan trọng."
+      },
+      "sources": [
+        {
+          "title": "Đại Việt sử ký toàn thư – kỷ Lê sơ",
+          "url": ""
+        },
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "leloi",
+            "name": "Lê Lợi"
+          },
+          {
+            "id": "nguyentrai",
+            "name": "Nguyễn Trãi"
+          },
+          {
+            "id": "lethanhtong",
+            "name": "Lê Thánh Tông"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "leso"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mac",
+      "name": "Mạc",
+      "start": 1527,
+      "end": 1592,
+      "status": "giai đoạn chồng lấn",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "mac"
+          }
+        ]
+      }
+    },
+    {
+      "id": "letrung",
+      "name": "Lê Trung hưng",
+      "start": 1533,
+      "end": 1789,
+      "status": "giai đoạn chồng lấn",
+      "reviewed": true,
+      "sections": {
+        "overview": "Lê Trung hưng tồn tại từ 1533 đến 1789; nhiều giai đoạn chồng lấn với chính quyền Mạc, chúa Trịnh và chúa Nguyễn.",
+        "context": "Sự phân tranh giữa các lực lượng chính trị là đặc điểm quan trọng; không nên mô tả toàn bộ thời kỳ như một bộ máy thống nhất.",
+        "territory": "Các trung tâm quyền lực thay đổi theo thời gian; miền Bắc và Đàng Trong có lịch sử quản trị khác nhau.",
+        "state": "Mối quan hệ giữa vua Lê và chúa Trịnh là một chủ đề lớn của lịch sử chính trị Đàng Ngoài.",
+        "economy": "Ngoại thương và đô thị có biến động; Hội An và Phố Hiến là những đầu mối được nghiên cứu nhiều.",
+        "military": "Các cuộc xung đột Trịnh – Nguyễn kéo dài nhiều thập kỷ và có những giai đoạn đình chiến.",
+        "foreign": "Quan hệ khu vực chịu ảnh hưởng của thương mại biển, các nước láng giềng và sự hiện diện của thương nhân nước ngoài.",
+        "law": "Cần phân biệt pháp chế triều Lê với quy định cụ thể của các chính quyền cùng thời.",
+        "culture": "Nghệ thuật dân gian và sinh hoạt đô thị có những chuyển biến theo khu vực.",
+        "religion": "Tín ngưỡng bản địa, Phật giáo và Công giáo đều có lịch sử hoạt động trong các cộng đồng.",
+        "education": "Khoa cử Nho học tiếp tục tại Đàng Ngoài qua nhiều khoa thi.",
+        "people": "Các chúa Trịnh, chúa Nguyễn và những trí thức cùng thời cần được trình bày theo từng thế kỷ.",
+        "heritage": "Trang phục, công trình và đô thị thời kỳ này phải chú thích rõ khu vực và mốc niên đại."
+      },
+      "sources": [
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim (thời Nam Bắc triều và Trịnh – Nguyễn)",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "letrung"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tayson",
+      "name": "Tây Sơn",
+      "start": 1771,
+      "end": 1802,
+      "status": "phong trào và chính quyền",
+      "reviewed": true,
+      "sections": {
+        "overview": "Phong trào Tây Sơn khởi đầu năm 1771; các chính quyền Tây Sơn hình thành sau đó và chấm dứt năm 1802.",
+        "context": "Những biến động cuối thế kỷ XVIII gắn với sự suy yếu và xung đột của các chính quyền đương thời.",
+        "territory": "Quyền kiểm soát lãnh thổ thay đổi qua các chiến dịch; không dùng một bản đồ cho toàn bộ giai đoạn.",
+        "state": "Tổ chức chính quyền Tây Sơn biến đổi theo từng thời đoạn và từng thủ lĩnh.",
+        "economy": "Đời sống dân cư chịu ảnh hưởng của chiến tranh và biến động sản xuất; từng nhận định cần có tài liệu cụ thể.",
+        "military": "Chiến thắng Rạch Gầm – Xoài Mút (1785) và Ngọc Hồi – Đống Đa (1789) là dấu mốc quân sự nổi bật.",
+        "foreign": "Xung đột với quân Xiêm và quân Thanh diễn ra trong những bối cảnh chính trị khác nhau.",
+        "law": "Đang biên tập",
+        "culture": "Cần phân biệt các chính sách được ghi trong sử liệu với những diễn giải, truyền thuyết về Quang Trung.",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Nguyễn Huệ (Quang Trung), Nguyễn Nhạc và Nguyễn Lữ là các nhân vật chính.",
+        "heritage": "Sa bàn Rạch Gầm – Xoài Mút chưa có asset 3D được duyệt; hiện chỉ có hồ sơ tư liệu."
+      },
+      "sources": [
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim (Tây Sơn)",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "quangtrung",
+            "name": "Quang Trung"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "tayson"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nguyenvn",
+      "name": "Nguyễn",
+      "start": 1802,
+      "end": 1945,
+      "status": "lịch sử",
+      "reviewed": true,
+      "sections": {
+        "overview": "Nhà Nguyễn được xác định từ 1802 đến 1945; lịch sử triều đại cần phân kỳ giữa thời độc lập và thời thuộc địa.",
+        "context": "Gia Long lên ngôi năm 1802 sau thời kỳ nội chiến; các thế kỷ XIX–XX chứng kiến nhiều chuyển biến chính trị.",
+        "territory": "Huế là kinh đô triều Nguyễn, với hệ thống kiến trúc cung đình còn được bảo tồn và nghiên cứu.",
+        "state": "Triều đình tổ chức bộ máy quan lại tập trung và nhiều cấp hành chính; từng thời vua có điều chỉnh.",
+        "economy": "Nông nghiệp, thuế khóa, thủ công và thương mại thay đổi giữa các thời kỳ.",
+        "military": "Thế kỷ XIX diễn ra những cuộc xung đột và quá trình Pháp mở rộng quyền kiểm soát.",
+        "foreign": "Quan hệ với nhà Thanh, các nước láng giềng và các cường quốc phương Tây thay đổi theo thời kỳ.",
+        "law": "Hoàng Việt luật lệ là một nguồn quan trọng để nghiên cứu thể chế đầu triều Nguyễn.",
+        "culture": "Kiến trúc Kinh thành Huế và hệ thống di sản cung đình thể hiện một phần đời sống văn hóa thời Nguyễn.",
+        "religion": "Phật giáo, Nho giáo, tín ngưỡng dân gian và các cộng đồng tôn giáo khác cùng tồn tại.",
+        "education": "Khoa cử Nho học tiếp tục trong thế kỷ XIX và đầu thế kỷ XX.",
+        "people": "Gia Long, Minh Mạng và các vua cuối triều có hoàn cảnh lịch sử rất khác nhau.",
+        "heritage": "Quần thể Di tích Cố đô Huế là điểm xuất phát để khám phá Di sản Kiến trúc thời Nguyễn."
+      },
+      "sources": [
+        {
+          "title": "Đại Nam thực lục – Quốc sử quán triều Nguyễn",
+          "url": ""
+        },
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "gialong",
+            "name": "Gia Long"
+          },
+          {
+            "id": "minhmang",
+            "name": "Minh Mạng"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "nguyenvn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hiendai",
+      "name": "Việt Nam từ 1945 đến nay",
+      "start": 1945,
+      "end": 2026,
+      "status": "giai đoạn hiện đại",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "hochiminh",
+            "name": "Hồ Chí Minh"
+          }
+        ],
+        "scenes": [
+          {
+            "id": "quang-tri",
+            "name": "Thành cổ Quảng Trị 1972",
+            "href": "khong-gian/thanh-co-quang-tri/",
+            "state": "prototype"
+          }
+        ],
+        "costumes": []
+      }
+    }
+  ]
+}
+</script>
+<script>
+let active='ly',tab='overview';
+const persons=Object.fromEntries(["hungvuong","anduong","ngoquyen","dinhbolinh","lehoan","lythaito","lythuongkiet","hungdao","nhantong","hoquyly","leloi","nguyentrai","lethanhtong","quangtrung","gialong","minhmang","hochiminh"].map(id=>[id,{name:id}]));
+function modalType(){return 'dynasty'}
+function openItem(id){document.getElementById('link-info').textContent='Liên kết nhân vật "'+id+'" sẽ mở hồ sơ thật khi tích hợp vào website.'}
+function renderModal(){const b=document.getElementById('modalbody');b.replaceChildren();if(tab!=='overview'){const p=document.createElement('p');p.textContent='Tab '+tab+' giữ nguyên chức năng trong phiên bản V4.6. Đây là bản demo lớp hồ sơ V4.7.';b.append(p);}}
+document.querySelectorAll('.period-choice').forEach(b=>b.onclick=()=>{active=b.dataset.id;tab='overview';focus='overview';document.querySelectorAll('.period-choice').forEach(el=>el.classList.toggle('selected',el===b));document.querySelectorAll('#tabs button').forEach(el=>el.classList.toggle('active',el.dataset.tab==='overview'));renderModal();});
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;document.querySelectorAll('#tabs button').forEach(el=>el.classList.toggle('active',el===b));renderModal()});
+</script><script>/* Việt Sử V4.7 — hồ sơ 19 giai đoạn, 13 chuyên mục, chỉ mở rộng Popup triều đại. */
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const ALIAS={hongbang:'xichquy',thuc:'aulac','le-so':'leso','le-trung-hung':'letrung',nguyen:'nguyenvn',quangtrung:'tayson'};
+let catalog=null;let focus='overview';
+function current(){if(typeof modalType!=='function'||modalType()!=='dynasty'||typeof active!=='string')return null;return ALIAS[active]||active;}
+function sourceData(){try{const el=$('v47-data');if(el)return JSON.parse(el.textContent)}catch(e){console.warn('V4.7 data inline',e)}return null;}
+function element(tag,className,content){const n=document.createElement(tag);if(className)n.className=className;if(content!==undefined)n.textContent=content;return n;}
+function record(){return catalog?.periods?.find(p=>p.id===current())||null;}
+function validHref(value){return typeof value==='string'&&/^khong-gian\/[a-z0-9/-]+\/$/.test(value);}
+function section(p){const c=catalog.categories.find(x=>x.id===focus)||catalog.categories[0];const area=$('v47-area');if(!area||!c)return;area.replaceChildren();area.append(element('h3','',c.title));const v=p.sections?.[c.id]||'Đang biên tập';const para=element('p',v==='Đang biên tập'?'v47-pending':'',v);area.append(para);
+ const related=element('div','v47-related');function b(name,handler){const btn=element('button','v47-link',name);btn.type='button';btn.addEventListener('click',handler);related.append(btn);}
+ if(c.id==='people' || c.id==='overview'){for(const person of p.links?.people||[]){if(typeof persons!=='undefined'&&persons[person.id])b('Nhân vật · '+person.name,()=>{if(typeof openItem==='function')openItem(person.id)})}}
+ if(c.id==='heritage'||c.id==='overview'){for(const scene of p.links?.scenes||[]){if(!validHref(scene.href))continue;const a=element('a','v47-link','◈ Sa bàn 3D · '+scene.name);a.href=scene.href;a.target='_blank';a.rel='noopener noreferrer';related.append(a);} if(p.links?.costumes?.length){b('Xem minh họa trang phục',()=>{const target=document.getElementById('v35-dynasty-costumes');if(target)target.scrollIntoView({behavior:'smooth',block:'center'});else if(typeof changeTab==='function')changeTab('overview')})}}
+ if(related.childNodes.length)area.append(related);
+}
+function make(){const id=current(),p=record(),body=$('modalbody');if(!p||!body||typeof tab!=='undefined'&&tab!=='overview')return;
+ const stale=body.querySelector('.v47-profile');if(stale&&stale.dataset.period===id)return;if(stale)stale.remove();
+ const panel=element('section','v47-profile');panel.dataset.period=id;panel.setAttribute('aria-label','Hồ sơ '+p.name);
+ const head=element('div','v47-topline');const h=element('div');h.append(element('span','v47-kicker','HỒ SƠ THỜI ĐẠI · VIỆT SỬ 4.7'),element('h2','',p.name));head.append(h,element('span','v47-legend',p.reviewed?'Có bản thảo mở rộng · tiếp tục thẩm định':'Đang biên tập tư liệu'));panel.append(head);
+ const nav=element('div','v47-menu');nav.setAttribute('role','tablist');nav.setAttribute('aria-label','13 chuyên mục lịch sử');
+ for(const item of catalog.categories){const btn=element('button','',item.title);btn.type='button';btn.dataset.section=item.id;btn.setAttribute('role','tab');btn.setAttribute('aria-selected',String(item.id===focus));btn.addEventListener('click',()=>{focus=item.id;nav.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.section===focus)));section(p)});nav.append(btn)}panel.append(nav);
+ const area=element('div','v47-area');area.id='v47-area';area.setAttribute('aria-live','polite');panel.append(area);
+ const sources=element('details','v47-sources');const sum=element('summary','','Nguồn tư liệu & mức độ xác minh');sources.append(sum);
+ const ul=element('ul');if(p.sources?.length){for(const src of p.sources){const li=element('li','',src.title||'Nguồn chưa biên tập');if(/^https:\/\//.test(src.url||'')){const a=element('a','',' · liên kết');a.href=src.url;a.target='_blank';a.rel='noopener noreferrer';li.append(a)}ul.append(li)}}else ul.append(element('li','','Đang biên tập nguồn dẫn; chưa coi là hồ sơ được thẩm định.'));sources.append(ul);panel.append(sources);
+ panel.append(element('p','v47-advice','Ghi chú biên tập: tư liệu có thể còn tranh luận; niên đại chồng lấn hoặc ước lệ được ghi riêng. Các tab Nhân vật, Sự kiện, Văn hóa, Trắc nghiệm của trang gốc vẫn giữ nguyên.'));
+ body.prepend(panel);section(p);
+}
+function redraw(){const p=record();if(!p)return;const panel=$('modalbody')?.querySelector('.v47-profile');if(panel)panel.remove();make();}
+async function refresh(){if(location.protocol==='file:'||!catalog)return;try{const r=await fetch('/api/v4.7/period-profiles',{cache:'no-store',credentials:'same-origin'});if(!r.ok)return;const json=await r.json();if(!json||!Array.isArray(json.periods)||!Array.isArray(json.categories))return;catalog=json;redraw();}catch(_){/* Trang tĩnh: dùng dữ liệu nhúng */}}
+function boot(){catalog=sourceData();if(!catalog)return;const old=typeof renderModal==='function'?renderModal:null;if(old){renderModal=function(){const result=old.apply(this,arguments);make();return result;}}make();refresh();document.documentElement.dataset.vietsuVersion='4.7';}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+})();</script></body></html>

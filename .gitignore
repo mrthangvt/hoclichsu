@@ -21,3 +21,6 @@ __pycache__/
 *.pyc
 .DS_Store
 ._*
+
+# V4.7 bản nháp CMS, không đưa lên GitHub
+vietsu/data/v47_period_overrides_local.json
