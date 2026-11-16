@@ -72,6 +72,8 @@ def public_scene_assets():
         # Cấm URL ngoài hoặc URL có dấu chấm, tham số, ký tự lạ.
         if not re.fullmatch(r"/khong-gian/[a-z0-9_/-]+/", url):
             continue
+        if not (STATIC / url.lstrip("/") / "index.html").is_file():
+            continue
         scenes[item_id] = {
             "title": str(item.get("title", "Sa bàn lịch sử"))[:120],
             "subtitle": "Sa bàn 3D tương tác · tái dựng mô phỏng, cần kiểm chứng tư liệu",
