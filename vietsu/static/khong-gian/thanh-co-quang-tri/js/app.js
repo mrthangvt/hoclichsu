@@ -65,7 +65,7 @@ function fetchB64(url,key){return new Promise((res,rej)=>{const x=new XMLHttpReq
 const parse=buf=>new Promise((res,rej)=>loader.parse(buf,'',res,rej));
 function tex(url,rep,srgb){const t=texL.load(url);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rep,rep);t.anisotropy=8;if(srgb)t.colorSpace=THREE.SRGBColorSpace;return t}
 
-const [gStatic,gQ,gV,gLib,gBoat,data,rai]=await Promise.all([fetchB64(files.static,'static').then(parse),fetchB64(files.qdnd,'qdnd').then(parse),fetchB64(files.vnch,'vnch').then(parse),fetchB64(files.lib,'lib').then(parse),fetchB64(files.boat,'boat').then(parse),fetch(ASSETS.scene).then(r=>r.json()),fetch(ASSETS.rai).then(r=>r.json())]).catch(e=>{$('loadtxt').textContent=e.message;throw e});
+const [gStatic,gQ,gV,gLib,gBoat,data,rai,ROADS]=await Promise.all([fetchB64(files.static,'static').then(parse),fetchB64(files.qdnd,'qdnd').then(parse),fetchB64(files.vnch,'vnch').then(parse),fetchB64(files.lib,'lib').then(parse),fetchB64(files.boat,'boat').then(parse),fetch(ASSETS.scene).then(r=>r.json()),fetch(ASSETS.rai).then(r=>r.json()),fetch(ASSETS.roads||'data/osm_roads.json').then(r=>r.json()).catch(()=>({roads:[]}))]).catch(e=>{$('loadtxt').textContent=e.message;throw e});
 
 /* ---------------- cảnh tĩnh ---------------- */
 const world=gStatic.scene;scene.add(world);
@@ -152,6 +152,84 @@ function spawn(side,clip,bx,by,rot,{z=null,gun=true,flash=false,parent=scene,mir
   if(flash&&gun){let g=null;inst.traverse(o=>{if(/^Sung_/.test(o.name))g=o});
     if(g){const sp=new THREE.Sprite(FLASH_MAT);sp.scale.setScalar(.55);sp.position.set(0,.03,.95);sp.visible=false;sp.userData={per:.35+Math.random()*.6,t:Math.random(),side,grp:GRP};g.add(sp);flashes.push(sp)}}
   h.userData.grp=GRP;GSIDE[GRP]=side;if(parent===scene)NPC.push(h);return h}
+
+/* ================= THỊ XÃ QUẢNG TRỊ 1972: nhà, cây, công sự ngoài thành (theo ảnh tư liệu + đường OSM) =================
+   Dựng bằng InstancedMesh (ít lần vẽ). Hai trạng thái: nguyên vẹn (trước chiến sự / hôm nay) và chiến tranh (2/3 nhà tốc mái, đổ nát). */
+const TOWN=(()=>{
+  const N=HG.n,C=HG.cell,Hh=HG.size/2,occ=new Uint8Array(N*N);
+  const cellOf=(x,z)=>{const xi=Math.floor((x+Hh)/C),zi=Math.floor((z+Hh)/C);return (xi<0||zi<0||xi>=N||zi>=N)?-1:zi*N+xi};
+  const RA=[-668,746],RB=[-606,-728];const rdx=RB[0]-RA[0],rdy=RB[1]-RA[1],rL2=rdx*rdx+rdy*rdy;
+  const riverD=(x,y)=>{let t=((x-RA[0])*rdx+(y-RA[1])*rdy)/rL2;t=Math.max(-.3,Math.min(1.3,t));return Math.hypot(x-(RA[0]+rdx*t),y-(RA[1]+rdy*t))};
+  // vùng chừa trống: thành + hào, sông, lối tiếp viện/bến, dải trận địa cũ, bãi trống phía Nam và phía Đông trước hào
+  const blocked=(x,y)=>Math.abs(x)>870||Math.abs(y)>870||(Math.abs(x)<318&&Math.abs(y)<318)||riverD(x,y)<128||(x>-570&&x<-300&&Math.abs(y)<70)||(Math.abs(x)<240&&y>-585&&y<-300)||(x>300&&x<465&&y>-225&&y<145);
+  // kiểm tra + đánh dấu chiếm chỗ theo hình chữ nhật xoay (toạ độ Blender)
+  function rect(cx,cy,w,d,th,mark,h){const c=Math.cos(th),s=Math.sin(th);const cells=[];for(let u=-w/2;u<=w/2+.01;u+=1.6)for(let v=-d/2;v<=d/2+.01;v+=1.6){
+      const x=cx+u*c-v*s,y=cy+u*s+v*c;if(blocked(x,y))return null;const k=cellOf(x,-y);if(k<0||occ[k])return null;if(HG.ob[k]>HG.h[k]+.5&&HG.ob[k]>-1e8)return null;if(HG.h[k]<-.45&&HG.h[k]>-1e8)return null;cells.push(k)}
+    if(mark)for(const k of cells){occ[k]=1;if(h)HG.ob[k]=Math.max(HG.ob[k],HG.h[k]+h)}return cells}
+  const houses=[];const MULT=MOBILE?1.6:1;
+  const WALL=['#ddd6c6','#d2c7b0','#e4ddcf','#c4b8a0','#cdbda2','#d8cdb5'].map(c=>new THREE.Color(c)),TILE=['#8c4b33','#7d4431','#965a3c','#82503a'].map(c=>new THREE.Color(c)),
+        TIN=['#7e7c74','#6c6b65','#8b857a','#7a5c46'].map(c=>new THREE.Color(c));
+  const pick=a=>a[(Math.random()*a.length)|0];
+  function place(x,y,w,d,h,th,kind){const g=groundAt(x,y);if(g<-.4)return false;if(!rect(x,y,w+1.2,d+1.2,th,false))return false;rect(x,y,w+.6,d+.6,th,true,h+(kind==='shop'?.5:1.6));
+    houses.push({x,y,g,w,d,h,th,kind,wall:pick(WALL).clone().multiplyScalar(R(.92,1.04)),roof:(kind==='shop'||Math.random()<.35?pick(TIN):pick(TILE)).clone(),ruin:Math.random()<.66});return true}
+  for(const [type,pts] of (ROADS.roads||[])){if(type==='tb')continue;const main=type==='t'||type==='p';
+    for(let i=0;i<pts.length-1;i++){const [ax,ay]=pts[i],[bx,by]=pts[i+1];const L=Math.hypot(bx-ax,by-ay);if(L<4)continue;const tx=(bx-ax)/L,ty=(by-ay)/L,nx=-ty,ny=tx,th=Math.atan2(ty,tx);
+      for(const side of [1,-1]){let u=R(0,6);while(u<L){
+        let w,d,h,kind,off;if(main&&Math.random()<.75){kind='shop';w=R(4.2,6.2);d=R(11,16);h=R(5.6,7.6);off=d/2+6.5}else{kind='house';w=R(6.5,11);d=R(7.5,12);h=R(3,3.8);off=d/2+R(8,11)}
+        const cx=ax+tx*(u+w/2),cy=ay+ty*(u+w/2);place(cx+nx*off*side,cy+ny*off*side,w,d,h,th,kind);
+        // hàng sau (sân, vườn, nhà trong hẻm) cho dày như ảnh tư liệu
+        if(Math.random()<(MOBILE?.35:.62)){const w2=R(6,10),d2=R(7,11),o2=off+d/2+R(6,10)+d2/2;place(cx+nx*o2*side+tx*R(-3,3),cy+ny*o2*side+ty*R(-3,3),w2,d2,R(3,3.6),th+R(-.06,.06),'house')}
+        if(!MOBILE&&Math.random()<.3){const w3=R(6,9),d3=R(7,10),o3=off+d/2+R(22,30)+d3/2;place(cx+nx*o3*side,cy+ny*o3*side,w3,d3,R(3,3.5),th+R(-.1,.1),'house')}
+        u+=(kind==='shop'?w+R(.2,1.2):w+R(4,10))*MULT}}}}
+  // cây xanh: quanh nhà (vườn) + rải thêm ở vùng trống
+  const trees=[];function tree(x,y,big){if(blocked(x,y))return;const k=cellOf(x,-y);if(k<0||occ[k])return;const g=groundAt(x,y);if(g<-.4)return;occ[k]=1;
+    trees.push({x,y,g,h:big?R(10,16):R(6,10),r:big?R(4.2,6.2):R(2.8,4.4),c:new THREE.Color().setHSL(R(.2,.3),R(.4,.6),R(.24,.36)),bare:Math.random()<.3})}
+  for(let gq=0;gq<(MOBILE?60:170);gq++){const a=R(0,6.28),r=R(330,860),cx=Math.cos(a)*r,cy=Math.sin(a)*r;for(let k=0;k<(MOBILE?5:9);k++)tree(cx+R(-28,28),cy+R(-28,28),Math.random()<.4)}   // lùm cây, vườn
+  for(const hs of houses)if(Math.random()<(MOBILE?.4:.85)){for(let k=0;k<(Math.random()<.4?2:1);k++){const a=R(0,6.28),r=Math.max(hs.w,hs.d)*.5+R(3,8);tree(hs.x+Math.cos(a)*r,hs.y+Math.sin(a)*r,Math.random()<.25)}}
+  for(let k=0;k<(MOBILE?350:1100);k++){const a=R(0,6.28),r=R(330,870);tree(Math.cos(a)*r,Math.sin(a)*r,Math.random()<.35)}
+  // công sự ngoài thành (chỉ hiện trong thời kỳ chiến tranh): hào giao thông chữ chi + ụ bao cát
+  const trench=[],sand=[];
+  for(let c=0;c<(MOBILE?8:16);c++){const a=R(0,6.28),r=R(335,520);let x=Math.cos(a)*r,y=Math.sin(a)*r;let th=a+Math.PI/2;
+    for(let s2=0;s2<7;s2++){const L=R(7,11);const cx=x+Math.cos(th)*L/2,cy=y+Math.sin(th)*L/2;if(!blocked(cx,cy)&&rect(cx,cy,L,1.6,th,true,0)){trench.push({x:cx,y:cy,L,th,g:groundAt(cx,cy)})}
+      x+=Math.cos(th)*L;y+=Math.sin(th)*L;th+=(s2%2?.9:-.9)}}
+  for(let k=0;k<(MOBILE?30:70);k++){const a=R(0,6.28),r=R(330,600),x=Math.cos(a)*r,y=Math.sin(a)*r;if(rect(x,y,6,6,0,true,1.2))sand.push({x,y,g:groundAt(x,y),s:R(.6,.9)})}
+
+  const inner=[];{const occ2=[];const ok=(x,y,w,d)=>!occ2.some(o=>Math.abs(o.x-x)<(o.w+w)/2+8&&Math.abs(o.y-y)<(o.d+d)/2+8)&&Math.hypot(x-40,y-60)>30&&Math.hypot(x-140,y-120)>20&&Math.hypot(x-120,y+140)>20&&Math.abs(x)>14&&Math.abs(y)>14;
+    for(let k=0;k<(MOBILE?120:260)&&inner.length<(MOBILE?22:42);k++){const rot=Math.random()<.5;const w=rot?R(8,11):R(28,52),d=rot?R(28,52):R(8,11);const x=R(-215+w/2,215-w/2),y=R(-215+d/2,215-d/2);
+      if(!ok(x,y,w,d))continue;occ2.push({x,y,w,d});inner.push({x,y,g:groundAt(x,y),w,d,h:R(3.6,5),th:0,roof:(Math.random()<.5?pick(TILE):pick(TIN)).clone(),wall:pick(WALL).clone()})}
+    for(let k=0;k<(MOBILE?40:110);k++){const x=R(-215,215),y=R(-215,215);if(occ2.some(o=>Math.abs(o.x-x)<o.w/2+3&&Math.abs(o.y-y)<o.d/2+3))continue;
+      trees.push({x,y,g:groundAt(x,y),h:R(7,12),r:R(3,5),c:new THREE.Color().setHSL(R(.2,.3),R(.4,.6),R(.24,.34)),bare:true,inner:true})}}
+  /* ---- dựng InstancedMesh ---- */
+  const n=houses.length;const geoW=new THREE.BoxGeometry(1,1,1).translate(0,.5,0);const geoR=new THREE.ConeGeometry(.7071,1,4,1).rotateY(Math.PI/4).translate(0,.5,0);
+  const mW=new THREE.MeshStandardMaterial({roughness:.92,color:0xffffff}),mR=new THREE.MeshStandardMaterial({roughness:.82,color:0xffffff,flatShading:true});
+  const IW=new THREE.InstancedMesh(geoW,mW,n),IR=new THREE.InstancedMesh(geoR,mR,n);
+  const trunkG=new THREE.CylinderGeometry(.18,.28,1,5).translate(0,.5,0),crownG=new THREE.IcosahedronGeometry(1,0);
+  const IT=new THREE.InstancedMesh(trunkG,new THREE.MeshStandardMaterial({color:0x3d2e22,roughness:1}),trees.length),IC=new THREE.InstancedMesh(crownG,new THREE.MeshStandardMaterial({roughness:.95,flatShading:true,color:0xffffff}),trees.length);
+  const ITr=new THREE.InstancedMesh(geoW,new THREE.MeshStandardMaterial({color:0x2a2018,roughness:1}),Math.max(1,trench.length)),ISd=new THREE.InstancedMesh(new THREE.TorusGeometry(3.2,.55,5,14),new THREE.MeshStandardMaterial({color:0x6e5c42,roughness:1,flatShading:true}),Math.max(1,sand.length));
+  const m4=new THREE.Matrix4(),q=new THREE.Quaternion(),v=new THREE.Vector3(),sc=new THREE.Vector3(),Y=new THREE.Vector3(0,1,0),Z0=new THREE.Vector3(0,0,0);
+  const set=(im,i,x,y,z,rot,sx,sy,sz)=>{v.copy(B(x,y,0));v.y=z;q.setFromAxisAngle(Y,rot);sc.set(sx,sy,sz);m4.compose(v,q,sc);im.setMatrixAt(i,m4)};
+  trench.forEach((t,i)=>set(ITr,i,t.x,t.y,t.g-.55,t.th,t.L,.7,1.4));sand.forEach((t,i)=>{v.copy(B(t.x,t.y,0));v.y=t.g+.25;q.setFromAxisAngle(new THREE.Vector3(1,0,0),Math.PI/2);sc.set(t.s,t.s,t.s*.6);m4.compose(v,q,sc);ISd.setMatrixAt(i,m4)});
+  const dark=new THREE.Color(0x3a3029);
+  function setMode(intact){
+    houses.forEach((hs,i)=>{const ruin=!intact&&hs.ruin;const hh=ruin?hs.h*R(.35,.6):hs.h;set(IW,i,hs.x,hs.y,hs.g-.3,hs.th,hs.w,hh+.3,hs.d);
+      IW.setColorAt(i,ruin?hs.wall.clone().lerp(dark,.55):hs.wall);
+      if(ruin)set(IR,i,hs.x,hs.y,-50,0,0,0,0);else if(hs.kind==='shop')set(IR,i,hs.x,hs.y,hs.g+hs.h,hs.th,hs.w*1.05,.5,hs.d*1.02);else set(IR,i,hs.x,hs.y,hs.g+hs.h,hs.th,hs.w*1.22,Math.min(hs.w,hs.d)*.42,hs.d*1.18);
+      IR.setColorAt(i,!intact&&!ruin?hs.roof.clone().multiplyScalar(.82):hs.roof)});
+    trees.forEach((t,i)=>{const bare=!intact&&t.bare&&!t.inner;set(IT,i,t.x,t.y,t.g,0,1,t.h*(bare?.8:.55),1);
+      if(t.inner){if(!intact){set(IT,i,t.x,t.y,-50,0,0,0,0);set(IC,i,t.x,t.y,-50,0,0,0,0);return}}
+      if(bare)set(IC,i,t.x,t.y,-50,0,0,0,0);else{v.copy(B(t.x,t.y,0));v.y=t.g+t.h*.62;q.setFromEuler(new THREE.Euler(R(-.2,.2),R(0,6),R(-.2,.2)));sc.set(t.r,t.r*R(.75,1),t.r);m4.compose(v,q,sc);IC.setMatrixAt(i,m4)}
+      IC.setColorAt(i,intact?t.c:t.c.clone().lerp(new THREE.Color(0x4a4a2e),.35))});
+    for(const im of [IW,IR,IT,IC]){im.instanceMatrix.needsUpdate=true;if(im.instanceColor)im.instanceColor.needsUpdate=true;im.computeBoundingSphere()}
+    ITr.visible=ISd.visible=!intact&&trench.length>0;if(typeof IIW!=='undefined'){IIW.visible=IIR.visible=intact&&inner.length>0}}
+  for(const im of [IW,IR,IT,IC,ITr,ISd]){im.castShadow=!MOBILE;im.receiveShadow=!MOBILE;scene.add(im)}
+  IW.setColorAt(0,WALL[0]);IR.setColorAt(0,TILE[0]);IC.setColorAt(0,new THREE.Color(0x335522));
+  ITr.computeBoundingSphere();ISd.computeBoundingSphere();ITr.castShadow=ISd.castShadow=false;
+  const IIW=new THREE.InstancedMesh(geoW,mW,Math.max(1,inner.length)),IIR=new THREE.InstancedMesh(geoR,mR,Math.max(1,inner.length));
+  inner.forEach((hs,i)=>{set(IIW,i,hs.x,hs.y,hs.g-.3,0,hs.w,hs.h+.3,hs.d);IIW.setColorAt(i,hs.wall);set(IIR,i,hs.x,hs.y,hs.g+hs.h,0,hs.w*1.12,Math.min(hs.w,hs.d)*.38,hs.d*1.12);IIR.setColorAt(i,hs.roof)});
+  for(const im of [IIW,IIR]){im.castShadow=im.receiveShadow=!MOBILE;im.computeBoundingSphere();im.visible=false;scene.add(im)}
+  setMode(false);
+  return {setMode,houses:n,trees:trees.length,trench:trench.length,sand:sand.length,intact:false};
+})();
 
 /* ---- sông Thạch Hãn: trục và đường vượt sông ---- */
 const RIVER_A=[-668,746],RIVER_B=[-606,-728];   // trục sông Thạch Hãn phía Tây thành, theo OpenStreetMap (s>0: bờ Tây xa, s<0: bờ phía thành)
@@ -493,7 +571,7 @@ const intactRing=new THREE.Group();{const M=new THREE.MeshStandardMaterial({map:
   for(const [x,y,w,d] of [[0,-250,509,8.6],[0,250,509,8.6],[-250,0,8.6,491],[250,0,8.6,491]]){const m=new THREE.Mesh(new THREE.BoxGeometry(w,7.2,d),M);m.position.copy(B(x,y,2.6));m.castShadow=m.receiveShadow=!MOBILE;intactRing.add(m)}
   intactRing.visible=false;scene.add(intactRing)}
 let INTACT=false;
-function setIntact(v){INTACT=!!v;intactRing.visible=INTACT;for(const o of RUINS)o.visible=!INTACT;for(const im of RUBBLE)im.visible=!INTACT;smokePts.visible=FX.smoke&&!INTACT;for(const f of stateHooks)f(STATE)}
+function setIntact(v){INTACT=!!v;townMode();intactRing.visible=INTACT;for(const o of RUINS)o.visible=!INTACT;for(const im of RUBBLE)im.visible=!INTACT;smokePts.visible=FX.smoke&&!INTACT;for(const f of stateHooks)f(STATE)}
 
 /* ---- lớp hướng tiến công / khu vực kiểm soát (mũi tên nổi trên sa bàn) ---- */
 const LAYERS={};let LAYER=null;
@@ -564,6 +642,7 @@ Object.assign(STATES,{
   memorial:{grp:[],tanks:null,night:.55,lanterns:true,fx:{on:false,fire:0,fires:false,smoke:false},pl:{on:false}}});
 STATES.wall_fight.layerOpt='counter';STATES.under_fire.layerOpt='counter';STATES.night_river_supply.grp.push('qLand');STATES.night_river_supply.props=true;STATES.bunker_night.props=true;
 let STATE='legacy';let T=0;
+function townMode(){const ok=INTACT||STATE==='spring'||STATE==='memorial';if(ok!==TOWN.intact){TOWN.intact=ok;TOWN.setMode(ok)}}
 function setTanks(mode){tankObjs.forEach((t,i)=>{const o=t.o;if(!mode){o.visible=false;return}o.visible=true;
   let x,y,ox,oy;if(mode==='front'){[x,y,ox,oy]=TANK_FRONT[i%TANK_FRONT.length]}else{[x,y]=t.def.p;[ox,oy]=t.def.o}
   o.position.copy(B(x,y,0));o.position.y=groundAt(x,y)+.05;o.rotation.set(0,faceTo(ox,oy),0);t.pt.copy(o.position).y+=2.2;t.next=R(1,6)})}
@@ -575,7 +654,7 @@ function setState(name){const st=STATES[name]||STATES.legacy;STATE=name in STATE
   Object.assign(FX,{on:false,gap:[1,2],zones:{citadel:1},fire:0,fires:true,smoke:true,big:.15},st.fx);smokePts.visible=FX.smoke;
   Object.assign(PL,{on:false},st.pl);WX.scene=st.weather||0;LAN_ON=!!st.lanterns;lanterns.forEach(l=>l.visible=LAN_ON);
   lamp.intensity=st.lamp?38:0;lampSpr.visible=!!st.lamp;props.visible=!!st.props;landBoats.visible=ACT.has('qLand');flag.visible=false;setFlood(0);setLayer(st.layer||null);if(INTACT)setIntact(false);
-  setNight(st.night);clearTransient();rebuildTracerPts();nextBoom=T+R(FX.gap[0],FX.gap[1]);
+  townMode();setNight(st.night);clearTransient();rebuildTracerPts();nextBoom=T+R(FX.gap[0],FX.gap[1]);
   for(const f of stateHooks)f(STATE)}
 // ghi đè một phần hiệu ứng (bộ dẫn chuyện điều nhịp trong phân cảnh)
 function setEnv(e){if(!e)return;if(e.gap)FX.gap=e.gap;if(e.zones)FX.zones=e.zones;if('fire' in e)FX.fire=e.fire;if('booms' in e)FX.on=e.booms;if('big' in e)FX.big=e.big;
@@ -667,7 +746,7 @@ addEventListener('resize',resize);resize();
 const clock=new THREE.Clock();
 /* ---------------- giao diện cho bộ dẫn chuyện (story-director.js) ---------------- */
 const _fwd=new THREE.Vector3();
-function npcHead(h){if(!h.userData.head){h.traverse(o=>{if(!h.userData.head&&/Head$/.test(o.name))h.userData.head=o})}const v=new THREE.Vector3();(h.userData.head||h).getWorldPosition(v);return v}
+function npcHead(h){if(!h.userData.head){h.traverse(o=>{if(!h.userData.head&&/Head$/.test(o.name))h.userData.head=o})}h.updateMatrixWorld(true);const v=new THREE.Vector3();(h.userData.head||h).getWorldPosition(v);return v}   /* cập nhật ma trận: nhân vật bị cắt khỏi khung hình thì xương không tự cập nhật */
 // anchor: vị trí + hướng tiến của một đối tượng đang chuyển động (thuyền, người bơi, nhân vật theo nhóm)
 function anchor(kind,i=0){
   if(kind==='boat'){const g=boats[i%boats.length];const u=g.userData.boat;return {pos:g.position.clone(),dir:u.b.clone().sub(u.a).setY(0).normalize(),obj:g}}
@@ -678,7 +757,7 @@ const API={RIVER:[RIVER_A,RIVER_B],AMB,THREE,scene,camera,controls,renderer,B,R,
   setState,setEnv,getState:()=>STATE,flare,boomAt:(bx,by,big)=>spawnBoom(B(bx,by,0),big),anchor,go,showInfo,groundAt,
   setReduce:v=>{FX.reduce=!!v},setWeather:v=>{WX.user=v?1:0},weather:()=>({user:WX.user,scene:WX.scene,k:WX.k}),setIntact,intact:()=>INTACT,setLayer,layer:()=>LAYER,layerOf:st=>(STATES[st]||{}).layer||(STATES[st]||{}).layerOpt||null,flag:v=>{flag.visible=!!v},setLabels:v=>{showLbl=!!v;$('lbtn').classList.toggle('on',showLbl)},
   audio:()=>({on:audioOn,AC,listener,SND,mkBuf}),setAudio,onAudio:f=>audioHooks.push(f),
-  stopTween:()=>{tween=null},setWalk,walking:()=>walking,tickHooks,stateHooks,infoHooks,viewHooks,counts:()=>({npc:NPC.length,mixers:mixers.length,boom:boomFx.length,bombs:bombs.length,flares:flares.length,children:scene.children.length,calls:renderer.info.render.calls,geo:renderer.info.memory.geometries,tex:renderer.info.memory.textures})};
+  stopTween:()=>{tween=null},setWalk,walking:()=>walking,tickHooks,stateHooks,infoHooks,viewHooks,counts:()=>({town:[TOWN.houses,TOWN.trees,TOWN.trench,TOWN.sand],npc:NPC.length,mixers:mixers.length,boom:boomFx.length,bombs:bombs.length,flares:flares.length,children:scene.children.length,calls:renderer.info.render.calls,geo:renderer.info.memory.geometries,tex:renderer.info.memory.textures})};
 window.__QT=API;   // để kiểm thử
 setState('wall_fight');
 $('loadtxt').textContent='Đang chuẩn bị đồ hoạ…';

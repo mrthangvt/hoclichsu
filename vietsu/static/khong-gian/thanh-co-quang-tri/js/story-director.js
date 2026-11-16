@@ -21,7 +21,7 @@ export async function start(api){
     if(high){const key=kind+i;if(pickCache[key]==null){pickCache[key]=i;for(let j=i;j<i+a.count;j++){const b=api.anchor(kind,j);if(b.pos.y>4){pickCache[key]=j;break}}}a=api.anchor(kind,pickCache[key])}
     const d=a.dir,s=new THREE.Vector3(-d.z,0,d.x);
     const base=kind==='boat'?a.pos.clone().setY(api.WATER_Y):(a.head&&kind!=='swimmer')?a.head.clone():a.pos.clone();
-    return {p:base.clone().addScaledVector(d,-off[0]).addScaledVector(s,off[1]).addScaledVector(UP,off[2]),l:base.clone().addScaledVector(d,look[0]).addScaledVector(UP,look[1])}}
+    return {p:base.clone().addScaledVector(d,-off[0]).addScaledVector(s,off[1]).addScaledVector(UP,off[2]),l:base.clone().addScaledVector(d,look[0]).addScaledVector(UP,look[1])}}   /* look[0]=0: nhìn thẳng vào nhân vật */
   function pose(k){if(k.p)return {p:B(...k.p),l:B(...k.l)};if(k.view){const v=api.VIEWS[k.view];return {p:v[0].clone(),l:v[1].clone()}}
     if(k.follow)return follow(k.follow,k.i||0,k.off||[6,3,2.4],k.look||[4,.5],k.high);return null}
   const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;

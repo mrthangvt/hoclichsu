@@ -88,3 +88,10 @@ Các mốc đã đối chiếu: 30/3/1972 mở màn chiến dịch Trị–Thiê
 - Động tác chưa có: vác trên vai, băng bó, uống nước, nói chuyện.
 - Nước đọng trong từng hố bom, bùn; công trình bên trong thành ở trạng thái trước tàn phá.
 - Đo FPS thật; LOD/gộp nhân vật xa nếu cần.
+
+## Thị xã 1972 quanh Thành cổ (16/11/2026, theo ảnh tư liệu chụp từ trên cao)
+- `js/app.js` khối `TOWN`: ~2.600 nhà (desktop; mobile ~45%) đặt theo đường OSM (`data/osm_roads.json`): **dãy nhà ống 2 tầng** sát nhau dọc trục chính (t, p), nhà mái ngói/mái tôn dọc đường dân sinh, thêm hàng sau và hẻm cho dày như ảnh; ~3.900 cây (vườn quanh nhà, lùm cây). Toàn bộ bằng InstancedMesh (≈10 lần vẽ).
+- Chừa trống: thành + hào, sông (±128 m quanh trục), lối tiếp viện (|y|<70 từ sông vào thành), bãi trống phía Nam (|x|<240, y −585…−300) và phía Đông (x 300…465) cho các cảnh tiến công. Nhà được ghi vào lưới vật cản (đi bộ không xuyên tường, nhân vật không đứng trong nhà).
+- **Hai trạng thái**: nguyên vẹn khi `INTACT` (cảnh 01, nút Trước) và ở `spring`, `memorial`; chiến tranh ở các trạng thái còn lại: ~2/3 nhà tốc mái, tường thấp, ám khói; 30% cây trụi lá; thêm **hào giao thông chữ chi + ụ bao cát** ngoài thành.
+- Trạng thái trước tàn phá còn có **~40 dãy nhà dài trong thành** (doanh trại, công sở như ảnh) + cây.
+- Còn thiếu: chợ, nhà thờ, công trình nhận diện riêng; mái nhà chưa có texture.
