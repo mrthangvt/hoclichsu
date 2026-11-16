@@ -590,13 +590,26 @@ mkLayer('final',[[[[-40,-700],[-20,-450],[40,-300]],C_V],[[[700,-420],[450,-300]
 function setLayer(n){LAYER=n&&LAYERS[n]?n:null;for(const k in LAYERS)LAYERS[k].visible=k===LAYER}
 
 /* ---- cờ VNCH trên cổng Tây (theo chú thích ảnh tư liệu USMC; ngày 15–16/9 tuỳ nguồn) ---- */
-const flag=new THREE.Group();{const cv=document.createElement('canvas');cv.width=120;cv.height=80;const x=cv.getContext('2d');x.fillStyle='#f2c418';x.fillRect(0,0,120,80);x.fillStyle='#d0251c';
-  for(const yy of [29,36.5,44])x.fillRect(0,yy,120,5);const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;
-  const geo=new THREE.PlaneGeometry(2.7,1.8,14,6);geo.translate(1.35,0,0);const cloth=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({map:t,side:THREE.DoubleSide,roughness:.85}));cloth.position.y=5.2;
-  const pole=new THREE.Mesh(new THREE.CylinderGeometry(.05,.06,6.2,6),new THREE.MeshStandardMaterial({color:0x3a3530,roughness:.6}));pole.position.y=3.1;flag.add(pole,cloth);flag.userData.cloth=cloth;flag.userData.base=geo.attributes.position.array.slice()}
-flag.position.copy(B(-252,0,0));{let top=-1e9;for(let dx=-8;dx<=8;dx+=2)for(let dz=-8;dz<=8;dz+=2)top=Math.max(top,sampleH(HG.h,-252+dx,dz));flag.position.y=top+.05}   /* đặt trên nóc cổng Tây */
-flag.rotation.y=Math.PI/2;flag.scale.setScalar(1.6);flag.visible=false;scene.add(flag);
-function updFlag(T){if(!flag.visible)return;const g=flag.userData.cloth.geometry,p=g.attributes.position.array,b=flag.userData.base;for(let i=0;i<p.length;i+=3){const u=b[i];p[i+2]=Math.sin(u*2.2-T*6)*.18*u/2.7}g.attributes.position.needsUpdate=true}
+/* ---- cờ trên cổng thành ----
+   flagQ: cờ Mặt trận Dân tộc Giải phóng miền Nam (nửa trên đỏ, nửa dưới xanh, sao vàng) trên Cổng Tiền khi QĐND kiểm soát Thành cổ
+          (ảnh tư liệu: rạng sáng 2/5/1972 cờ giải phóng tung bay trên cổng Thành cổ; FLAG_Q_KIEU='doSaoVang' để dùng cờ đỏ sao vàng).
+   flag : cờ VNCH trên cổng Tây ngày 15–16/9 (chú thích ảnh USMC), hiển thị MỜ. */
+const FLAG_Q_KIEU='giaiPhong';
+function star(x,cx,cy,r){x.beginPath();for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.382:r;x.lineTo(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr)}x.closePath();x.fill()}
+function makeFlag(draw,{opacity=1,blur=0}={}){const g=new THREE.Group();const cv=document.createElement('canvas');cv.width=150;cv.height=100;const x=cv.getContext('2d');
+  if(blur)x.filter=`blur(${blur}px)`;draw(x,150,100);const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;
+  const geo=new THREE.PlaneGeometry(2.7,1.8,14,6);geo.translate(1.35,0,0);
+  const cloth=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({map:t,side:THREE.DoubleSide,roughness:.85,transparent:opacity<1,opacity,depthWrite:opacity>=1}));cloth.position.y=5.2;
+  const pole=new THREE.Mesh(new THREE.CylinderGeometry(.05,.06,6.2,6),new THREE.MeshStandardMaterial({color:0x3a3530,roughness:.6,transparent:opacity<1,opacity:Math.min(1,opacity*1.6)}));pole.position.y=3.1;
+  g.add(pole,cloth);g.userData.cloth=cloth;g.userData.base=geo.attributes.position.array.slice();g.scale.setScalar(1.6);g.visible=false;scene.add(g);return g}
+function onTop(g,bx,by){g.position.copy(B(bx,by,0));let top=-1e9;for(let dx=-8;dx<=8;dx+=2)for(let dz=-8;dz<=8;dz+=2)top=Math.max(top,sampleH(HG.h,g.position.x+dx,g.position.z+dz));g.position.y=top+.05}
+const flag=makeFlag((x,w,h)=>{x.fillStyle='#f2c418';x.fillRect(0,0,w,h);x.fillStyle='#d0251c';for(const yy of [.36,.457,.553])x.fillRect(0,yy*h,w,h*.064)},{opacity:.38,blur:2.2});
+onTop(flag,-252,0);flag.rotation.y=Math.PI/2;
+const flagQ=makeFlag(FLAG_Q_KIEU==='doSaoVang'?(x,w,h)=>{x.fillStyle='#da251d';x.fillRect(0,0,w,h);x.fillStyle='#ffde00';star(x,w/2,h/2,h*.32)}
+  :(x,w,h)=>{x.fillStyle='#da251d';x.fillRect(0,0,w,h/2);x.fillStyle='#0f6fbf';x.fillRect(0,h/2,w,h/2);x.fillStyle='#ffde00';star(x,w/2,h/2,h*.3)});
+onTop(flagQ,0,-250);flagQ.rotation.y=0;
+function waveFlag(f,T){if(!f.visible)return;const g=f.userData.cloth.geometry,p=g.attributes.position.array,b=f.userData.base;for(let i=0;i<p.length;i+=3){const u=b[i];p[i+2]=Math.sin(u*2.2-T*6)*.18*u/2.7}g.attributes.position.needsUpdate=true}
+function updFlag(T){waveFlag(flag,T);waveFlag(flagQ,T)}
 
 /* ---- đèn dầu trong công sự, vật dụng minh hoạ ---- */
 const lamp=new THREE.PointLight(0xffa64a,0,26,1.6);lamp.position.copy(B(REST_C[0],REST_C[1],0));lamp.position.y=groundAt(...REST_C)+.7;scene.add(lamp);
@@ -640,6 +653,7 @@ Object.assign(STATES,{
     fx:{on:true,gap:[.7,1.6],zones:{wallS:.2,wallE:.2,citadel:.3,moatS:.1,wallW:.1,landing:.1},fire:1,fires:true,smoke:true,big:.25},
     pl:{on:true,cx:-20,cy:-80,rx:[360,420],ry:[420,500],zone:CITADEL_ZONE},tk:()=>B(R(-150,200),R(-200,150),0)},
   memorial:{grp:[],tanks:null,night:.55,lanterns:true,fx:{on:false,fire:0,fires:false,smoke:false},pl:{on:false}}});
+for(const k of ['night_river_supply','wall_fight','counter_start','under_fire','bunker_night','rain_ruins','final'])STATES[k].flagQ=true;
 STATES.wall_fight.layerOpt='counter';STATES.under_fire.layerOpt='counter';STATES.night_river_supply.grp.push('qLand');STATES.night_river_supply.props=true;STATES.bunker_night.props=true;
 let STATE='legacy';let T=0;
 function townMode(){const ok=INTACT||STATE==='spring'||STATE==='memorial';if(ok!==TOWN.intact){TOWN.intact=ok;TOWN.setMode(ok)}}
@@ -653,13 +667,13 @@ function setState(name){const st=STATES[name]||STATES.legacy;STATE=name in STATE
   setTanks(st.tanks);TK.on=!!st.tanks;if(st.tk)TK.target=st.tk;
   Object.assign(FX,{on:false,gap:[1,2],zones:{citadel:1},fire:0,fires:true,smoke:true,big:.15},st.fx);smokePts.visible=FX.smoke;
   Object.assign(PL,{on:false},st.pl);WX.scene=st.weather||0;LAN_ON=!!st.lanterns;lanterns.forEach(l=>l.visible=LAN_ON);
-  lamp.intensity=st.lamp?38:0;lampSpr.visible=!!st.lamp;props.visible=!!st.props;landBoats.visible=ACT.has('qLand');flag.visible=false;setFlood(0);setLayer(st.layer||null);if(INTACT)setIntact(false);
+  lamp.intensity=st.lamp?38:0;lampSpr.visible=!!st.lamp;props.visible=!!st.props;landBoats.visible=ACT.has('qLand');flag.visible=false;flagQ.visible=!!st.flagQ;setFlood(0);setLayer(st.layer||null);if(INTACT)setIntact(false);
   townMode();setNight(st.night);clearTransient();rebuildTracerPts();nextBoom=T+R(FX.gap[0],FX.gap[1]);
   for(const f of stateHooks)f(STATE)}
 // ghi đè một phần hiệu ứng (bộ dẫn chuyện điều nhịp trong phân cảnh)
 function setEnv(e){if(!e)return;if(e.gap)FX.gap=e.gap;if(e.zones)FX.zones=e.zones;if('fire' in e)FX.fire=e.fire;if('booms' in e)FX.on=e.booms;if('big' in e)FX.big=e.big;
   if('planes' in e)PL.on=e.planes&&!!STATES[STATE].pl.zone;if('tanks' in e)TK.on=e.tanks&&!!STATES[STATE].tanks;if('night' in e)setNight(e.night);
-  if('weather' in e)WX.scene=e.weather;if('intact' in e&&!!e.intact!==INTACT)setIntact(e.intact);if('layer' in e)setLayer(e.layer);if('flag' in e)flag.visible=!!e.flag;if('fires' in e)FX.fires=e.fires;if('flood' in e)setFlood(e.flood)}
+  if('weather' in e)WX.scene=e.weather;if('intact' in e&&!!e.intact!==INTACT)setIntact(e.intact);if('layer' in e)setLayer(e.layer);if('flag' in e)flag.visible=!!e.flag;if('flagQ' in e)flagQ.visible=!!e.flagQ;if('fires' in e)FX.fires=e.fires;if('flood' in e)setFlood(e.flood)}
 const stateHooks=[];
 /* pháo sáng (đêm): rơi chậm, chiếu sáng vùng sông */
 const flares=[];const flareLight=new THREE.PointLight(0xfff2d0,0,700,1.3);scene.add(flareLight);

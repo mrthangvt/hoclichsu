@@ -47,7 +47,8 @@ export async function start(api){
     setPeriod:st=>{api.setState(st);ui.map(st);const p=(data.free_periods||[]).find(x=>x.state===st);if(p&&p.env)api.setEnv(p.env);const A={night_river_supply:{battle:.45,water:.8,wind:.3},overview:{battle:0,wind:.7,water:.25},spring:{battle:0,wind:.6,water:.2},memorial:{battle:0,wind:.4,water:.5},bunker_night:{battle:.3,wind:.3,water:0},rain_ruins:{battle:.3,wind:.4,water:0}};audio.set(Object.assign({battle:1,wind:.2,water:0,rain:0},A[st]||{}))},
     setWitness:id=>{D.wit=(data.witness||[]).find(w=>w.id===id)||data.witness[0];D.witI=0;api.setState(D.wit.state);ui.map(D.wit.state);ui.setWitness(D.wit.id,D.wit.note);if(D.wit.env)api.setEnv(D.wit.env);
       audio.set(D.wit.state==='night_river_supply'?{battle:.5,water:.9,wind:.3}:{battle:1,water:0,wind:.2});ui.setDate(D.wit.state==='night_river_supply'?'MỘT ĐÊM TIẾP VIỆN · THÁNG 7–9/1972':'THÁNG 7–9/1972 · TỔNG HỢP')},
-    nextWitness:()=>{D.witI++}
+    nextWitness:()=>{D.witI++},
+    cine:on=>{D.cine=on;if(on){if(D.mode!=='story')setMode('story');D.userCam=false;ui.showReturn(false);controls.enabled=false;setPlaying(true)}else controls.enabled=D.mode!=='witness'}
   };
   const ui=createUI(api,data,H);
   ui.setTicks(starts.map(s=>s/total));

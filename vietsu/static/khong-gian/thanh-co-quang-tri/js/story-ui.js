@@ -17,6 +17,15 @@ export function createUI(api,data,H){
   const rfBtn=el('button',{class:'chip',id:'rf','aria-pressed':'false',title:'Giảm chớp sáng khi nổ'},'Giảm chớp');
   const wxBtn=el('button',{class:'chip',id:'wx','aria-pressed':'false',title:'Bật/tắt mưa giông, sấm chớp'},'⛈ Mưa giông');
   const lyBtn=el('button',{class:'chip',id:'ly','aria-pressed':'false',title:'Lớp hướng tiến công và khu vực kiểm soát',hidden:''},'➶ Lớp hướng');
+  const cineBtn=el('button',{class:'chip',id:'cine',title:'Ẩn mọi nút, xem như một bộ phim (phím H; Esc để thoát)'},'🎬 Xem như phim');tools.insertBefore(cineBtn,tools.firstChild);
+  const cineExit=el('button',{id:'cineExit','aria-label':'Thoát chế độ xem phim'},'✕ Thoát xem phim');document.body.append(cineExit);
+  const bars=el('div',{id:'cineBars','aria-hidden':'true'},'<i></i><i></i>');document.body.append(bars);
+  let cineOn=false,cineT=null;
+  function setCine(v){cineOn=!!v;document.body.classList.toggle('cine',cineOn);H.cine(cineOn);if(cineOn){pick.hidden=true;toggleDocs(false);peek()}else cineExit.classList.remove('show')}
+  function peek(){if(!cineOn)return;cineExit.classList.add('show');clearTimeout(cineT);cineT=setTimeout(()=>cineExit.classList.remove('show'),2500)}
+  cineBtn.onclick=()=>setCine(true);cineExit.onclick=()=>setCine(false);
+  addEventListener('pointermove',peek);addEventListener('pointerdown',peek);
+  addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,select,textarea'))return;if(e.code==='Escape'&&cineOn)setCine(false);else if(e.code==='KeyH')setCine(!cineOn)});
   tools.insertBefore(rfBtn,tools.firstChild);tools.insertBefore(ccBtn,tools.firstChild);tools.insertBefore(lyBtn,tools.firstChild);tools.insertBefore(wxBtn,tools.firstChild);
   let wxOn=false;wxBtn.onclick=()=>{wxOn=!wxOn;wxBtn.classList.toggle('on',wxOn);wxBtn.setAttribute('aria-pressed',wxOn);api.setWeather(wxOn)};
   lyBtn.onclick=()=>{const st=api.getState();const L=api.layerOf(st);const on=!api.layer();api.setLayer(on?L:null);syncChips(st)};
