@@ -829,6 +829,13 @@ def character_detail_page(slug: str):
     person = _sanitize_person(person)
     url = SITE_URL + "/nhan-vat/" + quote(slug)
     media = person.get("image_url") or ""
+    # V4.6: hình riêng đã duyệt trong CMS được ưu tiên trên trang hồ sơ HTML.
+    approved = avatar_v46.approved_overrides().get(str(person.get("entity_id") or ""))
+    if approved:
+        media = approved["url"]
+    elif str(person.get("entity_id") or "") == "hochiminh":
+        # Dùng đúng hình chương 7 hiện đã có trong bộ tài nguyên website.
+        media = "/static/assets/hcm_stages/07_di_san.webp"
     if not media:
         role = str(person.get("role", "")).lower()
         military = bool(re.search(r"(đại tướng|danh tướng|tướng lĩnh|quân sự|tiết chế|quốc công|tổng tham mưu|chỉ huy|binh sĩ|khởi nghĩa|võ tướng|thủy quân|đô đốc)", role))
