@@ -26,6 +26,7 @@ from pydantic import BaseModel, Field, field_validator
 
 import vs_ads
 import vs_textbook
+import avatar_v46
 from vs_core import (ALLOWED_HOSTS, BASE, DATA, ENABLE_DOCS, MAX_BODY_BYTES, SITE_URL, STATIC, UPLOADS, VERSION,
                      ai_limiter, api_limiter, clean_url_list, client_ip, db, decode_image_data, init_db_pragmas,
                      is_safe_url, now, read_json, require_role, site_is_public, slugify, write_json)
@@ -34,6 +35,8 @@ from vs_render import ad_slot_html, esc, markdown_safe, page_shell, plain_text
 app = FastAPI(title="Việt Sử CMS", version=VERSION,
               docs_url="/docs" if ENABLE_DOCS else None, redoc_url=None,
               openapi_url="/openapi.json" if ENABLE_DOCS else None)
+
+app.include_router(avatar_v46.router)  # V4.6: CMS avatar + API ảnh công khai
 
 
 # ============================================================ static files
@@ -571,7 +574,7 @@ def admin():
 
 
 # ------------------------------------------------------------ home page
-HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V4.5_Offline.html", STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
+HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V4.6_Offline.html", STATIC / "Viet_Su_Timeline_V4.5_Offline.html", STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
                    STATIC / "Viet_Su_Timeline_V3.7_Offline.html"]
 _home_cache: dict = {}
 
@@ -826,6 +829,13 @@ def character_detail_page(slug: str):
     person = _sanitize_person(person)
     url = SITE_URL + "/nhan-vat/" + quote(slug)
     media = person.get("image_url") or ""
+    # V4.6: hình riêng đã duyệt trong CMS được ưu tiên trên trang hồ sơ HTML.
+    approved = avatar_v46.approved_overrides().get(str(person.get("entity_id") or ""))
+    if approved:
+        media = approved["url"]
+    elif str(person.get("entity_id") or "") == "hochiminh":
+        # Dùng đúng hình chương 7 hiện đã có trong bộ tài nguyên website.
+        media = "/static/assets/hcm_stages/07_di_san.webp"
     if not media:
         role = str(person.get("role", "")).lower()
         military = bool(re.search(r"(đại tướng|danh tướng|tướng lĩnh|quân sự|tiết chế|quốc công|tổng tham mưu|chỉ huy|binh sĩ|khởi nghĩa|võ tướng|thủy quân|đô đốc)", role))
