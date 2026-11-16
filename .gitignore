@@ -11,6 +11,7 @@ vietsu/data/*.sqlite3
 vietsu/data/*.sqlite3-*
 vietsu/data/*.tmp
 vietsu/data/ads_config.json
+vietsu/data/avatar_overrides_local.json
 vietsu/static/uploads/
 vietsu/backups/
 vietsu/sao-luu/
