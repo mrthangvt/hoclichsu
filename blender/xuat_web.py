@@ -1,4 +1,4 @@
-"""Xuất dữ liệu web từ ThanhCoQuangTri_1972_GD8.blend (chạy trong Blender: Scripting → Run Script).
+"""Xuất dữ liệu web từ ThanhCoQuangTri_1972_GD9.blend (chạy trong Blender: Scripting → Run Script).
 
 Tạo trong OUT các file CHƯA nén: static.glb, thuvien.glb, rai.json, thuyen.glb, qdnd.glb, vnch.glb.
 Sau đó nén và chép vào repo:
@@ -8,7 +8,7 @@ KHÔNG dùng `gltf-transform optimize` (làm mất UV và tên vật liệu).
 """
 import bpy, os, json
 
-OUT = '/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/ThanhCoQT_web/demo8'
+OUT = '/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/ThanhCoQT_web/demo9'
 os.makedirs(OUT, exist_ok=True)
 vl = bpy.context.view_layer
 
@@ -91,14 +91,14 @@ for o, l in keep.items():
 # Clip của rig mới được chuyển từ rig cũ bằng text block "retarget_qdnd.py" trong file .blend.
 lc = lc_find(vl.layer_collection, '00_ThuVien_NhanVat')
 lc.exclude = False
-rig = bpy.data.objects['Rig_QDND_Moi']
+rig = bpy.data.objects['Rig_QDND_V2']
 select([rig] + list(rig.children))
 bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'qdnd.glb'), export_animations=True,
                           export_animation_mode='NLA_TRACKS', export_skins=True,
                           export_image_format='WEBP', export_image_quality=82, **COMMON)
 
 # ---------- 5. Nhân vật VNCH + clip riêng ----------
-rig = bpy.data.objects['Rig_VNCH']
+rig = bpy.data.objects['Rig_VNCH_V2']
 select([rig] + list(rig.children))
 bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'vnch.glb'), export_animations=True,
                           export_animation_mode='NLA_TRACKS', export_skins=True, export_image_format='WEBP', **COMMON)
