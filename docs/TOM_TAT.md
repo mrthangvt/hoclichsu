@@ -1,3 +1,5 @@
+> **Nâng cấp V4.2 (nhánh gpt/v4.2-timeline-khong-gian-ui, chờ duyệt):** bản đồ véc-tơ cố định, 2 nút lọc, thumbnail vector trong cột địa điểm, nút sa bàn Thành cổ Quảng Trị ngay trên Timeline 1972, cải thiện thư viện trang phục/Mũ & tóc và các liên kết nhân vật, nới chặng Hồ Chí Minh 1941–1945, tối ưu mobile, build tĩnh V4.2 và Backend. Xem [CHANGELOG_V4.2.md](CHANGELOG_V4.2.md). **Không thay đổi mô hình GLB hay kịch bản chiến đấu; ảnh đại diện chưa phải ảnh tư liệu.**
+
 # Việt Sử V4.1 + sa bàn 3D Thành cổ Quảng Trị 1972: tóm tắt dự án
 
 Cập nhật: 16/11/2026. Đây là bản tóm tắt chính; mọi AI đọc trước khi làm.
