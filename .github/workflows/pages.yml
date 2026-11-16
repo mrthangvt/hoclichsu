@@ -1,5 +1,5 @@
 # Tự đăng bản xem thử lên GitHub Pages mỗi khi có thay đổi trên nhánh main:
-#   /                                  → giao diện Việt Sử V4.5 (bản tĩnh, không có CMS/API)
+#   /                                  → giao diện Việt Sử V4.6 (bản tĩnh, không có CMS/API)
 #   /khong-gian/thanh-co-quang-tri/    → sa bàn 3D Thành cổ Quảng Trị
 # Bản đầy đủ (CMS, API, SGK) chạy bằng máy chủ Python: xem vietsu/HUONG_DAN_LOCAL_MAC.md.
 # Bật một lần: Settings → Pages → Source: "GitHub Actions".
@@ -7,7 +7,7 @@ name: Deploy bản xem thử lên GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['vietsu/static/**', 'vietsu/tools/build_v42.py', 'vietsu/tools/build_v43.py', 'vietsu/tools/build_v44.py', 'vietsu/tools/build_v45.py', '.github/workflows/pages.yml']
+    paths: ['vietsu/static/**', 'vietsu/tools/build_v42.py', 'vietsu/tools/build_v43.py', 'vietsu/tools/build_v44.py', 'vietsu/tools/build_v45.py', 'vietsu/tools/build_v46.py', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,10 +26,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Gom file tĩnh
         run: |
-          python3 vietsu/tools/build_v45.py
+          python3 vietsu/tools/build_v46.py
           mkdir -p _site/static
-          cp vietsu/static/Viet_Su_Timeline_V4.5_Offline.html _site/index.html
-          cp vietsu/static/v42.css vietsu/static/v42.js vietsu/static/v43.css vietsu/static/v43.js vietsu/static/v44.js vietsu/static/v45.css vietsu/static/v45.js _site/static/
+          cp vietsu/static/Viet_Su_Timeline_V4.6_Offline.html _site/index.html
+          cp vietsu/static/v42.css vietsu/static/v42.js vietsu/static/v43.css vietsu/static/v43.js vietsu/static/v44.js vietsu/static/v45.css vietsu/static/v45.js vietsu/static/v46.css vietsu/static/v46.js _site/static/
           cp -r vietsu/static/avatar-v45 _site/static/avatar-v45
           cp -r vietsu/static/v43 _site/static/v43
           cp -r vietsu/static/assets _site/assets
