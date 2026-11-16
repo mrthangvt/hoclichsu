@@ -1906,7 +1906,7 @@
    "title": "Từ chiến trường đến nơi tưởng niệm",
    "date_label": "TỪ 1972 ĐẾN NAY",
    "period": "memorial",
-   "duration_sec": 215,
+   "duration_sec": 190,
    "plan": "Âm thanh tắt dần, camera lên cao; cần ảnh hiện trạng có quyền sử dụng hoặc mô hình biểu tượng; phân biệt rõ di tích hiện tại và phần tái dựng.",
    "panel": {
     "seeing": "Hoàng hôn trên sông Thạch Hãn với hoa đăng (biểu tượng); máy quay nâng dần lên toàn cảnh Thành cổ.",
@@ -1959,7 +1959,7 @@
     "simulated": [
      "Mô hình vẫn là Thành cổ năm 1972, không phải hiện trạng di tích hôm nay (đã có công viên, đài tưởng niệm, tháp chuông…).",
      "Hoa đăng, ánh hoàng hôn là hình ảnh biểu tượng.",
-     "Bài hát “Dòng sông phẳng lặng” (trình bày: Phạm Thu Hà) phát trong chương này khi bật âm thanh; tệp nhạc chỉ có ở bản chạy trên máy, chưa đưa lên bản công khai khi chưa xác nhận quyền sử dụng."
+     "Nhạc nền: “Dòng sông phẳng lặng”, bản phối metal tạo bằng AI (phát từ 0:35), chỉ phát khi bật âm thanh. Tệp nhạc hiện chỉ có ở bản chạy trên máy: bản phối mới vẫn dùng giai điệu, lời của bài hát gốc nên cần xác nhận quyền của tác giả trước khi đưa lên bản công khai."
     ]
    },
    "state": "memorial",
@@ -2030,7 +2030,7 @@
      ]
     },
     {
-     "t": 170,
+     "t": 150,
      "p": [
       420,
       260,
@@ -2043,7 +2043,7 @@
      ]
     },
     {
-     "t": 215,
+     "t": 190,
      "p": [
       -300,
       700,
@@ -2114,7 +2114,7 @@
     },
     {
      "t": 148,
-     "text": "Bài hát: Dòng sông phẳng lặng · Trình bày: Phạm Thu Hà"
+     "text": "Nhạc: Dòng sông phẳng lặng · bản phối metal tạo bằng AI"
     },
     {
      "t": 160,
@@ -2123,11 +2123,11 @@
    ],
    "music": {
     "src": "audio/dong-song-phang-lang.mp3",
-    "start": 2,
-    "fade_in": 5,
-    "fade_out": 8,
-    "volume": 0.85,
-    "credit": "Bài hát: Dòng sông phẳng lặng · Trình bày: Phạm Thu Hà"
+    "start": 1,
+    "fade_in": 2,
+    "fade_out": 7,
+    "volume": 0.8,
+    "credit": "Nhạc: Dòng sông phẳng lặng · bản phối metal tạo bằng AI (phát từ 0:35)"
    }
   }
  ],
