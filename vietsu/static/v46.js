@@ -76,13 +76,13 @@
     if (!p) return;
     const area = $('modalbody');
     if (!area) return;
-    const images = area.querySelectorAll('.v36-profile-preview, .avatar > img, .v45-profile-image');
-    if (images.length) images.forEach(img => putImage(img, p.src, p.text, true));
+    const portrait = area.querySelector('.v36-profile-preview, .v34-person-image, img.v45-profile-image');
+    if (portrait) putImage(portrait, p.src, p.text, true);
     else {
-      const portrait = document.createElement('img');
-      portrait.className = 'v45-profile-image v46-person-cover';
-      portrait.src = p.src; portrait.alt = p.text; portrait.width = 156; portrait.height = 156;
-      area.prepend(portrait);
+      const cover = document.createElement('img');
+      cover.className = 'v45-profile-image v46-person-cover';
+      cover.src = p.src; cover.alt = p.text; cover.width = 156; cover.height = 156;
+      area.prepend(cover);
     }
   }
 
@@ -105,6 +105,10 @@
     small.textContent = 'Mở trong thẻ mới · Có thể quay lại hồ sơ địa điểm bất cứ lúc nào';
     panel.append(label,title,p,link,small);
     body.prepend(panel);
+    const oldNote = body.querySelector('#v2HotspotInfo');
+    if (oldNote) oldNote.textContent = 'Chọn điểm tư liệu để tìm hiểu địa điểm; sa bàn 3D hiện đã có qua nút phía trên.';
+    const oldChip = body.querySelector('.v2-space > .chip');
+    if (oldChip) oldChip.textContent = 'HỒ SƠ ĐỊA ĐIỂM · CÓ SA BÀN 3D';
     const desc = $('moddesc');
     if (desc) desc.textContent = 'Địa điểm lịch sử · Có sa bàn 3D tương tác';
   }
