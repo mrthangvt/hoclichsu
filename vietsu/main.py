@@ -571,7 +571,7 @@ def admin():
 
 
 # ------------------------------------------------------------ home page
-HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
+HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V4.5_Offline.html", STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
                    STATIC / "Viet_Su_Timeline_V3.7_Offline.html"]
 _home_cache: dict = {}
 
