@@ -23,3 +23,9 @@ Ngày 17/11/2026. Nhánh `gpt/v4.8-restore-avatar-lock-ui`, dựa trực tiếp 
 - Đã lưu nguyên bản offline người dùng gửi tại `archives/viet-su-v4.8/`, kèm SHA-256 và danh sách file.
 - Đã đưa 24 WebP avatar V4.5 vào đúng đường dẫn website; không còn cần chủ dự án tự chép bộ 24 ảnh.
 - Chưa có 17 ảnh V4.3 nên giữ PR Draft, chưa build/deploy hoàn chỉnh. Không thay thế sa bàn bằng bản cũ trong ZIP.
+
+## Hoàn tất bộ ảnh V4.3 ngày 17/11/2026
+- Nhập đúng 17 WebP từ `Viet_Su_V4.3_GitHub_Patch.zip`, gồm hai ảnh trước đây chưa xác minh: `hat-modern.webp`, `outfit-nguyen-nu.webp`.
+- Kiểm tra strict đạt 41/41; build V4.8 thành công. SHA-256 HTML V4.6/V4.7/V4.8: `8f0636ece164c78d6ad61c28076f832b8e843ad124e3ca990d98f8f8353973b7`.
+- Kiểm tra HTTP nội bộ: đủ 41 ảnh trả đúng dữ liệu. Chưa kiểm thử tương tác trình duyệt/CMS trong lượt bổ sung tài nguyên.
+- Giữ giao diện và dữ liệu sa bàn hiện tại; không nhập mã cũ từ ZIP patch. Chờ chủ dự án duyệt các PR phụ thuộc trước khi merge/deploy.

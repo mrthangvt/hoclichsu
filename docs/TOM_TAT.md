@@ -1,3 +1,5 @@
+> **17/11/2026 — đã đủ tài nguyên V4.8:** nhập 17 WebP V4.3 từ ZIP gốc chủ dự án cung cấp. Kiểm tra strict đạt 41/41; build V4.8 thành công, HTML khớp SHA-256 V4.6. Các ghi chú thiếu ảnh bên dưới là lịch sử. Chờ duyệt PR và các nhánh phụ thuộc trước khi đưa lên Pages.
+
 > **17/11/2026 — đã nhập bản ZIP V4.8 của chủ dự án:** lưu nguyên gói tại `archives/viet-su-v4.8/`, đã đưa đủ 24 avatar V4.5 vào `vietsu/static/avatar-v45/`. Còn thiếu 17 ảnh V4.3; chưa triển khai GitHub Pages. Thông tin dưới đây nói 24 avatar chưa có trên GitHub là trạng thái trước lần nhập này.
 
 > **V4.8 – bổ sung Avatar 24/41:** Chủ dự án đã gửi ZIP có đủ 24 WebP Avatar V4.5 (6 nhóm, kích thước 64/128/256/512). Nhánh `gpt/v4.8-restore-avatar-lock-ui` kế thừa V4.7, bản dựng khóa HTML y hệt V4.6; `tools/check_v48_assets.py` chặn build nếu thiếu ảnh. **Còn thiếu 17 WebP V4.3 và 24 WebP mới CHƯA có trên GitHub, cần người dùng bổ sung đúng đường dẫn.** Không merge/deploy cho đến khi đủ ảnh và duyệt. Xem `docs/CHANGELOG_V4.8.md`.
