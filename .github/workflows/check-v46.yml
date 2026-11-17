@@ -1,0 +1,36 @@
+name: Kiểm tra Việt Sử V4.6
+on:
+  pull_request:
+    branches: [main, "gpt/v4.5-avatar-standard"]
+    paths:
+      - 'vietsu/avatar_v46.py'
+      - 'vietsu/static/v46.js'
+      - 'vietsu/static/v46.css'
+      - 'vietsu/static/avatar_admin_v46.html'
+      - 'vietsu/tools/build_v46.py'
+      - '.github/workflows/check-v46.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python compile
+        run: python3 -m py_compile vietsu/avatar_v46.py vietsu/tools/build_v46.py
+      - name: JavaScript syntax
+        run: node --check vietsu/static/v46.js
+      - name: Test link and asset references
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("vietsu")
+          seed = json.loads((root / "data/experiences_seed.json").read_text(encoding="utf8"))
+          quang_tri = next(x for x in seed if x["id"] == "quang-tri")
+          assert quang_tri["asset_url"] == "/khong-gian/thanh-co-quang-tri/"
+          assert (root / "static/khong-gian/thanh-co-quang-tri/index.html").exists()
+          assert (root / "static/assets/hcm_stages/07_di_san.webp").exists()
+          print("Đã kiểm tra sa bàn và avatar Hồ Chí Minh chương 7")
+          PY

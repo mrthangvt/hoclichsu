@@ -1,0 +1,15 @@
+/* VIỆT SỬ V4.3 — Avatar Hồ Chí Minh và icon lịch sử */
+#timeline .era-cell.left .v41-icon-chip img{width:55px;height:63px;flex:0 0 55px;object-fit:contain;object-position:center;border-radius:7px}
+#timeline .era-cell.left .v41-icon-chip{min-height:78px}
+#timeline .era-cell.left .v41-icon-chip small{font-size:10px;line-height:1.55}
+.v43-hcm-photo{background:#e8e6dd!important}
+.v43-hcm-photo img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 38%!important}
+.hcm-mobile .v43-hcm-photo img{width:100%!important;height:100%!important}
+#timeline .v43-modern-entry{display:flex;width:100%;align-items:center;gap:10px;padding:10px 12px;margin:10px 0;border:1px solid rgba(185,150,98,.65);border-radius:11px;background:rgba(185,150,98,.13);color:inherit;text-align:left;cursor:pointer}
+#timeline .v43-modern-entry img{width:57px;height:68px;object-fit:contain;border-radius:7px;flex:0 0 57px}
+#timeline .v43-modern-entry b{font-size:12px;display:block}
+#timeline .v43-modern-entry small{font-size:10px;line-height:1.5;display:block;opacity:.83}
+#timeline .v43-modern-entry:hover,#timeline .v43-modern-entry:focus-visible{background:rgba(216,180,122,.2);border-color:#dbb274;outline-offset:2px}
+.v35-gallery-grid .v43-gallery-card img{width:100%;height:165px;object-fit:contain;border-radius:7px}
+.v35-gallery-grid .v43-gallery-card{border-color:#d8b376;box-shadow:inset 0 0 0 1px rgba(206,172,116,.3)}
+@media(max-width:650px){#timeline .era-cell.left .v41-icon-chip img{width:43px;height:53px;flex-basis:43px}#timeline .era-cell.left .v41-icon-chip{min-height:66px;padding:7px}#timeline .v43-modern-entry img{width:43px;height:57px;flex-basis:43px}}
