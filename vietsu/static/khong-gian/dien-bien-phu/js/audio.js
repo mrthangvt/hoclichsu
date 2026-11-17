@@ -34,6 +34,7 @@ export function createAudio(){
     tick(dt){if(!on||!AC)return;const k=Math.min(1,dt*1.5);for(const n in layers){const g=layers[n].gain;g.value+=(BASE[n]*(target[n]||0)-g.value)*k}},
     boom(dist=800,size=1){const d=Math.max(.15,Math.min(1,600/Math.max(200,dist)));
       shot(2.2,(a,sr,n)=>{let lp=0;for(let i=0;i<n;i++){lp+=(rnd()-lp)*(.04+.1*d);a[i]=lp*4*Math.exp(-i/sr*(2.2-size*.6))*(i<sr*.01?i/(sr*.01):1)}},.5*d*size,dist/1500)},
+    gun(dist=200){const d=Math.max(.05,Math.min(1,60/Math.max(30,dist)));shot(.35,(a,sr,n)=>{let lp=0;for(let i=0;i<n;i++){const t=i/sr;lp+=(rnd()-lp)*.35;a[i]=(rnd()*.6+lp)*Math.exp(-t*(dist<120?30:14))}},.35*d,dist/900)},
     blast(){shot(6,(a,sr,n)=>{let lp=0,l2=0;for(let i=0;i<n;i++){lp+=(rnd()-lp)*.03;l2+=(lp-l2)*.05;a[i]=(l2*9+lp*2)*Math.exp(-i/sr*.7)*(i<sr*.02?i/(sr*.02):1)}},1,0.25)},
     thunder(delay=1){shot(5,(a,sr,n)=>{let lp=0;for(let i=0;i<n;i++){lp+=(rnd()-lp)*.025;const t=i/sr;a[i]=lp*6*Math.exp(-t*.8)*(.4+.6*Math.abs(Math.sin(t*7+Math.sin(t*3))))}},.5,delay)}
   };

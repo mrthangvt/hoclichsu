@@ -31,6 +31,7 @@
       <button class="chip" id="bvo">🗣 Lời bình</button>
       <button class="chip" id="blayers">☰ Lớp</button>
       <button class="chip" id="blegend">Chú giải</button>
+      <button class="chip" id="bdocs">📖 Tư liệu</button>
     </div>
     <div class="card panel" id="layerp" hidden><div class="eyebrow">Bật / tắt lớp</div><div id="layers"></div></div>
     <div class="card panel" id="legend" hidden><div class="eyebrow">Trạng thái cứ điểm</div><div class="items"></div>
@@ -40,6 +41,7 @@
 
 <div class="card" id="info" hidden><button class="x" id="infox" aria-label="Đóng">×</button><div id="infobody"></div></div>
 <div id="sub" hidden></div>
+<div class="card docs" id="docs" hidden><button class="x" id="docsx" aria-label="Đóng">×</button><div id="docsbody"></div></div>
 <div id="endtitle" hidden><div class="eyebrow">Tái dựng mô phỏng</div><h2>ĐIỆN BIÊN PHỦ 1954</h2><p>Chiến thắng 7/5/1954 · Hiệp định Genève 1954</p></div>
 <div class="card picker" id="scenes" hidden><button class="x" id="scx" aria-label="Đóng">×</button><h3>10 cảnh · kịch bản V1</h3><ol id="slist"></ol></div>
 
@@ -60,7 +62,7 @@
   <div class="card bar" id="explorebar" hidden>
     <div class="row"><span class="lbltxt">Mốc lịch sử</span><input type="range" id="dslider" aria-label="Chọn thời điểm"><b id="dlabel"></b></div>
     <div class="views" id="views"></div>
-    <div class="row walkrow"><button class="chip" id="bwalk">🚶 Xuống đi bộ</button><div class="views" id="areas"></div></div>
+    <div class="row walkrow"><select id="role" aria-label="Chọn vai"><option value="bodoi">Vai: Bộ đội</option><option value="dancong">Vai: Dân công xe thồ</option><option value="phaothu">Vai: Pháo thủ kéo pháo</option><option value="linhphap">Vai: Lính Pháp</option><option value="linhdu">Vai: Lính dù Pháp</option></select><select id="pov" aria-label="Góc nhìn"><option value="3">Sau vai</option><option value="1">Qua mắt</option></select><button class="chip" id="bwalk">🚶 Xuống đi bộ</button><div class="views" id="areas"></div></div>
     <small id="walkhelp" class="muted" hidden>W A S D hoặc phím mũi tên để đi · giữ Shift để chạy · kéo chuột để xoay góc nhìn · chọn khu vực để tới ngay</small>
   </div>
   <div class="card bar" id="comparebar" hidden>

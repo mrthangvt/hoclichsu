@@ -113,7 +113,8 @@
      90,
      "1953-11-19"
     ]
-   ]
+   ],
+   "seeing": "Lòng chảo Mường Thanh trước chiến dịch: sông Nậm Rốm, ruộng, bản nhà sàn. Công sự chưa xuất hiện."
   },
   {
    "id": "C02",
@@ -140,10 +141,10 @@
      "dur": 16,
      "target": "may_bay",
      "tz": 0,
-     "az": 110,
-     "el": 6,
-     "dist": 230,
-     "daz": -40,
+     "az": 100,
+     "el": 5,
+     "dist": 120,
+     "daz": -50,
      "high": false,
      "blend": 0,
      "cut": false,
@@ -158,8 +159,8 @@
      ],
      "tz": 150,
      "az": 200,
-     "el": 10,
-     "dist": 900,
+     "el": 8,
+     "dist": 520,
      "daz": 20,
      "high": false,
      "blend": 5,
@@ -252,7 +253,8 @@
      90,
      "1954-03-12"
     ]
-   ]
+   ],
+   "seeing": "Máy bay thả dù xuống thung lũng (tượng trưng, không phải quân số thực); công sự Pháp dựng dần từ khu trung tâm ra; ba phân khu."
   },
   {
    "id": "C03",
@@ -367,7 +369,8 @@
      100,
      "1954-01-31"
     ]
-   ]
+   ],
+   "seeing": "Lán Sở Chỉ huy giữa rừng, sa bàn thu nhỏ của lòng chảo. Phục trang nhân vật chưa được thẩm định."
   },
   {
    "id": "C04",
@@ -391,7 +394,7 @@
    "shots": [
     {
      "id": "ridge_wide",
-     "dur": 30,
+     "dur": 18,
      "target": [
       3500,
       3600
@@ -407,8 +410,36 @@
      "fov": 40
     },
     {
+     "id": "xe_tho_follow",
+     "dur": 18,
+     "target": "xe_tho",
+     "tz": 0,
+     "az": 120,
+     "el": 12,
+     "dist": 16,
+     "daz": 40,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 45
+    },
+    {
+     "id": "xe_tho_side",
+     "dur": 14,
+     "target": "xe_tho",
+     "tz": 0,
+     "az": 260,
+     "el": 6,
+     "dist": 9,
+     "daz": 25,
+     "high": false,
+     "blend": 3,
+     "cut": false,
+     "fov": 45
+    },
+    {
      "id": "keo_phao",
-     "dur": 24,
+     "dur": 18,
      "target": "keo_phao",
      "tz": 1.5,
      "az": 90,
@@ -416,30 +447,27 @@
      "dist": 30,
      "daz": 30,
      "high": false,
-     "blend": 5,
-     "cut": false,
+     "blend": 0,
+     "cut": true,
      "fov": 45
     },
     {
-     "id": "artillery_position",
-     "dur": 16,
-     "target": [
-      3221,
-      4013
-     ],
+     "id": "phao_thu_nghi",
+     "dur": 12,
+     "target": "phao_nghi",
      "tz": 0,
      "az": 200,
-     "el": 20,
-     "dist": 180,
-     "daz": 20,
+     "el": 14,
+     "dist": 11,
+     "daz": 30,
      "high": false,
-     "blend": 4,
-     "cut": false,
-     "fov": 40
+     "blend": 0,
+     "cut": true,
+     "fov": 45
     },
     {
      "id": "encirclement_overhead",
-     "dur": 20,
+     "dur": 10,
      "target": [
       -700,
       -300
@@ -450,8 +478,8 @@
      "dist": 7800,
      "daz": 8,
      "high": true,
-     "blend": 4,
-     "cut": false,
+     "blend": 0,
+     "cut": true,
      "fov": 40
     }
    ],
@@ -476,22 +504,26 @@
      "text": "Hệ thống trận địa, đường vận tải và đường hào dần hình thành, biến việc bao vây thành một thế trận chặt chẽ."
     },
     {
-     "t": 30,
-     "text": "Những khẩu pháo nặng hàng tấn được bộ đội dùng sức người kéo qua đèo dốc."
-    },
-    {
-     "t": 54,
+     "t": 19,
      "text": "Đoàn dân công cùng xe đạp thồ vượt núi đưa lương thực, đạn dược ra mặt trận."
     },
     {
-     "t": 72,
+     "t": 50,
+     "text": "Những khẩu pháo nặng hàng tấn được bộ đội dùng sức người kéo qua đèo dốc."
+    },
+    {
+     "t": 68,
+     "text": "Ở trận địa đã ngụy trang, pháo thủ tranh thủ nghỉ ngơi, chờ ngày nổ súng."
+    },
+    {
+     "t": 80,
      "text": "Từ chân núi, các đường hào bắt đầu tiến dần về phía các cứ điểm."
     }
    ],
    "actions": [
     {
      "do": "trench",
-     "t0": 60,
+     "t0": 78,
      "t1": 90,
      "s0": 0,
      "s1": 0.3
@@ -501,6 +533,9 @@
     },
     {
      "do": "keophao"
+    },
+    {
+     "do": "phao_nghi"
     }
    ],
    "histKeys": [
@@ -512,7 +547,8 @@
      90,
      "1954-03-12"
     ]
-   ]
+   ],
+   "seeing": "Đoàn xe đạp thồ trên đường núi, tổ kéo pháo bằng dây, pháo thủ nghỉ ở trận địa ngụy trang, hào bắt đầu tiến xuống."
   },
   {
    "id": "C05",
@@ -754,7 +790,8 @@
      120,
      "1954-03-18T06:00"
     ]
-   ]
+   ],
+   "seeing": "Pháo kích và các mũi tiến công vào Him Lam, Độc Lập, Bản Kéo; màu cứ điểm đổi theo data/events.json."
   },
   {
    "id": "C06",
@@ -973,7 +1010,117 @@
      120,
      "1954-04-26"
     ]
-   ]
+   ],
+   "seeing": "Các mũi tiến công lên dãy đồi phía Đông (E1, D1, C1, A1) trong mưa; trạng thái \"giằng co\" là gộp."
+  },
+  {
+   "id": "C06b",
+   "title": "Một đêm trong giao thông hào",
+   "date_label": "THÁNG 4/1954 · GIỮA CÁC ĐỢT TIẾN CÔNG",
+   "hist": [
+    "1954-04-10T21:00",
+    "1954-04-11T04:00"
+   ],
+   "durationSec": 70,
+   "layers": {
+    "fortifications": 1,
+    "vn": 1,
+    "trenches_vn": 0.75,
+    "villages": 1,
+    "routes": 1,
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 0
+   },
+   "shots": [
+    {
+     "id": "hao_toan",
+     "dur": 20,
+     "target": "nghi",
+     "tz": 0,
+     "az": 150,
+     "el": 30,
+     "dist": 26,
+     "daz": 25,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "hao_doc",
+     "dur": 26,
+     "target": "nghi",
+     "tz": 0,
+     "az": 65,
+     "el": 9,
+     "dist": 7,
+     "daz": 20,
+     "high": false,
+     "blend": 5,
+     "cut": false,
+     "fov": 45
+    },
+    {
+     "id": "hao_gac",
+     "dur": 24,
+     "target": "nghi",
+     "tz": 0,
+     "az": 335,
+     "el": 22,
+     "dist": 10,
+     "daz": -25,
+     "high": false,
+     "blend": 5,
+     "cut": false,
+     "fov": 45
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "dem",
+     "rain": 0.55,
+     "wind": 0.5,
+     "fog": 1.4,
+     "may": 0.85,
+     "storm": 1
+    }
+   ],
+   "lines": [
+    {
+     "t": 2,
+     "text": "Giữa những trận đánh, bộ đội sống trong giao thông hào ngày càng áp sát khu trung tâm."
+    },
+    {
+     "t": 22,
+     "text": "Mưa rừng, hào ngập bùn. Người lau súng, người nạp đạn, người ăn vội nắm cơm vắt."
+    },
+    {
+     "t": 46,
+     "text": "Trạm gác vẫn quan sát về phía cứ điểm địch suốt đêm. “Năm mươi sáu ngày đêm khoét núi, ngủ hầm, mưa dầm, cơm vắt…”"
+    }
+   ],
+   "actions": [
+    {
+     "do": "hao_dem",
+     "x": -2300,
+     "y": -370,
+     "ang": 0.43662715981354133
+    }
+   ],
+   "note": "Cảnh dựng minh họa đời sống trong hào; vị trí đoạn hào là tượng trưng.",
+   "histKeys": [
+    [
+     0,
+     "1954-04-10T21:00"
+    ],
+    [
+     70,
+     "1954-04-11T04:00"
+    ]
+   ],
+   "seeing": "Bộ đội trong một đoạn giao thông hào ban đêm: nghỉ, nạp đạn, quan sát. Đoạn hào dựng minh họa."
   },
   {
    "id": "C07",
@@ -1112,7 +1259,8 @@
      90,
      "1954-04-30"
     ]
-   ]
+   ],
+   "seeing": "Hệ thống hào bao vây mọc dần; máy bay tiếp tế thả dù hàng; vùng kiểm soát của quân Pháp thu hẹp (tượng trưng)."
   },
   {
    "id": "C08",
@@ -1278,7 +1426,8 @@
      120,
      "1954-05-07T06:00"
     ]
-   ]
+   ],
+   "seeing": "Đồi A1 trước vụ nổ (lính Pháp, công sự), mặt cắt đường hầm minh họa, vụ nổ và hố lớn sau đó."
   },
   {
    "id": "C09",
@@ -1444,7 +1593,8 @@
      100,
      "1954-05-07T18:30"
     ]
-   ]
+   ],
+   "seeing": "Bộ đội vượt cầu Mường Thanh, tiến vào hầm Sở chỉ huy; tù binh; cờ \"Quyết chiến Quyết thắng\"."
   },
   {
    "id": "C10",
@@ -1562,7 +1712,8 @@
      80,
      "1954-05-08"
     ]
-   ]
+   ],
+   "seeing": "Toàn cảnh ba đợt tiến công trên sa bàn; kết thúc."
   }
  ]
 }

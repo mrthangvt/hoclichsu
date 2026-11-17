@@ -127,6 +127,9 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - Phim tự phát khi mở trang; Khám phá có "Xuống đi bộ" (một bộ đội, WASD/mũi tên, Shift chạy, cần điều khiển trên điện thoại) và nút tới các khu: xe thồ, kéo pháo, trận địa pháo, quân Pháp tập kết, A1, hầm Đờ Cát, cầu, sân bay, Him Lam; camera tự xoay chậm khi đứng yên.
 - Đồi A1: trước vụ nổ có lính Pháp và công sự; sau vụ nổ (mốc minh họa tối 6/5) có hố lớn, lửa và cột khói. Mưa rơi tại vùng camera đang nhìn.
 - Tiếng chim buổi sáng: `audio/chim-buoi-sang.mp3` (nguồn tiengdong.com, anh Thắng cung cấp) phát ở cảnh 01.
+- Nhân vật (18/11): bộ đội dùng người lính Thành cổ (Rig_QDND_V2, 35 động tác) cầm súng trường 1954 dựng trong Blender; lính Pháp = model Tripo gắn xương bằng trọng số của lính Thành cổ (`models/linh.glb`). Dân công, Đại tướng vẫn ở `models/nhanvat.glb`.
+- Công sự chi tiết ở A1, C1, C2, D1, E1, E2, F, Him Lam, Độc Lập, khu trung tâm: bao cát 2 lớp, cọc chống vách, ván lót đáy hào, hầm mái gỗ phủ đất có lỗ châu mai, biển báo bãi mìn (object `Ham_ChiTiet_*`, mesh `Ham_GoMai`).
+- Cảnh C06b "Một đêm trong giao thông hào" (đoạn hào dựng trên web, minh họa); xung phong có chạy – quỳ bắn – trúng đạn ngã, đạn vạch, quân Pháp bắn trả; máy bay thả dù dùng B-26 Tripo (3 chiếc) có tiếng động cơ theo khoảng cách; mưa rơi đến mặt đất theo bản đồ độ cao, có bọt nước và đất ướt; Khám phá có đổi vai (bộ đội, dân công, pháo thủ, lính Pháp, lính dù) và góc sau vai/qua mắt; khung 📖 Tư liệu.
 - Lời bình: giọng đọc tiếng Việt của thiết bị; thả mp3 vào `audio/voice/` (tên `C01-01.mp3`…) và liệt kê trong `audio/voice/index.json` để thay.
 - Artifact Claude: `python3 tools/build_artifact_dbp.py` → `dist_artifact_dbp/` (slug 9725451d-ad34-4c1b-9573-a0532b0396aa).
 - Chưa làm: nối link từ trang Việt Sử (giao diện V4.6 đang khoá), toạ độ đã thẩm định, ranh giới cứ điểm, sơ đồ hào theo ngày, lồng tiếng thật.
