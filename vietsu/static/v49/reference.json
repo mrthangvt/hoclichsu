@@ -1,0 +1,425 @@
+{
+  "source": "Viet_Su_V4.5_Preview_Offline.html",
+  "source_sha256": "6be6837a08312c2d781d7faab3c500fcee2c45f10d919e83804e379e1c5a71ca",
+  "menu": "static/v49/hcm-menu.webp",
+  "portraits": {
+    "hungdao": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "nhantong": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "hotatliet": {
+      "src": "static/v49/portrait-3.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "quangtrung": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "qinthuyhoang": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "sohan": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "tamquoc": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "thoduong": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "genghis": {
+      "src": "static/v49/portrait-3.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "hongwu": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "thanhdrama": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "bao": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "picasso": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "leloi": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "gialong": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "hochiminh": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "vonguyengiap": {
+      "src": "static/v49/portrait-3.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "ngothisi": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "kinhduong": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "laclongquan": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "auco": {
+      "src": "static/v49/portrait-6.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "hungvuong": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "anduong": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "caolo": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "mychau": {
+      "src": "static/v49/portrait-6.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "trieuda": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "trungtrac": {
+      "src": "static/v49/portrait-7.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "trungnhi": {
+      "src": "static/v49/portrait-7.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "batrieu": {
+      "src": "static/v49/portrait-7.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "sinhiep": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lybi": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "trieuquangphuc": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lyphattu": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "khucthuadu": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "khuchao": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "duongdinhnghe": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "ngoquyen": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "dinhbolinh": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lehoan": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lythaito": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lythuongkiet": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "tranthaitong": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "tranthudo": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "hoquyly": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "tranngoi": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "tranquykhoang": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "nguyentrai": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lethanhtong": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "macdangdung": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "trinhtung": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "thigsach": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "phamtuu": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "maithucloan": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "phunghung": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "nguyenbac": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "phamculuong": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "tohienthanh": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "trannhatduat": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "tranquangkhai": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "tranquangdieu": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "buithixuan": {
+      "src": "static/v49/portrait-7.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "ngothinham": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "minhmang": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "nguyenphuong": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "vanhanh": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lephunghieu": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "duongtuminh": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "thancanhphuc": {
+      "src": "static/v49/portrait-1.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "ylan": {
+      "src": "static/v49/portrait-6.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lychieuhoang": {
+      "src": "static/v49/portrait-6.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "levanthinh": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "nguyenbinhkhiem": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "phungkhackhoan": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lequydon": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "lehuutrac": {
+      "src": "static/v49/portrait-5.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    },
+    "phanboichau": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "huynhthuckhang": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "phamvandong": {
+      "src": "static/v49/portrait-4.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "hoangvanthai": {
+      "src": "static/v49/portrait-3.webp",
+      "type": "legacy",
+      "note": "Ảnh/biểu trưng hiện có; không tự thay bằng phục dựng"
+    },
+    "lynhantong": {
+      "src": "static/v49/portrait-2.webp",
+      "type": "template",
+      "note": "Hình đại diện minh họa theo vai trò, không phải chân dung nhân vật"
+    }
+  },
+  "scenes": {
+    "co-loa": {
+      "src": "static/v49/scene-co-loa.svg",
+      "alt": "Minh họa Thành Cổ Loa"
+    },
+    "lang-sen": {
+      "src": "static/v49/scene-lang-sen.svg",
+      "alt": "Minh họa Làng Sen – Kim Liên"
+    },
+    "quang-tri": {
+      "src": "static/v49/scene-quang-tri.svg",
+      "alt": "Minh họa Thành cổ Quảng Trị"
+    },
+    "rach-gam": {
+      "src": "static/v49/scene-rach-gam.svg",
+      "alt": "Minh họa Rạch Gầm – Xoài Mút"
+    }
+  }
+}

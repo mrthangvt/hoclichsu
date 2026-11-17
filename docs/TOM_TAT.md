@@ -1,3 +1,5 @@
+> **V4.9 (17/11/2026):** Theo yêu cầu chủ dự án, khôi phục ảnh menu Hồ Chí Minh, 4 thumbnail Không gian lịch sử và cách chọn ảnh 80 hồ sơ từ bản V4.5 đã gửi; dùng bản đồ véc-tơ. Giữ bố cục V4.6 và sa bàn. Nhánh gpt/v4.9-anh-va-ban-do-vector dựa trên V4.8, chờ duyệt PR. Xem docs/CHANGELOG_V4.9.md.
+
 > **17/11/2026 — đã đủ tài nguyên V4.8:** nhập 17 WebP V4.3 từ ZIP gốc chủ dự án cung cấp. Kiểm tra strict đạt 41/41; build V4.8 thành công, HTML khớp SHA-256 V4.6. Các ghi chú thiếu ảnh bên dưới là lịch sử. Chờ duyệt PR và các nhánh phụ thuộc trước khi đưa lên Pages.
 
 > **17/11/2026 — đã nhập bản ZIP V4.8 của chủ dự án:** lưu nguyên gói tại `archives/viet-su-v4.8/`, đã đưa đủ 24 avatar V4.5 vào `vietsu/static/avatar-v45/`. Còn thiếu 17 ảnh V4.3; chưa triển khai GitHub Pages. Thông tin dưới đây nói 24 avatar chưa có trên GitHub là trạng thái trước lần nhập này.
