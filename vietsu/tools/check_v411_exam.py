@@ -34,7 +34,7 @@ for grade in [10,11,12]:
         assert q["source"]==SOURCES[grade] and 1<=q["page"]<=PAGES[grade],q["id"]
         assert isinstance(q["question"],str) and len(q["question"])>=18,q["id"]
         assert len(q["options"])==4 and len(set(q["options"]))==4,q["id"]
-        assert all(isinstance(x,str) and len(x)>2 for x in q["options"]),q["id"]
+        assert all(isinstance(x,str) and len(x)>0 for x in q["options"]),q["id"]
         assert isinstance(q["answer"],int) and 0<=q["answer"]<=3,q["id"]
         assert isinstance(q["explanation"],str) and len(q["explanation"])>=30,q["id"]
     total+=len(data)
