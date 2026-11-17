@@ -9,7 +9,7 @@ import base64, json, pathlib, shutil
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SRC, OUT = ROOT / 'vietsu' / 'static' / 'khong-gian' / 'thanh-co-quang-tri', ROOT / 'dist_artifact'
 shutil.rmtree(OUT, ignore_errors=True)
-shutil.copytree(SRC, OUT, ignore=shutil.ignore_patterns('*.glb'))
+shutil.copytree(SRC, OUT, ignore=shutil.ignore_patterns('*.glb','*.mp3'))
 assets = {}
 for glb in sorted((SRC / 'models').glob('*.glb')):
     (OUT / 'models' / (glb.name + '.txt')).write_text(base64.b64encode(glb.read_bytes()).decode())

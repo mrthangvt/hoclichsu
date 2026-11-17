@@ -1,14 +1,14 @@
-"""Xuất dữ liệu web từ ThanhCoQuangTri_1972_GD5.blend (chạy trong Blender: Scripting → Run Script).
+"""Xuất dữ liệu web từ ThanhCoQuangTri_1972_GD9.blend (chạy trong Blender: Scripting → Run Script).
 
-Tạo trong OUT các file CHƯA nén: static.glb, thuvien.glb, rai.json, thuyen.glb, qdnd.glb.
+Tạo trong OUT các file CHƯA nén: static.glb, thuvien.glb, rai.json, thuyen.glb, qdnd.glb, vnch.glb.
 Sau đó nén và chép vào repo:
-    for f in static thuvien thuyen qdnd; do gltf-transform meshopt OUT/$f.glb vietsu/static/khong-gian/thanh-co-quang-tri/models/$f.glb; done
+    for f in static thuvien thuyen qdnd vnch; do gltf-transform meshopt OUT/$f.glb vietsu/static/khong-gian/thanh-co-quang-tri/models/$f.glb; done
     cp OUT/rai.json vietsu/static/khong-gian/thanh-co-quang-tri/data/
 KHÔNG dùng `gltf-transform optimize` (làm mất UV và tên vật liệu).
 """
 import bpy, os, json
 
-OUT = '/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/ThanhCoQT_web/demo5'
+OUT = '/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/ThanhCoQT_web/demo9'
 os.makedirs(OUT, exist_ok=True)
 vl = bpy.context.view_layer
 
@@ -45,6 +45,7 @@ names = ['BaoCat_CongSu', 'CayChay', 'Cong_Hau_Bac', 'Cong_Huu_Tay', 'Cong_Ta_Do
          'TuongThanh_Vo_GD4', 'TuongThanh_MangSap_GD4', 'CongTien_Than', 'CongTien_ChiTiet', 'CongTien_MaiDuoi',
          'CongTien_MaiTren', 'CongTien_BoNoc', 'HoBom_VienDat_GD5', 'ThapSat_QuanSat_GD5', 'ThapSat_QuanSat_GD5_SanGo',
          'ThapSat_Gay_GD5', 'ThapSat_Gay_GD5_SanGo']
+names += ['NhaDan_1972']
 names += [o.name for o in bpy.data.objects if o.name.startswith('NhaDoNat_')
           or (o.name.startswith('XeTang_VNCH_') and not o.name.endswith('lua_phao'))]
 select([bpy.data.objects[n] for n in names])
@@ -85,12 +86,21 @@ bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'thuyen.glb'), export_anima
 for o, l in keep.items():
     o.location = l
 
-# ---------- 4. Nhân vật QĐND + toàn bộ clip (NLA tracks) ----------
+# ---------- 4. Nhân vật QĐND (mẫu mới từ NhanVat_Mixamo, rig Rig_QDND_Moi) + toàn bộ clip (NLA tracks) ----------
+# Rig_QDND_Moi có hệ trục xương khác rig VNCH, nên mỗi phe xuất kèm bộ clip riêng.
+# Clip của rig mới được chuyển từ rig cũ bằng text block "retarget_qdnd.py" trong file .blend.
 lc = lc_find(vl.layer_collection, '00_ThuVien_NhanVat')
 lc.exclude = False
-rig = bpy.data.objects['Rig_QDND']
+rig = bpy.data.objects['Rig_QDND_V2']
 select([rig] + list(rig.children))
 bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'qdnd.glb'), export_animations=True,
-                          export_animation_mode='NLA_TRACKS', export_skins=True, **COMMON)
+                          export_animation_mode='NLA_TRACKS', export_skins=True,
+                          export_image_format='WEBP', export_image_quality=82, **COMMON)
+
+# ---------- 5. Nhân vật VNCH + clip riêng ----------
+rig = bpy.data.objects['Rig_VNCH_V2']
+select([rig] + list(rig.children))
+bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'vnch.glb'), export_animations=True,
+                          export_animation_mode='NLA_TRACKS', export_skins=True, export_image_format='WEBP', **COMMON)
 lc.exclude = True
 print('Xong:', sorted(os.listdir(OUT)))
