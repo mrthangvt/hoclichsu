@@ -15,7 +15,19 @@ fs.mkdirSync(shots,{recursive:true});
     const page=await browser.newPage({viewport:{width:1350,height:850}});
     page.on('dialog',async dialog=>dialog.accept());
     await page.goto(home,{waitUntil:'domcontentloaded',timeout:60000});
-    await page.waitForSelector('[data-vs-exam-new]',{timeout:15000});
+    const debug=await page.evaluate(()=>({
+      title:document.title,
+      textAroundSgk:(document.body.innerText||'').toLowerCase().indexOf('sách giáo khoa'),
+      scripts:[...document.scripts].map(x=>x.src).filter(x=>x.includes('v411')),
+      navCandidates:[...document.querySelectorAll('nav a,nav button,aside a,aside button,[id^="nav"],[onclick]')].map(x=>({
+        tag:x.tagName,id:x.id,cls:String(x.className).slice(0,70),
+        text:(x.textContent||'').trim().slice(0,100),onclick:x.getAttribute('onclick')
+      })).filter(x=>x.text.toLowerCase().includes('sách')||x.text.toLowerCase().includes('sgk')).slice(0,35),
+      exactTexts:[...document.querySelectorAll('span,a,button,div')].filter(x=>x.children.length===0&&(x.textContent||'').toLowerCase().includes('sách giáo khoa')).slice(0,15).map(x=>x.outerHTML.slice(0,450))
+    }));
+    console.log('UI DEBUG',JSON.stringify(debug));
+    await page.screenshot({path:path.join(shots,'00-trang-chu-truoc-kiem-tra.png')});
+    await page.waitForSelector('[data-vs-exam-new]',{timeout:8000});
     const found=await page.locator('[data-vs-exam-new]').count();
     assert.ok(found>0,'Must inject exam menu before textbooks');
     const adjacent=await page.locator('[data-vs-exam-new]').first().evaluate(el=>
