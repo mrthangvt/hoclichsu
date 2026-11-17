@@ -5,8 +5,20 @@ const path=require('node:path');
 const fs=require('node:fs');
 const assert=require('node:assert/strict');
 const staticDir=path.resolve(__dirname,'../static');
-const home='file://'+path.join(staticDir,'Viet_Su_Timeline_V4.11_Offline.html');
-const exams='file://'+path.join(staticDir,'on-thi/index.html');
+const fixture=path.resolve(__dirname,'../../v411_browser_fixture');
+fs.mkdirSync(fixture,{recursive:true});
+fs.copyFileSync(path.join(staticDir,'Viet_Su_Timeline_V4.11_Offline.html'),path.join(fixture,'index.html'));
+for(const [name,target] of [
+  ['static',staticDir],
+  ['on-thi',path.join(staticDir,'on-thi')],
+  ['assets',path.join(staticDir,'assets')],
+  ['khong-gian',path.join(staticDir,'khong-gian')]
+]){
+  const link=path.join(fixture,name);
+  if(!fs.existsSync(link))fs.symlinkSync(target,link,'dir');
+}
+const home='file://'+path.join(fixture,'index.html');
+const exams='file://'+path.join(fixture,'on-thi/index.html');
 const shots=path.resolve(__dirname,'../../v411_screenshots');
 fs.mkdirSync(shots,{recursive:true});
 (async()=>{

@@ -6,7 +6,7 @@ const examHref=()=>{
   const rel=location.protocol==='file:'?'on-thi/index.html':'on-thi/';
   return new URL(rel,document.baseURI).href;
 };
-function isLabel(t){return /^sách\s+giáo\s+khoa(?:\s+lịch\s+sử)?$/i.test(String(t||'').replace(/\s+/g,' ').trim());}
+function isLabel(t){return /^sách\s+giáo\s+khoa(?:\s+lịch\s+sử)?(?:\s*[⌄▾▿▼])?$/i.test(String(t||'').replace(/\s+/g,' ').trim());}
 function findTargets(){
   const all=new Set();
   const anchors=[...document.querySelectorAll('nav a, nav button, aside a, aside button, [id^="nav"], [onclick], [role="button"]')];
