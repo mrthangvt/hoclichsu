@@ -53,7 +53,7 @@ export async function start(api){
   const ui=createUI(api,data,H);
   ui.setTicks(starts.map(s=>s/total));
 
-  function setPlaying(p){D.playing=p;ui.setPlaying(p);if(!p&&typeof voStop==='function')voStop()}
+  function setPlaying(p){D.playing=p;ui.setPlaying(p);if(!p&&typeof voStop==='function')voStop();if(p)D.vline=null}
   function goto(i,t=0,seeking=false){if(i<0||i>=list.length)return;const changed=true;/* luôn đặt lại trạng thái: tua lùi không giữ hiệu ứng của mốc sau */D.i=i;const e=list[i];
     if(changed){api.setState(e.state);ui.map(e.state);ui.setEpisode(e);audio.reset()}
     D.t=t;D.envIdx=-1;applyEnv(e,t,true);D.fired=new Set((e.cues||[]).filter(c=>c.t<t).map(c=>c.t+c.do));D.line=-1;D.vline=-2;
@@ -91,24 +91,28 @@ export async function start(api){
   window.__MUS=MUS;
 
   /* ---------- lồng tiếng lời dẫn: ưu tiên tệp audio/voice/<id>-<số dòng>.mp3 (liệt kê trong audio/voice/index.json); thiếu tệp thì dùng giọng đọc tiếng Việt của thiết bị ---------- */
-  const VO={on:false,el:null,files:null};
+  const VO={on:true,ex:false,el:null,files:null};   /* on: nút 🗣 (mặc định bật); ex: người xem tự bấm bật → đọc cả khi chưa bật Âm thanh */
   fetch('audio/voice/index.json').then(r=>r.ok?r.json():[]).then(a=>{VO.files=new Set(a)}).catch(()=>{VO.files=new Set()});
   function voStop(){if(VO.el){VO.el.pause();VO.el=null}try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
   function voBusy(){return (VO.el&&!VO.el.paused&&!VO.el.ended)||(window.speechSynthesis&&speechSynthesis.speaking)}
-  function speak(e,n){voStop();if(!VO.on||n<0||!D.playing)return;const tx=e.lines[n].text;if(!tx)return;const f=e.id+'-'+String(n+1).padStart(2,'0')+'.mp3';
-    if(VO.files&&VO.files.has(f)){const el=new Audio('audio/voice/'+f);VO.el=el;el.play().catch(()=>{});return}
+  function voWant(){return VO.on&&(VO.ex||api.audio().on)}
+  function speak(e,n){voStop();if(!voWant()||n<0||!D.playing)return;const tx=e.lines[n].text;if(!tx)return;const f=e.id+'-'+String(n+1).padStart(2,'0')+'.mp3';
+    if(VO.files&&VO.files.has(f)){const el=new Audio('audio/voice/'+f);VO.el=el;const off=D.t-e.lines[n].t;   /* vào giữa câu (tua, bật âm thanh muộn): đọc tiếp từ đúng chỗ */
+      if(off>.6)el.addEventListener('loadedmetadata',()=>{if(off<el.duration-.4)el.currentTime=off;else el.pause()},{once:true});
+      el.play().catch(()=>{});return}
+    if(!VO.ex)return;   /* chưa có tệp thu âm: chỉ dùng giọng máy khi người xem bấm 🗣 */
     if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(tx.replace(/[\u201c\u201d\u2018\u2019\u2026·()]/g,' '));u.lang='vi-VN';
     const v=speechSynthesis.getVoices().find(v=>/^vi/i.test(v.lang));if(v)u.voice=v;u.rate=1.08;speechSynthesis.speak(u)}
-  H.voice=on=>{VO.on=on;if(!on)voStop();else if(D.mode==='story'){const e=list[D.i];speak(e,lineAt(e,D.t))}};
+  H.voice=on=>{VO.on=on;VO.ex=on;if(!on)voStop();else if(D.mode==='story'){const e=list[D.i];speak(e,lineAt(e,D.t))}};
 
   /* ---------- vòng lặp ---------- */
-  api.tickHooks.push(rawDt=>{const dt=Math.min(rawDt,.1);audio.tick(dt);ui.tick(dt);
+  api.tickHooks.push(rawDt=>{const dt=Math.min(rawDt,.1);audio.tick(dt,voBusy());ui.tick(dt);
     if(D.mode==='story'){if(api.walking()){setMode('free');return}
       const e=list[D.i];if(D.playing){D.t+=dt;if(D.t>=e.duration_sec){if(D.i<list.length-1){goto(D.i+1,0);return}D.t=e.duration_sec;setPlaying(false)}}
       for(const c of e.cues||[]){const key=c.t+c.do;if(c.t<=D.t&&!D.fired.has(key)){D.fired.add(key);fire(c)}}
       applyEnv(e,D.t,false);
       const hint=!!e.music&&!api.audio().on&&MUS.ok;const n=lineAt(e,D.t);const key=n+(hint?'h':'');
-      if(n!==D.vline){D.vline=n;speak(e,n)}
+      const vw=voWant();if(n!==D.vline||vw!==D.vwant){D.vline=n;D.vwant=vw;speak(e,n)}
       if(key!==D.line){D.line=key;const tx=n>=0?e.lines[n].text:'';ui.subtitle(hint?(tx?tx+' · ':'')+'🔊 Bật “Âm thanh” để nghe bài hát của chương này':tx)}
       if(!D.userCam){const c=camAt(e,D.t);if(c){camera.position.copy(c.p);controls.target.copy(c.l)}}
       ui.setProgress((starts[D.i]+D.t)/total,D.t,e.duration_sec)}

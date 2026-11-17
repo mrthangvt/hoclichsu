@@ -26,8 +26,8 @@ export function createUI(api,data,H){
   cineBtn.onclick=()=>setCine(true);cineExit.onclick=()=>setCine(false);
   addEventListener('pointermove',peek);addEventListener('pointerdown',peek);
   addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,select,textarea'))return;if(e.code==='Escape'&&cineOn)setCine(false);else if(e.code==='KeyH')setCine(!cineOn)});
-  const voBtn=el('button',{class:'chip',id:'vo','aria-pressed':'false',title:'Đọc lời dẫn thành tiếng'},'🗣 Đọc lời dẫn');tools.insertBefore(voBtn,tools.firstChild);
-  let voOn=false;voBtn.onclick=()=>{voOn=!voOn;voBtn.classList.toggle('on',voOn);voBtn.setAttribute('aria-pressed',voOn);H.voice(voOn)};
+  const voBtn=el('button',{class:'chip on',id:'vo','aria-pressed':'true',title:'Giọng đọc lời dẫn (phát cùng Âm thanh)'},'🗣 Lời dẫn');tools.insertBefore(voBtn,tools.firstChild);
+  let voOn=true;voBtn.onclick=()=>{voOn=!voOn;voBtn.classList.toggle('on',voOn);voBtn.setAttribute('aria-pressed',voOn);H.voice(voOn)};
   tools.insertBefore(rfBtn,tools.firstChild);tools.insertBefore(ccBtn,tools.firstChild);tools.insertBefore(lyBtn,tools.firstChild);tools.insertBefore(wxBtn,tools.firstChild);
   let wxOn=false;wxBtn.onclick=()=>{wxOn=!wxOn;wxBtn.classList.toggle('on',wxOn);wxBtn.setAttribute('aria-pressed',wxOn);api.setWeather(wxOn)};
   lyBtn.onclick=()=>{const st=api.getState();const L=api.layerOf(st);const on=!api.layer();api.setLayer(on?L:null);syncChips(st)};
