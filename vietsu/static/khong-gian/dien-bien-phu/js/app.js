@@ -48,7 +48,7 @@ const flashLight=new THREE.PointLight(0xffa050,0,6000,1.1);scene.add(flashLight)
 
 /* ---------------- tải tài nguyên ---------------- */
 const ASSETS=Object.assign({static:'models/static.glb',mau:'models/mau.glb',nhanvat:'models/nhanvat.glb',hq:'models/hq.glb',
-  cay:'data/cay.bin',caymeta:'data/cay.json',matdat:MOBILE?'tex/matdat_2k.jpg':'tex/matdat_4k.jpg',draco:'vendor/three/addons/libs/draco/',dracoType:'wasm'},window.ASSETS||{});
+  cay:'data/cay.bin',chim:'audio/chim-buoi-sang.mp3',caymeta:'data/cay.json',matdat:MOBILE?'tex/matdat_2k.jpg':'tex/matdat_4k.jpg',draco:'vendor/three/addons/libs/draco/',dracoType:'wasm'},window.ASSETS||{});
 const draco=new DRACOLoader();draco.setDecoderPath(ASSETS.draco);draco.setDecoderConfig({type:ASSETS.dracoType});
 const loader=new GLTFLoader();loader.setDRACOLoader(draco);
 const W8={static:.4,mau:.12,nhanvat:.12,hq:.04,matdat:.17,cay:.15};const prog={};
@@ -178,8 +178,8 @@ const CLIPS={};for(const c of gN.animations)CLIPS[c.name]=c;
 const KIND={dancong:'DanCong_Mesh',bodoi:'RIG_BoDoi_1954',linhphap:'RIG_LinhPhap_1954',daituong:'RIG_DaiTuong_VNG'};
 const CH_SCALE=1.66/1.81;
 function makeChar(kind,clip){const root=SkeletonUtils.clone(gN.scene);root.traverse(o=>{if(o.isSkinnedMesh){o.visible=o.name===KIND[kind];o.frustumCulled=false}});
-  const g=new THREE.Group();g.add(root);root.scale.setScalar(CH_SCALE);const mixer=new THREE.AnimationMixer(root);const a=mixer.clipAction(CLIPS[clip]||CLIPS.dung);a.play();
-  return{obj:g,mixer,clip:CLIPS[clip],set(t){mixer.setTime(t)}}}
+  const g=new THREE.Group();g.add(root);root.scale.setScalar(CH_SCALE);const mixer=new THREE.AnimationMixer(root);let cur=mixer.clipAction(CLIPS[clip]||CLIPS.dung);cur.play();
+  return{obj:g,mixer,clip:CLIPS[clip],set(t){mixer.setTime(t)},play(n){const a=mixer.clipAction(CLIPS[n]||CLIPS.dung);if(a===cur)return;a.reset().play();cur.crossFadeTo(a,.25,false);cur=a}}}
 
 /* ---------------- hiệu ứng: nổ, khói, chớp, mưa ---------------- */
 function spriteTex(stops){const cv=document.createElement('canvas');cv.width=cv.height=64;const x=cv.getContext('2d');const g=x.createRadialGradient(32,32,0,32,32,32);for(const[a,c]of stops)g.addColorStop(a,c);x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(cv)}
@@ -190,14 +190,14 @@ class FXPool{constructor(mat,n){this.s=[];for(let i=0;i<n;i++){const s=new THREE
   begin(){this.i=0}take(){const s=this.s[this.i++];return s}end(){for(let k=this.i;k<this.s.length;k++)this.s[k].visible=false}}
 const FIRE=new FXPool(new THREE.SpriteMaterial({map:T_FIRE,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,fog:false}),220);
 const SMOKE=new FXPool(new THREE.SpriteMaterial({map:T_SMOKE,depthWrite:false,transparent:true}),260);
-// mưa: các vệt rơi quanh camera
-const rain=(()=>{const N=MOBILE?3000:9000,g=new THREE.BufferGeometry(),p=new Float32Array(N*6),o=new Float32Array(N*2);
-  for(let i=0;i<N;i++){const x=(Math.random()-.5)*160,y=Math.random()*90,z=(Math.random()-.5)*160;p.set([x,y,z,x,y,z],i*6);o[i*2]=0;o[i*2+1]=1}
+// mưa: khối mưa đặt tại vùng camera đang nhìn (tâm uC), kích thước uS co giãn theo khoảng cách → mưa rơi trên sa bàn
+const rain=(()=>{const N=MOBILE?5000:14000,g=new THREE.BufferGeometry(),p=new Float32Array(N*6),o=new Float32Array(N*2);
+  for(let i=0;i<N;i++){const x=Math.random()*2-1,y=Math.random(),z=Math.random()*2-1;p.set([x,y,z,x,y,z],i*6);o[i*2]=0;o[i*2+1]=1}
   g.setAttribute('position',new THREE.BufferAttribute(p,3));g.setAttribute('e',new THREE.BufferAttribute(o,1));
-  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{uT:{value:0},uA:{value:0},uW:{value:.3},uC:{value:new THREE.Vector3()}},
-    vertexShader:`attribute float e;uniform float uT,uW;uniform vec3 uC;varying float vA;void main(){vec3 p=position;float sp=38.;float y=mod(p.y-uT*sp,90.);
-      vec3 w=vec3(uC.x+p.x+uW*y*.35,uC.y-30.+y,uC.z+p.z);w+=vec3(uW*1.2,2.4,0.)*e;vA=.35+.65*e;gl_Position=projectionMatrix*viewMatrix*vec4(w,1.);}`,
-    fragmentShader:`uniform float uA;varying float vA;void main(){gl_FragColor=vec4(.78,.82,.88,uA*vA*.55);}`});
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{uT:{value:0},uA:{value:0},uW:{value:.3},uC:{value:new THREE.Vector3()},uS:{value:200}},
+    vertexShader:`attribute float e;uniform float uT,uW,uS;uniform vec3 uC;varying float vA;void main(){vec3 p=position;float H=uS*1.2;float y=mod(p.y*H-uT*uS*.55,H);
+      vec3 w=vec3(uC.x+p.x*uS+uW*y*.25,uC.y-uS*.15+y,uC.z+p.z*uS);w+=vec3(uW*.02,.035,0.)*uS*e;vA=.3+.7*e;gl_Position=projectionMatrix*viewMatrix*vec4(w,1.);}`,
+    fragmentShader:`uniform float uA;varying float vA;void main(){gl_FragColor=vec4(.8,.84,.9,uA*vA*.5);}`});
   const l=new THREE.LineSegments(g,m);l.frustumCulled=false;scene.add(l);return m.uniforms})();
 
 /* ---------------- trạng thái lịch sử ---------------- */
@@ -234,7 +234,7 @@ function updLabels(cam){const W=innerWidth,H=innerHeight;
 /* ---------------- vòng lặp ---------------- */
 function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
 addEventListener('resize',resize);resize();
-const audio=createAudio();
+const audio=createAudio();audio.fileSrc={chim:ASSETS.chim,fetchBuf};
 clearTreesNear(Object.values(SC.duong),26);
 const API={THREE,scene,camera,controls,renderer,B,hAt,hT,PEAK,safeEye,world,ground,groundMat,GU,CAT,REV_FR,REV_VN,KC_MAX,TREES,hq,mapCard,mini,
   mau,makeChar,FIRE,SMOKE,T_DOT,rain,SKY,hemi,sun,flashLight,SC,PLACES,PL,EV,EVENTS,SCENES,SOURCES,STATE_COL,STATE_VI,stateAt,setPlaceVis,labels,LAY,SECT,

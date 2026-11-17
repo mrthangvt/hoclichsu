@@ -9,12 +9,12 @@ import base64, json, pathlib, shutil
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SRC, OUT = ROOT / 'vietsu' / 'static' / 'khong-gian' / 'dien-bien-phu', ROOT / 'dist_artifact_dbp'
 shutil.rmtree(OUT, ignore_errors=True)
-shutil.copytree(SRC, OUT, ignore=shutil.ignore_patterns('*.glb', '*.bin', '*.jpg', '*.wasm'))
+shutil.copytree(SRC, OUT, ignore=shutil.ignore_patterns('*.glb', '*.bin', '*.jpg', '*.wasm', '*.mp3'))
 assets = {'dracoType': 'js'}
 def b64(rel, key):
     (OUT / (rel + '.txt')).write_text(base64.b64encode((SRC / rel).read_bytes()).decode())
     assets[key] = rel + '.txt'
-b64('models/static.glb', 'static'); b64('models/mau.glb', 'mau'); b64('models/nhanvat.glb', 'nhanvat'); b64('models/hq.glb', 'hq'); b64('data/cay.bin', 'cay'); b64('tex/matdat_2k.jpg', 'matdat')
+b64('models/static.glb', 'static'); b64('models/mau.glb', 'mau'); b64('models/nhanvat.glb', 'nhanvat'); b64('models/hq.glb', 'hq'); b64('data/cay.bin', 'cay'); b64('tex/matdat_2k.jpg', 'matdat'); b64('audio/chim-buoi-sang.mp3', 'chim')
 html = (OUT / 'index.html').read_text()
 html = html.replace('<!--ASSETS-->', f'<script>window.ASSETS={json.dumps(assets)};</script>')
 (OUT / 'index.html').write_text(html)

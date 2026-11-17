@@ -124,6 +124,9 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - Dữ liệu tách khỏi logic: `data/places.json` (vị trí + mức tin cậy), `data/events.json` (đổi trạng thái cứ điểm, tất cả NEEDS_HISTORICAL_REVIEW), `data/scenes.json` (góc máy, thời tiết, lời bình, hành động), `data/sources.json`, `data/scene.json` (xuất từ Blender), `data/cay.bin`.
 - Code: `js/app.js` (địa hình, lưới độ cao, camera an toàn `safeEye`: góc cao luôn trên đỉnh núi cao nhất + 220 m, không bị núi che), `js/director.js` (dòng thời gian tua tiến/lùi idempotent, diễn viên, hiệu ứng, thời tiết, lời bình), `js/audio.js` (âm thanh WebAudio).
 - Model: `models/static.glb` (sa bàn), `mau.glb` (mẫu), `nhanvat.glb` (1 rig Mixamo + 4 người, 7 động tác), `hq.glb` (lán Mường Phăng).
+- Phim tự phát khi mở trang; Khám phá có "Xuống đi bộ" (một bộ đội, WASD/mũi tên, Shift chạy, cần điều khiển trên điện thoại) và nút tới các khu: xe thồ, kéo pháo, trận địa pháo, quân Pháp tập kết, A1, hầm Đờ Cát, cầu, sân bay, Him Lam; camera tự xoay chậm khi đứng yên.
+- Đồi A1: trước vụ nổ có lính Pháp và công sự; sau vụ nổ (mốc minh họa tối 6/5) có hố lớn, lửa và cột khói. Mưa rơi tại vùng camera đang nhìn.
+- Tiếng chim buổi sáng: `audio/chim-buoi-sang.mp3` (nguồn tiengdong.com, anh Thắng cung cấp) phát ở cảnh 01.
 - Lời bình: giọng đọc tiếng Việt của thiết bị; thả mp3 vào `audio/voice/` (tên `C01-01.mp3`…) và liệt kê trong `audio/voice/index.json` để thay.
 - Artifact Claude: `python3 tools/build_artifact_dbp.py` → `dist_artifact_dbp/` (slug 9725451d-ad34-4c1b-9573-a0532b0396aa).
 - Chưa làm: nối link từ trang Việt Sử (giao diện V4.6 đang khoá), toạ độ đã thẩm định, ranh giới cứ điểm, sơ đồ hào theo ngày, lồng tiếng thật.

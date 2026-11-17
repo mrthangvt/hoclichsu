@@ -60,11 +60,14 @@
   <div class="card bar" id="explorebar" hidden>
     <div class="row"><span class="lbltxt">Mốc lịch sử</span><input type="range" id="dslider" aria-label="Chọn thời điểm"><b id="dlabel"></b></div>
     <div class="views" id="views"></div>
+    <div class="row walkrow"><button class="chip" id="bwalk">🚶 Xuống đi bộ</button><div class="views" id="areas"></div></div>
+    <small id="walkhelp" class="muted" hidden>W A S D hoặc phím mũi tên để đi · giữ Shift để chạy · kéo chuột để xoay góc nhìn · chọn khu vực để tới ngay</small>
   </div>
   <div class="card bar" id="comparebar" hidden>
     <div class="row"><span class="lbltxt">Trái</span><select id="cmpA"></select><span class="lbltxt">Phải</span><select id="cmpB"></select><small class="muted">Kéo vạch giữa màn hình để so sánh</small></div>
   </div>
 </div>
+<div id="joy" hidden><span></span></div>
 <div id="fps"></div>
 <script type="module" src="js/app.js"></script>
 </body></html>

@@ -2,8 +2,8 @@
    Lớp nền: gió, mưa, chim (sáng), côn trùng (đêm), nền giao tranh xa, tiếng máy bay. Âm đơn: nổ pháo, sấm, nổ lớn.
    Chỉ khởi động khi người xem bật "Âm thanh" (trình duyệt cần thao tác bấm). */
 export function createAudio(){
-  let AC=null,master=null,layers={},on=false;
-  const target={wind:0,rain:0,birds:0,insects:0,battle:0,plane:0};
+  let AC=null,master=null,layers={},on=false,self=null;
+  const target={wind:0,rain:0,birds:0,insects:0,battle:0,plane:0,chim:0};
   const rnd=()=>Math.random()*2-1;
   function buf(sec,fill){const sr=AC.sampleRate,n=Math.floor(sec*sr),b=AC.createBuffer(1,n,sr);fill(b.getChannelData(0),sr,n);
     const d=b.getChannelData(0),f=Math.floor(sr*.4);for(let i=0;i<f;i++){const w=i/f;d[i]=d[i]*w+d[n-f+i]*(1-w)}return b}
@@ -21,17 +21,23 @@ export function createAudio(){
       for(let k=0;k<40;k++){const s=Math.floor(Math.random()*n),r=8+Math.floor(Math.random()*14);for(let j=0;j<r;j++){const o=s+Math.floor(j*sr*.07);for(let i=0;i<300&&o+i<n;i++)d[o+i]+=rnd()*.12*Math.exp(-i/60)}}});
     const plane=buf(4,(d,sr,n)=>{let lp=0;for(let i=0;i<n;i++){const t=i/sr;const x=Math.sin(2*Math.PI*62*t)+.6*Math.sin(2*Math.PI*124*t+1)+.3*Math.sin(2*Math.PI*93*t);lp+=(x*.5+rnd()*.3-lp)*.08;d[i]=lp*.35*(1+.15*Math.sin(t*9))}});
     layers={wind:loop(wind),rain:loop(rain),birds:loop(birds),insects:loop(insects),battle:loop(battle),plane:loop(plane)};
+    // tiếng chim buổi sáng (tệp mp3): giải mã khi bật âm thanh lần đầu
+    const fs=self&&self.fileSrc;if(fs&&fs.chim)fs.fetchBuf(fs.chim,'chim').then(b=>AC.decodeAudioData(b)).then(buf=>{layers.chim=loop(buf)}).catch(()=>{});
   }
-  const BASE={wind:.45,rain:.55,birds:.5,insects:.35,battle:.6,plane:.5};
+  const BASE={wind:.45,rain:.55,birds:.5,insects:.35,battle:.6,plane:.5,chim:.9};
   function shot(sec,fill,vol,delay=0){if(!on||!AC)return;const b=buf(sec,fill);const s=AC.createBufferSource();s.buffer=b;const g=AC.createGain();g.gain.value=vol;s.connect(g).connect(master);s.start(AC.currentTime+delay)}
-  return{
+  self={
+    fileSrc:null,
     get on(){return on},
     enable(v){on=v;if(v&&!AC)build();if(AC){if(v)AC.resume();else AC.suspend()}},
-    set(m){Object.assign(target,m)},
+    set(m){Object.assign(target,m);if(m.birds!=null)target.chim=m.birds},
     tick(dt){if(!on||!AC)return;const k=Math.min(1,dt*1.5);for(const n in layers){const g=layers[n].gain;g.value+=(BASE[n]*(target[n]||0)-g.value)*k}},
     boom(dist=800,size=1){const d=Math.max(.15,Math.min(1,600/Math.max(200,dist)));
       shot(2.2,(a,sr,n)=>{let lp=0;for(let i=0;i<n;i++){lp+=(rnd()-lp)*(.04+.1*d);a[i]=lp*4*Math.exp(-i/sr*(2.2-size*.6))*(i<sr*.01?i/(sr*.01):1)}},.5*d*size,dist/1500)},
     blast(){shot(6,(a,sr,n)=>{let lp=0,l2=0;for(let i=0;i<n;i++){lp+=(rnd()-lp)*.03;l2+=(lp-l2)*.05;a[i]=(l2*9+lp*2)*Math.exp(-i/sr*.7)*(i<sr*.02?i/(sr*.02):1)}},1,0.25)},
     thunder(delay=1){shot(5,(a,sr,n)=>{let lp=0;for(let i=0;i<n;i++){lp+=(rnd()-lp)*.025;const t=i/sr;a[i]=lp*6*Math.exp(-t*.8)*(.4+.6*Math.abs(Math.sin(t*7+Math.sin(t*3))))}},.5,delay)}
   };
+  // khi đã có tiếng chim thật thì giảm tiếng chim tổng hợp
+  const tk=self.tick;self.tick=dt=>{if(layers.chim){target.birds=target.birds*.25}tk(dt)};
+  return self;
 }

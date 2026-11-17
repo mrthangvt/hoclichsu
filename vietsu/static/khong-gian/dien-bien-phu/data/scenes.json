@@ -137,24 +137,38 @@
    "shots": [
     {
      "id": "castor_sky",
-     "dur": 28,
+     "dur": 16,
+     "target": "may_bay",
+     "tz": 0,
+     "az": 110,
+     "el": 6,
+     "dist": 230,
+     "daz": -40,
+     "high": false,
+     "blend": 0,
+     "cut": false,
+     "fov": 42
+    },
+    {
+     "id": "du_roi",
+     "dur": 16,
      "target": [
-      -1100,
-      0
+      -1000,
+      600
      ],
-     "tz": 300,
-     "az": 40,
-     "el": 8,
-     "dist": 2600,
-     "daz": -20,
-     "high": true,
-     "blend": 4,
+     "tz": 150,
+     "az": 200,
+     "el": 10,
+     "dist": 900,
+     "daz": 20,
+     "high": false,
+     "blend": 5,
      "cut": false,
      "fov": 40
     },
     {
      "id": "airfield",
-     "dur": 28,
+     "dur": 26,
      "target": [
       -1510,
       -120
@@ -165,13 +179,13 @@
      "dist": 1700,
      "daz": 25,
      "high": false,
-     "blend": 4,
+     "blend": 5,
      "cut": false,
      "fov": 40
     },
     {
      "id": "three_sectors_overview",
-     "dur": 34,
+     "dur": 32,
      "target": [
       -900,
       -1300
@@ -182,7 +196,7 @@
      "dist": 10500,
      "daz": 12,
      "high": true,
-     "blend": 4,
+     "blend": 6,
      "cut": false,
      "fov": 40
     }
@@ -203,7 +217,7 @@
      "text": "Từ cuộc đổ quân đường không, quân Pháp củng cố Điện Biên Phủ thành một hệ thống phòng ngự gồm nhiều cứ điểm liên hoàn."
     },
     {
-     "t": 32,
+     "t": 34,
      "text": "Sân bay, công sự, lô cốt, chiến hào và hàng rào dây thép gai lần lượt được dựng lên giữa lòng chảo."
     },
     {
@@ -214,8 +228,8 @@
    "actions": [
     {
      "do": "castor",
-     "t0": 2,
-     "t1": 40
+     "t0": 0,
+     "t1": 34
     },
     {
      "do": "reveal",
@@ -1155,7 +1169,7 @@
      "fov": 40
     },
     {
-     "id": "A1_topdown",
+     "id": "A1_ho_boc_pha",
      "dur": 30,
      "target": [
       -26,
@@ -1163,9 +1177,9 @@
      ],
      "tz": 0,
      "az": 150,
-     "el": 78,
-     "dist": 700,
-     "daz": 25,
+     "el": 34,
+     "dist": 170,
+     "daz": 40,
      "high": false,
      "blend": 4,
      "cut": false,
@@ -1215,7 +1229,11 @@
      "text": "Đêm 6 tháng 5, khối bộc phá phát nổ."
     },
     {
-     "t": 82,
+     "t": 74,
+     "text": "Sau tiếng nổ, đỉnh đồi A1 để lại một hố lớn, khói lửa bốc cao giữa đêm (hình dạng hố là minh họa)."
+    },
+    {
+     "t": 96,
      "text": "Trận đánh trên đồi A1 góp phần mở đường cho đợt tổng tiến công cuối cùng."
     }
    ],
