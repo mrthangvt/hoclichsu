@@ -141,6 +141,47 @@ const faceTo=(dx,dy)=>Math.atan2(dx,-dy);              // hướng (Blender) →
 const UP14=new THREE.Vector3(0,1.4,0);
 // Mỗi nhân vật/hiệu ứng thuộc một NHÓM; trạng thái chiến trường (setState) bật/tắt nhóm. PTS[nhóm] = điểm đầu/cuối đường đạn.
 let GRP='legacy';const PTS={},GSIDE={},ACT=new Set();const PT=v=>{(PTS[GRP]||(PTS[GRP]=[])).push(v)};
+/* ---- thế cầm súng: đặt súng theo hai bàn tay mỗi lần cập nhật động tác ----
+   Mô hình súng GD10: nòng theo trục +Z (đầu nòng +Z, báng −Z), mặt trên +Y, tay cầm súng ở khoảng z ≈ −0.33.
+   Khi hai tay cùng giữ súng (khoảng cách 0,18–0,8 m): báng/tay cầm ở tay phải, nòng hướng về tay trái (tay đỡ ốp lót).
+   Khi động tác không cầm súng (bơi, chèo, nhặt đồ, ngồi nghỉ, ném lựu đạn…): súng đeo chéo sau lưng. */
+const GUN_BACK=/^(Boi|BoiVaoBo|DapNuoc|ChevThuyen|NgoiNghi|NhatDo|KeoVat|VuonLay|ThaXuong|NemLuuDan|NemLuuDanDung|NgaXuong|TrungDan|NhaoRaTruoc|NhayTuongXuong)/;
+const GRIP_L=new THREE.Vector3(0,-.02,-.33),BACK_L=new THREE.Vector3(0,.08,-.05);
+const _gR=new THREE.Vector3(),_gL=new THREE.Vector3(),_gD=new THREE.Vector3(),_gY=new THREE.Vector3(),_gX=new THREE.Vector3(),_gU=new THREE.Vector3(0,1,0),
+  _gM=new THREE.Matrix4(),_gQ=new THREE.Quaternion(),_gP=new THREE.Vector3(),_gS=new THREE.Vector3(),_gI=new THREE.Matrix4(),_gO=new THREE.Vector3(),
+  _a=new THREE.Vector3(),_b=new THREE.Vector3(),_c=new THREE.Vector3(),_d=new THREE.Vector3();
+const GUN_OFF={};   // độ lệch súng so với xương tay phải, đo một lần cho mỗi phe từ tư thế đứng ngắm (DungNgam)
+function handLinePose(bn,sc,outP,outQ){bn.RightHand.getWorldPosition(_gR);bn.LeftHand.getWorldPosition(_gL);_gD.subVectors(_gL,_gR).normalize();
+  _gY.copy(_gU).addScaledVector(_gD,-_gD.dot(_gU)).normalize();_gX.crossVectors(_gY,_gD);_gM.makeBasis(_gX,_gY,_gD);outQ.setFromRotationMatrix(_gM);
+  outP.copy(_gR).addScaledVector(_gD,.05).addScaledVector(_gY,-.02).sub(_gO.copy(GRIP_L).multiplyScalar(sc).applyQuaternion(outQ))}
+function calibGun(side,src,CL){if(GUN_OFF[side]!==undefined)return GUN_OFF[side];GUN_OFF[side]=null;
+  const inst=SkeletonUtils.clone(src.scene);const bn={};let gun=null;inst.traverse(o=>{if(/^Sung_/.test(o.name))gun=o;const m=/^mixamorig:?(RightHand|LeftHand)$/.exec(o.name);if(m)bn[m[1]]=o});
+  const c=CL.DungNgam||CL.DungBan;if(!gun||!bn.RightHand||!bn.LeftHand||!c)return null;const m=new THREE.AnimationMixer(inst);const a=m.clipAction(c);a.play();m.setTime(.4);inst.updateMatrixWorld(true);
+  const sc=gun.getWorldScale(new THREE.Vector3()).x,P=new THREE.Vector3(),Qn=new THREE.Quaternion();handLinePose(bn,sc,P,Qn);
+  const G=new THREE.Matrix4().compose(P,Qn,new THREE.Vector3(sc,sc,sc));GUN_OFF[side]=bn.RightHand.matrixWorld.clone().invert().multiply(G);m.stopAllAction();return GUN_OFF[side]}
+function rigGun(h,inst,side,src,CL){let gun=null;const bn={};inst.traverse(o=>{if(/^Sung_/.test(o.name))gun=o;const m=/^mixamorig:?(RightHand|LeftHand|Spine2|LeftArm|RightArm|Neck|Hips)$/.exec(o.name);if(m)bn[m[1]]=o});
+  const off=calibGun(side,src,CL);if(!gun||!bn.RightHand||!bn.LeftHand||!off)return;inst.updateMatrixWorld(true);gun.getWorldScale(_gS);gun.removeFromParent();h.add(gun);
+  h.userData.gun={g:gun,bn,off,inst,yaw:0,sc:_gS.x/Math.abs(h.getWorldScale(_gP).x||1),hold:true}}
+const GUN_LOW=/^(KhomChe|NupQuanSat|QuyNghi|NamNapDan|DungNapDan|BoThap|TruonToi)/;   // cầm súng thấp, nòng chúc xuống
+function aimGun(h){const G=h.userData.gun;if(!G||!G.g.visible)return;const bn=G.bn;
+  let clip='';for(const k in h.userData.acts){if(h.userData.acts[k].getEffectiveWeight()>.5){clip=k;break}}
+  // hướng ngực: từ vai phải sang vai trái × trục hông→cổ
+  const sp=bn.Spine2||bn.Hips;sp.getWorldPosition(_a);bn.LeftArm.getWorldPosition(_b);bn.RightArm.getWorldPosition(_c);(bn.Neck||sp).getWorldPosition(_d);
+  const sr=_b.sub(_c).normalize(),up=_d.sub(bn.Hips.getWorldPosition(_gS)).normalize(),fwd=_gX.crossVectors(sr,up).normalize().clone();
+  const sq=G.sc*h.getWorldScale(_gO).x;
+  if(GUN_BACK.test(clip)){G.mode='B';
+    _gD.copy(up).multiplyScalar(.82).addScaledVector(sr,-.55).normalize();_gY.copy(fwd).negate();_gY.addScaledVector(_gD,-_gD.dot(_gY)).normalize();
+    _gX.crossVectors(_gY,_gD);_gM.makeBasis(_gX,_gY,_gD);_gQ.setFromRotationMatrix(_gM);
+    _gP.copy(_a).addScaledVector(fwd,-.2).sub(_gO.copy(BACK_L).multiplyScalar(sq).applyQuaternion(_gQ))}
+  else{bn.RightHand.getWorldPosition(_gR);bn.LeftHand.getWorldPosition(_gL);const dist=_gR.distanceTo(_gL);_gD.subVectors(_gL,_gR).normalize();
+    const hf=_d.set(0,0,1).applyQuaternion(h.getWorldQuaternion(_gQ));hf.y=0;hf.normalize();   // hướng nhân vật được đặt (về phía mục tiêu)
+    if(GUN_LOW.test(clip)){G.mode='L';_gD.copy(hf).multiplyScalar(.82).addScaledVector(_gU,-.57).addScaledVector(sr,-.15).normalize()}       // thấp, chếch xuống đất
+    else if(dist>.2&&dist<.62&&_gD.dot(hf)>.5&&_gD.y>-.5){G.mode='H';                                                           // tay trái đỡ nòng: theo hai tay
+      const err=Math.atan2(_gD.x*hf.z-_gD.z*hf.x,_gD.x*hf.x+_gD.z*hf.z);G.yaw=Math.max(-.8,Math.min(.8,(G.yaw||0)-err*.6));G.inst.rotation.y=G.yaw}   // xoay người cho nòng súng hướng về mục tiêu
+    else{G.mode='F';_gD.copy(hf).addScaledVector(_gU,-.08).normalize()}                                                             // ngắm thẳng về phía trước
+    _gY.copy(_gU).addScaledVector(_gD,-_gD.dot(_gU)).normalize();_gX.crossVectors(_gY,_gD);_gM.makeBasis(_gX,_gY,_gD);_gQ.setFromRotationMatrix(_gM);
+    _gP.copy(_gR).addScaledVector(_gD,.05).addScaledVector(_gY,-.02).sub(_gO.copy(GRIP_L).multiplyScalar(sq).applyQuaternion(_gQ))}
+  _gM.compose(_gP,_gQ,_gS.setScalar(sq));_gI.copy(h.matrixWorld).invert();_gM.premultiply(_gI);_gM.decompose(G.g.position,G.g.quaternion,G.g.scale)}
 function spawn(side,clip,bx,by,rot,{z=null,gun=true,flash=false,parent=scene,mirror=false,extra=null}={}){
   const inst=SkeletonUtils.clone(side==='Q'?gQ.scene:gV.scene);const h=new THREE.Group();h.add(inst);
   if(mirror)inst.scale.x=-1;
@@ -149,9 +190,9 @@ function spawn(side,clip,bx,by,rot,{z=null,gun=true,flash=false,parent=scene,mir
   const CL=(side==='V'&&gV.animations.length)?clipsV:clips;
   for(const cn of [clip,...(extra||[])]){const c=CL[cn]||CL.QuyBan;const a=m.clipAction(c);a.play();a.time=Math.random()*c.duration;acts[cn]=a;if(cn!==clip)a.setEffectiveWeight(0)}
   h.userData.acts=acts;h.userData.meshes=[];inst.traverse(o=>{if(o.isMesh){o.castShadow=false;h.userData.meshes.push(o)}});h.userData.sh=false;
-  if(!gun)inst.traverse(o=>{if(/^Sung_/.test(o.name))o.visible=false});
-  if(flash&&gun){let g=null;inst.traverse(o=>{if(/^Sung_/.test(o.name))g=o});
-    if(g){const sp=new THREE.Sprite(FLASH_MAT);sp.scale.setScalar(.55);sp.position.set(0,.03,.95);sp.visible=false;sp.userData={per:.35+Math.random()*.6,t:Math.random(),side,grp:GRP};g.add(sp);flashes.push(sp)}}
+  if(!gun)inst.traverse(o=>{if(/^Sung_/.test(o.name))o.visible=false});else if(!mirror)rigGun(h,inst,side,side==='Q'?gQ:gV,CL);
+  if(flash&&gun){let g=null;h.traverse(o=>{if(/^Sung_/.test(o.name))g=o});
+    if(g){const sp=new THREE.Sprite(FLASH_MAT);sp.scale.setScalar(.55);sp.position.set(0,.16,1.05);sp.visible=false;sp.userData={per:.35+Math.random()*.6,t:Math.random(),side,grp:GRP};g.add(sp);flashes.push(sp)}}
   h.userData.grp=GRP;GSIDE[GRP]=side;if(parent===scene)NPC.push(h);return h}
 
 /* ================= THỊ XÃ QUẢNG TRỊ 1972: nhà, cây, công sự ngoài thành (theo ảnh tư liệu + đường OSM) =================
@@ -803,7 +844,7 @@ function anchor(kind,i=0){
   return {pos:h.position.clone(),head:npcHead(h),dir,obj:h,count:list.length}}
 const API={RIVER:[RIVER_A,RIVER_B],AMB,THREE,scene,camera,controls,renderer,B,R,MOBILE,VIEWS,INFO,STATES,WATER_Y,
   setState,setEnv,getState:()=>STATE,flare,boomAt:(bx,by,big)=>spawnBoom(B(bx,by,0),big),anchor,go,showInfo,groundAt,
-  snapNight:()=>{NIGHT=NIGHT_T;applyLight()},towers:()=>TW.map(t=>t.broken&&t.broken.visible),setReduce:v=>{FX.reduce=!!v},setWeather:v=>{WX.user=v?1:0},weather:()=>({user:WX.user,scene:WX.scene,k:WX.k}),setIntact,intact:()=>INTACT,setLayer,layer:()=>LAYER,layerOf:st=>(STATES[st]||{}).layer||(STATES[st]||{}).layerOpt||null,flag:v=>{flag.visible=!!v},setLabels:v=>{showLbl=!!v;$('lbtn').classList.toggle('on',showLbl)},
+  aimAll:()=>{for(const m of mixers){m.update(.016);const r=m.getRoot().parent;if(r&&r.userData.gun){r.updateMatrixWorld(true);aimGun(r)}}},  snapNight:()=>{NIGHT=NIGHT_T;applyLight()},towers:()=>TW.map(t=>t.broken&&t.broken.visible),setReduce:v=>{FX.reduce=!!v},setWeather:v=>{WX.user=v?1:0},weather:()=>({user:WX.user,scene:WX.scene,k:WX.k}),setIntact,intact:()=>INTACT,setLayer,layer:()=>LAYER,layerOf:st=>(STATES[st]||{}).layer||(STATES[st]||{}).layerOpt||null,flag:v=>{flag.visible=!!v},setLabels:v=>{showLbl=!!v;$('lbtn').classList.toggle('on',showLbl)},
   audio:()=>({on:audioOn,AC,listener,SND,mkBuf}),setAudio,onAudio:f=>audioHooks.push(f),
   stopTween:()=>{tween=null},setWalk,walking:()=>walking,tickHooks,stateHooks,infoHooks,viewHooks,counts:()=>({town:[TOWN.houses,TOWN.trees,TOWN.trench,TOWN.sand],npc:NPC.length,mixers:mixers.length,boom:boomFx.length,bombs:bombs.length,flares:flares.length,children:scene.children.length,calls:renderer.info.render.calls,geo:renderer.info.memory.geometries,tex:renderer.info.memory.textures})};
 window.__QT=API;   // để kiểm thử
@@ -824,7 +865,7 @@ renderer.setAnimationLoop(()=>{
     for(const m of mixers){const r=m.getRoot().parent;r.getWorldPosition(tmpV);const d2=tmpV.distanceToSquared(camP);
       if(r.parent===scene){if(!ACT.has(r.userData.grp)){r.visible=false;continue}_sph.center.copy(tmpV);_sph.center.y+=1;r.visible=d2<FAR2&&_fr.intersectsSphere(_sph);if(!r.visible)continue}else if(!r.parent.visible)continue;
       const sh=!MOBILE&&d2<170*170;if(r.userData.sh!==sh&&r.userData.meshes){r.userData.sh=sh;for(const o of r.userData.meshes)o.castShadow=sh}
-      m._acc=(m._acc||0)+dt;if(d2<150*150||(d2<500*500?m._acc>.1:m._acc>.25)){m.update(m._acc);m._acc=0}}
+      m._acc=(m._acc||0)+dt;if(d2<150*150||(d2<500*500?m._acc>.1:m._acc>.25)){m.update(m._acc);m._acc=0;if(r.userData.gun&&d2<260*260){r.updateMatrixWorld(true);aimGun(r)}}}
     updFlashes(dt);
     updSmoke(dt);updTracers(dt);updBoom(dt);updPlanes(T,dt);updTanks(dt);
     if(FX.on&&!INTACT&&T>nextBoom){spawnBoom(randomTarget(),Math.random()<FX.big);nextBoom=T+R(FX.gap[0],FX.gap[1])}

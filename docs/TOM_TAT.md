@@ -115,3 +115,9 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - Xuất lại GLB theo `blender/xuat_web.py`, nén meshopt; mẫu nhân vật V2 và các NLA track tiếp tục dùng cho web. Cây thư viện thêm lá thưa ô liu xám; mái ngói nâu xám, mái tôn xám cũ.
 - Cây và nhà tạo bằng mã web: giảm độ bão hoà lá, làm gồ ghề tán thay khối đa diện lớn; hạ màu ngói và tôn.
 - Bản cập nhật nằm trên nhánh `gpt/sa-ban-gd10-cay-mai-sung`, chờ anh Thắng duyệt PR trước khi merge và cập nhật GitHub Pages.
+
+## Lấy toạ độ OpenStreetMap cho sa bàn (dành cho Codex/ChatGPT)
+- Đổi toạ độ: `python3 tools/osm_sang_sa_ban.py <vĩ độ> <kinh độ>` hoặc `python3 tools/osm_sang_sa_ban.py file.geojson > ket_qua.json`. Kết quả là toạ độ sa bàn (m, Blender X/Y); sang three.js dùng `B(x,y,z)=(x,z,−y)`.
+- Kiểm tra: Đài tưởng niệm giữa Thành cổ ra ≈ (0, 0); Cổng Tiền ≈ (0, −250).
+- Dữ liệu sẵn có: `docs/du-lieu/thanh_co_quang_tri_osm.geojson` (thành, hào, tường, sông, điểm mốc), `docs/du-lieu/osm_local.json` (sông, đường), `vietsu/static/khong-gian/thanh-co-quang-tri/data/osm_roads.json`.
+- Ghi nguồn "© OpenStreetMap contributors (ODbL)" khi dùng dữ liệu.

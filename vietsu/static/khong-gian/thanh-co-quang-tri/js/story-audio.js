@@ -17,13 +17,15 @@ export function createStoryAudio(api){
       for(let k=0;k<900;k++){const s=Math.floor(Math.random()*n);const L=Math.floor(sr*.008);for(let i=0;i<L&&s+i<n;i++)d[s+i]+=rnd()*.5*Math.exp(-i/L*4)}loopFix(d,sr,n)});
     layers={};for(const [k,buf] of Object.entries({wind,water,rain})){const a=new THREE.Audio(listener);a.setBuffer(buf);a.setLoop(true);a.setVolume(0);a.play();layers[k]=a}
   }
+  let dk=1;
   api.onAudio(on=>{if(on)build()});
   return {
     set(mix){if(mix)Object.assign(target,mix)},
     reset(){Object.assign(target,{battle:1,wind:0,water:0,rain:0})},
-    tick(dt){const k=Math.min(1,dt*1.2);const w=api.weather().k;const eff={battle:target.battle,wind:Math.max(target.wind,w*.8),water:target.water,rain:Math.max(target.rain,w)};for(const n in cur)cur[n]+=(eff[n]-cur[n])*k;
+    tick(dt,vo){const k=Math.min(1,dt*1.2);dk+=((vo?.45:1)-dk)*Math.min(1,dt*3);   /* hạ nền khi đang có giọng đọc */
+      const w=api.weather().k;const eff={battle:target.battle,wind:Math.max(target.wind,w*.8),water:target.water,rain:Math.max(target.rain,w)};for(const n in cur)cur[n]+=(eff[n]-cur[n])*k;
       api.AMB.battle=cur.battle;const {SND,on}=api.audio();if(!on)return;
-      if(SND.ambNode)SND.ambNode.setVolume(.55*cur.battle);
-      if(layers)for(const n in layers)layers[n].setVolume(BASE[n]*cur[n])}
+      if(SND.ambNode)SND.ambNode.setVolume(.55*cur.battle*dk);
+      if(layers)for(const n in layers)layers[n].setVolume(BASE[n]*cur[n]*dk)}
   };
 }
