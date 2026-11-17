@@ -115,3 +115,12 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - Xuất lại GLB theo `blender/xuat_web.py`, nén meshopt; mẫu nhân vật V2 và các NLA track tiếp tục dùng cho web. Cây thư viện thêm lá thưa ô liu xám; mái ngói nâu xám, mái tôn xám cũ.
 - Cây và nhà tạo bằng mã web: giảm độ bão hoà lá, làm gồ ghề tán thay khối đa diện lớn; hạ màu ngói và tôn.
 - Bản cập nhật nằm trên nhánh `gpt/sa-ban-gd10-cay-mai-sung`, chờ anh Thắng duyệt PR trước khi merge và cập nhật GitHub Pages.
+
+## Sa bàn Điện Biên Phủ 1954 (nhánh `claude/dien-bien-phu-1954`, 17/11/2026)
+- Trang: `vietsu/static/khong-gian/dien-bien-phu/` → `/khong-gian/dien-bien-phu/`. three.js 0.160 tự host + DRACOLoader (GLB nén Draco xuất thẳng từ Blender).
+- Nguồn: `/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/Dien-Bien-Phu-1954/DBP_3D/DienBienPhu_1954_GD2.blend` (README_SaBan_DBP.txt cùng thư mục). Kịch bản: `Kich_Ban_Dien_Bien_Phu_Dau_An_Non_Song.docx`.
+- Toạ độ: gốc 21.39166 N, 103.01811 E; Blender X Đông, Y Bắc, Z lên, mét; Z=0 ↔ cao độ 480 m; độ cao phóng ×1,5. Đổi sang three `B(x,y,z) → (x, z, -y)`.
+- Dữ liệu: `models/static.glb` (địa hình DEM thật, sông Nậm Rốm, cứ điểm, hào, bản nhà sàn), `models/mau.glb` (xe thồ, dân công, pháo M101/75, bộ đội, lính Pháp, B-26, C-47), `data/scene.json` (cứ điểm, bản, trận địa ta, đường kéo pháo/xe thồ, camera 8 cảnh lấy từ Blender), `data/kichban.json` (tiêu đề + lời bình cảnh Mở đầu, 06–12, chú thích cứ điểm), `data/cay.bin` (≈186 nghìn cây, Int16×5), `tex/matdat_*.jpg`.
+- Vị trí Huguette, Claudine, Junon, Bản Kéo, Hồng Cúm, các bản và trận địa pháo ta là ƯỚC LƯỢNG — cần tư liệu để chỉnh.
+- Artifact Claude: `python3 tools/build_artifact_dbp.py` → `dist_artifact_dbp/` (slug 9725451d-ad34-4c1b-9573-a0532b0396aa).
+- Chưa làm: nối link từ trang Việt Sử (cần anh Thắng duyệt vị trí, giao diện V4.6 đang khóa), nhân vật có animation trên web, hiệu ứng hào mọc dần trên web.

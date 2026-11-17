@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Điện Biên Phủ 1954</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<!--ASSETS-->
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>
+</head><body>
+<canvas id="c" tabindex="0" aria-label="Sa bàn 3D chiến dịch Điện Biên Phủ 1954"></canvas>
+<div id="labels"></div>
+
+<div id="load"><div class="box"><div class="title"><div class="eyebrow">Không gian lịch sử</div><h1>Điện Biên Phủ 1954</h1></div>
+<div class="track"><div class="fill" id="fill"></div></div><small id="loadtxt">Đang tải sa bàn…</small></div></div>
+
+<div class="hud top">
+  <div class="card title">
+    <div class="eyebrow">Không gian lịch sử · Việt Sử</div>
+    <h1>Điện Biên Phủ – Dấu ấn non sông</h1>
+    <p>Lòng chảo Mường Thanh · 13/3 – 7/5/1954</p>
+    <span class="tag">TÁI DỰNG MÔ PHỎNG</span>
+    <a id="back" class="tag" href="../../" hidden style="margin-left:6px;border-color:var(--edge);color:var(--fg);background:rgba(255,255,255,.06);text-decoration:none">← Về Việt Sử</a>
+  </div>
+  <div class="tools">
+    <button class="chip on" id="lbtn" aria-pressed="true">Chú thích</button>
+    <button class="chip" id="bban" aria-pressed="false">Bản làng</button>
+    <button class="chip on" id="bxe" aria-pressed="true">Xe thồ chạy</button>
+  </div>
+</div>
+
+<div class="card" id="info" hidden><button class="x" id="infox" aria-label="Đóng">×</button><div id="infobody"></div></div>
+<div id="sub" hidden></div>
+
+<div class="hud bottom">
+  <div class="card story">
+    <button class="sb" id="sprev" aria-label="Cảnh trước">⏮</button>
+    <button class="sb play" id="splay" aria-label="Phát kịch bản">▶</button>
+    <button class="sb" id="snext" aria-label="Cảnh sau">⏭</button>
+    <div class="t"><b id="stitle">Theo kịch bản · 8 cảnh trên sa bàn</b><div class="bar"><span id="sbar"></span></div></div>
+  </div>
+  <div class="views" id="views">
+    <button data-v="all" class="on">Toàn cảnh</button>
+    <button data-v="bac">Phân khu Bắc</button>
+    <button data-v="tt">Phân khu Trung tâm</button>
+    <button data-v="a1">Đồi A1</button>
+    <button data-v="himlam">Him Lam</button>
+    <button data-v="decastries">Hầm Đờ Cát</button>
+    <button data-v="sanbay">Sân bay</button>
+    <button data-v="nam">Hồng Cúm</button>
+    <button data-v="keophao">Đường kéo pháo</button>
+    <button data-v="xetho">Đoàn xe thồ</button>
+  </div>
+  <div class="help">Kéo để xoay · chuột phải/2 ngón để dời · cuộn/chụm để phóng to · chạm chú thích để đọc</div>
+</div>
+<div id="fps"></div>
+<script type="module" src="js/app.js"></script>
+</body></html>
