@@ -1,0 +1,276 @@
+{
+ "_ghi_chu": "Toạ độ là hệ Blender của sa bàn (mét, gốc 21.39166N 103.01811E, X Đông, Y Bắc). confidence: OSM_HIEN_DAI = vị trí di tích hiện nay trên OpenStreetMap; UOC_LUONG_ILLUSTRATIVE = đặt theo sơ đồ minh họa, CHƯA được dùng như toạ độ lịch sử. Cần thay bằng toạ độ đã thẩm định.",
+ "places": [
+  {
+   "id": "HIM_LAM",
+   "viName": "Him Lam",
+   "frName": "Béatrice",
+   "sector": "NORTH",
+   "coordinates": [
+    720,
+    1480
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": [
+    "HimLam_1",
+    "HimLam_2",
+    "HimLam_3"
+   ]
+  },
+  {
+   "id": "DOC_LAP",
+   "viName": "Độc Lập",
+   "frName": "Gabrielle",
+   "sector": "NORTH",
+   "coordinates": [
+    -1172.3,
+    3299.5
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": [
+    "DocLap"
+   ]
+  },
+  {
+   "id": "BAN_KEO",
+   "viName": "Bản Kéo",
+   "frName": "Anne-Marie",
+   "sector": "NORTH",
+   "coordinates": [
+    -2602.7,
+    1806.8
+   ],
+   "geoSourceId": null,
+   "confidence": "UOC_LUONG_ILLUSTRATIVE",
+   "hotspot": true,
+   "saBanIds": [
+    "BanKeo"
+   ]
+  },
+  {
+   "id": "AIRFIELD",
+   "viName": "Sân bay Mường Thanh",
+   "frName": null,
+   "sector": "CENTER",
+   "coordinates": [
+    -1510,
+    -120
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": []
+  },
+  {
+   "id": "E1",
+   "viName": "Đồi E1",
+   "frName": "Dominique (tên đối ứng cần đối chiếu)",
+   "sector": "CENTER",
+   "coordinates": [
+    -355.5,
+    401.4
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": [
+    "E1"
+   ]
+  },
+  {
+   "id": "E2",
+   "viName": "Đồi E2",
+   "frName": "Dominique (cần đối chiếu)",
+   "sector": "CENTER",
+   "coordinates": [
+    -74.6,
+    526.3
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": [
+    "E2"
+   ]
+  },
+  {
+   "id": "D1",
+   "viName": "Đồi D1",
+   "frName": "Dominique 2 (cần đối chiếu)",
+   "sector": "CENTER",
+   "coordinates": [
+    58.0,
+    130.5
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": [
+    "D1"
+   ]
+  },
+  {
+   "id": "C1",
+   "viName": "Đồi C1",
+   "frName": "Éliane 1",
+   "sector": "CENTER",
+   "coordinates": [
+    33.2,
+    -499.8
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": [
+    "C1"
+   ]
+  },
+  {
+   "id": "C2",
+   "viName": "Đồi C2",
+   "frName": "Éliane 4 (cần đối chiếu)",
+   "sector": "CENTER",
+   "coordinates": [
+    330.6,
+    -670.1
+   ],
+   "geoSourceId": null,
+   "confidence": "UOC_LUONG_ILLUSTRATIVE",
+   "hotspot": true,
+   "saBanIds": [
+    "C2"
+   ]
+  },
+  {
+   "id": "F",
+   "viName": "Đồi F",
+   "frName": null,
+   "sector": "CENTER",
+   "coordinates": [
+    251.9,
+    -835.9
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": [
+    "F"
+   ]
+  },
+  {
+   "id": "A1",
+   "viName": "Đồi A1",
+   "frName": "Éliane 2",
+   "sector": "CENTER",
+   "coordinates": [
+    -25.9,
+    -938.8
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": [
+    "A1"
+   ]
+  },
+  {
+   "id": "HQ_DE_CASTRIES",
+   "viName": "Sở chỉ huy Đờ Cát (De Castries)",
+   "frName": null,
+   "sector": "CENTER",
+   "coordinates": [
+    -720.4,
+    -703.3
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": true,
+   "saBanIds": [
+    "PC_GONO"
+   ]
+  },
+  {
+   "id": "HUGUETTE",
+   "viName": "Cụm Huguette",
+   "frName": "Huguette",
+   "sector": "CENTER",
+   "coordinates": [
+    -1172.3,
+    645.8
+   ],
+   "geoSourceId": null,
+   "confidence": "UOC_LUONG_ILLUSTRATIVE",
+   "hotspot": true,
+   "saBanIds": [
+    "Huguette_1",
+    "Huguette_2",
+    "Huguette_3",
+    "Huguette_5",
+    "Huguette_6",
+    "Huguette_7"
+   ]
+  },
+  {
+   "id": "CLAUDINE",
+   "viName": "Cụm Claudine",
+   "frName": "Claudine",
+   "sector": "CENTER",
+   "coordinates": [
+    -1358.9,
+    -1234.0
+   ],
+   "geoSourceId": null,
+   "confidence": "UOC_LUONG_ILLUSTRATIVE",
+   "hotspot": true,
+   "saBanIds": [
+    "Claudine",
+    "Junon"
+   ]
+  },
+  {
+   "id": "SOUTH",
+   "viName": "Hồng Cúm",
+   "frName": "Isabelle",
+   "sector": "SOUTH",
+   "coordinates": [
+    -840.6,
+    -5878.1
+   ],
+   "geoSourceId": null,
+   "confidence": "UOC_LUONG_ILLUSTRATIVE",
+   "hotspot": true,
+   "saBanIds": [
+    "Isabelle"
+   ]
+  },
+  {
+   "id": "NAM_ROM",
+   "viName": "Sông Nậm Rốm",
+   "frName": null,
+   "sector": "ALL",
+   "coordinates": [
+    -560,
+    -1600
+   ],
+   "geoSourceId": "osm",
+   "confidence": "OSM_HIEN_DAI",
+   "hotspot": false,
+   "saBanIds": []
+  },
+  {
+   "id": "VIET_MINH_HQ",
+   "viName": "Sở Chỉ huy chiến dịch (Mường Phăng)",
+   "frName": null,
+   "sector": "HQ",
+   "coordinates": null,
+   "geoSourceId": null,
+   "confidence": "BOI_CANH_RIENG",
+   "hotspot": true,
+   "saBanIds": []
+  }
+ ]
+}
