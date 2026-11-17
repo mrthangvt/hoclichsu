@@ -83,9 +83,10 @@ const M_BRICKBIT=new THREE.MeshStandardMaterial({map:tex(ASSETS.tex+'gach.webp',
 const M_STONE=new THREE.MeshStandardMaterial({map:tex(ASSETS.tex+'dat.webp',1.5,true),roughness:.9,color:0xb8b0a4});
 const M_HOLE=new THREE.MeshStandardMaterial({color:0x1a1612,roughness:1});
 const M_IRON=new THREE.MeshStandardMaterial({color:0x3b2e26,roughness:.75,metalness:.35});
-const M_TIN=new THREE.MeshStandardMaterial({color:0x4a2a18,roughness:.8,metalness:.3,side:THREE.DoubleSide});
+const M_TIN=new THREE.MeshStandardMaterial({color:0x62625b,roughness:.9,metalness:.3,side:THREE.DoubleSide});
+const M_TILE=new THREE.MeshStandardMaterial({color:0x655950,roughness:.95,side:THREE.DoubleSide});
 const M_WOOD=new THREE.MeshStandardMaterial({color:0x2a2018,roughness:.95});
-const BYMAT={rocks_ground_08:null,M_DatHoBom:M_CRATER,M_DongGachVun:M_RUBBLE,M_TuongNgoai:M_WALL_OUT,M_LoiGach:M_WALL_CORE,M_LoDan:M_HOLE,M_DaVienCong:M_STONE,M_ThepRi:M_IRON,M_TonRi:M_TIN,M_GoChay:M_WOOD};
+const BYMAT={rocks_ground_08:null,M_DatHoBom:M_CRATER,M_DongGachVun:M_RUBBLE,M_TuongNgoai:M_WALL_OUT,M_LoiGach:M_WALL_CORE,M_LoDan:M_HOLE,M_DaVienCong:M_STONE,M_ThepRi:M_IRON,M_TonRi:M_TIN,M_NgoiCu:M_TILE,M_GoChay:M_WOOD};
 const M_WATER=new THREE.MeshStandardMaterial({color:0x1b4560,emissive:0x061826,roughness:.12,metalness:.1,normalMap:WN,normalScale:new THREE.Vector2(.6,.6)});
 const WET=[M_GROUND,M_CRATER,M_RUBBLE,M_WALL_OUT,M_WALL_CORE,M_BRICK,M_STONE];WET.forEach(m=>{m.userData.r0=m.roughness;m.userData.c0=m.color.clone()});
 const solid=[],obstacles=[];let planes=[],turrets=[],ground=null;
@@ -167,7 +168,7 @@ const TOWN=(()=>{
       const x=cx+u*c-v*s,y=cy+u*s+v*c;if(blocked(x,y))return null;const k=cellOf(x,-y);if(k<0||occ[k])return null;if(HG.ob[k]>HG.h[k]+.5&&HG.ob[k]>-1e8)return null;if(HG.h[k]<-.45&&HG.h[k]>-1e8)return null;cells.push(k)}
     if(mark)for(const k of cells){occ[k]=1;if(h)HG.ob[k]=Math.max(HG.ob[k],HG.h[k]+h)}return cells}
   const houses=[];const MULT=MOBILE?1.6:1;
-  const WALL=['#ddd6c6','#d2c7b0','#e4ddcf','#c4b8a0','#cdbda2','#d8cdb5'].map(c=>new THREE.Color(c)),TILE=['#8c4b33','#7d4431','#965a3c','#82503a'].map(c=>new THREE.Color(c)),
+  const WALL=['#ddd6c6','#d2c7b0','#e4ddcf','#c4b8a0','#cdbda2','#d8cdb5'].map(c=>new THREE.Color(c)),TILE=['#64574e','#625953','#716057','#68615a'].map(c=>new THREE.Color(c)),
         TIN=['#7e7c74','#6c6b65','#8b857a','#7a5c46'].map(c=>new THREE.Color(c));
   const pick=a=>a[(Math.random()*a.length)|0];
   function place(x,y,w,d,h,th,kind){const g=groundAt(x,y);if(g<-.4)return false;if(!rect(x,y,w+1.2,d+1.2,th,false))return false;rect(x,y,w+.6,d+.6,th,true,h+(kind==='shop'?.5:1.6));
@@ -183,7 +184,7 @@ const TOWN=(()=>{
         u+=(kind==='shop'?w+R(.2,1.2):w+R(4,10))*MULT}}}}
   // cây xanh: quanh nhà (vườn) + rải thêm ở vùng trống
   const trees=[];function tree(x,y,big){if(blocked(x,y))return;const k=cellOf(x,-y);if(k<0||occ[k])return;const g=groundAt(x,y);if(g<-.4)return;occ[k]=1;
-    trees.push({x,y,g,h:big?R(10,16):R(6,10),r:big?R(4.2,6.2):R(2.8,4.4),c:new THREE.Color().setHSL(R(.2,.3),R(.4,.6),R(.24,.36)),bare:Math.random()<.3})}
+    trees.push({x,y,g,h:big?R(10,16):R(6,10),r:big?R(4.2,6.2):R(2.8,4.4),c:new THREE.Color().setHSL(R(.20,.26),R(.16,.28),R(.19,.27)),bare:Math.random()<.3})}
   for(let gq=0;gq<(MOBILE?60:170);gq++){const a=R(0,6.28),r=R(330,860),cx=Math.cos(a)*r,cy=Math.sin(a)*r;for(let k=0;k<(MOBILE?5:9);k++)tree(cx+R(-28,28),cy+R(-28,28),Math.random()<.4)}   // lùm cây, vườn
   for(const hs of houses)if(Math.random()<(MOBILE?.4:.85)){for(let k=0;k<(Math.random()<.4?2:1);k++){const a=R(0,6.28),r=Math.max(hs.w,hs.d)*.5+R(3,8);tree(hs.x+Math.cos(a)*r,hs.y+Math.sin(a)*r,Math.random()<.25)}}
   for(let k=0;k<(MOBILE?350:1100);k++){const a=R(0,6.28),r=R(330,870);tree(Math.cos(a)*r,Math.sin(a)*r,Math.random()<.35)}
@@ -198,13 +199,19 @@ const TOWN=(()=>{
     for(let k=0;k<(MOBILE?120:260)&&inner.length<(MOBILE?22:42);k++){const rot=Math.random()<.5;const w=rot?R(8,11):R(28,52),d=rot?R(28,52):R(8,11);const x=R(-215+w/2,215-w/2),y=R(-215+d/2,215-d/2);
       if(!ok(x,y,w,d))continue;occ2.push({x,y,w,d});inner.push({x,y,g:groundAt(x,y),w,d,h:R(3.6,5),th:0,roof:(Math.random()<.5?pick(TILE):pick(TIN)).clone(),wall:pick(WALL).clone()})}
     for(let k=0;k<(MOBILE?40:110);k++){const x=R(-215,215),y=R(-215,215);if(occ2.some(o=>Math.abs(o.x-x)<o.w/2+3&&Math.abs(o.y-y)<o.d/2+3))continue;
-      trees.push({x,y,g:groundAt(x,y),h:R(7,12),r:R(3,5),c:new THREE.Color().setHSL(R(.2,.3),R(.4,.6),R(.24,.34)),bare:true,inner:true})}}
+      trees.push({x,y,g:groundAt(x,y),h:R(7,12),r:R(3,5),c:new THREE.Color().setHSL(R(.20,.26),R(.16,.28),R(.19,.25)),bare:true,inner:true})}}
   /* ---- dựng InstancedMesh ---- */
   const n=houses.length;const geoW=new THREE.BoxGeometry(1,1,1).translate(0,.5,0);const geoR=new THREE.ConeGeometry(.7071,1,4,1).rotateY(Math.PI/4).translate(0,.5,0);
   const mW=new THREE.MeshStandardMaterial({roughness:.92,color:0xffffff}),mR=new THREE.MeshStandardMaterial({roughness:.82,color:0xffffff,flatShading:true});
   const IW=new THREE.InstancedMesh(geoW,mW,n),IR=new THREE.InstancedMesh(geoR,mR,n);
-  const trunkG=new THREE.CylinderGeometry(.18,.28,1,5).translate(0,.5,0),crownG=new THREE.IcosahedronGeometry(1,0);
-  const IT=new THREE.InstancedMesh(trunkG,new THREE.MeshStandardMaterial({color:0x3d2e22,roughness:1}),trees.length),IC=new THREE.InstancedMesh(crownG,new THREE.MeshStandardMaterial({roughness:.95,flatShading:true,color:0xffffff}),trees.length);
+  const trunkG=new THREE.CylinderGeometry(.18,.28,1,5).translate(0,.5,0),crownG=new THREE.IcosahedronGeometry(1,2);
+  // Tán lá gồ ghề, nhiều hõm nhỏ; giữ một lưới dùng chung để rải cây nhẹ.
+  const cp=crownG.attributes.position;
+  for(let i=0;i<cp.count;i++){const x=cp.getX(i),y=cp.getY(i),z=cp.getZ(i);
+    const f=1+.13*Math.sin(x*13+y*7)*Math.cos(z*11-y*5)+.07*Math.sin(z*23+x*17);
+    cp.setXYZ(i,x*f,y*f,z*f)}
+  crownG.computeVertexNormals();
+  const IT=new THREE.InstancedMesh(trunkG,new THREE.MeshStandardMaterial({color:0x3d2e22,roughness:1}),trees.length),IC=new THREE.InstancedMesh(crownG,new THREE.MeshStandardMaterial({roughness:.98,flatShading:false,color:0xffffff}),trees.length);
   const ITr=new THREE.InstancedMesh(geoW,new THREE.MeshStandardMaterial({color:0x2a2018,roughness:1}),Math.max(1,trench.length)),ISd=new THREE.InstancedMesh(new THREE.TorusGeometry(3.2,.55,5,14),new THREE.MeshStandardMaterial({color:0x6e5c42,roughness:1,flatShading:true}),Math.max(1,sand.length));
   const m4=new THREE.Matrix4(),q=new THREE.Quaternion(),v=new THREE.Vector3(),sc=new THREE.Vector3(),Y=new THREE.Vector3(0,1,0),Z0=new THREE.Vector3(0,0,0);
   const set=(im,i,x,y,z,rot,sx,sy,sz)=>{v.copy(B(x,y,0));v.y=z;q.setFromAxisAngle(Y,rot);sc.set(sx,sy,sz);m4.compose(v,q,sc);im.setMatrixAt(i,m4)};
