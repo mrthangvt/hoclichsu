@@ -1,0 +1,43 @@
+name: V4.11 — Kiểm tra bộ đề và khóa giao diện
+on:
+  push:
+    branches: [gpt/v4.11-bo-de-on-su]
+  pull_request:
+    paths:
+      - vietsu/static/on-thi/**
+      - vietsu/static/v411.js
+      - vietsu/tools/build_v411.py
+      - vietsu/tools/check_v411_exam.py
+      - .github/workflows/check-v411.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-exam:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kiểm tra 93 câu hỏi, nguồn và các tệp giao diện
+        run: python3 vietsu/tools/check_v411_exam.py
+      - name: Kiểm tra cú pháp JavaScript
+        run: |
+          node --check vietsu/static/v411.js
+          node --check vietsu/static/on-thi/app.js
+          node --check vietsu/static/on-thi/grade10.js
+          node --check vietsu/static/on-thi/grade11.js
+          node --check vietsu/static/on-thi/grade12.js
+      - name: Dựng bản V4.11 kế thừa V4.9
+        run: python3 vietsu/tools/build_v411.py
+      - name: So khớp toàn vẹn giao diện cũ
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path("vietsu/static")
+          old=(s/"Viet_Su_Timeline_V4.9_Offline.html").read_text()
+          new=(s/"Viet_Su_Timeline_V4.11_Offline.html").read_text()
+          marker='<script defer src="static/v411.js"></script>'
+          assert new.count(marker)==1
+          assert new.replace(marker,'',1)==old, "V4.11 đã sửa cấu trúc giao diện"
+          assert (s/"on-thi/index.html").is_file()
+          print("PASS: Giao diện V4.9/V4.6 không đổi; chỉ thêm 1 script điều hướng")
+          PY
