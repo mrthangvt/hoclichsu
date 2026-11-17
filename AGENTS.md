@@ -9,7 +9,7 @@ Làm việc chung với Claude qua repo này.
 
 **KHÓA GIAO DIỆN VIỆT SỬ — CHỈ CHỦ DỰ ÁN ĐƯỢC YÊU CẦU MỞ KHÓA (17/11/2026)**
 - Giao diện V4.6 là **chuẩn cố định**: KHÔNG tự đổi bố cục/trật tự khối, menu, tab, Timeline, Popup, font, màu, responsive, icon, ảnh hay hiệu ứng. Không tạo demo mới có giao diện khác rồi trình bày như bản nâng cấp.
-- Với V4.7 và các phiên bản tiếp theo, thay đổi dữ liệu/API/CMS là được; thay đổi UI phải có **yêu cầu cụ thể của chủ dự án**. Nếu một chức năng mới chưa có vị trí hiển thị được duyệt, giữ ở backend và báo rõ, tuyệt đối không tự chèn panel/tab.
+- Với V4.7, V4.8 và các phiên bản tiếp theo, thay đổi dữ liệu/API/CMS là được; thay đổi UI phải có **yêu cầu cụ thể của chủ dự án**. Nếu một chức năng mới chưa có vị trí hiển thị được duyệt, giữ ở backend và báo rõ, tuyệt đối không tự chèn panel/tab.
 - `vietsu/tools/build_v47.py` phải sao chép HTML V4.6 **byte-for-byte** và kiểm tra SHA-256; CI kiểm tra quy tắc. Bản offline độc lập khác layout V4.6 đã bị gỡ.
 - Nếu cần cập nhật giao diện theo yêu cầu, đối chiếu trước/sau trên desktop & mobile và xác nhận thay đổi có chủ đích. Xem `docs/CHANGELOG_V4.7.md`.
 
