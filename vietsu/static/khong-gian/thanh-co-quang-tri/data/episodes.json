@@ -390,7 +390,7 @@
    "duration_sec": 90,
    "plan": "Camera từ phía Nam; lớp bật/tắt hướng tiến công và khu vực kiểm soát. Dùng lại trạng thái wall_fight với cường độ tăng dần.",
    "panel": {
-    "seeing": "Quân VNCH tiến từ phía Nam và phía Đông, có xe tăng, máy bay; QĐND phòng thủ trên mặt thành và công sự. Lớp mũi tên vàng: hướng phản công; khung đỏ: khu vực QĐND giữ.",
+    "seeing": "Quân VNCH tiến từ phía Nam và phía Đông: xe tăng đi cùng bộ binh, máy bay bay thấp ném bom; QĐND phòng thủ trên mặt thành và công sự. Mũi tên vàng: hướng phản công; khung đỏ: khu vực QĐND giữ.",
     "facts": [
      {
       "text": "Ngày 13/6/1972 quyết định mở cuộc hành quân Lam Sơn 72, huy động 4 sư đoàn; sáng 28/6 mở màn với sự chi viện của không quân, hải quân Mỹ.",
@@ -426,20 +426,48 @@
      ]
     },
     {
-     "t": 20,
+     "t": 16,
      "p": [
-      40,
-      -1050,
-      140
+      60,
+      -760,
+      60
      ],
      "l": [
       0,
-      -280,
-      6
+      -300,
+      30
      ]
     },
     {
-     "t": 38,
+     "t": 24,
+     "follow": "tank",
+     "i": 1,
+     "off": [
+      24,
+      7,
+      3.2
+     ],
+     "look": [
+      30,
+      3
+     ]
+    },
+    {
+     "t": 40,
+     "follow": "tank",
+     "i": 1,
+     "off": [
+      20,
+      -8,
+      3
+     ],
+     "look": [
+      30,
+      4
+     ]
+    },
+    {
+     "t": 48,
      "follow": "vRun",
      "i": 2,
      "off": [
@@ -453,7 +481,7 @@
      ]
     },
     {
-     "t": 56,
+     "t": 60,
      "follow": "qWall",
      "i": 6,
      "high": true,
@@ -544,7 +572,7 @@
     },
     {
      "t": 40,
-     "text": "Lực lượng QĐND tổ chức phòng thủ thị xã và Thành cổ. Bấm nút \"Lớp hướng\" để bật/tắt mũi tên hướng tiến công và khu vực kiểm soát."
+     "text": "Xe tăng tiến cùng bộ binh, máy bay ném bom vào thị xã và Thành cổ. Lực lượng QĐND tổ chức phòng thủ."
     },
     {
      "t": 60,
@@ -580,7 +608,8 @@
     ],
     "simulated": [
      "Nhịp nổ, vị trí điểm nổ là dàn dựng; không thể hiện thương vong.",
-     "Trạng thái trước tàn phá là phục dựng giản lược."
+     "Trạng thái trước tàn phá là phục dựng giản lược.",
+     "Hai chòi sắt quan sát trong thành gãy gập sau các loạt bom (giây 23 và 45) là dàn dựng minh hoạ."
     ]
    },
    "state": "under_fire",
@@ -682,6 +711,10 @@
      }
     },
     {
+     "t": 23,
+     "towersDown": 1
+    },
+    {
      "t": 40,
      "gap": [
       1.8,
@@ -691,6 +724,10 @@
      "audio": {
       "battle": 0.6
      }
+    },
+    {
+     "t": 45,
+     "towersDown": 2
     },
     {
      "t": 52,
@@ -1474,13 +1511,13 @@
      "follow": "qRest",
      "i": 0,
      "off": [
-      2.4,
-      1.2,
-      0.6
+      -2.7,
+      1.5,
+      0.5
      ],
      "look": [
-      0.5,
-      -0.9
+      0,
+      -0.55
      ]
     },
     {
@@ -1488,13 +1525,13 @@
      "follow": "qRest",
      "i": 1,
      "off": [
-      2.2,
-      -1.0,
-      0.7
+      -2.5,
+      -1.4,
+      0.6
      ],
      "look": [
-      0.5,
-      -0.9
+      0,
+      -0.55
      ]
     },
     {

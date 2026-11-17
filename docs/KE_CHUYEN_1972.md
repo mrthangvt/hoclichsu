@@ -106,3 +106,13 @@ Các mốc đã đối chiếu: 30/3/1972 mở màn chiến dịch Trị–Thiê
 - **Cờ giải phóng** (MTDTGP: đỏ trên, xanh dưới, sao vàng) trên **Cổng Tiền** ở mọi trạng thái QĐND kiểm soát Thành cổ (`flagQ` trong `STATES`): night_river_supply, wall_fight, counter_start, under_fire, bunker_night, rain_ruins, final. Cảnh 02 kéo cờ ở giây 50; cảnh 09 hạ cờ ở giây 56 (rút quân đêm 15/9). Căn cứ: ảnh tư liệu "rạng sáng 2/5/1972 cờ giải phóng … tung bay trên cổng Thành cổ" (Báo Lai Châu). Muốn dùng cờ đỏ sao vàng: đổi `FLAG_Q_KIEU='doSaoVang'` trong `app.js`.
 - **Cờ VNCH** (cổng Tây, cảnh 09) hiển thị **mờ** (độ trong 0,38, làm nhoè).
 - **🎬 Xem như phim** (nút trên thanh công cụ hoặc phím **H**): ẩn mọi nút, nhãn, bản đồ nhỏ; chỉ còn phụ đề + hai dải đen; khoá máy quay theo dẫn chuyện và tự phát. Thoát: **Esc**, phím H, hoặc nút "✕ Thoát xem phim" hiện ra khi di chuột/chạm màn hình. Space vẫn tạm dừng/tiếp tục.
+
+## Chỉnh sửa 17/11/2026
+- **Mái chèo:** dài hơn (×1,38), chúc xuống và chếch ra ngoài mạn; tự trượt theo tay để lưỡi chèo luôn ngập nước (`updBoats`).
+- **Pháo sáng:** giảm cường độ đèn ~10 lần (mobile thấp hơn nữa), đốm sáng nhỏ hơn; mặt nước ban đêm nhám hơn để không phản chiếu trắng xoá.
+- **Ngày ↔ đêm:** `setNight()` chỉ đặt đích, ánh sáng chuyển dần ~4 giây (`updWeather`). `API.snapNight()` dùng cho kiểm thử.
+- **Nhãn trên mũi tên** (lớp hướng): bên nào, tiến công hay rút quân, từ/về hướng nào (`arrowLabel`). Bản đồ nhỏ có ký hiệu "B ↑" (Bắc của sa bàn, lệch 16,6° so với Bắc thật).
+- **Chòi sắt:** thêm 3 chòi trong thành (`TW`); `towersDown` trong env làm gãy gập — cảnh 04 gãy lần lượt ở giây 23 và 45; các thời kỳ sau có 2 chòi gãy, 1 còn đứng; trước tàn phá đứng cả.
+- **Người ngồi nghỉ** (cảnh 07 và nhóm trú ẩn): có tấm bê tông vỡ hoặc hòm gỗ để dựa lưng (`backrest`).
+- **Cảnh 03:** xe tăng VNCH tiến cùng bộ binh từ phía Nam về sát hào (`TANK_RUN`, 2,3 m/s, tới nơi dừng bắn rồi lặp lại); máy bay bay thấp hơn, thả bom dày hơn (`PL.cool`, `PL.h`); máy quay bám theo xe tăng.
+- **Lồng tiếng:** nút "🗣 Đọc lời dẫn". Mỗi câu phụ đề phát đúng lúc câu đó hiện. Ưu tiên tệp `audio/voice/<id>-<số câu>.mp3` (liệt kê trong `audio/voice/index.json`); câu chưa có tệp thì dùng giọng đọc tiếng Việt của thiết bị. `python3 tools/xuat_loi_dan.py` xuất `docs/loi-dan/loi_dan.csv` (tên tệp, giây bắt đầu, thời lượng tối đa, lời) và cập nhật `index.json`. Nhạc chương cuối tự nhỏ lại khi đang đọc.
