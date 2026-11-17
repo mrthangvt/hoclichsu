@@ -100,6 +100,10 @@
   "nhandan2": {
    "title": "Báo Nhân Dân – Thành cổ Quảng Trị, 81 ngày đêm máu và hoa (số liệu tổng kết)",
    "url": "https://special.nhandan.vn/bao-ve-Thanh-co-Quang-Tri/index.html"
+  },
+  "coGP": {
+   "title": "Báo Lai Châu – Cuộc tiến công chiến lược năm 1972 và giải phóng Quảng Trị (ảnh tư liệu: rạng sáng 2/5/1972 cờ giải phóng trên cổng Thành cổ)",
+   "url": "https://baolaichau.vn/chinh-tri/cuoc-tien-cong-chien-luoc-nam-1972-va-giai-phong-quang-tri-bieu-hien-tap-trung-cua-nghe-thuat-chi-dao-chien-tranh-doc-lap-tu-chu-dung-dan-sang-tao-cua-dang"
   }
  },
  "episodes": [
@@ -268,11 +272,18 @@
        "vufo",
        "ttxvnTT"
       ]
+     },
+     {
+      "text": "Rạng sáng 2/5/1972, cờ giải phóng trong tay chiến sĩ Trung đoàn 9, Sư đoàn 304 tung bay trên cổng Thành cổ Quảng Trị (chú thích ảnh tư liệu).",
+      "src": [
+       "coGP"
+      ]
      }
     ],
     "simulated": [
      "Mũi tên chỉ hướng chung, không theo sơ đồ tác chiến của đơn vị nào; không mô phỏng trận đánh cụ thể.",
-     "Thành hiển thị ở trạng thái giản lược trước tàn phá."
+     "Thành hiển thị ở trạng thái giản lược trước tàn phá.",
+     "Cờ giải phóng đặt trên Cổng Tiền là minh hoạ; ảnh tư liệu không ghi cổng nào. Cờ giữ nguyên trong các cảnh QĐND kiểm soát Thành cổ (03–09)."
     ]
    },
    "state": "spring",
@@ -340,6 +351,10 @@
       "water": 0.15,
       "rain": 0
      }
+    },
+    {
+     "t": 50,
+     "flagQ": true
     }
    ],
    "lines": [
@@ -358,6 +373,10 @@
     {
      "t": 50,
      "text": "Các nguồn ghi tỉnh Quảng Trị được giải phóng hoàn toàn ngày 1/5 hoặc 2/5/1972. Lực lượng QĐND kiểm soát thị xã và Thành cổ."
+    },
+    {
+     "t": 62,
+     "text": "Rạng sáng 2/5/1972, cờ giải phóng tung bay trên cổng Thành cổ."
     }
    ]
   },
@@ -371,7 +390,7 @@
    "duration_sec": 90,
    "plan": "Camera từ phía Nam; lớp bật/tắt hướng tiến công và khu vực kiểm soát. Dùng lại trạng thái wall_fight với cường độ tăng dần.",
    "panel": {
-    "seeing": "Quân VNCH tiến từ phía Nam và phía Đông, có xe tăng, máy bay; QĐND phòng thủ trên mặt thành và công sự. Lớp mũi tên vàng: hướng phản công; khung đỏ: khu vực QĐND giữ.",
+    "seeing": "Quân VNCH tiến từ phía Nam và phía Đông: xe tăng đi cùng bộ binh, máy bay bay thấp ném bom; QĐND phòng thủ trên mặt thành và công sự. Mũi tên vàng: hướng phản công; khung đỏ: khu vực QĐND giữ.",
     "facts": [
      {
       "text": "Ngày 13/6/1972 quyết định mở cuộc hành quân Lam Sơn 72, huy động 4 sư đoàn; sáng 28/6 mở màn với sự chi viện của không quân, hải quân Mỹ.",
@@ -407,20 +426,48 @@
      ]
     },
     {
-     "t": 20,
+     "t": 16,
      "p": [
-      40,
-      -1050,
-      140
+      60,
+      -760,
+      60
      ],
      "l": [
       0,
-      -280,
-      6
+      -300,
+      30
      ]
     },
     {
-     "t": 38,
+     "t": 24,
+     "follow": "tank",
+     "i": 1,
+     "off": [
+      24,
+      7,
+      3.2
+     ],
+     "look": [
+      30,
+      3
+     ]
+    },
+    {
+     "t": 40,
+     "follow": "tank",
+     "i": 1,
+     "off": [
+      20,
+      -8,
+      3
+     ],
+     "look": [
+      30,
+      4
+     ]
+    },
+    {
+     "t": 48,
      "follow": "vRun",
      "i": 2,
      "off": [
@@ -434,7 +481,7 @@
      ]
     },
     {
-     "t": 56,
+     "t": 60,
      "follow": "qWall",
      "i": 6,
      "high": true,
@@ -525,7 +572,7 @@
     },
     {
      "t": 40,
-     "text": "Lực lượng QĐND tổ chức phòng thủ thị xã và Thành cổ. Bấm nút \"Lớp hướng\" để bật/tắt mũi tên hướng tiến công và khu vực kiểm soát."
+     "text": "Xe tăng tiến cùng bộ binh, máy bay ném bom vào thị xã và Thành cổ. Lực lượng QĐND tổ chức phòng thủ."
     },
     {
      "t": 60,
@@ -561,7 +608,8 @@
     ],
     "simulated": [
      "Nhịp nổ, vị trí điểm nổ là dàn dựng; không thể hiện thương vong.",
-     "Trạng thái trước tàn phá là phục dựng giản lược."
+     "Trạng thái trước tàn phá là phục dựng giản lược.",
+     "Hai chòi sắt quan sát trong thành gãy gập sau các loạt bom (giây 23 và 45) là dàn dựng minh hoạ."
     ]
    },
    "state": "under_fire",
@@ -663,6 +711,10 @@
      }
     },
     {
+     "t": 23,
+     "towersDown": 1
+    },
+    {
      "t": 40,
      "gap": [
       1.8,
@@ -672,6 +724,10 @@
      "audio": {
       "battle": 0.6
      }
+    },
+    {
+     "t": 45,
+     "towersDown": 2
     },
     {
      "t": 52,
@@ -1455,13 +1511,13 @@
      "follow": "qRest",
      "i": 0,
      "off": [
-      2.4,
-      1.2,
-      0.6
+      -2.7,
+      1.5,
+      0.5
      ],
      "look": [
-      0.5,
-      -0.9
+      0,
+      -0.55
      ]
     },
     {
@@ -1469,13 +1525,13 @@
      "follow": "qRest",
      "i": 1,
      "off": [
-      2.2,
-      -1.0,
-      0.7
+      -2.5,
+      -1.4,
+      0.6
      ],
      "look": [
-      0.5,
-      -0.9
+      0,
+      -0.55
      ]
     },
     {
@@ -1705,7 +1761,8 @@
     ],
     "simulated": [
      "Vị trí mũi tiến công và đường rút là minh hoạ; nhãn thời gian mềm (11–16/9).",
-     "Vị trí cờ đặt ở cổng Tây theo chú thích ảnh USMC; ngày kéo cờ ghi 15 hoặc 16/9 tuỳ nguồn."
+     "Vị trí cờ đặt ở cổng Tây theo chú thích ảnh USMC; ngày kéo cờ ghi 15 hoặc 16/9 tuỳ nguồn.",
+     "Cờ giải phóng trên Cổng Tiền hạ xuống khi QĐND rút khỏi thành (đêm 15/9); cờ VNCH hiển thị mờ."
     ]
    },
    "state": "final",
@@ -1840,6 +1897,10 @@
       "wind": 0.2,
       "water": 0
      }
+    },
+    {
+     "t": 56,
+     "flagQ": false
     },
     {
      "t": 52,

@@ -21,5 +21,3 @@ __pycache__/
 .DS_Store
 ._*
 
-# Nhạc có bản quyền: chỉ để trên máy, chưa đưa lên repo công khai
-vietsu/static/khong-gian/thanh-co-quang-tri/audio/*.mp3

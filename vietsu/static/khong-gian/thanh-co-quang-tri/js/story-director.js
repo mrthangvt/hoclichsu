@@ -47,15 +47,16 @@ export async function start(api){
     setPeriod:st=>{api.setState(st);ui.map(st);const p=(data.free_periods||[]).find(x=>x.state===st);if(p&&p.env)api.setEnv(p.env);const A={night_river_supply:{battle:.45,water:.8,wind:.3},overview:{battle:0,wind:.7,water:.25},spring:{battle:0,wind:.6,water:.2},memorial:{battle:0,wind:.4,water:.5},bunker_night:{battle:.3,wind:.3,water:0},rain_ruins:{battle:.3,wind:.4,water:0}};audio.set(Object.assign({battle:1,wind:.2,water:0,rain:0},A[st]||{}))},
     setWitness:id=>{D.wit=(data.witness||[]).find(w=>w.id===id)||data.witness[0];D.witI=0;api.setState(D.wit.state);ui.map(D.wit.state);ui.setWitness(D.wit.id,D.wit.note);if(D.wit.env)api.setEnv(D.wit.env);
       audio.set(D.wit.state==='night_river_supply'?{battle:.5,water:.9,wind:.3}:{battle:1,water:0,wind:.2});ui.setDate(D.wit.state==='night_river_supply'?'MỘT ĐÊM TIẾP VIỆN · THÁNG 7–9/1972':'THÁNG 7–9/1972 · TỔNG HỢP')},
-    nextWitness:()=>{D.witI++}
+    nextWitness:()=>{D.witI++},
+    cine:on=>{D.cine=on;if(on){if(D.mode!=='story')setMode('story');D.userCam=false;ui.showReturn(false);controls.enabled=false;setPlaying(true)}else controls.enabled=D.mode!=='witness'}
   };
   const ui=createUI(api,data,H);
   ui.setTicks(starts.map(s=>s/total));
 
-  function setPlaying(p){D.playing=p;ui.setPlaying(p)}
+  function setPlaying(p){D.playing=p;ui.setPlaying(p);if(!p&&typeof voStop==='function')voStop()}
   function goto(i,t=0,seeking=false){if(i<0||i>=list.length)return;const changed=true;/* luôn đặt lại trạng thái: tua lùi không giữ hiệu ứng của mốc sau */D.i=i;const e=list[i];
     if(changed){api.setState(e.state);ui.map(e.state);ui.setEpisode(e);audio.reset()}
-    D.t=t;D.envIdx=-1;applyEnv(e,t,true);D.fired=new Set((e.cues||[]).filter(c=>c.t<t).map(c=>c.t+c.do));D.line=-1;
+    D.t=t;D.envIdx=-1;applyEnv(e,t,true);D.fired=new Set((e.cues||[]).filter(c=>c.t<t).map(c=>c.t+c.do));D.line=-1;D.vline=-2;
     if(!seeking){D.userCam=false;ui.showReturn(false)}
     if(!D.playing&&!seeking)setPlaying(true)}
   function setMode(m){D.mode=m;ui.setMode(m);api.stopTween();if(api.walking()&&m!=='free')api.setWalk(false);
@@ -86,8 +87,19 @@ export async function start(api){
     if(!want||t<0||t>dur){if(!el.paused)el.pause();return}
     if(el.readyState>=1&&Math.abs(el.currentTime-t)>1.2)el.currentTime=Math.max(0,t);
     if(el.paused)el.play().catch(()=>{});
-    const end=e.duration_sec-m.start;let v=m.volume??.85;v*=Math.min(1,t/(m.fade_in||3));v*=Math.min(1,Math.max(0,(end-t)/(m.fade_out||5)));el.volume=Math.max(0,Math.min(1,v))}
+    const end=e.duration_sec-m.start;let v=(m.volume??.85)*(voBusy()?.4:1);v*=Math.min(1,t/(m.fade_in||3));v*=Math.min(1,Math.max(0,(end-t)/(m.fade_out||5)));el.volume=Math.max(0,Math.min(1,v))}
   window.__MUS=MUS;
+
+  /* ---------- lồng tiếng lời dẫn: ưu tiên tệp audio/voice/<id>-<số dòng>.mp3 (liệt kê trong audio/voice/index.json); thiếu tệp thì dùng giọng đọc tiếng Việt của thiết bị ---------- */
+  const VO={on:false,el:null,files:null};
+  fetch('audio/voice/index.json').then(r=>r.ok?r.json():[]).then(a=>{VO.files=new Set(a)}).catch(()=>{VO.files=new Set()});
+  function voStop(){if(VO.el){VO.el.pause();VO.el=null}try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
+  function voBusy(){return (VO.el&&!VO.el.paused&&!VO.el.ended)||(window.speechSynthesis&&speechSynthesis.speaking)}
+  function speak(e,n){voStop();if(!VO.on||n<0||!D.playing)return;const tx=e.lines[n].text;if(!tx)return;const f=e.id+'-'+String(n+1).padStart(2,'0')+'.mp3';
+    if(VO.files&&VO.files.has(f)){const el=new Audio('audio/voice/'+f);VO.el=el;el.play().catch(()=>{});return}
+    if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(tx.replace(/[\u201c\u201d\u2018\u2019\u2026·()]/g,' '));u.lang='vi-VN';
+    const v=speechSynthesis.getVoices().find(v=>/^vi/i.test(v.lang));if(v)u.voice=v;u.rate=1.08;speechSynthesis.speak(u)}
+  H.voice=on=>{VO.on=on;if(!on)voStop();else if(D.mode==='story'){const e=list[D.i];speak(e,lineAt(e,D.t))}};
 
   /* ---------- vòng lặp ---------- */
   api.tickHooks.push(rawDt=>{const dt=Math.min(rawDt,.1);audio.tick(dt);ui.tick(dt);
@@ -96,6 +108,7 @@ export async function start(api){
       for(const c of e.cues||[]){const key=c.t+c.do;if(c.t<=D.t&&!D.fired.has(key)){D.fired.add(key);fire(c)}}
       applyEnv(e,D.t,false);
       const hint=!!e.music&&!api.audio().on&&MUS.ok;const n=lineAt(e,D.t);const key=n+(hint?'h':'');
+      if(n!==D.vline){D.vline=n;speak(e,n)}
       if(key!==D.line){D.line=key;const tx=n>=0?e.lines[n].text:'';ui.subtitle(hint?(tx?tx+' · ':'')+'🔊 Bật “Âm thanh” để nghe bài hát của chương này':tx)}
       if(!D.userCam){const c=camAt(e,D.t);if(c){camera.position.copy(c.p);controls.target.copy(c.l)}}
       ui.setProgress((starts[D.i]+D.t)/total,D.t,e.duration_sec)}

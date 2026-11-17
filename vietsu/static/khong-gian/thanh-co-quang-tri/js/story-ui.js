@@ -17,6 +17,17 @@ export function createUI(api,data,H){
   const rfBtn=el('button',{class:'chip',id:'rf','aria-pressed':'false',title:'Giảm chớp sáng khi nổ'},'Giảm chớp');
   const wxBtn=el('button',{class:'chip',id:'wx','aria-pressed':'false',title:'Bật/tắt mưa giông, sấm chớp'},'⛈ Mưa giông');
   const lyBtn=el('button',{class:'chip',id:'ly','aria-pressed':'false',title:'Lớp hướng tiến công và khu vực kiểm soát',hidden:''},'➶ Lớp hướng');
+  const cineBtn=el('button',{class:'chip',id:'cine',title:'Ẩn mọi nút, xem như một bộ phim (phím H; Esc để thoát)'},'🎬 Xem như phim');tools.insertBefore(cineBtn,tools.firstChild);
+  const cineExit=el('button',{id:'cineExit','aria-label':'Thoát chế độ xem phim'},'✕ Thoát xem phim');document.body.append(cineExit);
+  const bars=el('div',{id:'cineBars','aria-hidden':'true'},'<i></i><i></i>');document.body.append(bars);
+  let cineOn=false,cineT=null;
+  function setCine(v){cineOn=!!v;document.body.classList.toggle('cine',cineOn);H.cine(cineOn);if(cineOn){pick.hidden=true;toggleDocs(false);peek()}else cineExit.classList.remove('show')}
+  function peek(){if(!cineOn)return;cineExit.classList.add('show');clearTimeout(cineT);cineT=setTimeout(()=>cineExit.classList.remove('show'),2500)}
+  cineBtn.onclick=()=>setCine(true);cineExit.onclick=()=>setCine(false);
+  addEventListener('pointermove',peek);addEventListener('pointerdown',peek);
+  addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,select,textarea'))return;if(e.code==='Escape'&&cineOn)setCine(false);else if(e.code==='KeyH')setCine(!cineOn)});
+  const voBtn=el('button',{class:'chip',id:'vo','aria-pressed':'false',title:'Đọc lời dẫn thành tiếng'},'🗣 Đọc lời dẫn');tools.insertBefore(voBtn,tools.firstChild);
+  let voOn=false;voBtn.onclick=()=>{voOn=!voOn;voBtn.classList.toggle('on',voOn);voBtn.setAttribute('aria-pressed',voOn);H.voice(voOn)};
   tools.insertBefore(rfBtn,tools.firstChild);tools.insertBefore(ccBtn,tools.firstChild);tools.insertBefore(lyBtn,tools.firstChild);tools.insertBefore(wxBtn,tools.firstChild);
   let wxOn=false;wxBtn.onclick=()=>{wxOn=!wxOn;wxBtn.classList.toggle('on',wxOn);wxBtn.setAttribute('aria-pressed',wxOn);api.setWeather(wxOn)};
   lyBtn.onclick=()=>{const st=api.getState();const L=api.layerOf(st);const on=!api.layer();api.setLayer(on?L:null);syncChips(st)};
@@ -107,6 +118,7 @@ export function createUI(api,data,H){
     else if(state==='night_river_supply'){arrow(-820,-160,-470,-80,'#e46a52');arrow(-830,20,-470,10,'#e46a52');leg='<i class="r"></i>QĐND giữ thành · mũi tên: tiếp viện qua sông (minh hoạ)'}
     else if(state==='legacy'){arrow(-820,-80,-330,-40,'#e46a52');leg='<i class="y"></i>VNCH trong thành · mũi tên: kịch bản giả định cũ'}
     else leg='Sông Thạch Hãn · hào nước · Thành cổ';
+    cx.fillStyle='#fff3d6';cx.font='600 15px sans-serif';cx.fillText('B ↑',268,18);   // hướng Bắc của sa bàn (lệch 16,6° so với Bắc thật)
     $('mmLeg').innerHTML=leg;mapState=state}
   let mapState='',camDot=[0,0,0];
   function drawCam(){const c=api.camera;const bx=c.position.x,by=-c.position.z;const d=new api.THREE.Vector3();c.getWorldDirection(d);

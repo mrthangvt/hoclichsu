@@ -99,3 +99,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .periods .chk{display:flex;gap:5px;align-items:center;font-size:12px;color:var(--fg)}
 #wx.on{background:#9db4d6;border-color:#9db4d6;color:#121820}
 @media (max-width:640px){.tools #wx,.tools #ly{padding:7px 8px}}
+/* ===== chế độ xem như phim ===== */
+body.cine .hud,body.cine #minimap,body.cine #labels,body.cine .docs,body.cine .picker,body.cine #info,body.cine #joy,body.cine #cross{display:none!important}
+body.cine #sub{bottom:calc(9vh + env(safe-area-inset-bottom,0px));font-size:clamp(15px,2.1vw,21px);background:rgba(0,0,0,.55);max-width:min(980px,calc(100vw - 40px))}
+#cineBars{display:none;position:fixed;inset:0;pointer-events:none;z-index:2}
+#cineBars i{position:absolute;left:0;right:0;height:6vh;background:#000}#cineBars i:first-child{top:0}#cineBars i:last-child{bottom:0}
+body.cine #cineBars{display:block}
+#cineExit{display:none;position:fixed;z-index:9;top:calc(14px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));background:rgba(20,15,10,.75);color:var(--fg);border:1px solid var(--edge);border-radius:99px;padding:8px 14px;font-size:13px;font-weight:600;opacity:0;transition:opacity .4s}
+body.cine #cineExit{display:block;pointer-events:none}body.cine #cineExit.show{opacity:1;pointer-events:auto}
+@media (max-width:640px){body.cine #sub{left:14px;right:14px;bottom:calc(8vh + env(safe-area-inset-bottom,0px));font-size:15px}#cineBars i{height:4vh}}
