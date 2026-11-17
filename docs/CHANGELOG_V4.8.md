@@ -18,3 +18,8 @@ Ngày 17/11/2026. Nhánh `gpt/v4.8-restore-avatar-lock-ui`, dựa trực tiếp 
 6. Chỉ khi nội dung, ảnh, giao diện và CMS được kiểm thử đầy đủ mới duyệt các PR phụ thuộc theo thứ tự rồi merge `main`.
 
 **Quan trọng:** bản ZIP xem thử V4.8 offline có 24 ảnh mới đã được tạo riêng cho chủ dự án, **không có nghĩa 24 ảnh đã được đẩy lên GitHub**. Còn thiếu nhóm V4.3 nên chưa deploy.
+
+## Nhập ZIP ngày 17/11/2026
+- Đã lưu nguyên bản offline người dùng gửi tại `archives/viet-su-v4.8/`, kèm SHA-256 và danh sách file.
+- Đã đưa 24 WebP avatar V4.5 vào đúng đường dẫn website; không còn cần chủ dự án tự chép bộ 24 ảnh.
+- Chưa có 17 ảnh V4.3 nên giữ PR Draft, chưa build/deploy hoàn chỉnh. Không thay thế sa bàn bằng bản cũ trong ZIP.
