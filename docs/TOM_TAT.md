@@ -87,3 +87,9 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 4. Chốt cách ghi mốc thời gian lịch sử cho kịch bản.
 5. Tuỳ chọn: Cổng Hậu/Tả/Hữu chi tiết như Cổng Tiền; cầu qua hào; chỉnh sông/thành theo dữ liệu bản đồ thật (tâm thành 16.7538404, 107.1895488).
 6. ~~Ghép vào site Việt Sử~~ — đã gắn: popup Không gian lịch sử → Thành cổ Quảng Trị → "Vào sa bàn 3D". Lưu ý sẵn có của V4.1: CSP chặn Leaflet từ unpkg nên bản đồ OpenStreetMap không tải (rơi về bản đồ véc-tơ offline) — cần tự host Leaflet hoặc mở CSP cho unpkg.
+
+## GD10 — cây, mái và súng (17/11/2026)
+- Bản Blender GD10 đã lưu riêng trên máy, không đưa `.blend` lên repo. Dựng lại M16 cho VNCH và AK47 cho QĐND, giữ gắn xương tay; 30 M16 và 43 AK47 trong scene Blender.
+- Xuất lại GLB theo `blender/xuat_web.py`, nén meshopt; mẫu nhân vật V2 và các NLA track tiếp tục dùng cho web. Cây thư viện thêm lá thưa ô liu xám; mái ngói nâu xám, mái tôn xám cũ.
+- Cây và nhà tạo bằng mã web: giảm độ bão hoà lá, làm gồ ghề tán thay khối đa diện lớn; hạ màu ngói và tôn.
+- Bản cập nhật nằm trên nhánh `gpt/sa-ban-gd10-cay-mai-sung`, chờ anh Thắng duyệt PR trước khi merge và cập nhật GitHub Pages.
