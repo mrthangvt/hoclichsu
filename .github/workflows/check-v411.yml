@@ -1,0 +1,68 @@
+name: V4.11 — Kiểm tra bộ đề và khóa giao diện
+on:
+  push:
+    branches: [gpt/v4.11-bo-de-on-su]
+  pull_request:
+    paths:
+      - vietsu/static/on-thi/**
+      - vietsu/static/v411.js
+      - vietsu/tools/build_v411.py
+      - vietsu/tools/check_v411_exam.py
+      - .github/workflows/check-v411.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-exam:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kiểm tra 93 câu hỏi, nguồn và các tệp giao diện
+        run: python3 vietsu/tools/check_v411_exam.py
+      - name: Kiểm tra cú pháp JavaScript
+        run: |
+          node --check vietsu/static/v411.js
+          node --check vietsu/static/on-thi/app.js
+          node --check vietsu/static/on-thi/grade10.js
+          node --check vietsu/static/on-thi/grade11.js
+          node --check vietsu/static/on-thi/grade12.js
+      - name: Dựng bản V4.11 kế thừa V4.9
+        run: python3 vietsu/tools/build_v411.py
+      - name: So khớp toàn vẹn giao diện cũ
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path("vietsu/static")
+          old=(s/"Viet_Su_Timeline_V4.9_Offline.html").read_text()
+          new=(s/"Viet_Su_Timeline_V4.11_Offline.html").read_text()
+          marker='<script defer src="static/v411.js"></script>'
+          assert new.count(marker)==1
+          assert new.replace(marker,'',1)==old, "V4.11 đã sửa cấu trúc giao diện"
+          assert (s/"on-thi/index.html").is_file()
+          print("PASS: Giao diện V4.9/V4.6 không đổi; chỉ thêm 1 script điều hướng")
+          PY
+
+      - name: Cài Playwright Chromium để kiểm tra thao tác thực tế
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Kiểm tra menu, ôn tập, thi thử, giao diện điện thoại
+        run: node vietsu/tools/smoke_v411_browser.cjs
+      - name: Gói bản Offline V4.11 cho chủ dự án kiểm tra
+        if: success()
+        run: |
+          mkdir -p Viet_Su_V4.11_Offline/static
+          cp vietsu/static/Viet_Su_Timeline_V4.11_Offline.html Viet_Su_V4.11_Offline/index.html
+          cp vietsu/static/v42.css vietsu/static/v42.js vietsu/static/v43.css vietsu/static/v43.js vietsu/static/v44.js vietsu/static/v45.css vietsu/static/v45.js vietsu/static/v46.css vietsu/static/v46.js vietsu/static/v49-data.js vietsu/static/v49.js vietsu/static/v411.js Viet_Su_V4.11_Offline/static/
+          cp -r vietsu/static/avatar-v45 vietsu/static/v43 vietsu/static/v49 Viet_Su_V4.11_Offline/static/
+          cp -r vietsu/static/assets vietsu/static/khong-gian Viet_Su_V4.11_Offline/
+          cp -r vietsu/static/on-thi Viet_Su_V4.11_Offline/
+          zip -qr Viet_Su_V4.11_Offline.zip Viet_Su_V4.11_Offline
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Viet-Su-V4.11-Offline-and-QA
+          path: |
+            Viet_Su_V4.11_Offline.zip
+            v411_screenshots/*.png
+          if-no-files-found: warn
