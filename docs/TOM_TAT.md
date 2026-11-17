@@ -1,3 +1,25 @@
+> **Triển khai V4.9 (17/11/2026):** chủ dự án yêu cầu đưa V4.9 lên website công khai. Nhánh triển khai hợp nhất main mới nhất với V4.9, giữ nguyên sa bàn hiện có trên main. Kiểm tra build và đủ tài nguyên trước khi merge; theo dõi Pages sau merge.
+
+> **V4.9 (17/11/2026):** Theo yêu cầu chủ dự án, khôi phục ảnh menu Hồ Chí Minh, 4 thumbnail Không gian lịch sử và cách chọn ảnh 80 hồ sơ từ bản V4.5 đã gửi; dùng bản đồ véc-tơ. Giữ bố cục V4.6 và sa bàn. Nhánh gpt/v4.9-anh-va-ban-do-vector dựa trên V4.8, chờ duyệt PR. Xem docs/CHANGELOG_V4.9.md.
+
+> **17/11/2026 — đã đủ tài nguyên V4.8:** nhập 17 WebP V4.3 từ ZIP gốc chủ dự án cung cấp. Kiểm tra strict đạt 41/41; build V4.8 thành công, HTML khớp SHA-256 V4.6. Các ghi chú thiếu ảnh bên dưới là lịch sử. Chờ duyệt PR và các nhánh phụ thuộc trước khi đưa lên Pages.
+
+> **17/11/2026 — đã nhập bản ZIP V4.8 của chủ dự án:** lưu nguyên gói tại `archives/viet-su-v4.8/`, đã đưa đủ 24 avatar V4.5 vào `vietsu/static/avatar-v45/`. Còn thiếu 17 ảnh V4.3; chưa triển khai GitHub Pages. Thông tin dưới đây nói 24 avatar chưa có trên GitHub là trạng thái trước lần nhập này.
+
+> **V4.8 – bổ sung Avatar 24/41:** Chủ dự án đã gửi ZIP có đủ 24 WebP Avatar V4.5 (6 nhóm, kích thước 64/128/256/512). Nhánh `gpt/v4.8-restore-avatar-lock-ui` kế thừa V4.7, bản dựng khóa HTML y hệt V4.6; `tools/check_v48_assets.py` chặn build nếu thiếu ảnh. **Còn thiếu 17 WebP V4.3 và 24 WebP mới CHƯA có trên GitHub, cần người dùng bổ sung đúng đường dẫn.** Không merge/deploy cho đến khi đủ ảnh và duyệt. Xem `docs/CHANGELOG_V4.8.md`.
+
+> **V4.7 – 17/11/2026: CHỐT KHÓA GIAO DIỆN THEO V4.6 (nhánh `gpt/v4.7-period-profiles`, PR #8 Draft).** Theo yêu cầu chủ dự án, trang V4.7 phải giống hệt HTML V4.6; bộ dựng sao chép byte-for-byte và so SHA-256. Đã gỡ bản demo HTML độc lập khác giao diện và CSS/JS tự thêm Popup. V4.7 giữ 19 giai đoạn × 13 chuyên mục trong dữ liệu, CMS `/admin/periods` nhưng **chưa đưa thanh chuyên mục mới lên giao diện công khai**. Chỉ thay UI khi chủ dự án yêu cầu. **41 WebP kế thừa vẫn thiếu trên GitHub; chưa đủ điều kiện xác nhận build full / merge.** Xem `docs/CHANGELOG_V4.7.md`.
+
+> **V4.6 – nhánh gpt/v4.6-avatar-cms-scenes (chờ duyệt):** Popup Không gian lịch sử có nút vào sa bàn 3D nếu địa điểm có asset thật (Thành cổ Quảng Trị hiện có), Popup Full mở cân đối, Hồ Chí Minh lấy avatar chương 7, nhân vật Trung Quốc chưa có trang phục phù hợp dùng hình mặc định trung tính; có công cụ quản trị avatar tại `/admin/avatar` (cắt/zoom/khử nền trắng đơn giản/duyệt ảnh). Backend có API lưu avatar Local, không ảnh hưởng CMS cũ; GitHub Pages chỉ hiển thị tĩnh. **Ảnh V4.3/V4.5 (41 WebP) vẫn cần được upload lên nhánh trước merge.** Xem `docs/CHANGELOG_V4.6.md`. V4.6 kế thừa các nhánh V4.2–V4.5 chưa merge.
+
+> **V4.5 đang chờ duyệt:** 6 avatar AI minh họa theo vai trò (hoàng đế, quan văn, võ tướng, quý nữ, nữ võ tướng, phụ nữ), nền WebP trong suốt; khung chuẩn 1:1 cho danh sách 80 nhân vật và Popup. Ảnh riêng đã duyệt có quyền ưu tiên. Đã kiểm tra desktop và mobile. **Bộ WebP cần được chép từ ZIP lên GitHub trước khi merge**. Phải merge PR V4.2–V4.4 trước. Xem docs/CHANGELOG_V4.5.md. Ảnh minh họa KHÔNG PHẢI chân dung lịch sử xác thực.
+
+> **V4.4 (gpt/v4.4-hcm-avatar-4-5, chờ duyệt):** hoán đổi avatar hai giai đoạn 4 (1941–1945) và 5 (1945–1954) trên desktop + mobile, không sửa mốc/nội dung; đã kiểm tra Chromium 1440/390/320. Xem [CHANGELOG_V4.4.md](CHANGELOG_V4.4.md). V4.4 kế thừa V4.3 (và V4.2); cần duyệt đủ ảnh WebP của V4.3 trước khi merge các bản theo thứ tự.
+
+> **Bổ sung V4.3 — đang chờ duyệt:** chuyển ba avatar Hồ Chí Minh giữa các chặng 1924–1941, 1941–1945, 1954–1969; bổ sung 17 ảnh WebP biểu tượng trang phục và Mũ & Tóc theo từng triều đại và quân phục năm 1972. CSS/JS, build, Backend và cấu hình Pages đã nằm trên nhánh `gpt/v4.3-icons-hcm`, **nhưng 17 tệp ảnh cần được anh chép từ ZIP lên GitHub trước khi merge**. Xem `docs/CHANGELOG_V4.3.md` và `HUONG_DAN_UPLOAD_MAC.md` trong gói ZIP. Nhánh V4.3 kế thừa V4.2, vì vậy cần nhập V4.2 trước. Các ảnh là tranh minh họa chưa được thẩm định sử học hoàn toàn.
+
+> **Nâng cấp V4.2 (nhánh gpt/v4.2-timeline-khong-gian-ui, chờ duyệt):** bản đồ véc-tơ cố định, 2 nút lọc, thumbnail vector trong cột địa điểm, nút sa bàn Thành cổ Quảng Trị ngay trên Timeline 1972, cải thiện thư viện trang phục/Mũ & tóc và các liên kết nhân vật, nới chặng Hồ Chí Minh 1941–1945, tối ưu mobile, build tĩnh V4.2 và Backend. Xem [CHANGELOG_V4.2.md](CHANGELOG_V4.2.md). **Không thay đổi mô hình GLB hay kịch bản chiến đấu; ảnh đại diện chưa phải ảnh tư liệu.**
+
 # Việt Sử V4.1 + sa bàn 3D Thành cổ Quảng Trị 1972: tóm tắt dự án
 
 Cập nhật: 16/11/2026. Đây là bản tóm tắt chính; mọi AI đọc trước khi làm.

@@ -1,0 +1,29 @@
+name: Tạo bộ xem thử OFFLINE V4.7 – giao diện V4.6
+on:
+  push:
+    branches: ["gpt/v4.7-period-profiles"]
+    paths:
+      - "vietsu/tools/build_v47_locked_preview.py"
+      - ".github/workflows/offline-v47-locked.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tạo bản offline từ giao diện đã khóa V4.6
+        run: python3 vietsu/tools/build_v47_locked_preview.py
+      - name: Đóng gói ZIP
+        run: |
+          cd vietsu
+          zip -qr -9 ../Viet_Su_V4.7_Giao_Dien_V4.6_Offline.zip preview-v47-locked
+          unzip -t ../Viet_Su_V4.7_Giao_Dien_V4.6_Offline.zip | tail -1
+      - name: Cung cấp file ZIP tải về
+        uses: actions/upload-artifact@v4
+        with:
+          name: Viet_Su_V4.7_Offline_Giao_Dien_V4.6
+          path: Viet_Su_V4.7_Giao_Dien_V4.6_Offline.zip
+          if-no-files-found: error
+          retention-days: 30

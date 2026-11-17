@@ -11,6 +11,7 @@ vietsu/data/*.sqlite3
 vietsu/data/*.sqlite3-*
 vietsu/data/*.tmp
 vietsu/data/ads_config.json
+vietsu/data/avatar_overrides_local.json
 vietsu/static/uploads/
 vietsu/backups/
 vietsu/sao-luu/
@@ -21,3 +22,5 @@ __pycache__/
 .DS_Store
 ._*
 
+# V4.7 bản nháp CMS, không đưa lên GitHub
+vietsu/data/v47_period_overrides_local.json

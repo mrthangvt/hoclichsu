@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Chuẩn hóa Avatar | Việt Sử CMS V4.6</title>
+<link rel="stylesheet" href="/static/fonts/be-vietnam-pro.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#10242b;color:#efe1c7;font:14px/1.6 "Be Vietnam Pro",system-ui,sans-serif}
+header{padding:22px clamp(16px,3vw,42px);border-bottom:1px solid #435d61;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+header h1{font-size:22px;margin:0;color:#e7c68b}a{color:#eed29c}main{max-width:1280px;margin:auto;padding:24px clamp(12px,2vw,30px)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,360px);gap:20px}
+section{background:#18323a;border:1px solid #436066;border-radius:16px;padding:20px;min-width:0}
+h2{margin:0 0 14px;color:#e7c68b;font-size:17px}p.note{font-size:12px;color:#aebebc}
+label{display:block;font-size:12px;font-weight:700;color:#edd09e;margin:13px 0 6px}
+input,textarea,select{width:100%;padding:11px;background:#10262d;color:#f9e9d0;border:1px solid #557077;border-radius:9px;font:inherit}
+input[type="checkbox"]{width:auto;margin-right:8px;accent-color:#d8b87e}
+input[type="file"]{padding:9px}
+.buttons{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+button{padding:11px 14px;background:#e7bf80;color:#233235;font:800 12px "Be Vietnam Pro",sans-serif;border:1px solid #f0d49d;border-radius:10px;cursor:pointer}
+button.alt{background:#294a52;color:#f4dfbd;border-color:#668487}
+button:disabled{opacity:.5;cursor:not-allowed}
+.work{display:flex;gap:18px;align-items:start;flex-wrap:wrap}
+canvas{display:block;width:min(100%,512px);aspect-ratio:1;border:1px dashed #ab8f66;border-radius:13px;background-image:linear-gradient(45deg,#30444a 25%,transparent 25%),linear-gradient(-45deg,#30444a 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#30444a 75%),linear-gradient(-45deg,transparent 75%,#30444a 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
+.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.preview{display:flex;gap:14px;align-items:end;flex-wrap:wrap;border-top:1px solid #425b5f;margin-top:18px;padding-top:16px}
+.preview figure{margin:0;text-align:center}.preview img{object-fit:contain;background:#233f47;border:1px solid #aa8b5e;border-radius:12px}.preview figcaption{font-size:11px;color:#baccbd;margin-top:5px}
+#status{white-space:pre-wrap;min-height:30px;color:#e1c18e}#status.bad{color:#f5a99d}
+@media(max-width:920px){.layout{grid-template-columns:1fr}}@media(max-width:580px){.controls{grid-template-columns:1fr}.preview{justify-content:space-around}}
+</style></head><body>
+<header><h1>VIỆT SỬ · CHUẨN HÓA AVATAR V4.6</h1><a href="/admin">← Quay lại CMS</a></header>
+<main><div class="layout">
+<section>
+<h2>1. Ảnh gốc và cắt hình chuẩn</h2>
+<p class="note">Khung 1:1 — đầu, mũ, tóc và vai ngực phải nằm gọn trong ảnh. Tải PNG/WebP có nền trong suốt để đẹp nhất; công cụ chỉ hỗ trợ khử nền trắng đơn giản, không phải tách nền AI.</p>
+<label for="source">Ảnh gốc</label><input type="file" id="source" accept="image/png,image/jpeg,image/webp">
+<div class="controls">
+<div><label for="zoom">Phóng to / thu nhỏ</label><input id="zoom" type="range" min="0.4" max="3" step="0.025" value="1"></div>
+<div><label for="offsetX">Dịch ngang</label><input id="offsetX" type="range" min="-256" max="256" value="0" step="1"></div>
+<div><label for="offsetY">Dịch dọc</label><input id="offsetY" type="range" min="-256" max="256" value="0" step="1"></div>
+</div>
+<label><input type="checkbox" id="removeWhite">Làm trong suốt nền trắng đơn giản (kiểm tra tóc, mũ trước khi lưu)</label>
+<canvas id="crop" width="512" height="512" aria-label="Khung xem trước ảnh avatar 512 pixel"></canvas>
+<div class="buttons"><button id="resetCrop" class="alt" type="button">Đặt lại khung cắt</button><button id="export" class="alt" type="button">Tải WebP 512px</button></div>
+<div class="preview"><figure><img id="prev64" width="64" height="64" alt="Xem trước 64 pixel"><figcaption>Timeline 64px</figcaption></figure><figure><img id="prev96" width="96" height="96" alt="Xem trước 96 pixel"><figcaption>Danh sách 96px</figcaption></figure><figure><img id="prev160" width="160" height="160" alt="Xem trước 160 pixel"><figcaption>Popup 160px</figcaption></figure></div>
+</section>
+<section>
+<h2>2. Gán ảnh cho nhân vật</h2>
+<label for="token">Mã quản trị</label><input type="password" id="token" autocomplete="off" placeholder="VIETSU_ADMIN_TOKEN">
+<div class="buttons"><button type="button" id="load" class="alt">Kết nối CMS & tải danh sách</button></div>
+<label for="personId">Mã nhân vật</label><input list="people" id="personId" placeholder="ylan, trungtrac, hochiminh..." pattern="[a-z0-9_-]+" maxlength="64"><datalist id="people"></datalist>
+<p class="note">Dùng ID hồ sơ trong Timeline; ví dụ <code>ylan</code>, <code>buithixuan</code>, <code>hochiminh</code>.</p>
+<label for="caption">Chú thích ảnh</label><input id="caption" maxlength="240" placeholder="Tranh minh họa nhân vật thời Lý">
+<label for="credit">Nguồn / tác giả</label><input id="credit" maxlength="240" placeholder="Tên tác giả, bộ sưu tập hoặc nguồn do anh cung cấp">
+<label for="sourceType">Loại ảnh</label><select id="sourceType"><option value="ai-minh-hoa">Minh họa AI</option><option value="tranh-phuc-dung">Tranh phục dựng</option><option value="anh-tu-lieu">Ảnh tư liệu</option><option value="minh-hoa">Minh họa khác</option></select>
+<label for="sourceUrl">Liên kết nguồn HTTPS (nếu có)</label><input id="sourceUrl" type="url" placeholder="https://..." maxlength="1200">
+<label><input type="checkbox" id="approved">Đã kiểm tra và duyệt dùng làm ảnh công khai</label>
+<div class="buttons"><button id="save" type="button">Lưu ảnh & thông tin</button><button id="revert" class="alt" type="button">Trở về ảnh mặc định</button></div>
+<div id="status" role="status" aria-live="polite"></div>
+<p class="note">Ảnh lưu trên Backend Local trong thư mục uploads (không đẩy lên GitHub). Bản GitHub Pages không lưu được ảnh. Anh cần sao lưu uploads + dữ liệu CMS trước khi chuyển máy.</p>
+</section>
+</div></main>
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const canvas=$('crop'),ctx=canvas.getContext('2d',{willReadFrequently:true});
+let original=null,sourceURL='';
+function redraw(){
+ ctx.clearRect(0,0,512,512);
+ if(!original)return;
+ const zoom=Number($('zoom').value);
+ const ratio=Math.min(512/original.width,512/original.height)*zoom;
+ const w=original.width*ratio,h=original.height*ratio;
+ ctx.drawImage(original,256-w/2+Number($('offsetX').value),256-h/2+Number($('offsetY').value),w,h);
+ if($('removeWhite').checked){
+  const image=ctx.getImageData(0,0,512,512),d=image.data;
+  for(let i=0;i<d.length;i+=4){
+   const r=d[i],g=d[i+1],b=d[i+2],min=Math.min(r,g,b),max=Math.max(r,g,b);
+   if(min>225&&max-min<25){const fade=Math.max(0,Math.min(1,(253-min)/28));d[i+3]=Math.round(d[i+3]*fade)}
+  }
+  ctx.putImageData(image,0,0);
+ }
+ const data=canvas.toDataURL('image/webp',.9);
+ for(const id of ['prev64','prev96','prev160'])$(id).src=data;
+}
+$('source').addEventListener('change',e=>{
+ const f=e.target.files[0];if(!f)return;
+ if(!['image/png','image/jpeg','image/webp'].includes(f.type)){msg('Chỉ chấp nhận PNG, JPG hoặc WebP.',true);return}
+ if(f.size>8_000_000){msg('Ảnh gốc tối đa 8 MB.',true);return}
+ if(sourceURL)URL.revokeObjectURL(sourceURL);
+ sourceURL=URL.createObjectURL(f);
+ const img=new Image();img.onload=()=>{original=img;redraw()};img.onerror=()=>msg('Ảnh không đọc được.',true);img.src=sourceURL;
+});
+for(const id of ['zoom','offsetX','offsetY','removeWhite'])$(id).addEventListener('input',redraw);
+$('resetCrop').addEventListener('click',()=>{for(const k of ['offsetX','offsetY'])$(k).value=0;$('zoom').value=1;$('removeWhite').checked=false;redraw()});
+$('export').addEventListener('click',()=>{if(!original)return msg('Chọn ảnh trước.',true);const a=document.createElement('a');a.href=canvas.toDataURL('image/webp',.92);a.download='vietsu-avatar-512.webp';a.click()});
+function msg(value,bad=false){const el=$('status');el.textContent=value;el.classList.toggle('bad',bad)}
+function token(){return $('token').value.trim()}
+async function api(url,opts={}){
+ const headers={'X-Admin-Token':token()};
+ if(opts.body)headers['Content-Type']='application/json';
+ const response=await fetch(url,{...opts,headers:{...headers,...opts.headers},credentials:'same-origin',cache:'no-store'});
+ const data=await response.json().catch(()=>({}));
+ if(!response.ok)throw Error(data.detail||('HTTP '+response.status));
+ return data;
+}
+$('load').addEventListener('click',async()=>{
+ if(!token())return msg('Cần nhập mã quản trị.',true);
+ try{const data=await api('/api/v4.6/avatar-admin');const list=$('people');list.replaceChildren();
+ for(const p of data.people||[]){const o=document.createElement('option');o.value=p.id;o.label=p.name||p.id;list.append(o)}
+ msg('Đã kết nối CMS. Có '+(data.people||[]).length+' hồ sơ từ dữ liệu biên tập. Bạn có thể nhập ID hồ sơ trên Timeline nếu chưa có trong danh sách.')}
+ catch(err){msg(err.message,true)}
+});
+$('save').addEventListener('click',async()=>{
+ const id=$('personId').value.trim().toLowerCase();
+ if(!/^[a-z0-9][a-z0-9_-]{0,63}$/.test(id))return msg('Mã nhân vật không hợp lệ.',true);
+ if(!original)return msg('Cần chọn ảnh gốc.',true);
+ const data={image_data:canvas.toDataURL('image/webp',.9),caption:$('caption').value.trim(),
+  credit:$('credit').value.trim(),source_type:$('sourceType').value,
+  source_url:$('sourceUrl').value.trim(),approved:$('approved').checked};
+ try{const out=await api('/api/v4.6/avatars/'+encodeURIComponent(id),{method:'PUT',body:JSON.stringify(data)});
+ msg('Đã lưu '+id+'. '+(out.record.approved?'Ảnh được duyệt và sẽ hiển thị trên Local.':'Ảnh còn là bản nháp, chưa công bố.'))}
+ catch(err){msg(err.message,true)}
+});
+$('revert').addEventListener('click',async()=>{
+ const id=$('personId').value.trim().toLowerCase();
+ if(!/^[a-z0-9][a-z0-9_-]{0,63}$/.test(id))return msg('Mã nhân vật không hợp lệ.',true);
+ if(!confirm('Xóa gán ảnh riêng cho '+id+' và dùng lại ảnh mặc định?'))return;
+ try{await api('/api/v4.6/avatars/'+encodeURIComponent(id),{method:'DELETE'});msg('Đã trả về ảnh mặc định cho '+id+'.')}
+ catch(err){msg(err.message,true)}
+});
+})();
+</script></body></html>
