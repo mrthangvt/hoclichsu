@@ -1,0 +1,795 @@
+{
+  "version": "4.7",
+  "updated": "2026-11-17",
+  "editorial_note": "Bảy giai đoạn có bản thảo mở rộng dựa trên sử liệu; chưa thay thế thẩm định chuyên môn. Các mục còn lại đang biên tập.",
+  "categories": [
+    {
+      "id": "overview",
+      "title": "Khái quát"
+    },
+    {
+      "id": "context",
+      "title": "Bối cảnh lịch sử"
+    },
+    {
+      "id": "territory",
+      "title": "Lãnh thổ & kinh đô"
+    },
+    {
+      "id": "state",
+      "title": "Tổ chức nhà nước"
+    },
+    {
+      "id": "economy",
+      "title": "Kinh tế & đời sống"
+    },
+    {
+      "id": "military",
+      "title": "Quân sự & chiến tranh"
+    },
+    {
+      "id": "foreign",
+      "title": "Ngoại giao"
+    },
+    {
+      "id": "law",
+      "title": "Pháp luật"
+    },
+    {
+      "id": "culture",
+      "title": "Văn hóa & nghệ thuật"
+    },
+    {
+      "id": "religion",
+      "title": "Tín ngưỡng & tôn giáo"
+    },
+    {
+      "id": "education",
+      "title": "Giáo dục & khoa cử"
+    },
+    {
+      "id": "people",
+      "title": "Nhân vật & sự kiện"
+    },
+    {
+      "id": "heritage",
+      "title": "Di sản & trải nghiệm"
+    }
+  ],
+  "periods": [
+    {
+      "id": "xichquy",
+      "name": "Xích Quỷ / truyền thuyết Hồng Bàng",
+      "start": -2879,
+      "end": -700,
+      "status": "truyền thuyết",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "vanlang",
+      "name": "Văn Lang – Hùng Vương",
+      "start": -700,
+      "end": -257,
+      "status": "niên đại ước lệ",
+      "reviewed": true,
+      "sections": {
+        "overview": "Văn Lang gắn với truyền thống các vua Hùng. Niên đại ở đây mang tính quy ước; cần phân biệt truyền thuyết Hồng Bàng với bằng chứng khảo cổ.",
+        "context": "Các cộng đồng cư dân thuộc khu vực Bắc Bộ và Bắc Trung Bộ phát triển trước thời Âu Lạc. Chưa thể gán mọi hiện vật khảo cổ cho một quốc gia thống nhất.",
+        "territory": "Địa bàn thường được mô tả tại lưu vực sông Hồng và các vùng lân cận. Ranh giới hành chính cụ thể chưa thể xác định chắc chắn.",
+        "state": "Đang biên tập",
+        "economy": "Các di vật khảo cổ cho thấy hoạt động nông nghiệp, luyện kim và thủ công tại nhiều địa điểm.",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Văn hóa Đông Sơn được nghiên cứu qua trống đồng, công cụ và đồ dùng; mối liên hệ với các truyền thuyết cần được trình bày thận trọng.",
+        "religion": "Tục thờ cúng Hùng Vương tiếp nối trong đời sống văn hóa Việt Nam; nên phân biệt lịch sử tín ngưỡng với chứng cứ cùng thời.",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Tư liệu khảo cổ và không gian tín ngưỡng Hùng Vương là những hướng tìm hiểu, không phải chân dung xác thực các vua Hùng."
+      },
+      "sources": [
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim (mục Hồng Bàng; cần đối chiếu khảo cổ)",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "hungvuong",
+            "name": "Hùng Vương"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "vanlang"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aulac",
+      "name": "Âu Lạc",
+      "start": -257,
+      "end": -179,
+      "status": "niên đại còn tranh luận",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "anduong",
+            "name": "An Dương Vương"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "aulac"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bacthuoc",
+      "name": "Thời Bắc thuộc",
+      "start": -179,
+      "end": 939,
+      "status": "nhiều giai đoạn",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "trungvuong",
+      "name": "Trưng Vương",
+      "start": 40,
+      "end": 43,
+      "status": "giai đoạn chồng lấn",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "vanxuan",
+      "name": "Vạn Xuân – Tiền Lý",
+      "start": 544,
+      "end": 602,
+      "status": "giai đoạn chồng lấn",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "ngo",
+      "name": "Ngô",
+      "start": 939,
+      "end": 965,
+      "status": "lịch sử",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "ngoquyen",
+            "name": "Ngô Quyền"
+          }
+        ],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "dinh",
+      "name": "Đinh",
+      "start": 968,
+      "end": 980,
+      "status": "lịch sử",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "dinhbolinh",
+            "name": "Đinh Bộ Lĩnh"
+          }
+        ],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "tienle",
+      "name": "Tiền Lê",
+      "start": 980,
+      "end": 1009,
+      "status": "lịch sử",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "lehoan",
+            "name": "Lê Hoàn"
+          }
+        ],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "ly",
+      "name": "Lý",
+      "start": 1009,
+      "end": 1225,
+      "status": "lịch sử",
+      "reviewed": true,
+      "sections": {
+        "overview": "Nhà Lý tồn tại từ năm 1009 đến năm 1225, gắn với thời kỳ củng cố nhà nước Đại Việt.",
+        "context": "Lý Công Uẩn lên ngôi năm 1009, mở đầu triều Lý; năm 1010 dời đô từ Hoa Lư ra Đại La, đổi tên Thăng Long.",
+        "territory": "Kinh đô Thăng Long trở thành trung tâm chính trị của triều đình.",
+        "state": "Triều đình vận hành hệ thống quan lại và tổ chức hành chính, tiếp tục củng cố thiết chế quân chủ.",
+        "economy": "Nông nghiệp giữ vai trò nền tảng; thủ công nghiệp và trao đổi hàng hóa phát triển tại nhiều địa bàn.",
+        "military": "Chiến tranh với nhà Tống năm 1075–1077 là một sự kiện lớn trong lịch sử quân sự thời Lý.",
+        "foreign": "Quan hệ với các chính quyền Tống và láng giềng gồm bang giao và xung đột theo từng giai đoạn.",
+        "law": "Bộ Hình thư được ban hành năm 1042 theo ghi chép sử truyền thống.",
+        "culture": "Nghệ thuật kiến trúc, điêu khắc và Phật giáo để lại nhiều dấu tích quan trọng.",
+        "religion": "Phật giáo có ảnh hưởng sâu rộng trong đời sống cung đình và xã hội.",
+        "education": "Văn Miếu được xây dựng năm 1070; Quốc Tử Giám thường được ghi nhận thành lập năm 1076.",
+        "people": "Lý Thái Tổ, Lý Thường Kiệt là hai nhân vật được nhắc tới trong nhiều sử liệu.",
+        "heritage": "Tìm hiểu Hoàng thành Thăng Long và hiện vật thời Lý; ảnh trang phục hiện có là phục dựng tham khảo."
+      },
+      "sources": [
+        {
+          "title": "Đại Việt sử ký toàn thư – kỷ Nhà Lý",
+          "url": ""
+        },
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "lythaito",
+            "name": "Lý Thái Tổ"
+          },
+          {
+            "id": "lythuongkiet",
+            "name": "Lý Thường Kiệt"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "ly"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tran",
+      "name": "Trần",
+      "start": 1225,
+      "end": 1400,
+      "status": "lịch sử",
+      "reviewed": true,
+      "sections": {
+        "overview": "Nhà Trần tồn tại từ năm 1225 đến 1400, nổi bật với những cuộc kháng chiến chống Mông – Nguyên.",
+        "context": "Triều Trần kế tiếp triều Lý trong thế kỷ XIII; có nhiều biến đổi chính trị và quân sự.",
+        "territory": "Thăng Long tiếp tục là kinh đô; hành chính và phòng thủ được tổ chức theo nhu cầu từng thời kỳ.",
+        "state": "Thiết chế Thái thượng hoàng giữ vị trí quan trọng trong hoạt động chính trị triều Trần.",
+        "economy": "Nông nghiệp, ruộng đất và các điền trang là những chủ đề cần tìm hiểu qua sử liệu và nghiên cứu chuyên ngành.",
+        "military": "Các cuộc kháng chiến 1258, 1285 và 1287–1288 là các dấu mốc tiêu biểu.",
+        "foreign": "Quan hệ với triều Nguyên vừa mang tính bang giao vừa diễn ra xung đột quân sự.",
+        "law": "Đang biên tập",
+        "culture": "Văn chương và tinh thần thời Trần được phản ánh qua nhiều trước tác và di tích.",
+        "religion": "Thiền phái Trúc Lâm gắn với Trần Nhân Tông trong lịch sử Phật giáo Việt Nam.",
+        "education": "Khoa cử và đội ngũ nho sĩ tiếp tục phát triển qua các triều vua.",
+        "people": "Trần Thái Tông, Trần Hưng Đạo, Trần Nhân Tông là các nhân vật tiêu biểu.",
+        "heritage": "Di sản liên quan triều Trần cần được giới thiệu kèm nguồn hiện vật và mức độ phục dựng."
+      },
+      "sources": [
+        {
+          "title": "Đại Việt sử ký toàn thư – kỷ Nhà Trần",
+          "url": ""
+        },
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "hungdao",
+            "name": "Trần Hưng Đạo"
+          },
+          {
+            "id": "nhantong",
+            "name": "Trần Nhân Tông"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "tran"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho",
+      "name": "Hồ",
+      "start": 1400,
+      "end": 1407,
+      "status": "lịch sử",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "hoquyly",
+            "name": "Hồ Quý Ly"
+          }
+        ],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "hautran",
+      "name": "Hậu Trần",
+      "start": 1407,
+      "end": 1414,
+      "status": "kháng chiến",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": []
+      }
+    },
+    {
+      "id": "leso",
+      "name": "Lê sơ",
+      "start": 1428,
+      "end": 1527,
+      "status": "lịch sử",
+      "reviewed": true,
+      "sections": {
+        "overview": "Lê sơ được tính từ năm 1428 đến 1527, mở đầu sau thắng lợi của cuộc khởi nghĩa Lam Sơn.",
+        "context": "Lê Lợi lên ngôi năm 1428, đánh dấu sự phục hồi chính quyền độc lập sau thời Minh thuộc.",
+        "territory": "Thăng Long (Đông Kinh) là trung tâm chính trị quan trọng dưới triều Lê sơ.",
+        "state": "Thời Lê Thánh Tông có nhiều cải cách hành chính và tổ chức bộ máy.",
+        "economy": "Các chính sách ruộng đất, nông nghiệp và quản lý hộ tịch cần được đối chiếu văn bản quy phạm từng đời vua.",
+        "military": "Khởi nghĩa Lam Sơn là nền tảng hình thành triều đại; quân đội được tổ chức lại trong thời bình.",
+        "foreign": "Triều đình duy trì bang giao với nhà Minh trong khuôn khổ quan hệ khu vực.",
+        "law": "Quốc triều hình luật thường được gọi là Bộ luật Hồng Đức; cần phân biệt các thời kỳ soạn định.",
+        "culture": "Nho học giữ vị trí nổi bật trong đời sống chính trị và văn hóa.",
+        "religion": "Nho giáo có vai trò lớn trong thể chế; tín ngưỡng dân gian và các tôn giáo khác vẫn tồn tại.",
+        "education": "Khoa cử phát triển, đặc biệt dưới thời Lê Thánh Tông.",
+        "people": "Lê Lợi, Nguyễn Trãi, Lê Thánh Tông là các nhân vật tiêu biểu.",
+        "heritage": "Di sản Lam Kinh, văn bia tiến sĩ và tư liệu thời Lê sơ là nguồn tiếp cận quan trọng."
+      },
+      "sources": [
+        {
+          "title": "Đại Việt sử ký toàn thư – kỷ Lê sơ",
+          "url": ""
+        },
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "leloi",
+            "name": "Lê Lợi"
+          },
+          {
+            "id": "nguyentrai",
+            "name": "Nguyễn Trãi"
+          },
+          {
+            "id": "lethanhtong",
+            "name": "Lê Thánh Tông"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "leso"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mac",
+      "name": "Mạc",
+      "start": 1527,
+      "end": 1592,
+      "status": "giai đoạn chồng lấn",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "mac"
+          }
+        ]
+      }
+    },
+    {
+      "id": "letrung",
+      "name": "Lê Trung hưng",
+      "start": 1533,
+      "end": 1789,
+      "status": "giai đoạn chồng lấn",
+      "reviewed": true,
+      "sections": {
+        "overview": "Lê Trung hưng tồn tại từ 1533 đến 1789; nhiều giai đoạn chồng lấn với chính quyền Mạc, chúa Trịnh và chúa Nguyễn.",
+        "context": "Sự phân tranh giữa các lực lượng chính trị là đặc điểm quan trọng; không nên mô tả toàn bộ thời kỳ như một bộ máy thống nhất.",
+        "territory": "Các trung tâm quyền lực thay đổi theo thời gian; miền Bắc và Đàng Trong có lịch sử quản trị khác nhau.",
+        "state": "Mối quan hệ giữa vua Lê và chúa Trịnh là một chủ đề lớn của lịch sử chính trị Đàng Ngoài.",
+        "economy": "Ngoại thương và đô thị có biến động; Hội An và Phố Hiến là những đầu mối được nghiên cứu nhiều.",
+        "military": "Các cuộc xung đột Trịnh – Nguyễn kéo dài nhiều thập kỷ và có những giai đoạn đình chiến.",
+        "foreign": "Quan hệ khu vực chịu ảnh hưởng của thương mại biển, các nước láng giềng và sự hiện diện của thương nhân nước ngoài.",
+        "law": "Cần phân biệt pháp chế triều Lê với quy định cụ thể của các chính quyền cùng thời.",
+        "culture": "Nghệ thuật dân gian và sinh hoạt đô thị có những chuyển biến theo khu vực.",
+        "religion": "Tín ngưỡng bản địa, Phật giáo và Công giáo đều có lịch sử hoạt động trong các cộng đồng.",
+        "education": "Khoa cử Nho học tiếp tục tại Đàng Ngoài qua nhiều khoa thi.",
+        "people": "Các chúa Trịnh, chúa Nguyễn và những trí thức cùng thời cần được trình bày theo từng thế kỷ.",
+        "heritage": "Trang phục, công trình và đô thị thời kỳ này phải chú thích rõ khu vực và mốc niên đại."
+      },
+      "sources": [
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim (thời Nam Bắc triều và Trịnh – Nguyễn)",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "letrung"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tayson",
+      "name": "Tây Sơn",
+      "start": 1771,
+      "end": 1802,
+      "status": "phong trào và chính quyền",
+      "reviewed": true,
+      "sections": {
+        "overview": "Phong trào Tây Sơn khởi đầu năm 1771; các chính quyền Tây Sơn hình thành sau đó và chấm dứt năm 1802.",
+        "context": "Những biến động cuối thế kỷ XVIII gắn với sự suy yếu và xung đột của các chính quyền đương thời.",
+        "territory": "Quyền kiểm soát lãnh thổ thay đổi qua các chiến dịch; không dùng một bản đồ cho toàn bộ giai đoạn.",
+        "state": "Tổ chức chính quyền Tây Sơn biến đổi theo từng thời đoạn và từng thủ lĩnh.",
+        "economy": "Đời sống dân cư chịu ảnh hưởng của chiến tranh và biến động sản xuất; từng nhận định cần có tài liệu cụ thể.",
+        "military": "Chiến thắng Rạch Gầm – Xoài Mút (1785) và Ngọc Hồi – Đống Đa (1789) là dấu mốc quân sự nổi bật.",
+        "foreign": "Xung đột với quân Xiêm và quân Thanh diễn ra trong những bối cảnh chính trị khác nhau.",
+        "law": "Đang biên tập",
+        "culture": "Cần phân biệt các chính sách được ghi trong sử liệu với những diễn giải, truyền thuyết về Quang Trung.",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Nguyễn Huệ (Quang Trung), Nguyễn Nhạc và Nguyễn Lữ là các nhân vật chính.",
+        "heritage": "Sa bàn Rạch Gầm – Xoài Mút chưa có asset 3D được duyệt; hiện chỉ có hồ sơ tư liệu."
+      },
+      "sources": [
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim (Tây Sơn)",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "quangtrung",
+            "name": "Quang Trung"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "tayson"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nguyenvn",
+      "name": "Nguyễn",
+      "start": 1802,
+      "end": 1945,
+      "status": "lịch sử",
+      "reviewed": true,
+      "sections": {
+        "overview": "Nhà Nguyễn được xác định từ 1802 đến 1945; lịch sử triều đại cần phân kỳ giữa thời độc lập và thời thuộc địa.",
+        "context": "Gia Long lên ngôi năm 1802 sau thời kỳ nội chiến; các thế kỷ XIX–XX chứng kiến nhiều chuyển biến chính trị.",
+        "territory": "Huế là kinh đô triều Nguyễn, với hệ thống kiến trúc cung đình còn được bảo tồn và nghiên cứu.",
+        "state": "Triều đình tổ chức bộ máy quan lại tập trung và nhiều cấp hành chính; từng thời vua có điều chỉnh.",
+        "economy": "Nông nghiệp, thuế khóa, thủ công và thương mại thay đổi giữa các thời kỳ.",
+        "military": "Thế kỷ XIX diễn ra những cuộc xung đột và quá trình Pháp mở rộng quyền kiểm soát.",
+        "foreign": "Quan hệ với nhà Thanh, các nước láng giềng và các cường quốc phương Tây thay đổi theo thời kỳ.",
+        "law": "Hoàng Việt luật lệ là một nguồn quan trọng để nghiên cứu thể chế đầu triều Nguyễn.",
+        "culture": "Kiến trúc Kinh thành Huế và hệ thống di sản cung đình thể hiện một phần đời sống văn hóa thời Nguyễn.",
+        "religion": "Phật giáo, Nho giáo, tín ngưỡng dân gian và các cộng đồng tôn giáo khác cùng tồn tại.",
+        "education": "Khoa cử Nho học tiếp tục trong thế kỷ XIX và đầu thế kỷ XX.",
+        "people": "Gia Long, Minh Mạng và các vua cuối triều có hoàn cảnh lịch sử rất khác nhau.",
+        "heritage": "Quần thể Di tích Cố đô Huế là điểm xuất phát để khám phá Di sản Kiến trúc thời Nguyễn."
+      },
+      "sources": [
+        {
+          "title": "Đại Nam thực lục – Quốc sử quán triều Nguyễn",
+          "url": ""
+        },
+        {
+          "title": "Việt Nam sử lược – Trần Trọng Kim",
+          "url": ""
+        }
+      ],
+      "links": {
+        "people": [
+          {
+            "id": "gialong",
+            "name": "Gia Long"
+          },
+          {
+            "id": "minhmang",
+            "name": "Minh Mạng"
+          }
+        ],
+        "scenes": [],
+        "costumes": [
+          {
+            "name": "Trang phục thời kỳ (minh họa, cần đối chiếu)",
+            "period_id": "nguyenvn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hiendai",
+      "name": "Việt Nam từ 1945 đến nay",
+      "start": 1945,
+      "end": 2026,
+      "status": "giai đoạn hiện đại",
+      "reviewed": false,
+      "sections": {
+        "overview": "Đang biên tập",
+        "context": "Đang biên tập",
+        "territory": "Đang biên tập",
+        "state": "Đang biên tập",
+        "economy": "Đang biên tập",
+        "military": "Đang biên tập",
+        "foreign": "Đang biên tập",
+        "law": "Đang biên tập",
+        "culture": "Đang biên tập",
+        "religion": "Đang biên tập",
+        "education": "Đang biên tập",
+        "people": "Đang biên tập",
+        "heritage": "Đang biên tập"
+      },
+      "sources": [],
+      "links": {
+        "people": [
+          {
+            "id": "hochiminh",
+            "name": "Hồ Chí Minh"
+          }
+        ],
+        "scenes": [
+          {
+            "id": "quang-tri",
+            "name": "Thành cổ Quảng Trị 1972",
+            "href": "khong-gian/thanh-co-quang-tri/",
+            "state": "prototype"
+          }
+        ],
+        "costumes": []
+      }
+    }
+  ]
+}

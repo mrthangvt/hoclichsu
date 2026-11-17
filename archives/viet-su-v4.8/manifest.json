@@ -1,0 +1,135 @@
+{
+  "source_zip": "Viet_Su_V4.8_Offline_Avatar_V45_Giao_Dien_V46.zip",
+  "zip_sha256": "34bd4c1e21bc204cd80b44b5572abfaf11fc1b71bf8ee592f8cb2265824bc5c5",
+  "homepage_sha256": "8f0636ece164c78d6ad61c28076f832b8e843ad124e3ca990d98f8f8353973b7",
+  "avatar_files": [
+    {
+      "path": "vietsu/static/avatar-v45/emperor-128.webp",
+      "sha256": "1bca42a72985b8e9ab22076021666aad7ec66499890fe65f3fb1dd43a37fc754",
+      "bytes": 9436
+    },
+    {
+      "path": "vietsu/static/avatar-v45/emperor-256.webp",
+      "sha256": "a3399dc9afed67ea249f4c2e13128eb5352a48a7f406a2544f4078a32a3e0a95",
+      "bytes": 25184
+    },
+    {
+      "path": "vietsu/static/avatar-v45/emperor-512.webp",
+      "sha256": "b80433dde60d52153a45db1b7bb9a00db6767d5c6f6595de33cb33caaeb15078",
+      "bytes": 58398
+    },
+    {
+      "path": "vietsu/static/avatar-v45/emperor-64.webp",
+      "sha256": "a216fb1d1bd02a60ea402af4cf7cc6ba5e88a1286b03dc919c527f2edd151678",
+      "bytes": 3388
+    },
+    {
+      "path": "vietsu/static/avatar-v45/female-warrior-128.webp",
+      "sha256": "f3a90723c0b68cecb4695c0773c0fa53c316924b39196479cbc3474c4bd7cc0f",
+      "bytes": 7364
+    },
+    {
+      "path": "vietsu/static/avatar-v45/female-warrior-256.webp",
+      "sha256": "6b6d626d212505b976ade31abfd48b21268c9c8eb807572a00539e152a51879a",
+      "bytes": 19542
+    },
+    {
+      "path": "vietsu/static/avatar-v45/female-warrior-512.webp",
+      "sha256": "a3645badcecc3f71782912d6f7053d86dd713d6caf35552187bd1efbbf018a93",
+      "bytes": 49934
+    },
+    {
+      "path": "vietsu/static/avatar-v45/female-warrior-64.webp",
+      "sha256": "42295bd1583b12ebb948090d4f748882e2279475554be9a2ff0fab469a20c5af",
+      "bytes": 2826
+    },
+    {
+      "path": "vietsu/static/avatar-v45/official-128.webp",
+      "sha256": "47c266fb18d39fca5765e7c834f94c5f4cc568f4df60fd38871e08bc5fa5faa5",
+      "bytes": 6830
+    },
+    {
+      "path": "vietsu/static/avatar-v45/official-256.webp",
+      "sha256": "db795ae7c13342052009b11b2350e62d2bdd95f50cee1a9643ba17f0e0f8de80",
+      "bytes": 15884
+    },
+    {
+      "path": "vietsu/static/avatar-v45/official-512.webp",
+      "sha256": "58df873d541c5ab188bd90f3af46f5ea11a1d368c424a8db1eb019ced029f261",
+      "bytes": 39424
+    },
+    {
+      "path": "vietsu/static/avatar-v45/official-64.webp",
+      "sha256": "89a43d62502afbbe7a6b6f333938709d9b0b0e8b6e8e89ff49746a76d4540e63",
+      "bytes": 2890
+    },
+    {
+      "path": "vietsu/static/avatar-v45/queen-128.webp",
+      "sha256": "5af5f7b8e626f08136ce25ba6a4bbda8d2e2269a2fbb2b872e68b0c7447827d4",
+      "bytes": 7774
+    },
+    {
+      "path": "vietsu/static/avatar-v45/queen-256.webp",
+      "sha256": "123a27e5c7662db64e2a10f956cf75067fb0260edf364680607a579ace987c16",
+      "bytes": 19896
+    },
+    {
+      "path": "vietsu/static/avatar-v45/queen-512.webp",
+      "sha256": "b4e6a4e6d2ed7540b660b744c5174c8ea6d213f9a932badbd1435f8ff0dbd12e",
+      "bytes": 45064
+    },
+    {
+      "path": "vietsu/static/avatar-v45/queen-64.webp",
+      "sha256": "236a160a42d1242432e41c6f3604c6008a8c00ff16a7c58874269628494063e8",
+      "bytes": 3032
+    },
+    {
+      "path": "vietsu/static/avatar-v45/warrior-128.webp",
+      "sha256": "2cb24a9b4ff1a4f28a663482c1e2fc772818577f9a27fc80af5b5867ddd253a8",
+      "bytes": 7640
+    },
+    {
+      "path": "vietsu/static/avatar-v45/warrior-256.webp",
+      "sha256": "2897613b22218cd76d88df571522ceceec45487b442b66050d087932b08d80f4",
+      "bytes": 20250
+    },
+    {
+      "path": "vietsu/static/avatar-v45/warrior-512.webp",
+      "sha256": "d3baaa501ebd0d168679c1ddcdd72ea258b85566499c72cba782a57e343c6325",
+      "bytes": 51844
+    },
+    {
+      "path": "vietsu/static/avatar-v45/warrior-64.webp",
+      "sha256": "d4e03e632ded06132fe3d2e615b05ba708749af0d2a72cc2ab6c37544416c0c3",
+      "bytes": 2880
+    },
+    {
+      "path": "vietsu/static/avatar-v45/woman-128.webp",
+      "sha256": "5012baadc81d06c66c080f05ff66cf6fcdc78e5850e1f25ad8aae1e9d78a023c",
+      "bytes": 5516
+    },
+    {
+      "path": "vietsu/static/avatar-v45/woman-256.webp",
+      "sha256": "a57a909909d0c8f28259a471f650144694ca7ed946b1b947fe07a8a6f5078d79",
+      "bytes": 11552
+    },
+    {
+      "path": "vietsu/static/avatar-v45/woman-512.webp",
+      "sha256": "0f658d327c0f8e0d40275999e0770638ad5907eb0e19a8293c940cad5ac7cc32",
+      "bytes": 26150
+    },
+    {
+      "path": "vietsu/static/avatar-v45/woman-64.webp",
+      "sha256": "35fcd9a33dc6dc97a5e3d353e96844d2cb87448f8792cb30d13d9e793e4a8f27",
+      "bytes": 2420
+    }
+  ],
+  "v43_present": false,
+  "deployment_status": "Bản lưu offline; chờ ảnh V4.3 và duyệt PR trước khi triển khai.",
+  "zip_parts": [
+    "Viet_Su_V4.8_Offline_Avatar_V45_Giao_Dien_V46.zip.part1",
+    "Viet_Su_V4.8_Offline_Avatar_V45_Giao_Dien_V46.zip.part2",
+    "Viet_Su_V4.8_Offline_Avatar_V45_Giao_Dien_V46.zip.part3",
+    "Viet_Su_V4.8_Offline_Avatar_V45_Giao_Dien_V46.zip.part4"
+  ]
+}

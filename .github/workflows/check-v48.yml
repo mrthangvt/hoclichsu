@@ -1,0 +1,44 @@
+name: Kiểm tra V4.8 – ảnh kế thừa và khóa giao diện
+on:
+  push:
+    branches: ["gpt/v4.8-restore-avatar-lock-ui"]
+  pull_request:
+    paths:
+      - "vietsu/static/avatar-v45/**"
+      - "vietsu/static/v43/**"
+      - "vietsu/tools/check_v48_assets.py"
+      - "vietsu/tools/build_v48.py"
+      - ".github/workflows/check-v48.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kiểm tra cú pháp và dữ liệu
+        run: |
+          python3 -m py_compile vietsu/tools/check_v48_assets.py vietsu/tools/build_v48.py
+          python3 vietsu/tools/check_v48_assets.py
+      - name: Kiểm tra khóa bố cục
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          t=Path("vietsu/tools/build_v48.py").read_text()
+          assert "build_v47.py" in t
+          assert "sha256" in t
+          assert "shutil.copyfile(source,dest)" in t
+          assert not Path("vietsu/static/v48.css").exists()
+          assert not Path("vietsu/static/v48.js").exists()
+          print("PASS: V4.8 kế thừa HTML V4.7/V4.6; không chèn CSS/JS.")
+          PY
+      - name: Chỉ build hoàn chỉnh khi có đủ ảnh
+        run: |
+          if python3 vietsu/tools/check_v48_assets.py --strict; then
+            python3 vietsu/tools/build_v48.py
+            cmp vietsu/static/Viet_Su_Timeline_V4.6_Offline.html vietsu/static/Viet_Su_Timeline_V4.8_Offline.html
+          else
+            echo "BLOCKED: 24 Avatar V4.5 và/hoặc 17 ảnh V4.3 chưa được upload lên GitHub."
+            echo "Chỉ kiểm tra mã nguồn; KHÔNG coi đây là bản build thành công."
+          fi
