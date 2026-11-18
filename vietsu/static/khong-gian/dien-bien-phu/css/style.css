@@ -83,3 +83,14 @@ button{font:inherit;color:inherit;cursor:pointer}
 .docs h2{margin:3px 0 6px;font-size:16px}.docs h4{margin:12px 0 4px;font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em}.docs p,.docs li{font-size:13px;line-height:1.55;color:#e2d6c1}.docs ul{padding-left:16px;margin:4px 0}
 .docs .x{position:absolute;top:8px;right:8px;background:none;border:0;font-size:18px;color:var(--muted)}
 #role,#pov{font:inherit;font-size:12.5px;background:#241b13;color:var(--fg);border:1px solid var(--edge);border-radius:8px;padding:7px}
+
+/* chế độ chỉ xem hình: ẩn mọi menu, giữ phụ đề */
+body.cinema .hud,body.cinema #labels,body.cinema #fps,body.cinema #info,body.cinema #docs,body.cinema #scenes{display:none!important}
+#bshow{position:fixed;right:14px;bottom:14px;z-index:30;opacity:.55}#bshow:hover{opacity:1}
+body.cinema #sub{bottom:28px}
+/* nút địa điểm sáng, dễ thấy */
+.views button{background:rgba(226,183,104,.16);border-color:rgba(226,183,104,.45);color:#f6ead2}
+.views button:hover{background:rgba(226,183,104,.32)}
+.lbl b{background:rgba(52,38,20,.9);color:#fff4dc;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.lbl:hover b{background:var(--gold);color:#23190d}
+.lbl .dot{box-shadow:0 0 0 2px rgba(255,255,255,.25)}

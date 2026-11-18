@@ -16,7 +16,7 @@ if(window.parent===window&&location.pathname.includes('/khong-gian/'))$('back').
 
 /* ---------------- renderer ---------------- */
 const canvas=$('c');
-const renderer=new THREE.WebGLRenderer({canvas,antialias:!MOBILE,powerPreference:'high-performance',logarithmicDepthBuffer:true});
+const renderer=new THREE.WebGLRenderer({canvas,stencil:true,antialias:!MOBILE,powerPreference:'high-performance',logarithmicDepthBuffer:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,MOBILE?1.2:1.6));
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
 const scene=new THREE.Scene();
@@ -47,7 +47,7 @@ const sun=new THREE.DirectionalLight(0xfff1dc,2.6);scene.add(sun,sun.target);
 const flashLight=new THREE.PointLight(0xffa050,0,6000,1.1);scene.add(flashLight);
 
 /* ---------------- tải tài nguyên ---------------- */
-const ASSETS=Object.assign({static:'models/static.glb',mau:'models/mau.glb',nhanvat:'models/nhanvat.glb',linh:'models/linh.glb',phap:'models/phap.glb',giap:'models/giap.glb',caymau:'models/cay_mau.glb',hq:'models/hq.glb',
+const ASSETS=Object.assign({static:'models/static.glb',mau:'models/mau.glb',nhanvat:'models/nhanvat.glb',linh:'models/linh.glb',phap:'models/phap.glb',giap:'models/giap.glb',xucdat:'models/xucdat.glb',caymau:'models/cay_mau.glb',hq:'models/hq.glb',
   cay:'data/cay.bin',dat:'tex/dat.webp',datn:'tex/dat_n.webp',chim:'audio/chim-buoi-sang.mp3',xuan:'audio/nhac-xuan-ve-tren-ban-mong.mp3',gp:'audio/nhac-giai-phong-dien-bien.mp3',caymeta:'data/cay.json',matdat:MOBILE?'tex/matdat_2k.jpg':'tex/matdat_4k.jpg',draco:'vendor/three/addons/libs/draco/',dracoType:'wasm'},window.ASSETS||{});
 const draco=new DRACOLoader();draco.setDecoderPath(ASSETS.draco);draco.setDecoderConfig({type:ASSETS.dracoType});
 const loader=new GLTFLoader();loader.setDRACOLoader(draco);
@@ -60,8 +60,8 @@ function fetchBuf(url,key){return new Promise((res,rej)=>{const x=new XMLHttpReq
 const parse=buf=>new Promise((res,rej)=>loader.parse(buf,'',res,rej));
 const json=u=>fetch(u).then(r=>r.json());
 const imgTex=(buf,type='image/jpeg')=>new Promise((res,rej)=>{const url=URL.createObjectURL(new Blob([buf],{type}));new THREE.TextureLoader().load(url,t=>{URL.revokeObjectURL(url);res(t)},undefined,rej)});
-const [gS,gM,gN,gL,gP,gG,gC,gH,TEX,TDAT,TDATN,CAY,CAYM,SC,PLACES,EVENTS,SCENES,SOURCES]=await Promise.all([
-  fetchBuf(ASSETS.static,'static').then(parse),fetchBuf(ASSETS.mau,'mau').then(parse),fetchBuf(ASSETS.nhanvat,'nhanvat').then(parse),fetchBuf(ASSETS.linh,'linh').then(parse),fetchBuf(ASSETS.phap,'phap').then(parse),fetchBuf(ASSETS.giap,'giap').then(parse),fetchBuf(ASSETS.caymau,'caymau').then(parse),fetchBuf(ASSETS.hq,'hq').then(parse),
+const [gS,gM,gN,gL,gP,gG,gX,gC,gH,TEX,TDAT,TDATN,CAY,CAYM,SC,PLACES,EVENTS,SCENES,SOURCES]=await Promise.all([
+  fetchBuf(ASSETS.static,'static').then(parse),fetchBuf(ASSETS.mau,'mau').then(parse),fetchBuf(ASSETS.nhanvat,'nhanvat').then(parse),fetchBuf(ASSETS.linh,'linh').then(parse),fetchBuf(ASSETS.phap,'phap').then(parse),fetchBuf(ASSETS.giap,'giap').then(parse),fetchBuf(ASSETS.xucdat,'xucdat').then(parse),fetchBuf(ASSETS.caymau,'caymau').then(parse),fetchBuf(ASSETS.hq,'hq').then(parse),
   fetchBuf(ASSETS.matdat,'matdat').then(imgTex),fetchBuf(ASSETS.dat,'dat').then(b=>imgTex(b,'image/webp')),fetchBuf(ASSETS.datn,'datn').then(b=>imgTex(b,'image/webp')),fetchBuf(ASSETS.cay,'cay').then(b=>new Int16Array(b)),json(ASSETS.caymeta),
   json('data/scene.json'),json('data/places.json'),json('data/events.json'),json('data/scenes.json'),json('data/sources.json')
 ]).catch(e=>{$('loadtxt').textContent=e.message;throw e});
@@ -122,7 +122,7 @@ function earthify(m){if(m.userData.earth)return;m.userData.earth=true;const ob=m
   const k=m.customProgramCacheKey?m.customProgramCacheKey():'';m.customProgramCacheKey=()=>k+'earth'}
 world.traverse(o=>{if(!o.isMesh)return;const ms=Array.isArray(o.material)?o.material:[o.material];for(const m of ms)if(m&&EARTH.test(m.name))earthify(m)});
 // đường mòn xe thồ/kéo pháo: đất nện tối màu, không phát sáng, dán sát mặt đất
-for(const r of CAT.routes)r.traverse(c=>{if(!c.isMesh)return;const m=new THREE.MeshStandardMaterial({color:0x6b5640,roughness:1,metalness:0,polygonOffset:true,polygonOffsetFactor:-2});earthify(m);c.material=m;c.renderOrder=1});
+for(const r of CAT.routes)r.traverse(c=>{if(!c.isMesh)return;const m=new THREE.MeshStandardMaterial({color:0x7d6246,roughness:1,metalness:0,polygonOffset:true,polygonOffsetFactor:-2});earthify(m);c.material=m;c.renderOrder=1});
 // tâm của từng đối tượng công sự Pháp (để dựng dần trong cảnh 02)
 const PCX=-720,PCY=-703;
 for(const o of CAT.fortifications){const b=new THREE.Box3().setFromObject(o);const c=b.getCenter(new THREE.Vector3());o.userData.d=Math.hypot(c.x-PCX,-c.z-PCY);o.userData.s0=o.scale.clone()}
@@ -143,13 +143,24 @@ if(CAT.trench_vn){CAT.trench_vn.traverse(c=>{if(!c.isMesh)return;const p=c.geome
   for(let i=0;i<p.count;i++){const x=p.getX(i),y=-p.getZ(i);let d=1e9;for(const s of SITES)d=Math.min(d,Math.hypot(x-s.x,y-s.y)-s.r);kc[i]=d;if(d>KC_MAX)KC_MAX=d}
   c.geometry.setAttribute('kc',new THREE.BufferAttribute(kc,1))})}
 const REV_VN=patchObj(CAT.trench_vn,'kc')||[];
+// ---- hào đào xuống đất: hạ hào/công sự xuống, "khoét" mặt đất đúng miệng hào bằng stencil ----
+// miệng hào = lưới đáy hào (giữ ở độ cao cũ) chỉ ghi stencil; mặt đất bỏ qua các điểm ảnh đã đánh dấu → nhìn xuống lòng hào
+function sinkTrench(o,drop,floorRe){if(!o)return;const mouths=[];
+  o.traverse(c=>{if(!c.isMesh)return;const ms=Array.isArray(c.material)?c.material:[c.material];if(ms.some(m=>m&&floorRe.test(m.name||'')))mouths.push(c)});
+  for(const c of mouths){const src=Array.isArray(c.material)?c.material[0]:c.material;if(src.color)src.color.setRGB(.2,.15,.11);// đáy hào tối, ẩm
+    const mm=src.clone();mm.onBeforeCompile=src.onBeforeCompile;if(src.customProgramCacheKey)mm.customProgramCacheKey=src.customProgramCacheKey;
+    Object.assign(mm,{colorWrite:false,depthWrite:false,side:THREE.DoubleSide,stencilWrite:true,stencilRef:1,stencilFunc:THREE.AlwaysStencilFunc,stencilZPass:THREE.ReplaceStencilOp,stencilFail:THREE.KeepStencilOp,stencilZFail:THREE.ReplaceStencilOp});
+    const m=new THREE.Mesh(c.geometry,mm);m.position.y=drop+.12;m.renderOrder=-5;m.frustumCulled=c.frustumCulled;c.add(m)}
+  o.position.y-=drop}
+sinkTrench(CAT.trench_fr,1.25,/Hao_DayToi/);sinkTrench(CAT.trench_vn,1.1,/Hao_DayToi/);
+for(const o of world.children)if(/^Ham_ChiTiet_/.test(o.name))sinkTrench(o,1.35,/Van_DayHao/);
 
 /* mặt đất: tô trạng thái cứ điểm và vùng kiểm soát thẳng lên địa hình (bám dốc) */
 TEX.flipY=false;TEX.colorSpace=THREE.SRGBColorSpace;TEX.anisotropy=renderer.capabilities.getMaxAnisotropy();
 const NR=24;
 const GU={tDat:{value:TDAT},uPl:{value:Array.from({length:NR},()=>new THREE.Vector3(0,0,0))},uPc:{value:Array.from({length:NR},()=>new THREE.Vector4(0,0,0,0))},
   uCtrl:{value:new THREE.Vector4(0,0,0,0)},uCtrlC:{value:new THREE.Color(0x4f74b8)},uWet:{value:0}};
-const groundMat=new THREE.MeshLambertMaterial({map:TEX});
+const groundMat=new THREE.MeshLambertMaterial({map:TEX,stencilWrite:true,stencilRef:1,stencilFunc:THREE.NotEqualStencilFunc,stencilFail:THREE.KeepStencilOp,stencilZFail:THREE.KeepStencilOp,stencilZPass:THREE.KeepStencilOp});
 groundMat.onBeforeCompile=sh=>{Object.assign(sh.uniforms,GU);
   sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vWp;').replace('#include <worldpos_vertex>','#include <worldpos_vertex>\nvWp=(modelMatrix*vec4(transformed,1.)).xyz;');
   sh.fragmentShader=sh.fragmentShader.replace('#include <common>',`#include <common>
@@ -203,6 +214,7 @@ const CLIPS={};for(const c of gN.animations)CLIPS[c.name]=c;
 const CLIPS_L={};for(const c of gL.animations)CLIPS_L[c.name]=c;
 const CLIPS_P={};for(const c of gP.animations)CLIPS_P[c.name]=c;
 // Đại tướng (model mới) + động tác chỉ sa bàn / đứng nghe; dùng chung khung xương với bộ đội
+for(const c of gX.animations)CLIPS_L[c.name]=c;   // động tác xúc đất (Mixamo → khung xương bộ đội)
 const CLIPS_G={};for(const c of gG.animations){CLIPS_G[c.name]=c;if(!CLIPS_L[c.name])CLIPS_L[c.name]=c}
 // súng trường mới (model anh gửi) thay cho súng cũ của bộ đội: cùng hệ trục (nòng -Y), dùng chung lưới với súng lính Pháp
 (()=>{let gp=null;gP.scene.traverse(o=>{if(!gp&&o.isMesh&&/Sung/.test(o.name+(o.parent?o.parent.name:'')))gp=o});const gb=gL.scene.getObjectByName('SungTruong_1954');if(!gp||!gb)return;
@@ -224,7 +236,7 @@ function makeChar(kind,clip,opt={}){const S=SRC[kind];const root=SkeletonUtils.c
   const GF=GUNFIX[kind];const gunN=GF?root.getObjectByName(GF.node):null;const g0=gunN?{p:gunN.position.clone(),q:gunN.quaternion.clone(),s:gunN.scale.clone()}:null;const _v=new THREE.Vector3(),_w=new THREE.Vector3();
   const fixGun=c=>{if(!gunN)return;const C=GF.Q[c]||(kind==='bodoi'?GF.Q.DungBan:null);gunN.quaternion.copy(g0.q);if(C)gunN.quaternion.multiply(C);gunN.scale.copy(g0.s).multiplyScalar(GUN_S);
     _v.copy(GF.g).multiply(g0.s).applyQuaternion(g0.q);_w.copy(GF.g).multiply(gunN.scale).applyQuaternion(gunN.quaternion);gunN.position.copy(g0.p).add(_v).sub(_w)};
-  const g=new THREE.Group();g.add(root);root.scale.setScalar(S.s);const mixer=new THREE.AnimationMixer(root);const nm=n=>S.clips[n]?n:(S.map&&S.map[n])||n;
+  const g=new THREE.Group();g.userData.kind=kind;g.add(root);root.scale.setScalar(S.s);const mixer=new THREE.AnimationMixer(root);const nm=n=>S.clips[n]?n:(S.map&&S.map[n])||n;
   let cur=mixer.clipAction(S.clips[nm(clip)]||Object.values(S.clips)[0]);cur.play();fixGun(nm(clip));
   const act=n=>{const c=S.clips[nm(n)]||(S.own?S.clips[S.map.dung]:xclip(n));return c?mixer.clipAction(c):null};
   return{obj:g,mixer,set(t){mixer.setTime(t)},pose(n,tt,once){const a=act(n);if(!a)return;if(a!==cur){cur.stop();a.play();cur=a;fixGun(a.getClip().name)}const d=a.getClip().duration;a.time=once?Math.min(Math.max(0,tt),d-.01):((tt%d)+d)%d;mixer.update(0)},play(n){const c=S.clips[nm(n)];if(!c)return;const a=mixer.clipAction(c);if(a===cur)return;a.reset().play();cur.crossFadeTo(a,.25,false);cur=a;fixGun(c.name)},has:n=>!!S.clips[nm(n)]}}
@@ -316,8 +328,16 @@ function updLabels(cam){const W=innerWidth,H=innerHeight;
       if(vis){L.el.style.left=((v3.x+1)/2*W).toFixed(1)+'px';L.el.style.top=((1-v3.y)/2*H).toFixed(1)+'px'}}}
     if(vis!==L.on){L.el.classList.toggle('hidden',!vis);L.on=vis}}}
 
+/* ---------------- mưa sát ống kính: vệt mưa phủ cả khung hình khi trời mưa ---------------- */
+const RAINSCR=(()=>{const u={uT:{value:0},uI:{value:0},uA:{value:1.7}};const m=new THREE.ShaderMaterial({uniforms:u,transparent:true,depthTest:false,depthWrite:false,
+  vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}',
+  fragmentShader:`varying vec2 vUv;uniform float uT,uI,uA;float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+  void main(){if(uI<.001)discard;float a=0.;for(int L=0;L<3;L++){float s=float(L);vec2 uv=vec2(vUv.x*uA,vUv.y);uv.x+=uv.y*.13;vec2 g=vec2(70.+s*45.,1.6+s*.8);float sp=1.6+s*.9;
+    vec2 q=uv*g+vec2(0.,uT*sp*g.y);vec2 c=floor(q),f=fract(q);float r=h(c+s*7.3);if(r>.7){float x=abs(f.x-.2-.6*h(c+3.1));a+=smoothstep(.07,0.,x)*smoothstep(0.,.25,f.y)*smoothstep(1.,.55,f.y)*(.32-s*.08);}}
+    gl_FragColor=vec4(.8,.84,.9,clamp(a*uI,0.,.55));}`});
+  const q=new THREE.Mesh(new THREE.PlaneGeometry(2,2),m);q.frustumCulled=false;q.renderOrder=9999;scene.add(q);return u})();
 /* ---------------- vòng lặp ---------------- */
-function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+function resize(){const w=innerWidth,h=innerHeight;RAINSCR.uA.value=w/h;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
 addEventListener('resize',resize);resize();
 const audio=createAudio();audio.fileSrc={chim:ASSETS.chim,xuan:ASSETS.xuan,gp:ASSETS.gp,fetchBuf};
 clearTreesNear(Object.values(SC.duong),26);
@@ -336,7 +356,7 @@ const treeLOD=(()=>{const NEAR=MOBILE?260:520,CAP=MOBILE?350:1400;const src={};g
       for(const im of T.parts){im.count=k;im.visible=T.mC.visible;im.instanceMatrix.needsUpdate=true}if(k||hadHid){T.mC.instanceMatrix.needsUpdate=T.mT.instanceMatrix.needsUpdate=true}}}})();
 const API={THREE,scene,camera,controls,renderer,B,hAt,hT,PEAK,safeEye,world,ground,groundMat,GU,CAT,REV_FR,REV_VN,KC_MAX,TREES,hq,mapCard,mini,
   mau,makeChar,FIRE,SMOKE,T_DOT,rain,SKY,hemi,sun,flashLight,SC,PLACES,PL,EV,EVENTS,SCENES,SOURCES,STATE_COL,STATE_VI,stateAt,setPlaceVis,labels,LAY,SECT,
-  updLabels,audio,MOBILE,ts,CLOUDS,inRunway,RW,onHotspot:()=>{},tick:[]};
+  updLabels,audio,MOBILE,ts,RAINSCR,CLOUDS,inRunway,RW,onHotspot:()=>{},tick:[]};
 window.__DBP=API;
 await startDirector(API);
 const clock=new THREE.Clock();let fN=0,fT=0;

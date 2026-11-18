@@ -739,7 +739,7 @@
     },
     {
      "id": "doc_lap_close",
-     "dur": 13,
+     "dur": 6,
      "target": [
       -1172,
       3300
@@ -753,6 +753,20 @@
      "blend": 4,
      "cut": false,
      "fov": 40
+    },
+    {
+     "id": "xung_phong_doc_lap",
+     "dur": 7,
+     "target": "nhom:1",
+     "tz": 0,
+     "az": 200,
+     "el": 11,
+     "dist": 34,
+     "daz": 30,
+     "high": false,
+     "blend": 3,
+     "cut": false,
+     "fov": 45
     },
     {
      "id": "ban_keo_close",
@@ -1410,7 +1424,7 @@
    "shots": [
     {
      "id": "A1_wide",
-     "dur": 21,
+     "dur": 12,
      "target": [
       -26,
       -939
@@ -1426,8 +1440,22 @@
      "fov": 40
     },
     {
+     "id": "dao_ham_A1",
+     "dur": 14,
+     "target": "dao_ham",
+     "tz": 0,
+     "az": 200,
+     "el": 14,
+     "dist": 7.5,
+     "daz": 35,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 50
+    },
+    {
      "id": "A1_cutaway",
-     "dur": 25,
+     "dur": 18,
      "target": [
       -26,
       -939
@@ -1461,7 +1489,7 @@
     },
     {
      "id": "xung_phong_A1",
-     "dur": 10,
+     "dur": 12,
      "target": "nhom:0",
      "tz": 0,
      "az": 200,
@@ -1513,8 +1541,13 @@
    ],
    "actions": [
     {
+     "do": "daoham",
+     "t0": 10,
+     "t1": 27
+    },
+    {
      "do": "cutaway",
-     "t0": 21.2,
+     "t0": 26,
      "t1": 41.2
     },
     {
@@ -1614,11 +1647,11 @@
       -720,
       -703
      ],
-     "tz": 0,
+     "tz": 5,
      "az": 200,
-     "el": 16,
-     "dist": 170,
-     "daz": 30,
+     "el": 17,
+     "dist": 30,
+     "daz": 25,
      "high": false,
      "blend": 4,
      "cut": false,
@@ -1706,6 +1739,10 @@
     {
      "do": "flag",
      "t": 38.5
+    },
+    {
+     "do": "roof_flag",
+     "t0": 34.5
     }
    ],
    "note": "Mốc 17 giờ 30 cần xác minh theo nguồn chính thức mà dự án chọn.",
