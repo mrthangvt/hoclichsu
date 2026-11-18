@@ -131,7 +131,8 @@ export async function startDirector(A){
         else if(act.walk)c.pose('di_bo',t*1.0+i*.3);
         else if(((ta+ph)%CYC)>RUN||s>=stop+oy-.1){c.pose('QuyBan',t+i*.2);const ph2=(t*1.7+i*.37)%1;if(ph2<.5){const m=c.obj.position.clone();m.y+=1.15;m.x+=Math.sin(c.obj.rotation.y)*.9;m.z+=Math.cos(c.obj.rotation.y)*.9;fire(m,tgP.clone().add(new THREE.Vector3((i%5-2)*6,0,(i%3-1)*6)),ph2,'a'+seed+i)}}
         else c.pose('ChayToi_TaiCho',t*1.15+i*.17);
-        if(i===0){grp.center.copy(c.obj.position);grp.heading=Math.atan2(ux,uy)}}})}
+        // tâm nhóm = trọng tâm đội hình (camera nhìn vào giữa đám đông)
+        if(i===0){grp.acc=(grp.acc||new THREE.Vector3()).set(0,0,0);grp.k=0;grp.heading=Math.atan2(ux,uy)}if(t<fall){grp.acc.add(c.obj.position);grp.k++}if(i===n-1&&grp.k)grp.center.copy(grp.acc).divideScalar(grp.k)}})}
     // quân Pháp giữ cứ điểm bắn trả, một số trúng đạn ngã
     if(!act.walk){const fr=A.MOBILE?3:6;for(let i=0;i<fr;i++){const c=A.makeChar('linhphap','dung');const ang=Math.atan2(-uy,-ux)+(rnd()-.5)*1.6,rr=Math.min(tg.r*.5,40)+rnd()*8;
       const x=tx+Math.cos(ang)*rr,y=ty+Math.sin(ang)*rr,fall=act.t0+dur*(.45+rnd()*.5);scene.add(c.obj);
@@ -197,7 +198,7 @@ export async function startDirector(A){
         else{c.obj.position.copy(B(sx,sy,hAt(sx,sy)));c.obj.rotation.y=fa}c.set(t+i*.37)}})}}
   // tù binh đi thành hàng ra khỏi khu trung tâm
   function prisoners(act){const n=A.MOBILE?10:20;const from=[PCp[0]+30,PCp[1]+10],to=[PCp[0]+420,PCp[1]+260];const dx=to[0]-from[0],dy=to[1]-from[1],L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L;
-    for(let i=0;i<n;i++){const c=A.makeChar('linhphap','di_bo');scene.add(c.obj);const row=Math.floor(i/2),side=i%2?1.2:-1.2;
+    for(let i=0;i<n;i++){const c=A.makeChar('linhphap','tu_binh',{noGun:true});scene.add(c.obj);const row=Math.floor(i/2),side=i%2?1.2:-1.2;
       actors.push({obj:c.obj,update(t){const on=t>=act.t0&&t<=act.t1;c.obj.visible=on;if(!on)return;const s=1.1*(t-act.t0)-row*2.2;if(s<0){c.obj.visible=false;return}
         const x=from[0]+ux*s-uy*side,y=from[1]+uy*s+ux*side;c.obj.position.copy(B(x,y,hAt(x,y)));c.obj.rotation.y=Math.atan2(ux,-uy);c.set(t+i*.3)}})}}
   // bộ đội vượt cầu Mường Thanh tiến vào Sở chỉ huy

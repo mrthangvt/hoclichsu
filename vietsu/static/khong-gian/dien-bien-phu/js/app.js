@@ -47,11 +47,11 @@ const sun=new THREE.DirectionalLight(0xfff1dc,2.6);scene.add(sun,sun.target);
 const flashLight=new THREE.PointLight(0xffa050,0,6000,1.1);scene.add(flashLight);
 
 /* ---------------- tải tài nguyên ---------------- */
-const ASSETS=Object.assign({static:'models/static.glb',mau:'models/mau.glb',nhanvat:'models/nhanvat.glb',linh:'models/linh.glb',hq:'models/hq.glb',
+const ASSETS=Object.assign({static:'models/static.glb',mau:'models/mau.glb',nhanvat:'models/nhanvat.glb',linh:'models/linh.glb',phap:'models/phap.glb',caymau:'models/cay_mau.glb',hq:'models/hq.glb',
   cay:'data/cay.bin',dat:'tex/dat.webp',datn:'tex/dat_n.webp',chim:'audio/chim-buoi-sang.mp3',caymeta:'data/cay.json',matdat:MOBILE?'tex/matdat_2k.jpg':'tex/matdat_4k.jpg',draco:'vendor/three/addons/libs/draco/',dracoType:'wasm'},window.ASSETS||{});
 const draco=new DRACOLoader();draco.setDecoderPath(ASSETS.draco);draco.setDecoderConfig({type:ASSETS.dracoType});
 const loader=new GLTFLoader();loader.setDRACOLoader(draco);
-const W8={static:.36,mau:.1,nhanvat:.1,linh:.1,hq:.04,matdat:.16,cay:.14};const prog={};
+const W8={static:.34,mau:.1,nhanvat:.1,linh:.1,phap:.03,caymau:.02,hq:.03,matdat:.16,cay:.12};const prog={};
 function setProg(k,v){prog[k]=v;let s=0;for(const q in W8)s+=(prog[q]||0)*W8[q];$('fill').style.width=(s*100).toFixed(0)+'%'}
 function fetchBuf(url,key){return new Promise((res,rej)=>{const x=new XMLHttpRequest();const b64=url.endsWith('.txt');x.open('GET',url);x.responseType=b64?'text':'arraybuffer';
   x.onprogress=e=>{if(e.total)setProg(key,e.loaded/e.total)};x.onerror=()=>rej(new Error('Không tải được '+url));
@@ -60,8 +60,8 @@ function fetchBuf(url,key){return new Promise((res,rej)=>{const x=new XMLHttpReq
 const parse=buf=>new Promise((res,rej)=>loader.parse(buf,'',res,rej));
 const json=u=>fetch(u).then(r=>r.json());
 const imgTex=(buf,type='image/jpeg')=>new Promise((res,rej)=>{const url=URL.createObjectURL(new Blob([buf],{type}));new THREE.TextureLoader().load(url,t=>{URL.revokeObjectURL(url);res(t)},undefined,rej)});
-const [gS,gM,gN,gL,gH,TEX,TDAT,TDATN,CAY,CAYM,SC,PLACES,EVENTS,SCENES,SOURCES]=await Promise.all([
-  fetchBuf(ASSETS.static,'static').then(parse),fetchBuf(ASSETS.mau,'mau').then(parse),fetchBuf(ASSETS.nhanvat,'nhanvat').then(parse),fetchBuf(ASSETS.linh,'linh').then(parse),fetchBuf(ASSETS.hq,'hq').then(parse),
+const [gS,gM,gN,gL,gP,gC,gH,TEX,TDAT,TDATN,CAY,CAYM,SC,PLACES,EVENTS,SCENES,SOURCES]=await Promise.all([
+  fetchBuf(ASSETS.static,'static').then(parse),fetchBuf(ASSETS.mau,'mau').then(parse),fetchBuf(ASSETS.nhanvat,'nhanvat').then(parse),fetchBuf(ASSETS.linh,'linh').then(parse),fetchBuf(ASSETS.phap,'phap').then(parse),fetchBuf(ASSETS.caymau,'caymau').then(parse),fetchBuf(ASSETS.hq,'hq').then(parse),
   fetchBuf(ASSETS.matdat,'matdat').then(imgTex),fetchBuf(ASSETS.dat,'dat').then(b=>imgTex(b,'image/webp')),fetchBuf(ASSETS.datn,'datn').then(b=>imgTex(b,'image/webp')),fetchBuf(ASSETS.cay,'cay').then(b=>new Int16Array(b)),json(ASSETS.caymeta),
   json('data/scene.json'),json('data/places.json'),json('data/events.json'),json('data/scenes.json'),json('data/sources.json')
 ]).catch(e=>{$('loadtxt').textContent=e.message;throw e});
@@ -157,16 +157,17 @@ varying vec3 vWp;uniform sampler2D tDat;uniform vec3 uPl[${NR}];uniform vec4 uPc
   .replace('#include <map_fragment>',`#include <map_fragment>
   {float dc=distance(vWp,cameraPosition);float k=1.-smoothstep(150.,700.,dc);vec3 d=texture2D(tDat,vWp.xz*.25).rgb;diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*d*2.2,k*.75);}
   diffuseColor.rgb*=1.-uWet*.32;
+  float camF=smoothstep(140.,650.,distance(vWp,cameraPosition));// vòng trạng thái mờ dần khi xuống cận
   for(int i=0;i<${NR};i++){if(uPc[i].a<.001)continue;float d=distance(vWp.xz,uPl[i].xy);float r=uPl[i].z;
     float ring=smoothstep(r*.06+3.,0.,abs(d-r));float fill=(1.-smoothstep(r*.85,r,d))*.22;
-    diffuseColor.rgb=mix(diffuseColor.rgb,uPc[i].rgb,clamp((ring*.85+fill)*uPc[i].a,0.,1.));}
+    diffuseColor.rgb=mix(diffuseColor.rgb,uPc[i].rgb,clamp((ring*.85+fill)*uPc[i].a*camF,0.,1.));}
   if(uCtrl.w>0.){float d=distance(vWp.xz,uCtrl.xy);float edge=smoothstep(16.,0.,abs(d-uCtrl.z));float inn=1.-smoothstep(uCtrl.z-10.,uCtrl.z,d);
-    diffuseColor.rgb=mix(diffuseColor.rgb,uCtrlC,(edge*.8+inn*.16)*uCtrl.w);}`)};
+    diffuseColor.rgb=mix(diffuseColor.rgb,uCtrlC,(edge*.8+inn*.16)*uCtrl.w*camF);}`)};
 groundMat.customProgramCacheKey=()=>'ground';
 ground.material=groundMat;
 
 /* ---------------- rừng cây (từ data/cay.bin) ---------------- */
-const TREES=[];(function(){const step=MOBILE?6:2,N=CAY.length/5,types=CAYM.loai,dims=CAYM.kich_thuoc;
+const TREES=[],TPER=[];(function(){const step=MOBILE?6:2,N=CAY.length/5,types=CAYM.loai,dims=CAYM.kich_thuoc;
   const cols=[0x2f4a1f,0x3a5524,0x284219,0x46602a,0x324d20,0x3d5a26,0x2b461c];const per=types.map(()=>[]);
   for(let i=0;i<N;i+=step){const t=Math.floor(CAY[i*5+4]/100);if(per[t])per[t].push(i)}
   const m4=new THREE.Matrix4(),q=new THREE.Quaternion(),p=new THREE.Vector3(),sc=new THREE.Vector3(),up=new THREE.Vector3(0,1,0);const bark=new THREE.MeshLambertMaterial({color:0x3a2a1c});
@@ -175,7 +176,7 @@ const TREES=[];(function(){const step=MOBILE?6:2,N=CAY.length/5,types=CAYM.loai,
     const trunk=new THREE.CylinderGeometry(H*.012,H*.02,H*.45,5,1,true);trunk.translate(0,H*.225,0);
     const mC=new THREE.InstancedMesh(crown,new THREE.MeshLambertMaterial({color:cols[t%cols.length],flatShading:true}),per[t].length),mT=new THREE.InstancedMesh(trunk,bark,per[t].length);
     per[t].forEach((i,k)=>{const o=i*5;p.copy(B(CAY[o]/4,CAY[o+1]/4,CAY[o+2]/10));q.setFromAxisAngle(up,CAY[o+3]/1000);const s=(CAY[o+4]%100)/30;sc.set(s,s,s);m4.compose(p,q,sc);mC.setMatrixAt(k,m4);mT.setMatrixAt(k,m4)});
-    mC.userData.idx=per[t];scene.add(mC,mT);TREES.push(mC,mT)})})();
+    mC.userData.idx=per[t];scene.add(mC,mT);TREES.push(mC,mT);TPER.push({name,mC,mT})})})();
 function clearTreesNear(polys,rad){const m4=new THREE.Matrix4(),p=new THREE.Vector3(),zero=new THREE.Matrix4().makeScale(0,0,0);
   for(let k=0;k<TREES.length;k+=2){const mC=TREES[k],mT=TREES[k+1];let ch=false;for(let i=0;i<mC.count;i++){mC.getMatrixAt(i,m4);p.setFromMatrixPosition(m4);const x=p.x,y=-p.z;
     for(const P of polys){let hit=false;for(let j=0;j<P.length-1;j++){const a=P[j],b=P[j+1];const dx=b[0]-a[0],dy=b[1]-a[1],L=dx*dx+dy*dy||1;const u=Math.max(0,Math.min(1,((x-a[0])*dx+(y-a[1])*dy)/L));
@@ -200,15 +201,21 @@ const MAU={};for(const o of gM.scene.children)MAU[o.name]=o;
 function mau(name){const o=MAU[name];if(!o)return new THREE.Group();const c=o.clone(true);c.position.set(0,0,0);c.rotation.set(0,0,0);c.scale.set(1,1,1);return c}
 const CLIPS={};for(const c of gN.animations)CLIPS[c.name]=c;
 const CLIPS_L={};for(const c of gL.animations)CLIPS_L[c.name]=c;
+const CLIPS_P={};for(const c of gP.animations)CLIPS_P[c.name]=c;
+// súng trường mới (model anh gửi) thay cho súng cũ của bộ đội: cùng hệ trục (nòng -Y), dùng chung lưới với súng lính Pháp
+(()=>{let gp=null;gP.scene.traverse(o=>{if(!gp&&o.isMesh&&/Sung/.test(o.name+(o.parent?o.parent.name:'')))gp=o});const gb=gL.scene.getObjectByName('SungTruong_1954');if(!gp||!gb)return;
+  if(gb.isMesh){gb.geometry=gp.geometry;gb.material=gp.material}else{for(const c of [...gb.children])if(c.isMesh)gb.remove(c);const m=new THREE.Mesh(gp.geometry,gp.material);m.name='SungTruong_1954_moi';gb.add(m)}})();
 // tên động tác chung → động tác rig Thành cổ (bộ đội, lính Pháp)
+// lính Pháp: rig riêng (người lính Thành cổ), chỉ dùng động tác của chính rig này
+const MAPP={tu_binh:'DiKhom_TaiCho',chay:'ChayLonNhao_TaiCho',ChayToi_TaiCho:'ChayLonNhao_TaiCho',di_bo:'DiNgamBan_TaiCho',DiCamSung_TaiCho:'DiNgamBan_TaiCho',dung:'DungNgam',NgoiNghi:'QuyNghi',VuonLay:'DungNgam',KeoVat:'DiKhom_TaiCho',DungNapDan:'DungNgam',NamNapDan:'NupQuanSat',keo_nang:'DiKhom_TaiCho',day:'DiKhom_TaiCho'};
 const MAPL={chay:'ChayToi_TaiCho',di_bo:'DiCamSung_TaiCho',dung:'DungNgam',keo_nang:'KeoVat',day:'DiKhom_TaiCho',keo_day:'KeoVat',day_xe:'DiCamSung_TaiCho'};
 const SRC={dancong:{g:gN,clips:CLIPS,show:['DanCong_Mesh'],s:1.66/1.81},daituong:{g:gN,clips:CLIPS,show:['RIG_DaiTuong_VNG'],s:1.66/1.81},
-  bodoi:{g:gL,clips:CLIPS_L,show:['QDND_V2_Nguoi','SungTruong_1954'],s:1.64/1.70,map:MAPL},linhphap:{g:gL,clips:CLIPS_L,show:['TC_LinhPhap_1954'],s:1.72/1.70,map:MAPL}};
+  bodoi:{g:gL,clips:CLIPS_L,show:['QDND_V2_Nguoi','SungTruong_1954'],s:1.64/1.70,map:MAPL},linhphap:{g:gP,clips:CLIPS_P,show:['VNCH_V2_Nguoi','Sung_Phap_1954'],s:1.72/1.74,map:MAPP,own:true}};
 const XCLIP={};function xclip(n){if(XCLIP[n])return XCLIP[n];const c=CLIPS_L[n]||CLIPS[n];if(!c)return null;const k=c.clone();k.tracks=k.tracks.filter(t=>!/\.position$/.test(t.name));XCLIP[n]=k;return k}
 function makeChar(kind,clip,opt={}){const S=SRC[kind];const root=SkeletonUtils.clone(S.g.scene);root.traverse(o=>{if(o.isMesh){o.visible=(S.show.includes(o.name)||S.show.includes(o.parent&&o.parent.name))&&!(opt.noGun&&/Sung/i.test(o.name+(o.parent?o.parent.name:'')));o.frustumCulled=false}});
   const g=new THREE.Group();g.add(root);root.scale.setScalar(S.s);const mixer=new THREE.AnimationMixer(root);const nm=n=>S.clips[n]?n:(S.map&&S.map[n])||n;
   let cur=mixer.clipAction(S.clips[nm(clip)]||Object.values(S.clips)[0]);cur.play();
-  const act=n=>{const c=S.clips[nm(n)]||xclip(n);return c?mixer.clipAction(c):null};
+  const act=n=>{const c=S.clips[nm(n)]||(S.own?S.clips[S.map.dung]:xclip(n));return c?mixer.clipAction(c):null};
   return{obj:g,mixer,set(t){mixer.setTime(t)},pose(n,tt,once){const a=act(n);if(!a)return;if(a!==cur){cur.stop();a.play();cur=a}const d=a.getClip().duration;a.time=once?Math.min(Math.max(0,tt),d-.01):((tt%d)+d)%d;mixer.update(0)},play(n){const c=S.clips[nm(n)];if(!c)return;const a=mixer.clipAction(c);if(a===cur)return;a.reset().play();cur.crossFadeTo(a,.25,false);cur=a},has:n=>!!S.clips[nm(n)]}}
 
 /* ---------------- hiệu ứng: nổ, khói, chớp, mưa ---------------- */
@@ -303,12 +310,25 @@ function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);c
 addEventListener('resize',resize);resize();
 const audio=createAudio();audio.fileSrc={chim:ASSETS.chim,fetchBuf};
 clearTreesNear(Object.values(SC.duong),26);
+// cây thật (model CayTT_ từ Blender) thay khối cây trong bán kính gần camera
+const treeLOD=(()=>{const NEAR=MOBILE?260:520,CAP=MOBILE?350:1400;const src={};gC.scene.traverse(o=>{if(/^CayM_/.test(o.name)&&!src[o.name])src[o.name]=o});
+  const L=TPER.map(({name,mC,mT})=>{const s=src[name.replace('CayTT_','CayM_')];if(!s)return null;const n=mC.count;const orig=new Float32Array(n*16),xy=new Float32Array(n*2),ok=new Uint8Array(n);const m4=new THREE.Matrix4();
+    for(let i=0;i<n;i++){mC.getMatrixAt(i,m4);m4.toArray(orig,i*16);xy[i*2]=orig[i*16+12];xy[i*2+1]=orig[i*16+14];ok[i]=Math.abs(orig[i*16])+Math.abs(orig[i*16+2])>1e-6?1:0}
+    const parts=[];s.traverse(o=>{if(o.isMesh){const mat=o.material.clone();mat.side=THREE.DoubleSide;const im=new THREE.InstancedMesh(o.geometry,mat,CAP);im.count=0;im.frustumCulled=false;scene.add(im);parts.push(im)}});
+    return{mC,mT,orig,xy,ok,parts,hid:[]}}).filter(Boolean);
+  const m4=new THREE.Matrix4(),zero=new THREE.Matrix4().makeScale(0,0,0);let lx=1e9,lz=1e9,last=0;
+  return(cam,force)=>{const now=performance.now();if(!force&&now-last<350&&Math.hypot(cam.x-lx,cam.z-lz)<25)return;last=now;lx=cam.x;lz=cam.z;
+    const far=cam.y-hAt(cam.x,-cam.z)>NEAR*1.6;
+    for(const T of L){for(const i of T.hid){m4.fromArray(T.orig,i*16);T.mC.setMatrixAt(i,m4);T.mT.setMatrixAt(i,m4)}const hadHid=T.hid.length>0;T.hid=[];let k=0;
+      if(!far&&T.mC.visible){const n=T.xy.length/2;for(let i=0;i<n&&k<CAP;i++){if(!T.ok[i])continue;const dx=T.xy[i*2]-cam.x,dz=T.xy[i*2+1]-cam.z;if(dx*dx+dz*dz>NEAR*NEAR)continue;
+        m4.fromArray(T.orig,i*16);for(const im of T.parts)im.setMatrixAt(k,m4);T.mC.setMatrixAt(i,zero);T.mT.setMatrixAt(i,zero);T.hid.push(i);k++}}
+      for(const im of T.parts){im.count=k;im.visible=T.mC.visible;im.instanceMatrix.needsUpdate=true}if(k||hadHid){T.mC.instanceMatrix.needsUpdate=T.mT.instanceMatrix.needsUpdate=true}}}})();
 const API={THREE,scene,camera,controls,renderer,B,hAt,hT,PEAK,safeEye,world,ground,groundMat,GU,CAT,REV_FR,REV_VN,KC_MAX,TREES,hq,mapCard,mini,
   mau,makeChar,FIRE,SMOKE,T_DOT,rain,SKY,hemi,sun,flashLight,SC,PLACES,PL,EV,EVENTS,SCENES,SOURCES,STATE_COL,STATE_VI,stateAt,setPlaceVis,labels,LAY,SECT,
   updLabels,audio,MOBILE,ts,CLOUDS,inRunway,RW,onHotspot:()=>{},tick:[]};
 window.__DBP=API;
 await startDirector(API);
 const clock=new THREE.Clock();let fN=0,fT=0;
-renderer.setAnimationLoop(()=>{const dt=Math.min(.1,clock.getDelta());for(const f of API.tick)f(dt);
+renderer.setAnimationLoop(()=>{const dt=Math.min(.1,clock.getDelta());treeLOD(camera.position);for(const f of API.tick)f(dt);
   fN++;fT+=dt;if(fT>1){$('fps').textContent=fN+' fps';fN=0;fT=0}});
 $('load').classList.add('done');
