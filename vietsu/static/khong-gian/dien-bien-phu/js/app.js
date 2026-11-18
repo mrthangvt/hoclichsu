@@ -48,7 +48,7 @@ const flashLight=new THREE.PointLight(0xffa050,0,6000,1.1);scene.add(flashLight)
 
 /* ---------------- tải tài nguyên ---------------- */
 const ASSETS=Object.assign({static:'models/static.glb',mau:'models/mau.glb',nhanvat:'models/nhanvat.glb',linh:'models/linh.glb',phap:'models/phap.glb',giap:'models/giap.glb',caymau:'models/cay_mau.glb',hq:'models/hq.glb',
-  cay:'data/cay.bin',dat:'tex/dat.webp',datn:'tex/dat_n.webp',chim:'audio/chim-buoi-sang.mp3',caymeta:'data/cay.json',matdat:MOBILE?'tex/matdat_2k.jpg':'tex/matdat_4k.jpg',draco:'vendor/three/addons/libs/draco/',dracoType:'wasm'},window.ASSETS||{});
+  cay:'data/cay.bin',dat:'tex/dat.webp',datn:'tex/dat_n.webp',chim:'audio/chim-buoi-sang.mp3',xuan:'audio/nhac-xuan-ve-tren-ban-mong.mp3',gp:'audio/nhac-giai-phong-dien-bien.mp3',caymeta:'data/cay.json',matdat:MOBILE?'tex/matdat_2k.jpg':'tex/matdat_4k.jpg',draco:'vendor/three/addons/libs/draco/',dracoType:'wasm'},window.ASSETS||{});
 const draco=new DRACOLoader();draco.setDecoderPath(ASSETS.draco);draco.setDecoderConfig({type:ASSETS.dracoType});
 const loader=new GLTFLoader();loader.setDRACOLoader(draco);
 const W8={static:.34,mau:.1,nhanvat:.1,linh:.1,phap:.03,giap:.02,caymau:.02,hq:.03,matdat:.16,cay:.12};const prog={};
@@ -157,9 +157,9 @@ varying vec3 vWp;uniform sampler2D tDat;uniform vec3 uPl[${NR}];uniform vec4 uPc
   .replace('#include <map_fragment>',`#include <map_fragment>
   {float dc=distance(vWp,cameraPosition);float k=1.-smoothstep(150.,700.,dc);vec3 d=texture2D(tDat,vWp.xz*.25).rgb;diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*d*2.2,k*.75);}
   diffuseColor.rgb*=1.-uWet*.32;
-  float camF=smoothstep(140.,650.,distance(vWp,cameraPosition));// vòng trạng thái mờ dần khi xuống cận
+  float camF=smoothstep(350.,1600.,distance(vWp,cameraPosition));// vòng trạng thái mờ dần khi xuống cận
   for(int i=0;i<${NR};i++){if(uPc[i].a<.001)continue;float d=distance(vWp.xz,uPl[i].xy);float r=uPl[i].z;
-    float ring=smoothstep(r*.06+3.,0.,abs(d-r));float fill=(1.-smoothstep(r*.85,r,d))*.22;
+    float ring=smoothstep(min(r*.035+3.,16.),0.,abs(d-r));float fill=(1.-smoothstep(r*.85,r,d))*.1;
     diffuseColor.rgb=mix(diffuseColor.rgb,uPc[i].rgb,clamp((ring*.85+fill)*uPc[i].a*camF,0.,1.));}
   if(uCtrl.w>0.){float d=distance(vWp.xz,uCtrl.xy);float edge=smoothstep(16.,0.,abs(d-uCtrl.z));float inn=1.-smoothstep(uCtrl.z-10.,uCtrl.z,d);
     diffuseColor.rgb=mix(diffuseColor.rgb,uCtrlC,(edge*.8+inn*.16)*uCtrl.w*camF);}`)};
@@ -214,11 +214,16 @@ const MAPL={chay:'ChayToi_TaiCho',di_bo:'DiCamSung_TaiCho',dung:'DungNgam',keo_n
 const SRC={dancong:{g:gN,clips:CLIPS,show:['DanCong_Mesh'],s:1.66/1.81},daituong:{g:gG,clips:CLIPS_G,show:['DaiTuong_V2'],s:1.68/1.75,map:{dung:'ChiTaySaBan',VuonLay:'ChiTaySaBan'},own:true},
   bodoi:{g:gL,clips:CLIPS_L,show:['QDND_V2_Nguoi','SungTruong_1954'],s:1.64/1.70,map:MAPL},linhphap:{g:gP,clips:CLIPS_P,show:['VNCH_V2_Nguoi','Sung_Phap_1954'],s:1.72/1.74,map:MAPP,own:true}};
 const XCLIP={};function xclip(n){if(XCLIP[n])return XCLIP[n];const c=CLIPS_L[n]||CLIPS[n];if(!c)return null;const k=c.clone();k.tracks=k.tracks.filter(t=>!/\.position$/.test(t.name));XCLIP[n]=k;return k}
-// hiệu chỉnh hướng súng bộ đội theo từng động tác (tính trong Blender: nòng hướng về tay trái khi cầm 2 tay, súng không bị lật nghiêng)
-const GUNC={ChayToi_TaiCho:[0.1847,0.207,-0.6927,0.6657],DiCamSung_TaiCho:[0.0762,-0.0486,-0.8849,0.457],DungBan:[0.0348,-0.0828,-0.8128,0.5756],DungNapDan:[0.7445,-0.3002,-0.4364,0.4065],NamNapDan:[0.3414,-0.1014,-0.8926,0.2764],NgoiNghi:[0.0575,0.8653,-0.3436,0.3603],DungNgam:[0.0311,-0.0871,-0.8134,0.5743],NgaXuong_TaiCho:[-0.754,-0.008,-0.6565,0.0221],VuonLay:[0.1533,-0.405,-0.1942,0.8802],NhatDo:[-0.0943,0.5989,-0.442,0.6611],DiKhom_TaiCho:[0.2726,-0.1555,-0.7549,0.5758],ChayLonNhao_TaiCho:[0.6728,0.1682,0.6833,0.2285],ChayBan_TaiCho:[-0.4913,-0.0766,-0.7521,0.4326],DiNgamBan_TaiCho:[-0.5298,-0.0232,-0.7499,0.3955],BoThap_TaiCho:[-0.003,-0.0004,-0.3111,0.9504],TruonToi_TaiCho:[0.0804,-0.002,-0.5732,0.8155],NhaoRaTruoc_TaiCho:[-0.4365,0.8281,-0.1604,0.3129],DiNgangBan_TaiCho:[-0.4599,-0.0377,-0.7723,0.4365],TrungDan_TaiCho:[-0.5388,0.0721,-0.7132,0.4425]};
-const GUNQ={};for(const k in GUNC)GUNQ[k]=new THREE.Quaternion(...GUNC[k]).normalize();
+// hiệu chỉnh súng theo từng động tác (tính trong Blender): nòng hướng về tay trái khi cầm 2 tay, áp vai khi quỳ/đứng bắn,
+// không lật nghiêng; xoay và thu nhỏ quanh điểm tay cầm. GUN_S: tỷ lệ súng so với model gốc (0,5 = bằng một nửa)
+const GUN_S=.5;
+const GUNFIX={bodoi:{node:'SungTruong_1954',grip:[-0.025, 0.051, -0.492],q:{"ChayToi_TaiCho":[0.1847,0.207,-0.6927,0.6657],"DiCamSung_TaiCho":[0.0762,-0.0486,-0.8849,0.457],"QuyBan":[-0.411,0.1537,-0.7864,0.4348],"DungBan":[0.0348,-0.0828,-0.8128,0.5756],"DungNapDan":[0.7445,-0.3002,-0.4364,0.4065],"NamNapDan":[0.3414,-0.1014,-0.8926,0.2764],"QuyNghi":[0.1685,-0.0451,-0.7307,0.66],"NgoiNghi":[0.0575,0.8653,-0.3436,0.3603],"DungNgam":[0.0311,-0.0871,-0.8134,0.5743],"KeoVat":[0.2579,-0.1335,-0.8901,0.3513],"NgaXuong_TaiCho":[-0.754,-0.008,-0.6565,0.0221],"VuonLay":[0.1533,-0.405,-0.1942,0.8802],"NhatDo":[-0.0943,0.5989,-0.442,0.6611],"DiKhom_TaiCho":[0.2726,-0.1555,-0.7549,0.5758],"ChayLonNhao_TaiCho":[0.6728,0.1682,0.6833,0.2285],"ChayBan_TaiCho":[-0.4913,-0.0766,-0.7521,0.4326],"DiNgamBan_TaiCho":[-0.5298,-0.0232,-0.7499,0.3955],"BoThap_TaiCho":[-0.003,-0.0004,-0.3111,0.9504],"TruonToi_TaiCho":[0.0804,-0.002,-0.5732,0.8155],"NhaoRaTruoc_TaiCho":[-0.4365,0.8281,-0.1604,0.3129],"DiNgangBan_TaiCho":[-0.4599,-0.0377,-0.7723,0.4365],"TrungDan_TaiCho":[-0.5388,0.0721,-0.7132,0.4425],"TrungDanNhe":[-0.0114,-0.0748,-0.8243,0.5611]}},
+  linhphap:{node:'Sung_Phap_1954',grip:[0.008, -0.099, -0.304],q:{"QuyBan":[-0.0335,-0.7912,0.3111,0.5254],"DungBan":[-0.0004,-0.0023,-0.0017,1.0],"NupQuanSat":[-0.7377,0.2146,0.3303,0.5483],"QuyNghi":[0.2005,-0.4572,-0.0905,0.8617],"DungNgam":[0.02,-0.0159,-0.002,0.9997],"NgaXuong_TaiCho":[-0.4494,-0.5235,0.0631,0.7211],"DiKhom_TaiCho":[0.3437,0.4167,-0.0238,0.8412],"ChayLonNhao_TaiCho":[-0.1072,-0.1703,-0.3582,0.9117],"ChayBan_TaiCho":[-0.098,-0.2269,0.1663,0.9546],"DiNgamBan_TaiCho":[-0.1812,-0.5276,0.2085,0.8033],"BoThap_TaiCho":[0.4464,0.1429,0.5661,0.6782],"TruonToi_TaiCho":[0.5415,0.1323,0.4035,0.7255],"NhaoRaTruoc_TaiCho":[0.7617,0.1944,-0.6022,0.1393],"DiNgangBan_TaiCho":[-0.0743,-0.0871,0.1497,0.9821],"TrungDan_TaiCho":[-0.2399,-0.3904,0.2528,0.8521],"TrungDanNhe":[0.0576,-0.0327,0.0114,0.9977]}}};
+for(const k in GUNFIX){const F=GUNFIX[k];F.Q={};for(const c in F.q)F.Q[c]=new THREE.Quaternion(...F.q[c]).normalize();F.g=new THREE.Vector3(...F.grip)}
 function makeChar(kind,clip,opt={}){const S=SRC[kind];const root=SkeletonUtils.clone(S.g.scene);root.traverse(o=>{if(o.isMesh){o.visible=(S.show.includes(o.name)||S.show.includes(o.parent&&o.parent.name))&&!(opt.noGun&&/Sung/i.test(o.name+(o.parent?o.parent.name:'')));o.frustumCulled=false}});
-  const gunN=kind==='bodoi'?root.getObjectByName('SungTruong_1954'):null;const gunQ0=gunN?gunN.quaternion.clone():null;const fixGun=c=>{if(!gunN)return;const q=GUNQ[c]||GUNQ.DungBan;gunN.quaternion.copy(gunQ0).multiply(q)};
+  const GF=GUNFIX[kind];const gunN=GF?root.getObjectByName(GF.node):null;const g0=gunN?{p:gunN.position.clone(),q:gunN.quaternion.clone(),s:gunN.scale.clone()}:null;const _v=new THREE.Vector3(),_w=new THREE.Vector3();
+  const fixGun=c=>{if(!gunN)return;const C=GF.Q[c]||(kind==='bodoi'?GF.Q.DungBan:null);gunN.quaternion.copy(g0.q);if(C)gunN.quaternion.multiply(C);gunN.scale.copy(g0.s).multiplyScalar(GUN_S);
+    _v.copy(GF.g).multiply(g0.s).applyQuaternion(g0.q);_w.copy(GF.g).multiply(gunN.scale).applyQuaternion(gunN.quaternion);gunN.position.copy(g0.p).add(_v).sub(_w)};
   const g=new THREE.Group();g.add(root);root.scale.setScalar(S.s);const mixer=new THREE.AnimationMixer(root);const nm=n=>S.clips[n]?n:(S.map&&S.map[n])||n;
   let cur=mixer.clipAction(S.clips[nm(clip)]||Object.values(S.clips)[0]);cur.play();fixGun(nm(clip));
   const act=n=>{const c=S.clips[nm(n)]||(S.own?S.clips[S.map.dung]:xclip(n));return c?mixer.clipAction(c):null};
@@ -314,7 +319,7 @@ function updLabels(cam){const W=innerWidth,H=innerHeight;
 /* ---------------- vòng lặp ---------------- */
 function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
 addEventListener('resize',resize);resize();
-const audio=createAudio();audio.fileSrc={chim:ASSETS.chim,fetchBuf};
+const audio=createAudio();audio.fileSrc={chim:ASSETS.chim,xuan:ASSETS.xuan,gp:ASSETS.gp,fetchBuf};
 clearTreesNear(Object.values(SC.duong),26);
 // cây thật (model CayTT_ từ Blender) thay khối cây trong bán kính gần camera
 const treeLOD=(()=>{const NEAR=MOBILE?260:520,CAP=MOBILE?350:1400;const src={};gC.scene.traverse(o=>{if(/^CayM_/.test(o.name)&&!src[o.name])src[o.name]=o});

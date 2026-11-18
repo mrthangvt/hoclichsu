@@ -328,7 +328,7 @@ export async function startDirector(A){
   const ui={sub:$('sub'),title:$('stitle'),date:$('sdate'),bar:$('seek'),play:$('splay'),ret:$('sret'),fade:$('fade'),endt:$('endtitle')};
   const ticks=$('ticks');START.forEach(s=>{const i=document.createElement('i');i.style.left=(s/TOTAL*100)+'%';ticks.appendChild(i)});
   function setPlaying(p){D.playing=p;ui.play.textContent=p?'⏸':'▶';ui.play.setAttribute('aria-label',p?'Tạm dừng':'Phát');if(!p)voStop()}
-  function goto(i,t=0){i=clamp(i,0,SCN.length-1);if(i!==D.i||!D.started){D.i=i;setupScene(i);D.blastDone=false}D.started=true;D.t=t;D.prevT=t;D.line=-2;D.blastDone=t>60&&SCN[i].id==='C08';
+  function goto(i,t=0){i=clamp(i,0,SCN.length-1);if(i!==D.i||!D.started){D.i=i;setupScene(i);D.blastDone=false}D.started=true;D.t=t;D.prevT=t;D.line=-2;D.blastDone=SCN[i].id==='C08'&&t>((SCN[i].actions.find(a=>a.do==='a1blast')||{t:1e9}).t);
     const s=SCN[i];ui.title.textContent=`${s.id} · ${s.title}`;ui.date.textContent=s.date_label;$('snote').textContent=s.note||'';$('snote').hidden=!s.note;
     ui.endt.hidden=true;if(!$('docs').hidden)renderDocs();renderSceneList()}
   $('splay').onclick=()=>{if(D.mode!=='film')setMode('film');if(!D.started)goto(0,0);setPlaying(!D.playing)};
@@ -417,8 +417,11 @@ export async function startDirector(A){
     if(on){const role=$('role').value;if(!W.av||W.role!==role)makeAvatar(role);W.av.obj.visible=true;const p=at||ROLE_START[role]();W.pos.copy(p);W.air=role==='linhdu'&&!at;if(!W.air)W.pos.y=A.hT(p.x,p.z);
       controls.autoRotate=false;controls.minDistance=.3;controls.maxDistance=80;controls.target.copy(W.pos).add(new THREE.Vector3(0,1.5,0));
       camera.position.copy(controls.target).add(new THREE.Vector3(-6,3.2,7));D.fly=null;setPov()}
-    else{if(W.av)W.av.obj.visible=false;controls.minDistance=3;controls.maxDistance=18000}}
-  function setPov(){const fp=$('pov').value==='1';W.fp=fp;if(!W.on)return;const d=fp?.35:6;const dir=camera.position.clone().sub(controls.target).setLength(d);camera.position.copy(controls.target).add(dir);controls.minDistance=fp?.3:2;controls.maxDistance=fp?.4:80}
+    else{if(W.av)W.av.obj.visible=false;controls.minDistance=3;controls.maxDistance=18000;controls.minPolarAngle=0;controls.maxPolarAngle=Math.PI*.49}}
+  // góc nhìn qua mắt: mắt nhìn ngang theo hướng nhân vật, không cúi xuống đất; cho ngước/cúi trong giới hạn
+  function setPov(){const fp=$('pov').value==='1';W.fp=fp;if(!W.on)return;const d=fp?.35:6;const dir=camera.position.clone().sub(controls.target);
+    if(fp){dir.set(-Math.sin(W.yaw||0),0,-Math.cos(W.yaw||0));dir.setLength(d);controls.minPolarAngle=Math.PI*.3;controls.maxPolarAngle=Math.PI*.62}else{dir.setLength(d);controls.minPolarAngle=0;controls.maxPolarAngle=Math.PI*.49}
+    camera.position.copy(controls.target).add(dir);controls.minDistance=fp?.3:2;controls.maxDistance=fp?.4:80;controls.update()}
   $('role').onchange=()=>{if(W.on)setWalk(true)};$('pov').onchange=setPov;
   const camF=new THREE.Vector3(),camR=new THREE.Vector3(),mv=new THREE.Vector3();
   function walkTick(dt){const k=W.keys;let f=(k.KeyW||k.ArrowUp?1:0)-(k.KeyS||k.ArrowDown?1:0)-W.joy.y,r=(k.KeyD||k.ArrowRight?1:0)-(k.KeyA||k.ArrowLeft?1:0)+W.joy.x;
@@ -454,8 +457,15 @@ export async function startDirector(A){
   /* ---------- âm thanh theo cảnh ---------- */
   const BATTLE={C05:.8,C06:1,C07:.6,C08:.7,C09:.5};
   function audioMix(s,st,t){const night=A.SKY.dem.value;const pl=extra.filter(o=>o.visible&&/C47|Dakota/i.test(o.name||'')||false);let plane=0;
-    for(const o of extra){if(!o.visible||!o.userData.isPlane)continue;plane=Math.max(plane,clamp(1.15-camera.position.distanceTo(o.position)/1400,0,1))}
-    audio.set({wind:st.wind,rain:st.rain,birds:(st.birds||0)*(1-night),insects:night*.8,battle:(BATTLE[s.id]||0)*(s.id==='C09'?clamp(1-(t-60)/20,0,1):1),plane})}
+    for(const o of extra){if(!o.visible||!o.userData.isPlane)continue;plane=Math.max(plane,clamp(1.25-camera.position.distanceTo(o.position)/2600,0,1))}
+    audio.set({wind:st.wind,rain:st.rain,birds:(st.birds||0)*(1-night),insects:night*.8,battle:(BATTLE[s.id]||0)*(s.id==='C09'?clamp(1-(t-s.durationSec*.6)/(s.durationSec*.2),0,1):1),plane});musicMix(s,t)}
+  // nhạc nền: "Xuân về trên bản Mông" từ đầu phim tới lúc quân dù bắt đầu dựng cứ điểm (C02);
+  // "Giải phóng Điện Biên" từ lúc khối bộc phá đồi A1 nổ tới hết phim, để nhỏ làm nền cho lời dẫn
+  function musicMix(s,t){const film=D.mode==='film'&&D.playing;const idx=id=>SCN.findIndex(x=>x.id===id);const startOf=i=>{let a=0;for(let k=0;k<i;k++)a+=SCN[k].durationSec;return a};
+    const T=startOf(D.i)+t;const c02=idx('C02');const xEnd=startOf(c02)+((SCN[c02].actions.find(a=>a.do==='reveal')||{t0:22}).t0);
+    const vX=T<xEnd?.5:T<xEnd+5?.5*(1-(T-xEnd)/5):0;audio.music('xuan',film&&vX>0?T:null,vX);
+    const c08=idx('C08');const bl=startOf(c08)+((SCN[c08].actions.find(a=>a.do==='a1blast')||{t:30}).t);const speaking=!!(window.speechSynthesis&&speechSynthesis.speaking);
+    audio.music('gp',film&&T>=bl-.5?T-bl+.5:null,speaking?.16:.26)}
 
   /* ---------- vòng lặp ---------- */
   const tmpE=new THREE.Vector3();
@@ -486,7 +496,7 @@ export async function startDirector(A){
     A.updLabels(camera)});
   function applyMs(ms){const L=stateLayers(ms);applyLayers(L);setA1(ms>=BLAST_MS);flag.visible=!!L.flag;flag.userData.f.position.y=8;colorPlaces(ms);for(const l of A.labels)if(l.cls==='fr')l.force=L.fort&&LAYU.labels?null:false;A.LAY.sectors=false}
   // không cho camera người dùng chui xuống đất
-  function clampCam(){const g=A.hT(camera.position.x,camera.position.z)+2;if(camera.position.y<g&&camera.position.x<20000)camera.position.y=g}
+  function clampCam(){const g=A.hT(camera.position.x,camera.position.z)+(W.on?(W.fp?1.2:.8):2);if(camera.position.y<g&&camera.position.x<20000)camera.position.y=g}
   // cờ phấp phới
   A.tick.push(()=>{if(!flag.visible)return;const f=flag.userData.f,p=f.geometry.attributes.position;const tt=performance.now()/300;for(let i=0;i<p.count;i++){const x=p.getX(i);p.setZ(i,Math.sin(x*2.4-tt)*.18*(x+1.35)/2.7)}p.needsUpdate=true});
   addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,select,textarea'))return;if(e.code==='Space'){e.preventDefault();$('splay').click()}else if(e.code==='PageDown')$('snext').click();else if(e.code==='PageUp')$('sprev').click()});

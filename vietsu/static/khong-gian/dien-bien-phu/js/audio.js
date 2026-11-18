@@ -1,4 +1,4 @@
-/* Âm thanh sa bàn Điện Biên Phủ — tổng hợp bằng WebAudio, không dùng file có bản quyền.
+/* Âm thanh sa bàn Điện Biên Phủ — tổng hợp bằng WebAudio; tiếng chim và 2 bài nhạc nền là tệp mp3 do chủ dự án cung cấp.
    Lớp nền: gió, mưa, chim (sáng), côn trùng (đêm), nền giao tranh xa, tiếng máy bay. Âm đơn: nổ pháo, sấm, nổ lớn.
    Chỉ khởi động khi người xem bật "Âm thanh" (trình duyệt cần thao tác bấm). */
 export function createAudio(){
@@ -24,12 +24,20 @@ export function createAudio(){
     // tiếng chim buổi sáng (tệp mp3): giải mã khi bật âm thanh lần đầu
     const fs=self&&self.fileSrc;if(fs&&fs.chim)fs.fetchBuf(fs.chim,'chim').then(b=>AC.decodeAudioData(b)).then(buf=>{layers.chim=loop(buf)}).catch(()=>{});
   }
-  const BASE={wind:.45,rain:.55,birds:0,insects:.35,battle:.6,plane:.5,chim:.9};
+  const BASE={wind:.45,rain:.55,birds:0,insects:.35,battle:.6,plane:1.1,chim:.9};
+  // nhạc nền theo dòng thời gian phim: phát tại vị trí pos (giây), âm lượng vol; pos=null thì tắt dần
+  const MUS={};
+  function musLoad(k){if(MUS[k])return MUS[k];const m=MUS[k]={buf:null,src:null,g:null,t0:0};const fs=self.fileSrc;if(fs&&fs[k])fs.fetchBuf(fs[k],k).then(b=>AC.decodeAudioData(b)).then(b=>{m.buf=b}).catch(()=>{});return m}
+  function musStop(m){if(!m.src)return;m.g.gain.setTargetAtTime(0,AC.currentTime,.35);const s=m.src;m.src=null;setTimeout(()=>{try{s.stop()}catch(e){}},1500)}
   function shot(sec,fill,vol,delay=0){if(!on||!AC)return;const b=buf(sec,fill);const s=AC.createBufferSource();s.buffer=b;const g=AC.createGain();g.gain.value=vol;s.connect(g).connect(master);s.start(AC.currentTime+delay)}
   self={
     fileSrc:null,
     get on(){return on},
     enable(v){on=v;if(v&&!AC)build();if(AC){if(v)AC.resume();else AC.suspend()}},
+    music(k,pos,vol){if(!AC)return;const m=musLoad(k);if(!m.buf)return;if(!m.g){m.g=AC.createGain();m.g.gain.value=0;m.g.connect(master)}
+      if(!on||pos==null||pos<0||pos>=m.buf.duration-.2||vol<=.001){musStop(m);return}
+      const cur=m.src?AC.currentTime-m.t0:-99;if(!m.src||Math.abs(cur-pos)>1.2){if(m.src){try{m.src.stop()}catch(e){}}const s=AC.createBufferSource();s.buffer=m.buf;s.connect(m.g);s.start(0,pos);m.src=s;m.t0=AC.currentTime-pos}
+      m.g.gain.setTargetAtTime(vol,AC.currentTime,.3)},
     set(m){Object.assign(target,m);if(m.birds!=null)target.chim=m.birds},
     tick(dt){if(!on||!AC)return;const k=Math.min(1,dt*1.5);for(const n in layers){const g=layers[n].gain;g.value+=(BASE[n]*(target[n]||0)-g.value)*k}},
     boom(dist=800,size=1){const d=Math.max(.15,Math.min(1,600/Math.max(200,dist)));
