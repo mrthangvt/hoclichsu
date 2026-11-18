@@ -61,6 +61,8 @@ class CachedStatic(StaticFiles):
 
 
 app.mount("/static", CachedStatic(directory=str(STATIC)), name="static")
+# V4.11: bộ đề ôn sử tĩnh; dùng chung tại /on-thi/ trên máy chủ và GitHub Pages.
+app.mount("/on-thi", CachedStatic(directory=str(STATIC / "on-thi"), html=True), name="on-thi")
 # Không gian lịch sử 3D (sa bàn three.js): /khong-gian/<ten-khong-gian>/
 KHONG_GIAN = STATIC / "khong-gian"
 if KHONG_GIAN.is_dir():
@@ -576,7 +578,7 @@ def admin():
 
 
 # ------------------------------------------------------------ home page
-HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V4.9_Offline.html", STATIC / "Viet_Su_Timeline_V4.8_Offline.html", STATIC / "Viet_Su_Timeline_V4.7_Offline.html", STATIC / "Viet_Su_Timeline_V4.6_Offline.html", STATIC / "Viet_Su_Timeline_V4.5_Offline.html", STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
+HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V4.11_Offline.html", STATIC / "Viet_Su_Timeline_V4.9_Offline.html", STATIC / "Viet_Su_Timeline_V4.8_Offline.html", STATIC / "Viet_Su_Timeline_V4.7_Offline.html", STATIC / "Viet_Su_Timeline_V4.6_Offline.html", STATIC / "Viet_Su_Timeline_V4.5_Offline.html", STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
                    STATIC / "Viet_Su_Timeline_V3.7_Offline.html"]
 _home_cache: dict = {}
 
