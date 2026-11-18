@@ -1,3 +1,5 @@
+> **V5.2 (18/11/2026):** Xuất phát từ mã nguồn chuẩn V4.11 trên nhánh main. Bổ sung module v52.js/v52.css, không thay các icon và ảnh V4.9 đã duyệt; Bộ đề mở trong trang, icon Hồ Chí Minh sửa màu ở chế độ tối, thêm hồ sơ Điện Biên Phủ 1954 và ký hiệu sơ đồ Hoàng Sa/Trường Sa, cập nhật cảnh báo sa bàn trong popup. GitHub Pages dựng qua build_v52.py. Ảnh/sa bàn Điện Biên 3D vẫn cần triển khai và thẩm định riêng. Chưa xác nhận kiểm thử trình duyệt tự động ở môi trường hiện tại.
+
 > **Triển khai V4.9 (17/11/2026):** chủ dự án yêu cầu đưa V4.9 lên website công khai. Nhánh triển khai hợp nhất main mới nhất với V4.9, giữ nguyên sa bàn hiện có trên main. Kiểm tra build và đủ tài nguyên trước khi merge; theo dõi Pages sau merge.
 
 > **V4.9 (17/11/2026):** Theo yêu cầu chủ dự án, khôi phục ảnh menu Hồ Chí Minh, 4 thumbnail Không gian lịch sử và cách chọn ảnh 80 hồ sơ từ bản V4.5 đã gửi; dùng bản đồ véc-tơ. Giữ bố cục V4.6 và sa bàn. Nhánh gpt/v4.9-anh-va-ban-do-vector dựa trên V4.8, chờ duyệt PR. Xem docs/CHANGELOG_V4.9.md.
