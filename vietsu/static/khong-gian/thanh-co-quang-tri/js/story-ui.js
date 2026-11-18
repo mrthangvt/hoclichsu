@@ -52,6 +52,7 @@ export function createUI(api,data,H){
       <button class="sb-btn" id="sbPrev" aria-label="Cảnh trước">⏮</button>
       <button class="sb-btn big" id="sbPlay" aria-label="Phát / tạm dừng">⏸</button>
       <button class="sb-btn" id="sbNext" aria-label="Cảnh tiếp">⏭</button>
+      <button class="sb-btn sb-speed" id="sbSpeed" aria-label="Tốc độ xem: 1×" title="Tốc độ xem">1×</button>
       <div class="sb-title"><b id="sbNum">01/10</b> <span id="sbName"></span><small id="sbTime"></small></div>
       <button class="sb-chip" id="sbPick" aria-haspopup="true" aria-label="Chọn cảnh"><span class="lg">Chọn c</span><span class="sm">C</span>ảnh</button>
       <span class="sb-ba" id="sbBA" hidden><button data-ba="truoc">Trước</button><button data-ba="sau" class="on">Sau</button></span>
@@ -62,6 +63,7 @@ export function createUI(api,data,H){
     <button class="sb-return" id="sbReturn" hidden>↺ Quay lại máy quay dẫn chuyện</button>`);
   document.querySelector('.hud.bottom').insertBefore(bar,document.querySelector('.hud.bottom').firstChild);
   $('sbPrev').onclick=()=>H.prev();$('sbNext').onclick=()=>H.next();$('sbPlay').onclick=()=>H.toggle();
+  const SPEEDS=[.5,.75,1,1.25,1.5,2];$('sbSpeed').onclick=()=>{const i=SPEEDS.indexOf(H.speed?H.speed():1);H.setSpeed(SPEEDS[(i+1)%SPEEDS.length])};
   $('sbReturn').onclick=()=>H.returnCam();$('sbBA').onclick=e=>{const b=e.target.closest('button[data-ba]');if(b){api.setIntact(b.dataset.ba==='truoc');syncChips(api.getState())}};$('sbDocs').onclick=()=>toggleDocs();
   let seeking=false;const seek=$('sbSeek');
   seek.addEventListener('input',()=>{seeking=true;H.seekFrac(seek.value/1000)});seek.addEventListener('change',()=>{seeking=false});
@@ -134,6 +136,7 @@ export function createUI(api,data,H){
       titleP.textContent=m==='story'?'Theo dòng lịch sử · tái dựng có dẫn chuyện':m==='witness'?'Góc nhìn nhân vật tổng hợp':'Khám phá tự do'},
     setEpisode(e,num,total){$('sbBA').hidden=!e.compare;$('sbNum').textContent=String(e.sequence).padStart(2,'0')+'/'+String(eps.length).padStart(2,'0');$('sbName').textContent=e.title;dateChip.textContent=e.date_label;fillDocs(e)},
     setDate(t){dateChip.textContent=t},
+    setSpeed(v){const b=$('sbSpeed');const t=String(v).replace('.',',')+'×';b.textContent=t;b.setAttribute('aria-label','Tốc độ xem: '+t);b.classList.toggle('on',v!==1)},
     setPlaying(p){$('sbPlay').textContent=p?'⏸':'▶';$('sbPlay').setAttribute('aria-pressed',!p)},
     setProgress(frac,t,dur){if(!seeking)seek.value=Math.round(frac*1000);$('sbTime').textContent=' '+fmt(t)+' / '+fmt(dur)},
     setTicks(fracs){$('sbTicks').innerHTML=fracs.map(f=>`<i style="left:${(f*100).toFixed(2)}%"></i>`).join('')},
