@@ -101,7 +101,7 @@ export async function startDirector(A){
   // chọn đoạn đường lên dốc rõ nhất
   function uphill(r){let best=0,bs=0,sg=1;for(let s=0;s<r.len-120;s+=20){r.at(s,tmp);const z0=tmp.y;r.at(s+100,tmp);const dz=tmp.y-z0;if(Math.abs(dz)>best){best=Math.abs(dz);bs=s;sg=dz>0?1:-1}}return{s:sg>0?bs:bs+100,sg}}
   const _n=new THREE.Vector3(),_q=new THREE.Vector3();
-  function keoPhao(route,gun,s0,speed,t0,t1,loop=false){const r=ROUTE[route];if(!r)return null;const U=uphill(r);s0=U.s;const sg=U.sg;
+  function keoPhao(route,gun,s0,speed,t0,t1,loop=false,back=0){const r=ROUTE[route];if(!r)return null;const U=uphill(r);const sg=U.sg;s0=Math.max(5,Math.min(r.len-5,U.s-sg*back));
     const p=A.mau(gun);const bs=barrelSign(p);const gg=new THREE.Group();gg.add(p);p.rotation.y=bs>0?Math.PI/2:-Math.PI/2;scene.add(gg);   // nòng quay về phía sau, càng pháo hướng lên dốc
     const men=[];for(let i=0;i<6;i++)for(const sd of[-1,1]){const c=A.makeChar('bodoi','INPLACE_Pull Heavy Object');scene.add(c.obj);men.push({c,off:4.2+i*1.7,lat:sd*.85,clip:'INPLACE_Pull Heavy Object'})}
     for(const sd of[-1,1]){const c=A.makeChar('bodoi','INPLACE_Pushing');scene.add(c.obj);men.push({c,off:-2.9,lat:sd*.7,clip:'INPLACE_Pushing'})}
@@ -114,10 +114,16 @@ export async function startDirector(A){
       _q.copy(gg.position).addScaledVector(dir,2.2);_q.y+=.6;const last=men[10].c.obj.position,last2=men[11].c.obj.position;
       rp.setXYZ(0,_q.x,_q.y,_q.z);rp.setXYZ(1,last.x,last.y+1.05,last.z);rp.setXYZ(2,_q.x,_q.y,_q.z);rp.setXYZ(3,last2.x,last2.y+1.05,last2.z);rp.needsUpdate=true}};
     extra.push(rope,...men.map(m=>m.c.obj));actors.push(a);return a}
+  // thêm các khẩu đội kéo pháo trên nhiều đường (cách nhau vài chục mét, tốc độ khác nhau)
+  function keoPhaoNhieu(t0,t1,loop){const L=[['Duong_KeoPhao_DongBac','SonPhao_75',.42,38],['Duong_KeoPhao_DongBac','Phao_M101_105',.4,80],['Duong_KeoPhao_Dong','SonPhao_75',.4,0],['Duong_KeoPhao_Dong','Phao_M101_105',.38,45],['Duong_KeoPhao_DongNam','Phao_M101_105',.43,0],['Duong_KeoPhao_Tay','SonPhao_75',.4,0]];
+    for(const [r,g,v,b] of (A.MOBILE?L.slice(0,2):L))keoPhao(r,g,0,v,t0,t1,loop,b)}
   // đoàn xe đạp thồ: dân công đẩy xe (động tác "đẩy xe")
-  function xeTho(route,n,gap,speed,t0,t1,s0=0,lead=false){const r=ROUTE[route];if(!r)return;if(lead)D.xt={center:new THREE.Vector3(),heading:0};for(let i=0;i<n;i++){const g=new THREE.Group();const c=A.makeChar('dancong','day_xe');g.add(c.obj);
+  function xeTho(route,n,gap,speed,t0,t1,s0=0,lead=false){const r=ROUTE[route];if(!r)return;if(lead)D.xt={center:new THREE.Vector3(),heading:0};
+    // khoảng cách xa gần khác nhau: đi thành từng tốp 2–6 xe, trong tốp cách 3,5–7 m, giữa các tốp cách 14–45 m
+    const rq=rngOf(n*7+route.length);const OFF=[];let acc=0,left=0;for(let i=0;i<n;i++){if(left<=0){left=2+Math.floor(rq()*5);if(i)acc+=14+rq()*31}else acc+=3.5+rq()*3.5*gap/6;left--;OFF.push(acc)}
+    for(let i=0;i<n;i++){const g=new THREE.Group();const c=A.makeChar('dancong','day_xe');g.add(c.obj);
     const bike=A.mau('XeDapTho_Tripo');bike.position.set(.35,0,1.25);bike.rotation.y=-Math.PI/2;g.add(bike);scene.add(g);
-    actors.push({obj:g,update(t){g.visible=t>=t0&&t<=t1;if(!g.visible)return;const s=s0+i*gap+speed*(t-t0);r.at(s%r.len,g.position,tmp2);g.position.y=hAt(g.position.x,-g.position.z);face(g,tmp2);c.set(t*1.05+i*.21);if(lead&&i===3){D.xt.center.copy(g.position);D.xt.heading=Math.atan2(tmp2.x,-tmp2.z)}}})}}
+    actors.push({obj:g,update(t){g.visible=t>=t0&&t<=t1;if(!g.visible)return;const s=s0+OFF[i]+speed*(t-t0);r.at(s%r.len,g.position,tmp2);g.position.y=hAt(g.position.x,-g.position.z);face(g,tmp2);c.set(t*1.05+i*.21);if(lead&&i===3){D.xt.center.copy(g.position);D.xt.heading=Math.atan2(tmp2.x,-tmp2.z)}}})}}
   // mũi tiến công: nhóm bộ đội chạy (động tác "chạy") từ hướng xuất phát tới cứ điểm + mũi tên trên địa hình
   function assault(act,seed){const grp={center:new THREE.Vector3(),heading:0,n:0};GROUPS.push(grp);const tg=PH[act.target];if(!tg)return;const rnd=rngOf(seed);const [fx,fy]=act.from_;const [tx,ty]=tg.coordinates;
     const dx=tx-fx,dy=ty-fy,L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L,stop=L-Math.min(tg.r*.45,L*.3);const n=Math.min(act.n||14,A.MOBILE?30:120);const clip=act.walk?'di_bo':'chay';const sp=act.walk?1.3:4.2;
@@ -210,12 +216,13 @@ export async function startDirector(A){
         const nx=s<d1?(br[0]-st[0]):(dst[0]-br[0]),ny=s<d1?(br[1]-st[1]):(dst[1]-br[1]);const ll=Math.hypot(nx,ny);x+=-ny/ll*side;y+=nx/ll*side;
         z=hAt(x,y);const db=Math.hypot(x-br[0],y-br[1]);if(db<30)z=Math.max(z,hAt(br[0],br[1])+4.6);c.obj.position.copy(B(x,y,z));c.obj.rotation.y=Math.atan2(nx,-ny);c.set(t*1.15+i*.2);if(i===2){grp.center.copy(c.obj.position);grp.heading=Math.atan2(nx,ny)}}})}}
   // Sở Chỉ huy Mường Phăng: cán bộ tham mưu đứng bên bàn bản đồ
-  function hqStaff(){A.hq.traverse(o=>{if(/DaiTuong/.test(o.name))o.visible=false});
-    const gen=A.makeChar('daituong','dung');gen.obj.position.copy(B(30000.15,.55,0));gen.obj.rotation.y=0;scene.add(gen.obj);
-    actors.push({obj:gen.obj,update(t){const c=t%9;if(c<5)gen.pose('dung',.02);else gen.pose('VuonLay',(c-5)*.9,true)}});
-    const SEAT=[[29998.75,-.1,-1.2,'ANIM_Male Action Pose'],[30001.45,-.25,1.25,'ANIM_Male Action Pose'],[29999.25,-1.75,-2.6,'QuyNghi'],[30000.85,-1.8,2.7,'ANIM_Male Action Pose'],[29998.9,.95,-.6,'NhatDo']];
-    SEAT.forEach(([x,y,r,clip],i)=>{const c=A.makeChar('bodoi',clip,{noGun:true});c.obj.position.copy(B(x,y,0));c.obj.rotation.y=r;scene.add(c.obj);
-      actors.push({obj:c.obj,update(t){if(clip==='NhatDo'){const k=(t+i*3)%11;if(k<7)c.pose('ANIM_Male Action Pose',.02);else c.pose('NhatDo',(k-7)*.8,true)}else c.pose(clip,clip==='QuyNghi'?t*.6:.02);c.obj.rotation.y=r+Math.sin(t*.4+i)*.12}})})}
+  // giao ban: Đại tướng đứng yên chỉ tay vào sa bàn, 5 cán bộ đứng quanh bàn lắng nghe (không cầm súng)
+  function hqStaff(){A.hq.traverse(o=>{if(/DaiTuong/.test(o.name))o.visible=false});const TX=30000,TY=-.4;
+    const gen=A.makeChar('daituong','ChiTaySaBan');gen.obj.position.copy(B(30000.15,.55,0));gen.obj.rotation.y=Math.atan2(TX-30000.15,-(TY-.55));scene.add(gen.obj);
+    actors.push({obj:gen.obj,update(t){gen.pose('ChiTaySaBan',t*.5)}});
+    const SEAT=[[29998.7,-.1],[30001.5,-.25],[29999.0,-1.85],[30001.0,-1.85],[29998.9,.95]];
+    SEAT.forEach(([x,y],i)=>{const c=A.makeChar('bodoi','DungNghe',{noGun:true});c.obj.position.copy(B(x,y,0));const r=Math.atan2(TX-x,-(TY-y));c.obj.rotation.y=r;scene.add(c.obj);
+      actors.push({obj:c.obj,update(t){c.pose('DungNghe',t*.5+i*.7);c.obj.rotation.y=r+Math.sin(t*.25+i)*.05}})})}
 
   const REST_POSES=[['NgoiNghi',0],['NamNapDan',0],['NupQuanSat',0],['QuyNghi',0],['NgoiNghi',1],['DungNgam',0],['NamNapDan',1],['QuyNghi',1]];
   function trenchRest(cx,cy,ang,n,poses){const g=new THREE.Group();const dir=new THREE.Vector3(Math.sin(ang),0,-Math.cos(ang));const L=34;
@@ -240,7 +247,7 @@ export async function startDirector(A){
       else if(a.do==='cutaway')cutaway(a);else if(a.do==='a1blast'){a1blast(a);a1Garrison(a.t)}else if(a.do==='prisoners')prisoners(a);else if(a.do==='bridge_run')bridgeRun(a);
       else if(a.do==='convoy'){xeTho('Duong_XeTho_TiepTe',A.MOBILE?14:40,6,1.3,0,s.durationSec,ROUTE.Duong_XeTho_TiepTe?ROUTE.Duong_XeTho_TiepTe.len*.35:0,true);xeTho('Duong_XeTho_Bac',A.MOBILE?3:6,9,1.3,0,s.durationSec)}
       else if(a.do==='hao_dem')trenchRest(a.x,a.y,a.ang,A.MOBILE?5:8,REST_POSES);else if(a.do==='phao_nghi')gunRest();
-      else if(a.do==='keophao'){D.kp=keoPhao('Duong_KeoPhao_DongBac','Phao_M101_105',ROUTE.Duong_KeoPhao_DongBac?ROUTE.Duong_KeoPhao_DongBac.len*.55:0,.45,0,s.durationSec)}}
+      else if(a.do==='keophao'){D.kp=keoPhao('Duong_KeoPhao_DongBac','Phao_M101_105',0,.45,0,s.durationSec);keoPhaoNhieu(0,s.durationSec,false)}}
     if(s.hq)hqStaff();
     booms.sort((a,b)=>a.t-b.t)}
 
@@ -396,7 +403,7 @@ export async function startDirector(A){
   function buildAmbient(){clearActors();E.built=true;
     xeTho('Duong_XeTho_TiepTe',A.MOBILE?14:40,6,1.3,0,1e9,0,true);xeTho('Duong_XeTho_Bac',A.MOBILE?6:16,6,1.3,0,1e9);
     D.kp=keoPhao('Duong_KeoPhao_DongBac','Phao_M101_105',ROUTE.Duong_KeoPhao_DongBac?ROUTE.Duong_KeoPhao_DongBac.len*.5:0,.45,0,1e9,true);
-    keoPhao('Duong_KeoPhao_Dong','SonPhao_75',ROUTE.Duong_KeoPhao_Dong?ROUTE.Duong_KeoPhao_Dong.len*.5:0,.4,0,1e9,true);
+    keoPhaoNhieu(0,1e9,true);
     trenchRest(-2300,-370,Math.atan2(350,750),A.MOBILE?5:8,REST_POSES);gunCrew();E.vn=actors.slice();frCamp();E.fr=actors.slice(E.vn.length);a1Garrison(1e9);E.garrison=actors.slice(-10)}
   function areaPos(a){if(a[2]==='kp'&&D.kp){D.kp.update(E.t);return D.kp.center.clone().addScaledVector(new THREE.Vector3(Math.sin(D.kp.heading),0,-Math.cos(D.kp.heading)),-14)}
     const [x,y]=a[1];return B(x,y,hAt(x,y))}

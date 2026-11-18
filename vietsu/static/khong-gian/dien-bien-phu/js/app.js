@@ -47,11 +47,11 @@ const sun=new THREE.DirectionalLight(0xfff1dc,2.6);scene.add(sun,sun.target);
 const flashLight=new THREE.PointLight(0xffa050,0,6000,1.1);scene.add(flashLight);
 
 /* ---------------- tải tài nguyên ---------------- */
-const ASSETS=Object.assign({static:'models/static.glb',mau:'models/mau.glb',nhanvat:'models/nhanvat.glb',linh:'models/linh.glb',phap:'models/phap.glb',caymau:'models/cay_mau.glb',hq:'models/hq.glb',
+const ASSETS=Object.assign({static:'models/static.glb',mau:'models/mau.glb',nhanvat:'models/nhanvat.glb',linh:'models/linh.glb',phap:'models/phap.glb',giap:'models/giap.glb',caymau:'models/cay_mau.glb',hq:'models/hq.glb',
   cay:'data/cay.bin',dat:'tex/dat.webp',datn:'tex/dat_n.webp',chim:'audio/chim-buoi-sang.mp3',caymeta:'data/cay.json',matdat:MOBILE?'tex/matdat_2k.jpg':'tex/matdat_4k.jpg',draco:'vendor/three/addons/libs/draco/',dracoType:'wasm'},window.ASSETS||{});
 const draco=new DRACOLoader();draco.setDecoderPath(ASSETS.draco);draco.setDecoderConfig({type:ASSETS.dracoType});
 const loader=new GLTFLoader();loader.setDRACOLoader(draco);
-const W8={static:.34,mau:.1,nhanvat:.1,linh:.1,phap:.03,caymau:.02,hq:.03,matdat:.16,cay:.12};const prog={};
+const W8={static:.34,mau:.1,nhanvat:.1,linh:.1,phap:.03,giap:.02,caymau:.02,hq:.03,matdat:.16,cay:.12};const prog={};
 function setProg(k,v){prog[k]=v;let s=0;for(const q in W8)s+=(prog[q]||0)*W8[q];$('fill').style.width=(s*100).toFixed(0)+'%'}
 function fetchBuf(url,key){return new Promise((res,rej)=>{const x=new XMLHttpRequest();const b64=url.endsWith('.txt');x.open('GET',url);x.responseType=b64?'text':'arraybuffer';
   x.onprogress=e=>{if(e.total)setProg(key,e.loaded/e.total)};x.onerror=()=>rej(new Error('Không tải được '+url));
@@ -60,8 +60,8 @@ function fetchBuf(url,key){return new Promise((res,rej)=>{const x=new XMLHttpReq
 const parse=buf=>new Promise((res,rej)=>loader.parse(buf,'',res,rej));
 const json=u=>fetch(u).then(r=>r.json());
 const imgTex=(buf,type='image/jpeg')=>new Promise((res,rej)=>{const url=URL.createObjectURL(new Blob([buf],{type}));new THREE.TextureLoader().load(url,t=>{URL.revokeObjectURL(url);res(t)},undefined,rej)});
-const [gS,gM,gN,gL,gP,gC,gH,TEX,TDAT,TDATN,CAY,CAYM,SC,PLACES,EVENTS,SCENES,SOURCES]=await Promise.all([
-  fetchBuf(ASSETS.static,'static').then(parse),fetchBuf(ASSETS.mau,'mau').then(parse),fetchBuf(ASSETS.nhanvat,'nhanvat').then(parse),fetchBuf(ASSETS.linh,'linh').then(parse),fetchBuf(ASSETS.phap,'phap').then(parse),fetchBuf(ASSETS.caymau,'caymau').then(parse),fetchBuf(ASSETS.hq,'hq').then(parse),
+const [gS,gM,gN,gL,gP,gG,gC,gH,TEX,TDAT,TDATN,CAY,CAYM,SC,PLACES,EVENTS,SCENES,SOURCES]=await Promise.all([
+  fetchBuf(ASSETS.static,'static').then(parse),fetchBuf(ASSETS.mau,'mau').then(parse),fetchBuf(ASSETS.nhanvat,'nhanvat').then(parse),fetchBuf(ASSETS.linh,'linh').then(parse),fetchBuf(ASSETS.phap,'phap').then(parse),fetchBuf(ASSETS.giap,'giap').then(parse),fetchBuf(ASSETS.caymau,'caymau').then(parse),fetchBuf(ASSETS.hq,'hq').then(parse),
   fetchBuf(ASSETS.matdat,'matdat').then(imgTex),fetchBuf(ASSETS.dat,'dat').then(b=>imgTex(b,'image/webp')),fetchBuf(ASSETS.datn,'datn').then(b=>imgTex(b,'image/webp')),fetchBuf(ASSETS.cay,'cay').then(b=>new Int16Array(b)),json(ASSETS.caymeta),
   json('data/scene.json'),json('data/places.json'),json('data/events.json'),json('data/scenes.json'),json('data/sources.json')
 ]).catch(e=>{$('loadtxt').textContent=e.message;throw e});
@@ -202,6 +202,8 @@ function mau(name){const o=MAU[name];if(!o)return new THREE.Group();const c=o.cl
 const CLIPS={};for(const c of gN.animations)CLIPS[c.name]=c;
 const CLIPS_L={};for(const c of gL.animations)CLIPS_L[c.name]=c;
 const CLIPS_P={};for(const c of gP.animations)CLIPS_P[c.name]=c;
+// Đại tướng (model mới) + động tác chỉ sa bàn / đứng nghe; dùng chung khung xương với bộ đội
+const CLIPS_G={};for(const c of gG.animations){CLIPS_G[c.name]=c;if(!CLIPS_L[c.name])CLIPS_L[c.name]=c}
 // súng trường mới (model anh gửi) thay cho súng cũ của bộ đội: cùng hệ trục (nòng -Y), dùng chung lưới với súng lính Pháp
 (()=>{let gp=null;gP.scene.traverse(o=>{if(!gp&&o.isMesh&&/Sung/.test(o.name+(o.parent?o.parent.name:'')))gp=o});const gb=gL.scene.getObjectByName('SungTruong_1954');if(!gp||!gb)return;
   if(gb.isMesh){gb.geometry=gp.geometry;gb.material=gp.material}else{for(const c of [...gb.children])if(c.isMesh)gb.remove(c);const m=new THREE.Mesh(gp.geometry,gp.material);m.name='SungTruong_1954_moi';gb.add(m)}})();
@@ -209,14 +211,18 @@ const CLIPS_P={};for(const c of gP.animations)CLIPS_P[c.name]=c;
 // lính Pháp: rig riêng (người lính Thành cổ), chỉ dùng động tác của chính rig này
 const MAPP={tu_binh:'DiKhom_TaiCho',chay:'ChayLonNhao_TaiCho',ChayToi_TaiCho:'ChayLonNhao_TaiCho',di_bo:'DiNgamBan_TaiCho',DiCamSung_TaiCho:'DiNgamBan_TaiCho',dung:'DungNgam',NgoiNghi:'QuyNghi',VuonLay:'DungNgam',KeoVat:'DiKhom_TaiCho',DungNapDan:'DungNgam',NamNapDan:'NupQuanSat',keo_nang:'DiKhom_TaiCho',day:'DiKhom_TaiCho'};
 const MAPL={chay:'ChayToi_TaiCho',di_bo:'DiCamSung_TaiCho',dung:'DungNgam',keo_nang:'KeoVat',day:'DiKhom_TaiCho',keo_day:'KeoVat',day_xe:'DiCamSung_TaiCho'};
-const SRC={dancong:{g:gN,clips:CLIPS,show:['DanCong_Mesh'],s:1.66/1.81},daituong:{g:gN,clips:CLIPS,show:['RIG_DaiTuong_VNG'],s:1.66/1.81},
+const SRC={dancong:{g:gN,clips:CLIPS,show:['DanCong_Mesh'],s:1.66/1.81},daituong:{g:gG,clips:CLIPS_G,show:['DaiTuong_V2'],s:1.68/1.75,map:{dung:'ChiTaySaBan',VuonLay:'ChiTaySaBan'},own:true},
   bodoi:{g:gL,clips:CLIPS_L,show:['QDND_V2_Nguoi','SungTruong_1954'],s:1.64/1.70,map:MAPL},linhphap:{g:gP,clips:CLIPS_P,show:['VNCH_V2_Nguoi','Sung_Phap_1954'],s:1.72/1.74,map:MAPP,own:true}};
 const XCLIP={};function xclip(n){if(XCLIP[n])return XCLIP[n];const c=CLIPS_L[n]||CLIPS[n];if(!c)return null;const k=c.clone();k.tracks=k.tracks.filter(t=>!/\.position$/.test(t.name));XCLIP[n]=k;return k}
+// hiệu chỉnh hướng súng bộ đội theo từng động tác (tính trong Blender: nòng hướng về tay trái khi cầm 2 tay, súng không bị lật nghiêng)
+const GUNC={ChayToi_TaiCho:[0.1847,0.207,-0.6927,0.6657],DiCamSung_TaiCho:[0.0762,-0.0486,-0.8849,0.457],DungBan:[0.0348,-0.0828,-0.8128,0.5756],DungNapDan:[0.7445,-0.3002,-0.4364,0.4065],NamNapDan:[0.3414,-0.1014,-0.8926,0.2764],NgoiNghi:[0.0575,0.8653,-0.3436,0.3603],DungNgam:[0.0311,-0.0871,-0.8134,0.5743],NgaXuong_TaiCho:[-0.754,-0.008,-0.6565,0.0221],VuonLay:[0.1533,-0.405,-0.1942,0.8802],NhatDo:[-0.0943,0.5989,-0.442,0.6611],DiKhom_TaiCho:[0.2726,-0.1555,-0.7549,0.5758],ChayLonNhao_TaiCho:[0.6728,0.1682,0.6833,0.2285],ChayBan_TaiCho:[-0.4913,-0.0766,-0.7521,0.4326],DiNgamBan_TaiCho:[-0.5298,-0.0232,-0.7499,0.3955],BoThap_TaiCho:[-0.003,-0.0004,-0.3111,0.9504],TruonToi_TaiCho:[0.0804,-0.002,-0.5732,0.8155],NhaoRaTruoc_TaiCho:[-0.4365,0.8281,-0.1604,0.3129],DiNgangBan_TaiCho:[-0.4599,-0.0377,-0.7723,0.4365],TrungDan_TaiCho:[-0.5388,0.0721,-0.7132,0.4425]};
+const GUNQ={};for(const k in GUNC)GUNQ[k]=new THREE.Quaternion(...GUNC[k]).normalize();
 function makeChar(kind,clip,opt={}){const S=SRC[kind];const root=SkeletonUtils.clone(S.g.scene);root.traverse(o=>{if(o.isMesh){o.visible=(S.show.includes(o.name)||S.show.includes(o.parent&&o.parent.name))&&!(opt.noGun&&/Sung/i.test(o.name+(o.parent?o.parent.name:'')));o.frustumCulled=false}});
+  const gunN=kind==='bodoi'?root.getObjectByName('SungTruong_1954'):null;const gunQ0=gunN?gunN.quaternion.clone():null;const fixGun=c=>{if(!gunN)return;const q=GUNQ[c]||GUNQ.DungBan;gunN.quaternion.copy(gunQ0).multiply(q)};
   const g=new THREE.Group();g.add(root);root.scale.setScalar(S.s);const mixer=new THREE.AnimationMixer(root);const nm=n=>S.clips[n]?n:(S.map&&S.map[n])||n;
-  let cur=mixer.clipAction(S.clips[nm(clip)]||Object.values(S.clips)[0]);cur.play();
+  let cur=mixer.clipAction(S.clips[nm(clip)]||Object.values(S.clips)[0]);cur.play();fixGun(nm(clip));
   const act=n=>{const c=S.clips[nm(n)]||(S.own?S.clips[S.map.dung]:xclip(n));return c?mixer.clipAction(c):null};
-  return{obj:g,mixer,set(t){mixer.setTime(t)},pose(n,tt,once){const a=act(n);if(!a)return;if(a!==cur){cur.stop();a.play();cur=a}const d=a.getClip().duration;a.time=once?Math.min(Math.max(0,tt),d-.01):((tt%d)+d)%d;mixer.update(0)},play(n){const c=S.clips[nm(n)];if(!c)return;const a=mixer.clipAction(c);if(a===cur)return;a.reset().play();cur.crossFadeTo(a,.25,false);cur=a},has:n=>!!S.clips[nm(n)]}}
+  return{obj:g,mixer,set(t){mixer.setTime(t)},pose(n,tt,once){const a=act(n);if(!a)return;if(a!==cur){cur.stop();a.play();cur=a;fixGun(a.getClip().name)}const d=a.getClip().duration;a.time=once?Math.min(Math.max(0,tt),d-.01):((tt%d)+d)%d;mixer.update(0)},play(n){const c=S.clips[nm(n)];if(!c)return;const a=mixer.clipAction(c);if(a===cur)return;a.reset().play();cur.crossFadeTo(a,.25,false);cur=a;fixGun(c.name)},has:n=>!!S.clips[nm(n)]}}
 
 /* ---------------- hiệu ứng: nổ, khói, chớp, mưa ---------------- */
 function spriteTex(stops){const cv=document.createElement('canvas');cv.width=cv.height=64;const x=cv.getContext('2d');const g=x.createRadialGradient(32,32,0,32,32,32);for(const[a,c]of stops)g.addColorStop(a,c);x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(cv)}
