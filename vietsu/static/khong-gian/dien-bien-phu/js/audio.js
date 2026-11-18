@@ -24,7 +24,7 @@ export function createAudio(){
     // tiếng chim buổi sáng (tệp mp3): giải mã khi bật âm thanh lần đầu
     const fs=self&&self.fileSrc;if(fs&&fs.chim)fs.fetchBuf(fs.chim,'chim').then(b=>AC.decodeAudioData(b)).then(buf=>{layers.chim=loop(buf)}).catch(()=>{});
   }
-  const BASE={wind:.45,rain:.55,birds:.5,insects:.35,battle:.6,plane:.5,chim:.9};
+  const BASE={wind:.45,rain:.55,birds:0,insects:.35,battle:.6,plane:.5,chim:.9};
   function shot(sec,fill,vol,delay=0){if(!on||!AC)return;const b=buf(sec,fill);const s=AC.createBufferSource();s.buffer=b;const g=AC.createGain();g.gain.value=vol;s.connect(g).connect(master);s.start(AC.currentTime+delay)}
   self={
     fileSrc:null,

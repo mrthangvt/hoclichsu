@@ -137,39 +137,22 @@
    },
    "shots": [
     {
-     "id": "castor_sky",
-     "dur": 16,
+     "id": "castor_wide",
+     "dur": 52,
      "target": "may_bay",
      "tz": 0,
-     "az": 100,
-     "el": 5,
-     "dist": 120,
-     "daz": -50,
+     "az": 120,
+     "el": 16,
+     "dist": 750,
+     "daz": -30,
      "high": false,
      "blend": 0,
      "cut": false,
      "fov": 42
     },
     {
-     "id": "du_roi",
-     "dur": 16,
-     "target": [
-      -1000,
-      600
-     ],
-     "tz": 150,
-     "az": 200,
-     "el": 8,
-     "dist": 520,
-     "daz": 20,
-     "high": false,
-     "blend": 5,
-     "cut": false,
-     "fov": 40
-    },
-    {
      "id": "airfield",
-     "dur": 26,
+     "dur": 18,
      "target": [
       -1510,
       -120
@@ -177,16 +160,16 @@
      "tz": 0,
      "az": 120,
      "el": 26,
-     "dist": 1700,
-     "daz": 25,
+     "dist": 1500,
+     "daz": 15,
      "high": false,
-     "blend": 5,
+     "blend": 6,
      "cut": false,
      "fov": 40
     },
     {
      "id": "three_sectors_overview",
-     "dur": 32,
+     "dur": 20,
      "target": [
       -900,
       -1300
@@ -195,7 +178,7 @@
      "az": 185,
      "el": 52,
      "dist": 10500,
-     "daz": 12,
+     "daz": 8,
      "high": true,
      "blend": 6,
      "cut": false,
@@ -218,7 +201,7 @@
      "text": "Từ cuộc đổ quân đường không, quân Pháp củng cố Điện Biên Phủ thành một hệ thống phòng ngự gồm nhiều cứ điểm liên hoàn."
     },
     {
-     "t": 34,
+     "t": 50,
      "text": "Sân bay, công sự, lô cốt, chiến hào và hàng rào dây thép gai lần lượt được dựng lên giữa lòng chảo."
     },
     {
@@ -230,12 +213,12 @@
     {
      "do": "castor",
      "t0": 0,
-     "t1": 34
+     "t1": 52
     },
     {
      "do": "reveal",
-     "t0": 30,
-     "t1": 80
+     "t0": 50,
+     "t1": 84
     },
     {
      "do": "sectors",
@@ -610,8 +593,8 @@
      "target": "nhom:0",
      "tz": 0,
      "az": 200,
-     "el": 10,
-     "dist": 22,
+     "el": 13,
+     "dist": 48,
      "daz": 30,
      "high": false,
      "blend": 3,
@@ -735,7 +718,8 @@
      "from_": [
       1900,
       1700
-     ]
+     ],
+     "n": 80
     },
     {
      "do": "barrage",
@@ -751,7 +735,8 @@
      "from_": [
       -300,
       4600
-     ]
+     ],
+     "n": 60
     },
     {
      "do": "assault",
@@ -762,7 +747,8 @@
       -3600,
       2600
      ],
-     "walk": true
+     "walk": true,
+     "n": 40
     }
    ],
    "histKeys": [
@@ -887,8 +873,8 @@
      "target": "nhom:2",
      "tz": 0,
      "az": 160,
-     "el": 10,
-     "dist": 22,
+     "el": 13,
+     "dist": 48,
      "daz": 30,
      "high": false,
      "blend": 3,
@@ -967,7 +953,8 @@
      "from_": [
       700,
       800
-     ]
+     ],
+     "n": 40
     },
     {
      "do": "assault",
@@ -977,7 +964,8 @@
      "from_": [
       900,
       300
-     ]
+     ],
+     "n": 40
     },
     {
      "do": "assault",
@@ -987,7 +975,8 @@
      "from_": [
       1000,
       -300
-     ]
+     ],
+     "n": 60
     },
     {
      "do": "assault",
@@ -997,7 +986,8 @@
      "from_": [
       1000,
       -1200
-     ]
+     ],
+     "n": 100
     }
    ],
    "note": "Trạng thái \"giằng co\" là gộp; chi tiết từng lần đổi chủ cần nguồn.",
@@ -1339,8 +1329,8 @@
      "target": "nhom:0",
      "tz": 0,
      "az": 200,
-     "el": 12,
-     "dist": 26,
+     "el": 13,
+     "dist": 48,
      "daz": 30,
      "high": false,
      "blend": 3,
@@ -1409,7 +1399,8 @@
      "from_": [
       600,
       -1300
-     ]
+     ],
+     "n": 100
     }
    ],
    "note": "Mặt cắt và đường hầm là MINH HỌA.",
@@ -1552,7 +1543,8 @@
      "from_": [
       300,
       -400
-     ]
+     ],
+     "n": 50
     },
     {
      "do": "assault",
@@ -1562,7 +1554,8 @@
      "from_": [
       -700,
       -1700
-     ]
+     ],
+     "n": 50
     },
     {
      "do": "bridge_run",

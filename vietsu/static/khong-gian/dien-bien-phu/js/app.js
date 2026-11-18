@@ -48,7 +48,7 @@ const flashLight=new THREE.PointLight(0xffa050,0,6000,1.1);scene.add(flashLight)
 
 /* ---------------- tải tài nguyên ---------------- */
 const ASSETS=Object.assign({static:'models/static.glb',mau:'models/mau.glb',nhanvat:'models/nhanvat.glb',linh:'models/linh.glb',hq:'models/hq.glb',
-  cay:'data/cay.bin',chim:'audio/chim-buoi-sang.mp3',caymeta:'data/cay.json',matdat:MOBILE?'tex/matdat_2k.jpg':'tex/matdat_4k.jpg',draco:'vendor/three/addons/libs/draco/',dracoType:'wasm'},window.ASSETS||{});
+  cay:'data/cay.bin',dat:'tex/dat.webp',datn:'tex/dat_n.webp',chim:'audio/chim-buoi-sang.mp3',caymeta:'data/cay.json',matdat:MOBILE?'tex/matdat_2k.jpg':'tex/matdat_4k.jpg',draco:'vendor/three/addons/libs/draco/',dracoType:'wasm'},window.ASSETS||{});
 const draco=new DRACOLoader();draco.setDecoderPath(ASSETS.draco);draco.setDecoderConfig({type:ASSETS.dracoType});
 const loader=new GLTFLoader();loader.setDRACOLoader(draco);
 const W8={static:.36,mau:.1,nhanvat:.1,linh:.1,hq:.04,matdat:.16,cay:.14};const prog={};
@@ -59,10 +59,10 @@ function fetchBuf(url,key){return new Promise((res,rej)=>{const x=new XMLHttpReq
     const bin=atob(x.responseText.trim());const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);res(u.buffer)};x.send()})}
 const parse=buf=>new Promise((res,rej)=>loader.parse(buf,'',res,rej));
 const json=u=>fetch(u).then(r=>r.json());
-const imgTex=buf=>new Promise((res,rej)=>{const url=URL.createObjectURL(new Blob([buf],{type:'image/jpeg'}));new THREE.TextureLoader().load(url,t=>{URL.revokeObjectURL(url);res(t)},undefined,rej)});
-const [gS,gM,gN,gL,gH,TEX,CAY,CAYM,SC,PLACES,EVENTS,SCENES,SOURCES]=await Promise.all([
+const imgTex=(buf,type='image/jpeg')=>new Promise((res,rej)=>{const url=URL.createObjectURL(new Blob([buf],{type}));new THREE.TextureLoader().load(url,t=>{URL.revokeObjectURL(url);res(t)},undefined,rej)});
+const [gS,gM,gN,gL,gH,TEX,TDAT,TDATN,CAY,CAYM,SC,PLACES,EVENTS,SCENES,SOURCES]=await Promise.all([
   fetchBuf(ASSETS.static,'static').then(parse),fetchBuf(ASSETS.mau,'mau').then(parse),fetchBuf(ASSETS.nhanvat,'nhanvat').then(parse),fetchBuf(ASSETS.linh,'linh').then(parse),fetchBuf(ASSETS.hq,'hq').then(parse),
-  fetchBuf(ASSETS.matdat,'matdat').then(imgTex),fetchBuf(ASSETS.cay,'cay').then(b=>new Int16Array(b)),json(ASSETS.caymeta),
+  fetchBuf(ASSETS.matdat,'matdat').then(imgTex),fetchBuf(ASSETS.dat,'dat').then(b=>imgTex(b,'image/webp')),fetchBuf(ASSETS.datn,'datn').then(b=>imgTex(b,'image/webp')),fetchBuf(ASSETS.cay,'cay').then(b=>new Int16Array(b)),json(ASSETS.caymeta),
   json('data/scene.json'),json('data/places.json'),json('data/events.json'),json('data/scenes.json'),json('data/sources.json')
 ]).catch(e=>{$('loadtxt').textContent=e.message;throw e});
 $('loadtxt').textContent='Đang dựng sa bàn…';
@@ -101,18 +101,40 @@ for(const o of [...world.children]){const n=o.name;
   else for(const k in RX)if(RX[k].test(n)){CAT[k].push(o);break}}
 world.traverse(o=>{if(!o.isMesh)return;const ms=Array.isArray(o.material)?o.material:[o.material];
   for(const m of ms){if(!m)continue;if(m.name==='M_NuocSong'){m.color.set(0x3a4630);m.roughness=.2;m.metalness=.05}else{m.roughness=Math.max(m.roughness??.9,.75);m.metalness=Math.min(m.metalness??0,.2)}}});
+// đường băng sân bay Mường Thanh (toạ độ Blender): mở rộng 1,6 lần; hành lang đường băng không có hào/hầm
+const RW={s:[-1376,-678],u:(()=>{const x=-566,y=2332,l=Math.hypot(x,y);return[x/l,y/l]})(),L:1150,half:80};
+const inRunway=(x,y,pad=0)=>{const dx=x-RW.s[0],dy=y-RW.s[1];const a=dx*RW.u[0]+dy*RW.u[1],b=-dx*RW.u[1]+dy*RW.u[0];return a>-90-pad&&a<RW.L+90+pad&&Math.abs(b)<RW.half+pad};
+for(const o of [...world.children]){const n=o.name;
+  if(/^DuongBang_MuongThanh/.test(n))o.traverse(c=>{if(!c.isMesh)return;const p=c.geometry.attributes.position;const cx=RW.s[0]+RW.u[0]*RW.L/2,cy=RW.s[1]+RW.u[1]*RW.L/2;
+    for(let i=0;i<p.count;i++){const x=p.getX(i),y=-p.getZ(i);const dx=x-cx,dy=y-cy;let a=dx*RW.u[0]+dy*RW.u[1],b=-dx*RW.u[1]+dy*RW.u[0];a*=1.15;b*=1.6;
+      const nx=cx+a*RW.u[0]-b*RW.u[1],ny=cy+a*RW.u[1]+b*RW.u[0];p.setX(i,nx);p.setZ(i,-ny);p.setY(i,hAt(nx,ny)+.35)}p.needsUpdate=true;c.geometry.computeBoundingSphere()});
+  if(/^Song_NamRom/.test(n))o.traverse(c=>{if(!c.isMesh)return;const p=c.geometry.attributes.position;for(let i=0;i+1<p.count;i+=2){const ax=p.getX(i),az=p.getZ(i),bx=p.getX(i+1),bz=p.getZ(i+1);const mx=(ax+bx)/2,mz=(az+bz)/2;
+      p.setX(i,mx+(ax-mx)*1.9);p.setZ(i,mz+(az-mz)*1.9);p.setX(i+1,mx+(bx-mx)*1.9);p.setZ(i+1,mz+(bz-mz)*1.9)}p.needsUpdate=true;c.geometry.computeBoundingSphere()});
+  if(/^(Ham_|UngCoi_|Ung_|DoanhTrai_|XeTai_)/.test(n)&&!/^Ham_ChiTiet|^Ham_ChiHuy/.test(n)){const b=new THREE.Box3().setFromObject(o).getCenter(new THREE.Vector3());if(inRunway(b.x,-b.z,10)){world.remove(o);CAT.fortifications=CAT.fortifications.filter(x=>x!==o)}}
+  if(/^MayBay_(F8F|C47)|^U_BaoVe/.test(n)){world.remove(o);CAT.fortifications=CAT.fortifications.filter(x=>x!==o)}}
+for(const o of CAT.supply)world.remove(o);CAT.supply.length=0;
+for(const t of[TDAT,TDATN]){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.anisotropy=8}TDAT.colorSpace=THREE.SRGBColorSpace;
+const EARTH=/^(Bao_Cat|BaoCat|Hao_DayToi|Dat_|Van_DayHao|Go_CotHao|Go_MaiHam)/;
+function earthify(m){if(m.userData.earth)return;m.userData.earth=true;const ob=m.onBeforeCompile;m.onBeforeCompile=(sh,r)=>{if(ob)ob(sh,r);sh.uniforms.tDat={value:TDAT};
+  sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vWq;varying vec3 vNq;').replace('#include <worldpos_vertex>','#include <worldpos_vertex>\nvWq=(modelMatrix*vec4(transformed,1.)).xyz;vNq=normalize(mat3(modelMatrix)*objectNormal);');
+  sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vWq;varying vec3 vNq;uniform sampler2D tDat;')
+   .replace('#include <map_fragment>','#include <map_fragment>\n{vec3 n=abs(vNq);vec3 tx=texture2D(tDat,vWq.zy*.45).rgb*n.x+texture2D(tDat,vWq.xz*.45).rgb*n.y+texture2D(tDat,vWq.xy*.45).rgb*n.z;tx/=max(.001,n.x+n.y+n.z);diffuseColor.rgb*=tx*2.1;}')};
+  const k=m.customProgramCacheKey?m.customProgramCacheKey():'';m.customProgramCacheKey=()=>k+'earth'}
+world.traverse(o=>{if(!o.isMesh)return;const ms=Array.isArray(o.material)?o.material:[o.material];for(const m of ms)if(m&&EARTH.test(m.name))earthify(m)});
+// đường mòn xe thồ/kéo pháo: đất nện tối màu, không phát sáng, dán sát mặt đất
+for(const r of CAT.routes)r.traverse(c=>{if(!c.isMesh)return;const m=new THREE.MeshStandardMaterial({color:0x6b5640,roughness:1,metalness:0,polygonOffset:true,polygonOffsetFactor:-2});earthify(m);c.material=m;c.renderOrder=1});
 // tâm của từng đối tượng công sự Pháp (để dựng dần trong cảnh 02)
 const PCX=-720,PCY=-703;
 for(const o of CAT.fortifications){const b=new THREE.Box3().setFromObject(o);const c=b.getCenter(new THREE.Vector3());o.userData.d=Math.hypot(c.x-PCX,-c.z-PCY);o.userData.s0=o.scale.clone()}
 
 /* vật liệu có "dựng dần" (reveal theo bán kính) và "hào mọc dần" (theo khoảng cách tới cứ điểm) */
-function patch(mat,kind){const m=mat.clone();m.userData.u={uR:{value:1e9},uC:{value:new THREE.Vector2(PCX,-PCY)},uT:{value:1e9}};
-  m.onBeforeCompile=sh=>{Object.assign(sh.uniforms,m.userData.u);
+function patch(mat,kind){const m=mat.clone();const prev=mat.onBeforeCompile&&mat.userData.earth?mat.onBeforeCompile:null;m.userData.u={uR:{value:1e9},uC:{value:new THREE.Vector2(PCX,-PCY)},uT:{value:1e9},uRw:{value:new THREE.Vector4(RW.s[0],-RW.s[1],RW.u[0],-RW.u[1])}};
+  m.onBeforeCompile=(sh,r)=>{if(prev)prev(sh,r);Object.assign(sh.uniforms,m.userData.u);
     sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vWp;'+(kind==='kc'?'attribute float kc;varying float vKc;':''))
       .replace('#include <worldpos_vertex>','#include <worldpos_vertex>\nvWp=(modelMatrix*vec4(transformed,1.)).xyz;'+(kind==='kc'?'vKc=kc;':''));
-    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vWp;uniform float uR,uT;uniform vec2 uC;'+(kind==='kc'?'varying float vKc;':''))
-      .replace('void main() {','void main() {\n'+(kind==='kc'?'if(vKc<uT)discard;':'if(distance(vWp.xz,uC)>uR)discard;'))};
-  m.customProgramCacheKey=()=>'p'+kind;return m}
+    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vWp;uniform float uR,uT;uniform vec2 uC;uniform vec4 uRw;'+(kind==='kc'?'varying float vKc;':''))
+      .replace('void main() {','void main() {\n{vec2 d=vWp.xz-uRw.xy;float a=dot(d,uRw.zw),b=abs(d.x*uRw.w-d.y*uRw.z);if(a>-90.&&a<'+(RW.L+90).toFixed(1)+'&&b<'+RW.half.toFixed(1)+'.)discard;}\n'+(kind==='kc'?'if(vKc<uT)discard;':'if(distance(vWp.xz,uC)>uR)discard;'))};
+  m.customProgramCacheKey=()=>'p'+kind+(prev?'e':'');return m}
 function patchObj(o,kind){if(!o)return null;const U=[];o.traverse(c=>{if(c.isMesh){if(Array.isArray(c.material))c.material=c.material.map(x=>{const p=patch(x,kind);U.push(p.userData.u);return p});else{c.material=patch(c.material,kind);U.push(c.material.userData.u)}}});return U}
 const REV_FR=[...(patchObj(CAT.trench_fr,'r')||[]),...(patchObj(CAT.wire,'r')||[])];
 // hào bao vây: thuộc tính kc = khoảng cách (m) tới rìa cứ điểm gần nhất → hào "mọc" từ chân núi vào
@@ -125,14 +147,15 @@ const REV_VN=patchObj(CAT.trench_vn,'kc')||[];
 /* mặt đất: tô trạng thái cứ điểm và vùng kiểm soát thẳng lên địa hình (bám dốc) */
 TEX.flipY=false;TEX.colorSpace=THREE.SRGBColorSpace;TEX.anisotropy=renderer.capabilities.getMaxAnisotropy();
 const NR=24;
-const GU={uPl:{value:Array.from({length:NR},()=>new THREE.Vector3(0,0,0))},uPc:{value:Array.from({length:NR},()=>new THREE.Vector4(0,0,0,0))},
+const GU={tDat:{value:TDAT},uPl:{value:Array.from({length:NR},()=>new THREE.Vector3(0,0,0))},uPc:{value:Array.from({length:NR},()=>new THREE.Vector4(0,0,0,0))},
   uCtrl:{value:new THREE.Vector4(0,0,0,0)},uCtrlC:{value:new THREE.Color(0x4f74b8)},uWet:{value:0}};
 const groundMat=new THREE.MeshLambertMaterial({map:TEX});
 groundMat.onBeforeCompile=sh=>{Object.assign(sh.uniforms,GU);
   sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vWp;').replace('#include <worldpos_vertex>','#include <worldpos_vertex>\nvWp=(modelMatrix*vec4(transformed,1.)).xyz;');
   sh.fragmentShader=sh.fragmentShader.replace('#include <common>',`#include <common>
-varying vec3 vWp;uniform vec3 uPl[${NR}];uniform vec4 uPc[${NR}];uniform vec4 uCtrl;uniform vec3 uCtrlC;uniform float uWet;`)
+varying vec3 vWp;uniform sampler2D tDat;uniform vec3 uPl[${NR}];uniform vec4 uPc[${NR}];uniform vec4 uCtrl;uniform vec3 uCtrlC;uniform float uWet;`)
   .replace('#include <map_fragment>',`#include <map_fragment>
+  {float dc=distance(vWp,cameraPosition);float k=1.-smoothstep(150.,700.,dc);vec3 d=texture2D(tDat,vWp.xz*.25).rgb;diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*d*2.2,k*.75);}
   diffuseColor.rgb*=1.-uWet*.32;
   for(int i=0;i<${NR};i++){if(uPc[i].a<.001)continue;float d=distance(vWp.xz,uPl[i].xy);float r=uPl[i].z;
     float ring=smoothstep(r*.06+3.,0.,abs(d-r));float fill=(1.-smoothstep(r*.85,r,d))*.22;
@@ -181,21 +204,36 @@ const CLIPS_L={};for(const c of gL.animations)CLIPS_L[c.name]=c;
 const MAPL={chay:'ChayToi_TaiCho',di_bo:'DiCamSung_TaiCho',dung:'DungNgam',keo_nang:'KeoVat',day:'DiKhom_TaiCho',keo_day:'KeoVat',day_xe:'DiCamSung_TaiCho'};
 const SRC={dancong:{g:gN,clips:CLIPS,show:['DanCong_Mesh'],s:1.66/1.81},daituong:{g:gN,clips:CLIPS,show:['RIG_DaiTuong_VNG'],s:1.66/1.81},
   bodoi:{g:gL,clips:CLIPS_L,show:['QDND_V2_Nguoi','SungTruong_1954'],s:1.64/1.70,map:MAPL},linhphap:{g:gL,clips:CLIPS_L,show:['TC_LinhPhap_1954'],s:1.72/1.70,map:MAPL}};
-function makeChar(kind,clip){const S=SRC[kind];const root=SkeletonUtils.clone(S.g.scene);root.traverse(o=>{if(o.isMesh){o.visible=S.show.includes(o.name)||S.show.includes(o.parent&&o.parent.name);o.frustumCulled=false}});
+const XCLIP={};function xclip(n){if(XCLIP[n])return XCLIP[n];const c=CLIPS_L[n]||CLIPS[n];if(!c)return null;const k=c.clone();k.tracks=k.tracks.filter(t=>!/\.position$/.test(t.name));XCLIP[n]=k;return k}
+function makeChar(kind,clip,opt={}){const S=SRC[kind];const root=SkeletonUtils.clone(S.g.scene);root.traverse(o=>{if(o.isMesh){o.visible=(S.show.includes(o.name)||S.show.includes(o.parent&&o.parent.name))&&!(opt.noGun&&/Sung/i.test(o.name+(o.parent?o.parent.name:'')));o.frustumCulled=false}});
   const g=new THREE.Group();g.add(root);root.scale.setScalar(S.s);const mixer=new THREE.AnimationMixer(root);const nm=n=>S.clips[n]?n:(S.map&&S.map[n])||n;
   let cur=mixer.clipAction(S.clips[nm(clip)]||Object.values(S.clips)[0]);cur.play();
-  const act=n=>{const c=S.clips[nm(n)];return c?mixer.clipAction(c):null};
+  const act=n=>{const c=S.clips[nm(n)]||xclip(n);return c?mixer.clipAction(c):null};
   return{obj:g,mixer,set(t){mixer.setTime(t)},pose(n,tt,once){const a=act(n);if(!a)return;if(a!==cur){cur.stop();a.play();cur=a}const d=a.getClip().duration;a.time=once?Math.min(Math.max(0,tt),d-.01):((tt%d)+d)%d;mixer.update(0)},play(n){const c=S.clips[nm(n)];if(!c)return;const a=mixer.clipAction(c);if(a===cur)return;a.reset().play();cur.crossFadeTo(a,.25,false);cur=a},has:n=>!!S.clips[nm(n)]}}
 
 /* ---------------- hiệu ứng: nổ, khói, chớp, mưa ---------------- */
 function spriteTex(stops){const cv=document.createElement('canvas');cv.width=cv.height=64;const x=cv.getContext('2d');const g=x.createRadialGradient(32,32,0,32,32,32);for(const[a,c]of stops)g.addColorStop(a,c);x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(cv)}
-const T_FIRE=spriteTex([[0,'rgba(255,245,210,1)'],[.3,'rgba(255,160,50,.95)'],[1,'rgba(255,60,0,0)']]);
-const T_SMOKE=spriteTex([[0,'rgba(70,64,58,.8)'],[.6,'rgba(80,74,66,.35)'],[1,'rgba(90,84,76,0)']]);
+function noiseTex(col,dark){const N=128,cv=document.createElement('canvas');cv.width=cv.height=N;const x=cv.getContext('2d');
+  for(let k=0;k<26;k++){const r=12+Math.random()*30,a=Math.random()*6.28,d=Math.random()*26;const cx=64+Math.cos(a)*d,cy=64+Math.sin(a)*d;const g=x.createRadialGradient(cx,cy,0,cx,cy,r);
+    const c=col(k);g.addColorStop(0,c[0]);g.addColorStop(1,c[1]);x.fillStyle=g;x.fillRect(0,0,N,N)}
+  const im=x.getImageData(0,0,N,N);for(let i=0;i<N*N;i++){const dx=(i%N)-64,dy=Math.floor(i/N)-64;const f=Math.max(0,1-Math.hypot(dx,dy)/64);im.data[i*4+3]*=f*f*(.75+.5*Math.random())}x.putImageData(im,0,0);return new THREE.CanvasTexture(cv)}
+const T_FIRE=noiseTex(k=>k%3?['rgba(255,190,90,.5)','rgba(255,90,10,0)']:['rgba(255,245,200,.7)','rgba(255,140,30,0)']);
+const T_SMOKE=noiseTex(k=>[`rgba(${60+k%4*8},${56+k%4*7},${52+k%4*6},.45)`,'rgba(70,66,60,0)']);
+const T_FIRE0=spriteTex([[0,'rgba(255,245,210,1)'],[.3,'rgba(255,160,50,.95)'],[1,'rgba(255,60,0,0)']]);
+
 const T_DOT=spriteTex([[0,'rgba(255,255,255,1)'],[1,'rgba(255,255,255,0)']]);
 class FXPool{constructor(mat,n){this.s=[];for(let i=0;i<n;i++){const s=new THREE.Sprite(mat.clone());s.visible=false;scene.add(s);this.s.push(s)}this.i=0}
   begin(){this.i=0}take(){const s=this.s[this.i++];return s}end(){for(let k=this.i;k<this.s.length;k++)this.s[k].visible=false}}
-const FIRE=new FXPool(new THREE.SpriteMaterial({map:T_FIRE,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,fog:false}),220);
-const SMOKE=new FXPool(new THREE.SpriteMaterial({map:T_SMOKE,depthWrite:false,transparent:true}),260);
+const FIRE=new FXPool(new THREE.SpriteMaterial({map:T_FIRE,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,fog:false}),700);
+const SMOKE=new FXPool(new THREE.SpriteMaterial({map:T_SMOKE,depthWrite:false,transparent:true}),900);
+// mây: các đám mây trôi chậm, lảng vảng quanh sườn và đỉnh núi
+const CLOUDS=(()=>{const tex=noiseTex(k=>['rgba(255,255,255,.55)','rgba(255,255,255,0)']);const list=[];let tries=0;
+  while(list.length<(MOBILE?28:56)&&tries<5000){tries++;const x=HG.X0+Math.random()*HG.S*HG.NX,y=HG.Y0+Math.random()*HG.S*HG.NY;const h=hAt(x,y);if(h<240)continue;
+    const m=new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false,opacity:.0,color:0xf2f2f2});const sp=new THREE.Sprite(m);const sz=260+Math.random()*520;sp.scale.set(sz*1.8,sz*.6,1);
+    sp.position.copy(B(x,y,h+40+Math.random()*160));sp.userData={x,y,base:sp.position.y,sz,ph:Math.random()*6,a:.35+Math.random()*.35};scene.add(sp);list.push(sp)}
+  return{list,tick(t,wind,cam,dark){for(const c of list){const u=c.userData;let x=u.x+t*(4+wind*10),y=u.y+Math.sin(t*.02+u.ph)*60;const W=HG.S*HG.NX;x=HG.X0+((x-HG.X0)%W+W)%W;
+    c.position.x=x;c.position.z=-y;c.position.y=Math.max(u.base,hAt(x,y)+30)+Math.sin(t*.05+u.ph)*15;const d=c.position.distanceTo(cam);
+    c.material.opacity=u.a*Math.min(1,Math.max(0,(d-u.sz*.6)/u.sz))*(1-dark*.6);c.material.color.setScalar(1-dark*.75)}}}})();
 // mưa: (1) mưa khu vực — hạt rơi đến đúng mặt đất (đọc bản đồ độ cao), chỉ trong sa bàn; (2) mưa sát camera như Thành cổ; (3) bọt nước bắn trên mặt đất
 const HTEX=(()=>{const t=new THREE.DataTexture(HG.h,HG.NX,HG.NY,THREE.RedFormat,THREE.FloatType);t.minFilter=t.magFilter=THREE.LinearFilter;t.needsUpdate=true;return t})();
 const RAIN_U={uT:{value:0},uA:{value:0},uW:{value:.3},uC:{value:new THREE.Vector3()},uS:{value:200},uH:{value:HTEX},uB:{value:new THREE.Vector4(HG.X0,HG.Y0,HG.S*(HG.NX-1),HG.S*(HG.NY-1))},uCam:{value:new THREE.Vector3()}};
@@ -267,7 +305,7 @@ const audio=createAudio();audio.fileSrc={chim:ASSETS.chim,fetchBuf};
 clearTreesNear(Object.values(SC.duong),26);
 const API={THREE,scene,camera,controls,renderer,B,hAt,hT,PEAK,safeEye,world,ground,groundMat,GU,CAT,REV_FR,REV_VN,KC_MAX,TREES,hq,mapCard,mini,
   mau,makeChar,FIRE,SMOKE,T_DOT,rain,SKY,hemi,sun,flashLight,SC,PLACES,PL,EV,EVENTS,SCENES,SOURCES,STATE_COL,STATE_VI,stateAt,setPlaceVis,labels,LAY,SECT,
-  updLabels,audio,MOBILE,ts,onHotspot:()=>{},tick:[]};
+  updLabels,audio,MOBILE,ts,CLOUDS,inRunway,RW,onHotspot:()=>{},tick:[]};
 window.__DBP=API;
 await startDirector(API);
 const clock=new THREE.Clock();let fN=0,fT=0;
