@@ -133,7 +133,7 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - Cảnh C06b "Một đêm trong giao thông hào" (đoạn hào dựng trên web, minh họa); xung phong có chạy – quỳ bắn – trúng đạn ngã, đạn vạch, quân Pháp bắn trả; máy bay thả dù dùng B-26 Tripo (3 chiếc) có tiếng động cơ theo khoảng cách; mưa rơi đến mặt đất theo bản đồ độ cao, có bọt nước và đất ướt; Khám phá có đổi vai (bộ đội, dân công, pháo thủ, lính Pháp, lính dù) và góc sau vai/qua mắt; khung 📖 Tư liệu.
 - Lời bình: giọng đọc tiếng Việt của thiết bị; thả mp3 vào `audio/voice/` (tên `C01-01.mp3`…) và liệt kê trong `audio/voice/index.json` để thay.
 - Artifact Claude: `python3 tools/build_artifact_dbp.py` → `dist_artifact_dbp/` (slug 9725451d-ad34-4c1b-9573-a0532b0396aa).
-- Chưa làm: nối link từ trang Việt Sử (giao diện V4.6 đang khoá), toạ độ đã thẩm định, ranh giới cứ điểm, sơ đồ hào theo ngày, lồng tiếng thật.
+- Đã nối vào Việt Sử (19/11, theo yêu cầu chủ dự án): thẻ "Điện Biên Phủ" trong Không gian lịch sử (`V23_SCENES`, `V2_EXPERIENCES`, `KHONG_GIAN_3D` trong `Viet_Su_Timeline_V4.1_Offline.html`), nút "Vào sa bàn 3D" (`v46.js` SCENES), mốc 1954 trên dòng thời gian (`v42.js` EXP + ảnh thẻ), dữ liệu CMS (`data/experiences_seed.json`, `data/experience_locations.json`); GitHub Pages tự chép `static/khong-gian/` nên trang có ở `/khong-gian/dien-bien-phu/`. Chưa làm: toạ độ đã thẩm định, ranh giới cứ điểm, sơ đồ hào theo ngày, lồng tiếng thật.
 
 ## Lấy toạ độ OpenStreetMap cho sa bàn (dành cho Codex/ChatGPT)
 - Đổi toạ độ: `python3 tools/osm_sang_sa_ban.py <vĩ độ> <kinh độ>` hoặc `python3 tools/osm_sang_sa_ban.py file.geojson > ket_qua.json`. Kết quả là toạ độ sa bàn (m, Blender X/Y); sang three.js dùng `B(x,y,z)=(x,z,−y)`.
