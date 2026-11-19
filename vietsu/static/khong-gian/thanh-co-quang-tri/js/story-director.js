@@ -11,7 +11,7 @@ export async function start(api){
   const total=list.reduce((a,e)=>a+e.duration_sec,0);
   const starts=[];{let a=0;for(const e of list){starts.push(a);a+=e.duration_sec}}
   const audio=createStoryAudio(api);
-  const D={mode:'story',i:0,t:0,playing:true,userCam:false,envIdx:-1,fired:new Set(),autoPaused:false,line:-1,wit:null,witI:0};
+  const D={mode:'story',i:0,t:0,speed:1,playing:true,userCam:false,envIdx:-1,fired:new Set(),autoPaused:false,line:-1,wit:null,witI:0};
 
   /* ---------- camera ---------- */
   const UP=new THREE.Vector3(0,1,0),tp=new THREE.Vector3(),tl=new THREE.Vector3();
@@ -53,7 +53,7 @@ export async function start(api){
   const ui=createUI(api,data,H);
   ui.setTicks(starts.map(s=>s/total));
 
-  function setPlaying(p){D.playing=p;ui.setPlaying(p);if(!p&&typeof voStop==='function')voStop()}
+  function setPlaying(p){D.playing=p;ui.setPlaying(p);if(!p&&typeof voStop==='function')voStop();if(p)D.vline=null}
   function goto(i,t=0,seeking=false){if(i<0||i>=list.length)return;const changed=true;/* luôn đặt lại trạng thái: tua lùi không giữ hiệu ứng của mốc sau */D.i=i;const e=list[i];
     if(changed){api.setState(e.state);ui.map(e.state);ui.setEpisode(e);audio.reset()}
     D.t=t;D.envIdx=-1;applyEnv(e,t,true);D.fired=new Set((e.cues||[]).filter(c=>c.t<t).map(c=>c.t+c.do));D.line=-1;D.vline=-2;
@@ -79,36 +79,60 @@ export async function start(api){
     camera.position.copy(a.head).addScaledVector(d,-1.3).addScaledVector(s,.45).addScaledVector(UP,.32);controls.target.copy(a.head).addScaledVector(d,40).addScaledVector(UP,-2.5)}
 
   /* ---------- nhạc của phân cảnh (chỉ phát khi người xem bật Âm thanh; thiếu tệp thì bỏ qua) ---------- */
-  const MUS={el:null,src:null,ok:true};
+  const MUS={el:new Audio(),src:null,ok:true};MUS.el.preload='auto';MUS.el.onerror=()=>{if(MUS.src)MUS.ok=false};
   function musicTick(e){const m=e&&e.music;const want=!!m&&D.mode==='story'&&D.playing&&api.audio().on;
     if(!m){if(MUS.el&&!MUS.el.paused)MUS.el.pause();return}
-    if(MUS.src!==m.src){if(MUS.el)MUS.el.pause();MUS.el=new Audio(m.src);MUS.el.preload='auto';MUS.src=m.src;MUS.ok=true;MUS.el.onerror=()=>{MUS.ok=false}}
+    if(MUS.src!==m.src){MUS.el.pause();MUS.ok=true;MUS.src=m.src;MUS.el.src=m.src;MUS.el.load()}
     const el=MUS.el;if(!MUS.ok)return;const t=D.t-m.start;const dur=isFinite(el.duration)?el.duration:1e9;
     if(!want||t<0||t>dur){if(!el.paused)el.pause();return}
     if(el.readyState>=1&&Math.abs(el.currentTime-t)>1.2)el.currentTime=Math.max(0,t);
+    if(el.playbackRate!==D.speed)el.playbackRate=D.speed;
     if(el.paused)el.play().catch(()=>{});
     const end=e.duration_sec-m.start;let v=(m.volume??.85)*(voBusy()?.4:1);v*=Math.min(1,t/(m.fade_in||3));v*=Math.min(1,Math.max(0,(end-t)/(m.fade_out||5)));el.volume=Math.max(0,Math.min(1,v))}
   window.__MUS=MUS;
 
   /* ---------- lồng tiếng lời dẫn: ưu tiên tệp audio/voice/<id>-<số dòng>.mp3 (liệt kê trong audio/voice/index.json); thiếu tệp thì dùng giọng đọc tiếng Việt của thiết bị ---------- */
-  const VO={on:false,el:null,files:null};
+  const VO={on:true,ex:false,el:new Audio(),f:null,lt:0,active:false,files:null,retry:0};   /* on: nút 🗣 (mặc định bật); ex: người xem tự bấm bật → đọc cả khi chưa bật Âm thanh */
+  VO.el.preload='auto';
   fetch('audio/voice/index.json').then(r=>r.ok?r.json():[]).then(a=>{VO.files=new Set(a)}).catch(()=>{VO.files=new Set()});
-  function voStop(){if(VO.el){VO.el.pause();VO.el=null}try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
-  function voBusy(){return (VO.el&&!VO.el.paused&&!VO.el.ended)||(window.speechSynthesis&&speechSynthesis.speaking)}
-  function speak(e,n){voStop();if(!VO.on||n<0||!D.playing)return;const tx=e.lines[n].text;if(!tx)return;const f=e.id+'-'+String(n+1).padStart(2,'0')+'.mp3';
-    if(VO.files&&VO.files.has(f)){const el=new Audio('audio/voice/'+f);VO.el=el;el.play().catch(()=>{});return}
+  /* điện thoại (nhất là iPhone) chỉ cho phát âm thanh từ phần tử đã được mở khoá bằng một lần chạm: dùng lại đúng một phần tử cho giọng đọc và một cho nhạc */
+  let unlocked=false;
+  const SILENT='data:audio/wav;base64,UklGRmQGAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YUAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+  function unlock(){if(unlocked)return;unlocked=true;
+    for(const el of [VO.el,MUS.el]){if(!el.paused)continue;   /* đang phát = đã mở khoá */
+      if(el===VO.el)VO.f=null;else MUS.src=null;el.src=SILENT;el.play().then(()=>{if(el.src===SILENT)el.pause()}).catch(()=>{})}
+    D.vline=null}   /* câu đang dở (bị chặn trước lần chạm đầu) sẽ đọc lại từ đúng chỗ ở khung hình sau */
+  for(const ev of ['pointerdown','touchend','keydown'])addEventListener(ev,unlock,{passive:true,capture:true});
+  function voSeek(){const el=VO.el;const off=D.t-VO.lt;if(off>.6){if(isFinite(el.duration)&&off>el.duration-.4){el.pause();VO.active=false}else el.currentTime=off}}
+  VO.el.addEventListener('loadedmetadata',()=>{if(VO.active)voSeek()});
+  VO.el.addEventListener('ended',()=>{VO.active=false});
+  function voStop(){VO.active=false;VO.el.pause();try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
+  function voBusy(){return (VO.active&&!VO.el.paused&&!VO.el.ended)||(window.speechSynthesis&&speechSynthesis.speaking)}
+  function voWant(){return VO.on&&(VO.ex||api.audio().on)}
+  function voKeep(){   /* điện thoại có lúc từ chối/ngắt phát: thử lại, giữ khớp với thời gian câu */
+    if(!VO.active||!D.playing)return;const el=VO.el;if(el.playbackRate!==D.speed)el.playbackRate=D.speed;
+    if(el.paused&&!el.ended&&performance.now()>VO.retry){VO.retry=performance.now()+800;if(el.readyState>=1)voSeek();if(VO.active)el.play().catch(()=>{})}}
+  function speak(e,n){voStop();if(!voWant()||n<0||!D.playing)return;const tx=e.lines[n].text;if(!tx)return;const f=e.id+'-'+String(n+1).padStart(2,'0')+'.mp3';
+    if(VO.files&&VO.files.has(f)){const el=VO.el;VO.active=true;VO.lt=e.lines[n].t;el.muted=false;
+      if(VO.f!==f){VO.f=f;el.src='audio/voice/'+f;el.load()}else{el.currentTime=0;voSeek()}
+      el.playbackRate=D.speed;VO.retry=performance.now()+800;el.play().catch(()=>{});
+      const nx=e.lines[n+1];const nf=e.id+'-'+String(n+2).padStart(2,'0')+'.mp3';if(nx&&VO.files.has(nf))fetch('audio/voice/'+nf).catch(()=>{});   /* tải trước câu sau */
+      return}
+    if(!VO.ex)return;   /* chưa có tệp thu âm: chỉ dùng giọng máy khi người xem bấm 🗣 */
     if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(tx.replace(/[\u201c\u201d\u2018\u2019\u2026·()]/g,' '));u.lang='vi-VN';
-    const v=speechSynthesis.getVoices().find(v=>/^vi/i.test(v.lang));if(v)u.voice=v;u.rate=1.08;speechSynthesis.speak(u)}
-  H.voice=on=>{VO.on=on;if(!on)voStop();else if(D.mode==='story'){const e=list[D.i];speak(e,lineAt(e,D.t))}};
+    const v=speechSynthesis.getVoices().find(v=>/^vi/i.test(v.lang));if(v)u.voice=v;u.rate=1.08*D.speed;speechSynthesis.speak(u)}
+  H.speed=()=>D.speed;
+  H.setSpeed=v=>{D.speed=v;VO.el.playbackRate=v;ui.setSpeed&&ui.setSpeed(v)};
+  H.voice=on=>{VO.on=on;VO.ex=on;if(!on)voStop();else if(D.mode==='story'){const e=list[D.i];speak(e,lineAt(e,D.t))}};
 
   /* ---------- vòng lặp ---------- */
-  api.tickHooks.push(rawDt=>{const dt=Math.min(rawDt,.1);audio.tick(dt);ui.tick(dt);
+  api.tickHooks.push(rawDt=>{const dt=Math.min(rawDt,.25);audio.tick(dt,voBusy());ui.tick(dt);
     if(D.mode==='story'){if(api.walking()){setMode('free');return}
-      const e=list[D.i];if(D.playing){D.t+=dt;if(D.t>=e.duration_sec){if(D.i<list.length-1){goto(D.i+1,0);return}D.t=e.duration_sec;setPlaying(false)}}
+      const e=list[D.i];if(D.playing){D.t+=dt*D.speed;if(D.t>=e.duration_sec){if(D.i<list.length-1){goto(D.i+1,0);return}D.t=e.duration_sec;setPlaying(false)}}
       for(const c of e.cues||[]){const key=c.t+c.do;if(c.t<=D.t&&!D.fired.has(key)){D.fired.add(key);fire(c)}}
       applyEnv(e,D.t,false);
       const hint=!!e.music&&!api.audio().on&&MUS.ok;const n=lineAt(e,D.t);const key=n+(hint?'h':'');
-      if(n!==D.vline){D.vline=n;speak(e,n)}
+      const vw=voWant();if(n!==D.vline||vw!==D.vwant){D.vline=n;D.vwant=vw;speak(e,n)}else voKeep()
       if(key!==D.line){D.line=key;const tx=n>=0?e.lines[n].text:'';ui.subtitle(hint?(tx?tx+' · ':'')+'🔊 Bật “Âm thanh” để nghe bài hát của chương này':tx)}
       if(!D.userCam){const c=camAt(e,D.t);if(c){camera.position.copy(c.p);controls.target.copy(c.l)}}
       ui.setProgress((starts[D.i]+D.t)/total,D.t,e.duration_sec)}

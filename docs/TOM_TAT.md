@@ -134,3 +134,9 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - Lời bình: giọng đọc tiếng Việt của thiết bị; thả mp3 vào `audio/voice/` (tên `C01-01.mp3`…) và liệt kê trong `audio/voice/index.json` để thay.
 - Artifact Claude: `python3 tools/build_artifact_dbp.py` → `dist_artifact_dbp/` (slug 9725451d-ad34-4c1b-9573-a0532b0396aa).
 - Chưa làm: nối link từ trang Việt Sử (giao diện V4.6 đang khoá), toạ độ đã thẩm định, ranh giới cứ điểm, sơ đồ hào theo ngày, lồng tiếng thật.
+
+## Lấy toạ độ OpenStreetMap cho sa bàn (dành cho Codex/ChatGPT)
+- Đổi toạ độ: `python3 tools/osm_sang_sa_ban.py <vĩ độ> <kinh độ>` hoặc `python3 tools/osm_sang_sa_ban.py file.geojson > ket_qua.json`. Kết quả là toạ độ sa bàn (m, Blender X/Y); sang three.js dùng `B(x,y,z)=(x,z,−y)`.
+- Kiểm tra: Đài tưởng niệm giữa Thành cổ ra ≈ (0, 0); Cổng Tiền ≈ (0, −250).
+- Dữ liệu sẵn có: `docs/du-lieu/thanh_co_quang_tri_osm.geojson` (thành, hào, tường, sông, điểm mốc), `docs/du-lieu/osm_local.json` (sông, đường), `vietsu/static/khong-gian/thanh-co-quang-tri/data/osm_roads.json`.
+- Ghi nguồn "© OpenStreetMap contributors (ODbL)" khi dùng dữ liệu.

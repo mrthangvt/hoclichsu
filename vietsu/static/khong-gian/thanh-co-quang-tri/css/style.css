@@ -55,6 +55,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .storybar{pointer-events:auto;width:min(860px,calc(100vw - 28px));padding:8px 12px 10px;position:relative}
 .sb-row{display:flex;align-items:center;gap:6px}
 .sb-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--edge);background:rgba(255,255,255,.06);font-size:15px;display:grid;place-items:center;flex:0 0 auto}
+.sb-btn.sb-speed{width:auto;min-width:44px;padding:0 8px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}.sb-btn.sb-speed.on{border-color:var(--gold);color:var(--gold)}
 .sb-btn.big{width:46px;height:46px;background:var(--gold);color:#23190d;border-color:var(--gold);font-size:17px}
 .sb-title{flex:1;min-width:0;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px}
 .sb-title b{color:var(--gold);font-variant-numeric:tabular-nums}.sb-title small{color:var(--muted);font-variant-numeric:tabular-nums}
@@ -108,3 +109,4 @@ body.cine #cineBars{display:block}
 #cineExit{display:none;position:fixed;z-index:9;top:calc(14px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));background:rgba(20,15,10,.75);color:var(--fg);border:1px solid var(--edge);border-radius:99px;padding:8px 14px;font-size:13px;font-weight:600;opacity:0;transition:opacity .4s}
 body.cine #cineExit{display:block;pointer-events:none}body.cine #cineExit.show{opacity:1;pointer-events:auto}
 @media (max-width:640px){body.cine #sub{left:14px;right:14px;bottom:calc(8vh + env(safe-area-inset-bottom,0px));font-size:15px}#cineBars i{height:4vh}}
+@media (max-width:480px){.sb-row{gap:4px}.sb-title{min-width:0}#sbName{display:none}.sb-btn.sb-speed{min-width:40px;padding:0 6px}}
