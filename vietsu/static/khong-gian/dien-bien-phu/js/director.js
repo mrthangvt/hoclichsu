@@ -280,6 +280,34 @@ export async function startDirector(A){
       booms=booms.filter(b=>b.big||k(b));flashes=flashes.filter(k);for(let j=shells.length-1;j>=0;j--)if(!k(shells[j]))shells.splice(j,1)}
     booms.sort((a,b)=>a.t-b.t)}
 
+  /* ---------- đồn trú Pháp quanh cứ điểm đang ở trong khung hình + xe GMC chạy trong phân khu trung tâm ---------- */
+  // 30 lính dùng chung: tới cứ điểm gần tâm khung hình nhất (đang do Pháp giữ) thì đi tuần, đứng nói chuyện, ngồi nghỉ, gác
+  const GAR={site:null,men:[],trucks:[],built:false};
+  const GSITES=['HIM_LAM','DOC_LAP','BAN_KEO','E1','E2','D1','C1','C2','F','A1','HQ_DE_CASTRIES','HUGUETTE','CLAUDINE','AIRFIELD','SOUTH'].map(id=>PH[id]).filter(p=>p&&p.coordinates);
+  const TRUCK_PATH=path([[-720,-703],[-980,-470],[-1260,-230],[-1420,250],[-1330,680],[-1040,620],[-820,330],[-660,-60],[-600,-480],[-720,-703]].map(([x,y])=>[x,y,hAt(x,y)]));
+  function garBuild(){if(GAR.built)return;GAR.built=true;const n=A.MOBILE?12:30;
+    for(let i=0;i<n;i++){const role=i<n*.4?'tuan':i<n*.67?'noi':i<n*.87?'ngoi':'gac';const c=A.makeChar('linhphap',role==='tuan'?'di_bo':role==='noi'?'dung':role);c.obj.visible=false;scene.add(c.obj);GAR.men.push({c,role,i})}
+    let src=null;A.world.traverse(o=>{if(!src&&/^XeTai_GMC/.test(o.name))src=o});if(src&&src.userData.s0){const sc=src.scale.clone();src.scale.copy(src.userData.s0);src.updateMatrixWorld(true);setTimeout(()=>src.scale.copy(sc))}
+    if(src){const bb=new THREE.Box3().setFromObject(src),ctr=bb.getCenter(new THREE.Vector3()),sz=bb.getSize(new THREE.Vector3());
+      for(let k=0;k<(A.MOBILE?1:3);k++){const g=new THREE.Group();const m=src.clone(true);m.traverse(o=>{o.visible=true});if(src.userData.s0)m.scale.copy(src.userData.s0);m.position.sub(new THREE.Vector3(ctr.x,bb.min.y,ctr.z));const inner=new THREE.Group();inner.add(m);if(sz.x>sz.z)inner.rotation.y=Math.PI/2;g.add(inner);g.visible=false;scene.add(g);GAR.trucks.push({g,k})}}}
+  function garPlace(p){GAR.site=p;const rnd=rngOf(p.id.length*131+7);const [cx,cy]=p.coordinates;const R=Math.max(22,Math.min(65,(p.r||60)*.45));
+    const groups=[0,1,2].map(k=>{const a=rnd()*6.28,r=R*(.25+rnd()*.35);return[cx+Math.cos(a)*r,cy+Math.sin(a)*r]});
+    for(const m of GAR.men){const j=m.i;m.ph=rnd()*6.28;m.rad=R*(.55+rnd()*.5);m.dir=rnd()<.5?-1:1;
+      if(m.role==='noi'||m.role==='ngoi'){const g=groups[j%3];const a=(j*2.4)%6.28,r=m.role==='ngoi'?1.3:1.1;m.x=g[0]+Math.cos(a)*r;m.y=g[1]+Math.sin(a)*r;m.face=Math.atan2(g[0]-m.x,-(g[1]-m.y))}
+      else if(m.role==='gac'){const a=rnd()*6.28;m.x=cx+Math.cos(a)*R*1.05;m.y=cy+Math.sin(a)*R*1.05;m.face=Math.atan2(m.x-cx,-(m.y-cy))}}}
+  function garTick(focus,ms,t,s){garBuild();let best=null,bd=750;
+    if(focus&&focus.x<20000)for(const p of GSITES){const d=Math.hypot(p.coordinates[0]-focus.x,p.coordinates[1]+focus.z);if(d<bd&&A.stateAt(p.id,ms)==='french'){bd=d;best=p}}
+    if(best&&s&&s.actions.some(a=>a.do==='assault'&&a.target===best.id&&t>=a.t0-2))best=null;   // đang bị tiến công: không đi tuần
+    if(best&&s&&s.layers&&s.layers.fortifications==='reveal'){const rv=s.actions.find(a=>a.do==='reveal');if(rv&&t<rv.t1)best=null}
+    if(best!==GAR.site&&best)garPlace(best);
+    for(const m of GAR.men){const o=m.c.obj;o.visible=!!best;if(!best)continue;const [cx,cy]=best.coordinates;
+      if(m.role==='tuan'){const w=m.dir*1.3/m.rad,a=m.ph+t*w;const x=cx+Math.cos(a)*m.rad,y=cy+Math.sin(a)*m.rad;o.position.copy(B(x,y,hAt(x,y)));o.rotation.y=Math.atan2(-Math.sin(a)*m.dir,-Math.cos(a)*m.dir);m.c.pose('di_bo',t*1.05+m.i*.37)}
+      else{o.position.copy(B(m.x,m.y,hAt(m.x,m.y)));o.rotation.y=m.face+(m.role==='noi'?Math.sin(t*.6+m.i)*.25:0);m.c.pose(m.role==='noi'?'P_DiCamSung':m.role,m.role==='noi'?.02+(m.i%3)*.01:t*.5+m.i*.9)}}
+    // xe GMC chạy vòng trong phân khu trung tâm khi trung tâm còn do Pháp giữ
+    const hq=PH.HQ_DE_CASTRIES,on=!!(hq&&A.stateAt('HQ_DE_CASTRIES',ms)==='french'&&focus&&focus.x<20000&&Math.hypot(-1000-focus.x,200+focus.z)<3500);
+    for(const tr of GAR.trucks){tr.g.visible=on;if(!on)continue;const L=TRUCK_PATH.len;const sp=(((t*7+tr.k*L/3)%L)+L)%L;TRUCK_PATH.at(sp,tr.g.position,tmp2);tr.g.position.y=hAt(tr.g.position.x,-tr.g.position.z);face(tr.g,tmp2)}}
+  function garHide(){for(const m of GAR.men)m.c.obj.visible=false;for(const tr of GAR.trucks)tr.g.visible=false}
+
   /* ---------- góc máy ---------- */
   function tgtOf(sh,u){if(sh.target==='keo_phao_lui'&&D.kpr)return D.kpr.center.clone().add(new THREE.Vector3(0,2,0));if(sh.target==='a1_charge'&&D.charge)return D.charge.clone();if(sh.target==='dao_ham'&&D.dh)return D.dh.clone();if(sh.target==='xe_tho'&&D.xt)return D.xt.center.clone().add(new THREE.Vector3(0,1.2,0));if(sh.target==='nghi'&&D.rest)return D.rest.clone();if(sh.target==='phao_nghi'&&D.gunRest)return D.gunRest.clone();if(sh.target==='may_bay'&&D.castor)return D.castor.center.clone();if(sh.target==='keo_phao'&&D.kp)return D.kp.center.clone().add(new THREE.Vector3(0,2,0));if(typeof sh.target==='string'&&sh.target.startsWith('nhom:')){const g=GROUPS[+sh.target.slice(5)];if(g)return g.center.clone().add(new THREE.Vector3(0,1.5,0))}const [x,y]=sh.target;return x>20000?B(x,y,sh.tz):B(x,y,hAt(x,y)+sh.tz)}
   function poseOf(sh,u){const T=tgtOf(sh,u);let az0=sh.az;if(sh.target==='keo_phao'&&D.kp)az0+=D.kp.heading*180/Math.PI;if(sh.target==='keo_phao_lui'&&D.kpr)az0+=D.kpr.heading*180/Math.PI;if(sh.target==='dao_ham'&&D.dh)az0+=D.dhH*180/Math.PI;if(sh.target==='may_bay'&&D.castor)az0+=D.castor.heading*180/Math.PI;if(sh.target==='xe_tho'&&D.xt)az0+=D.xt.heading*180/Math.PI;if(typeof sh.target==='string'&&sh.target.startsWith('nhom:')){const g=GROUPS[+sh.target.slice(5)];if(g)az0+=g.heading*180/Math.PI}const fu=ease(clamp(u/sh.dur,0,1));const dist=sh.dist2!=null?sh.dist*Math.pow(sh.dist2/sh.dist,fu):sh.dist;const az=(az0+sh.daz*(u/sh.dur))*Math.PI/180,el=(sh.el2!=null?lerp(sh.el,sh.el2,fu):sh.el)*Math.PI/180;
@@ -532,7 +560,7 @@ export async function startDirector(A){
     if(D.mode==='film'){if(!D.started){goto(0,0)}
       const s=SCN[D.i];if(D.playing){D.t+=dt*D.speed;if(D.t>=s.durationSec){if(D.i<SCN.length-1){goto(D.i+1,0,true);return}D.t=s.durationSec;setPlaying(false)}}
       const {st}=evalScene(D.i,D.t,dt);
-      const P=camAt(s,D.t);D.lastT=P.T;
+      const P=camAt(s,D.t);D.lastT=P.T;garTick(D.userCam?controls.target:P.T,histMs(s,D.t),D.t,s);
       if(!D.userCam){camera.position.copy(P.e);if(D.shake){camera.position.x+=(Math.random()-.5)*D.shake;camera.position.y+=(Math.random()-.5)*D.shake}camera.lookAt(P.T);if(Math.abs(camera.fov-P.fov)>.01){camera.fov=P.fov;camera.updateProjectionMatrix()}ui.fade.style.opacity=P.cutFade}
       else{if(D.fly){D.fly.t+=dt/2.2;const k=ease(Math.min(1,D.fly.t));camera.position.lerpVectors(D.fly.e0,D.fly.e1,k);controls.target.lerpVectors(D.fly.t0,D.fly.t1,k);if(D.fly.t>=1)D.fly=null}controls.update();clampCam();ui.fade.style.opacity=0}
       weatherTick(dt,st);audioMix(s,st,D.t);audio.tick(dt);
@@ -543,11 +571,11 @@ export async function startDirector(A){
       D.prevT=D.t;
       A.renderer.setScissorTest(false);A.renderer.render(scene,camera);A.updLabels(camera);return}
     // khám phá / so sánh: trạng thái theo mốc lịch sử
-    GEN.hidden=true;
+    GEN.hidden=true;if(D.mode==='compare')garHide();
     if(D.fly){D.fly.t+=dt/2.2;const k=ease(Math.min(1,D.fly.t));camera.position.lerpVectors(D.fly.e0,D.fly.e1,k);controls.target.lerpVectors(D.fly.t0,D.fly.t1,k);tmpE.copy(camera.position);safeEye(tmpE,controls.target,false);camera.position.y=Math.max(camera.position.y,tmpE.y);if(D.fly.t>=1)D.fly=null}
     if(D.mode==='explore'){E.t+=dt;for(const a of actors)a.update(E.t);const pre=D.exploreMs<BLAST_MS;for(const g of E.garrison||[])if(!pre)g.obj.visible=false;
       const frOn=D.exploreMs>=CASTOR&&D.exploreMs<FLAG,vnOn=D.exploreMs>=MS('1954-02-01');for(const a of E.fr||[])if(!frOn)a.obj.visible=false;for(const a of E.vn||[])if(!vnOn)a.obj.visible=false;
-      if(W.on)walkTick(dt);else{E.idle+=dt;if(E.idle>7&&!D.fly){controls.autoRotate=true;controls.autoRotateSpeed=.35}}}
+      garTick(W.on?W.pos:controls.target,D.exploreMs,E.t,null);if(W.on)walkTick(dt);else{E.idle+=dt;if(E.idle>7&&!D.fly){controls.autoRotate=true;controls.autoRotateSpeed=.35}}}
     controls.update();clampCam();
     const st={todA:'ngay',todB:'ngay',kT:1,rain:0,wind:.4,fog:1,may:.3,storm:0};applyEnv(st);weatherTick(dt,st);audio.set({wind:.4,rain:0,birds:.4,insects:0,battle:0,plane:0});audio.tick(dt);
     const R=A.renderer,SW=innerWidth,SH=innerHeight;
@@ -564,5 +592,5 @@ export async function startDirector(A){
   setMode('film');goto(0,0);setPlaying(true);
   // gợi ý bật âm thanh (trình duyệt chỉ cho phát tiếng sau khi người xem bấm)
   $('bsnd').classList.add('hint');
-  window.__DIR={D,goto,setMode,SCN,evalScene,camAt,setPlaying,GROUPS:()=>GROUPS,actors:()=>actors,camera};
+  window.__DIR={GAR,D,goto,setMode,SCN,evalScene,camAt,setPlaying,GROUPS:()=>GROUPS,actors:()=>actors,camera};
 }
