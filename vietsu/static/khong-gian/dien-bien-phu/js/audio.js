@@ -9,7 +9,8 @@ export function createAudio(){
     const d=b.getChannelData(0),f=Math.min(Math.floor(sr*.4),Math.floor(n/4));for(let i=0;i<f;i++){const w=i/f;d[i]=d[i]*w+d[n-f+i]*(1-w)}return b}
   function loop(b,gain=0){const s=AC.createBufferSource();s.buffer=b;s.loop=true;const g=AC.createGain();g.gain.value=gain;s.connect(g).connect(master);s.start();return g}
   function build(){
-    AC=new (window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=.9;master.connect(AC.destination);
+    AC=new (window.AudioContext||window.webkitAudioContext)({latencyHint:'playback'});master=AC.createGain();master.gain.value=.9;const comp=AC.createDynamicsCompressor();comp.threshold.value=-14;comp.knee.value=12;comp.ratio.value=6;comp.attack.value=.004;comp.release.value=.25;master.connect(comp).connect(AC.destination);
+    const wake=()=>{if(on&&AC.state!=='running')AC.resume().catch(()=>{})};addEventListener('pointerdown',wake);addEventListener('keydown',wake);setInterval(wake,2000);
     const wind=buf(9,(d,sr,n)=>{let a=0,b=0;for(let i=0;i<n;i++){const t=i/sr;a+=(rnd()-a)*.012;b+=(a-b)*.03;d[i]=b*7*(.55+.45*Math.sin(t*.7)*Math.sin(t*.23+1))}});
     const rain=buf(6,(d,sr,n)=>{let lp=0;for(let i=0;i<n;i++){const x=rnd();lp+=(x-lp)*.5;d[i]=(x-lp)*.35}
       for(let k=0;k<1200;k++){const s=Math.floor(Math.random()*n),L=Math.floor(sr*.008);for(let i=0;i<L&&s+i<n;i++)d[s+i]+=rnd()*.45*Math.exp(-i/L*4)}});
@@ -29,10 +30,10 @@ export function createAudio(){
   const MUS={};
   function musLoad(k){if(MUS[k])return MUS[k];const m=MUS[k]={buf:null,src:null,g:null,t0:0};const fs=self.fileSrc;if(fs&&fs[k])fs.fetchBuf(fs[k],k).then(b=>AC.decodeAudioData(b)).then(b=>{m.buf=b}).catch(()=>{});return m}
   function musStop(m){if(!m.src)return;m.g.gain.setTargetAtTime(0,AC.currentTime,.35);const s=m.src;m.src=null;setTimeout(()=>{try{s.stop()}catch(e){}},1500)}
-  const CACHE={};let live=0;
-  function shot(sec,fill,vol,delay=0,key=null){if(!on||!AC)return;if(live>18)return;let b;
+  const CACHE={};let live=0;const RATE={};
+  function shot(sec,fill,vol,delay=0,key=null){if(!on||!AC||AC.state!=='running')return;if(live>14)return;const kind=key?key.replace(/\d+/g,''):'x',now=AC.currentTime,R=RATE[kind]||(RATE[kind]={t:now,n:0});if(now-R.t>1){R.t=now;R.n=0}if(R.n>=(kind==='boom'?5:kind==='buoc'?6:10))return;R.n++;let b;
     if(key){const L=CACHE[key]||(CACHE[key]=[]);if(L.length<4){b=buf(sec,fill);L.push(b)}else b=L[Math.floor(Math.random()*L.length)]}else b=buf(sec,fill);
-    const s=AC.createBufferSource();s.buffer=b;s.playbackRate.value=key?.92+Math.random()*.16:1;const g=AC.createGain();g.gain.value=vol;s.connect(g).connect(master);live++;s.onended=()=>{live--};s.start(AC.currentTime+delay)}
+    const s=AC.createBufferSource();s.buffer=b;s.playbackRate.value=key?.92+Math.random()*.16:1;const g=AC.createGain();g.gain.value=vol;s.connect(g).connect(master);live++;setTimeout(()=>{live=Math.max(0,live-1)},(sec/(s.playbackRate.value||1)+delay)*1000+60);s.start(AC.currentTime+delay)}
   self={
     fileSrc:null,
     get on(){return on},
@@ -44,7 +45,7 @@ export function createAudio(){
     set(m){Object.assign(target,m);if(m.birds!=null)target.chim=m.birds},
     tick(dt){if(!on||!AC)return;const k=Math.min(1,dt*1.5);for(const n in layers){const g=layers[n].gain;g.value+=(BASE[n]*(target[n]||0)-g.value)*k}},
     boom(dist=800,size=1){const d=Math.max(.15,Math.min(1,600/Math.max(200,dist)));
-      shot(2.2,(a,sr,n)=>{let lp=0;for(let i=0;i<n;i++){lp+=(rnd()-lp)*(.04+.1*d);a[i]=lp*4*Math.exp(-i/sr*(2.2-size*.6))*(i<sr*.01?i/(sr*.01):1)}},.5*d*size,dist/1500,'boom'+Math.round(d*3)+Math.round(size*2))},
+      shot(2.2,(a,sr,n)=>{let lp=0;for(let i=0;i<n;i++){lp+=(rnd()-lp)*(.04+.1*d);a[i]=lp*4*Math.exp(-i/sr*(2.2-size*.6))*(i<sr*.01?i/(sr*.01):1)}},.5*d*size,dist/1500,'boom'+Math.round(d*2)+Math.min(3,Math.round(size)))},
     gun(dist=200){const d=Math.max(.05,Math.min(1,60/Math.max(30,dist)));shot(.35,(a,sr,n)=>{let lp=0;for(let i=0;i<n;i++){const t=i/sr;lp+=(rnd()-lp)*.35;a[i]=(rnd()*.6+lp)*Math.exp(-t*(dist<120?30:14))}},.35*d,dist/900,dist<120?'gunN':'gunF')},
     step(run){shot(.16,(a,sr,n)=>{let lp=0;for(let i=0;i<n;i++){const t=i/sr;lp+=(rnd()-lp)*.18;a[i]=(lp*1.6+rnd()*.15)*Math.exp(-t*(run?34:26))*(t<.006?t/.006:1)}},run?.32:.22,0,'buoc')},
     blast(){shot(6,(a,sr,n)=>{let lp=0,l2=0;for(let i=0;i<n;i++){lp+=(rnd()-lp)*.03;l2+=(lp-l2)*.05;a[i]=(l2*9+lp*2)*Math.exp(-i/sr*.7)*(i<sr*.02?i/(sr*.02):1)}},1,0.25)},

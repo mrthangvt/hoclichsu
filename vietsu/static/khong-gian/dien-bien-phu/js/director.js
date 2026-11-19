@@ -103,13 +103,13 @@ export async function startDirector(A){
   const _n=new THREE.Vector3(),_q=new THREE.Vector3();
   function keoPhao(route,gun,s0,speed,t0,t1,loop=false,back=0,rev=false){const r=ROUTE[route];if(!r)return null;const U=uphill(r);const sg=rev?-U.sg:U.sg;s0=Math.max(5,Math.min(r.len-5,U.s-sg*back));
     const p=A.mau(gun);const bs=barrelSign(p);const gg=new THREE.Group();gg.add(p);p.rotation.y=bs>0?Math.PI/2:-Math.PI/2;scene.add(gg);   // nòng quay về phía sau, càng pháo hướng lên dốc
-    const men=[];for(let i=0;i<6;i++)for(const sd of[-1,1]){const c=A.makeChar('bodoi','DiKhom_TaiCho',{noGun:true});scene.add(c.obj);men.push({c,off:4.2+i*1.7,lat:sd*.85,clip:'DiKhom_TaiCho'})}
+    const men=[];for(let i=0;i<6;i++)for(const sd of[-1,1]){const c=A.makeChar('bodoi','INPLACE_Pull Heavy Object',{noGun:true});scene.add(c.obj);men.push({c,off:4.2+i*1.7,lat:sd*.85,clip:'INPLACE_Pull Heavy Object',back:true})}
     for(const sd of[-1,1]){const c=A.makeChar('bodoi','INPLACE_Pushing',{noGun:true});scene.add(c.obj);men.push({c,off:-2.9,lat:sd*.7,clip:'INPLACE_Pushing'})}
     const rg=new THREE.BufferGeometry();rg.setAttribute('position',new THREE.BufferAttribute(new Float32Array(12),3));const rope=new THREE.LineSegments(rg,new THREE.LineBasicMaterial({color:0x6b5434}));rope.frustumCulled=false;scene.add(rope);
     const place=(s,lat,obj,dz=0)=>{r.at(s,obj.position,tmp2);tmp2.multiplyScalar(sg);_n.set(-tmp2.z,0,tmp2.x).normalize();obj.position.addScaledVector(_n,lat);const bx=obj.position.x,by=-obj.position.z;obj.position.y=hAt(bx,by)+dz;obj.rotation.y=Math.atan2(tmp2.x,tmp2.z);return tmp2};
     const a={obj:gg,center:new THREE.Vector3(),heading:0,update(t){const on=t>=t0&&t<=t1;gg.visible=rope.visible=on;for(const m of men)m.c.obj.visible=on;if(!on)return;
       let d=speed*(t-t0);if(loop)d=d%Math.max(1,r.len*.3);const s=s0+sg*d;const dir=place(s,0,gg,.05);this.center.copy(gg.position).addScaledVector(dir,6);this.heading=Math.atan2(dir.x,-dir.z);
-      const rp=rg.attributes.position;for(let k=0;k<men.length;k++){const m=men[k];place(s+sg*m.off,m.lat,m.c.obj);m.c.pose(m.clip,(t-t0)*.9+k*.13)}
+      const rp=rg.attributes.position;for(let k=0;k<men.length;k++){const m=men[k];place(s+sg*m.off,m.lat,m.c.obj);if(m.back)m.c.obj.rotation.y+=Math.PI;m.c.pose(m.clip,(t-t0)*.9+k*.13)}
       // hai dây kéo từ càng pháo tới người kéo cuối
       _q.copy(gg.position).addScaledVector(dir,2.2);_q.y+=.6;const last=men[10].c.obj.position,last2=men[11].c.obj.position;
       rp.setXYZ(0,_q.x,_q.y,_q.z);rp.setXYZ(1,last.x,last.y+1.05,last.z);rp.setXYZ(2,_q.x,_q.y,_q.z);rp.setXYZ(3,last2.x,last2.y+1.05,last2.z);rp.needsUpdate=true}};
@@ -453,7 +453,7 @@ export async function startDirector(A){
   function areaPos(a){if(a[2]==='kp'&&D.kp){D.kp.update(E.t);return D.kp.center.clone().addScaledVector(new THREE.Vector3(Math.sin(D.kp.heading),0,-Math.cos(D.kp.heading)),-14)}
     const [x,y]=a[1];return B(x,y,hAt(x,y))}
   const ROLE_START={bodoi:()=>B(-2296,-373,hAt(-2296,-373)),dancong:()=>{if(D.xt){D.xt.center.y=hAt(D.xt.center.x,-D.xt.center.z);return D.xt.center.clone().add(new THREE.Vector3(3,0,0))}return areaPos(AREAS[0])},phaothu:()=>areaPos(AREAS[1]),linhphap:()=>areaPos(AREAS[3]),linhdu:()=>B(-1300,300,hAt(-1300,300)+320)};
-  const ROLE_ANIM={bodoi:['DungNgam','DiCamSung_TaiCho','ChayToi_TaiCho'],phaothu:['DungNgam','DiCamSung_TaiCho','ChayToi_TaiCho'],linhphap:['DungNgam','DiCamSung_TaiCho','ChayToi_TaiCho'],linhdu:['DungNgam','DiCamSung_TaiCho','ChayToi_TaiCho'],dancong:['dung','day_xe','day_xe']};
+  const ROLE_ANIM={bodoi:['DungNgam','DiCamSung_TaiCho','ChayToi_TaiCho'],phaothu:['DungNgam','DiCamSung_TaiCho','ChayToi_TaiCho'],linhphap:['P_DungNgam','P_DiCamSung','P_ChayToi'],linhdu:['P_DungNgam','P_DiCamSung','P_ChayToi'],dancong:['dung','day_xe','day_xe']};
   function makeAvatar(role){if(W.av){scene.remove(W.av.obj)}const kind={bodoi:'bodoi',phaothu:'bodoi',dancong:'dancong',linhphap:'linhphap',linhdu:'linhphap'}[role];const c=A.makeChar(kind,'dung');
     if(role==='dancong'){const bike=A.mau('XeDapTho_Tripo');bike.position.set(.35,0,1.25);bike.rotation.y=-Math.PI/2;c.obj.add(bike)}
     if(role==='linhdu'){const ch=new THREE.Mesh(new THREE.SphereGeometry(4,12,6,0,Math.PI*2,0,Math.PI/2),new THREE.MeshLambertMaterial({color:0xe8e4da,side:THREE.DoubleSide}));ch.position.y=7.5;c.obj.add(ch);W.chute=ch}else W.chute=null;
@@ -493,7 +493,7 @@ export async function startDirector(A){
 
   /* ---------- lời bình: tệp audio/voice/<cảnh>-<số dòng>.mp3 nếu có, nếu không dùng giọng đọc tiếng Việt của thiết bị ---------- */
   const VO={el:null,files:new Set()};fetch('audio/voice/index.json').then(r=>r.ok?r.json():[]).then(a=>VO.files=new Set(a)).catch(()=>{});
-  function voStop(){if(VO.el){VO.el.pause();VO.el=null}try{speechSynthesis.cancel()}catch(e){}}
+  function voStop(){D.voQ=0;if(VO.el){VO.el.pause();VO.el=null}try{speechSynthesis.cancel()}catch(e){}}
   // thẻ thông tin Hiệp định Genève (C10)
   const GEN=(()=>{const el=document.createElement('div');el.id='geneva';el.hidden=true;el.className='card';
     el.style.cssText='position:fixed;left:50%;top:22%;transform:translateX(-50%);max-width:560px;padding:18px 22px;text-align:center;z-index:12;pointer-events:none';
@@ -501,7 +501,15 @@ export async function startDirector(A){
     document.body.appendChild(el);return el})();
   function speak(s,n){const nxt=D.spoke===s.id+':'+(n-1);D.spoke=s.id+':'+n;if(!nxt)voStop();if(!D.voice||n<0||!D.playing)return;const tx=s.lines[n].text;const f=`${s.id}-${String(n+1).padStart(2,'0')}.mp3`;
     if(VO.files.has(f)){VO.el=new Audio('audio/voice/'+f);VO.el.play().catch(()=>{});return}
-    if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(tx.replace(/[“”"…·()]/g,' '));u.lang='vi-VN';const v=speechSynthesis.getVoices().find(v=>/^vi/i.test(v.lang));if(v)u.voice=v;u.rate=1.02;speechSynthesis.speak(u)}
+    if(!('speechSynthesis' in window))return;
+    // Chrome trên máy tính hay tự dừng câu dài (~15 s) và kẹt hàng đợi → chia câu thành đoạn ngắn, giữ giọng đọc sống bằng pause/resume
+    const clean=tx.replace(/[“”"…·()]/g,' ').replace(/\s+/g,' ').trim();const parts=[];let cur='';
+    for(const w of clean.split(/(?<=[.,;:!?])\s+/)){if((cur+' '+w).trim().length>130&&cur){parts.push(cur);cur=w}else cur=(cur+' '+w).trim()}if(cur)parts.push(cur);
+    if(speechSynthesis.pending&&speechSynthesis.speaking&&D.voQ>3){speechSynthesis.cancel();D.voQ=0}
+    for(const p of parts){const u=new SpeechSynthesisUtterance(p);u.lang='vi-VN';if(VO.voice)u.voice=VO.voice;u.rate=1.04;D.voQ=(D.voQ||0)+1;u.onend=u.onerror=()=>{D.voQ=Math.max(0,(D.voQ||1)-1)};speechSynthesis.speak(u)}}
+  // giọng tiếng Việt có thể nạp chậm trên máy tính
+  if('speechSynthesis' in window){const pick=()=>{VO.voice=speechSynthesis.getVoices().find(v=>/^vi/i.test(v.lang))||null};pick();speechSynthesis.onvoiceschanged=pick;
+    setInterval(()=>{if(speechSynthesis.speaking&&!speechSynthesis.paused){speechSynthesis.pause();speechSynthesis.resume()}},9000)}
   const lineAt=(s,t)=>{let n=-1;s.lines.forEach((l,k)=>{if(l.t<=t)n=k});return n};
 
   /* ---------- âm thanh theo cảnh ---------- */
@@ -513,8 +521,8 @@ export async function startDirector(A){
   // nhạc nền: "Xuân về trên bản Mông" từ đầu phim tới lúc quân dù bắt đầu dựng cứ điểm (C02);
   // "Giải phóng Điện Biên" từ lúc khối bộc phá đồi A1 nổ tới hết phim, để nhỏ làm nền cho lời dẫn
   function musicMix(s,t){const film=D.mode==='film'&&D.playing;const idx=id=>SCN.findIndex(x=>x.id===id);const startOf=i=>{let a=0;for(let k=0;k<i;k++)a+=SCN[k].durationSec;return a};
-    const T=startOf(D.i)+t;const c02=idx('C02');const xEnd=startOf(c02)+((SCN[c02].actions.find(a=>a.do==='reveal')||{t0:22}).t0);
-    const vX=T<xEnd?.5:T<xEnd+5?.5*(1-(T-xEnd)/5):0;audio.music('xuan',film&&vX>0?T:null,vX,D.seekGen);
+    const T=startOf(D.i)+t;const c02=idx('C02');const xEnd=startOf(c02);
+    const vX=T<xEnd-4?.5:T<xEnd?.5*(xEnd-T)/4:0;audio.music('xuan',film&&vX>0?T:null,vX,D.seekGen);
     const c08=idx('C08');const bl=startOf(c08)+((SCN[c08].actions.find(a=>a.do==='a1blast')||{t:30}).t);const speaking=!!(window.speechSynthesis&&speechSynthesis.speaking);
     audio.music('gp',film&&T>=bl-.5?T-bl+.5:null,speaking?.16:.26,D.seekGen)}
 
