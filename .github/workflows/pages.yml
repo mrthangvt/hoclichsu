@@ -1,6 +1,7 @@
 # Tự đăng bản xem thử lên GitHub Pages mỗi khi có thay đổi trên nhánh main:
 #   /                                  → giao diện Việt Sử V5.2 (kế thừa V4.11) (bản tĩnh, không có CMS/API)
 #   /khong-gian/thanh-co-quang-tri/    → sa bàn 3D Thành cổ Quảng Trị
+#   /khong-gian/dien-bien-phu/         → sa bàn 3D Điện Biên Phủ 1954
 # Bản đầy đủ (CMS, API, SGK) chạy bằng máy chủ Python: xem vietsu/HUONG_DAN_LOCAL_MAC.md.
 # Bật một lần: Settings → Pages → Source: "GitHub Actions".
 name: Deploy bản xem thử lên GitHub Pages

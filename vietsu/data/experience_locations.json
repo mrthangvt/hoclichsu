@@ -30,6 +30,16 @@
     "source_note": "Vị trí đại diện cho di tích, không phải vị trí từng đơn vị quân."
   },
   {
+    "id": "dien-bien-phu",
+    "kind": "battle",
+    "lat": 21.392,
+    "lon": 103.018,
+    "name": "Điện Biên Phủ",
+    "year": 1954,
+    "category": "Chiến dịch – sa bàn",
+    "source_note": "Vị trí đại diện cho lòng chảo Mường Thanh (gốc sa bàn 21.39166 N, 103.01811 E), không phải vị trí từng đơn vị."
+  },
+  {
     "id": "rach-gam",
     "kind": "battle",
     "lat": 10.422,

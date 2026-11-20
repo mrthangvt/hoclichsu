@@ -1,0 +1,34 @@
+{
+ "sources": [
+  {
+   "id": "osm",
+   "ten": "OpenStreetMap (bản đồ hiện đại)",
+   "ghi_chu": "Vị trí sông Nậm Rốm, đường băng, đồi A1, C1, D1, E1, E2, F, Him Lam, Độc Lập, khu di tích hầm Đờ Cát theo các điểm di tích ngày nay.",
+   "loai": "DIA_LY_HIEN_DAI"
+  },
+  {
+   "id": "dem",
+   "ten": "Mô hình độ cao Terrarium/SRTM (lưới ~20 m)",
+   "ghi_chu": "Địa hình hiện đại, độ cao phóng ×1,5 kiểu sa bàn.",
+   "loai": "DIA_LY_HIEN_DAI"
+  },
+  {
+   "id": "kb_dans",
+   "ten": "Kịch bản phim \"Điện Biên Phủ – Dấu ấn non sông\" (do anh Thắng cung cấp)",
+   "ghi_chu": "Nguồn thứ cấp của dự án; các mốc ngày giờ cần đối chiếu tài liệu sử học.",
+   "loai": "KICH_BAN"
+  },
+  {
+   "id": "kb_v1",
+   "ten": "Kịch bản & đặc tả sa bàn V1.0",
+   "ghi_chu": "Tài liệu bàn giao, không phải hồ sơ sử học đã thẩm định.",
+   "loai": "KICH_BAN"
+  },
+  {
+   "id": "so_do",
+   "ten": "Sơ đồ/tranh minh họa trong thư mục tư liệu (ban-do-2.png, so-do-dien-bien-phu.png, Chien-Truong-Dien-Bi-04.jpg)",
+   "ghi_chu": "Chỉ dùng để xác định nhóm vị trí tương đối; KHÔNG dùng làm toạ độ.",
+   "loai": "MINH_HOA"
+  }
+ ]
+}

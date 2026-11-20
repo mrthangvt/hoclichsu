@@ -4,6 +4,9 @@
 
   // Chỉ công bố lối vào sa bàn khi có trang 3D thực sự trong repository.
   const SCENES = {
+    'dien-bien-phu': { title: 'Điện Biên Phủ 1954',
+                   href: 'khong-gian/dien-bien-phu/',
+                   subtitle: 'Sa bàn tương tác Three.js · phim tự động 16:45, khám phá, so sánh · tái dựng mô phỏng' },
     'quang-tri': { title: 'Thành cổ Quảng Trị 1972',
                    href: 'khong-gian/thanh-co-quang-tri/',
                    subtitle: 'Sa bàn tương tác Three.js · tái dựng mô phỏng, chưa phải tư liệu hiện trường' }
