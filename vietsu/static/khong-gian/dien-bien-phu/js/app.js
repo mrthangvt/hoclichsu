@@ -80,6 +80,31 @@ function hAt(x,y){const fx=Math.min(HG.NX-1.001,Math.max(0,(x-HG.X0)/HG.S)),fy=M
   const i=Math.floor(fx),j=Math.floor(fy),u=fx-i,v=fy-j,H=HG.h,N=HG.NX;
   return H[j*N+i]*(1-u)*(1-v)+H[j*N+i+1]*u*(1-v)+H[(j+1)*N+i]*(1-u)*v+H[(j+1)*N+i+1]*u*v}
 const hT=(x,z)=>hAt(x,-z);   // theo toạ độ three
+
+/* ---------------- nền quanh sa bàn: dải đất + đồi núi kéo ra tới đường chân trời ---------------- */
+// mép trong lấy đúng độ cao và màu ở rìa sa bàn để liền mạch; càng ra xa càng thành đồi núi, rồi tan vào sương ở chân trời
+const HORIZON=(()=>{const X0=HG.X0,Y0=HG.Y0,X1=X0+(HG.NX-1)*HG.S,Y1=Y0+(HG.NY-1)*HG.S,cx=(X0+X1)/2,cy=(Y0+Y1)/2;
+  const per=[],st=60;for(let x=X0;x<X1;x+=st)per.push([x,Y0]);for(let y=Y0;y<Y1;y+=st)per.push([X1,y]);for(let x=X1;x>X0;x-=st)per.push([x,Y1]);for(let y=Y1;y>Y0;y-=st)per.push([X0,y]);
+  const R=[0,40,120,300,650,1200,2100,3500,5500,8500,13000,19000,27000,38000,52000,70000];
+  // màu ở rìa: đọc ảnh nền địa hình theo toạ độ UV của lưới mặt đất
+  let pick=()=>[.33,.42,.25];try{const g=ground.geometry,P=g.attributes.position,U=g.attributes.uv;if(U){let sx=0,sy=0,sxx=0,syy=0,su=0,sv=0,sxu=0,syv=0,n=0;
+      for(let i=0;i<P.count;i+=Math.max(1,Math.floor(P.count/4000))){const x=P.getX(i),y=-P.getZ(i),u=U.getX(i),v=U.getY(i);sx+=x;sy+=y;sxx+=x*x;syy+=y*y;su+=u;sv+=v;sxu+=x*u;syv+=y*v;n++}
+      const au=(n*sxu-sx*su)/(n*sxx-sx*sx),bu=(su-au*sx)/n,av=(n*syv-sy*sv)/(n*syy-sy*sy),bv=(sv-av*sy)/n;
+      const im=TEX.image,W=256,H=256,cv=document.createElement('canvas');cv.width=W;cv.height=H;const c2=cv.getContext('2d');c2.drawImage(im,0,0,W,H);const D=c2.getImageData(0,0,W,H).data;
+      pick=(x,y)=>{const u=Math.min(.999,Math.max(0,au*x+bu)),v=Math.min(.999,Math.max(0,av*y+bv));const px=Math.min(W-1,Math.floor(u*W)),py=Math.min(H-1,Math.floor((TEX.flipY===false?v:1-v)*H));const k=(py*W+px)*4;const r=[D[k]/255,D[k+1]/255,D[k+2]/255].map(c=>Math.pow(c,2.2));return r.every(Number.isFinite)?r:[.05,.09,.04]}}}catch(e){}
+  const hills=(x,y)=>Math.sin(x*.00031+1.3)*Math.cos(y*.00027)*.55+Math.sin(x*.00091+y*.00063)*.3+Math.sin(x*.0023-y*.0017+2)*.15;
+  let base=0;for(const [x,y] of per)base+=hAt(x,y);base/=per.length;
+  const H0=per.map(([x,y])=>hAt(x,y)),HS=H0.map((_,i)=>{let a=0;for(let k=-25;k<=25;k++)a+=H0[(i+k+H0.length)%H0.length];return a/51}),N=per.length,M=R.length,C0=per.map(([x,y])=>pick(x,y)),CS=C0.map((_,i)=>{const a=[0,0,0];for(let k=-40;k<=40;k++){const c=C0[(i+k+C0.length)%C0.length];a[0]+=c[0];a[1]+=c[1];a[2]+=c[2]}return a.map(v=>v/81)}),pos=new Float32Array(N*M*3),col=new Float32Array(N*M*3),forest=[.06,.11,.045];
+  for(let i=0;i<N;i++){const [ex,ey]=per[i];let dx=ex-cx,dy=ey-cy;const dl=Math.hypot(dx,dy);dx/=dl;dy/=dl;const h0=H0[i],c0=CS[i];
+    for(let k=0;k<M;k++){const d=R[k],x=ex+dx*d,y=ey+dy*d;const w=1-Math.exp(-d/2500);const f=Math.min(1,d/40000);const amp=60+f*f*1100;
+      const hE=h0+(HS[i]-h0)*Math.min(1,d/400);const h=(1-w)*hE+w*(base+hills(x,y)*amp+f*f*500)-(k===0?.4:0);const o=(i*M+k)*3;pos[o]=x;pos[o+1]=h;pos[o+2]=-y;
+      const cw=Math.min(1,Math.sqrt(d/1500)),n=1;for(let c=0;c<3;c++)col[o+c]=(c0[c]*(1-cw)+forest[c]*cw*n)}}
+  const idx=[];for(let i=0;i<N;i++){const j=(i+1)%N;for(let k=0;k<M-1;k++){const a=i*M+k,b=j*M+k,c=j*M+k+1,d=i*M+k+1;idx.push(a,d,b,b,d,c)}}
+  const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(pos,3));geo.setAttribute('color',new THREE.BufferAttribute(col,3));geo.setIndex(idx);geo.computeVertexNormals();
+  const mat=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide});
+  mat.onBeforeCompile=sh=>{sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec2 vHz;').replace('#include <worldpos_vertex>','#include <worldpos_vertex>\nvHz=(modelMatrix*vec4(transformed,1.)).xz;');
+    sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec2 vHz;\nfloat hzN(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);float a=fract(sin(dot(i,vec2(12.9898,78.233)))*43758.5453),b=fract(sin(dot(i+vec2(1,0),vec2(12.9898,78.233)))*43758.5453),c=fract(sin(dot(i+vec2(0,1),vec2(12.9898,78.233)))*43758.5453),e=fract(sin(dot(i+vec2(1,1),vec2(12.9898,78.233)))*43758.5453);return mix(mix(a,b,f.x),mix(c,e,f.x),f.y);}').replace('#include <color_fragment>','#include <color_fragment>\n{float q=hzN(vHz*.004)*.5+hzN(vHz*.017)*.3+hzN(vHz*.06)*.2;diffuseColor.rgb*=.72+.56*q;}').replace('#include <fog_fragment>','#include <fog_fragment>\n#ifdef USE_FOG\n gl_FragColor.rgb=mix(gl_FragColor.rgb,fogColor,smoothstep(16000.,62000.,distance(vHz,vec2('+cx.toFixed(1)+','+(-cy).toFixed(1)+'))));\n#endif')};
+  const m=new THREE.Mesh(geo,mat);m.name='NenChanTroi';m.frustumCulled=false;m.renderOrder=-1;scene.add(m);return m})();
 const PEAK=HG.peak;          // đỉnh núi cao nhất trong sa bàn (đơn vị three)
 const inValley=(x,z)=>x>HG.X0-200&&x<HG.X0+HG.S*HG.NX+200&&-z>HG.Y0-200&&-z<HG.Y0+HG.S*HG.NY+200;
 /* camera an toàn: không chui vào núi, không bị núi che tầm nhìn; góc cao luôn trên đỉnh núi cao nhất */
@@ -357,7 +382,7 @@ const treeLOD=(()=>{const NEAR=MOBILE?260:520,CAP=MOBILE?350:1400;const src={};g
       for(const im of T.parts){im.count=k;im.visible=T.mC.visible;im.instanceMatrix.needsUpdate=true}if(k||hadHid){T.mC.instanceMatrix.needsUpdate=T.mT.instanceMatrix.needsUpdate=true}}}})();
 const API={THREE,scene,camera,controls,renderer,B,hAt,hT,PEAK,safeEye,world,ground,groundMat,GU,CAT,REV_FR,REV_VN,KC_MAX,TREES,hq,mapCard,mini,
   mau,makeChar,FIRE,SMOKE,T_DOT,rain,SKY,hemi,sun,flashLight,SC,PLACES,PL,EV,EVENTS,SCENES,SOURCES,STATE_COL,STATE_VI,stateAt,setPlaceVis,labels,LAY,SECT,
-  updLabels,audio,MOBILE,ts,RAINSCR,CLOUDS,inRunway,RW,onHotspot:()=>{},tick:[]};
+  updLabels,audio,MOBILE,ts,RAINSCR,ASSETS,CLOUDS,inRunway,RW,onHotspot:()=>{},tick:[]};
 window.__DBP=API;
 await startDirector(API);
 const clock=new THREE.Clock();let fN=0,fT=0;

@@ -456,7 +456,7 @@ export async function startDirector(A){
   function setMode(m){D.mode=m;for(const b of document.querySelectorAll('#modes button'))b.classList.toggle('on',b.dataset.m===m);
     $('filmbar').hidden=m!=='film';if(m==='explore')ui.date.textContent='KHÁM PHÁ · CHỌN MỐC LỊCH SỬ';if(m==='compare')ui.date.textContent='SO SÁNH HAI MỐC';if(m==='film'&&SCN[D.i])ui.date.textContent=SCN[D.i].date_label;$('explorebar').hidden=m!=='explore';$('comparebar').hidden=m!=='compare';dv.hidden=m!=='compare';ui.sub.hidden=m!=='film';ui.endt.hidden=true;
     if(m!=='explore'&&W.on)setWalk(false);E.built=false;
-    if(m!=='film'){setPlaying(false);clearActors();D.started=false;if(m==='explore')buildAmbient();controls.enabled=true;D.userCam=false;ui.ret.hidden=true;camera.fov=40;camera.updateProjectionMatrix();A.hq.visible=false;
+    if(m!=='film'){setPlaying(false);voPause();clearActors();D.started=false;if(m==='explore')buildAmbient();controls.enabled=true;D.userCam=false;ui.ret.hidden=true;camera.fov=40;camera.updateProjectionMatrix();A.hq.visible=false;
       if(camera.position.x>20000){const P=poseOf(SCN[1].shots[2],0);safeEye(P.e,P.T,true);camera.position.copy(P.e);controls.target.copy(P.T)}}
     else{controls.enabled=D.userCam;if(!D.started)goto(D.i,D.t)}}
   for(const b of document.querySelectorAll('#modes button'))b.onclick=()=>setMode(b.dataset.m);
@@ -527,7 +527,27 @@ export async function startDirector(A){
     el.style.cssText='position:fixed;left:50%;top:22%;transform:translateX(-50%);max-width:560px;padding:18px 22px;text-align:center;z-index:12;pointer-events:none';
     el.innerHTML='<div class="eyebrow">Thẻ thông tin</div><h2 style="margin:6px 0">21/7/1954 · Hiệp định Genève</h2><p>Các văn kiện Hiệp định Genève về Đông Dương được hoàn tất, xác lập những thỏa thuận đình chỉ chiến sự, mở đường kết thúc cuộc kháng chiến chống thực dân Pháp.</p><p class="small muted">Cần đối chiếu tư liệu chính thức trước khi xuất bản.</p>';
     document.body.appendChild(el);return el})();
-  function speak(s,n){const nxt=D.spoke===s.id+':'+(n-1);D.spoke=s.id+':'+n;if(!nxt)voStop();if(!D.voice||n<0||!D.playing)return;const tx=s.lines[n].text;const f=`${s.id}-${String(n+1).padStart(2,'0')}.mp3`;
+  const VOX={el:null,sid:null,url:{},busy:{}};
+  function voUrl(s){if(VOX.url[s.id])return VOX.url[s.id];if(VOX.busy[s.id]||!s.voice)return null;VOX.busy[s.id]=1;
+    const src=(A.ASSETS&&A.ASSETS['vo_'+s.id])||s.voice;
+    if(/\.txt$/.test(src))A.audio.fileSrc.fetchBuf(src,'vo').then(b=>{VOX.url[s.id]=URL.createObjectURL(new Blob([b],{type:'audio/mpeg'}))}).catch(()=>{VOX.busy[s.id]=0});else VOX.url[s.id]=src;
+    return VOX.url[s.id]||null}
+  function voPause(){if(VOX.el&&!VOX.el.paused)VOX.el.pause()}
+  function voTick(s){const want=D.mode==='film'&&D.voice&&s.voice;if(!want){voPause();return}
+    const url=voUrl(s);if(!url)return;
+    // dùng MỘT phần tử Audio cho cả phim (iPhone chỉ "mở khoá" phần tử được bấm phát lần đầu)
+    if(!VOX.el){VOX.el=new Audio();VOX.el.preload='auto'}
+    if(VOX.sid!==s.id){voPause();VOX.el.src=url;VOX.sid=s.id;try{VOX.el.currentTime=D.t}catch(e){}}
+    const el=VOX.el,dur=isFinite(el.duration)?el.duration:1e9;el.playbackRate=D.speed;
+    if(D.playing&&D.t<dur-.05){if(el.paused)el.play().catch(()=>{});
+      const now=performance.now(),ct=el.currentTime,moving=!el.paused&&!el.seeking&&el.readyState>=3&&ct>(VOX.lastCT??-1)+1e-3;VOX.lastCT=ct;
+      if(Math.abs(ct-D.t)>.35){if(!el.seeking&&now-(VOX.lastSeek||0)>800){VOX.lastSeek=now;try{el.currentTime=D.t}catch(e){}}}
+      else if(moving)D.t=ct}   // phim chạy theo đồng hồ của tệp lời dẫn (chỉ khi tiếng thật sự đang chạy; tiếng bị chặn/đang tải thì phim vẫn tự chạy)
+    else voPause()}
+  // trong nhạc nền: lời dẫn đang đọc thì hạ nhạc
+  A.voSpeaking=()=>!!(VOX.el&&!VOX.el.paused);
+  // ẩn/hiện màn hình bắt đầu
+  function speak(s,n){if(s.voice)return;const nxt=D.spoke===s.id+':'+(n-1);D.spoke=s.id+':'+n;if(!nxt)voStop();if(!D.voice||n<0||!D.playing)return;const tx=s.lines[n].text;const f=`${s.id}-${String(n+1).padStart(2,'0')}.mp3`;
     if(VO.files.has(f)){VO.el=new Audio('audio/voice/'+f);VO.el.play().catch(()=>{});return}
     if(!('speechSynthesis' in window))return;
     // Chrome trên máy tính hay tự dừng câu dài (~15 s) và kẹt hàng đợi → chia câu thành đoạn ngắn, giữ giọng đọc sống bằng pause/resume
@@ -551,7 +571,7 @@ export async function startDirector(A){
   function musicMix(s,t){const film=D.mode==='film'&&D.playing;const idx=id=>SCN.findIndex(x=>x.id===id);const startOf=i=>{let a=0;for(let k=0;k<i;k++)a+=SCN[k].durationSec;return a};
     const T=startOf(D.i)+t;const c02=idx('C02');const xEnd=startOf(c02);
     const vX=T<xEnd-4?.5:T<xEnd?.5*(xEnd-T)/4:0;audio.music('xuan',film&&vX>0?T:null,vX,D.seekGen);
-    const c08=idx('C08');const bl=startOf(c08)+((SCN[c08].actions.find(a=>a.do==='a1blast')||{t:30}).t);const speaking=!!(window.speechSynthesis&&speechSynthesis.speaking);
+    const c08=idx('C08');const bl=startOf(c08)+((SCN[c08].actions.find(a=>a.do==='a1blast')||{t:30}).t);const speaking=A.voSpeaking()||!!(window.speechSynthesis&&speechSynthesis.speaking);
     audio.music('gp',film&&T>=bl-.5?T-bl+.5:null,speaking?.16:.26,D.seekGen)}
 
   /* ---------- vòng lặp ---------- */
@@ -563,7 +583,7 @@ export async function startDirector(A){
       const P=camAt(s,D.t);D.lastT=P.T;garTick(D.userCam?controls.target:P.T,histMs(s,D.t),D.t,s);
       if(!D.userCam){camera.position.copy(P.e);if(D.shake){camera.position.x+=(Math.random()-.5)*D.shake;camera.position.y+=(Math.random()-.5)*D.shake}camera.lookAt(P.T);if(Math.abs(camera.fov-P.fov)>.01){camera.fov=P.fov;camera.updateProjectionMatrix()}ui.fade.style.opacity=P.cutFade}
       else{if(D.fly){D.fly.t+=dt/2.2;const k=ease(Math.min(1,D.fly.t));camera.position.lerpVectors(D.fly.e0,D.fly.e1,k);controls.target.lerpVectors(D.fly.t0,D.fly.t1,k);if(D.fly.t>=1)D.fly=null}controls.update();clampCam();ui.fade.style.opacity=0}
-      weatherTick(dt,st);audioMix(s,st,D.t);audio.tick(dt);
+      weatherTick(dt,st);audioMix(s,st,D.t);audio.tick(dt);voTick(s);
       const n=lineAt(s,D.t);if(n!==D.line){D.line=n;speak(s,n);ui.sub.innerHTML=n>=0?s.lines[n].text:'';ui.sub.hidden=n<0}
       const ea=s.actions.find(a=>a.do==='endtitle');ui.endt.hidden=!(ea&&D.t>=ea.t0);
       const gv=s.actions.find(a=>a.do==='geneva');GEN.hidden=!(gv&&D.t>=gv.t0&&D.t<gv.t1);
@@ -589,8 +609,12 @@ export async function startDirector(A){
   // cờ phấp phới
   A.tick.push(()=>{if(!flag.visible)return;const f=flag.userData.f,p=f.geometry.attributes.position;const tt=performance.now()/300;for(let i=0;i<p.count;i++){const x=p.getX(i);p.setZ(i,Math.sin(x*2.4-tt)*.18*(x+1.35)/2.7)}p.needsUpdate=true});
   addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,select,textarea'))return;if(e.code==='Space'){e.preventDefault();$('splay').click()}else if(e.code==='PageDown')$('snext').click();else if(e.code==='PageUp')$('sprev').click()});
-  setMode('film');goto(0,0);setPlaying(true);
-  // gợi ý bật âm thanh (trình duyệt chỉ cho phát tiếng sau khi người xem bấm)
-  $('bsnd').classList.add('hint');
+  setMode('film');goto(0,0);D.voice=true;$('bvo').classList.add('on');
+  // âm thanh + lời dẫn bật sẵn; trình duyệt chỉ cho phát tiếng sau một cú bấm → nút "Bắt đầu xem"
+  const sndOn=()=>{if(!audio.on){audio.enable(true);$('bsnd').classList.add('on');$('bsnd').textContent='🔊 Âm thanh'}};
+  const gate=document.createElement('div');gate.id='startgate';gate.innerHTML='<button><span>▶</span> Bắt đầu xem<small>Phim 17 phút · có lời dẫn và âm thanh</small></button>';document.body.appendChild(gate);
+  voUrl(SCN[0]);
+  const go=()=>{gate.remove();sndOn();if(!VOX.el){VOX.el=new Audio();VOX.el.preload='auto'}const u=voUrl(SCN[0]);if(u){VOX.el.src=u;VOX.sid=SCN[0].id}VOX.el.play().catch(()=>{});goto(0,0);setPlaying(true)};gate.querySelector('button').onclick=go;
+  addEventListener('keydown',function k(e){if(document.getElementById('startgate')&&(e.code==='Space'||e.code==='Enter')){e.preventDefault();e.stopImmediatePropagation();go()}},true);
   window.__DIR={GAR,D,goto,setMode,SCN,evalScene,camAt,setPlaying,GROUPS:()=>GROUPS,actors:()=>actors,camera};
 }
