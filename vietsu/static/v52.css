@@ -1,0 +1,11 @@
+/* V5.2 — giữ giao diện/ảnh đã duyệt từ GitHub. */
+#navHCM .nav-icon,#navHCM .nav-icon.hcm{background:transparent!important;-webkit-mask-image:none!important;mask-image:none!important;opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+#navHCM .nav-icon img{display:block!important;width:28px!important;height:28px!important;object-fit:contain!important;opacity:1!important;mix-blend-mode:normal!important;filter:brightness(0) saturate(100%) invert(84%) sepia(28%) saturate(848%) hue-rotate(341deg) brightness(105%) contrast(95%)!important}
+body.theme-light #navHCM .nav-icon img{filter:brightness(0) saturate(100%) invert(38%) sepia(40%) saturate(700%) hue-rotate(354deg) brightness(91%) contrast(92%)!important}
+#vs52ExamView[hidden]{display:none!important}#vs52ExamView{min-width:0;padding:30px clamp(14px,3vw,40px) 48px;width:100%;box-sizing:border-box}
+.vs52-exam-head{text-align:center;max-width:1080px;margin:0 auto 20px}.vs52-exam-head h1{font-size:clamp(25px,3vw,40px);margin:8px 0 10px}.vs52-exam-head p{color:var(--muted);line-height:1.65}
+.vs52-exam-shell{border-radius:16px;overflow:hidden;border:1px solid var(--edge);background:var(--panel);max-width:1180px;margin:auto}
+#vs52ExamFrame{display:block;border:0;width:100%;height:min(1100px,calc(100dvh - 140px));min-height:620px;background:var(--panel)}
+.vs52-island circle{fill:#e7c784;stroke:#15343a;stroke-width:2}.vs52-island text{fill:#f7dfa4;font-size:13px;font-weight:800;letter-spacing:.8px;text-anchor:middle;paint-order:stroke;stroke:#132b37;stroke-width:3px}
+body.theme-light .v46-3d-entry{background:var(--panel)!important;border-color:var(--edge)!important}body.theme-light .v46-3d-button{color:#fff!important}
+@media(max-width:700px){#vs52ExamView{padding:18px 8px 28px}.vs52-exam-shell{border-radius:9px}#vs52ExamFrame{height:calc(100dvh - 110px);min-height:580px}}
