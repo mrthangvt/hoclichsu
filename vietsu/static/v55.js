@@ -40,6 +40,7 @@ const DYN=[
  {id:'nguyenvn',alias:[],name:'Nhà Nguyễn',span:'1802–1945',count:13,
   kings:[['Gia Long','Nguyễn Phúc Ánh','1802–1819'],['Minh Mạng','Nguyễn Phúc Đảm','1820–1840','Đổi quốc hiệu Đại Nam (1838)'],['Thiệu Trị','Nguyễn Phúc Miên Tông','1841–1847'],['Tự Đức','Nguyễn Phúc Hồng Nhậm','1848–1883'],['Dục Đức','Nguyễn Phúc Ưng Chân','1883','Ở ngôi 3 ngày'],['Hiệp Hòa','Nguyễn Phúc Hồng Dật','1883'],['Kiến Phúc','Nguyễn Phúc Ưng Đăng','1883–1884'],['Hàm Nghi','Nguyễn Phúc Ưng Lịch','1884–1885','Ra chiếu Cần vương'],['Đồng Khánh','Nguyễn Phúc Ưng Kỷ','1885–1889'],['Thành Thái','Nguyễn Phúc Bửu Lân','1889–1907'],['Duy Tân','Nguyễn Phúc Vĩnh San','1907–1916'],['Khải Định','Nguyễn Phúc Bửu Đảo','1916–1925'],['Bảo Đại','Nguyễn Phúc Vĩnh Thụy','1926–1945','Thoái vị ngày 30/8/1945']]}
 ];
+window.VS55_DYN=DYN; // V5.6 dùng lại danh sách vua
 const BY=Object.create(null);
 DYN.forEach(d=>{BY[d.id]=d;d.alias.forEach(a=>BY[a]=d);});
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
