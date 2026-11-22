@@ -87,7 +87,8 @@ doi("th_ky", "nguath", ky, {8: scene([0, 0], seg(0, .08, "an"), seg(.08, .24, "c
 # Quang Trung, voi chỉ huy, ngựa tướng phía sau giữa
 x, y = F(-510, 0); qt = [x, y]
 doi("ts_voi_chihuy", "voi", [mem(*F(-510, 9), YAW_N)], {7: scene([0, 0], seg(0, 1, "dung")), 8: scene([0, 0], seg(0, 1, "dung")), 9: scene([0, 0], seg(0, .7, "dung"), seg(.7, 1, "di", mv(150, 0)))})
-doi("ts_ngua_tuong", "ngua", [mem(*F(-516, -6 - k * 3), YAW_N) for k in range(4)], {7: scene([0, 0], seg(0, 1, "dung")), 8: scene([0, 0], seg(0, 1, "dung")), 9: scene([0, 0], seg(0, 1, "dung"))})
+doi("ts_ngua_tuong", "ngua", [mem(*F(-516, -6 - k * 3), YAW_N) for k in range(4)], {7: scene([0, 0], seg(0, 1, "dung")), 8: scene([0, 0], seg(0, 1, "dung")), 9: scene([0, 0], seg(0, 1, "dung"))},
+    ten={"0": "Hám Hổ hầu", "1": "Phan Văn Lân"})
 # quân dự bị: hàng đầu là lính súng (ngắm), C10 cuối cảnh tràn lên
 db = TT["20a_NgocHoi_TaySon"]; db = [p for p in db if p[0].startswith("NV_LinhTaySon")]
 hang = sorted(db, key=lambda p: -local(p[1], p[2])[0])
@@ -133,6 +134,7 @@ doi_tuyen("th_dammuc", "th", p_dm, cot(150, 3, 1.6), {10: {"s": [[0, .58, "chay"
           vk=VK_TH, loan=1, nga=[7, .6], rai={"10": [0.08, 70, 55]}, nhip=1)
 p_bao = [(-364, -5989), (-780, -4549), (-1404, -3774)]
 doi_tuyen("ts_bao", "ts", p_bao, cot(300, 30, 2.0), {10: {"s": [[0, .5, "chay", 1300, 1480], [.5, 1, "ngam", 1480, 1480]]}}, vk=[1, 1, 2, 3])
+doi_tuyen("ts_bao_tuong", "ngua", p_bao, [[8.0, 0.0, 0.2, 0]], {10: {"s": [[0, .5, "chay", 1300, 1480], [.5, 1, "dung", 1480, 1480]]}}, ten={"0": "Đại đô đốc Bảo"})
 
 # ---------------------------------------------------------------- KHƯƠNG THƯỢNG – ĐỐNG ĐA (C12 = 11)
 ben = (-2028.0, 3588.0); tgt = (-1820.0, 4197.0); L = math.hypot(tgt[0] - ben[0], tgt[1] - ben[1]); d = ((tgt[0] - ben[0]) / L, (tgt[1] - ben[1]) / L)
@@ -142,11 +144,11 @@ kb_dd = {11: scene(dd(-60), seg(0, .36, "chay", dd(100), 0.7), seg(.36, .6, "cha
 kb_dd_vat = {11: scene(dd(-60), seg(0, .36, "di", dd(100)), seg(.36, .6, "chay", dd(160)), seg(.6, .85, "roi"), seg(.85, 1, "chay", dd(80)))}
 doi("ts_dongda", "ts", [mem(p[1] + d[0] * 150, p[2] + d[1] * 150, p[4]) for p in tsdd if "Linh" in p[0]], kb_dd, vk=VK_TS, duoc=4)
 U_SND = UC(11, "Sầm Nghi Đống")
-doi("th_snd", "snd", [mem(-1247.9, 4790.0, math.pi * 0.85)], {11: scene([0, 0], seg(0, U_SND + .01, "dung"), seg(U_SND + .01, 1, "nga"))})
+doi("th_snd", "snd", [mem(-1247.9, 4790.0, math.pi * 0.85)], {11: scene([0, 0], seg(0, U_SND + .01, "dung"), seg(U_SND + .01, 1, "nga"))}, ten={"0": "Sầm Nghi Đống"})
 doi("th_snd_ve", "th", [mem(-1247.9 + 4 * math.cos(a), 4806.2 + 4 * math.sin(a), a + math.pi / 2) for a in [k / 8 * 2 * math.pi for k in range(8)]],
     {11: scene([0, 0], seg(0, U_SND - .02, "dung"), seg(U_SND - .02, 1, "chay", [-60, 140]))}, vk=VK_TH, loan=1)
 doi("ts_voi_dd", "voi", [mem(p[1] + d[0] * 150, p[2] + d[1] * 150, p[4]) for p in tsdd if "Voi" in p[0]], kb_dd_vat)
-doi("ts_ngua_dd", "ngua", [mem(p[1] + d[0] * 150, p[2] + d[1] * 150, p[4]) for p in tsdd if "Ngua" in p[0]], kb_dd_vat)
+doi("ts_ngua_dd", "ngua", [mem(p[1] + d[0] * 150, p[2] + d[1] * 150, p[4]) for p in tsdd if "Ngua" in p[0]], kb_dd_vat, ten={"0": "Đặng Tiến Đông"})
 doi("th_kt", "th", [mem(p[1], p[2], p[4]) for p in TT["20f_KhuongThuong_QuanThanh"]], {
     1: scene([0, 0], seg(0, 1, "nghi")),
     11: scene([0, 0], seg(0, .42, "nghi"), seg(.42, .5, "trungdon"), seg(.5, .6, "vap"), seg(.6, 1, "chay", [120, 260]))}, vk=VK_TH, nga=[4, .48], loan=1)
@@ -163,7 +165,7 @@ doi_tuyen("th_canve", "th", P_CAU, hang_tl, {
     12: {"s": [[0, U_TIN, "dung", 60, 60], [U_TIN, .9, "chay", 60, 1700], [.9, 1, "dung", 1700, 1700]]}}, vk=VK_TH, loan=1, cau=1)
 doi_tuyen("th_tsn", "nguatsn", P_CAU, [[3.0, 0.0, 0.3, 0]], {
     12: {"s": [[0, U_TIN, "dung", 60, 60], [U_TIN, U_TIN + .06, "chay", 60, 150], [U_TIN + .06, U_CAT - .02, "chay", 965, 1150],
-               [U_CAT - .02, .62, "chay", 1150, 1600], [.62, 1, "an", 1600, 1600]]}}, cau=1)
+               [U_CAT - .02, .62, "chay", 1150, 1600], [.62, 1, "an", 1600, 1600]]}}, cau=1, ten={"0": "Tôn Sĩ Nghị"})
 _v = (2000 / .82); _s0 = 900 - _v * (U_CAT - .08)                 # mũi đoàn rút tới gần chỗ chặt cầu đúng lúc cầu đứt
 doi_tuyen("th_rut", "th", P_CAU, cot(220, 3, 1.7), {12: {"s": [[0, .08, "an", 0, 0], [.08, .9, "chay", round(_s0), round(_s0 + 2000)], [.9, 1, "dung", round(_s0 + 2000), round(_s0 + 2000)]]}}, vk=VK_TH, loan=1, cau=1)
 p_vao = [(1450, 3950), (1508, 4529), (1320, 5500), (980, 6500), (560, 7150)]
@@ -182,8 +184,11 @@ doi_tuyen("th_vao_ky", "nguath", p_vao_tl, cot(16, 2, 3.2), {
     1: {"s": [[0, .45, "di", 1200, 1550], [.45, 1, "dung", 1550, 1550]]}}, cau=1)
 doi_tuyen("th_tsn_vao", "nguatsn", p_vao_tl, [[0.0, 0.0, 0.3, 0]], {
     0: {"s": [[0, .55, "an", 0, 0], [.55, 1, "di", 725, 945]]},
-    1: {"s": [[0, .45, "di", 1225, 1575], [.45, 1, "dung", 1575, 1575]]}}, cau=1)
-p_hq = [(3276, -12299), (2236, -8978), (1300, -5989)]                            # đường thiên lý từ nam lên
+    1: {"s": [[0, .45, "di", 1225, 1575], [.45, 1, "dung", 1575, 1575]]}}, cau=1, ten={"0": "Tôn Sĩ Nghị"})
+doi_tuyen("th_snd_vao", "nguasnd", p_vao_tl, [[-9.0, 1.2, 0.55, 0]], {
+    0: {"s": [[0, .55, "an", 0, 0], [.55, 1, "di", 725, 945]]},
+    1: {"s": [[0, .45, "di", 1225, 1575], [.45, 1, "dung", 1575, 1575]]}}, cau=1, ten={"0": "Sầm Nghi Đống"})
+p_hq = [tuple(q) for q in json.load(open(os.path.join(HERE, "thienly.json")))]   # V10.8: bám đúng đường thiên lý trên bản đồ (Duong_ThienLy)
 doi_tuyen("ts_hq", "ts", p_hq, cot(960, 3, 1.9), {
     1: {"s": [[0, .85, "an", 0, 0], [.85, 1, "chay", 660, 700]]},
     3: {"s": [[0, 1, "chay", 660, 1040]]},
@@ -199,7 +204,11 @@ doi("ts_tapket", "ts", tk, {2: scene([0, 0], seg(0, .6, "dung"), seg(.6, 1, "cha
 # V10.3: C03 Quang Trung đứng trên lưng voi trước ba quân, hai bên 10 tướng cưỡi ngựa cầm cờ (mỗi bên 5)
 doi("ts_voi_qt", "voi", [mem(TK[0], TK[1] - 16, math.pi)], {2: scene([0, 0], seg(0, 1, "dung"))})
 tuong = [mem(TK[0] + s * (9 + k * 4.6), TK[1] - 15 + k * 0.6, math.pi) for s in (-1, 1) for k in range(5)]
-doi("ts_tuong", "ngua", tuong, {2: scene([0, 0], seg(0, 1, "dung"))}, co=1)
+doi("ts_tuong", "ngua", tuong, {2: scene([0, 0], seg(0, 1, "dung"))}, co=1,
+    ten={"0": "Phan Văn Lân", "1": "Hám Hổ hầu", "5": "Đặng Tiến Đông", "6": "Đại đô đốc Bảo"})
+# C05 Tam Điệp: Ngô Văn Sở, Ngô Thì Nhậm giữ phòng tuyến, ra đón vua
+doi("ts_tuong_td", "ngua", [mem(TK[0] + s * 12, TK[1] - 22, 0.0) for s in (-1, 1)], {4: scene([0, 0], seg(0, 1, "dung"))},
+    ten={"0": "Ngô Văn Sở", "1": "Ngô Thì Nhậm"})
 doi("ts_tapket_voi", "voi", [mem(TK[0] + s * 24, TK[1] + 8, 0.0) for s in (-1, 1)], {2: scene([0, 0], seg(0, 1, "dung")), 4: scene([0, 0], seg(0, 1, "dung"))})
 # Hà Hồi: vây lặng lẽ rồi gọi hàng (ngoài khung, minh hoạ)
 HH = (3900.0, -13960.0)
