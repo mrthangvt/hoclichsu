@@ -16,3 +16,13 @@
  #timeline .v41-icons .v41-icon-chip b{white-space:normal!important;font-size:10.5px!important}
  #timeline .v41-icons .v41-icon-chip small{font-size:9px!important}
 }
+
+/* V5.4.1 — mobile: hiện thanh chọn năm nhanh ở trên, dính đầu màn hình khi cuộn */
+@media(max-width:700px){
+ #mainHistory .year-navigator{display:flex!important;position:sticky!important;top:0!important;z-index:30!important;align-items:center!important;gap:6px!important;padding:7px 8px!important;margin:0!important;background:rgba(16,24,27,.96)!important;border-bottom:1px solid var(--edge)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+ #mainHistory .year-navigator .year-nav-label{display:none!important}
+ #mainHistory .year-navigator .year-nav-scroll{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:6px!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+ #mainHistory .year-navigator .year-nav-scroll::-webkit-scrollbar{display:none}
+ #mainHistory .year-navigator .year-nav-btn{flex:0 0 auto!important;padding:6px 11px!important;font-size:12.5px!important;min-height:32px!important;scroll-snap-align:start}
+ body.theme-light #mainHistory .year-navigator{background:rgba(247,240,226,.96)!important}
+}
