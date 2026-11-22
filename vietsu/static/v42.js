@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
-const EXP=[{id:'quang-tri',year:1972,name:'Thành cổ Quảng Trị 1972',url:'khong-gian/thanh-co-quang-tri/'},{id:'dien-bien-phu',year:1954,name:'Sa bàn Điện Biên Phủ 1954',url:'khong-gian/dien-bien-phu/'},{id:'ngoc-hoi-dong-da',year:1789,name:'Sa bàn Ngọc Hồi – Đống Đa 1789',url:'khong-gian/ngoc-hoi-dong-da/'}];
+const EXP=[{id:'quang-tri',year:1972,name:'Thành cổ Quảng Trị 1972',url:'khong-gian/thanh-co-quang-tri/'},{id:'dien-bien-phu',year:1954,name:'Sa bàn Điện Biên Phủ 1954',url:'khong-gian/dien-bien-phu/'},{id:'ngoc-hoi-dong-da',year:1789,name:'Sa bàn Ngọc Hồi – Đống Đa 1789',url:'khong-gian/ngoc-hoi-dong-da/'},{id:'rach-gam',year:1785,name:'Sa bàn Rạch Gầm – Xoài Mút 1785',url:'khong-gian/rach-gam-xoai-mut/'}];
 const ART={
 'co-loa':'<path fill="#c0b188" d="M0 155Q90 60 180 118T380 110V250H0Z"/><path fill="none" stroke="#e8d2a1" stroke-width="14" d="M-20 170Q90 24 180 110T390 66"/><path fill="none" stroke="#586753" stroke-width="23" d="M-10 193Q90 68 178 147T396 97"/><path fill="#615b43" d="M162 142h48v58h-48z"/><path fill="#a98558" d="M154 139h65v16h-65z"/>',
 'lang-sen':'<path fill="#64836b" d="M0 148Q90 84 190 150T380 115V250H0Z"/><path fill="#8cb09a" d="M0 187Q98 123 190 189T380 153V250H0Z"/><path fill="#cab88a" d="M94 147h171v74H94z"/><path fill="#655146" d="M78 153l108-74 99 74z"/><path fill="#e2d0a7" d="M108 156h143v64H108z"/><path fill="#775941" d="M166 174h35v46h-35z"/><path stroke="#497854" stroke-width="9" d="M39 148V70M334 165V55"/>',

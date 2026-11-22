@@ -4,6 +4,9 @@
 
   // Chỉ công bố lối vào sa bàn khi có trang 3D thực sự trong repository.
   const SCENES = {
+    'rach-gam': { title: 'Rạch Gầm – Xoài Mút 1785',
+                   href: 'khong-gian/rach-gam-xoai-mut/',
+                   subtitle: 'Sa bàn tương tác Three.js · phim tự động 11:16 có lời dẫn, khám phá, góc nhìn nhân vật · tái dựng mô phỏng' },
     'ngoc-hoi-dong-da': { title: 'Ngọc Hồi – Đống Đa 1789',
                    href: 'khong-gian/ngoc-hoi-dong-da/',
                    subtitle: 'Sa bàn tương tác Three.js · phim tự động 13:45 có lời dẫn, khám phá, góc nhìn nhân vật · tái dựng mô phỏng' },

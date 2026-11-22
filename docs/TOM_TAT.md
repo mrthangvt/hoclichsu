@@ -143,6 +143,14 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - 14 cảnh, voice thu âm 13:45 làm đồng hồ phim; chế độ Phim tự động / Khám phá / Góc nhìn nhân vật.
 - Tài liệu và mã nguồn dựng: `docs/ngoc-hoi-dong-da/` (`README.md`, `HANDOFF.md`, `nguon/`).
 
+## Sa bàn Rạch Gầm – Xoài Mút 1785 (nhánh `claude/rach-gam-xoai-mut-1785`, 22/11/2026)
+
+- Thư mục `vietsu/static/khong-gian/rach-gam-xoai-mut/` (~26 MB), mở tại `/khong-gian/rach-gam-xoai-mut/`. Bản V1.9 (đã duyệt trên artifact): three.js 0.160 qua CDN importmap, mặt nước kiểu Bạch Đằng, phim tự động 11:16 theo lời dẫn thu âm (`am/voice.mp3`, phụ đề trong `story.json`), thẻ Hồi/Cảnh, pin tên Nguyễn Huệ, tướng Tây Sơn, tướng Xiêm gắn theo chiến thuyền; nút "Bắt đầu xem" chỉ hiện khi đã nạp xong mô hình, âm thanh và biên dịch shader.
+- Dữ liệu: `sa_ban_data.json` (địa hình, bờ sông theo OpenStreetMap hiện nay), `quan.json` (đội hình, lịch chạy, cháy, chìm, rơi nước, pháo mạn), `story.json` (camera, phụ đề, thẻ). Nhân vật bake từ Blender ra `nv_*.json` + atlas `.jpg`; thuyền `m_*.glb`.
+- Đã nối vào Việt Sử giống Ngọc Hồi – Đống Đa: thẻ `rach-gam` trong `V2_EXPERIENCES` (cập nhật mô tả), `KHONG_GIAN_3D`, `v46.js` SCENES, `v42.js` EXP (mốc 1785), `experiences_seed.json` (asset_url, status prototype).
+- **Tạm bỏ không gian Thành Cổ Loa** (theo yêu cầu chủ dự án 22/11): gỡ `co-loa` khỏi `V2_EXPERIENCES`, `V23_SCENES`, `experiences_seed.json`, `experience_locations.json`. Ảnh thẻ `co-loa` trong `v42.js` ART vẫn giữ để khôi phục sau.
+- Nội dung là tái dựng mô phỏng: số thuyền, số quân là mật độ minh họa; vị trí pháo, phục binh là giả định chiến thuật; cần đối chiếu tư liệu.
+
 ## Lấy toạ độ OpenStreetMap cho sa bàn (dành cho Codex/ChatGPT)
 - Đổi toạ độ: `python3 tools/osm_sang_sa_ban.py <vĩ độ> <kinh độ>` hoặc `python3 tools/osm_sang_sa_ban.py file.geojson > ket_qua.json`. Kết quả là toạ độ sa bàn (m, Blender X/Y); sang three.js dùng `B(x,y,z)=(x,z,−y)`.
 - Kiểm tra: Đài tưởng niệm giữa Thành cổ ra ≈ (0, 0); Cổng Tiền ≈ (0, −250).

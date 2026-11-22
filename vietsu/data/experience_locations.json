@@ -1,15 +1,5 @@
 [
   {
-    "id": "co-loa",
-    "name": "Thành Cổ Loa",
-    "lat": 21.112,
-    "lon": 105.872,
-    "year": -208,
-    "kind": "heritage",
-    "category": "Di tích – thành cổ",
-    "source_note": "Tọa độ chỉ là vị trí tham khảo, cần đối chiếu tọa độ khu di tích trước khi xuất bản."
-  },
-  {
     "id": "lang-sen",
     "kind": "heritage",
     "lat": 18.681,
@@ -57,6 +47,6 @@
     "name": "Rạch Gầm – Xoài Mút",
     "year": 1785,
     "category": "Chiến trận – sa bàn",
-    "source_note": "Tọa độ đại diện khu vực diễn ra trận đánh, địa hình phục dựng cần thẩm định."
+    "source_note": "Vị trí đại diện cho khúc sông Rạch Gầm – Xoài Mút (sông Tiền), không phải vị trí từng đơn vị."
   }
 ]
