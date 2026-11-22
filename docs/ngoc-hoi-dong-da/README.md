@@ -1,4 +1,4 @@
-# Sa bàn Ngọc Hồi – Đống Đa 1789 (bản V10.7, 22/11/2026)
+# Sa bàn Ngọc Hồi – Đống Đa 1789 (bản V10.8, 22/11/2026)
 
 > Tái dựng mô phỏng, chưa thẩm định sử học. Mật độ quân là minh hoạ, không phải quân số sử liệu.
 
