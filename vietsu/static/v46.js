@@ -109,7 +109,8 @@
     const p = document.createElement('p');p.textContent = scene.subtitle;
     const link = document.createElement('a');link.className='v46-3d-button';
     link.href = scene.href;link.target='_blank';link.rel='noopener noreferrer';
-    link.textContent = '◈  Vào trải nghiệm sa bàn 3D';
+    const b3 = document.createElement('b'); b3.className = 'v46-3d-badge'; b3.textContent = '3D';
+    link.append(b3, document.createTextNode('Vào trải nghiệm sa bàn 3D'));
     const small = document.createElement('small');
     small.textContent = 'Mở trong thẻ mới · Có thể quay lại hồ sơ địa điểm bất cứ lúc nào';
     panel.append(label,title,p,link,small);
@@ -130,8 +131,22 @@
       if (!match || !SCENES[match[1]]) return;
       const marker = document.createElement('span');
       marker.className = 'v46-3d-card-label';
-      marker.textContent = '◈ Có sa bàn 3D — chọn để xem';
+      const b3 = document.createElement('b'); b3.className = 'v46-3d-badge'; b3.textContent = '3D';
+      marker.append(b3, document.createTextNode(' Có sa bàn 3D — chọn để xem'));
       card.append(marker);
+    });
+  }
+
+  function decoratePins() {
+    document.querySelectorAll('#v23MapPins .v23-map-pin').forEach(pin => {
+      if (pin.querySelector('.v46-pin-3d-txt')) return;
+      const match = (pin.getAttribute('onclick') || '').match(/scene:([a-z0-9_-]+)/i);
+      if (!match || !SCENES[match[1]]) return;
+      pin.classList.add('v46-pin-3d');
+      const core = pin.querySelector('.pin-core'); if (core) core.setAttribute('r', '15');
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.setAttribute('class', 'v46-pin-3d-txt'); t.setAttribute('x', '0'); t.setAttribute('y', '4.5'); t.setAttribute('text-anchor', 'middle');
+      t.textContent = '3D'; pin.append(t);
     });
   }
 
@@ -162,7 +177,7 @@
                        subtitle: String(scene.subtitle || 'Tái dựng mô phỏng').slice(0,200),
                        href: scene.href };
       }
-      decorateCards();refreshPopup();
+      decorateCards();decoratePins();refreshPopup();
     } catch (_) { /* Bản Offline/GitHub Pages sử dụng bản đồ asset tĩnh. */ }
   }
 
@@ -187,7 +202,7 @@
       const original = window.v23RenderMap;
       window.v23RenderMap = function () {
         const result = original.apply(this, arguments);
-        decorateCards();
+        decorateCards();decoratePins();
         return result;
       };
     }
@@ -199,7 +214,7 @@
         return result;
       };
     }
-    decorateCharacters();decorateCards();refreshPopup();
+    decorateCharacters();decorateCards();decoratePins();refreshPopup();
     loadPublicOverrides();
     loadSceneAssets();
     document.documentElement.dataset.vietsuVersion = '4.6';

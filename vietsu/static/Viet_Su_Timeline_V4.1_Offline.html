@@ -3049,7 +3049,7 @@ body.theme-light .vs39-offline-note{color:#66543e}
   const box=document.createElement('div');box.className='vs-space3d';
   const online=/^https?:$/.test(location.protocol);
   box.innerHTML='<b>'+sp.ten+'</b><p>'+sp.ghiChu+'</p>'+(online
-   ?'<a href="'+sp.url+'">▶ Vào sa bàn 3D</a><small>Nên mở trên máy tính; lần đầu tải khoảng 10 MB.</small>'
+   ?'<a href="'+sp.url+'">▶ Vào sa bàn 3D</a><small>Nên mở trên máy tính; lần đầu tải vài chục MB.</small>'
    :'<small>Sa bàn 3D chỉ mở được khi chạy website qua máy chủ (start_local.command hoặc VPS).</small>');
   body.prepend(box);
  }
