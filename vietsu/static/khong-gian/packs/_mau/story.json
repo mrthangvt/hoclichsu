@@ -1,0 +1,38 @@
+{
+  "scenes": [
+    {
+      "id": "C01",
+      "title": "Tên cảnh",
+      "place": "Địa điểm",
+      "date": "Ngày âm lịch",
+      "dur": 60,
+      "state": "none",
+      "night": 0,
+      "vo": [
+        "Lời bình đoạn 1."
+      ],
+      "keys": [
+        {
+          "t": 0,
+          "at": "Ma_Moc",
+          "d": 3000,
+          "az": 180,
+          "el": 30
+        },
+        {
+          "t": 60,
+          "at": "Ma_Moc",
+          "d": 1500,
+          "az": 200,
+          "el": 25
+        }
+      ]
+    }
+  ],
+  "arrows": {},
+  "states": {
+    "none": []
+  },
+  "legend": {},
+  "refs": []
+}

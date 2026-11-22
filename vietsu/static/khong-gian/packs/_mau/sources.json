@@ -1,0 +1,28 @@
+{
+  "pack": "ten-tran-nam",
+  "reconstruction": "Tái dựng mô phỏng; ghi rõ phần nào là giả định.",
+  "sources": [
+    {
+      "title": "Tên sách / sử liệu",
+      "type": "sử liệu",
+      "url": "",
+      "page": "",
+      "license": "",
+      "used_for": "diễn biến"
+    },
+    {
+      "title": "OpenStreetMap",
+      "type": "OSM",
+      "url": "https://www.openstreetmap.org",
+      "license": "© OpenStreetMap contributors (ODbL)",
+      "used_for": "sông, đường, làng"
+    },
+    {
+      "title": "AWS Terrain Tiles (Terrarium)",
+      "type": "DEM",
+      "url": "https://registry.opendata.aws/terrain-tiles/",
+      "license": "xem trang nguồn",
+      "used_for": "độ cao"
+    }
+  ]
+}

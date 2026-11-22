@@ -1,0 +1,181 @@
+{
+  "id": "ngoc-hoi-dong-da",
+  "version": "1.0.0",
+  "engine": "^1.0",
+  "kind": "battle",
+  "title": "Ngọc Hồi – Đống Đa 1789",
+  "period": "tay-son",
+  "year": 1789,
+  "label": "Tái dựng mô phỏng · chưa thẩm định sử học",
+  "subtitle": "Mùa xuân Kỷ Dậu · Thăng Long và phía nam kinh thành",
+  "storyLabel": "kịch bản V1",
+  "coords": { "system": "blender", "note": "Toạ độ mét, gốc và hệ số kinh – vĩ độ nằm trong terrain/dia-hinh.json (meta.lat0, lon0, kx, ky)" },
+
+  "terrain": {
+    "data": "terrain/dia-hinh.json",
+    "height": "terrain/h_main.png",
+    "image": "terrain/tex_main.jpg",
+    "patchHeight": "terrain/h_{name}.png",
+    "patchImage": "terrain/tex_{name}.jpg",
+    "patchNoWater": ["fort"],
+    "riverExtend": [
+      ["Song_Hong", [true, true], [0.2, 0.135, 0.075]],
+      ["Song_Nhue", [false, true], [0.075, 0.1, 0.08]]
+    ],
+    "farMountains": {
+      "note": "Ba Vì (tây), Tam Đảo (bắc), Sóc Sơn, cụm núi đá vôi phía nam — vị trí tương đối, chỉ để định hướng",
+      "ridges": [
+        { "c": [-48400, 11500], "half": 22000, "step": 350, "ang": 0.6, "a": 9000, "b": 6500, "peak": 1150, "seed": 2.1 },
+        { "c": [-20300, 53600], "half": 34000, "step": 450, "ang": -0.78, "a": 24000, "b": 5500, "peak": 1300, "seed": 5.3 },
+        { "c": [-3700, 31400], "half": 9000, "step": 250, "ang": 0.3, "a": 5000, "b": 3500, "peak": 280, "seed": 8.8 }
+      ],
+      "karst": [{ "c": [-9000, -40000], "half": 14000, "step": 200, "spread": [18000, 16000], "n": 16, "peak": [150, 230], "rad": [600, 1000] }]
+    }
+  },
+
+  "props": {
+    "note": "[khoá trong dia-hinh.json inst, mẫu dựng sẵn của bộ máy, có biến thể, nhóm lớp]",
+    "instances": [
+      ["nha", "nha", true, "nha"], ["dinh", "dinh", false, "nha"], ["nhapho", "nha", true, "nha"],
+      ["cay", "cay", true, "cay"], ["tre", "tre", false, "cay"], ["say", "say", false, "cay"],
+      ["leu", "leu", true, "quan"], ["gac", "gac", false, "quan"], ["usung", "usung", false, "quan"], ["chong", "chong", false, "quan"]
+    ],
+    "raiseCannons": true,
+    "outerCamps": [{ "c": [3900, -13960], "tents": 46, "r": [14, 76], "fence": 92, "gate": 4.712, "seed": 4242 }],
+    "pontoonBridge": { "a": [2420, 6947], "b": [3092, 7205], "origin": [2184, 6910], "step": 5.5 },
+    "campFlags": [
+      { "id": "nh", "from": 0, "to": 9.9, "side": 1, "at": { "frame": "don", "uv": [[-186, -60], [-186, 0], [-186, 60], [-172, -122], [-172, 122], [172, -122], [172, 122], [0, 0], [60, -60], [60, 60]] } },
+      { "id": "hh", "from": 0, "to": 6, "side": 1, "at": { "ring": [3900, -13960], "r": 94, "n": 8, "a0": 0.3, "center": true } },
+      { "id": "kt", "from": 1, "to": 11, "side": 1, "at": { "near": [-1094, 4236], "r": 800, "every": 45, "offset": 3, "inst": "leu" } },
+      { "id": "tl", "from": 1, "to": 12, "side": 1, "at": [[2184, 6930], [2200, 6890], [2160, 6905], [2410, 6950]] }
+    ],
+    "crossMarks": [{ "c": [3900, -13960], "from": 6.8, "size": [250, 34] }]
+  },
+
+  "frames": { "don": { "note": "khung đồn Ngọc Hồi (khớp build_quan9.py)", "c0": [1039.92, -5158.26], "eu": [-0.15986, 0.98714], "ev": [0.98714, 0.15986] } },
+
+  "labels": {
+    "anchors": { "NgocHoi_Don": "Đồn Ngọc Hồi", "VanDien": "Văn Điển", "DamMuc": "Đầm Mực", "QuynhDo": "Quỳnh Đô", "DaiAng": "Đại Áng",
+      "KhuongThuong": "Khương Thượng", "LoaSon_DongDa": "Loa Sơn (Đống Đa)", "NhanMuc": "Nhân Mục", "ToLich_BenVuot": "Bến vượt Tô Lịch",
+      "YenQuyet": "Yên Quyết", "NamDong": "Nam Đồng", "ThangLong_HoangThanh": "Hoàng thành Thăng Long", "ThangLong_PhoCho": "Phố chợ", "O_CauDen": "Ô Cầu Dền",
+      "TayLong": "Tây Long", "CauPhao_SongHong": "Cầu phao", "HoTay": "Hồ Tây", "HaDong": "Hà Đông", "CauDien": "Cầu Diễn", "ThanhDam": "Thanh Đàm",
+      "BoDe": "Bồ Đề", "HaHoi": "↓ Hà Hồi", "HoLinhDam": "Hồ Linh Đàm", "HoGuom": "Hồ Gươm" },
+    "big": ["NgocHoi_Don", "KhuongThuong", "ThangLong_HoangThanh", "DamMuc", "HoLinhDam", "HoGuom"],
+    "rivers": [["Sông Hồng", 21.005, 105.8735], ["Sông Tô Lịch", 20.985, 105.8155], ["Sông Nhuệ", 21.012, 105.77], ["Sông Kim Ngưu", 20.986, 105.864]]
+  },
+
+  "views": {
+    "all": { "label": "Toàn cảnh", "X": 0, "Y": 1500, "dist": 30000, "az": 180, "el": 17 },
+    "thanglong": { "label": "Thăng Long", "target": "ThangLong_HoangThanh", "dist": 4600, "az": 165, "el": 34, "off": [600, -200] },
+    "hoangthanh": { "label": "Hoàng thành", "target": "ThangLong_HoangThanh", "dist": 1500, "az": 190, "el": 36 },
+    "hoguom": { "label": "Hồ Gươm", "target": "HoGuom", "dist": 950, "az": 160, "el": 38 },
+    "hotay": { "label": "Hồ Tây", "target": "HoTay", "dist": 5600, "az": 175, "el": 36, "off": [0, -400] },
+    "khuongthuong": { "label": "Khương Thượng – Đống Đa", "target": "KhuongThuong", "dist": 1800, "az": 210, "el": 28, "off": [-80, 300] },
+    "linhdam": { "label": "Hồ Linh Đàm", "target": "HoLinhDam", "dist": 2600, "az": 175, "el": 33, "off": [-300, -400] },
+    "vandien": { "label": "Văn Điển", "target": "VanDien", "dist": 1500, "az": 200, "el": 30 },
+    "ngochoi": { "label": "Đồn Ngọc Hồi", "target": "NgocHoi_Don", "dist": 900, "az": 205, "el": 30 },
+    "dammuc": { "label": "Đầm Mực", "target": "DamMuc", "dist": 2600, "az": 170, "el": 32 },
+    "daiang": { "label": "Đại Áng", "target": "DaiAng", "dist": 1700, "az": 160, "el": 30 },
+    "cauphao": { "label": "Cầu phao sông Hồng", "target": "CauPhao_SongHong", "dist": 2200, "az": 115, "el": 24 }
+  },
+
+  "ui": {
+    "layers": { "nha": "Nhà, đình, Hoàng thành", "cay": "Cây, lũy tre, sậy", "quan": "Đồn, trại, lều, chông", "nv": "Quân lính, voi, ngựa, tấm mộc", "duong": "Đường, phố", "ld": "Viền các hồ hiện nay" },
+    "legend": [["r", "Mũi đỏ: hướng tiến công của quân Tây Sơn"], ["b", "Mũi xanh nét đứt: quân Thanh rút chạy"], ["g", "Mốc vàng: địa danh, đồn trại (bấm để đọc)"], ["p", "Mốc đỏ: ghi chú review của nhóm"], ["w", "Mặt nước: sông, hồ, đầm"]],
+    "legendNote": "Mũi tên là quy ước đồ hoạ theo bản đồ diễn biến, chưa phải tuyến hành quân đo đạc. Hình dạng hồ Linh Đàm, Hoàn Kiếm, Hồ Tây lấy theo hiện nay để dễ nhận diện.",
+    "unitsLoading": "Nhân vật, voi, ngựa",
+    "compare": ["kehoach", "thanglong"],
+    "arrowHeight": 200
+  },
+
+  "sides": [
+    { "id": "tayson", "name": "Quân Tây Sơn", "flag": "props/co_tayson.jpg" },
+    { "id": "thanh", "name": "Quân Thanh", "flag": "props/co_thanh.jpg" }
+  ],
+
+  "units": {
+    "ts": { "file": "units/tayson.nvz", "image": "units/tayson.jpg", "side": 0, "dense": true,
+      "alias": { "nghi": "dung", "khom": "buoc", "di": "chay", "vapnga": "nga", "vap": "nga", "tuan": "chay", "kiem": "danh", "bodao": "danh" },
+      "tint": [[1, 1, 1], [0.74, 0.62, 0.54], [0.84, 0.58, 0.52], [0.92, 0.82, 0.74]] },
+    "th": { "file": "units/thanh.nvz", "image": "units/thanh.jpg", "side": 1, "dense": true,
+      "alias": { "nghi": "dung", "khom": "chay", "buoc": "di", "khieng": "chay", "vapnga": "vap", "kiem": "danh", "bodao": "danh" },
+      "tint": [[1, 1, 1], [0.86, 0.86, 0.9], [0.76, 0.75, 0.72], [0.95, 0.92, 0.85]] },
+    "snd": { "file": "units/samnghidong.nvz", "image": "units/samnghidong.jpg", "side": 1 },
+    "voi": { "file": "units/voi_nai.nvz", "side": 0, "rider": { "kind": "ts", "aim": [8.08, 8.62], "at": [0, 2.62, -0.15] } },
+    "ngua": { "file": "units/ngua_ts.nvz", "side": 0 },
+    "nguath": { "file": "units/ngua_th.nvz", "side": 1 },
+    "nguatsn": { "file": "units/ngua_tsn.nvz", "side": 1 },
+    "nguasnd": { "file": "units/ngua_snd.nvz", "side": 1 },
+    "moc": { "glb": "props/tam-moc.glb", "type": "moc-ghep", "side": 0 }
+  },
+  "heroes": [{ "id": "qt", "name": "Quang Trung", "model": "units/quang-trung.glb", "placement": "quangtrung", "king": true, "side": 0 }],
+  "placement": "placement.json",
+  "groupFrames": { "raise": "don", "spread": { "frame": "don", "u": [-150, 140], "v": 100, "jitter": 45 } },
+
+  "roles": {
+    "tayson": { "label": "Vai: Quân Tây Sơn", "kind": "ts", "idle": "dung", "walk": "chay", "run": "chay", "walkSpeed": 0.6, "weapon": 2, "start": ["NgocHoi_Don", 0, -480] },
+    "thanh": { "label": "Vai: Quân Thanh", "kind": "th", "idle": "dung", "walk": "tuan", "run": "chay", "walkSpeed": 1, "weapon": 2, "start": ["NgocHoi_Don", 0, 0] }
+  },
+  "pov": {
+    "places": [
+      ["Gò trước đồn Ngọc Hồi (phía nam)", 1083, -5455, 6], ["Trên lũy nam đồn Ngọc Hồi", 1068, -5338, 4.5], ["Trong đồn Ngọc Hồi", 1040, -5160, 1.7],
+      ["Ven Đầm Mực", -1716, -4106, 1.7], ["Gò Loa Sơn – Đống Đa", -1080, 3880, 8], ["Doanh trại Khương Thượng", -1039.9, 4086.5, 1.7],
+      ["Bến vượt sông Tô Lịch", -2028, 3588, 1.7], ["Đầu cầu phao (bờ Tây Long)", 2400, 6935, 2.2], ["Giữa cầu phao sông Hồng", 2756, 7076, 2.4],
+      ["Cửa ô Cầu Dền", 1507.9, 4529.4, 1.7], ["Trước Hoàng thành Thăng Long", 468, 7230, 1.7], ["Trại Thanh ở Hà Hồi", 3900, -13930, 1.7],
+      ["Gò ngoài vòng vây Hà Hồi", 3900, -14110, 6], ["Đường thiên lý – nơi quân hành quân", 2236, -8978, 1.7]],
+    "people": [
+      ["Vua Quang Trung", [["qt", 0, 1.62, 0.15]]],
+      ["Lính khiêng mộc Tây Sơn", [["ts_khieng", 104, 1.6, 0.12]]],
+      ["Lính xung kích Tây Sơn (gươm, giáo)", [["ts_xungkich", 212, 1.6, 0.12], ["ts_dongda", 6, 1.6, 0.12], ["ts_vao", 21, 1.6, 0.12], ["ts_hoangthanh", 40, 1.6, 0.12]]],
+      ["Lính hành quân Tây Sơn", [["ts_hq", 22, 1.6, 0.12], ["ts_tapket", 150, 1.6, 0.12], ["ts_vay", 10, 1.6, 0.12], ["ts_bao", 30, 1.6, 0.12], ["ts_dubi", 40, 1.6, 0.12]]],
+      ["Lính súng hỏa hồ", [["ts_sung", 10, 1.6, 0.12], ["ts_bao", 4, 1.6, 0.12]]],
+      ["Kỵ binh Tây Sơn", [["ts_hq_ngua", 0, 2.45, 0.1], ["ts_ngua_tuong", 0, 2.45, 0.1], ["ts_ngua_dd", 0, 2.45, 0.1]]],
+      ["Nài voi chiến", [["ts_voi", 0, 3.35, 1.5], ["ts_hq_voi", 0, 3.35, 1.5], ["ts_voi_dd", 0, 3.35, 1.5], ["ts_tapket_voi", 0, 3.35, 1.5]]],
+      ["Lính Thanh giữ đồn", [["th_luy_nam", 3, 1.6, 0.12], ["th_tuantra0", 1, 1.6, 0.12], ["th_canve", 15, 1.6, 0.12], ["th_vao", 30, 1.6, 0.12], ["th_hahoi", 3, 1.6, 0.12], ["th_kt", 5, 1.6, 0.12]]],
+      ["Lính Thanh tháo chạy", [["th_dammuc", 10, 1.6, 0.12], ["th_rut", 20, 1.6, 0.12], ["th_kt", 9, 1.6, 0.12], ["th_canve", 15, 1.6, 0.12]]],
+      ["Kỵ binh Thanh", [["th_ky", 2, 2.45, 0.1], ["th_vao_ky", 0, 2.45, 0.1]]],
+      ["Tôn Sĩ Nghị", [["th_tsn", 0, 1.66, 0.12]]]]
+  },
+
+  "fx": {
+    "note": "Mốc thời gian viết dạng cảnh + tiến độ: 8.2 = cảnh thứ 9 (chỉ số 8), đã chạy 20%.",
+    "cannons": [{ "from": 8.2, "to": 9.74, "source": "usung", "frame": "don", "u": [-440, -300], "v": [-150, 150], "every": [2.5, 6], "sound": "daibac" }],
+    "shieldFire": [{ "from": 8.45, "to": 9.7 }],
+    "campFire": [
+      { "from": 9.8, "to": 11, "inst": "leu", "frame": "don", "u": [-170, 40], "v": [-120, 120], "n": 16, "seed": 1789 },
+      { "from": 11.5, "to": 12, "inst": "leu", "near": [-1039.9, 4086.5], "r": 900, "n": 26, "seed": 1789 }
+    ]
+  },
+
+  "audio": {
+    "voice": "audio/voice.mp3",
+    "dir": "audio/",
+    "beds": ["chim", "hanhquan", "trong", "chientruong", "danhkiem", "thaochay", "buoc_co", "buoc_rung", "hetxung", "bandan"],
+    "layers": { "hanhquan_b": ["hanhquan", 0.9], "hanhquan_c": ["hanhquan", 1.12], "buoc_co_b": ["buoc_co", 1.08], "buoc_rung_b": ["buoc_rung", 0.93] },
+    "march": { "hanhquan": 0.5, "hanhquan_b": 0.4, "hanhquan_c": 0.3, "buoc_co": 0.4, "buoc_co_b": 0.3, "buoc_rung": 0.28, "buoc_rung_b": 0.22 },
+    "oneShots": ["ngua", "chem", "daibac"],
+    "steps": "buoc_co",
+    "plan": [
+      [[0, 1, { "chim": 0.33 }]],
+      [[0, 1, { "trong": 0.16, "HQ": 0.5 }]],
+      [[0, 1, { "trong": 0.32 }], [0.28, 0.4, { "hetxung": 0.3 }], [0.6, 1, { "HQ": 0.8 }]],
+      [[0, 1, { "trong": 0.22, "HQ": 1 }]],
+      [[0, 1, { "trong": 0.2 }]],
+      [[0, 1, { "trong": 0.12, "HQ": 0.85 }]],
+      [[0, 1, { "HQ": 0.4 }], [0.24, 0.46, { "hetxung": 0.32 }]],
+      [[0, 1, { "trong": 0.3 }]],
+      [[0, 1, { "trong": 0.6 }], [0, 0.3, { "hetxung": 0.55 }], [0.3, 1, { "hetxung": 0.15 }], [0.25, 1, { "bandan": 0.35 }]],
+      [[0, 0.66, { "trong": 0.45, "bandan": 0.42, "HQ": 0.35 }], [0.66, 1, { "thaochay": 0.55, "danhkiem": 0.7, "chientruong": 0.45, "trong": 0.25 }], [0.66, 0.86, { "hetxung": 0.7 }], [0.86, 1, { "hetxung": 0.25 }]],
+      [[0, 1, { "thaochay": 0.4, "chientruong": 0.3, "hetxung": 0.3, "HQ": 0.3 }]],
+      [[0, 0.36, { "HQ": 0.8 }], [0.36, 0.6, { "hetxung": 0.65, "HQ": 0.4 }], [0.6, 0.85, { "thaochay": 0.5, "danhkiem": 0.65, "chientruong": 0.4, "hetxung": 0.3 }], [0.85, 1, { "trong": 0.35 }]],
+      [[0, 0.6, { "thaochay": 0.25, "HQ": 0.6 }], [0.6, 1, { "trong": 0.38, "HQ": 0.5 }]],
+      [[0, 1, { "trong": 0.4 }]]
+    ],
+    "cues": [[8, 0.08, "ngua", 0.7], [8, 0.25, "ngua", 0.65], [8, 0.32, "ngua", 0.5], [12, 0.2, "ngua", 0.45], [11, 0.46, "ngua", 0.5]],
+    "repeats": [[9, 0.74, 0.9, "chem", 0.45, 0.6, 1.6], [11, 0.6, 0.85, "chem", 0.4, 0.7, 1.8]]
+  },
+
+  "quality": { "maxPixelRatio": 2, "mobilePixelRatio": 1.5, "unitDrawDist": 6000, "mobileUnitDrawDist": 3500 },
+  "budget": { "firstLoadMB": 15 },
+  "sources": "sources.json"
+}

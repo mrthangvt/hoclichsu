@@ -1,0 +1,18 @@
+{
+  "note": "Danh sách gói sa bàn theo khung (docs/KHUNG_SA_BAN.md). Website, app đọc tệp này ở Giai đoạn 4; hiện chưa nối vào website.",
+  "version": 1,
+  "engine": "1.0.0",
+  "packs": [
+    {
+      "id": "ngoc-hoi-dong-da",
+      "version": "1.0.0",
+      "kind": "battle",
+      "title": "Ngọc Hồi – Đống Đa 1789",
+      "period": "tay-son",
+      "year": 1789,
+      "url": "engine/1.0.0/sa-ban.html?goi=ngoc-hoi-dong-da",
+      "status": "thu-nghiem",
+      "replaces": "ngoc-hoi-dong-da/"
+    }
+  ]
+}

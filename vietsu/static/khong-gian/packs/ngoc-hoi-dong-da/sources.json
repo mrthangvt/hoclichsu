@@ -1,0 +1,58 @@
+{
+ "pack": "ngoc-hoi-dong-da",
+ "reconstruction": "Tái dựng mô phỏng; vị trí đồn trại, mũi tên là quy ước đồ hoạ theo bản đồ diễn biến, chưa thẩm định sử học.",
+ "sources": [
+  {
+   "title": "Tạp chí Quốc phòng toàn dân — nghệ thuật tổ chức lực lượng",
+   "type": "tham khảo",
+   "url": "https://tapchiqptd.vn/Sites/newsDeail.aspx?catetitle=nghien-cuu-trao-doi&cul=vi&newsid=4939&newstitle=nghe-thuat-to-chuc-luc-luong-trong-tran-quyet-chien-chien-luoc-ngoc-hoi-dong-da-nam-1789",
+   "used_for": "đối chiếu diễn biến, lời bình"
+  },
+  {
+   "title": "Công viên văn hóa Đống Đa — sa bàn và diễn biến",
+   "type": "tham khảo",
+   "url": "https://godongda.vn/exhibition/sa-ban-tran-chien-ngoc-hoi-dong-da",
+   "used_for": "đối chiếu diễn biến, lời bình"
+  },
+  {
+   "title": "Bảo tàng Lịch sử TP.HCM — hậu cần và hỏa khí",
+   "type": "tham khảo",
+   "url": "https://www.baotanglichsutphcm.com.vn/ban-tin/cong-tac-bao-dam-hau-can-tran-ngoc-hoi-dong-da-tet-ky-dau-1789",
+   "used_for": "đối chiếu diễn biến, lời bình"
+  },
+  {
+   "title": "ĐH KHXH&NV — nghiên cứu Đặng Tiến Đông",
+   "type": "tham khảo",
+   "url": "https://his.ussh.vnu.edu.vn/vi/news/le-huu-quan/do-doc-dang-tien-dong-mot-tuong-tay-son-chi-huy-tran-dong-da-gs-phan-huy-le-5674.html",
+   "used_for": "đối chiếu diễn biến, lời bình"
+  },
+  {
+   "title": "Nghiên cứu lịch sử — so sánh Hoàng Lê nhất thống chí và Cương mục",
+   "type": "tham khảo",
+   "url": "https://nghiencuulichsu.com/2016/09/12/chien-thuat-ha-thanh-ngoc-hoi-cua-quan-tay-son/",
+   "used_for": "đối chiếu diễn biến, lời bình"
+  },
+  {
+   "title": "Viện Sử học — Ngọc Hồi, Đống Đa, Khương Thượng",
+   "type": "tham khảo",
+   "url": "https://viensuhoc.vass.gov.vn/bao-ve-nen-tang-tu-tuong-cua-dang/chien-thang-ngoc-hoi-mua-xuan-nam-ky-dau-1789-dau-an-lich-su-va-van-hoa-560605",
+   "used_for": "đối chiếu diễn biến, lời bình"
+  },
+  {
+   "title": "Dữ liệu địa hình, sông hồ của bản dựng Ngọc Hồi – Đống Đa V10",
+   "type": "DEM, OSM",
+   "license": "OSM: © OpenStreetMap contributors (ODbL)",
+   "used_for": "địa hình, sông, hồ, đường"
+  },
+  {
+   "title": "Nhân vật nướng từ động tác Mixamo, mô hình Tripo (kho chung của dự án)",
+   "type": "mô hình 3D",
+   "used_for": "quân lính, voi, ngựa"
+  },
+  {
+   "title": "Âm thanh nền: thư mục NgocHoiDongDa/AmThanh của chủ dự án",
+   "type": "âm thanh",
+   "used_for": "âm nền theo cảnh"
+  }
+ ]
+}
