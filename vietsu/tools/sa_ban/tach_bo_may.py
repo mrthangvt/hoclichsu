@@ -86,6 +86,31 @@ const RIVERS = P.labels?.rivers || [];''')
 rep('renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));',
     'renderer.setPixelRatio(Math.min(window.devicePixelRatio, LOW ? Q_.mobilePixelRatio || 1.5 : Q_.maxPixelRatio || 2));')
 
+# ── chất lượng thấp (điện thoại): lưới địa hình thưa gấp đôi, cây – tre – sậy giữ một nửa
+rep('''  const idx = [];
+  for (let j = 0; j < ny - 1; j++) for (let i = 0; i < nx - 1; i++) {
+    if (skipRects) {
+      const cx0 = x0 + i * cell, cy0 = y0 + j * cell; let skip = false;
+      for (const r of skipRects) if (cx0 >= r[0] - 1e-3 && cx0 + cell <= r[1] + 1e-3 && cy0 >= r[2] - 1e-3 && cy0 + cell <= r[3] + 1e-3) { skip = true; break; }
+      if (skip) continue;
+    }
+    const a = j * nx + i, b = a + 1, c = a + nx, d = c + 1;
+    idx.push(a, b, c, b, d, c);
+  }''', '''  const idx = [], stp = LOW ? 2 : 1;
+  for (let j = 0; j < ny - 1; j += stp) for (let i = 0; i < nx - 1; i += stp) {
+    const i2 = Math.min(i + stp, nx - 1), j2 = Math.min(j + stp, ny - 1);
+    if (skipRects) {
+      const cx0 = x0 + i * cell, cy0 = y0 + j * cell, cx1 = x0 + i2 * cell, cy1 = y0 + j2 * cell; let skip = false;
+      for (const r of skipRects) if (cx0 >= r[0] - 1e-3 && cx1 <= r[1] + 1e-3 && cy0 >= r[2] - 1e-3 && cy1 <= r[3] + 1e-3) { skip = true; break; }
+      if (skip) continue;
+    }
+    const a = j * nx + i, b = j * nx + i2, c = j2 * nx + i, d = j2 * nx + i2;
+    idx.push(a, b, c, b, d, c);
+  }''')
+rep('''    for (let i = 0; i < n; i++) if ((hasVar ? arr[i * stride + 5] : 0) === vi) sel.push(i);''',
+    '''    const thin = LOW && (PROPS.thinOnLow || ["cay", "tre", "say"]).includes(key) ? 2 : 1;
+    for (let i = 0; i < n; i++) if ((hasVar ? arr[i * stride + 5] : 0) === vi && i % thin === 0) sel.push(i);''')
+
 # ── khởi tạo: tệp địa hình, vật thể, kịch bản theo gói
 rep('const r = await fetch("sa_ban_data.json");', 'const r = await fetch(U(P.terrain.data));')
 rep('const hm = await heightsOf("h_main.png", meta.zmin, meta.zmax);', 'const hm = await heightsOf(U(P.terrain.height), meta.zmin, meta.zmax);')

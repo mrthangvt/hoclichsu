@@ -145,14 +145,15 @@ function heightMesh(f, tex, skipRects) {
     pos[k * 3] = X; pos[k * 3 + 1] = h[k]; pos[k * 3 + 2] = -Y;
     uv[k * 2] = (X - x0) / W; uv[k * 2 + 1] = (Y - y0) / Hh;
   }
-  const idx = [];
-  for (let j = 0; j < ny - 1; j++) for (let i = 0; i < nx - 1; i++) {
+  const idx = [], stp = LOW ? 2 : 1;
+  for (let j = 0; j < ny - 1; j += stp) for (let i = 0; i < nx - 1; i += stp) {
+    const i2 = Math.min(i + stp, nx - 1), j2 = Math.min(j + stp, ny - 1);
     if (skipRects) {
-      const cx0 = x0 + i * cell, cy0 = y0 + j * cell; let skip = false;
-      for (const r of skipRects) if (cx0 >= r[0] - 1e-3 && cx0 + cell <= r[1] + 1e-3 && cy0 >= r[2] - 1e-3 && cy0 + cell <= r[3] + 1e-3) { skip = true; break; }
+      const cx0 = x0 + i * cell, cy0 = y0 + j * cell, cx1 = x0 + i2 * cell, cy1 = y0 + j2 * cell; let skip = false;
+      for (const r of skipRects) if (cx0 >= r[0] - 1e-3 && cx1 <= r[1] + 1e-3 && cy0 >= r[2] - 1e-3 && cy1 <= r[3] + 1e-3) { skip = true; break; }
       if (skip) continue;
     }
-    const a = j * nx + i, b = a + 1, c = a + nx, d = c + 1;
+    const a = j * nx + i, b = j * nx + i2, c = j2 * nx + i, d = j2 * nx + i2;
     idx.push(a, b, c, b, d, c);
   }
   const g = new THREE.BufferGeometry();
@@ -280,7 +281,8 @@ function addInstances(key, geos, arr, hasVar, group) {
   const mat = new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide });
   geos.forEach((geo, vi) => {
     const sel = [];
-    for (let i = 0; i < n; i++) if ((hasVar ? arr[i * stride + 5] : 0) === vi) sel.push(i);
+    const thin = LOW && (PROPS.thinOnLow || ["cay", "tre", "say"]).includes(key) ? 2 : 1;
+    for (let i = 0; i < n; i++) if ((hasVar ? arr[i * stride + 5] : 0) === vi && i % thin === 0) sel.push(i);
     if (!sel.length) return;
     const mesh = new THREE.InstancedMesh(geo, mat, sel.length);
     mesh.frustumCulled = false;
