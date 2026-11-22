@@ -320,3 +320,14 @@ Cả ba lệnh đã được chạy thử trong gói này và cho kết quả tr
 - C11: đạo quân truy kích dàn 30 hàng ngang (300 người). Hành quân Bắc tiến (`ts_hq`) 960 người, 3 hàng dọc.
 - Thẻ ghi chú khi bấm điểm pin: tự đặt giữa cụm nút trên và thanh phim dưới, ẩn bàn điều khiển khi thẻ mở.
 - Hook kiểm tra: `NHDD.anc(id)`, `NHDD.camAt(id, dx, dy, z, tz)`, `NHDD.h(x, y)`, `NHDD.NV`.
+
+### 10.8 (22/11/2026)
+- Ngựa quân Thanh dùng mẫu `ngua-trung-quoc.zip` (yên xanh chữ Thanh, màu theo đỉnh – không UV), gắn vào khung xương ngựa bằng chuyển trọng số; nướng lại `nv_ngua_th`, `nv_ngua_tsn` (thêm clip `di` – trước thiếu nên ngựa Tôn Sĩ Nghị trượt), mới `nv_ngua_snd` (Sầm Nghi Đống cưỡi ngựa, kind `nguasnd`, đi sau Tôn Sĩ Nghị ở C01–C02).
+- Pin tên nhân vật (`ten` trong quan.json + Quang Trung): nhãn nổi trên đầu, `nvTenVe()`. Gán: C03 Phan Văn Lân, Hám Hổ hầu, Đặng Tiến Đông, Đại đô đốc Bảo; C05 Ngô Văn Sở, Ngô Thì Nhậm (Tam Điệp); C09–C10 Hám Hổ hầu, Phan Văn Lân; C11 Đại đô đốc Bảo; C12 Đặng Tiến Đông, Sầm Nghi Đống; Tôn Sĩ Nghị.
+- Voi chiến: 1 lính súng hỏa hồ đứng trên bành + nài voi.
+- Hành quân (`ts_hq`, voi, ngựa) bám đường thiên lý (`source/thienly.json`, lấy từ D.roads Duong_ThienLy).
+- Dấu X đỏ mờ 40% trên đồn Hà Hồi từ cuối C07 (`nvDauX`).
+- Bục bắn: chân lính cao hơn đỉnh lũy 1,6 m (vượt rào gỗ 2,7 m). Đại bác dời lên đỉnh lũy, đặt trên bục gỗ cao hơn rào (`nvNangPhao`).
+
+### 10.9 (22/11/2026)
+- Nút "▶ Bắt đầu xem" và nút Phát chỉ hiện/bấm được khi đã tải xong địa hình + kịch bản, nhân vật (NV.ok) và lời dẫn thu âm (VC.ok, hoặc tải lỗi thì bỏ qua); trong lúc chờ hiện thanh tiến độ 3 bước.
