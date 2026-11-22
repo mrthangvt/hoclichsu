@@ -14,3 +14,7 @@
 
 ## Đã kiểm tra (Chromium, bản dựng như Pages)
 - 390 px và 320 px: thẻ trang phục đọc được, menu một hàng (6 nút cùng hàng). Desktop 1440 px không đổi bố cục, nhãn đã là "Tóc & Mũ". Không lỗi JavaScript.
+
+## V5.4.1 — Thanh chọn năm nhanh trên mobile (22/11/2026)
+- Theo yêu cầu chủ dự án: mobile hiện lại thanh mốc năm (2879 TCN … 1975) ở đầu dòng thời gian, dính đầu màn hình khi cuộn, vuốt ngang để chọn; bấm một mốc thì nhảy tới đúng mốc đó và mốc được tô sáng. Thêm vào cuối `v54.css`, không cần đổi bản dựng.
+- Đã thử 390 px: bấm 1789 → mốc 1789 nằm ngay dưới thanh, không bị che.
