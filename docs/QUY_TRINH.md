@@ -32,3 +32,6 @@ Repo này là **bản gốc duy nhất** của mã nguồn web. Artifact Claude 
 - KHÔNG đưa lên repo: `vietsu/.env` (mã quản trị, khóa API), `vietsu/data/vietsucms.sqlite3` (dữ liệu CMS), `vietsu/static/uploads/`, `vietsu/.venv/`. Đã chặn trong `.gitignore`. Sao lưu dữ liệu bằng `vietsu/sao_luu_local.command`.
 - File `.blend` không đưa lên repo (nằm ở ổ xMABUx, xem `docs/TOM_TAT.md`).
 - GLB đã nén meshopt, mỗi file < 10 MB, để thẳng trong `<SA_BAN>/models/`. Nếu sau này file > 50 MB thì chuyển sang Git LFS.
+
+## Sa bàn và di tích 3D mới
+Làm theo `docs/KHUNG_SA_BAN.md`: mỗi trận một gói trong `vietsu/static/khong-gian/packs/<id-goi>/`, nhánh `claude/<id-goi>` hoặc `gpt/<id-goi>`, thêm vào `catalog.json` trong cùng PR, chạy kiểm tra gói trước khi mở PR.

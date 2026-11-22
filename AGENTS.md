@@ -6,6 +6,7 @@ Làm việc chung với Claude qua repo này.
 **Đọc trước khi làm:**
 1. `docs/TOM_TAT.md` — trạng thái dự án, kịch bản sa bàn, quy ước toạ độ, tên clip, các việc còn lại.
 2. `docs/QUY_TRINH.md` — quy trình nhánh / Pull Request, chia việc.
+3. `docs/KHUNG_SA_BAN.md` — **bắt buộc khi làm sa bàn hoặc di tích 3D mới**: bộ máy chung + gói dữ liệu (`pack.json`, `story.json`), ngân sách dung lượng, quy trình 6 bước, nguồn dữ liệu.
 
 **KHÓA GIAO DIỆN VIỆT SỬ — CHỈ CHỦ DỰ ÁN ĐƯỢC YÊU CẦU MỞ KHÓA (17/11/2026)**
 - Giao diện V4.6 là **chuẩn cố định**: KHÔNG tự đổi bố cục/trật tự khối, menu, tab, Timeline, Popup, font, màu, responsive, icon, ảnh hay hiệu ứng. Không tạo demo mới có giao diện khác rồi trình bày như bản nâng cấp.
