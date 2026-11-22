@@ -328,3 +328,6 @@ Cả ba lệnh đã được chạy thử trong gói này và cho kết quả tr
 - Hành quân (`ts_hq`, voi, ngựa) bám đường thiên lý (`source/thienly.json`, lấy từ D.roads Duong_ThienLy).
 - Dấu X đỏ mờ 40% trên đồn Hà Hồi từ cuối C07 (`nvDauX`).
 - Bục bắn: chân lính cao hơn đỉnh lũy 1,6 m (vượt rào gỗ 2,7 m). Đại bác dời lên đỉnh lũy, đặt trên bục gỗ cao hơn rào (`nvNangPhao`).
+
+### 10.9 (22/11/2026)
+- Nút "▶ Bắt đầu xem" và nút Phát chỉ hiện/bấm được khi đã tải xong địa hình + kịch bản, nhân vật (NV.ok) và lời dẫn thu âm (VC.ok, hoặc tải lỗi thì bỏ qua); trong lúc chờ hiện thanh tiến độ 3 bước.
