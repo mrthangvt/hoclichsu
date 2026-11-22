@@ -8,4 +8,4 @@ Riêng Claude:
 - Đăng artifact (chỉ sa bàn): `python3 tools/build_artifact.py` rồi `publish_files` (mode replace) thư mục `dist_artifact/` vào artifact
   slug `af9a0798-d297-4e3a-9935-744d73b3f999` (https://claude.ai/artifact/Ngg8ArEPYBXRFxUn1Y6hxC).
 - Bản tóm tắt cũng có trong Project "Sale & marketing" (`claude/thanh-co-quang-tri-3d-tom-tat.md`); `docs/TOM_TAT.md` trong repo là bản chính.
-- Chưa kết nối GitHub được (nút kết nối bị ẩn): repo công khai nên đọc được; để ghi, Claude tạo nhánh `claude/...` trong bản sao trên máy anh Thắng (`ThanhCoQT_web/hoclichsu`) rồi anh bấm Push/Create Pull Request trong GitHub Desktop.
+- GitHub đã kết nối (22/11/2026): repo đổi tên thành `mrthangvt/vietsu`. Claude tự tạo nhánh `claude/...`, đẩy lên và mở Pull Request; anh Thắng duyệt rồi merge.
