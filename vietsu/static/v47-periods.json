@@ -68,14 +68,14 @@
         "overview": "Theo truyền thuyết được các sử gia đời sau ghi lại, Kinh Dương Vương được kể là người dựng nước Xích Quỷ. Đây là phần huyền sử về nguồn gốc dân tộc, không thể dùng như chứng cứ về một nhà nước có niên đại và biên giới đã được xác minh.",
         "context": "Trần Trọng Kim trình bày chuyện Hồng Bàng theo sử cũ nhưng chủ động lưu ý các chi tiết thần tiên và niên đại xa xưa không đủ bằng chứng lịch sử để xác nhận.",
         "territory": "Các địa danh Động Đình, Ba Thục, Nam Hải trong chuyện Xích Quỷ là phạm vi được truyền thuyết mô tả; không nên dựng thành bản đồ biên giới lịch sử chính xác.",
-        "state": "Đang biên tập",
-        "economy": "Đang biên tập",
-        "military": "Đang biên tập",
-        "foreign": "Đang biên tập",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "state": "Sử cũ không chép bộ máy cai trị của Xích Quỷ; chỉ kể Kinh Dương Vương được phong cai quản phương Nam rồi truyền cho Lạc Long Quân. Các chức Lạc hầu, Lạc tướng, Bồ chính mà sách nhắc tới thuộc phần chép về nước Văn Lang đời sau.",
+        "economy": "Không có ghi chép đáng tin về kinh tế thời Xích Quỷ. Truyện kể chỉ cho biết cư dân ven sông suối sống nhờ đánh bắt tôm cá; đó là hình ảnh do sử gia đời sau ghi lại, không phải tư liệu cùng thời.",
+        "military": "Sử cũ không chép chiến tranh nào gắn với Kinh Dương Vương hay Lạc Long Quân. Những chuyện đánh giặc trong truyền thuyết (như Phù Đổng) được đặt vào đời các vua Hùng.",
+        "foreign": "Truyền thuyết nối Kinh Dương Vương với dòng Thần Nông và Đế Minh, lại kể việc kết thân với Động Đình Quân và Đế Lai. Đây là cách các sử gia đời sau đặt nguồn gốc người Việt ngang hàng với các dòng đế vương phương Bắc, không phải ghi chép về bang giao thật.",
+        "law": "Không có tư liệu về luật lệ thời Xích Quỷ. Ngay sử gia Ngô Sĩ Liên cũng nhận xét đời ấy còn hoang sơ, lễ nghi chưa định.",
+        "culture": "Di sản văn hóa của thời này nằm ở chính các truyện kể: con Rồng cháu Tiên, bọc trăm trứng, cuộc chia tay của Lạc Long Quân và Âu Cơ. Các truyện ấy giải thích nguồn gốc chung của cộng đồng và được lưu truyền qua nhiều thế kỷ.",
+        "religion": "Kinh Dương Vương, Lạc Long Quân và Âu Cơ về sau được thờ như những vị tổ của người Việt. Nên giới thiệu đây là tín ngưỡng nguồn cội, không phải bằng chứng về nhân vật lịch sử có thật.",
+        "education": "Không có ghi chép nào về chữ viết hay việc học trong thời kỳ truyền thuyết này.",
         "people": "Các nhân vật truyền thuyết gồm Kinh Dương Vương (Lộc Tục), Lạc Long Quân và Âu Cơ; câu chuyện trăm người con giải thích biểu tượng cộng đồng và nguồn gốc dân tộc.",
         "heritage": "Có thể giới thiệu truyện Lạc Long Quân – Âu Cơ như di sản kể chuyện và tín ngưỡng nguồn cội, gắn nhãn 'Truyền thuyết' thay vì 'Sự kiện được xác thực'."
       },
@@ -83,13 +83,37 @@
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần I, Chương I, tr. PDF 8–10 (bản PDF 252 trang do chủ dự án cung cấp)",
           "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Ngoại kỷ q.I, Kỷ Hồng Bàng thị, tr. PDF 3–5 (bản dịch 1993, PDF chủ dự án cung cấp)",
+          "url": ""
         }
       ],
       "links": {
         "people": [],
         "scenes": [],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "state": "DVSK tr. 3–5; VNSL tr. 8",
+        "economy": "DVSK tr. 5",
+        "military": "DVSK tr. 3–5; VNSL tr. 8–9",
+        "foreign": "DVSK tr. 3–4 (chú thích về niên đại 2879 TCN); VNSL tr. 8",
+        "law": "DVSK tr. 4",
+        "culture": "DVSK tr. 4; VNSL tr. 8",
+        "religion": "VNSL tr. 8–9 (nhận xét của tác giả về tính truyền thuyết)",
+        "education": "DVSK tr. 3–5; VNSL tr. 8–9"
+      },
+      "draft_sections": [
+        "state",
+        "economy",
+        "military",
+        "foreign",
+        "law",
+        "culture",
+        "religion",
+        "education"
+      ]
     },
     {
       "id": "vanlang",
@@ -104,12 +128,12 @@
         "territory": "Địa bàn thường được mô tả tại lưu vực sông Hồng và các vùng lân cận. Ranh giới hành chính cụ thể chưa thể xác định chắc chắn.",
         "state": "Theo sử cũ được Trần Trọng Kim dẫn lại, Văn Lang có Lạc hầu, Lạc tướng, Bồ chính; các tên gọi và tổ chức này phản ánh truyền thống sử học, cần đối chiếu riêng với dữ liệu khảo cổ.",
         "economy": "Các di vật khảo cổ cho thấy hoạt động nông nghiệp, luyện kim và thủ công tại nhiều địa điểm.",
-        "military": "Đang biên tập",
-        "foreign": "Đang biên tập",
-        "law": "Đang biên tập",
+        "military": "Truyện Phù Đổng (Thánh Gióng) kể cậu bé làng Phù Đổng xin ngựa sắt, gươm sắt đánh tan giặc ở chân núi Vũ Ninh vào đời Hùng Vương thứ sáu. Đây là truyền thuyết về ý chí giữ nước, không phải ghi chép một trận đánh có thể xác định niên đại.",
+        "foreign": "Sử cũ chép đời Chu Thành Vương có sứ Việt Thường thị sang dâng chim trĩ trắng, Chu Công sai làm xe chỉ nam đưa sứ về. Cuối đời Hùng, việc Thục Vương cầu hôn Mị Nương bị từ chối được kể là mầm mối xung đột với họ Thục.",
+        "law": "Sử cũ chỉ cho biết chức Bồ chính được cha truyền con nối (gọi là phụ đạo); không có ghi chép về luật lệ hay hình phạt thời Văn Lang.",
         "culture": "Văn hóa Đông Sơn được nghiên cứu qua trống đồng, công cụ và đồ dùng; mối liên hệ với các truyền thuyết cần được trình bày thận trọng.",
         "religion": "Tục thờ cúng Hùng Vương tiếp nối trong đời sống văn hóa Việt Nam; nên phân biệt lịch sử tín ngưỡng với chứng cứ cùng thời.",
-        "education": "Đang biên tập",
+        "education": "Không có tư liệu về chữ viết hay trường học thời Văn Lang. Hiểu biết về đời sống tinh thần thời này chủ yếu đến từ khảo cổ (văn hóa Đông Sơn) và các truyện kể được ghi lại về sau.",
         "people": "Những tích Phù Đổng Thiên Vương, Sơn Tinh – Thủy Tinh thuộc kho tàng truyền thuyết gắn với thời Hùng Vương. Trần Trọng Kim chủ ý phân biệt truyện cổ với sự kiện có thể kiểm chứng.",
         "heritage": "Tư liệu khảo cổ và không gian tín ngưỡng Hùng Vương là những hướng tìm hiểu, không phải chân dung xác thực các vua Hùng."
       },
@@ -120,6 +144,10 @@
         },
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần I, Chương I, tr. PDF 8–10 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Ngoại kỷ q.I, Kỷ Hồng Bàng thị, tr. PDF 3–6 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -137,7 +165,19 @@
             "period_id": "vanlang"
           }
         ]
-      }
+      },
+      "section_sources": {
+        "military": "DVSK tr. 5; VNSL tr. 9",
+        "foreign": "DVSK tr. 5–6",
+        "law": "DVSK tr. 5",
+        "education": "VNSL tr. 9–10"
+      },
+      "draft_sections": [
+        "military",
+        "foreign",
+        "law",
+        "education"
+      ]
     },
     {
       "id": "aulac",
@@ -151,19 +191,23 @@
         "context": "Các sách sử đều kể chuyện họ Thục thay thế các vua Hùng, nhưng nguồn gốc Thục Phán và các mốc niên đại cổ đại vẫn có nhiều cách giải thích khác nhau.",
         "territory": "Kinh đô được truyền thống sử học đặt tại Cổ Loa (khu vực Đông Anh, Hà Nội). Không coi các đường biên được sử cũ kể lại là ranh giới khảo cổ đã xác nhận.",
         "state": "Theo chuyện kể trong sử cũ, An Dương Vương đóng đô tại Cổ Loa và tổ chức phòng thủ bằng thành lũy. Cần phân biệt di tích thành Cổ Loa với chi tiết huyền thoại về thần Kim Quy.",
-        "economy": "Đang biên tập",
+        "economy": "Việc đắp Loa Thành rộng lớn cho thấy nhà nước Âu Lạc huy động được nhiều sức người; sử gia Ngô Sĩ Liên chê An Dương Vương 'không dè dặt sức dân' khi xây thành. Sử cũ ít chép về sản xuất, thuế khóa thời này.",
         "military": "Sử cũ kể việc Triệu Đà nhiều lần tiến đánh, đồng thời lưu truyền chuyện nỏ thần, Trọng Thủy và Mỵ Châu. Nỏ thần là mô-típ truyền thuyết; những diễn biến quân sự cần được kiểm tra qua các nguồn khác.",
-        "foreign": "Đang biên tập",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "foreign": "Nhà Tần đánh đất Bách Việt (năm 214 TCN), lập ba quận Nam Hải, Quế Lâm, Tượng Quận; VNSL chép An Dương Vương có lúc xin thần phục nhà Tần. Về sau Triệu Đà ở Nam Hải dùng cả binh lực lẫn hôn nhân (Trọng Thủy – Mỵ Châu) để thôn tính Âu Lạc.",
+        "law": "Không có ghi chép về luật lệ thời Âu Lạc.",
+        "culture": "Loa Thành được sử cũ tả là thành cao, cuộn tròn như vỏ ốc nên gọi là Loa Thành; dấu tích còn ở làng Cổ Loa (Đông Anh, Hà Nội). Truyện Mỵ Châu – Trọng Thủy, giếng Ngọc, ngọc trai nhuộm máu là lớp văn hóa truyền khẩu gắn với tòa thành.",
+        "religion": "Thần Kim Quy giúp xây thành, trao móng làm lẫy nỏ là yếu tố thần linh trong truyền thuyết. Đền thờ An Dương Vương ở Cổ Loa và việc thờ Cao Lỗ về sau phản ánh tín ngưỡng tôn vinh người dựng thành, giữ nước.",
+        "education": "Không có tư liệu về chữ viết hay việc học thời Âu Lạc.",
         "people": "Thục Phán, Cao Lỗ, Triệu Đà, Mỵ Châu và Trọng Thủy là những tên gắn với các bản kể về Âu Lạc; không phải mọi chi tiết tiểu sử trong chuyện cổ đều có thể chứng minh.",
         "heritage": "Thành Cổ Loa và truyền thuyết Mỵ Châu – Trọng Thủy giúp tìm hiểu ký ức văn hóa về việc dựng và giữ nước, nhưng hai lớp khảo cổ và huyền sử phải được hiển thị tách biệt."
       },
       "sources": [
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần I, Chương II, tr. PDF 10–11 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Ngoại kỷ q.I, Kỷ nhà Thục, tr. PDF 6–9 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -181,7 +225,23 @@
             "period_id": "aulac"
           }
         ]
-      }
+      },
+      "section_sources": {
+        "economy": "DVSK tr. 6–7, 9; VNSL tr. 10",
+        "foreign": "DVSK tr. 8; VNSL tr. 11",
+        "law": "DVSK tr. 6–9; VNSL tr. 10–11",
+        "culture": "DVSK tr. 6, 9; VNSL tr. 10–11",
+        "religion": "DVSK tr. 6–8; VNSL tr. 11",
+        "education": "DVSK tr. 6–9; VNSL tr. 10–11"
+      },
+      "draft_sections": [
+        "economy",
+        "foreign",
+        "law",
+        "culture",
+        "religion",
+        "education"
+      ]
     },
     {
       "id": "bacthuoc",
@@ -193,21 +253,25 @@
       "sections": {
         "overview": "Thời Bắc thuộc kéo dài nhiều thế kỷ với các giai đoạn cai trị khác nhau của các triều đại Trung Hoa; quá trình ấy không liên tục tuyệt đối vì đã có những cuộc nổi dậy và các chính quyền bản địa.",
         "context": "Việt Nam sử lược chia thời kỳ này thành những lần Bắc thuộc, có các chương riêng về Trưng Vương, Tiền Lý và những nỗ lực tự chủ của họ Khúc, Dương Đình Nghệ, Ngô Quyền.",
-        "territory": "Đang biên tập",
+        "territory": "Sau năm 111 TCN, nhà Hán chia đất Nam Việt thành chín quận, trong đó Giao Chỉ, Cửu Chân, Nhật Nam thuộc lãnh thổ Việt Nam ngày nay. Năm 226, nhà Ngô (Tam Quốc) tách phần phía bắc thành Quảng Châu, phần còn lại là Giao Châu; năm Kỷ Mão (thường ghi 679), nhà Đường đặt An Nam đô hộ phủ gồm 12 châu, cuối thời Đường đổi làm Tĩnh Hải quân.",
         "state": "Các sách ghi việc thiết lập quận, huyện, châu, đô hộ phủ và bổ nhiệm quan cai trị, trong đó có Giao Chỉ, Cửu Chân, Nhật Nam. Tên gọi, phạm vi từng đơn vị thay đổi theo thời gian.",
         "economy": "Sử liệu nhắc tới tô thuế, lao dịch, khai khẩn và các nghề sinh sống của cư dân Giao Châu. Tình hình không giống nhau ở mọi thế kỷ hoặc mọi khu vực.",
         "military": "Nhiều cuộc chống đối và khởi nghĩa đã diễn ra, như Trưng Vương, Bà Triệu, Lý Bí, Mai Thúc Loan, Phùng Hưng; cuối giai đoạn xuất hiện các nỗ lực tự chủ dẫn tới chiến thắng Bạch Đằng năm 938.",
-        "foreign": "Đang biên tập",
-        "law": "Đang biên tập",
+        "foreign": "Ngoài quan hệ với chính quyền trung ương phương Bắc, Giao Châu nhiều lần bị nước Lâm Ấp ở phía nam đánh phá; thế kỷ IX quân Nam Chiếu tràn vào chiếm phủ thành, đến khi Cao Biền đánh lui. Năm 543, Lý Bí sai Phạm Tu đánh bại quân Lâm Ấp ở Cửu Đức.",
+        "law": "Thời này không có luật riêng của người bản địa; cư dân chịu luật lệ và thuế khóa do các quan đô hộ thi hành. Sử cũ ghi Trưng Trắc khởi binh vì thái thú Tô Định dùng pháp luật trói buộc, và cuối thời Đường Cao Biền lập sổ sưu thuế.",
         "culture": "Quan hệ lâu dài với các triều đại phương Bắc tạo nên những chuyển biến về chữ viết, học thuật và sinh hoạt xã hội. Không nên mô tả toàn bộ cư dân thời này như một cộng đồng đồng nhất.",
         "religion": "Nho học, Phật giáo và Đạo giáo lần lượt có ảnh hưởng trong khu vực. Quá trình du nhập và phát triển cần trình bày theo từng thế kỷ, không gộp thành một mốc.",
         "education": "Việt Nam sử lược ghi việc Lý Tiến, Lý Cầm yêu cầu mở đường cho người ở Giao Châu được tham gia bộ máy quan lại; đây là tư liệu về địa vị và việc học trong bối cảnh đương thời.",
         "people": "Có thể tra cứu các nhân vật như Trưng Trắc, Trưng Nhị, Bà Triệu, Sĩ Nhiếp, Lý Bí, Mai Thúc Loan, Phùng Hưng, Khúc Thừa Dụ, Khúc Hạo và Dương Đình Nghệ; mỗi người thuộc một chặng khác nhau.",
-        "heritage": "Đang biên tập"
+        "heritage": "Có thể tìm hiểu thời kỳ này qua đền thờ Hai Bà Trưng (Hát Môn, Đồng Nhân), đền Bà Triệu (Thanh Hóa), dấu tích trị sở Luy Lâu và thành Đại La. Cần ghi rõ phần lớn công trình hiện còn đã được tu sửa về sau."
       },
       "sources": [
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần II, Chương I–VI, tr. PDF 17–33 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Ngoại kỷ q.III–V, tr. PDF 20–53 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -215,7 +279,19 @@
         "people": [],
         "scenes": [],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "territory": "VNSL tr. 17, 20, 25, 28",
+        "foreign": "VNSL tr. 21, 23, 25–28; DVSK tr. 36",
+        "law": "DVSK tr. 21; VNSL tr. 28",
+        "heritage": "VNSL tr. 19, 21, 26"
+      },
+      "draft_sections": [
+        "territory",
+        "foreign",
+        "law",
+        "heritage"
+      ]
     },
     {
       "id": "trungvuong",
@@ -228,14 +304,14 @@
         "overview": "Năm 40, Trưng Trắc và Trưng Nhị phát động khởi nghĩa chống chính quyền đô hộ nhà Đông Hán. Cuộc khởi nghĩa lan rộng, hình thành một giai đoạn tự chủ ngắn trước khi bị quân Hán tiến đánh.",
         "context": "Sử cũ nhấn mạnh sự hà khắc của thái thú Tô Định và câu chuyện về Thi Sách; cần trình bày các nguyên nhân trong bối cảnh phản kháng chống chính quyền đô hộ.",
         "territory": "Các sách nhắc tới Mê Linh và sự hưởng ứng ở nhiều quận vùng Lĩnh Nam. Con số 65 thành là ghi chép trong sử, không phải bản đồ vị trí đã kiểm định đầy đủ.",
-        "state": "Đang biên tập",
-        "economy": "Đang biên tập",
+        "state": "Sau khi đuổi Tô Định, Trưng Trắc xưng vương, đóng đô ở Mê Linh (quê nhà) và cai quản ba năm (40–43). Sử cũ không chép cụ thể bộ máy chính quyền thời Trưng Vương.",
+        "economy": "Toàn thư và Việt Nam sử lược không chép chính sách kinh tế thời Trưng Vương. Ít năm trước đó, thái thú Nhâm Diên được ghi là dạy dân Cửu Chân khai khẩn, cày cấy thay cho săn bắt, đánh cá – cho thấy nông nghiệp trồng lúa đang mở rộng ở vùng này.",
         "military": "Khởi nghĩa thắng lợi ban đầu và được nhiều nơi hưởng ứng; sau đó nhà Đông Hán điều Mã Viện đưa quân sang. Lãng Bạc và Cấm Khê là những địa danh được chép trong diễn biến xung đột.",
-        "foreign": "Đang biên tập",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "foreign": "Nhà Đông Hán coi cuộc khởi nghĩa là phản loạn: năm 41 lệnh cho Trường Sa, Hợp Phố, Giao Châu chuẩn bị xe thuyền, lương thực rồi giao Mã Viện làm Phục Ba tướng quân dẫn quân sang.",
+        "law": "Nguyên nhân khởi nghĩa được sử cũ ghi là sự hà khắc của thái thú Tô Định. Sau khi thắng, Mã Viện chia lại huyện Tây Vu và thay đổi cách cai trị ở các châu quận.",
+        "culture": "Lời bình của Lê Văn Hưu và Ngô Sĩ Liên ca ngợi Hai Bà cho thấy cuộc khởi nghĩa đã trở thành biểu tượng tinh thần trong sử học Việt Nam. Truyện cột đồng Mã Viện cũng là một lớp ký ức được kể đi kể lại.",
+        "religion": "Theo Toàn thư, người địa phương lập đền thờ Hai Bà ngay sau khi Mã Viện về; về sau đền thờ ở Hát Môn và Đồng Nhân mở hội vào mồng 6 tháng 2. Sử cũ ghi dân thường đến cầu đảo khi có hạn hán, lụt lội.",
+        "education": "Không có tư liệu về việc học thời Trưng Vương. Trước đó, thái thú Tích Quang được ghi là lấy lễ nghĩa dạy dân, Nhâm Diên giúp dân nghèo có sính lễ cưới vợ – đó là chính sách của chính quyền đô hộ, không phải của Hai Bà.",
         "people": "Trưng Trắc, Trưng Nhị, Thi Sách, Tô Định và Mã Viện là các nhân vật được sử liệu nhắc tới. Cần tách văn bản gốc với các truyền thuyết hình thành về sau.",
         "heritage": "Việc thờ Hai Bà Trưng tại nhiều nơi phản ánh ký ức cộng đồng về cuộc khởi nghĩa; nghi lễ tưởng niệm không đồng nghĩa mọi chi tiết trong truyền tụng đều được xác minh."
       },
@@ -243,13 +319,35 @@
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần II, Chương II, tr. PDF 18–19 (bản PDF 252 trang do chủ dự án cung cấp)",
           "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Ngoại kỷ q.III, Kỷ Trưng Nữ Vương, tr. PDF 21–22 (bản dịch 1993, PDF chủ dự án cung cấp)",
+          "url": ""
         }
       ],
       "links": {
         "people": [],
         "scenes": [],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "state": "DVSK tr. 21; VNSL tr. 18",
+        "economy": "DVSK tr. 20–22; VNSL tr. 18",
+        "foreign": "DVSK tr. 21; VNSL tr. 18",
+        "law": "DVSK tr. 21–22; VNSL tr. 19",
+        "culture": "DVSK tr. 21–22; VNSL tr. 19",
+        "religion": "DVSK tr. 22; VNSL tr. 19",
+        "education": "VNSL tr. 18; DVSK tr. 20"
+      },
+      "draft_sections": [
+        "state",
+        "economy",
+        "foreign",
+        "law",
+        "culture",
+        "religion",
+        "education"
+      ]
     },
     {
       "id": "vanxuan",
@@ -263,13 +361,13 @@
         "context": "Theo Việt Nam sử lược, mâu thuẫn với chính quyền cai trị nhà Lương và tình hình bất ổn trong vùng góp phần dẫn đến cuộc nổi dậy của Lý Bí.",
         "territory": "Tư liệu nhắc Long Biên, Dạ Trạch và Phong Châu trong các chặng hoạt động. Vị trí một số địa danh cổ cần khảo cứu riêng khi đưa lên bản đồ.",
         "state": "Quốc hiệu Vạn Xuân và việc Lý Bí xưng đế năm 544 là những dấu mốc của nỗ lực thiết lập chính quyền tự chủ.",
-        "economy": "Đang biên tập",
+        "economy": "Sử cũ không chép chính sách kinh tế của nhà nước Vạn Xuân. Chiến tranh với nhà Lương kéo dài khiến vùng đồng bằng nhiều năm bị tàn phá, nghĩa quân Triệu Quang Phục phải bám đầm Dạ Trạch để tự cấp.",
         "military": "Lý Bí đánh đuổi Tiêu Tư, sau phải chống cuộc tiến công của quân Lương. Triệu Quang Phục được ghi nhận sử dụng địa hình đầm lầy Dạ Trạch để tổ chức kháng chiến.",
-        "foreign": "Đang biên tập",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "foreign": "Lý Bí trước hết đánh bại quân Lâm Ấp xâm lấn ở Cửu Đức (543), sau đó phải đối đầu cuộc tiến quân của nhà Lương do Dương Phiêu, Trần Bá Tiên chỉ huy (545). Quan hệ với phương Bắc thời này chủ yếu là chiến tranh.",
+        "law": "Không có ghi chép về luật lệ riêng của nhà nước Vạn Xuân.",
+        "culture": "Việc xưng đế, đặt niên hiệu Thiên Đức, quốc hiệu Vạn Xuân (mong nước bền vạn mùa xuân) và dựng điện Vạn Thọ cho thấy ý thức khẳng định vị thế ngang hàng với phương Bắc.",
+        "religion": "Truyền thuyết kể thần đầm Dạ Trạch (Chử Đồng Tử) trao móng rồng cho Triệu Quang Phục gài lên mũ trụ; đây là lớp tín ngưỡng dân gian gắn với cuộc kháng chiến. Tên Lý Phật Tử cũng gợi ảnh hưởng của Phật giáo thời bấy giờ.",
+        "education": "Tinh Thiều, người giỏi văn chương, từng sang kinh đô nhà Lương xin làm quan nhưng chỉ được chức nhỏ vì xuất thân, bèn về theo Lý Bí và được giao làm quan văn. Chi tiết này cho thấy đã có tầng lớp trí thức bản địa học chữ Hán.",
         "people": "Các nhân vật chính gồm Lý Bí (Lý Nam Đế), Triệu Quang Phục (Triệu Việt Vương) và Lý Phật Tử; cần trình bày riêng từng giai đoạn thay vì coi là một triều đình ổn định xuyên suốt.",
         "heritage": "Dạ Trạch và những di tích thờ Lý Nam Đế, Triệu Việt Vương có thể dẫn sang mục Không gian lịch sử sau khi xác minh địa điểm và nguồn tư liệu."
       },
@@ -277,13 +375,33 @@
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần II, Chương IV, tr. PDF 23–24 (bản PDF 252 trang do chủ dự án cung cấp)",
           "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Ngoại kỷ q.IV, Kỷ nhà Tiền Lý, tr. PDF 36–41 (bản dịch 1993, PDF chủ dự án cung cấp)",
+          "url": ""
         }
       ],
       "links": {
         "people": [],
         "scenes": [],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "economy": "DVSK tr. 36–38; VNSL tr. 23–24",
+        "foreign": "DVSK tr. 36–37; VNSL tr. 23",
+        "law": "DVSK tr. 36–41; VNSL tr. 23–24",
+        "culture": "DVSK tr. 36–37; VNSL tr. 23",
+        "religion": "DVSK tr. 37–38",
+        "education": "DVSK tr. 36–37; VNSL tr. 23"
+      },
+      "draft_sections": [
+        "economy",
+        "foreign",
+        "law",
+        "culture",
+        "religion",
+        "education"
+      ]
     },
     {
       "id": "ngo",
@@ -297,19 +415,23 @@
         "context": "Các hoạt động tự chủ trước đó của họ Khúc và Dương Đình Nghệ cùng chiến thắng Bạch Đằng tạo tiền đề cho giai đoạn nhà Ngô.",
         "territory": "Truyền thống sử học ghi kinh đô nhà Ngô ở Cổ Loa. Các khu vực do sứ quân nắm giữ về sau không phải lãnh thổ một nước thống nhất.",
         "state": "Ngô Quyền đặt quan chức, quy định triều nghi và chỉnh đốn chính sự; nhà Ngô về sau trải qua tranh chấp quyền lực và sự phân tán của các thế lực địa phương.",
-        "economy": "Đang biên tập",
+        "economy": "Sử cũ hầu như không chép kinh tế thời Ngô. Cuối triều, nội chiến giữa các thế lực địa phương làm sản xuất đình trệ, mở đầu thời kỳ mười hai sứ quân.",
         "military": "Chiến thắng trên sông Bạch Đằng năm 938 được Việt Nam sử lược mô tả gắn với trận địa cọc trên sông và thủy triều. Cuối thời Ngô, chiến tranh giữa các sứ quân kéo dài.",
-        "foreign": "Đang biên tập",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "foreign": "Chiến thắng Bạch Đằng năm 938 đánh bại quân Nam Hán do Lưu Hoằng Tháo chỉ huy. Lê Văn Hưu nhận định sau trận này người phương Bắc không dám sang nữa; thời Ngô chưa thấy ghi chép về quan hệ sứ bộ chính thức với các triều phương Bắc.",
+        "law": "Ngô Quyền đặt trăm quan, chế định triều nghi và phẩm phục; sử cũ không chép bộ luật riêng của nhà Ngô.",
+        "culture": "Việc định triều nghi, phẩm phục và đóng đô ở Cổ Loa – kinh đô cũ của An Dương Vương – mang ý nghĩa nối lại truyền thống tự chủ. Cách đánh dùng cọc gỗ đầu bịt sắt cắm dưới lòng sông trở thành một dấu ấn trong ký ức về Bạch Đằng.",
+        "religion": "Toàn thư và Việt Nam sử lược hầu như không chép về tôn giáo thời Ngô. Đây là khoảng trống cần bổ sung bằng nghiên cứu về Phật giáo thế kỷ X.",
+        "education": "Không có ghi chép về việc học hay khoa cử thời Ngô.",
         "people": "Những tên chính trong giai đoạn này gồm Ngô Quyền, Dương Tam Kha, Ngô Xương Ngập, Ngô Xương Văn; các sứ quân xuất hiện trong giai đoạn phân quyền về sau.",
-        "heritage": "Đang biên tập"
+        "heritage": "Đường Lâm (Sơn Tây, Hà Nội) – quê Ngô Quyền – có đền và lăng thờ ông; Cổ Loa là nơi nhà Ngô đóng đô. Khu vực cửa sông Bạch Đằng gắn với trận đánh năm 938 có thể kết nối với sa bàn Bạch Đằng."
       },
       "sources": [
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần II, Chương V và Phần III, Chương I, tr. PDF 28–29, 34–35 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Ngoại kỷ q.V, Kỷ họ Ngô, tr. PDF 53–57 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -322,7 +444,25 @@
         ],
         "scenes": [],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "economy": "DVSK tr. 54–57; VNSL tr. 34",
+        "foreign": "DVSK tr. 53–54; VNSL tr. 29",
+        "law": "DVSK tr. 54",
+        "culture": "DVSK tr. 53–54",
+        "religion": "DVSK tr. 53–57; VNSL tr. 29, 34",
+        "education": "DVSK tr. 53–57",
+        "heritage": "DVSK tr. 53–54"
+      },
+      "draft_sections": [
+        "economy",
+        "foreign",
+        "law",
+        "culture",
+        "religion",
+        "education",
+        "heritage"
+      ]
     },
     {
       "id": "dinh",
@@ -336,19 +476,23 @@
         "context": "Giai đoạn các sứ quân tranh chấp quyền lực sau nhà Ngô tạo điều kiện cho Đinh Bộ Lĩnh tập hợp lực lượng và thống nhất đất nước.",
         "territory": "Kinh đô nhà Đinh đặt ở Hoa Lư, vùng Ninh Bình; phạm vi cai quản cần được diễn giải theo điều kiện chính trị thế kỷ X, không dùng địa giới tỉnh hiện nay làm ranh giới thời ấy.",
         "state": "Đinh Tiên Hoàng đặt triều nghi và phẩm hàm quan văn, quan võ; sử cũ cũng kể lại các biện pháp hình phạt nghiêm khắc nhằm thiết lập trật tự.",
-        "economy": "Đang biên tập",
+        "economy": "Năm 976, sử cũ chép thuyền buôn của các nước ngoài đến dâng sản vật – một trong những ghi chép sớm về ngoại thương sau thời tự chủ. Triều Đinh cũng gửi vàng lụa, sừng tê, ngà voi sang nhà Tống.",
         "military": "Đinh Bộ Lĩnh liên kết và đánh bại các thế lực sứ quân để thống nhất quyền lực; việc tổ chức quân đội được ghi lại trong sử cũ nhưng số quân có thể mang tính phóng đại.",
         "foreign": "Nhà Đinh bắt đầu củng cố quan hệ ngoại giao với nhà Tống nhằm giữ ổn định biên giới phía bắc.",
         "law": "Việt Nam sử lược kể các hình phạt răn đe rất nặng dưới thời Đinh. Đây là mô tả của sử cũ, không phải bằng chứng về một bộ luật thành văn hoàn chỉnh.",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "culture": "Năm 974 định quân mười đạo, kèm quy định mũ bình đính cho binh lính; năm 975 quy định áo mũ cho quan văn võ. Những quy chế này cho thấy triều Đinh xây dựng nghi thức triều đình riêng ở Hoa Lư.",
+        "religion": "Năm 971, triều Đinh định phẩm cấp cho cả tăng sĩ và đạo sĩ: Ngô Chân Lưu làm Tăng thống, được ban hiệu Khuông Việt đại sư; Trương Ma Ni làm Tăng lục; đạo sĩ Đặng Huyền Quang được trao chức Sùng chân uy nghi. Phật giáo và Đạo giáo được nhà nước công nhận chính thức.",
+        "education": "Sử cũ không chép việc mở trường hay khoa cử thời Đinh. Người có học chủ yếu là tăng sĩ, nên các nhà sư giữ vai trò cố vấn và ngoại giao.",
         "people": "Đinh Bộ Lĩnh, Đinh Liễn, Nguyễn Bặc, Lê Hoàn và Đỗ Thích là những nhân vật gắn với quá trình dựng nước và biến cố cuối triều.",
         "heritage": "Di tích cố đô Hoa Lư là điểm kết nối phù hợp giữa hồ sơ nhà Đinh và mục Không gian lịch sử; cần sử dụng nguồn khảo cổ, bảo tồn bổ sung khi dựng 3D."
       },
       "sources": [
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần III, Chương II, tr. PDF 35–36 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Bản kỷ q.I, Kỷ nhà Đinh, tr. PDF 58–65 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -361,7 +505,19 @@
         ],
         "scenes": [],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "economy": "DVSK tr. 60",
+        "culture": "DVSK tr. 59–60",
+        "religion": "DVSK tr. 59",
+        "education": "DVSK tr. 59–60"
+      },
+      "draft_sections": [
+        "economy",
+        "culture",
+        "religion",
+        "education"
+      ]
     },
     {
       "id": "tienle",
@@ -375,19 +531,23 @@
         "context": "Sự chuyển giao từ nhà Đinh sang nhà Tiền Lê diễn ra trong tình hình vua kế vị còn nhỏ tuổi và sức ép quân sự từ phương bắc.",
         "territory": "Kinh đô tiếp tục đặt ở Hoa Lư; nhà nước từng bước củng cố quyền quản lý ở các vùng và các châu động.",
         "state": "Triều đình tổ chức quân đội, quan lại và hoạt động cai trị trên nền tảng nhà nước thời Đinh; các chiến dịch dẹp loạn ở địa phương tiếp tục diễn ra.",
-        "economy": "Đang biên tập",
+        "economy": "Năm 987, Lê Hoàn lần đầu cày ruộng tịch điền ở núi Đọi, mở đầu nghi lễ khuyến nông của nhà vua. Triều Tiền Lê đúc tiền Thiên Phúc (984) và cho đào, vét kênh ở Thanh Hóa – Nghệ An để thuyền bè đi lại thuận tiện.",
         "military": "Sử ghi chiến thắng chống quân Tống năm 981 dưới quyền Lê Hoàn, đồng thời có các cuộc chiến với Chiêm Thành và hoạt động giữ yên các châu động.",
         "foreign": "Sau xung đột với nhà Tống, Lê Hoàn duy trì quan hệ sứ bộ và bang giao để ổn định cục diện.",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "law": "Năm 1002, Lê Hoàn ra lệnh định luật lệnh, đồng thời đổi mười đạo thành lộ, phủ, châu. Toàn thư không chép nội dung cụ thể của các luật lệnh này.",
+        "culture": "Ngày sinh nhật vua (rằm tháng bảy) có lệ dựng núi giả bằng tre trên thuyền gọi là Nam Sơn và tổ chức đua thuyền. Khi sứ Tống Lý Giác sang, pháp sư Đỗ Thuận và thiền sư Khuông Việt đối đáp thơ văn, Khuông Việt làm bài từ tiễn sứ.",
+        "religion": "Các nhà sư như Khuông Việt, Đỗ Thuận được triều đình trọng dụng trong việc ngoại giao. Năm 1007, triều Tiền Lê sai sứ sang nhà Tống xin kinh Đại Tạng.",
+        "education": "Chưa có khoa cử; tầng lớp có học chủ yếu là tăng sĩ và một số người gốc phương Bắc thông kinh sử như Hồng Hiến, người từng làm quân sư cho Lê Hoàn.",
         "people": "Lê Hoàn (Lê Đại Hành), Phạm Cự Lượng, Lê Long Việt và Lê Long Đĩnh là những nhân vật chính của thời Tiền Lê.",
-        "heritage": "Đang biên tập"
+        "heritage": "Cố đô Hoa Lư (Ninh Bình) có đền thờ vua Lê Đại Hành; núi Đọi (Hà Nam) gắn với lễ tịch điền năm 987. Hai địa điểm này có thể kết nối với hồ sơ chiến thắng chống Tống năm 981."
       },
       "sources": [
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần III, Chương III, tr. PDF 37–38 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Bản kỷ q.I, Kỷ nhà Lê, tr. PDF 65–79 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -400,7 +560,23 @@
         ],
         "scenes": [],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "economy": "DVSK tr. 67–68, 73",
+        "law": "DVSK tr. 73",
+        "culture": "DVSK tr. 67–69",
+        "religion": "DVSK tr. 68–69, 76",
+        "education": "DVSK tr. 69",
+        "heritage": "DVSK tr. 65, 68"
+      },
+      "draft_sections": [
+        "economy",
+        "law",
+        "culture",
+        "religion",
+        "education",
+        "heritage"
+      ]
     },
     {
       "id": "ly",
@@ -473,7 +649,7 @@
         "economy": "Nông nghiệp, ruộng đất và các điền trang là những chủ đề cần tìm hiểu qua sử liệu và nghiên cứu chuyên ngành.",
         "military": "Các cuộc kháng chiến 1258, 1285 và 1287–1288 là các dấu mốc tiêu biểu.",
         "foreign": "Quan hệ với triều Nguyên vừa mang tính bang giao vừa diễn ra xung đột quân sự.",
-        "law": "Đang biên tập",
+        "law": "Ngay năm đầu (1226), triều Trần định luật lệnh, điều lệ; năm 1230 khảo xét luật lệ triều trước, soạn Quốc triều thông chế và sửa hình luật, lễ nghi; năm 1244 định lại luật pháp. Triều đình quy định văn khế, chúc thư phải điểm chỉ; năm 1341 Trương Hán Siêu, Nguyễn Trung Ngạn soạn bộ Hình thư.",
         "culture": "Văn chương và tinh thần thời Trần được phản ánh qua nhiều trước tác và di tích.",
         "religion": "Thiền phái Trúc Lâm gắn với Trần Nhân Tông trong lịch sử Phật giáo Việt Nam.",
         "education": "Khoa cử và đội ngũ nho sĩ tiếp tục phát triển qua các triều vua.",
@@ -491,6 +667,10 @@
         },
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần III, Chương VI–X, tr. PDF 49–73 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Bản kỷ q.V–VII, tr. PDF 159–164, 247 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -512,7 +692,13 @@
             "period_id": "tran"
           }
         ]
-      }
+      },
+      "section_sources": {
+        "law": "DVSK tr. 159, 161–162, 164, 247; VNSL tr. 50"
+      },
+      "draft_sections": [
+        "law"
+      ]
     },
     {
       "id": "ho",
@@ -529,16 +715,20 @@
         "economy": "Các cải cách của Hồ Quý Ly về kinh tế, ruộng đất và tiền tệ được sử sách đề cập; cần đối chiếu văn bản chuyên khảo trước khi kết luận về tác động thực tế.",
         "military": "Triều Hồ chuẩn bị phòng thủ trước nguy cơ chiến tranh, tổ chức thủy quân và xây thành lũy. Quân Minh tiến đánh năm 1406–1407, triều Hồ thất bại.",
         "foreign": "Quan hệ với nhà Minh ngày càng căng thẳng; các tranh chấp về tính chính danh và biên giới được nhà Minh sử dụng trong bối cảnh chuẩn bị tiến quân.",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "law": "Hồ Hán Thương định quan chế và hình luật nước Đại Ngu; triều Hồ đặt luật xử phạt người không chịu tiêu tiền giấy hoặc nâng giá. Hán Thương cũng lập phép hạn chế gia nô theo phẩm cấp quan lại, số dư phải nộp cho nhà nước.",
+        "culture": "Hồ Quý Ly đề cao chữ Nôm: ông dịch thiên Vô Dật (Kinh Thư) ra 'quốc ngữ' để dạy vua và làm thơ quốc ngữ. Ông cũng soạn sách Minh đạo, đặt Chu Công ở vị trí tiên thánh, gây tranh luận trong giới nho sĩ.",
+        "religion": "Năm 1396, khi còn nắm quyền cuối Trần, Hồ Quý Ly bắt tăng đạo dưới 50 tuổi hoàn tục và tổ chức sát hạch người hiểu kinh giáo. Chính sách này thu hẹp ảnh hưởng của Phật giáo trong bộ máy nhà nước.",
+        "education": "Năm 1396 đổi phép thi sang thể văn bốn kỳ (kinh nghĩa, thơ phú, chế chiếu biểu, văn sách) và đặt học quan ở các lộ, cấp ruộng học. Khoa thi Thái học sinh năm 1400 lấy đỗ 20 người, trong đó có Nguyễn Trãi.",
         "people": "Hồ Quý Ly, Hồ Hán Thương và Hồ Nguyên Trừng là những nhân vật chính của giai đoạn này.",
         "heritage": "Thành nhà Hồ tại Thanh Hóa là di tích then chốt để tìm hiểu kiến trúc quân sự và chính trị cuối thế kỷ XIV – đầu thế kỷ XV."
       },
       "sources": [
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần III, Chương XI, tr. PDF 73–77 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Bản kỷ q.VIII, tr. PDF 278–300 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -551,7 +741,19 @@
         ],
         "scenes": [],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "law": "DVSK tr. 298, 300",
+        "culture": "DVSK tr. 278, 285, 288",
+        "religion": "DVSK tr. 289",
+        "education": "DVSK tr. 289, 291, 297"
+      },
+      "draft_sections": [
+        "law",
+        "culture",
+        "religion",
+        "education"
+      ]
     },
     {
       "id": "hautran",
@@ -564,20 +766,24 @@
         "overview": "Sau khi nhà Hồ thất bại năm 1407, một số lực lượng nhân danh hậu duệ nhà Trần tiếp tục kháng chiến chống nhà Minh, nổi bật với Giản Định Đế và Trùng Quang Đế (Trần Quý Khoáng).",
         "context": "Nhà Minh thiết lập chính quyền cai trị trên đất Đại Việt, trong khi các lực lượng chống đối tập hợp tại nhiều khu vực.",
         "territory": "Nghệ An, Thuận Hóa và Hóa Châu được nhắc tới trong các chiến dịch; vùng kiểm soát thay đổi theo chiến sự nên không nên vẽ ranh giới cố định.",
-        "state": "Đang biên tập",
-        "economy": "Đang biên tập",
+        "state": "Giản Định Đế lên ngôi ở Mô Độ (Trường Yên) cuối năm 1407; năm 1409 Trần Quý Khoáng lên ngôi ở Chi La (Nghệ An), hiệu Trùng Quang, phong Nguyễn Súy, Nguyễn Cảnh Dị, Đặng Dung giữ các chức cao. Đây là chính quyền kháng chiến lưu động, không có kinh đô cố định.",
+        "economy": "Chiến tranh khiến lương thực rất thiếu; có lúc quân Đặng Dung phải gặt lúa sớm để nuôi quân. Phía Minh cho đổi chác thóc lúa, mộ thương nhân nộp thóc và chọn thợ giỏi đưa về phương Bắc.",
         "military": "Các trận đánh và chiến dịch được sách ghi chép, trong đó có trận Bô Cô năm 1408. Nỗ lực kháng chiến suy yếu trước các cuộc tiến công tiếp theo của nhà Minh.",
-        "foreign": "Đang biên tập",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "foreign": "Các vua Hậu Trần nhiều lần sai sứ sang Minh cầu phong nhưng không được chấp nhận. Năm 1413, Nguyễn Biểu đi sứ gặp Trương Phụ, mắng thẳng việc nhà Minh hứa lập con cháu họ Trần mà lại đặt quận huyện, rồi bị giết.",
+        "law": "Nhà Minh chia đất thành 17 phủ và các châu, đặt ty Bố chính, Án sát, áp dụng luật lệ của mình. Bản chiếu nhà Minh còn được ghi trong Toàn thư hứa hoãn thuế ba năm, khác hẳn thực tế bị vơ vét mà sử cũ ghi lại.",
+        "culture": "Việt Nam sử lược ghi nhà Minh thu gom sách vở của nước ta đem về phương Bắc và bắt dân theo phong tục, cách ăn mặc của họ. Bài thơ Thuật hoài của Đặng Dung là tác phẩm văn học tiêu biểu còn lại từ cuộc kháng chiến.",
+        "religion": "Theo Việt Nam sử lược, nhà Minh lập đền miếu và bắt dân cúng tế theo tục phương Bắc. Đây là một phần chính sách đồng hóa thời thuộc Minh.",
+        "education": "Nhà Minh đặt học hiệu ở Giao Châu theo mô hình của họ, đồng thời đưa người có tài và thợ giỏi về phương Bắc.",
         "people": "Giản Định Đế, Trần Quý Khoáng, Đặng Tất và Nguyễn Biểu là những nhân vật được ghi lại trong phong trào Hậu Trần.",
-        "heritage": "Đang biên tập"
+        "heritage": "Có thể tìm hiểu qua đền thờ Nguyễn Biểu (Can Lộc, Hà Tĩnh), các di tích thờ Đặng Tất, Đặng Dung và địa danh Bô Cô (Nam Định), nơi Đặng Tất phá quân Minh năm 1408."
       },
       "sources": [
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần III, Chương XII, tr. PDF 78–80 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Bản kỷ q.IX, Kỷ Hậu Trần, tr. PDF 309–324 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -585,7 +791,27 @@
         "people": [],
         "scenes": [],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "state": "DVSK tr. 309, 313, 315",
+        "economy": "DVSK tr. 316, 320",
+        "foreign": "DVSK tr. 318, 320; VNSL tr. 80",
+        "law": "DVSK tr. 310, 314; VNSL tr. 78",
+        "culture": "VNSL tr. 80–81",
+        "religion": "VNSL tr. 81",
+        "education": "DVSK tr. 319–320; VNSL tr. 81",
+        "heritage": "VNSL tr. 80; DVSK tr. 314"
+      },
+      "draft_sections": [
+        "state",
+        "economy",
+        "foreign",
+        "law",
+        "culture",
+        "religion",
+        "education",
+        "heritage"
+      ]
     },
     {
       "id": "leso",
@@ -659,19 +885,23 @@
         "context": "Mâu thuẫn trong triều Lê, sự nổi lên của các tập đoàn quân sự và nỗ lực khôi phục nhà Lê góp phần tạo nên thời kỳ Nam – Bắc triều.",
         "territory": "Nhà Mạc kiểm soát vùng Bắc Bộ trong thời kỳ chính; về sau lực lượng họ Mạc tiếp tục hoạt động ở Cao Bằng. Không đồng nhất các giai đoạn đó thành một vùng lãnh thổ bất biến.",
         "state": "Giai đoạn đầu, nhà Mạc tiếp tục sử dụng nhiều thể chế hành chính của thời Lê; hệ thống quyền lực bị thử thách bởi chiến tranh với lực lượng trung hưng nhà Lê.",
-        "economy": "Đang biên tập",
+        "economy": "Năm 1528, Mạc Đăng Dung cho đúc tiền mới; vì đúc tiền đồng không thành nên phải đúc thêm tiền pha kẽm và sắt. Toàn thư chép trong vài năm đầu thời Mạc Đăng Doanh, đường sá yên ổn và được mùa liên tiếp; về sau chiến tranh Nam – Bắc triều gây đói kém nhiều vùng.",
         "military": "Nhiều chiến dịch giữa hai tập đoàn Lê – Mạc diễn ra trong thế kỷ XVI; việc Trịnh Tùng chiếm lại Thăng Long năm 1592 là một bước ngoặt.",
         "foreign": "Việt Nam sử lược dành riêng một phần cho bang giao nhà Mạc với nhà Minh. Ngôn từ đánh giá về Mạc Đăng Dung trong sách là nhận định của tác giả, cần tách khỏi mô tả sự kiện.",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "law": "Sử cũ chép Mạc Đăng Dung giữ nguyên pháp độ của triều Lê để yên lòng người; cuối năm 1528 cho bàn định binh chế, điền chế, lộc chế và các vệ, phủ theo quan chế triều trước. Lệnh cấm mang binh khí đi lại trên đường được sử cũ ghi là làm giảm hẳn trộm cướp.",
+        "culture": "Thời Mạc nổi lên nhiều danh sĩ, tiêu biểu là Nguyễn Bỉnh Khiêm, người đỗ đầu khoa thi năm 1535. Các tư liệu khảo cổ, mỹ thuật cho thấy kiến trúc đình làng và điêu khắc dân gian phát triển mạnh từ thế kỷ XVI (cần đối chiếu chuyên khảo).",
+        "religion": "Toàn thư và Việt Nam sử lược ít chép về chính sách tôn giáo của nhà Mạc. Nhiều văn bia, chuông, tượng ở các chùa niên đại Mạc còn lại là nguồn để nghiên cứu thêm.",
+        "education": "Dù chiến tranh liên miên, nhà Mạc vẫn đều đặn mở khoa thi Hội (như các khoa 1529, 1532, 1535, 1559…), lấy đỗ nhiều tiến sĩ. Một số người đỗ thời Mạc về sau ra làm quan cho nhà Lê trung hưng.",
         "people": "Mạc Đăng Dung, Mạc Phúc Nguyên, Mạc Mậu Hợp, Nguyễn Kim và Trịnh Tùng là những nhân vật thường xuất hiện trong tư liệu về Nam – Bắc triều.",
-        "heritage": "Đang biên tập"
+        "heritage": "Dương Kinh (vùng Cổ Trai, Kiến Thụy, Hải Phòng) là quê Mạc Đăng Dung và trung tâm thứ hai của nhà Mạc; dấu tích thành nhà Mạc còn ở Cao Bằng và Lạng Sơn, gắn với giai đoạn họ Mạc lui lên miền núi."
       },
       "sources": [
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần IV, Chương II, tr. PDF 114–119 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Đại Việt sử ký toàn thư — Bản kỷ q.XV–XVI, tr. PDF 591–619 (bản dịch 1993, PDF chủ dự án cung cấp)",
           "url": ""
         }
       ],
@@ -684,7 +914,23 @@
             "period_id": "mac"
           }
         ]
-      }
+      },
+      "section_sources": {
+        "economy": "DVSK tr. 592, 594–595",
+        "law": "DVSK tr. 592, 595",
+        "culture": "DVSK tr. 598",
+        "religion": "DVSK tr. 591–619",
+        "education": "DVSK tr. 593–594, 598, 606; VNSL tr. 115",
+        "heritage": "DVSK tr. 591–592; VNSL tr. 121"
+      },
+      "draft_sections": [
+        "economy",
+        "law",
+        "culture",
+        "religion",
+        "education",
+        "heritage"
+      ]
     },
     {
       "id": "letrung",
@@ -744,12 +990,12 @@
         "economy": "Đời sống dân cư chịu ảnh hưởng của chiến tranh và biến động sản xuất; từng nhận định cần có tài liệu cụ thể.",
         "military": "Chiến thắng Rạch Gầm – Xoài Mút (1785) và Ngọc Hồi – Đống Đa (1789) là dấu mốc quân sự nổi bật.",
         "foreign": "Xung đột với quân Xiêm và quân Thanh diễn ra trong những bối cảnh chính trị khác nhau.",
-        "law": "Đang biên tập",
+        "law": "Sử cũ không ghi một bộ luật riêng của Tây Sơn. Quang Trung cho làm lại sổ đinh, phát thẻ 'tín bài' cho mọi người; ai không có thẻ bị coi là dân lậu. Việc này cũng bị lợi dụng để sách nhiễu dân.",
         "culture": "Cần phân biệt các chính sách được ghi trong sử liệu với những diễn giải, truyền thuyết về Quang Trung.",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
+        "religion": "Quang Trung cho bỏ chùa nhỏ ở các làng, gom vật liệu dựng ở mỗi phủ, huyện một ngôi chùa lớn, chọn tăng nhân có học, có đạo đức trông coi; người tu không xứng đáng phải về làm ăn.",
+        "education": "Quang Trung đề cao chữ Nôm trong hành chính và thi cử, có khi ra đề và bắt làm bài bằng chữ Nôm. Ông nhiều lần mời Nguyễn Thiếp (La Sơn phu tử) và tôn trọng ý kiến của ông về việc trị nước.",
         "people": "Nguyễn Huệ (Quang Trung), Nguyễn Nhạc và Nguyễn Lữ là các nhân vật chính.",
-        "heritage": "Sa bàn Rạch Gầm – Xoài Mút chưa có asset 3D được duyệt; hiện chỉ có hồ sơ tư liệu."
+        "heritage": "Đã có sa bàn 3D Rạch Gầm – Xoài Mút 1785 và Ngọc Hồi – Đống Đa 1789 (tái dựng mô phỏng). Có thể tìm hiểu thêm ở Bảo tàng Quang Trung (Bình Định) và gò Đống Đa (Hà Nội)."
       },
       "sources": [
         {
@@ -758,6 +1004,10 @@
         },
         {
           "title": "Trần Trọng Kim, Việt Nam sử lược — Phần IV, Chương XI–XII, tr. PDF 144–168 (bản PDF 252 trang do chủ dự án cung cấp)",
+          "url": ""
+        },
+        {
+          "title": "Trần Trọng Kim, Việt Nam sử lược — Phần IV, Chương XII, tr. PDF 158–159 (chính trị vua Quang Trung)",
           "url": ""
         }
       ],
@@ -775,7 +1025,19 @@
             "period_id": "tayson"
           }
         ]
-      }
+      },
+      "section_sources": {
+        "law": "VNSL tr. 158–159",
+        "religion": "VNSL tr. 158",
+        "education": "VNSL tr. 158",
+        "heritage": "VNSL tr. 144–159"
+      },
+      "draft_sections": [
+        "law",
+        "religion",
+        "education",
+        "heritage"
+      ]
     },
     {
       "id": "nguyenvn",
@@ -841,21 +1103,26 @@
       "status": "giai đoạn hiện đại",
       "reviewed": false,
       "sections": {
-        "overview": "Đang biên tập",
-        "context": "Đang biên tập",
-        "territory": "Đang biên tập",
-        "state": "Đang biên tập",
-        "economy": "Đang biên tập",
-        "military": "Đang biên tập",
-        "foreign": "Đang biên tập",
-        "law": "Đang biên tập",
-        "culture": "Đang biên tập",
-        "religion": "Đang biên tập",
-        "education": "Đang biên tập",
-        "people": "Đang biên tập",
-        "heritage": "Đang biên tập"
+        "overview": "Giai đoạn mở đầu bằng Cách mạng tháng Tám và bản Tuyên ngôn độc lập ngày 2/9/1945, trải qua hai cuộc kháng chiến chống Pháp (1945–1954) và chiến tranh Việt Nam (1954–1975), thống nhất đất nước năm 1976, rồi bước vào thời kỳ Đổi mới từ năm 1986.",
+        "context": "Sau Chiến tranh thế giới thứ hai, Việt Nam nằm trong bối cảnh phi thực dân hóa và Chiến tranh Lạnh. Hiệp định Genève 1954 tạm chia hai miền ở vĩ tuyến 17; miền Bắc là Việt Nam Dân chủ Cộng hòa, miền Nam là Quốc gia Việt Nam rồi Việt Nam Cộng hòa, cho đến năm 1975.",
+        "territory": "Thủ đô là Hà Nội. Từ 1954 đến 1975 đất nước tạm chia hai miền; năm 1976 thống nhất thành Cộng hòa Xã hội chủ nghĩa Việt Nam. Năm 2025, các đơn vị hành chính được sắp xếp lại còn 34 tỉnh, thành phố, chính quyền địa phương còn hai cấp.",
+        "state": "Hiến pháp đầu tiên ra đời năm 1946; các bản tiếp theo là 1959, 1980, 1992 và 2013. Nhà nước Cộng hòa Xã hội chủ nghĩa Việt Nam đặt dưới sự lãnh đạo của Đảng Cộng sản Việt Nam, với Quốc hội, Chủ tịch nước, Chính phủ và hệ thống tòa án, viện kiểm sát.",
+        "economy": "Sau thời kỳ kinh tế kế hoạch hóa tập trung, Đại hội VI (12/1986) khởi xướng Đổi mới, chuyển sang kinh tế thị trường định hướng xã hội chủ nghĩa. Việt Nam gia nhập WTO năm 2007 và tham gia nhiều hiệp định thương mại tự do.",
+        "military": "Các mốc lớn gồm kháng chiến toàn quốc (19/12/1946), chiến thắng Điện Biên Phủ (7/5/1954), Tổng tiến công Tết Mậu Thân 1968, chiến dịch Hồ Chí Minh kết thúc chiến tranh ngày 30/4/1975, và chiến tranh biên giới Tây Nam, biên giới phía Bắc (1978–1979).",
+        "foreign": "Hiệp định Genève (1954) và Hiệp định Paris (1973) là hai văn kiện ngoại giao then chốt. Việt Nam gia nhập Liên Hợp Quốc năm 1977, ASEAN năm 1995, bình thường hóa quan hệ với Trung Quốc (1991) và Hoa Kỳ (1995).",
+        "law": "Hệ thống pháp luật được xây dựng qua các bản Hiến pháp và nhiều bộ luật lớn như Bộ luật Hình sự, Bộ luật Dân sự. Hiến pháp năm 2013 là văn bản hiện hành.",
+        "culture": "Chữ Quốc ngữ trở thành chữ viết chính thức trong giáo dục và hành chính. Nhiều di sản của Việt Nam được UNESCO ghi danh, như Quần thể di tích Cố đô Huế (1993), Vịnh Hạ Long (1994), Hoàng thành Thăng Long (2010) và Không gian văn hóa Cồng chiêng Tây Nguyên (2005).",
+        "religion": "Việt Nam là quốc gia đa tín ngưỡng, tôn giáo: Phật giáo, Công giáo, Tin Lành, Cao Đài, Phật giáo Hòa Hảo, Hồi giáo cùng tín ngưỡng thờ cúng tổ tiên. Tín ngưỡng thờ cúng Hùng Vương được UNESCO ghi danh năm 2012.",
+        "education": "Phong trào Bình dân học vụ (từ 1945) xóa nạn mù chữ; hệ thống giáo dục phổ thông và đại học được mở rộng qua các thời kỳ. Chương trình giáo dục phổ thông 2018 là chương trình hiện hành.",
+        "people": "Các nhân vật tiêu biểu gồm Chủ tịch Hồ Chí Minh, Đại tướng Võ Nguyên Giáp và nhiều nhà lãnh đạo, nhà khoa học, văn nghệ sĩ. Hồ sơ nhân vật sau 1945 cần được biên soạn riêng, có nguồn cụ thể.",
+        "heritage": "Có thể kết nối với sa bàn 3D Điện Biên Phủ 1954 và Thành cổ Quảng Trị 1972 (tái dựng mô phỏng), cùng các di tích như Quảng trường Ba Đình, Dinh Độc Lập và Địa đạo Củ Chi."
       },
-      "sources": [],
+      "sources": [
+        {
+          "title": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+          "url": ""
+        }
+      ],
       "links": {
         "people": [
           {
@@ -872,7 +1139,37 @@
           }
         ],
         "costumes": []
-      }
+      },
+      "section_sources": {
+        "overview": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "context": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "territory": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "state": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "economy": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "military": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "foreign": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "law": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "culture": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "religion": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "education": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "people": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục",
+        "heritage": "Sách giáo khoa Lịch sử 12 (chương trình 2018) — mốc chung; chưa có nguồn chuyên khảo trong thư mục"
+      },
+      "draft_sections": [
+        "overview",
+        "context",
+        "territory",
+        "state",
+        "economy",
+        "military",
+        "foreign",
+        "law",
+        "culture",
+        "religion",
+        "education",
+        "people",
+        "heritage"
+      ]
     }
   ],
   "source_enrichment": {
@@ -881,5 +1178,16 @@
     "policy": "Tóm lược biên soạn; không chép toàn văn; nội dung chưa được chủ dự án duyệt. Những mục 'Đang biên tập' là nơi chưa đủ chứng cứ. Giữ nguyên giao diện V4.6.",
     "changed_periods": 12,
     "filled_sections": 79
+  },
+  "source_enrichment_v542": {
+    "version": "5.4.2-draft",
+    "date": "2026-11-22",
+    "sources": [
+      "Đại Việt sử ký toàn thư — bản dịch NXB KHXH 1993 (PDF 739 trang do chủ dự án cung cấp)",
+      "Trần Trọng Kim, Việt Nam sử lược (PDF 252 trang do chủ dự án cung cấp)",
+      "Sách giáo khoa Lịch sử 12 — chỉ dùng cho mốc chung giai đoạn sau 1945"
+    ],
+    "policy": "Viết lại bằng lời mới, không chép nguyên văn; mỗi mục có chỉ dẫn trang trong 'section_sources'. Các mục trong 'draft_sections' là bản thảo, chờ chủ dự án duyệt. Nơi sử liệu không chép, ghi rõ là không có tư liệu thay vì suy đoán.",
+    "filled_sections": 88
   }
 }
