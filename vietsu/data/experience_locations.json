@@ -30,6 +30,16 @@
     "source_note": "Vị trí đại diện cho di tích, không phải vị trí từng đơn vị quân."
   },
   {
+    "id": "ngoc-hoi-dong-da",
+    "kind": "battle",
+    "lat": 20.966,
+    "lon": 105.835,
+    "name": "Ngọc Hồi – Đống Đa",
+    "year": 1789,
+    "category": "Chiến trận – sa bàn",
+    "source_note": "Vị trí đại diện cho vùng Ngọc Hồi – Thăng Long (gốc sa bàn 20.96609 N, 105.8355 E), không phải vị trí từng đơn vị."
+  },
+  {
     "id": "dien-bien-phu",
     "kind": "battle",
     "lat": 21.392,

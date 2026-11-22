@@ -148,5 +148,31 @@
         "text": "Địa hình, tập đoàn cứ điểm và các đợt tiến công (tái dựng)."
       }
     ]
+  },
+  {
+    "id": "ngoc-hoi-dong-da",
+    "title": "Ngọc Hồi – Đống Đa",
+    "period": "Tết Kỷ Dậu 1789",
+    "entity_id": "battle1789",
+    "timeline_year": 1789,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/ngoc-hoi-dong-da/",
+    "notes": "Sa bàn 3D thử nghiệm (three.js) tại /khong-gian/ngoc-hoi-dong-da/ — tái dựng mô phỏng theo kịch bản V1 và lời dẫn thu âm; mật độ quân là minh họa, không phải quân số sử liệu; cần đối chiếu tư liệu.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "don-ngoc-hoi",
+        "name": "Đồn Ngọc Hồi",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Lũy, bãi chông, đội mộc và voi chiến (tái dựng)."
+      }
+    ]
   }
 ]
