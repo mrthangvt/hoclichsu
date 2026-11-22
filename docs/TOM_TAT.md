@@ -137,6 +137,11 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - Artifact Claude: `python3 tools/build_artifact_dbp.py` → `dist_artifact_dbp/` (slug 9725451d-ad34-4c1b-9573-a0532b0396aa).
 - Đã nối vào Việt Sử (19/11, theo yêu cầu chủ dự án): thẻ "Điện Biên Phủ" trong Không gian lịch sử (`V23_SCENES`, `V2_EXPERIENCES`, `KHONG_GIAN_3D` trong `Viet_Su_Timeline_V4.1_Offline.html`), nút "Vào sa bàn 3D" (`v46.js` SCENES), mốc 1954 trên dòng thời gian (`v42.js` EXP + ảnh thẻ), dữ liệu CMS (`data/experiences_seed.json`, `data/experience_locations.json`); GitHub Pages tự chép `static/khong-gian/` nên trang có ở `/khong-gian/dien-bien-phu/`. Chưa làm: toạ độ đã thẩm định, ranh giới cứ điểm, sơ đồ hào theo ngày, lồng tiếng thật.
 
+## Sa bàn Ngọc Hồi – Đống Đa 1789 (nhánh `claude/ngoc-hoi-dong-da-1789`, 22/11/2026)
+- Trang độc lập bản V10.7: `vietsu/static/khong-gian/ngoc-hoi-dong-da/` (three.js 0.160, nhãn "Tái dựng mô phỏng"). Chưa gắn nút vào giao diện Việt Sử (V4.6 đang khóa).
+- 14 cảnh, voice thu âm 13:45 làm đồng hồ phim; chế độ Phim tự động / Khám phá / Góc nhìn nhân vật.
+- Tài liệu và mã nguồn dựng: `docs/ngoc-hoi-dong-da/` (`README.md`, `HANDOFF.md`, `nguon/`).
+
 ## Lấy toạ độ OpenStreetMap cho sa bàn (dành cho Codex/ChatGPT)
 - Đổi toạ độ: `python3 tools/osm_sang_sa_ban.py <vĩ độ> <kinh độ>` hoặc `python3 tools/osm_sang_sa_ban.py file.geojson > ket_qua.json`. Kết quả là toạ độ sa bàn (m, Blender X/Y); sang three.js dùng `B(x,y,z)=(x,z,−y)`.
 - Kiểm tra: Đài tưởng niệm giữa Thành cổ ra ≈ (0, 0); Cổng Tiền ≈ (0, −250).
