@@ -299,6 +299,7 @@ body.cancanh #labels .lbl:not(.pin):not(.tg) { opacity: 0; transition: opacity .
       <button class="chip on" id="bsnd">🔊 Âm thanh</button>
       <button class="chip on" id="barr" title="Bật / tắt mũi tên hướng tiến công (tự ẩn khi máy quay xuống cận)">➤ Mũi tên</button>
       <button class="chip on" id="bvo" title="Lời bình thu âm — phim, phụ đề và hoạt cảnh chạy theo đúng nhịp giọng đọc">🗣 Lời bình</button>
+      <button class="chip on" id="bnn" title="Nhạc nền theo diễn biến phim (mở đầu, dẫn chuyện, hào hùng)">🎵 Nhạc nền</button>
       <button class="chip" id="blayers" aria-expanded="false">☰ Lớp</button>
       <button class="chip" id="blegend" aria-expanded="false">Chú giải</button>
       <button class="chip" id="bdocs">📖 Tư liệu</button>
@@ -939,7 +940,7 @@ async function init() {
     vox: () => ({ ready: VOX.ready, fail: VOX.fail, direct: VOX.direct, blocked: VOX.blocked, live: voxLive(), paused: VOX.a ? VOX.a.paused : null, t: VOX.a ? VOX.a.currentTime : null,
       film: starts[cur] + st, cur, st, lech: VOX.a ? VOX.a.currentTime - (starts[cur] + st) : null, sub: $("sub").textContent, rate: VOX.a ? VOX.a.playbackRate : null }),
     tau: () => (NV.boatT.xi_doan || []).map((b, k) => [k, b.fire ? 1 : 0, +b.sink.toFixed(2)]).filter((q) => q[1] || q[2]),
-    den: (i, t) => { goScene(i, t); return [cur, st]; }, play: (b) => setPlaying(b), keys: (i) => S.scenes[i].keys, key: (i, n, o) => Object.assign(S.scenes[i].keys[n], o), dbg: () => ({ FX, NV, S, VOX, AM, D, camera, controls }), fx: () => ({ rung: FX.rung, uT: FX.uT, lua: FX.pools.lua.list.length, khoi: FX.pools.khoiCot.list.length }),
+    den: (i, t) => { goScene(i, t); return [cur, st]; }, play: (b) => setPlaying(b), keys: (i) => S.scenes[i].keys, key: (i, n, o) => Object.assign(S.scenes[i].keys[n], o), dbg: () => ({ FX, NV, S, VOX, AM, NHAC, D, camera, controls }), fx: () => ({ rung: FX.rung, uT: FX.uT, lua: FX.pools.lua.list.length, khoi: FX.pools.khoiCot.list.length }),
     walk: (b) => setWalk(b), boat: (b) => setBoat(b), joy: (x, y) => { W.joy.x = x; W.joy.y = y; }, arrows: () => { for (const A of ARR.values()) A.p = 1; applyArrowProgress(); } };
   const qm = new URLSearchParams(location.search).get("mode");
   setAppMode(qm === "explore" || qm === "pov" ? qm : S ? "film" : "explore");
@@ -948,12 +949,13 @@ async function init() {
   // V1.9: chỉ khi mọi thứ đã tải xong mới hiện nút Bắt đầu (bấm nút cũng là lần chạm mở khoá âm thanh và voice)
   const ten = [...AM_BED, ...AM_ONE]; let xong = 0;
   AM.pre = Object.fromEntries(ten.map((n) => [n, fetch("am/" + n + ".mp3").then((r) => (r.ok ? r.arrayBuffer() : null)).catch(() => null).finally(() => { xong++; })]));
+  NHAC.pre = fetch(NHAC.file).then((r) => (r.ok ? r.blob() : null)).catch(() => null).then((b) => { NHAC.url = b ? URL.createObjectURL(b) : NHAC.file; });
   let nvXong = false; nvP.then(() => { nvXong = true; });
   const cho = (ms) => new Promise((r) => setTimeout(r, ms));
   for (let k = 0; k < 1200; k++) {                                      // tối đa 5 phút cho đường truyền chậm
     const vx = !(S && S.voice && VOX.a) || VOX.ready || VOX.fail;
-    if (nvXong && vx && xong >= ten.length) break;
-    const viec = [!nvXong && "quân lính, chiến thuyền", xong < ten.length && `âm thanh ${xong}/${ten.length}`, !vx && "lời bình"].filter(Boolean);
+    if (nvXong && vx && xong >= ten.length && NHAC.url) break;
+    const viec = [!nvXong && "quân lính, chiến thuyền", (xong < ten.length || !NHAC.url) && `âm thanh ${xong}/${ten.length}`, !vx && "lời bình"].filter(Boolean);
     setStep("Đang tải " + viec.join(" · ") + "…", 0.8 + 0.15 * ((nvXong ? 1 : 0) + xong / ten.length + (vx ? 1 : 0)) / 3);
     await cho(250);
   }
@@ -1906,7 +1908,7 @@ function fillDocs() {
   if (S.refs && S.refs.length) {
     addEl(el, "h4", "Tư liệu đối chiếu"); const ul = addEl(el, "ul");
     for (const [t, u] of S.refs) { const li = addEl(ul, "li"), a = addEl(li, "a", t); a.href = u; a.target = "_blank"; a.rel = "noopener"; }
-  }
+  }  addEl(el, "p", "Nhạc nền (Epidemic Sound): It Has Awoken – Dream Cave · Arbitrary Enemy, Hero Epilogue – Experia · I Will Be Your Knight – Jo Wandrini · Final Battle – Max Anson · The Thick of It – Jon Bjork · Tough Return – Phoenix Tail.", "muted small");
 }
 
 // ------------------------------------------------------------------ khám phá: chọn mốc lịch sử, đi bộ trên sa bàn với phím ảo
@@ -2988,6 +2990,28 @@ const AM = { ctx: null, out: null, buf: {}, beds: {}, ready: false, next: {}, fi
 const AM_BED = ["chim", "hanhquan", "trong", "chientruong", "danhkiem", "thaochay", "buoc_co", "buoc_rung", "hetxung", "bandan", "song", "songcuon"];
 const AM_LOP = { hanhquan_b: ["hanhquan", 0.9], hanhquan_c: ["hanhquan", 1.12], buoc_co_b: ["buoc_co", 1.08], buoc_rung_b: ["buoc_rung", 0.93] };   // lớp chồng: [file gốc, tốc độ]
 const HQ = (k) => ({ hanhquan: 0.5 * k, hanhquan_b: 0.4 * k, hanhquan_c: 0.3 * k, buoc_co: 0.4 * k, buoc_co_b: 0.3 * k, buoc_rung: 0.28 * k, buoc_rung_b: 0.22 * k });
+// V2.0 nhạc nền: một file trộn sẵn dài bằng voice (mono 40 kbps), phát qua thẻ audio nối vào Web Audio để chỉnh mức trên cả iPhone.
+// Bám giây phim như voice; có lời dẫn thì lùi xuống. Thứ tự bài (giây phim): It Has Awoken 0 · Arbitrary Enemy 53 · I Will Be Your Knight 106 ·
+// It Has Awoken 148 · Final Battle 203–300 (lặng chờ pháo lệnh) · The Thick of It 307,9 · Tough Return 422 · Hero Epilogue 511 · I Will Be Your Knight 595.
+const NHAC = { file: "am/nhacnen.mp3", pre: null, url: null, a: null, g: null, on: true };
+function nhacInit() {
+  if (NHAC.a || !AM.ctx) return;
+  const a = new Audio(); a.preload = "auto"; a.src = NHAC.url || NHAC.file; NHAC.a = a;
+  try { const src = AM.ctx.createMediaElementSource(a); NHAC.g = AM.ctx.createGain(); NHAC.g.gain.value = 0; src.connect(NHAC.g).connect(AM.ctx.destination); }
+  catch (e) { NHAC.g = null; a.volume = 0.5; }
+  const p = a.play(); if (p && p.then) p.then(() => { if (!(playing && appMode === "film")) a.pause(); }).catch(() => {});   // mở khoá trong lần bấm
+}
+function nhacTick() {
+  const a = NHAC.a; if (!a || !S) return;
+  const g = starts[cur] + st;
+  const want = NHAC.on && audio.on && appMode === "film" && playing && !seeking && g < (a.duration || total) - 0.2;
+  if (want) {
+    try { if (a.playbackRate !== speed) a.playbackRate = speed; } catch (e) {}
+    if (a.paused) { try { a.currentTime = g; } catch (e) {} a.play().catch(() => {}); }
+    else if (!a.seeking && Math.abs(a.currentTime - g) > 0.5) { try { a.currentTime = g; } catch (e) {} }
+  } else if (!a.paused) a.pause();
+  if (NHAC.g) { const lui = VOX.noi && VOX.a && !VOX.a.paused; NHAC.g.gain.setTargetAtTime(want ? (lui ? 0.85 : 1.5) : 0, AM.ctx.currentTime, lui ? 0.25 : 0.6); }
+}
 const AM_ONE = ["chem", "daibac", "daroi", "tauchim"];
 // mức tiếng sóng nền theo cảnh: cảnh nào máy quay ở trên sông thì nghe rõ hơn
 const AM_SONG = [0.30, 0.34, 0.12, 0.26, 0.14, 0.30, 0.34, 0.36, 0.34, 0.34, 0.30, 0.26, 0.18, 0.30];
@@ -3037,7 +3061,7 @@ async function amLoad() {
 function amEnable(on) {
   if (on && !AM.ctx) {
     AM.ctx = new (window.AudioContext || window.webkitAudioContext)(); AM.out = AM.ctx.createGain(); AM.out.gain.value = 0.9; AM.out.connect(AM.ctx.destination);
-    amLoad();
+    amLoad(); nhacInit();
   }
   if (AM.ctx) { if (on) AM.ctx.resume(); else AM.ctx.suspend(); }
 }
@@ -3047,6 +3071,7 @@ function amShot(n, vol) {
   const g = AM.ctx.createGain(); g.gain.value = vol; s.connect(g).connect(AM.out); s.start();
 }
 function amTick(dt) {
+  nhacTick();
   if (!AM.ready || !audio.on || !S) return;
   { const lui = VOX.noi && VOX.a && !VOX.a.paused; AM.out.gain.setTargetAtTime(lui ? 0.5 : 0.9, AM.ctx.currentTime, lui ? 0.12 : 0.3); }
   let i = 0, u = 0, live = true;
@@ -3064,6 +3089,7 @@ function amTick(dt) {
   }      // tiếng sóng: ngồi thuyền thì nghe rõ
   for (const n in AM.beds) {
     let v = (plan[n] || 0) * k; if (W.on) v *= 0.5; if (n === "buoc_co") v = Math.max(v, buoc);
+    if (n === "trong" && NHAC.a && NHAC.on && appMode === "film") v *= 0.35;   // đã có nhạc nền: trống lùi xuống
     if (n === "song") v = song;
     if (n === "songcuon") v = cuon * (live ? 1 : 0.3);
     AM.beds[n].gain.setTargetAtTime(v, now, 0.8);
@@ -3086,6 +3112,7 @@ function voUnlock() {
   lastLine = "";
 }
 $("bvo").addEventListener("click", () => { voUnlock(); });
+$("bnn").onclick = (e) => { NHAC.on = !NHAC.on; e.currentTarget.classList.toggle("on", NHAC.on); };
 $("splay").addEventListener("click", () => { voUnlock(); lastLine = ""; });
 // ------------------------------------------------------------------ V10: vào sa bàn là bật sẵn âm thanh và lời bình (trình duyệt chỉ cho phát sau lần chạm đầu tiên)
 {
