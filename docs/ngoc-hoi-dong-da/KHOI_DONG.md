@@ -26,5 +26,5 @@ Vật liệu đã thấy: `VL_DiaHinh`, `VL_Nuoc`, `VL_DuongDat`. Chưa có HDRI
 - [ ] Liệt kê đầy đủ 119 đối tượng, ghi quy ước đặt tên và hệ toạ độ.
 - [x] Kịch bản 14 cảnh (KICH_BAN_NGOC_HOI_DONG_DA_1789_V1.md trên máy anh Thắng) – dựng thành phim V10.7, xem `README.md`.
 - [x] Xuất dữ liệu web: `vietsu/static/khong-gian/ngoc-hoi-dong-da/` (22/11/2026).
-- [ ] Nút vào sa bàn trong mục Không gian lịch sử. Giao diện Việt Sử V4.6 đang khóa, nên việc này cần yêu cầu cụ thể của chủ dự án.
+- [x] Nút vào sa bàn trong mục Không gian lịch sử (22/11/2026). Giao diện Việt Sử V4.6 đang khóa, nên việc này cần yêu cầu cụ thể của chủ dự án.
 - [ ] Đối chiếu tư liệu lịch sử, ghi nguồn, giữ nhãn "Tái dựng mô phỏng".

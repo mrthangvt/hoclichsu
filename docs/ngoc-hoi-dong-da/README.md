@@ -4,7 +4,7 @@
 
 - **Trang web (chạy độc lập):** `vietsu/static/khong-gian/ngoc-hoi-dong-da/`. Chạy thử: `cd vietsu/static/khong-gian/ngoc-hoi-dong-da && python3 -m http.server 8000`.
 - **Bản xem nhanh:** artifact trên claude.ai (https://claude.ai/artifact/6Yr3y2XXAiKuZnkK2bfdXB).
-- **Chưa gắn vào giao diện Việt Sử:** giao diện V4.6 đang khóa, nên nút vào sa bàn trong mục "Không gian lịch sử" chờ chủ dự án yêu cầu cụ thể.
+- **Lối vào trong Việt Sử** (22/11/2026, theo yêu cầu chủ dự án): điểm pin và thẻ trong mục "Không gian lịch sử", nút "Vào sa bàn 3D", mốc 1789 trên dòng thời gian.
 - three.js 0.160 qua importmap (CDN jsDelivr), giống các sa bàn khác.
 
 ## Nội dung chính

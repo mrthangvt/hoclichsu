@@ -4,6 +4,9 @@
 
   // Chỉ công bố lối vào sa bàn khi có trang 3D thực sự trong repository.
   const SCENES = {
+    'ngoc-hoi-dong-da': { title: 'Ngọc Hồi – Đống Đa 1789',
+                   href: 'khong-gian/ngoc-hoi-dong-da/',
+                   subtitle: 'Sa bàn tương tác Three.js · phim tự động 13:45 có lời dẫn, khám phá, góc nhìn nhân vật · tái dựng mô phỏng' },
     'dien-bien-phu': { title: 'Điện Biên Phủ 1954',
                    href: 'khong-gian/dien-bien-phu/',
                    subtitle: 'Sa bàn tương tác Three.js · phim tự động 16:45, khám phá, so sánh · tái dựng mô phỏng' },
