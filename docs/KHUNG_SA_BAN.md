@@ -97,10 +97,22 @@ Lưu ý đã gặp: Overpass từng trả 406 khi gọi từ trình duyệt (xem
 - App: chỉ chứa bộ máy + catalog; từng gói tải về để xem offline.
 
 ## 9. Lộ trình
-1. **Giai đoạn 1** — bộ máy 1.0 + chuyển Ngọc Hồi – Đống Đa làm mẫu (đã được chủ dự án đồng ý 23/11/2026). Xong khi: chạy như bản cũ, tải lần đầu ≤ 15 MB, ≥ 30 fps trên Android tầm trung. Tạo `packs/_mau/`.
-2. **Giai đoạn 2** — Rạch Gầm – Xoài Mút.
+Quyết định của chủ dự án (23/11/2026): Ngọc Hồi – Đống Đa làm sa bàn mẫu; **Bạch Đằng 938 và Như Nguyệt 1077 đưa vào repo theo khung mới luôn** (không đưa bản cũ lên trước).
+
+Nhận xét kỹ thuật: Ngọc Hồi V10, Rạch Gầm, Bạch Đằng V4 và Như Nguyệt V1.6 **cùng một dòng mã** (cùng giao diện 3 chế độ Phim / Khám phá / Góc nhìn nhân vật, nhân vật nướng sẵn dạng `nv_*.json`, `story.json`, `inst.json`, `height.png` + `color.jpg`, âm thanh `am/`). Bộ máy 1.0 vì vậy được tách từ dòng mã này; Quảng Trị và Điện Biên Phủ chuyển sau.
+
+1. **Giai đoạn 1** — bộ máy 1.0 tách từ dòng Ngọc Hồi / Bạch Đằng + chuyển Ngọc Hồi – Đống Đa làm mẫu. Chuyển `nv_*.json` sang GLB nén. Xong khi: chạy như bản cũ, tải lần đầu ≤ 15 MB, ≥ 30 fps trên Android tầm trung. Tạo `packs/_mau/`.
+2. **Giai đoạn 2** — ba gói cùng dòng: **Bạch Đằng 938** (`bach-dang-938`), **Như Nguyệt 1077** (`nhu-nguyet-1077`), Rạch Gầm – Xoài Mút. Dùng chung thư viện: dân binh, lính Nam Hán, thuyền Tây Sơn, ngựa, âm thanh nền.
 3. **Giai đoạn 3** — Quảng Trị, Điện Biên Phủ.
-4. **Giai đoạn 4** — `catalog.json`, R2 + CDN, `tools/kiem_tra_goi.py`, website đọc catalog.
-5. Sau đó mỗi trận mới (Bạch Đằng 938, Như Nguyệt 1077, …) là một gói theo quy trình mục 6.
+4. **Giai đoạn 4** — `catalog.json`, R2 + CDN, `tools/kiem_tra_goi.py`, website đọc catalog. (Có thể làm `catalog.json` sớm cùng Giai đoạn 2 để Bạch Đằng, Như Nguyệt hiện trên Việt Sử ngay.)
+5. Sau đó mỗi trận mới là một gói theo quy trình mục 6.
 
 Các sa bàn cũ chạy song song tới khi bản theo khung được duyệt.
+
+### Nguồn của hai sa bàn đang nằm ngoài repo
+| Sa bàn | Bản đang chạy (đủ tệp) | Mã nguồn, script dựng | Ghi chú dung lượng |
+|---|---|---|---|
+| Bạch Đằng 938 V4 / V1.2 | Artifact slug `440c9fcf-5cee-4e56-8fa1-2cd73fe5c1a1` | Máy anh Thắng: `Hoc-lich-su/SabanBachDang/web_v2/` (`_nguon/`: build_geo, build_inst, build_story, bake_bd) | Nhân vật JSON ~26 MB, nhạc 11 MB |
+| Như Nguyệt 1077 V1.6 | Artifact slug `3b92f7b7-e318-4ede-a7c0-8f0ff3c3ab7f` | Script dựng (build_geo, build_story, bake_nn, bake_ngua2, nhac) ở phiên Claude cũ, **chưa chép về máy** — lấy lại từ artifact và Project › `sa-ban-nhu-nguyet-1077-v1.md` | Nhân vật JSON ~64 MB (quan-ly 14,6 MB, dan-binh 13 MB) |
+
+Ghi chép chi tiết từng sa bàn (quy ước, bài học nướng động tác, quy tắc phe): Project "Dự án làm sa bàn" › `sa-ban-bach-dang-938-v1.md`, `sa-ban-nhu-nguyet-1077-v1.md`. Các quy tắc chung trong đó (một bảng phe duy nhất, không để phe này mang cờ phe kia; chỉ quân chính quy giao chiến; chuyển động tác Mixamo theo xoay thế giới) **áp dụng cho mọi gói**.
