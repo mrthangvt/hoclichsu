@@ -2198,6 +2198,53 @@ function nvCauCat(on) {                                        // C13: Tôn Sĩ 
   });
   B.thuyen.instanceMatrix.needsUpdate = true; B.van.instanceMatrix.needsUpdate = true;
 }
+// pin tên nhân vật: nhãn nổi trên đầu Quang Trung, các tướng Tây Sơn, Tôn Sĩ Nghị, Sầm Nghi Đống
+const NV_TEN = { box: null, pool: [] };
+function nvTenVe() {
+  if (!NV_TEN.box) {
+    NV_TEN.box = document.createElement("div"); NV_TEN.box.id = "nvten"; document.body.append(NV_TEN.box);
+    const st = document.createElement("style");
+    st.textContent = "#nvten{position:fixed;inset:0;pointer-events:none;z-index:4}#nvten div{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}" +
+      "#nvten b{font:600 12px/1.2 var(--font,system-ui);color:#fff3d6;background:rgba(122,31,22,.88);border:1px solid #e2b768;border-radius:99px;padding:3px 9px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.45)}" +
+      "#nvten div.th b{background:rgba(24,52,96,.88);border-color:#9fc0ea}#nvten div.vua b{background:rgba(150,104,24,.92);border-color:#ffe08a;font-size:13px}" +
+      "#nvten i{width:1.5px;height:16px;background:#e2b768}body.cinema #nvten,body.m-pov #nvten{}";
+    document.head.append(st);
+  }
+  const L = NV.tenPos, W = innerWidth, H = innerHeight, v = new THREE.Vector3(), on = $("ly-nv").checked && $("ly-lbl").checked;
+  let n = 0;
+  if (on) for (const [ten, X, y, Y, vua] of L) {
+    v.set(X, y, -Y); const d = camera.position.distanceTo(v); v.project(camera);
+    if (v.z > 1 || Math.abs(v.x) > 1.05 || Math.abs(v.y) > 1.05 || d > 2500) continue;
+    let el = NV_TEN.pool[n];
+    if (!el) { el = document.createElement("div"); el.innerHTML = "<b></b><i></i>"; NV_TEN.box.append(el); NV_TEN.pool.push(el); }
+    if (el._t !== ten) { el._t = ten; el.firstChild.textContent = ten; el.className = vua ? "vua" : /Tôn Sĩ Nghị|Sầm Nghi Đống/.test(ten) ? "th" : ""; }
+    el.style.display = ""; el.style.left = ((v.x + 1) / 2) * W + "px"; el.style.top = ((1 - v.y) / 2) * H + "px"; el.style.opacity = d > 1500 ? 0.7 : 1; n++;
+  }
+  for (let k = n; k < NV_TEN.pool.length; k++) NV_TEN.pool[k].style.display = "none";
+}
+// đại bác trong đồn: đặt lên mặt lũy (đỉnh lũy gần nhất trong 10 m), có bục gỗ đỡ
+function nvNangPhao() {
+  const U = D.inst.usung; if (!U) return; const bp = [];
+  for (let o = 0; o < U.length; o += 5) {
+    let best = U[o + 2], bx = U[o], by = U[o + 1];
+    for (let a = 0; a < 6.283; a += 0.393) for (let r = 1; r <= 10; r += 1) { const x = U[o] + Math.cos(a) * r, y = U[o + 1] + Math.sin(a) * r, h = heightAt(x, y); if (h > best + 0.05) { best = h; bx = x; by = y; } }
+    if (best > U[o + 2] + 0.3) { U[o] += (bx - U[o]) * 0.55; U[o + 1] += (by - U[o + 1]) * 0.55; }
+    const g0 = heightAt(U[o], U[o + 1]); U[o + 2] = best + 2.0;           // bục pháo cao hơn rào gỗ trên lũy, nòng chĩa qua rào
+    bp.push([U[o], U[o + 1], g0, U[o + 2], U[o + 3]]);
+  }
+  placeInstances();
+  const M = new THREE.InstancedMesh(new THREE.BoxGeometry(3.2, 1, 3.6).translate(0, 0.5, 0), new THREE.MeshLambertMaterial({ color: 0x6e5236 }), bp.length);
+  const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), p = new THREE.Vector3(), s = new THREE.Vector3();
+  bp.forEach(([x, y, z0, z1, a], k) => { q.setFromAxisAngle(_nY, a); p.set(x, z0 * EX, -y); s.set(1, Math.max(0.3, (z1 - z0) * EX), 1); M.setMatrixAt(k, m4.compose(p, q, s)); });
+  M.frustumCulled = false; groups.quan.add(M);
+}
+// dấu X đánh dấu đồn Hà Hồi đã bị hạ (lớp phủ mờ 40%)
+function nvDauX() {
+  const C = [3900, -13960], m = new THREE.MeshBasicMaterial({ color: 0xc0241a, transparent: true, opacity: 0.4, depthWrite: false, side: THREE.DoubleSide });
+  const g = new THREE.Group();
+  for (const a of [Math.PI / 4, -Math.PI / 4]) { const b = new THREE.Mesh(new THREE.PlaneGeometry(250, 34).rotateX(-Math.PI / 2), m); b.rotation.y = a; b.renderOrder = 5; g.add(b); }
+  g.position.set(C[0], (heightAt(C[0], C[1]) + 4) * EX, -C[1]); g.visible = false; scene.add(g); NV.dauX = g;
+}
 function nvGround(X, Y, cau) {
   let h = Math.max(heightAt(X, Y), meta.water - 0.7);
   const B = NV.bridge;
@@ -2205,11 +2252,13 @@ function nvGround(X, Y, cau) {
   return h * EX;
 }
 async function nvLoad() {
-  const [snd, nguatsn] = await Promise.all([nvHum("nv_samnghidong.json", "nv_samnghidong.jpg"), nvAni("nv_ngua_tsn.json")]);
+  const [snd, nguatsn, nguasnd] = await Promise.all([nvHum("nv_samnghidong.json", "nv_samnghidong.jpg"), nvAni("nv_ngua_tsn.json"), nvAni("nv_ngua_snd.json")]);
   const [Q, ts, th, tsn, voi, ngua, nguath, moc, qt] = await Promise.all([
     nvJSON("quan.json"), nvHum("nv_tayson.json", "nv_tayson.jpg"), nvHum("nv_thanh.json", "nv_thanh.jpg"), null,
     nvFlip2("nv_voi_nai.json"), nvAni("nv_ngua_ts.json"), nvAni("nv_ngua_th.json"), nvGLB("m_tammoc.json"), nvGLB("m_quangtrung.json")]);
-  NV.kinds = { ts, th, tsn, voi, ngua, nguath, nguatsn, snd, moc: nvMocGhep(moc) };
+  NV.kinds = { ts, th, tsn, voi, ngua, nguath, nguatsn, nguasnd, snd, moc: nvMocGhep(moc) };
+  try { nvNangPhao(); } catch (e) { console.warn("đại bác", e); }
+  try { nvDauX(); } catch (e) { console.warn("dấu X", e); }
   NV.catcau = Q.catcau || null;
   for (const g of Q.groups) {
     g.meshes = new Map(); g.n = g.m.length; g.cap = g.n * ((g.kind === "ts" || g.kind === "th") && g.dense !== 0 ? 3 : 1);
@@ -2282,7 +2331,7 @@ const NV_LOP = [[0, 0], [0.85, -1.0], [-0.85, -2.0]];            // nhân bản 
 function nvApply(i, u, time) {
   if (!NV.ok) return;
   const vis = NV.on && $("ly-nv").checked, dur = S && S.scenes[i] ? S.scenes[i].dur_cu || S.scenes[i].dur : 60; NV.torch.length = 0; NV.povAt = null;
-  const PT = NV.povT; NV.mocPts = [];
+  const PT = NV.povT; NV.mocPts = []; NV.tenPos = [];
   NV.cutOn = !!(NV.catcau && ((i === NV.catcau.i && u >= NV.catcau.u) || i > NV.catcau.i)); nvCauCat(NV.cutOn);
   for (const g of NV.groups) {
     for (const im of g.meshes.values()) im.count = 0;
@@ -2339,13 +2388,16 @@ function nvApply(i, u, time) {
       let gy = nvGround(X, Y, g.cau);
       if (g.tren) gy = g.tren[0] * EX + g.tren[1];
       if (g.buc && !ga && !(S0.moving)) {                          // bục gỗ sau lũy: đứng cao, ngực ngang mặt lũy, vươn súng ra ngoài
-        if (!g.bucY) g.bucY = g.m.map((mm) => { const P = [mm[0] - FX_EU[0] * 5, mm[1] - FX_EU[1] * 5]; return Math.max((heightAt(P[0], P[1]) - 1.0) * EX, heightAt(mm[0], mm[1]) * EX); });
+        if (!g.bucY) g.bucY = g.m.map((mm) => {                   // đỉnh lũy trong 9 m phía ngoài; chân lính cao hơn đỉnh lũy 0,15 m để cả nửa người nhô lên, súng chĩa ra ngoài
+          let top = 0; for (let d = 0; d <= 9; d += 0.5) top = Math.max(top, heightAt(mm[0] - FX_EU[0] * d, mm[1] - FX_EU[1] * d));
+          return Math.max(top + 1.6, heightAt(mm[0], mm[1])) * EX; });     // rào gỗ trên lũy cao 2,7 m: chân lính cao hơn đỉnh lũy 1,6 m để ngực, súng vượt qua rào
         const top = g.bucY[k];
         if (top > gy + 0.1) { const bm = nvMesh(g, "buc", NV_BUC, NV_BUCMAT); _np.set(X, gy, -Y); _nq.setFromAxisAngle(_nY, yaw); _ns2.set(1, top - gy, 1); _nm.compose(_np, _nq, _ns2); bm.setMatrixAt(bm.count++, _nm); }
         gy = top;
       }
       if (chim) gy -= Math.min(1.8, (u - NV.catcau.u) * dur * 0.5);
       if (k === 0) NV.anchor[g.id] = { X, Y, yaw, y: gy };
+      if (g.ten && g.ten[k] && dist < 2500) NV.tenPos.push([g.ten[k], X, gy + (K.ani ? 3.4 : K.flip ? 5.2 : 2.2), Y]);
       const isPov = PT && PT.gid === g.id && PT.k === k;
       if (isPov) NV.povAt = { X, Y, yaw, y: gy };
       let raw = ga || chim ? "nga" : ket ? (k % 3 === 1 ? "vap" : "dung") : S0.clip;
@@ -2389,14 +2441,12 @@ function nvApply(i, u, time) {
         _np.set(X, gy, -Y); _nq.setFromAxisAngle(_nY, yaw); _nm.compose(_np, _nq, _ns);
         C.frames[f].forEach((geo, pi) => { const im = nvMesh(g, S0.clip + ":" + f + ":" + pi, geo, C.mats[pi]); im.setMatrixAt(im.count++, _nm); });
         if (near && S0.moving && Math.random() < NV.dt * 1.2) fxBui(X, gy, Y, 2.4);
-        if (g.linh && dist < 900) {                               // hai lính đứng trên bành voi cầm giáo, đâm khi xông vào kỵ binh Thanh
-          const KT = NV.kinds.ts, cn = i === 8 && u > 0.08 && u < 0.62 ? "dam" : "dung", CC = KT.clips[cn];
-          for (const [ox, oz, p2] of [[0.36, 0.1, 0.1], [-0.36, -0.25, 0.6]]) {
-            const f2 = nvFrame(CC, time, ph + p2, 1, 0);
-            _nt.set(ox, 2.62, oz); _nm2.copy(_nm).multiply(_wm.makeTranslation(_nt.x, _nt.y, _nt.z));
-            const im = nvMesh(g, "L" + cn + ":" + f2, CC.frames[f2], CC.mat); im.setMatrixAt(im.count++, _nm2);
-            const G = nvGrip(CC, f2, false, cn === "dung" ? 1 : 0), gm = _nm2.clone().multiply(G), wim = nvMesh(g, "Lw2", NV_VK[2].geo, NV_VKMAT); wim.setMatrixAt(wim.count++, gm);
-          }
+        if (g.linh && dist < 900) {                               // một lính súng hỏa hồ đứng trên bành voi (cùng nài voi ngồi cổ)
+          const KT = NV.kinds.ts, cn = i === 8 && u > 0.08 && u < 0.62 ? "ngam" : "dung", CC = KT.clips[cn], f2 = nvFrame(CC, time, ph, 1, 0);
+          _nt.set(0, 2.62, -0.15); _nm2.copy(_nm).multiply(_wm.makeTranslation(_nt.x, _nt.y, _nt.z));
+          const im = nvMesh(g, "L" + cn + ":" + f2, CC.frames[f2], CC.mat); im.setMatrixAt(im.count++, _nm2);
+          const G = nvGrip(CC, f2, cn === "ngam", cn === "dung" ? 1 : 0), gm = _nm2.clone().multiply(G), wim = nvMesh(g, "Lw1", NV_VK[1].geo, NV_VKMAT); wim.setMatrixAt(wim.count++, gm);
+          if (cn === "ngam" && Math.random() < NV.dt * 0.3) { _nt.set(0, NV_VK[1].tip, 0).applyMatrix4(gm); fxShot(_nt); }
         }
       } else {                                                    // tấm mộc ghép
         _np.set(X, gy, -Y); _nq.setFromAxisAngle(_nY, yaw);
@@ -2417,7 +2467,8 @@ function nvApply(i, u, time) {
   const qtOn = vis && qx !== undefined;
   if (qtOn && PT && PT.gid === "qt") NV.povAt = { X: qx, Y: qy, yaw: qyaw, y: qz };
   NV.qt.visible = !!(qtOn && !(PT && PT.gid === "qt") && camera.position.distanceTo(_np.set(qx, qz, -qy)) < 3000);
-  if (NV.qt.visible) { NV.qt.position.set(qx, qz, -qy); NV.qt.rotation.y = qyaw; }
+  if (NV.qt.visible) { NV.qt.position.set(qx, qz, -qy); NV.qt.rotation.y = qyaw; NV.tenPos.push(["Quang Trung", qx, qz + 2.1, qy, 1]); }
+  nvTenVe();
 }
 function nvTick(dt) {
   if (!NV.ok || !S) return;
@@ -2427,6 +2478,7 @@ function nvTick(dt) {
   else if (appMode === "explore") { i = exploreI; if (NV.exI !== i) { NV.exI = i; NV.ex = 0; } NV.ex += dt; u = (NV.ex % S.scenes[i].dur) / S.scenes[i].dur; }
   else i = cmpA;
   CO_T.value = time;
+  if (NV.dauX) NV.dauX.visible = appMode !== "compare" && ((i === 6 && u > 0.8) || i > 6);
   if (NV.coTrai) { const iu = i + (appMode === "film" ? u : 0); for (const c of NV.coTrai) { const on = $("ly-nv").checked && iu >= c.a && iu <= c.b; c.ms.forEach((m) => { m.visible = on; }); } }
   nvApply(i, u, time);
   if (appMode !== "compare") fxTick(i, u, dt); else fxClear();
@@ -2813,11 +2865,11 @@ function uCu(i, t) { const sc = S.scenes[i]; return Math.min(1, Math.max(0, tCu(
 var VC = { el: null, ok: false, unlocked: false, jump: true };
 (async () => {
   try {
-    const r = await fetch("voice_ngochoi.mp3"); if (!r.ok) return;
+    const r = await fetch("voice_ngochoi.mp3"); if (!r.ok) { VC.err = true; return; }
     const url = URL.createObjectURL(await r.blob()), a = new Audio(); a.preload = "auto"; a.src = url;   // trang artifact chỉ phát media từ blob:
     a.addEventListener("canplaythrough", () => { VC.ok = true; }, { once: true }); a.addEventListener("loadedmetadata", () => { VC.ok = true; }, { once: true });
     VC.el = a;
-  } catch (e) { console.warn("voice", e); }
+  } catch (e) { VC.err = true; console.warn("voice", e); }
 })();
 const vcDung = () => voiceOn && VC.ok && VC.unlocked && appMode === "film";
 function vcGuard() { const a = VC.el; if (a && !a.paused && !(vcDung() && playing)) a.pause(); }
@@ -2843,16 +2895,23 @@ window.__vc = () => [VC.ok, VC.unlocked, VC.el ? VC.el.paused : null, VC.el ? +V
 // nên mọi thứ có tiếng (voice, âm nền) được mở ngay trong cú chạm này; phim chờ ở giây 0 tới khi người xem bấm.
 {
   const box = document.createElement("div"); box.id = "batdau";
-  box.innerHTML = '<button id="bbatdau" disabled>Đang tải lời dẫn…</button><small>Phim có lời dẫn thu âm và âm thanh – bấm để bắt đầu</small>';
+  box.innerHTML = '<button id="bbatdau" disabled hidden>▶ Bắt đầu xem</button><div id="bdtai"><span></span><em><i></i></em></div><small>Phim có lời dẫn thu âm và âm thanh – bấm để bắt đầu</small>';
   document.body.append(box);
   const st_ = document.createElement("style");
   st_.textContent = "#batdau{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(10,8,6,.45);backdrop-filter:blur(2px)}" +
     "#batdau button{font:700 18px var(--font,system-ui);padding:14px 26px;border-radius:99px;border:0;background:var(--gold,#e2b768);color:#23190d;box-shadow:0 6px 24px rgba(0,0,0,.4)}" +
-    "#batdau button:disabled{opacity:.7}#batdau small{color:#f3ead9;text-shadow:0 1px 3px #000;font-size:13px;padding:0 20px;text-align:center}#batdau[hidden]{display:none}";
+    "#batdau button:disabled{opacity:.7}#batdau button[hidden]{display:none}#bdtai{display:flex;flex-direction:column;align-items:center;gap:8px;color:#f3ead9;font:600 15px var(--font,system-ui);text-shadow:0 1px 3px #000}#bdtai[hidden]{display:none}#bdtai em{display:block;width:220px;height:6px;border-radius:9px;background:rgba(255,255,255,.18);overflow:hidden}#bdtai i{display:block;height:100%;width:0;background:var(--gold,#e2b768);transition:width .3s}#batdau small{color:#f3ead9;text-shadow:0 1px 3px #000;font-size:13px;padding:0 20px;text-align:center}#batdau[hidden]{display:none}";
   document.head.append(st_);
-  const san = () => { const b = $("bbatdau"); if (VC.ok && b.disabled) { b.disabled = false; b.textContent = "▶ Bắt đầu xem"; } };
-  const iv = setInterval(() => { san(); if (!$("bbatdau").disabled) clearInterval(iv); }, 300);
-  setTimeout(() => { const b = $("bbatdau"); if (b.disabled) { b.disabled = false; b.textContent = "▶ Bắt đầu xem"; } }, 15000);   // mạng chậm: vẫn cho xem
+  // V10.9: chỉ hiện nút khi đã tải xong toàn bộ: địa hình + kịch bản, nhân vật (voi, ngựa, lính), lời dẫn thu âm
+  const buoc = () => [["Địa hình, kịch bản", !!S], ["Nhân vật, voi, ngựa", typeof NV !== "undefined" && NV.ok], ["Lời dẫn thu âm", VC.ok || !!VC.err]];
+  const san = () => {
+    const B = buoc(), xong = B.filter((x) => x[1]).length, b = $("bbatdau"), t = $("bdtai");
+    t.querySelector("span").textContent = xong < B.length ? "Đang tải " + B.find((x) => !x[1])[0].toLowerCase() + "… (" + xong + "/" + B.length + ")" : "";
+    t.querySelector("i").style.width = Math.round((100 * xong) / B.length) + "%";
+    if (xong === B.length) { b.hidden = false; b.disabled = false; t.hidden = true; return true; }
+    return false;
+  };
+  const iv = setInterval(() => { if (san()) clearInterval(iv); }, 250);
   $("bbatdau").addEventListener("click", () => {
     const a = VC.el;
     if (a) { try { a.currentTime = Math.min(starts[cur] + st, (a.duration || 1) - 0.1); } catch (e) {} const p = a.play(); if (p) p.catch(() => {}); }   // phát ngay trong cú chạm
@@ -2870,6 +2929,9 @@ $("splay").addEventListener("click", () => {                 // bấm nút Phát
   VC.unlocked = true; amEnable(audio.on || true); if (!audio.on) audio.enable(true); window.batDau(false);
 });
 $("modes").addEventListener("click", () => window.batDau(false));
+
+// V10.9: nút Phát ở thanh dưới cũng chỉ bấm được khi đã tải xong
+{ const kt = setInterval(() => { const ok = !$("bbatdau").hidden; $("splay").disabled = !ok; if (ok) clearInterval(kt); }, 250); }
 // ------------------------------------------------------------------ V10.4: mặt trời theo giờ trong cảnh
 // Hướng mặt trời: cảnh tối dần → chiều, lặn phía tây; cảnh sáng dần (tờ mờ → rạng đông) → mọc phía đông; còn lại ban ngày cao phía nam.
 // Độ cao mặt trời đi theo độ tối (nightCur): trời càng tối mặt trời càng thấp, quá ~0,6 là đã xuống dưới chân trời.
