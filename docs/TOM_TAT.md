@@ -143,6 +143,17 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - 14 cảnh, voice thu âm 13:45 làm đồng hồ phim; chế độ Phim tự động / Khám phá / Góc nhìn nhân vật.
 - Tài liệu và mã nguồn dựng: `docs/ngoc-hoi-dong-da/` (`README.md`, `HANDOFF.md`, `nguon/`).
 
+## Sa bàn Rạch Gầm – Xoài Mút 1785 (nhánh `claude/rach-gam-xoai-mut-1785`, 22/11/2026)
+
+- Thư mục `vietsu/static/khong-gian/rach-gam-xoai-mut/` (~26 MB), mở tại `/khong-gian/rach-gam-xoai-mut/`. Bản V1.9 (đã duyệt trên artifact): three.js 0.160 qua CDN importmap, mặt nước kiểu Bạch Đằng, phim tự động 11:16 theo lời dẫn thu âm (`am/voice.mp3`, phụ đề trong `story.json`), thẻ Hồi/Cảnh, pin tên Nguyễn Huệ, tướng Tây Sơn, tướng Xiêm gắn theo chiến thuyền; nút "Bắt đầu xem" chỉ hiện khi đã nạp xong mô hình, âm thanh và biên dịch shader.
+- Dữ liệu: `sa_ban_data.json` (địa hình, bờ sông theo OpenStreetMap hiện nay), `quan.json` (đội hình, lịch chạy, cháy, chìm, rơi nước, pháo mạn), `story.json` (camera, phụ đề, thẻ). Nhân vật bake từ Blender ra `nv_*.json` + atlas `.jpg`; thuyền `m_*.glb`.
+- Đã nối vào Việt Sử giống Ngọc Hồi – Đống Đa: thẻ `rach-gam` trong `V2_EXPERIENCES` (cập nhật mô tả), `KHONG_GIAN_3D`, `v46.js` SCENES, `v42.js` EXP (mốc 1785), `experiences_seed.json` (asset_url, status prototype).
+- V2.0 nhạc nền (22/11): `am/nhacnen.mp3` một file trộn sẵn dài bằng voice (mono 40 kbps, 3,3 MB), phát bám giây phim, tự lùi xuống khi có lời dẫn, nút "🎵 Nhạc nền" để tắt/bật. Chọn bài theo đoạn: mở đầu It Has Awoken; quân Xiêm Arbitrary Enemy; nỗi đau người dân và kết I Will Be Your Knight; Nguyễn Huệ quyết chiến It Has Awoken; mai phục, đoàn thuyền vào cửa tử Final Battle (lặng trước pháo lệnh); giao chiến The Thick of It; cao trào thuyền cháy Tough Return; khải hoàn Hero Epilogue (Epidemic Sound, ghi công trong Tư liệu).
+- V2.1 (22/11): bỏ hẳn dáng *Standing Torch Idle 01* (một tay đưa ra trước, một tay sau lưng) khỏi kho động tác chung; lính Tây Sơn, lính Xiêm, Nguyễn Huệ đứng/tụ họp dùng dáng đứng thẳng hai tay xuôi (khung 100–121 của *Put Back Rifle Behind Shoulder*), ba quân trước Nguyễn Huệ đứng suốt cảnh thay vì chuyển sang thế thủ khom; nhạc nền to thêm 10%.
+- Biểu tượng sa bàn đổi thành chữ **3D** (22/11, theo yêu cầu chủ dự án): thẻ "SA BÀN 3D" trên Dòng thời gian (`v42.js`/`v42.css`), nhãn "Có sa bàn 3D" và nút "Vào trải nghiệm sa bàn 3D" (`v46.js`), điểm pin trên bản đồ Không gian lịch sử có sa bàn mang huy hiệu 3D (`v46.js` `decoratePins`, `v46.css`). Rạch Gầm – Xoài Mút hiện ở mốc 1785 trên Dòng thời gian.
+- **Tạm bỏ không gian Thành Cổ Loa** (theo yêu cầu chủ dự án 22/11): gỡ `co-loa` khỏi `V2_EXPERIENCES`, `V23_SCENES`, `experiences_seed.json`, `experience_locations.json`. Ảnh thẻ `co-loa` trong `v42.js` ART vẫn giữ để khôi phục sau.
+- Nội dung là tái dựng mô phỏng: số thuyền, số quân là mật độ minh họa; vị trí pháo, phục binh là giả định chiến thuật; cần đối chiếu tư liệu.
+
 ## Lấy toạ độ OpenStreetMap cho sa bàn (dành cho Codex/ChatGPT)
 - Đổi toạ độ: `python3 tools/osm_sang_sa_ban.py <vĩ độ> <kinh độ>` hoặc `python3 tools/osm_sang_sa_ban.py file.geojson > ket_qua.json`. Kết quả là toạ độ sa bàn (m, Blender X/Y); sang three.js dùng `B(x,y,z)=(x,z,−y)`.
 - Kiểm tra: Đài tưởng niệm giữa Thành cổ ra ≈ (0, 0); Cổng Tiền ≈ (0, −250).

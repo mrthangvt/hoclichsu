@@ -48,26 +48,37 @@
   {
     "id": "rach-gam",
     "title": "Rạch Gầm – Xoài Mút",
-    "period": "1785",
+    "period": "Tháng 1 năm 1785",
     "entity_id": "battle1785",
     "timeline_year": 1785,
     "mode": "battle3d",
     "reconstruction_level": "concept",
-    "asset_url": "",
-    "notes": "Địa hình, đội hình và thời tiết chỉ được hiển thị như giả thuyết khi thiếu chứng cứ cụ thể.",
+    "asset_url": "/khong-gian/rach-gam-xoai-mut/",
+    "notes": "Sa bàn 3D thử nghiệm (three.js) tại /khong-gian/rach-gam-xoai-mut/ — tái dựng mô phỏng theo kịch bản V1 và lời dẫn thu âm; bờ sông theo OpenStreetMap hiện nay, số thuyền, số quân là mật độ minh họa, vị trí pháo và phục binh là giả định chiến thuật; cần đối chiếu tư liệu.",
     "source_urls": [],
-    "status": "concept",
+    "status": "prototype",
     "hotspots": [
       {
-        "id": "river",
-        "name": "Sông Tiền",
+        "id": "song-tien",
+        "name": "Khúc sông Rạch Gầm – Xoài Mút",
         "position": [
           0,
           0,
           0
         ],
         "kind": "terrain",
-        "text": "Khu vực cần tái dựng theo tài liệu lịch sử và địa hình."
+        "text": "Sông Tiền, cửa Rạch Gầm, cửa Xoài Mút, cù lao Thới Sơn (tái dựng)."
+      },
+      {
+        "id": "tran-dia",
+        "name": "Trận địa mai phục",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Pháo bờ Bắc, thủy binh trong rạch và sau cù lao (giả định chiến thuật)."
       }
     ]
   },
@@ -94,32 +105,6 @@
         ],
         "kind": "heritage",
         "text": "Tái dựng kiến trúc và các điểm thuyết minh."
-      }
-    ]
-  },
-  {
-    "id": "co-loa",
-    "title": "Thành Cổ Loa",
-    "period": "Thời Âu Lạc",
-    "entity_id": "aulac",
-    "timeline_year": -208,
-    "mode": "heritage3d",
-    "reconstruction_level": "concept",
-    "asset_url": "",
-    "notes": "Cần phân biệt lớp khảo cổ và truyền thuyết nỏ thần.",
-    "source_urls": [],
-    "status": "concept",
-    "hotspots": [
-      {
-        "id": "wall",
-        "name": "Vòng thành",
-        "position": [
-          0,
-          0,
-          0
-        ],
-        "kind": "architecture",
-        "text": "Dữ liệu khảo cổ và các cấp độ tái dựng."
       }
     ]
   },
