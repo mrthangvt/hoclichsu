@@ -3010,7 +3010,7 @@ function nhacTick() {
     if (a.paused) { try { a.currentTime = g; } catch (e) {} a.play().catch(() => {}); }
     else if (!a.seeking && Math.abs(a.currentTime - g) > 0.5) { try { a.currentTime = g; } catch (e) {} }
   } else if (!a.paused) a.pause();
-  if (NHAC.g) { const lui = VOX.noi && VOX.a && !VOX.a.paused; NHAC.g.gain.setTargetAtTime(want ? (lui ? 0.85 : 1.5) : 0, AM.ctx.currentTime, lui ? 0.25 : 0.6); }
+  if (NHAC.g) { const lui = VOX.noi && VOX.a && !VOX.a.paused; NHAC.g.gain.setTargetAtTime(want ? (lui ? 0.935 : 1.65) : 0, AM.ctx.currentTime, lui ? 0.25 : 0.6); }
 }
 const AM_ONE = ["chem", "daibac", "daroi", "tauchim"];
 // mức tiếng sóng nền theo cảnh: cảnh nào máy quay ở trên sông thì nghe rõ hơn
