@@ -1,6 +1,6 @@
 # Khung sa bàn dùng chung — quy chuẩn bắt buộc cho mọi sa bàn, di tích 3D mới
 
-Phiên bản quy chuẩn: 1.1 (23/11/2026, cập nhật sau Giai đoạn 1). Bản trình bày đầy đủ cho chủ dự án: tài liệu "Khung sa bàn dùng chung — Việt Sử" (https://claude.ai/artifact/LSEoZWGe3ucnQGQGWtM7hM). File này là bản chính cho người và AI làm việc trong repo.
+Phiên bản quy chuẩn: 1.2 (23/11/2026, cập nhật trong Giai đoạn 2). Bản trình bày đầy đủ cho chủ dự án: tài liệu "Khung sa bàn dùng chung — Việt Sử" (https://claude.ai/artifact/LSEoZWGe3ucnQGQGWtM7hM). File này là bản chính cho người và AI làm việc trong repo.
 
 > **Trạng thái hiện tại:** **bộ máy `engine/1.0.0` đã có** (Giai đoạn 1 xong, chờ chủ dự án duyệt). Gói mẫu `packs/ngoc-hoi-dong-da/` chạy tại `khong-gian/engine/1.0.0/sa-ban.html?goi=ngoc-hoi-dong-da`, song song với bản cũ `khong-gian/ngoc-hoi-dong-da/`. Gói để sao chép khi làm trận mới: `packs/_mau/`. Việc tiếp theo: Giai đoạn 2 (mục 9). Từ nay không tạo sa bàn mới theo kiểu riêng lẻ.
 
@@ -59,6 +59,10 @@ Mốc thời gian trong `fx`, `campFlags`, `crossMarks`, `units.*.rider.aim` vi�
 `placement.json`: `groups[]` (mỗi nhóm: `id`, `kind`, `mode` `fixed` | `path`, `m` thành viên, `sc` động tác theo cảnh, các tuỳ chọn `vk` binh khí, `co` người cầm cờ, `ten` tên tướng, `toa`/`tan`/`rai`/`loan`/`nga` cách tản, chạy, ngã, `buc`, `tren`, `cau`, `cat`, `linh`), cộng vị trí nhân vật chính theo cảnh và `catcau` (cầu bị chặt).
 
 Nhân vật nướng sẵn `.nvz` (`tools/sa_ban/nv_sang_nvz.py`): gzip của đầu JSON + khối nhị phân; vị trí đỉnh lượng tử 1 mm, lưu hiệu số giữa hai khung; pháp tuyến mã bát diện 2 byte. Nhỏ hơn khoảng 2 lần so với `nv_*.json` cũ (đã gzip), sai số vị trí ≤ 0,5 mm. Nhân vật có khung xương (nhân vật chính) dùng `.glb` nén meshopt.
+
+Phần biên đạo riêng (từ bộ máy 1.1): `pack.json › script` trỏ tới `rieng.js` của gói — một mô-đun `export default function (E) { return { fxTick, amPlan, prepStory } }`. Chỉ dùng cho lịch hiệu ứng gắn chặt với chỉ số cảnh, tên nhóm quân của trận đó (ví dụ: đạn trúng thuyền theo câu đọc); mọi hàm vẽ, hiệu ứng, âm thanh vẫn là của bộ máy, lấy qua `E`. Thứ gì dùng lại được cho trận khác thì đưa vào bộ máy, không để trong `rieng.js`.
+
+Trường thêm ở 1.1: `terrain.water` (`"shader"` = nước theo độ sâu), `terrain.ground` (`"flat"`), `terrain.waterColors`, `props.models` (mẫu glb thay hình khối), `props.clearings`, `units.*.type: "boat"` (`glb`, `draft`, `deck`, `sails`, `labelH`), `units.*.doubleSide`, `boats` (`lacRamp`, `walkBoat`), `fx.hitGroup`, `audio.music`, `audio.water`, mức âm dạng `[đầu, cuối]`, `ui.centerAnchor`, `credits`, `docsNote`. Kịch bản 1.1 nhận thêm `scenes[].env`, `scenes[].sub`, `cards`, `ten`, `voice` (lời bình đồng bộ).
 
 `tour.json` (site): `stops[]` (`id`, `title`, `view`, `vo`, `voice`, `images`, `layer: "hien-trang" | "phuc-dung"`) — làm khi có gói di tích đầu tiên.
 
@@ -123,10 +127,13 @@ Lưu ý đã gặp: Overpass từng trả 406 khi gọi từ trình duyệt (xem
 ## 9. Lộ trình
 Quyết định của chủ dự án (23/11/2026): Ngọc Hồi – Đống Đa làm sa bàn mẫu; **Bạch Đằng 938 và Như Nguyệt 1077 đưa vào repo theo khung mới luôn** (không đưa bản cũ lên trước).
 
-Nhận xét kỹ thuật: Ngọc Hồi V10, Rạch Gầm, Bạch Đằng V4 và Như Nguyệt V1.6 **cùng một dòng mã** (cùng giao diện 3 chế độ Phim / Khám phá / Góc nhìn nhân vật, nhân vật nướng sẵn dạng `nv_*.json`, `story.json`, `inst.json`, `height.png` + `color.jpg`, âm thanh `am/`). Bộ máy 1.0 vì vậy được tách từ dòng mã này; Quảng Trị và Điện Biên Phủ chuyển sau.
+**Đính chính (23/11/2026, khi bắt đầu Giai đoạn 2):** ghi chú trước đây nói bốn sa bàn cùng một dòng mã là **sai**. Đo trên mã thật: Ngọc Hồi – Rạch Gầm giống nhau khoảng 85 % (một họ); Bạch Đằng – Như Nguyệt giống nhau khoảng 57 % (họ thứ hai, viết lại theo kiểu bộ điều khiển: thủy triều, đường thuyền, dòng thời gian trận, máy quay, bầu trời); giữa hai họ chỉ khoảng 5 %. Chủ dự án chọn **hai bộ máy tạm thời**:
+- **Bộ máy 1.x** (họ Ngọc Hồi): 1.0.0 = Ngọc Hồi; **1.1.0** = 1.0.0 + phần sông nước của Rạch Gầm (thuyền, nước theo độ sâu, ánh sáng theo cảnh `env`, lời bình đồng bộ `story.voice`, nhạc nền một tệp, tự chèo thuyền).
+- **Bộ máy 2.x** (họ Bạch Đằng): tách từ Bạch Đằng 938, gộp phần của Như Nguyệt.
+- Gộp hai họ thành một bộ máy ở Giai đoạn 3, cùng lúc với Quảng Trị, Điện Biên Phủ.
 
 1. **Giai đoạn 1 — xong (23/11/2026), chờ duyệt.** Bộ máy 1.0.0 tách từ Ngọc Hồi V10; gói `ngoc-hoi-dong-da`; `packs/_mau/`; công cụ `tools/sa_ban/` (`nv_sang_nvz.py`, `chuyen_ngoc_hoi.py`, `tach_bo_may.py`, `kiem_tra_goi.py`). Kết quả đo: hình ảnh từng cảnh trùng bản cũ (so ảnh chụp C09, C10, C13: lệch trung bình < 1,5 %, chỉ khác khói, pha động tác); **tải lần đầu 11,9 MB** (bản cũ ~29 MB); toàn gói 16,7 MB + âm thanh 9,4 MB. Nhân vật dùng `.nvz` thay vì GLB vì là hoạt hình nướng sẵn theo khung (GLB chỉ hợp với nhân vật có xương). **Chưa đo được fps trên Android thật** — cần anh mở trên điện thoại và đọc số fps góc dưới trái. Điện thoại tự dùng mức `thap` (lưới địa hình thưa gấp đôi, cây – tre – sậy một nửa, quân vẽ trong 3,5 km, không nhân bản lớp quân): cảnh đông nhất C13 giảm từ 9,6 xuống 4,8 triệu tam giác — vẫn trên mức 400 nghìn của bảng ngân sách. Nếu điện thoại thật dưới 30 fps, bản 1.1 thêm mức chi tiết theo khoảng cách cho quân và chia ô vật thể để bỏ phần ngoài khung nhìn.
-2. **Giai đoạn 2** — ba gói cùng dòng: **Bạch Đằng 938** (`bach-dang-938`), **Như Nguyệt 1077** (`nhu-nguyet-1077`), Rạch Gầm – Xoài Mút. Dùng chung thư viện: dân binh, lính Nam Hán, thuyền Tây Sơn, ngựa, âm thanh nền.
+2. **Giai đoạn 2 — đang làm.** (a) Bộ máy 1.1.0 + gói **Rạch Gầm – Xoài Mút** (`rach-gam-xoai-mut`) — đã có. (b) Bộ máy 2.0 + gói **Bạch Đằng 938** (`bach-dang-938`). (c) Gói **Như Nguyệt 1077** (`nhu-nguyet-1077`) trên bộ máy 2.x.
 3. **Giai đoạn 3** — Quảng Trị, Điện Biên Phủ.
 4. **Giai đoạn 4** — `catalog.json`, R2 + CDN, website đọc catalog. (`kiem_tra_goi.py` đã có từ Giai đoạn 1.) (Có thể làm `catalog.json` sớm cùng Giai đoạn 2 để Bạch Đằng, Như Nguyệt hiện trên Việt Sử ngay.)
 5. Sau đó mỗi trận mới là một gói theo quy trình mục 6.

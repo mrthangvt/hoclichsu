@@ -42,7 +42,9 @@ def main():
         can += [T["patchHeight"].replace("{name}", p["name"]), T["patchImage"].replace("{name}", p["name"])]
     can += [P.get("story", "story.json"), P.get("placement"), P.get("sources", "sources.json")]
     for s in P.get("sides", []): can.append(s.get("flag"))
-    for k, u in P.get("units", {}).items(): can += [u.get("file"), u.get("image"), u.get("glb")]
+    for k, u in P.get("units", {}).items(): can += [u.get("file"), u.get("image"), u.get("glb")] + list(u.get("sails") or [])
+    for md in P.get("props", {}).get("models", []): can.append(md.get("file"))
+    can.append(P.get("script")); can.append(P.get("audio", {}).get("music"))
     for h in P.get("heroes", []): can.append(h.get("model"))
     A = P.get("audio", {})
     can.append(A.get("voice"))
@@ -75,11 +77,13 @@ def main():
     dau = [f for f in can[:3 + 2 * len(data.get("meta", {}).get("patches") or [])] if f] + ["pack.json", P.get("story", "story.json"), P["placement"]]
     dau += [s["flag"] for s in P.get("sides", []) if s.get("flag")]
     for k, u in U.items():
-        if first.get(k, 99) <= 1: dau += [x for x in (u.get("file"), u.get("image"), u.get("glb")) if x]
+        if first.get(k, 99) <= 1: dau += [x for x in (u.get("file"), u.get("image"), u.get("glb"), *(u.get("sails") or [])) if x]
+    dau += [md["file"] for md in P.get("props", {}).get("models", [])] + ([P["script"]] if P.get("script") else [])
     for h in P.get("heroes", []):
         ks = [int(x) for x in (Q.get(h.get("placement"), {}) or {})]
         if ks and min(ks) <= 1: dau.append(h["model"])
-    E = KG / "engine" / (eng.group(1) + ".0.0" if eng else "1.0.0")
+    ds = sorted((KG / "engine").glob(f"{eng.group(1) if eng else 1}.*"), key=lambda p: [int(x) for x in p.name.split(".")])
+    E = ds[-1] if ds else KG / "engine" / "1.0.0"                 # bộ máy mới nhất cùng số chính
     eng_files = [E / "sa-ban.js", E / "khung.js", E / "sa-ban.css", E / "vendor/three/three.module.min.js"] + list((E / "vendor/three/addons").rglob("*.js"))
     tong_eng = sum(gz(p) for p in eng_files if p.exists())
     tong_goi = sum(gz(D / f) for f in dict.fromkeys(dau) if (D / f).exists())
