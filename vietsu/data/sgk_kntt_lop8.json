@@ -1,0 +1,259 @@
+{
+ "lop": 8,
+ "sach": "Lịch sử và Địa lí 8 (bộ Kết nối tri thức với cuộc sống, NXB Giáo dục Việt Nam), phần Lịch sử, tr. 6–92 và hai chủ đề chung tr. 155–171",
+ "ghi_chu": "Mục lục theo đúng SGK; phần nội dung chi tiết từng bài đang được Việt Sử biên soạn lại bằng lời văn riêng (không chép nguyên văn sách). Học sinh mở SGK theo số trang.",
+ "bai": [
+  {
+   "so": 1,
+   "chuong": "Chương 1. Châu Âu và Bắc Mỹ từ nửa sau thế kỉ XVI đến thế kỉ XVIII",
+   "ten": "Cách mạng tư sản Anh và Chiến tranh giành độc lập của 13 thuộc địa Anh ở Bắc Mỹ",
+   "trang": [
+    8,
+    11
+   ],
+   "nam": 1640,
+   "tom": "Hai cuộc cách mạng tư sản tiêu biểu ở Anh (thế kỉ XVII) và Bắc Mỹ (thế kỉ XVIII) mở đường cho chủ nghĩa tư bản phát triển; nước Mỹ ra đời.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 2,
+   "chuong": "Chương 1. Châu Âu và Bắc Mỹ từ nửa sau thế kỉ XVI đến thế kỉ XVIII",
+   "ten": "Cách mạng tư sản Pháp cuối thế kỉ XVIII",
+   "trang": [
+    12,
+    14
+   ],
+   "nam": 1789,
+   "tom": "Cuộc cách mạng bùng nổ năm 1789, lật đổ chế độ quân chủ chuyên chế, có ảnh hưởng sâu rộng tới châu Âu và thế giới.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 3,
+   "chuong": "Chương 1. Châu Âu và Bắc Mỹ từ nửa sau thế kỉ XVI đến thế kỉ XVIII",
+   "ten": "Cách mạng công nghiệp (nửa sau thế kỉ XVIII – giữa thế kỉ XIX)",
+   "trang": [
+    15,
+    18
+   ],
+   "nam": null,
+   "tom": "Máy móc thay thế lao động thủ công, bắt đầu ở Anh rồi lan ra các nước, làm thay đổi sâu sắc kinh tế và xã hội.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 4,
+   "chuong": "Chương 2. Đông Nam Á từ nửa sau thế kỉ XVI đến giữa thế kỉ XIX",
+   "ten": "Đông Nam Á từ nửa sau thế kỉ XVI đến giữa thế kỉ XIX",
+   "trang": [
+    19,
+    22
+   ],
+   "nam": null,
+   "tom": "Các nước phương Tây từng bước xâm nhập Đông Nam Á; nhân dân trong khu vực đấu tranh chống ách đô hộ của thực dân.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 5,
+   "chuong": "Chương 3. Việt Nam từ đầu thế kỉ XVI đến thế kỉ XVIII",
+   "ten": "Cuộc xung đột Nam – Bắc triều và Trịnh – Nguyễn",
+   "trang": [
+    23,
+    27
+   ],
+   "nam": 1527,
+   "tom": "Nhà Mạc thành lập dẫn tới chiến tranh Nam – Bắc triều, sau đó là cục diện Đàng Trong – Đàng Ngoài chia cắt đất nước.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 6,
+   "chuong": "Chương 3. Việt Nam từ đầu thế kỉ XVI đến thế kỉ XVIII",
+   "ten": "Công cuộc khai phá vùng đất phía Nam từ thế kỉ XVI đến thế kỉ XVIII",
+   "trang": [
+    28,
+    30
+   ],
+   "nam": null,
+   "tom": "Các chúa Nguyễn và cư dân Việt khai phá, xác lập chủ quyền ở vùng đất phía Nam, gồm cả các quần đảo Hoàng Sa, Trường Sa.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 7,
+   "chuong": "Chương 3. Việt Nam từ đầu thế kỉ XVI đến thế kỉ XVIII",
+   "ten": "Khởi nghĩa nông dân ở Đàng Ngoài thế kỉ XVIII",
+   "trang": [
+    31,
+    34
+   ],
+   "nam": null,
+   "tom": "Đời sống khổ cực dưới chính quyền Lê – Trịnh dẫn tới nhiều cuộc khởi nghĩa nông dân lớn ở Đàng Ngoài.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 8,
+   "chuong": "Chương 3. Việt Nam từ đầu thế kỉ XVI đến thế kỉ XVIII",
+   "ten": "Phong trào Tây Sơn",
+   "trang": [
+    35,
+    41
+   ],
+   "nam": 1771,
+   "tom": "Từ năm 1771, phong trào Tây Sơn lật đổ các tập đoàn phong kiến, đánh tan quân Xiêm (1785) và quân Thanh (1789).",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 9,
+   "chuong": "Chương 3. Việt Nam từ đầu thế kỉ XVI đến thế kỉ XVIII",
+   "ten": "Tình hình kinh tế, văn hoá, tôn giáo trong các thế kỉ XVI – XVIII",
+   "trang": [
+    42,
+    45
+   ],
+   "nam": null,
+   "tom": "Kinh tế hàng hoá, đô thị phát triển; văn hoá, tôn giáo có nhiều chuyển biến, chữ Quốc ngữ ra đời.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 10,
+   "chuong": "Chương 4. Châu Âu và nước Mỹ từ cuối thế kỉ XVIII đến đầu thế kỉ XX",
+   "ten": "Sự hình thành chủ nghĩa đế quốc ở các nước Âu – Mỹ (cuối thế kỉ XIX – đầu thế kỉ XX)",
+   "trang": [
+    46,
+    49
+   ],
+   "nam": null,
+   "tom": "Chủ nghĩa tư bản chuyển sang giai đoạn đế quốc, các nước lớn đẩy mạnh xâm chiếm thuộc địa.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 11,
+   "chuong": "Chương 4. Châu Âu và nước Mỹ từ cuối thế kỉ XVIII đến đầu thế kỉ XX",
+   "ten": "Phong trào công nhân từ cuối thế kỉ XVIII đến đầu thế kỉ XX và sự ra đời của chủ nghĩa xã hội khoa học",
+   "trang": [
+    50,
+    53
+   ],
+   "nam": null,
+   "tom": "Giai cấp công nhân đấu tranh ngày càng mạnh; chủ nghĩa xã hội khoa học ra đời với Tuyên ngôn của Đảng Cộng sản (1848).",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 12,
+   "chuong": "Chương 4. Châu Âu và nước Mỹ từ cuối thế kỉ XVIII đến đầu thế kỉ XX",
+   "ten": "Chiến tranh thế giới thứ nhất (1914 – 1918) và Cách mạng tháng Mười Nga năm 1917",
+   "trang": [
+    54,
+    57
+   ],
+   "nam": 1914,
+   "tom": "Cuộc chiến tranh đế quốc gây hậu quả nặng nề; Cách mạng tháng Mười Nga thắng lợi mở ra thời kì mới.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 13,
+   "chuong": "Chương 5. Sự phát triển của khoa học, kĩ thuật, văn học, nghệ thuật trong các thế kỉ XVIII – XIX",
+   "ten": "Sự phát triển của khoa học, kĩ thuật, văn học, nghệ thuật trong các thế kỉ XVIII – XIX",
+   "trang": [
+    58,
+    61
+   ],
+   "nam": null,
+   "tom": "Nhiều phát minh khoa học, kĩ thuật và tác phẩm văn học, nghệ thuật lớn làm thay đổi đời sống con người.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 14,
+   "chuong": "Chương 6. Châu Á từ nửa sau thế kỉ XIX đến đầu thế kỉ XX",
+   "ten": "Trung Quốc và Nhật Bản từ nửa sau thế kỉ XIX đến đầu thế kỉ XX",
+   "trang": [
+    62,
+    66
+   ],
+   "nam": 1868,
+   "tom": "Trung Quốc dần trở thành nửa thuộc địa; Nhật Bản tiến hành Duy tân Minh Trị (1868) và trở thành nước đế quốc.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 15,
+   "chuong": "Chương 6. Châu Á từ nửa sau thế kỉ XIX đến đầu thế kỉ XX",
+   "ten": "Ấn Độ và Đông Nam Á từ nửa sau thế kỉ XIX đến đầu thế kỉ XX",
+   "trang": [
+    67,
+    70
+   ],
+   "nam": null,
+   "tom": "Ấn Độ và hầu hết các nước Đông Nam Á bị thực dân cai trị; phong trào đấu tranh giải phóng dân tộc lan rộng.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 16,
+   "chuong": "Chương 7. Việt Nam từ thế kỉ XIX đến đầu thế kỉ XX",
+   "ten": "Việt Nam dưới thời Nguyễn (nửa đầu thế kỉ XIX)",
+   "trang": [
+    71,
+    76
+   ],
+   "nam": 1802,
+   "tom": "Năm 1802, nhà Nguyễn thành lập, xây dựng bộ máy nhà nước, kinh tế, văn hoá và thực thi chủ quyền biển đảo.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 17,
+   "chuong": "Chương 7. Việt Nam từ thế kỉ XIX đến đầu thế kỉ XX",
+   "ten": "Cuộc kháng chiến chống thực dân Pháp xâm lược từ năm 1858 đến năm 1884",
+   "trang": [
+    77,
+    83
+   ],
+   "nam": 1858,
+   "tom": "Năm 1858, Pháp nổ súng xâm lược; triều Nguyễn lần lượt kí các hiệp ước, nhân dân kiên cường kháng chiến.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 18,
+   "chuong": "Chương 7. Việt Nam từ thế kỉ XIX đến đầu thế kỉ XX",
+   "ten": "Phong trào chống Pháp trong những năm 1885 – 1896",
+   "trang": [
+    84,
+    87
+   ],
+   "nam": 1885,
+   "tom": "Phong trào Cần vương và các cuộc khởi nghĩa tự phát chống Pháp cuối thế kỉ XIX.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 19,
+   "chuong": "Chương 7. Việt Nam từ thế kỉ XIX đến đầu thế kỉ XX",
+   "ten": "Phong trào yêu nước chống Pháp ở Việt Nam từ đầu thế kỉ XX đến năm 1917",
+   "trang": [
+    88,
+    92
+   ],
+   "nam": 1905,
+   "tom": "Các phong trào yêu nước theo khuynh hướng mới; Nguyễn Tất Thành ra đi tìm đường cứu nước (1911).",
+   "dang_bien_soan": true
+  },
+  {
+   "so": "CĐ1",
+   "chuong": "Chủ đề chung",
+   "ten": "Văn minh châu thổ sông Hồng và sông Cửu Long",
+   "trang": [
+    155,
+    161
+   ],
+   "nam": null,
+   "tom": "Chủ đề tích hợp về quá trình hình thành và những đặc trưng văn minh của hai vùng châu thổ lớn.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": "CĐ2",
+   "chuong": "Chủ đề chung",
+   "ten": "Bảo vệ chủ quyền, các quyền và lợi ích hợp pháp của Việt Nam ở Biển Đông",
+   "trang": [
+    162,
+    171
+   ],
+   "nam": null,
+   "tom": "Chủ đề tích hợp về vị trí của Biển Đông và quá trình xác lập, thực thi chủ quyền của Việt Nam.",
+   "dang_bien_soan": true
+  }
+ ]
+}

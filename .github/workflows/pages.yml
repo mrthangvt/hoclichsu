@@ -10,7 +10,7 @@ name: Deploy bản xem thử lên GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['vietsu/static/**', 'vietsu/tools/build_v42.py', 'vietsu/tools/build_v43.py', 'vietsu/tools/build_v44.py', 'vietsu/tools/build_v45.py', 'vietsu/tools/build_v46.py', 'vietsu/tools/build_v47.py', 'vietsu/tools/build_v48.py', 'vietsu/tools/build_v49.py', 'vietsu/tools/build_v411.py', 'vietsu/tools/check_v411_exam.py', 'vietsu/tools/check_v48_assets.py', 'vietsu/tools/build_v52.py', 'vietsu/static/v52.js', 'vietsu/static/v52.css', 'vietsu/tools/build_v53.py', 'vietsu/tools/build_v54.py', 'vietsu/tools/build_v55.py', 'vietsu/tools/build_v56.py', 'vietsu/tools/build_v57.py', 'vietsu/tools/build_v58.py', 'vietsu/data/sgk_kntt_lop6.json', 'vietsu/data/sgk_kntt_lop7.json', '.github/workflows/pages.yml']
+    paths: ['vietsu/static/**', 'vietsu/tools/build_v42.py', 'vietsu/tools/build_v43.py', 'vietsu/tools/build_v44.py', 'vietsu/tools/build_v45.py', 'vietsu/tools/build_v46.py', 'vietsu/tools/build_v47.py', 'vietsu/tools/build_v48.py', 'vietsu/tools/build_v49.py', 'vietsu/tools/build_v411.py', 'vietsu/tools/check_v411_exam.py', 'vietsu/tools/check_v48_assets.py', 'vietsu/tools/build_v52.py', 'vietsu/static/v52.js', 'vietsu/static/v52.css', 'vietsu/tools/build_v53.py', 'vietsu/tools/build_v54.py', 'vietsu/tools/build_v55.py', 'vietsu/tools/build_v56.py', 'vietsu/tools/build_v57.py', 'vietsu/tools/build_v58.py', 'vietsu/data/sgk_kntt_lop*.json', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -37,6 +37,7 @@ jobs:
           cp -r vietsu/static/v43 _site/static/v43
           cp -r vietsu/static/v49 _site/static/v49
           cp -r vietsu/static/v53 _site/static/v53
+          cp -r vietsu/static/v58 _site/static/v58
           cp -r vietsu/static/on-thi _site/on-thi
           cp -r vietsu/static/assets _site/assets
           cp -r vietsu/static/khong-gian _site/khong-gian

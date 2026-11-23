@@ -1,0 +1,163 @@
+{
+ "lop": 10,
+ "sach": "Lịch sử 10 (bộ Kết nối tri thức với cuộc sống, NXB Giáo dục Việt Nam), tr. 6–106",
+ "ghi_chu": "Mục lục theo đúng SGK; phần nội dung chi tiết từng bài đang được Việt Sử biên soạn lại bằng lời văn riêng (không chép nguyên văn sách). Học sinh mở SGK theo số trang.",
+ "bai": [
+  {
+   "so": 1,
+   "chuong": "Chủ đề 1. Lịch sử và Sử học",
+   "ten": "Hiện thực lịch sử và lịch sử được con người nhận thức",
+   "trang": [
+    6,
+    10
+   ],
+   "nam": null,
+   "tom": "Phân biệt quá khứ đã diễn ra với hiểu biết của con người về quá khứ; đối tượng, chức năng, nhiệm vụ của Sử học.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 2,
+   "chuong": "Chủ đề 1. Lịch sử và Sử học",
+   "ten": "Tri thức lịch sử và cuộc sống",
+   "trang": [
+    11,
+    15
+   ],
+   "nam": null,
+   "tom": "Vì sao cần học tập, khám phá lịch sử suốt đời và vận dụng tri thức lịch sử vào cuộc sống.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 3,
+   "chuong": "Chủ đề 2. Vai trò của Sử học",
+   "ten": "Vai trò của Sử học",
+   "trang": [
+    16,
+    20
+   ],
+   "nam": null,
+   "tom": "Sử học với bảo tồn di sản văn hoá, phát triển du lịch và các ngành nghề liên quan.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 4,
+   "chuong": "Chủ đề 3. Một số nền văn minh thế giới thời cổ – trung đại",
+   "ten": "Khái niệm văn minh. Một số nền văn minh phương Đông thời cổ – trung đại",
+   "trang": [
+    21,
+    30
+   ],
+   "nam": null,
+   "tom": "Khái niệm văn minh, văn hoá; thành tựu của văn minh Ai Cập, Lưỡng Hà, Ấn Độ, Trung Hoa.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 5,
+   "chuong": "Chủ đề 3. Một số nền văn minh thế giới thời cổ – trung đại",
+   "ten": "Một số nền văn minh phương Tây thời cổ – trung đại",
+   "trang": [
+    31,
+    37
+   ],
+   "nam": null,
+   "tom": "Văn minh Hy Lạp – La Mã cổ đại và văn minh thời Phục hưng.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 6,
+   "chuong": "Chủ đề 4. Các cuộc cách mạng công nghiệp trong lịch sử thế giới",
+   "ten": "Các cuộc cách mạng công nghiệp thời cận đại",
+   "trang": [
+    38,
+    44
+   ],
+   "nam": null,
+   "tom": "Cách mạng công nghiệp lần thứ nhất và lần thứ hai: thành tựu và tác động.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 7,
+   "chuong": "Chủ đề 4. Các cuộc cách mạng công nghiệp trong lịch sử thế giới",
+   "ten": "Các cuộc cách mạng công nghiệp thời hiện đại",
+   "trang": [
+    45,
+    50
+   ],
+   "nam": null,
+   "tom": "Cách mạng công nghiệp lần thứ ba và lần thứ tư: thành tựu và ý nghĩa.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 8,
+   "chuong": "Chủ đề 5. Văn minh Đông Nam Á thời cổ – trung đại",
+   "ten": "Hành trình phát triển và thành tựu của văn minh Đông Nam Á thời cổ – trung đại",
+   "trang": [
+    51,
+    58
+   ],
+   "nam": null,
+   "tom": "Cơ sở hình thành, các thời kì phát triển và thành tựu tiêu biểu của văn minh Đông Nam Á.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 9,
+   "chuong": "Chủ đề 6. Một số nền văn minh trên đất nước Việt Nam (trước năm 1858)",
+   "ten": "Một số nền văn minh cổ trên đất nước Việt Nam",
+   "trang": [
+    59,
+    72
+   ],
+   "nam": null,
+   "tom": "Văn minh Văn Lang – Âu Lạc, văn minh Chăm-pa, văn minh Phù Nam.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 10,
+   "chuong": "Chủ đề 6. Một số nền văn minh trên đất nước Việt Nam (trước năm 1858)",
+   "ten": "Văn minh Đại Việt",
+   "trang": [
+    73,
+    85
+   ],
+   "nam": 1010,
+   "tom": "Cơ sở hình thành và thành tựu của văn minh Đại Việt trên các lĩnh vực.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 11,
+   "chuong": "Chủ đề 7. Cộng đồng các dân tộc Việt Nam",
+   "ten": "Các dân tộc trên đất nước Việt Nam",
+   "trang": [
+    86,
+    89
+   ],
+   "nam": null,
+   "tom": "Thành phần dân tộc, các ngữ hệ và sự phân bố của 54 dân tộc ở Việt Nam.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 12,
+   "chuong": "Chủ đề 7. Cộng đồng các dân tộc Việt Nam",
+   "ten": "Khái quát về đời sống vật chất và tinh thần của cộng đồng các dân tộc Việt Nam",
+   "trang": [
+    90,
+    99
+   ],
+   "nam": null,
+   "tom": "Những nét chính về sản xuất, ăn, mặc, ở, tín ngưỡng, lễ hội của các dân tộc.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 13,
+   "chuong": "Chủ đề 7. Cộng đồng các dân tộc Việt Nam",
+   "ten": "Khối đại đoàn kết dân tộc trong lịch sử Việt Nam",
+   "trang": [
+    100,
+    106
+   ],
+   "nam": null,
+   "tom": "Vai trò của khối đại đoàn kết dân tộc trong dựng nước, giữ nước và chính sách dân tộc hiện nay.",
+   "dang_bien_soan": true
+  }
+ ]
+}
