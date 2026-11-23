@@ -295,7 +295,7 @@ function nvDraw(K, kind, clip, C, t, ph, pos, yaw, scale, wpn, tSeg, vi, roll, p
 // Bật/tắt: ?xuong=0 tắt, ?xuong=60 đổi bán kính (m). Quy trình: docs/KHUNG_SA_BAN.md › Nhân vật lai.
 const XL = (() => {
   const q = new URLSearchParams(location.search), arg = q.get('xuong');
-  const S = { on: arg !== '0', R: arg && +arg > 1 ? +arg : 55, MAX: 48, kinds: {}, used: 0, n: 0, stat: { xuong: 0, nvz: 0 } };
+  const S = { on: arg !== '0' && location.hash !== '#xuong-tat', R: arg && +arg > 1 ? +arg : 55, MAX: 48, kinds: {}, used: 0, n: 0, stat: { xuong: 0, nvz: 0 } };
   // động tác .nvz → động tác GLB; danh sách thì chọn theo số thứ tự người (vi) cho đa dạng
   const MAP = { dung: 'dung', thu: 'thu', di: 'di', chay: ['chay', 'chay', 'chay', 'chaynhanh'], chem: ['chem', 'chem2', 'chem', 'do'], dam: ['dam', 'dam', 'dam', 'trung'],
     ngam: 'ban', ban: 'ban', nga: ['nga', 'chet'], chet: ['chet', 'chet2'], cheo: 'cheo', keo: 'keo', day: 'day' };
@@ -303,7 +303,9 @@ const XL = (() => {
   const FILES = { 'quan-ly': 'nhanvat/quan-ly.glb', 'linh-tong': 'nhanvat/linh-tong.glb' };
   let SU = null;
   S.load = async () => {
+    S.nut();
     if (!S.on) { S.ready = true; return; }
+    if (S.dangTai) return S.dangTai; S.dangTai = true;
     const [{ GLTFLoader }, { MeshoptDecoder }, su] = await Promise.all([import('@@ENGINE@@vendor/three/addons/loaders/GLTFLoader.js'),
       import('@@ENGINE@@vendor/three/addons/libs/meshopt_decoder.module.js'), import('@@ENGINE@@vendor/three/addons/utils/SkeletonUtils.js')]);
     SU = su; const L = new GLTFLoader(); L.setMeshoptDecoder(MeshoptDecoder);
@@ -317,6 +319,15 @@ const XL = (() => {
       } catch (e) { console.warn('nhân vật có xương', kind, e); }
     }));
     S.ready = true;
+  };
+  // nút so sánh: bật/tắt lính có xương ngay khi đang xem (máy quay, thời gian giữ nguyên)
+  S.nut = () => {
+    if (document.getElementById('xlbtn')) return;
+    const b = document.createElement('button'); b.id = 'xlbtn'; b.type = 'button';
+    b.style.cssText = 'position:fixed;right:14px;bottom:112px;z-index:30;padding:7px 13px;border-radius:999px;border:1px solid rgba(233,200,140,.55);background:rgba(28,22,16,.82);color:#f1e3c6;font:600 13px/1.2 "Be Vietnam Pro",system-ui,sans-serif;cursor:pointer;backdrop-filter:blur(6px)';
+    const ve = () => { b.textContent = S.on ? 'Lính cận cảnh: có xương ✓' : 'Lính cận cảnh: nướng sẵn'; b.title = 'Bấm để so sánh: lính trong ' + S.R + ' m quanh máy quay vẽ bằng mô hình có xương hoặc bằng khung hình nướng sẵn'; };
+    b.onclick = () => { S.on = !S.on; ve(); if (S.on && !S.kinds['quan-ly']) { S.ready = false; S.load(); } };
+    ve(); document.body.appendChild(b);
   };
   function make(K) {
     const root = SU.clone(K.g.scene); root.matrixAutoUpdate = false; let mesh = null; const b = {};
@@ -338,7 +349,7 @@ const XL = (() => {
   }
   S.begin = () => { nQ = 0; for (const K of Object.values(S.kinds)) K.used = 0; S.used = 0; S.stat.xuong = 0; S.stat.nvz = 0; };
   S.end = () => { const on = document.getElementById('ly-nv')?.checked !== false;
-    for (const K of Object.values(S.kinds)) K.pool.forEach((P, i) => { if (i >= K.used || !on) P.root.visible = false; }); };
+    for (const K of Object.values(S.kinds)) K.pool.forEach((P, i) => { if (i >= K.used || !on || !S.on) P.root.visible = false; }); };
   // Người có thể vẽ bằng xương: ghi lại, quyết định ở flush() khi máy quay của khung hình này đã đặt xong
   // (máy quay đặt sau khi xếp quân; xét theo vị trí cũ thì ở khung cắt cảnh sẽ chọn nhầm người).
   const Q = []; let nQ = 0; const _v = new THREE.Vector3();
