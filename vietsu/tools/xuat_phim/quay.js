@@ -64,19 +64,20 @@ XP.chay=async function(){
   function logoGoc(){if(!logo.naturalWidth)return;const w=(cfg.logo_rong||220)*sc,h=w*logo.naturalHeight/logo.naturalWidth;
     g.save();g.shadowColor='rgba(0,0,0,.6)';g.shadowBlur=14*sc;g.drawImage(logo,W-44*sc-w,150*sc-h/2,w,h);g.restore()}
   function veKhung(m,u,dai,glc){
-    g.globalAlpha=1;g.drawImage(glc,0,0,W,H);
+    g.globalAlpha=1;g.filter=m.loc||'none';g.drawImage(glc,0,0,W,H);g.filter='none';   /* loc: chỉnh sáng/tương phản cho cảnh đêm, vd. "brightness(1.5) contrast(1.1)" */
     /* làm tối nhẹ trên cùng cho nhãn/logo dễ đọc, và dải dưới chữ */
     let gr=g.createLinearGradient(0,0,0,330*sc);gr.addColorStop(0,'rgba(0,0,0,.5)');gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,0,W,330*sc);
-    const vao=m.chu_tu??.25,ra=dai-(m.chu_het??.3);
+    const vao=m.chu_tu??.25;
     if(m.ket){const k=Math.min(1,u/.45);g.fillStyle=`rgba(6,4,3,${.62*k})`;g.fillRect(0,0,W,H);
-      if(logoKet.naturalWidth){const w=560*sc,h=w*logoKet.naturalHeight/logoKet.naturalWidth;g.save();g.globalAlpha=k;g.drawImage(logoKet,(W-w)/2,620*sc-h/2,w,h);g.restore()}
+      if(logoKet.naturalWidth){const w=(m.logo_rong||560)*sc,h=w*logoKet.naturalHeight/logoKet.naturalWidth;g.save();g.globalAlpha=k;g.drawImage(logoKet,(W-w)/2,(m.logo_y||600)*sc-h/2,w,h);g.restore()}
       chuGiua(m.chu,960,78,{alpha:k,maxW:900});
       chuGiua(m.web||'',1210,50,{weight:700,color:'#f3c969',alpha:k,maxW:980});
     }else if(m.chu&&u>=vao&&u<=dai){
-      const a=Math.min(1,(u-vao)/.35)*Math.min(1,Math.max(0,(dai-u)/.3));const moc=m.kieu_chu==='moc';
+      const hn=!!m.chu_hien_ngay,het=m.chu_het??.3;   /* chu_hien_ngay: chữ nối tiếp từ đoạn trước, không hiện dần */
+      const vaoK=hn?1:Math.min(1,(u-vao)/.35);const a=vaoK*(het>0?Math.min(1,Math.max(0,(dai-u)/het)):1);const moc=m.kieu_chu==='moc';
       const cy=m.chu_y||(moc?900:1250),size=m.chu_co||(moc?88:74);
       gr=g.createLinearGradient(0,(cy-260)*sc,0,(cy+260)*sc);gr.addColorStop(0,'rgba(0,0,0,0)');gr.addColorStop(.5,`rgba(0,0,0,${.42*a})`);gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,(cy-260)*sc,W,520*sc);
-      chuGiua(m.chu,cy,size,{alpha:a,dy:(1-Math.min(1,(u-vao)/.35))*24,color:moc?'#ffe08a':'#fff',maxW:m.chu_rong||920})}
+      chuGiua(m.chu,cy,size,{alpha:a,dy:(1-vaoK)*24,color:moc?'#ffe08a':'#fff',maxW:m.chu_rong||920})}
     nhan();logoGoc();
     if(m.den_vao&&u<m.den_vao){g.fillStyle=`rgba(0,0,0,${1-u/m.den_vao})`;g.fillRect(0,0,W,H)}
     if(m.den_ra&&dai-u<m.den_ra){g.fillStyle=`rgba(0,0,0,${1-(dai-u)/m.den_ra})`;g.fillRect(0,0,W,H)}}
@@ -105,8 +106,10 @@ XP.chay=async function(){
     /* chạy trước vài giây (không ghi) để ánh sáng, khói, nhân vật vào nhịp */
     const nPre=Math.round((S.D.t<m.tu?m.tu-S.D.t:0)*FPS);for(let f=0;f<nPre;f++){cam.snap=f<1;XP.buocToi();if(f%10===9)await XP.nhuong()}
     const N=Math.round(m.dai*FPS);
-    if(cheDo==='xem_thu'){const giua=m.anh_luc??m.dai*.55;for(let f=0;f<Math.round(giua*FPS);f++){XP.buocToi();if(f%10===9)await XP.nhuong()}
-      veKhung(m,giua,m.dai,glc);const b=await new Promise(r=>cv.toBlob(r,'image/jpeg',.9));await luu(`${ten}_${m.id}.jpg`,b);
+    if(cheDo==='xem_thu'){   /* ?anh=3: chụp 3 ảnh ở 10%, 50%, 90% đoạn; mặc định 1 ảnh ở 55% */
+      const nA=+Q.get('anh')||1;const moc=nA>1?Array.from({length:nA},(_,j)=>m.dai*(.1+.8*j/(nA-1))):[m.anh_luc??m.dai*.55];let f=0;
+      for(const [j,lu] of moc.entries()){for(;f<Math.round(lu*FPS);f++){XP.buocToi();if(f%10===9)await XP.nhuong()}
+        veKhung(m,lu,m.dai,glc);const b=await new Promise(r=>cv.toBlob(r,'image/jpeg',.88));await luu(`${ten}_${m.id}${nA>1?'_'+(j+1):''}.jpg`,b)}
       n+=N;log(`Xem thử ${m.id} xong (${((XP.nowThuc()-tm)/1000).toFixed(1)} s)`)}
     else{for(let f=0;f<N;f++){XP.buocToi();veKhung(m,f/FPS,m.dai,glc);
         const vf=new VideoFrame(cv,{timestamp:Math.round(n*1e6/FPS),duration:Math.round(1e6/FPS)});enc.encode(vf,{keyFrame:n%(FPS*2)===0});vf.close();n++;

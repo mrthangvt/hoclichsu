@@ -89,6 +89,7 @@ class XuLy(http.server.SimpleHTTPRequestHandler):
 class MayChu(socketserver.ThreadingMixIn, http.server.HTTPServer):
     daemon_threads = True
     allow_reuse_address = True
+    request_queue_size = 128   # macOS mặc định hàng chờ 5: trang tải 7 mô hình cùng lúc sẽ bị từ chối kết nối
 
 
 if __name__ == '__main__':

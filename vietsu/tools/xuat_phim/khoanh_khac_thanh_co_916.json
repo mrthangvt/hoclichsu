@@ -1,63 +1,375 @@
 {
-  "_ghi_chu": "Danh sách khoảnh khắc trailer dọc 9:16 sa bàn Thành cổ Quảng Trị 1972. Sửa tệp này rồi xuất lại (xem README.md). chuong = id phân cảnh trong data/episodes.json; tu = giây bắt đầu trong phân cảnh; dai = độ dài (giây); chuan_bi = số giây chạy trước không ghi. may: follow (boat | swimmer | tank | tên nhóm lính như qShelter, qLand, qWall, vAtk, vRun, qRest…), i = người thứ mấy trong nhóm, off = [lùi sau, sang ngang, lên cao] (mét), look = [nhìn trước, độ cao, ngang]; off2/look2 = giá trị ở cuối đoạn (máy trượt dần); hoặc p/l (p2/l2) = toạ độ Blender cố định; fov = góc nhìn dọc (độ); lop = null tắt mũi tên bản đồ; muot = độ mượt khi bám. chu = chữ trên màn hình; kieu_chu = moc (câu móc, to, màu vàng). loi_dan: tep (trong audio/voice), tu/den = đoạn cắt trong tệp (giây), luc = giây bắt đầu tính từ đầu khoảnh khắc. Chữ không ghi ngày tháng (mốc thời gian kịch bản vượt sông chưa chốt).",
-  "ten": "thanh_co_916",
-  "sa_ban": "thanh-co-quang-tri",
-  "khung": {"w": 1080, "h": 1920, "fps": 30},
-  "hat": 1972,
-  "ma_hoa": {"bitrate": 20000000},
-  "nhan": "TÁI DỰNG MÔ PHỎNG",
-  "logo": "/static/v53/logo-chu-toi.webp",
-  "logo_rong": 220,
-  "nhac": {"tep": "audio/dong-song-phang-lang.mp3", "tu": 35, "am_luong": 0.9, "ha_khi_doc": 0.35, "vao": 0.4, "ra": 2.5},
-  "giong": {"am_luong": 1.0},
-  "khoanh_khac": [
+ "_ghi_chu": "Danh sách khoảnh khắc trailer dọc 9:16 sa bàn Thành cổ Quảng Trị 1972. Sửa tệp này rồi xuất lại (xem README.md). chuong = id phân cảnh trong data/episodes.json; tu = giây bắt đầu trong phân cảnh; dai = độ dài (giây); chuan_bi = số giây chạy trước không ghi. may: follow (boat | swimmer | tank | tên nhóm lính như qShelter, qLand, qWall, vAtk, vRun, qRest…), i = người thứ mấy trong nhóm, off = [lùi sau, sang ngang, lên cao] (mét), look = [nhìn trước, độ cao, ngang]; off2/look2 = giá trị ở cuối đoạn (máy trượt dần); hoặc p/l (p2/l2) = toạ độ Blender cố định; fov = góc nhìn dọc (độ); lop = null tắt mũi tên bản đồ; muot = độ mượt khi bám. chu = chữ trên màn hình; kieu_chu = moc (câu móc, to, màu vàng). loi_dan: tep (trong audio/voice), tu/den = đoạn cắt trong tệp (giây), luc = giây bắt đầu tính từ đầu khoảnh khắc. Chữ không ghi ngày tháng (mốc thời gian kịch bản vượt sông chưa chốt). Dấu cách không ngắt (\\u00a0) giữ hai chữ cuối cùng dòng. loc = bộ lọc sáng cho cảnh đêm (CSS filter).",
+ "ten": "thanh_co_916",
+ "sa_ban": "thanh-co-quang-tri",
+ "khung": {
+  "w": 1080,
+  "h": 1920,
+  "fps": 30
+ },
+ "hat": 1972,
+ "ma_hoa": {
+  "bitrate": 20000000
+ },
+ "nhan": "TÁI DỰNG MÔ PHỎNG",
+ "logo": "/xuat_phim/tai_nguyen/logo-viet-su-chu.png",
+ "logo_rong": 210,
+ "nhac": {
+  "tep": "audio/dong-song-phang-lang.mp3",
+  "tu": 35,
+  "am_luong": 0.9,
+  "ha_khi_doc": 0.35,
+  "vao": 0.4,
+  "ra": 2.5
+ },
+ "giong": {
+  "am_luong": 1.0
+ },
+ "khoanh_khac": [
+  {
+   "id": "m1",
+   "ten": "Dưới hoả lực",
+   "chuong": "s04-duoi-hoa-luc",
+   "tu": 17,
+   "dai": 5,
+   "chuan_bi": 4,
+   "may": {
+    "follow": "qShelter",
+    "i": 1,
+    "off": [
+     -2.6,
+     1.3,
+     0.1
+    ],
+    "look": [
+     0,
+     -0.1
+    ],
+    "off2": [
+     -1.9,
+     0.9,
+     0.15
+    ],
+    "fov": 50
+   },
+   "chu": "Mỗi mét đất ở đây đều phải đánh đổi bằng máu",
+   "kieu_chu": "moc",
+   "chu_tu": 0,
+   "chu_y": 410,
+   "den_vao": 0.2,
+   "loi_dan": [
     {
-      "id": "m1", "ten": "Dưới hoả lực", "chuong": "s04-duoi-hoa-luc", "tu": 17, "dai": 5, "chuan_bi": 4,
-      "may": {"follow": "qShelter", "i": 1, "off": [1.5, 0.5, 0.45], "look": [30, -1], "off2": [1.2, 0.4, 0.4], "fov": 52},
-      "chu": "Mỗi mét đất ở đây đều phải đánh đổi bằng máu", "kieu_chu": "moc", "chu_tu": 0, "den_vao": 0.2,
-      "loi_dan": [{"tep": "s03-phan-cong-04.mp3", "tu": 7.18, "den": 9.5, "luc": 0.6}]
-    },
-    {
-      "id": "m2", "ten": "Vượt sông Thạch Hãn", "chuong": "s05-thach-han", "tu": 31, "dai": 8, "chuan_bi": 5, "dem": true,
-      "may": {"follow": "boat", "i": 1, "off": [5.5, 2.8, 1.7], "look": [6, 0.5], "off2": [4.2, -1.8, 1.5], "look2": [8, 0.6], "fov": 56},
-      "chu": "Đêm vượt sông Thạch Hãn",
-      "loi_dan": [{"tep": "s05-thach-han-03.mp3", "tu": 0.0, "den": 3.25, "luc": 0.3}, {"tep": "s05-thach-han-03.mp3", "tu": 8.85, "den": 12.7, "luc": 3.9}]
-    },
-    {
-      "id": "m3", "ten": "Lên bờ", "chuong": "s05-thach-han", "tu": 90, "dai": 6, "chuan_bi": 5, "dem": true,
-      "may": {"follow": "qLand", "i": 1, "off": [-4.5, 2.6, 1.4], "look": [0, -0.6], "off2": [-3.6, 1.6, 1.1], "fov": 54},
-      "chu": "Không ai đứng thẳng được giữa làn pháo sáng",
-      "loi_dan": [{"tep": "s05-thach-han-06.mp3", "tu": 6.3, "den": 9.05, "luc": 0.5}]
-    },
-    {
-      "id": "m4", "ten": "Giành giật tường thành", "chuong": "s06-tuong-thanh", "tu": 23, "dai": 9, "chuan_bi": 4,
-      "may": {"follow": "qWall", "i": 4, "high": true, "off": [1.6, 0.55, 0.4], "look": [45, -3], "off2": [2.3, -0.75, 0.65], "fov": 54},
-      "chu": "Giành giật từng đoạn tường thành",
-      "loi_dan": [{"tep": "s06-tuong-thanh-02.mp3", "tu": 0.0, "den": 9.1, "luc": 0.0}]
-    },
-    {
-      "id": "m5", "ten": "Xe tăng áp sát", "chuong": "s03-phan-cong", "tu": 25, "dai": 6, "chuan_bi": 4,
-      "may": {"follow": "tank", "i": 1, "off": [16, 6, 2.6], "look": [30, 2.5], "off2": [12, 4, 2.2], "fov": 58, "lop": null},
-      "chu": "Xe tăng, bom, pháo dồn về một toà thành",
-      "loi_dan": []
-    },
-    {
-      "id": "m6", "ten": "Đêm trong công sự", "chuong": "s07-dem-cong-su", "tu": 35, "dai": 7, "chuan_bi": 5, "dem": true,
-      "may": {"follow": "qRest", "i": 0, "off": [-2.4, 1.3, 0.45], "look": [0, -0.55], "off2": [-1.9, 1.0, 0.35], "fov": 50},
-      "chu": "Ngủ thiếp đi, súng vẫn trong tay",
-      "loi_dan": [{"tep": "s07-dem-cong-su-03.mp3", "tu": 3.95, "den": 9.6, "luc": 0.6}]
-    },
-    {
-      "id": "m7", "ten": "Hoa đăng trên sông", "chuong": "s10-tuong-niem", "tu": 4, "dai": 8, "chuan_bi": 5,
-      "may": {"p": [-556, -86, 5], "l": [-640, 40, 0], "p2": [-544, -104, 10], "l2": [-636, 36, 0], "fov": 56},
-      "chu": "Hôm nay, hoa đăng sáng trên sông Thạch Hãn",
-      "loi_dan": [{"tep": "s10-tuong-niem-10.mp3", "tu": 0.0, "den": 6.9, "luc": 0.6}]
+     "tep": "s03-phan-cong-04.mp3",
+     "tu": 7.18,
+     "den": 9.5,
+     "luc": 0.6
     }
-  ],
-  "ket": {
-    "chuong": "s10-tuong-niem", "tu": 136, "dai": 3.5, "chuan_bi": 4,
-    "may": {"p": [260, -560, 330], "l": [-20, 0, 0], "p2": [300, -480, 340], "l2": [-30, 0, 0], "fov": 50},
-    "chu": "Khám phá sa bàn 3D tại Việt Sử", "web": "mrthangvt.github.io/vietsu",
-    "logo": "/static/v53/logo-chu-toi.webp", "den_ra": 0.5
+   ],
+   "chu_co": 78
+  },
+  {
+   "id": "m2",
+   "ten": "Vượt sông Thạch Hãn",
+   "chuong": "s05-thach-han",
+   "tu": 38,
+   "dai": 8,
+   "chuan_bi": 5,
+   "dem": true,
+   "loc": "brightness(2.0) contrast(1.05)",
+   "may": {
+    "follow": "boat",
+    "i": 1,
+    "off": [
+     -1,
+     5.5,
+     0.7
+    ],
+    "look": [
+     0.5,
+     1.0
+    ],
+    "off2": [
+     1,
+     4.6,
+     1.0
+    ],
+    "look2": [
+     0,
+     0.7
+    ],
+    "fov": 48
+   },
+   "chu": "Đêm vượt sông Thạch Hãn",
+   "chu_y": 1400,
+   "loi_dan": [
+    {
+     "tep": "s05-thach-han-03.mp3",
+     "tu": 0.0,
+     "den": 3.25,
+     "luc": 0.3
+    },
+    {
+     "tep": "s05-thach-han-03.mp3",
+     "tu": 8.85,
+     "den": 12.7,
+     "luc": 3.9
+    }
+   ]
+  },
+  {
+   "id": "m3",
+   "ten": "Lên bờ",
+   "chuong": "s05-thach-han",
+   "tu": 91.5,
+   "dai": 6,
+   "chuan_bi": 5,
+   "dem": true,
+   "loc": "brightness(1.9) contrast(1.05)",
+   "may": {
+    "follow": "qLand",
+    "i": 2,
+    "off": [
+     -3.5,
+     1.8,
+     0.2
+    ],
+    "look": [
+     0,
+     -0.4
+    ],
+    "off2": [
+     -3.0,
+     1.2,
+     0.35
+    ],
+    "fov": 50
+   },
+   "chu": "Không ai đứng thẳng được giữa làn pháo sáng",
+   "chu_y": 1400,
+   "loi_dan": [
+    {
+     "tep": "s05-thach-han-06.mp3",
+     "tu": 6.3,
+     "den": 9.05,
+     "luc": 0.5
+    }
+   ]
+  },
+  {
+   "id": "m4",
+   "ten": "Trên mặt thành",
+   "chuong": "s06-tuong-thanh",
+   "tu": 25,
+   "dai": 4.5,
+   "chuan_bi": 4,
+   "may": {
+    "follow": "qWall",
+    "i": 4,
+    "high": true,
+    "off": [
+     -2.4,
+     1.2,
+     0.2
+    ],
+    "look": [
+     0,
+     -0.3
+    ],
+    "off2": [
+     -1.9,
+     0.8,
+     0.3
+    ],
+    "fov": 50
+   },
+   "chu": "Giành giật từng đoạn tường thành",
+   "chu_y": 1400,
+   "chu_het": 0,
+   "loi_dan": [
+    {
+     "tep": "s06-tuong-thanh-02.mp3",
+     "tu": 0.0,
+     "den": 9.1,
+     "luc": 0.0
+    }
+   ]
+  },
+  {
+   "id": "m4b",
+   "ten": "Phía tiến công",
+   "chuong": "s06-tuong-thanh",
+   "tu": 78,
+   "dai": 4.5,
+   "chuan_bi": 4,
+   "may": {
+    "follow": "vAtk",
+    "i": 1,
+    "off": [
+     -3,
+     1.4,
+     0.3
+    ],
+    "look": [
+     0,
+     -0.4
+    ],
+    "off2": [
+     -2.4,
+     0.9,
+     0.4
+    ],
+    "fov": 50
+   },
+   "chu": "Giành giật từng đoạn tường thành",
+   "chu_y": 1400,
+   "chu_tu": 0,
+   "chu_hien_ngay": true,
+   "loi_dan": []
+  },
+  {
+   "id": "m5",
+   "ten": "Xe tăng áp sát",
+   "chuong": "s03-phan-cong",
+   "tu": 28,
+   "dai": 6,
+   "chuan_bi": 4,
+   "may": {
+    "follow": "tank",
+    "i": 1,
+    "off": [
+     -14,
+     5,
+     1.2
+    ],
+    "look": [
+     0,
+     1.5
+    ],
+    "off2": [
+     -11,
+     3,
+     1.0
+    ],
+    "fov": 50,
+    "lop": null
+   },
+   "chu": "Xe tăng, bom, pháo dồn về một toà thành",
+   "chu_y": 1400,
+   "loi_dan": []
+  },
+  {
+   "id": "m6",
+   "ten": "Đêm trong công sự",
+   "chuong": "s07-dem-cong-su",
+   "tu": 35,
+   "dai": 7,
+   "chuan_bi": 5,
+   "dem": true,
+   "may": {
+    "follow": "qRest",
+    "i": 0,
+    "off": [
+     -2.4,
+     1.3,
+     0.45
+    ],
+    "look": [
+     0,
+     -0.55
+    ],
+    "off2": [
+     -1.9,
+     1.0,
+     0.35
+    ],
+    "fov": 50
+   },
+   "chu": "Ngủ thiếp đi, súng vẫn trong tay",
+   "chu_y": 1450,
+   "loi_dan": [
+    {
+     "tep": "s07-dem-cong-su-03.mp3",
+     "tu": 3.95,
+     "den": 9.6,
+     "luc": 0.6
+    }
+   ]
+  },
+  {
+   "id": "m7",
+   "ten": "Thành cổ hôm nay",
+   "chuong": "s10-tuong-niem",
+   "tu": 100,
+   "dai": 8,
+   "chuan_bi": 4,
+   "may": {
+    "p": [
+     -70,
+     -170,
+     30
+    ],
+    "l": [
+     0,
+     0,
+     8
+    ],
+    "p2": [
+     -48,
+     -122,
+     20
+    ],
+    "l2": [
+     0,
+     0,
+     10
+    ],
+    "fov": 50
+   },
+   "chu": "Hôm nay, không còn tiếng bom rơi",
+   "chu_y": 1400,
+   "loi_dan": [
+    {
+     "tep": "s10-tuong-niem-11.mp3",
+     "tu": 0.0,
+     "den": 10.95,
+     "luc": 0.4
+    }
+   ]
   }
+ ],
+ "ket": {
+  "chuong": "s10-tuong-niem",
+  "tu": 110,
+  "dai": 3.5,
+  "chuan_bi": 4,
+  "may": {
+   "p": [
+    -300,
+    -330,
+    90
+   ],
+   "l": [
+    0,
+    0,
+    0
+   ],
+   "p2": [
+    -320,
+    -350,
+    110
+   ],
+   "l2": [
+    0,
+    0,
+    0
+   ],
+   "fov": 50
+  },
+  "chu": "Khám phá sa bàn 3D tại Việt Sử",
+  "web": "vietsu.com.vn",
+  "logo": "/xuat_phim/tai_nguyen/logo-viet-su-cong.png",
+  "den_ra": 0.5,
+  "logo_rong": 430,
+  "logo_y": 560
+ }
 }

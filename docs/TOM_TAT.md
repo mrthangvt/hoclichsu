@@ -164,6 +164,12 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - **Tạm bỏ không gian Thành Cổ Loa** (theo yêu cầu chủ dự án 22/11): gỡ `co-loa` khỏi `V2_EXPERIENCES`, `V23_SCENES`, `experiences_seed.json`, `experience_locations.json`. Ảnh thẻ `co-loa` trong `v42.js` ART vẫn giữ để khôi phục sau.
 - Nội dung là tái dựng mô phỏng: số thuyền, số quân là mật độ minh họa; vị trí pháo, phục binh là giả định chiến thuật; cần đối chiếu tư liệu.
 
+## Xuất phim từ sa bàn (công cụ riêng, nhánh `claude/xuat-phim`, 23/11/2026)
+- `vietsu/tools/xuat_phim/` (ngoài `static/`, không lên GitHub Pages, không thêm nút/đường dẫn nào trên web, không sửa mã sa bàn). Máy chủ tại máy `may_chu.py` (127.0.0.1:8765) chèn `dong_ho_ao.js` vào trang `/quay/<sa-ban>/`: đồng hồ ảo 1/30 s thay `performance.now`/`requestAnimationFrame`/`setTimeout`, `Math.random` có hạt giống, khung vẽ cố định. `quay.js` gọi `__STORY.goto`, đặt máy quay dọc bám nhân vật (`__QT.anchor`), ghép chữ/nhãn/logo, mã hoá H.264 bằng WebCodecs trên card đồ hoạ Mac. `ghep_am_thanh.py` dựng âm thanh bằng ffmpeg từ voice gốc + nhạc nền. Hướng dẫn: `vietsu/tools/xuat_phim/README.md`.
+- Trailer dọc 9:16 Thành cổ (`khoanh_khac_thanh_co_916.json`, 9 đoạn, 52,5 s): xuất trên Mac M1 mất 57,5 s. Chữ trên trailer **không ghi ngày tháng** (mốc của kịch bản vượt sông chưa chốt, xem mục 1). Logo/địa chỉ: **Việt Sử – vietsu.com.vn** (logo "Sử Việt / suviet.com.vn" trong `static/v53/` là nhầm, theo anh Thắng 23/11; suviet.com.vn là trang của một công ty gốm sứ).
+- Bản quyền trước khi đăng YouTube (kênh Trường Thắng Documentary): nhạc `audio/dong-song-phang-lang.mp3` là bản phối AI dùng giai điệu + lời bài hát gốc → Content ID có thể nhận dạng phần sáng tác, chủ quyền tác giả có thể nhận doanh thu hoặc chặn; cần giấy phép tác giả/đơn vị quản lý quyền hoặc thay nhạc có giấy phép. Giọng đọc: dùng được nếu là giọng của anh hoặc có thoả thuận với người đọc/điều khoản dịch vụ giọng AI. Dữ liệu OSM: ghi "© OpenStreetMap contributors" trong mô tả video.
+- Tiếp theo: phim 16:9 4K đầy đủ (`?w=3840&h=2160`, danh sách khoảnh khắc ngang riêng).
+
 ## Lấy toạ độ OpenStreetMap cho sa bàn (dành cho Codex/ChatGPT)
 - Đổi toạ độ: `python3 tools/osm_sang_sa_ban.py <vĩ độ> <kinh độ>` hoặc `python3 tools/osm_sang_sa_ban.py file.geojson > ket_qua.json`. Kết quả là toạ độ sa bàn (m, Blender X/Y); sang three.js dùng `B(x,y,z)=(x,z,−y)`.
 - Kiểm tra: Đài tưởng niệm giữa Thành cổ ra ≈ (0, 0); Cổng Tiền ≈ (0, −250).

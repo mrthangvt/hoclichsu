@@ -14,7 +14,9 @@ Công cụ **chỉ dùng trên máy anh Thắng** để dựng trailer/phim từ
    (card đồ hoạ của Mac), gửi `ket_qua/<ten>.h264` về máy chủ. Giao diện sa bàn không vào hình (chỉ lấy khung vẽ 3D).
 4. `ghep_am_thanh.py` — dựng âm thanh bằng ffmpeg từ tệp gốc (đoạn lời dẫn `audio/voice/…`, nhạc nền), tự hạ nhạc khi
    có lời dẫn, chuẩn −14 LUFS, ghép với hình (không mã hoá lại) → `ket_qua/<ten>.mp4`.
-5. `khoanh_khac_thanh_co_916.json` — danh sách khoảnh khắc trailer dọc Thành cổ (góc máy, chữ, đoạn lời dẫn, nhạc).
+5. `tai_nguyen/` — logo Việt Sử (tách nền từ bản phác thảo logo vietsu.com.vn, phương án 3): `logo-viet-su-chu.png`
+   (chữ, góc trên phải), `logo-viet-su-cong.png` (cổng + chữ, khung kết). Thay bằng tệp logo gốc khi có.
+6. `khoanh_khac_thanh_co_916.json` — danh sách khoảnh khắc trailer dọc Thành cổ (góc máy, chữ, đoạn lời dẫn, nhạc).
    Sửa tệp này rồi xuất lại. Giải thích từng trường ở `_ghi_chu` đầu tệp.
 
 ## Chạy
@@ -30,6 +32,11 @@ Góc dưới trái trang hiện tiến độ. Xong thì:
 ```bash
 python3 vietsu/tools/xuat_phim/ghep_am_thanh.py khoanh_khac_thanh_co_916     # cần ffmpeg: brew install ffmpeg
 ```
+(Máy Mac chưa có ffmpeg thì chạy lệnh này trong máy ảo Linux của Claude desktop — có sẵn ffmpeg 4.4.)
+
+Lần đầu (23/11/2026, Mac M1, Chrome): xem thử 9 ảnh ~30 s; xuất 1575 khung 1080×1920 (gồm cả chạy trước) **57,5 s**,
+H.264 High phần cứng (`avc1.640028`), 20 Mbit/s; ghép âm thanh ~9 s. Bản đăng 130 MB, 52,5 s, −13,8 LUFS.
+
 Kết quả trong `vietsu/tools/xuat_phim/ket_qua/` (không đưa lên git): `<ten>.h264` (hình), `<ten>_m*.jpg` (ảnh giữa mỗi
 khoảnh khắc), `<ten>_xuat.json` (thời gian xuất thật), `<ten>.mp4` (bản đăng).
 
@@ -39,3 +46,6 @@ Phim 16:9 4K: dùng `?w=3840&h=2160` với một danh sách khoảnh khắc ngan
 - Nhãn "Tái dựng mô phỏng" luôn hiện. Chữ trên trailer **không ghi ngày tháng**: mốc thời gian của kịch bản vượt sông
   chưa chốt (xem `docs/TOM_TAT.md` mục 1).
 - Bản quyền trước khi đăng: xem `docs/TOM_TAT.md` mục "Xuất phim" (nhạc nền, giọng đọc, dữ liệu OSM).
+- Lưu ý khi chỉnh: sau khi đổi vị trí máy quay đột ngột cần ≥ 2 khung mới thấy nhân vật (sa bàn cắt nhân vật ngoài khung
+  nhìn theo máy của khung trước) — bộ quay đã chạy trước `chuan_bi` giây nên không ảnh hưởng.
+- Hoa đăng ở phân cảnh 10 chỉ là đốm sáng mờ, quay cận không rõ → trailer dùng cảnh Thành cổ hôm nay.
