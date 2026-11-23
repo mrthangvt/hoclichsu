@@ -19,6 +19,7 @@ export function createStoryAudio(api){
   }
   let dk=1;
   api.onAudio(on=>{if(on)build()});
+  if(api.audio().on)build();   /* đã bật Âm thanh từ nút "Xem sa bàn" trước khi bộ dẫn chuyện chạy: dựng ngay lớp gió, nước, mưa */
   return {
     set(mix){if(mix)Object.assign(target,mix)},
     reset(){Object.assign(target,{battle:1,wind:0,water:0,rain:0})},

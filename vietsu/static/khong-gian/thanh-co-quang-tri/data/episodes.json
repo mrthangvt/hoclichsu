@@ -205,7 +205,7 @@
      "text": "Mùa hè 1972, Thành cổ Quảng Trị vẫn trầm mặc giữa lòng thị xã. Nhưng cơn bão lửa đã ở rất gần."
     },
     {
-     "t": 11,
+     "t": 11.6,
      "text": "4 bức tường thành tạo thành hình vuông, mỗi cạnh khoảng 500 mét. Phía ngoài là hào nước. Xa hơn về phía tây, dòng Thạch Hãn lặng lẽ chảy qua."
     },
     {
@@ -245,7 +245,18 @@
      "Nút Trước / Sau trên thanh phân cảnh để tự so sánh."
     ]
    },
-   "compare": true
+   "compare": true,
+   "music": [
+    {
+     "src": "audio/nhac/hiep-si.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: I Will Be Your Knight – Jo Wandrini (Epidemic Sound)"
+    }
+   ]
   },
   {
    "id": "s02-tien-cong-mua-xuan",
@@ -377,6 +388,17 @@
     {
      "t": 62,
      "text": "Rạng sáng 2/5/1972, cờ giải phóng tung bay trên Thành cổ."
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/tro-ve.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Tough Return – Phoenix Tail (Epidemic Sound)"
     }
    ]
   },
@@ -577,6 +599,17 @@
     {
      "t": 60,
      "text": "Từ 28/6/1972, cuộc chiến giữ thành bắt đầu. Từng ngày, từng đêm, tiếng pháo không dứt. Mỗi mét đất đều phải đánh đổi bằng máu. Và phía trước những người lính, là 81 ngày đêm không thể nào quên."
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/ke-thu.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.45,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Arbitrary Enemy – Experia (Epidemic Sound)"
     }
    ]
   },
@@ -798,6 +831,17 @@
      "t": 80,
      "text": "Và đây, sau những trận bom phá: tường thành tan nát, công sự vùi sâu, cả thị xã chìm trong đổ nát."
     }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/quyet-chien.mp3",
+     "start": 0,
+     "from": 7,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Final Battle – Max Anson (Epidemic Sound)"
+    }
    ]
   },
   {
@@ -907,17 +951,29 @@
      ]
     },
     {
-     "t": 104,
-     "follow": "qLand",
-     "i": 6,
-     "off": [
-      6,
-      -6,
-      3.6
+     "t": 98,
+     "p": [
+      -482,
+      2,
+      4.5
      ],
-     "look": [
-      0,
-      -0.6
+     "l": [
+      -430,
+      24,
+      0.5
+     ]
+    },
+    {
+     "t": 106,
+     "p": [
+      -405,
+      -8,
+      4.5
+     ],
+     "l": [
+      -335,
+      12,
+      0.5
      ]
     },
     {
@@ -1132,7 +1188,18 @@
      "Động tác khiêng vác được thể hiện bằng nhặt đồ, kéo thuyền, đi khom; chưa có động tác vác trên vai.",
      "Pháo sáng, đạn pháo và nhịp tăng dần được dàn dựng để kể chuyện."
     ]
-   }
+   },
+   "music": [
+    {
+     "src": "audio/nhac/giai-dieu.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.85,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Run! (melody) – Christoffer Moe Ditlevsen (Epidemic Sound)"
+    }
+   ]
   },
   {
    "id": "s06-tuong-thanh",
@@ -1450,7 +1517,18 @@
      "Xe tăng dùng mẫu M41; máy bay dùng mẫu A-37 cho mọi loại phi cơ.",
      "Không thể hiện thương vong bằng hình ảnh."
     ]
-   }
+   },
+   "music": [
+    {
+     "src": "audio/nhac/giua-tran.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: The Thick of It – Jon Bjork (Epidemic Sound)"
+    }
+   ]
   },
   {
    "id": "s07-dem-cong-su",
@@ -1594,6 +1672,17 @@
      "t": 68,
      "text": "Nhưng họ vẫn ở lại. Vì sau lưng là đồng đội, là những vị trí vừa giữ được, và là nhiệm vụ chưa thể rời bỏ."
     }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/thuc-day.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: It Has Awoken – Dream Cave (Epidemic Sound)"
+    }
    ]
   },
   {
@@ -1724,6 +1813,17 @@
     {
      "t": 54,
      "text": "Những ngày cuối đang đến gần. Thành cổ chỉ còn những bức tường gãy, những mái nhà sụp và những hố bom chồng lên nhau. Nhưng trong đống đổ nát ấy, trận chiến vẫn chưa dừng lại. Những người lính kiệt sức tiếp tục giữ các vị trí cuối cùng."
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/hiep-si.mp3",
+     "start": 0,
+     "from": 125,
+     "volume": 0.5,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: I Will Be Your Knight – Jo Wandrini (Epidemic Sound)"
     }
    ]
   },
@@ -1958,6 +2058,17 @@
      "t": 104,
      "text": "Thành cổ im lặng giữa đống đổ nát. Nhưng dưới lớp đất ấy, ký ức của 81 ngày đêm vẫn còn."
     }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/ke-thu.mp3",
+     "start": 0,
+     "from": 15,
+     "volume": 0.45,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Arbitrary Enemy – Experia (Epidemic Sound)"
+    }
    ]
   },
   {
@@ -1970,7 +2081,7 @@
    "duration_sec": 190,
    "plan": "Âm thanh tắt dần, camera lên cao; cần ảnh hiện trạng có quyền sử dụng hoặc mô hình biểu tượng; phân biệt rõ di tích hiện tại và phần tái dựng.",
    "panel": {
-    "seeing": "Hoàng hôn trên sông Thạch Hãn với hoa đăng (biểu tượng); máy quay nâng dần lên toàn cảnh Thành cổ.",
+    "seeing": "Hoàng hôn trên sông Thạch Hãn với hoa đăng (biểu tượng); máy quay nâng dần lên toàn cảnh Thành cổ hôm nay: tường thành đã xây lại, trong thành là bãi cỏ, hàng dừa, lối dạo, quảng trường tròn và Đài tưởng niệm ở giữa.",
     "facts": [
      {
       "text": "Thành cổ Quảng Trị và các địa điểm lưu niệm 81 ngày đêm được xếp hạng Di tích quốc gia đặc biệt ngày 9/12/2013.",
@@ -2018,7 +2129,7 @@
      }
     ],
     "simulated": [
-     "Mô hình vẫn là Thành cổ năm 1972, không phải hiện trạng di tích hôm nay (đã có công viên, đài tưởng niệm, tháp chuông…).",
+     "Thành cổ hôm nay được dựng phỏng theo ảnh chụp trên cao hiện nay: tường thành xây lại gọn (mặt trên phủ cỏ), cầu qua hào ở bốn cổng, bãi cỏ, hàng dừa, lối dạo, quảng trường tròn với Đài tưởng niệm ở giữa, vài công trình mái ngói đỏ. Đây là mô hình biểu tượng, không đo đạc: hình đài, số cây, vị trí công trình phụ chỉ mang tính phỏng theo.",
      "Hoa đăng, ánh hoàng hôn là hình ảnh biểu tượng.",
      "Nhạc nền: “Dòng sông phẳng lặng”, bản phối metal tạo bằng AI (phát từ 0:35), chỉ phát khi bật âm thanh. Tệp nhạc hiện chỉ có ở bản chạy trên máy: bản phối mới vẫn dùng giai điệu, lời của bài hát gốc nên cần xác nhận quyền của tác giả trước khi đưa lên bản công khai."
     ]
@@ -2126,6 +2237,14 @@
       "water": 0.45,
       "rain": 0
      }
+    },
+    {
+     "t": 82,
+     "night": 0.12
+    },
+    {
+     "t": 146,
+     "night": 0.4
     }
    ],
    "lines": [
@@ -2175,21 +2294,33 @@
     },
     {
      "t": 148,
-     "text": "Nhạc: Dòng sông phẳng lặng · bản phối metal tạo bằng AI"
+     "text": "Nhạc nền: Epidemic Sound"
     },
     {
      "t": 160,
      "text": ""
     }
    ],
-   "music": {
-    "src": "audio/dong-song-phang-lang.mp3",
-    "start": 1,
-    "fade_in": 2,
-    "fade_out": 7,
-    "volume": 0.8,
-    "credit": "Nhạc: Dòng sông phẳng lặng · bản phối metal tạo bằng AI (phát từ 0:35)"
-   }
+   "music": [
+    {
+     "src": "audio/nhac/hiep-si.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.38,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: I Will Be Your Knight – Jo Wandrini (Epidemic Sound)"
+    },
+    {
+     "src": "audio/nhac/vi-thanh.mp3",
+     "start": 75,
+     "from": 0,
+     "volume": 0.55,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Hero Epilogue – Experia (Epidemic Sound)"
+    }
+   ]
   }
  ],
  "witness": [

@@ -13,7 +13,7 @@ shutil.copytree(SRC, OUT, ignore=shutil.ignore_patterns('*.glb','*.mp3'))
 assets = {}
 for glb in sorted((SRC / 'models').glob('*.glb')):
     (OUT / 'models' / (glb.name + '.txt')).write_text(base64.b64encode(glb.read_bytes()).decode())
-    key = {'thuvien': 'lib', 'thuyen': 'boat'}.get(glb.stem, glb.stem)
+    key = {'thuvien': 'lib', 'thuyen': 'boat', 'qdvn_a': 'qdvnA', 'qdvn_b': 'qdvnB'}.get(glb.stem, glb.stem)
     assets[key] = f'models/{glb.name}.txt'
 html = (OUT / 'index.html').read_text()
 html = html.replace('<!--ASSETS-->', f'<script>window.ASSETS={json.dumps(assets)};</script>')

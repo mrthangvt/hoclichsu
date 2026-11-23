@@ -1,0 +1,490 @@
+[
+{
+"id": "s01-toan-canh",
+"n": 1,
+"a": 0.2,
+"b": 9.95,
+"match": 0.86,
+"asr": "mùa hè năm một nghìn chín trăm bảy mươi hai thành cổ trị vẫn trầm mạc giữa lòng thị xã như"
+},
+{
+"id": "s01-toan-canh",
+"n": 2,
+"a": 10.2,
+"b": 22.55,
+"match": 0.93,
+"asr": "bức tường thành tạo thành hình vuông mỗi cạnh khoảng năm trăm mét phía ngoài là hào nước x"
+},
+{
+"id": "s01-toan-canh",
+"n": 3,
+"a": 22.7,
+"b": 35.05,
+"match": 1.0,
+"asr": "không lâu sau mảnh đất ấy trở thành chiến trường bom trút xuống từ bầu trời pháo dội vào t"
+},
+{
+"id": "s01-toan-canh",
+"n": 4,
+"a": 35.35,
+"b": 47.5,
+"match": 1.0,
+"asr": "những con đường dẫn vào thành cổ chìm trong khói lửa cuộc chiến làm thay đổi hình hài cả t"
+},
+{
+"id": "s02-tien-cong-mua-xuan",
+"n": 1,
+"a": 48.2,
+"b": 58.1,
+"match": 0.83,
+"asr": "ngày ba mươi tháng ba năm một nghìn chín trăm bảy mươi hai mười một giờ ba mươi phút chiến"
+},
+{
+"id": "s02-tien-cong-mua-xuan",
+"n": 2,
+"a": 58.3,
+"b": 71.15,
+"match": 1.0,
+"asr": "từ phía bắc và phía tây các mũi tiến công liên tiếp đánh vào tuyến phòng thủ quảng trị nhữ"
+},
+{
+"id": "s02-tien-cong-mua-xuan",
+"n": 3,
+"a": 71.4,
+"b": 81.85,
+"match": 0.91,
+"asr": "đầu tháng năm lực lượng việt nam cộng hòa rút khỏi thị xã quảng trị lôi về phòng tuyến phí"
+},
+{
+"id": "s02-tien-cong-mua-xuan",
+"n": 4,
+"a": 82.1,
+"b": 90.65,
+"match": 0.96,
+"asr": "quân giải phóng làm chủ thị xã và thành cổ trị nhưng trận chiến quyết liệt nhất ở nơi này "
+},
+{
+"id": "s02-tien-cong-mua-xuan",
+"n": 5,
+"a": 91.05,
+"b": 95.648,
+"match": 0.82,
+"asr": "rạng sáng mùng hai tháng năm cờ giải phóng bay trên thành cổ"
+},
+{
+"id": "s03-phan-cong",
+"n": 1,
+"a": 95.67,
+"b": 108.8,
+"match": 0.92,
+"asr": "ngày mười ba tháng sáu chính quyền sài gòn quyết định mở cuộc hành quân lam sơn bảy hai nh"
+},
+{
+"id": "s03-phan-cong",
+"n": 2,
+"a": 109.6,
+"b": 122.125,
+"match": 0.86,
+"asr": "sáng hai mươi tám tháng sáu quân đội sài gòn vượt sông mỹ tiến vào quảng trị trên bầu trời"
+},
+{
+"id": "s03-phan-cong",
+"n": 3,
+"a": 122.15,
+"b": 134.95,
+"match": 0.95,
+"asr": "xe tăng và bộ binh áp sát thị xã bom rội xuống những dãy nhà pháo cày nát các tuyến đường "
+},
+{
+"id": "s03-phan-cong",
+"n": 4,
+"a": 135.25,
+"b": 150.15,
+"match": 0.92,
+"asr": "từ ngày hai mươi tám tháng sáu cuộc chiến giữa thành bắt đầu từng ngày từng đêm tiếng pháo"
+},
+{
+"id": "s04-duoi-hoa-luc",
+"n": 1,
+"a": 150.55,
+"b": 162.3,
+"match": 0.84,
+"asr": "tháng bảy năm một nghìn chín trăm bảy mươi hai thành cổ không còn một chút bình yên pháo l"
+},
+{
+"id": "s04-duoi-hoa-luc",
+"n": 2,
+"a": 162.7,
+"b": 174.65,
+"match": 0.95,
+"asr": "có những lúc chưa thấy bóng người tiến công nhưng mặt đất đã rung lên vì pháo những người "
+},
+{
+"id": "s04-duoi-hoa-luc",
+"n": 3,
+"a": 175.4,
+"b": 187.6,
+"match": 0.94,
+"asr": "suốt tám mươi mốt ngày đêm bom đạn rộn xuống quảng trị những con đường biến dạng những bức"
+},
+{
+"id": "s04-duoi-hoa-luc",
+"n": 4,
+"a": 187.7,
+"b": 197.95,
+"match": 0.92,
+"asr": "ngày hai mươi tám tháng bảy bão ập đến sông thạch hãn dâng cao nước tràn vào hầm trú trên "
+},
+{
+"id": "s04-duoi-hoa-luc",
+"n": 5,
+"a": 198.15,
+"b": 204.12,
+"match": 0.95,
+"asr": "đây là thành cổ trị trước khi bị bom mỹ và pháo binh quân đội sài gòn dội xuống"
+},
+{
+"id": "s04-duoi-hoa-luc",
+"n": 6,
+"a": 204.15,
+"b": 212.35,
+"match": 1.0,
+"asr": "và đây sau những trận bom phá tường thành tan nát công sự vùi sâu cả thị xã chìm trong đổ "
+},
+{
+"id": "s05-thach-han",
+"n": 1,
+"a": 213.1,
+"b": 220.35,
+"match": 1.0,
+"asr": "đêm xuống bên kia dòng thạch hãn là thành cổ bên này những người lính chuẩn bị vượt sông"
+},
+{
+"id": "s05-thach-han",
+"n": 2,
+"a": 220.8,
+"b": 232.82,
+"match": 0.92,
+"asr": "muốn vào thành cổ họ phải vượt sông nằm trong tầm pháo mỗi chuyến đi chở theo bộ đội đạn d"
+},
+{
+"id": "s05-thach-han",
+"n": 3,
+"a": 232.85,
+"b": 249.95,
+"match": 1.0,
+"asr": "những chiếc thuyền gỗ lặng lẽ rời bờ có người nằm sát đáy thuyền có người mang đồ đạc rồi "
+},
+{
+"id": "s05-thach-han",
+"n": 4,
+"a": 251.05,
+"b": 262.57,
+"match": 0.97,
+"asr": "giữa mưa bom bão nhiều người lính đã không bao giờ tới được bờ bên kia dòng thạch hãn vẫn "
+},
+{
+"id": "s05-thach-han",
+"n": 5,
+"a": 262.6,
+"b": 275.2,
+"match": 1.0,
+"asr": "bên những chuyến đò ấy còn có người dân quảng trị họ chèo thuyền xuyên đêm đưa bộ đội và v"
+},
+{
+"id": "s05-thach-han",
+"n": 6,
+"a": 275.45,
+"b": 290.2,
+"match": 0.93,
+"asr": "vừa chạm bờ người kéo vào chỗ khuất người ôm thùng đạn người rìu đồng đội không ai có thể "
+},
+{
+"id": "s05-thach-han",
+"n": 7,
+"a": 290.53,
+"b": 299.45,
+"match": 0.92,
+"asr": "sau lưng là dòng sông đầy hiểm nguy trước mặt là trận địa không ai biết đêm ấy mình còn có"
+},
+{
+"id": "s06-tuong-thanh",
+"n": 1,
+"a": 299.85,
+"b": 310.7,
+"match": 0.97,
+"asr": "cuộc phản công tiến sát thành cổ xe tăng bộ binh áp lên dưới làn pháo và bom phía trong nh"
+},
+{
+"id": "s06-tuong-thanh",
+"n": 2,
+"a": 311.15,
+"b": 320.3,
+"match": 0.96,
+"asr": "tường thành đổ sập họ lôi về công sự công sự bị phá họ bám từng mô đất từng hố bom quyết k"
+},
+{
+"id": "s06-tuong-thanh",
+"n": 3,
+"a": 320.95,
+"b": 323.8,
+"match": 0.91,
+"asr": "nhưng đây không chỉ là cuộc giành giật tòa thành"
+},
+{
+"id": "s06-tuong-thanh",
+"n": 4,
+"a": 323.85,
+"b": 330.68,
+"match": 1.0,
+"asr": "mỗi ngày cầm cự ở quảng trị đều vang tới bàn đàm phán paris không bên nào muốn lùi bước"
+},
+{
+"id": "s06-tuong-thanh",
+"n": 5,
+"a": 330.71,
+"b": 336.0,
+"match": 1.0,
+"asr": "giữ được thành cổ thêm một ngày là giữ thêm thế đứng cho cuộc đấu tranh ngoại giao"
+},
+{
+"id": "s06-tuong-thanh",
+"n": 6,
+"a": 336.15,
+"b": 343.5,
+"match": 0.95,
+"asr": "phía đối phương cũng quyết giành bằng được ngọn cờ trên tường thành những đợt tấn công vì "
+},
+{
+"id": "s06-tuong-thanh",
+"n": 7,
+"a": 343.55,
+"b": 351.79,
+"match": 0.96,
+"asr": "giữa gạch và khói bụi từng đoạn tường chỉ cách nhau vài bước chân trận đánh tiếp theo có t"
+},
+{
+"id": "s06-tuong-thanh",
+"n": 8,
+"a": 351.82,
+"b": 360.72,
+"match": 0.96,
+"asr": "muốn tiến vào quân đội sài gòn phải vượt qua khoảng trống trước hào nước mỗi bước chân đều"
+},
+{
+"id": "s06-tuong-thanh",
+"n": 9,
+"a": 360.75,
+"b": 370.25,
+"match": 0.93,
+"asr": "từng đợt xung phong bị chặn lại từng vị trí bị đánh chiến rồi giành lại mặt đất thành cổ t"
+},
+{
+"id": "s07-dem-cong-su",
+"n": 1,
+"a": 370.8,
+"b": 377.26,
+"match": 1.0,
+"asr": "đêm lại xuống trên thành cổ tiếng súng thưa dần nhưng không ai dám tin chiến trường đã yên"
+},
+{
+"id": "s07-dem-cong-su",
+"n": 2,
+"a": 377.29,
+"b": 389.45,
+"match": 1.0,
+"asr": "sau một ngày chống chọi với bom pháo những người lính trở về công sự không phải ai cũng có"
+},
+{
+"id": "s07-dem-cong-su",
+"n": 3,
+"a": 389.85,
+"b": 399.64,
+"match": 0.86,
+"asr": "người thay nhau canh gác người lao súng dưới ánh đèn let có người vừa ngồi xuống đã ngủ ti"
+},
+{
+"id": "s07-dem-cong-su",
+"n": 4,
+"a": 399.67,
+"b": 408.7,
+"match": 0.97,
+"asr": "ở nơi ấy sự sống đôi khi chỉ cách cái chết một bức tường mỏng và người ngồi bên cạnh hôm n"
+},
+{
+"id": "s07-dem-cong-su",
+"n": 5,
+"a": 409.15,
+"b": 418.34,
+"match": 1.0,
+"asr": "nhưng họ vẫn ở lại vì sau lưng là đồng đội là những vị trí vừa giữ được và là nhiệm vụ chư"
+},
+{
+"id": "s08-mua-lu",
+"n": 1,
+"a": 418.45,
+"b": 428.07,
+"match": 0.89,
+"asr": "cuối tháng tám đầu tháng chín mưa trút xuống quảng trị sông thạch hãn dâng cao những con đ"
+},
+{
+"id": "s08-mua-lu",
+"n": 2,
+"a": 428.1,
+"b": 440.4,
+"match": 1.0,
+"asr": "nước len vào công sự làm ướt quần áo vũ khí và những chỗ trú ẩn cuối cùng muốn đi qua một "
+},
+{
+"id": "s08-mua-lu",
+"n": 3,
+"a": 440.6,
+"b": 450.65,
+"match": 0.9,
+"asr": "trong mưa họ nhặt từng tấm ván kéo từng bao đất để vá lại chiến hào công sự vừa lắp xong c"
+},
+{
+"id": "s08-mua-lu",
+"n": 4,
+"a": 451.35,
+"b": 466.85,
+"match": 0.96,
+"asr": "những ngày cuối đến gần thành cổ chỉ còn những bức tường gãy những mái nhà sụp và những hố"
+},
+{
+"id": "s09-nhung-ngay-cuoi",
+"n": 1,
+"a": 467.1,
+"b": 479.5,
+"match": 0.82,
+"asr": "ngày mười hai tháng chín ba tiểu đoàn cùng hai mươi ba xe tăng xe bọc thép của quân đội sà"
+},
+{
+"id": "s09-nhung-ngay-cuoi",
+"n": 2,
+"a": 479.65,
+"b": 494.95,
+"match": 0.95,
+"asr": "giao tranh kéo dài sát mép tường thành một đoạn tường vừa bị chiếm trận phản kích đã nổ ra"
+},
+{
+"id": "s09-nhung-ngay-cuoi",
+"n": 3,
+"a": 495.1,
+"b": 504.9,
+"match": 0.97,
+"asr": "trong những ngày cuối các đơn vị giữ thành cổ vẫn bám trụ nhưng quân số sức lực và từng vị"
+},
+{
+"id": "s09-nhung-ngay-cuoi",
+"n": 4,
+"a": 505.75,
+"b": 528.6,
+"match": 0.95,
+"asr": "đêm mười lăm tháng chín năm một nghìn chín trăm bảy mươi hai sau nhiều ngày chống chọi với"
+},
+{
+"id": "s09-nhung-ngay-cuoi",
+"n": 5,
+"a": 528.85,
+"b": 535.6,
+"match": 0.89,
+"asr": "ngày mười sáu tháng chín quân đội việt nam cộng hòa kiểm soát thành cổ trận chiến tám mươi"
+},
+{
+"id": "s09-nhung-ngay-cuoi",
+"n": 6,
+"a": 535.85,
+"b": 542.63,
+"match": 0.95,
+"asr": "thành cổ im lặng giữa đống đổ nát nhưng dưới lớp đất ấy ký ức của tám mươi mốt ngày đêm vẫ"
+},
+{
+"id": "s10-tuong-niem",
+"n": 1,
+"a": 542.66,
+"b": 551.45,
+"match": 0.97,
+"asr": "nhiều năm qua bên dòng thạch hãn hôm nay người ta thả những ngọn đèn hoa đăng xuống nước n"
+},
+{
+"id": "s10-tuong-niem",
+"n": 2,
+"a": 551.5,
+"b": 563.01,
+"match": 0.9,
+"asr": "thành cổ trị giờ là nơi người dân tìm về để tướng nhớ mỗi năm ngày mười sáu tháng chín nhữ"
+},
+{
+"id": "s10-tuong-niem",
+"n": 3,
+"a": 563.04,
+"b": 572.3,
+"match": 0.93,
+"asr": "ngày ấy một tòa thành nhỏ trở thành tâm điểm của cả cuộc chiến đạn từ bốn phía dồn về biến"
+},
+{
+"id": "s10-tuong-niem",
+"n": 4,
+"a": 572.9,
+"b": 580.45,
+"match": 1.0,
+"asr": "trong thành nhiều người lính còn rất trẻ họ giữ từng vị trí chứng kiến đồng đội ngã xuống "
+},
+{
+"id": "s10-tuong-niem",
+"n": 5,
+"a": 581.0,
+"b": 588.42,
+"match": 0.95,
+"asr": "giấc ngủ giữa tiếng pháo rồi một mụm nước chia nhau một phút được yên lặng cũng trở thành "
+},
+{
+"id": "s10-tuong-niem",
+"n": 6,
+"a": 588.45,
+"b": 598.5,
+"match": 0.97,
+"asr": "ngoài dòng sông từng đêm vẫn có những chuyến đò lặng lẽ người ra đi mong được tới bờ người"
+},
+{
+"id": "s10-tuong-niem",
+"n": 7,
+"a": 599.2,
+"b": 606.335,
+"match": 0.92,
+"asr": "có người lính đã nằm giữa dòng thạch hãn có những người chẳng kịp nhìn thấy thành cổ dù ch"
+},
+{
+"id": "s10-tuong-niem",
+"n": 8,
+"a": 606.37,
+"b": 611.8,
+"match": 1.0,
+"asr": "có những người đã vượt qua tất cả nhưng mang theo ký ức chiến trường suốt phần đời còn lại"
+},
+{
+"id": "s10-tuong-niem",
+"n": 9,
+"a": 612.35,
+"b": 620.85,
+"match": 0.96,
+"asr": "ngày đêm không chỉ là thời gian đó là tuổi trẻ những cuộc chia ly và những cái tên còn mãi"
+},
+{
+"id": "s10-tuong-niem",
+"n": 10,
+"a": 620.95,
+"b": 627.89,
+"match": 1.0,
+"asr": "hôm nay mỗi ngọn hoa đăng sáng trên sông như một lời tri ân gửi tới những người đã không t"
+},
+{
+"id": "s10-tuong-niem",
+"n": 11,
+"a": 627.95,
+"b": 639.05,
+"match": 1.0,
+"asr": "thành cổ vẫn ở đó không còn tiếng bom rơi không còn tiếng súng chỉ còn dòng thạch hãn chảy"
+}
+]

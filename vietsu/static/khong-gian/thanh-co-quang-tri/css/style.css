@@ -40,6 +40,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 #load .track{height:4px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden;margin:14px 0 8px}
 #load .fill{height:100%;width:0;background:var(--gold);transition:width .25s}
 #load small{color:var(--muted)}
+#load .eyebrow{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+#load h1{margin:4px 0 0;font-size:clamp(22px,4vw,30px);font-weight:800}
+#go{display:block;margin:18px auto 8px;padding:13px 30px;border-radius:99px;border:1px solid var(--gold);background:var(--gold);color:#23190d;font-size:16px;font-weight:800;letter-spacing:.02em;box-shadow:0 6px 26px rgba(226,183,104,.35);animation:goin .5s ease-out}
+#go:hover{filter:brightness(1.08)}#go:focus-visible{outline:2px solid #fff;outline-offset:3px}
+#load.ready .track,#load.ready #loadtxt{display:none}#gohint{display:block}
+@keyframes goin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 [hidden]{display:none!important}
 @media (max-width:640px){.title p{display:none}.chip{padding:7px 9px;font-size:12px}.views button{padding:7px 9px;font-size:12px}#info{top:auto;bottom:calc(120px + env(safe-area-inset-bottom,0px))}}
 
