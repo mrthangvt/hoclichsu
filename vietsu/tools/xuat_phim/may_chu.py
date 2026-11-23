@@ -2,6 +2,7 @@
 """Máy chủ tại máy cho công cụ xuất phim sa bàn (chỉ dùng riêng, không thuộc website).
 
 Chạy:   python3 vietsu/tools/xuat_phim/may_chu.py            (cổng 8765, chỉ nghe 127.0.0.1)
+        KET_QUA="/Volumes/xMABUx/.../xuat-phim" python3 ...   → ghi kết quả thẳng ra ổ SSD
 Mở:     http://127.0.0.1:8765/quay/thanh-co-quang-tri/?auto&w=1080&h=1920&che_do=xem_thu
 
 Đường dẫn:
@@ -15,7 +16,7 @@ import http.server, os, re, sys, urllib.parse, socketserver
 
 GOC = os.path.dirname(os.path.abspath(__file__))                 # vietsu/tools/xuat_phim
 STATIC = os.path.normpath(os.path.join(GOC, '..', '..', 'static'))  # vietsu/static
-KET_QUA = os.path.join(GOC, 'ket_qua')
+KET_QUA = os.path.expanduser(os.environ.get('KET_QUA', os.path.join(GOC, 'ket_qua')))   # KET_QUA=/Volumes/<ổ SSD>/... để ghi thẳng ra ổ ngoài
 CONG = int(os.environ.get('CONG', sys.argv[1] if len(sys.argv) > 1 else 8765))
 
 
@@ -72,6 +73,17 @@ class XuLy(http.server.SimpleHTTPRequestHandler):
         n = int(self.headers.get('Content-Length', 0))
         os.makedirs(KET_QUA, exist_ok=True)
         dich = os.path.join(KET_QUA, ten)
+        noi = urllib.parse.parse_qs(u.query).get('noi', ['0'])[0] == '1'   # ghi nối tiếp (phim dài gửi từng phần)
+        if noi:
+            with open(dich, 'ab') as f:
+                con = n
+                while con > 0:
+                    k = self.rfile.read(min(con, 1 << 20))
+                    if not k:
+                        break
+                    f.write(k); con -= len(k)
+            sys.stderr.write(f'  nối thêm {n/1e6:.1f} MB vào {ten}\n')
+            self.send_response(200); self.send_header('Content-Length', '2'); self.end_headers(); self.wfile.write(b'ok'); return
         with open(dich + '.tam', 'wb') as f:
             con = n
             while con > 0:

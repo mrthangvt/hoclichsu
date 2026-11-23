@@ -51,6 +51,18 @@ Nhạc Epidemic nằm ngoài repo (ổ xMABUx `_KHO-CHUNG/nhac-nen/`), truyền 
 python3 vietsu/tools/xuat_phim/ghep_am_thanh.py khoanh_khac_thanh_co_916_b --nhac "/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG/nhac-nen/ES_Final Battle - Max Anson.mp3"
 ```
 
+## Phim đầy đủ 16:9 4K (`khoanh_khac_thanh_co_169_day_du.json`)
+Sinh bằng `python3 vietsu/tools/xuat_phim/lap_phim_day_du.py` từ `data/episodes.json` (10 phân cảnh + khung kết, 16:55):
+máy quay của bộ dẫn chuyện, phụ đề lời dẫn, thẻ tên phần, nhạc theo chương (Epidemic, `thu_muc_nhac`), nền súng theo
+`audio.battle`, tiếng nổ dựng theo lúc nổ ghi lại khi quay. Hình ghi thành phần ~10 s (`tach_tep`), ghép bằng `concat:`.
+```bash
+# Chrome: /quay/thanh-co-quang-tri/?auto&w=3840&h=2160&hat=1972&che_do=xuat&k=khoanh_khac_thanh_co_169_day_du
+python3 vietsu/tools/xuat_phim/ghep_am_thanh.py khoanh_khac_thanh_co_169_day_du --thu_muc_nhac "/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG/nhac-nen"
+```
+Lần đầu (24/11/2026, M1): dựng 30.450 khung 4K mất ~27 phút, ghép âm thanh ~2 phút; MP4 3,07 GB, 24 Mbit/s, −14,2 LUFS.
+Ổ trong còn ít chỗ: đặt `KET_QUA=/Volumes/xMABUx/...` khi chạy `may_chu.py` và `ghep_am_thanh.py` để ghi thẳng ra SSD.
+Lưu ý: sau khi nhường luồng (`await`), khung vẽ WebGL bị xoá → luôn vẽ khung rồi đọc ảnh ngay, không chen `await` giữa.
+
 ## Lưu ý nội dung
 - Nhãn "Tái dựng mô phỏng" luôn hiện. Chữ trên trailer **không ghi ngày tháng**: mốc thời gian của kịch bản vượt sông
   chưa chốt (xem `docs/TOM_TAT.md` mục 1).
