@@ -1,0 +1,163 @@
+{
+ "lop": 11,
+ "sach": "Lịch sử 11 (bộ Kết nối tri thức với cuộc sống, NXB Giáo dục Việt Nam), tr. 6–90",
+ "ghi_chu": "Mục lục theo đúng SGK; phần nội dung chi tiết từng bài đang được Việt Sử biên soạn lại bằng lời văn riêng (không chép nguyên văn sách). Học sinh mở SGK theo số trang.",
+ "bai": [
+  {
+   "so": 1,
+   "chuong": "Chủ đề 1. Cách mạng tư sản và sự phát triển của chủ nghĩa tư bản",
+   "ten": "Một số vấn đề chung về cách mạng tư sản",
+   "trang": [
+    6,
+    11
+   ],
+   "nam": null,
+   "tom": "Tiền đề, mục tiêu, nhiệm vụ, giai cấp lãnh đạo, động lực, kết quả và ý nghĩa của các cuộc cách mạng tư sản.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 2,
+   "chuong": "Chủ đề 1. Cách mạng tư sản và sự phát triển của chủ nghĩa tư bản",
+   "ten": "Sự xác lập và phát triển của chủ nghĩa tư bản",
+   "trang": [
+    12,
+    18
+   ],
+   "nam": null,
+   "tom": "Chủ nghĩa tư bản được xác lập, chuyển sang giai đoạn đế quốc và chủ nghĩa tư bản hiện đại.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 3,
+   "chuong": "Chủ đề 2. Chủ nghĩa xã hội từ năm 1917 đến nay",
+   "ten": "Sự hình thành Liên bang Cộng hoà xã hội chủ nghĩa Xô viết",
+   "trang": [
+    19,
+    21
+   ],
+   "nam": 1922,
+   "tom": "Cách mạng tháng Mười Nga và sự thành lập Liên Xô (1922).",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 4,
+   "chuong": "Chủ đề 2. Chủ nghĩa xã hội từ năm 1917 đến nay",
+   "ten": "Sự phát triển của chủ nghĩa xã hội từ sau Chiến tranh thế giới thứ hai đến nay",
+   "trang": [
+    22,
+    28
+   ],
+   "nam": null,
+   "tom": "Chủ nghĩa xã hội mở rộng, khủng hoảng ở Liên Xô, Đông Âu và công cuộc cải cách ở các nước hiện nay.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 5,
+   "chuong": "Chủ đề 3. Quá trình giành độc lập dân tộc của các quốc gia Đông Nam Á",
+   "ten": "Quá trình xâm lược và cai trị của chủ nghĩa thực dân ở Đông Nam Á",
+   "trang": [
+    29,
+    36
+   ],
+   "nam": null,
+   "tom": "Các nước thực dân phương Tây xâm lược, cai trị Đông Nam Á và hậu quả.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 6,
+   "chuong": "Chủ đề 3. Quá trình giành độc lập dân tộc của các quốc gia Đông Nam Á",
+   "ten": "Hành trình đi đến độc lập dân tộc ở Đông Nam Á",
+   "trang": [
+    37,
+    42
+   ],
+   "nam": null,
+   "tom": "Phong trào đấu tranh giành độc lập của các dân tộc Đông Nam Á đến khi thắng lợi.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 7,
+   "chuong": "Chủ đề 4. Chiến tranh bảo vệ Tổ quốc và chiến tranh giải phóng dân tộc trong lịch sử Việt Nam (trước Cách mạng tháng Tám năm 1945)",
+   "ten": "Khái quát về chiến tranh bảo vệ Tổ quốc trong lịch sử Việt Nam",
+   "trang": [
+    43,
+    49
+   ],
+   "nam": null,
+   "tom": "Vị trí, ý nghĩa và các cuộc kháng chiến bảo vệ Tổ quốc tiêu biểu, nguyên nhân thắng lợi, thất bại.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 8,
+   "chuong": "Chủ đề 4. Chiến tranh bảo vệ Tổ quốc và chiến tranh giải phóng dân tộc trong lịch sử Việt Nam (trước Cách mạng tháng Tám năm 1945)",
+   "ten": "Một số cuộc khởi nghĩa và chiến tranh giải phóng trong lịch sử Việt Nam (từ thế kỉ III trước Công nguyên đến cuối thế kỉ XIX)",
+   "trang": [
+    50,
+    59
+   ],
+   "nam": null,
+   "tom": "Các cuộc khởi nghĩa thời Bắc thuộc, khởi nghĩa Lam Sơn, phong trào Tây Sơn: diễn biến và bài học.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 9,
+   "chuong": "Chủ đề 5. Một số cuộc cải cách lớn trong lịch sử Việt Nam (trước năm 1858)",
+   "ten": "Cuộc cải cách của Hồ Quý Ly và triều Hồ",
+   "trang": [
+    60,
+    63
+   ],
+   "nam": 1400,
+   "tom": "Bối cảnh, nội dung, kết quả và ý nghĩa của cải cách Hồ Quý Ly cuối thế kỉ XIV – đầu thế kỉ XV.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 10,
+   "chuong": "Chủ đề 5. Một số cuộc cải cách lớn trong lịch sử Việt Nam (trước năm 1858)",
+   "ten": "Cuộc cải cách của Lê Thánh Tông (thế kỉ XV)",
+   "trang": [
+    64,
+    68
+   ],
+   "nam": 1460,
+   "tom": "Bối cảnh, nội dung và kết quả cải cách hành chính, luật pháp của vua Lê Thánh Tông.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 11,
+   "chuong": "Chủ đề 5. Một số cuộc cải cách lớn trong lịch sử Việt Nam (trước năm 1858)",
+   "ten": "Cuộc cải cách của Minh Mạng (nửa đầu thế kỉ XIX)",
+   "trang": [
+    69,
+    72
+   ],
+   "nam": 1831,
+   "tom": "Cải cách hành chính của vua Minh Mạng: lập 30 tỉnh và phủ Thừa Thiên, củng cố quyền lực trung ương.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 12,
+   "chuong": "Chủ đề 6. Lịch sử bảo vệ chủ quyền, các quyền và lợi ích hợp pháp của Việt Nam ở Biển Đông",
+   "ten": "Vị trí và tầm quan trọng của Biển Đông",
+   "trang": [
+    73,
+    79
+   ],
+   "nam": null,
+   "tom": "Vị trí địa lí, tầm quan trọng chiến lược và tài nguyên của Biển Đông, các quần đảo Hoàng Sa, Trường Sa.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 13,
+   "chuong": "Chủ đề 6. Lịch sử bảo vệ chủ quyền, các quyền và lợi ích hợp pháp của Việt Nam ở Biển Đông",
+   "ten": "Việt Nam và Biển Đông",
+   "trang": [
+    80,
+    90
+   ],
+   "nam": null,
+   "tom": "Quá trình Việt Nam xác lập, thực thi chủ quyền và đấu tranh bảo vệ chủ quyền ở Biển Đông.",
+   "dang_bien_soan": true
+  }
+ ]
+}

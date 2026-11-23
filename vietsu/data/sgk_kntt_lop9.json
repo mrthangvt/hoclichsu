@@ -1,0 +1,295 @@
+{
+ "lop": 9,
+ "sach": "Lịch sử và Địa lí 9 (bộ Kết nối tri thức với cuộc sống, NXB Giáo dục Việt Nam), phần Lịch sử, tr. 6–115 và ba chủ đề chung tr. 221–235",
+ "ghi_chu": "Mục lục theo đúng SGK; phần nội dung chi tiết từng bài đang được Việt Sử biên soạn lại bằng lời văn riêng (không chép nguyên văn sách). Học sinh mở SGK theo số trang.",
+ "bai": [
+  {
+   "so": 1,
+   "chuong": "Chương 1. Thế giới từ năm 1918 đến năm 1945",
+   "ten": "Nước Nga và Liên Xô từ năm 1918 đến năm 1945",
+   "trang": [
+    7,
+    9
+   ],
+   "nam": 1922,
+   "tom": "Nước Nga Xô viết bảo vệ chính quyền, Liên Xô thành lập (1922) và xây dựng chủ nghĩa xã hội.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 2,
+   "chuong": "Chương 1. Thế giới từ năm 1918 đến năm 1945",
+   "ten": "Châu Âu và nước Mỹ từ năm 1918 đến năm 1945",
+   "trang": [
+    10,
+    13
+   ],
+   "nam": 1929,
+   "tom": "Thời kì ổn định ngắn rồi khủng hoảng kinh tế 1929 – 1933; chủ nghĩa phát xít lên nắm quyền ở một số nước.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 3,
+   "chuong": "Chương 1. Thế giới từ năm 1918 đến năm 1945",
+   "ten": "Châu Á từ năm 1918 đến năm 1945",
+   "trang": [
+    14,
+    17
+   ],
+   "nam": null,
+   "tom": "Phong trào độc lập dân tộc ở châu Á phát triển; Nhật Bản đi theo con đường quân phiệt.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 4,
+   "chuong": "Chương 1. Thế giới từ năm 1918 đến năm 1945",
+   "ten": "Chiến tranh thế giới thứ hai (1939 – 1945)",
+   "trang": [
+    18,
+    21
+   ],
+   "nam": 1939,
+   "tom": "Cuộc chiến tranh lớn nhất lịch sử nhân loại, kết thúc với thắng lợi của phe Đồng minh chống phát xít.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 5,
+   "chuong": "Chương 2. Việt Nam từ năm 1918 đến năm 1945",
+   "ten": "Phong trào dân tộc dân chủ trong những năm 1918 – 1930",
+   "trang": [
+    22,
+    25
+   ],
+   "nam": null,
+   "tom": "Sau Chiến tranh thế giới thứ nhất, các phong trào yêu nước của nhiều giai tầng phát triển mạnh.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 6,
+   "chuong": "Chương 2. Việt Nam từ năm 1918 đến năm 1945",
+   "ten": "Hoạt động của Nguyễn Ái Quốc và sự thành lập Đảng Cộng sản Việt Nam",
+   "trang": [
+    26,
+    29
+   ],
+   "nam": 1930,
+   "tom": "Nguyễn Ái Quốc tìm ra con đường cứu nước, chuẩn bị về tư tưởng, tổ chức và thành lập Đảng Cộng sản Việt Nam (1930).",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 7,
+   "chuong": "Chương 2. Việt Nam từ năm 1918 đến năm 1945",
+   "ten": "Phong trào cách mạng Việt Nam thời kì 1930 – 1939",
+   "trang": [
+    30,
+    33
+   ],
+   "nam": 1930,
+   "tom": "Phong trào cách mạng 1930 – 1931, cuộc vận động dân chủ 1936 – 1939 dưới sự lãnh đạo của Đảng.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 8,
+   "chuong": "Chương 2. Việt Nam từ năm 1918 đến năm 1945",
+   "ten": "Cách mạng tháng Tám năm 1945",
+   "trang": [
+    34,
+    40
+   ],
+   "nam": 1945,
+   "tom": "Tổng khởi nghĩa giành chính quyền trong cả nước; ngày 2/9/1945 nước Việt Nam Dân chủ Cộng hoà ra đời.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 9,
+   "chuong": "Chương 3. Thế giới từ năm 1945 đến năm 1991",
+   "ten": "Chiến tranh lạnh (1947 – 1989)",
+   "trang": [
+    41,
+    43
+   ],
+   "nam": 1947,
+   "tom": "Cuộc đối đầu căng thẳng giữa hai phe do Mỹ và Liên Xô đứng đầu, chi phối quan hệ quốc tế hơn bốn thập kỉ.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 10,
+   "chuong": "Chương 3. Thế giới từ năm 1945 đến năm 1991",
+   "ten": "Liên Xô và Đông Âu từ năm 1945 đến năm 1991",
+   "trang": [
+    44,
+    48
+   ],
+   "nam": null,
+   "tom": "Liên Xô và các nước Đông Âu xây dựng chủ nghĩa xã hội, đạt nhiều thành tựu rồi khủng hoảng và sụp đổ.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 11,
+   "chuong": "Chương 3. Thế giới từ năm 1945 đến năm 1991",
+   "ten": "Nước Mỹ và Tây Âu từ năm 1945 đến năm 1991",
+   "trang": [
+    49,
+    51
+   ],
+   "nam": null,
+   "tom": "Mỹ và Tây Âu phục hồi, phát triển kinh tế mạnh mẽ; quá trình liên kết khu vực ở châu Âu.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 12,
+   "chuong": "Chương 3. Thế giới từ năm 1945 đến năm 1991",
+   "ten": "Khu vực Mỹ La-tinh và châu Á từ năm 1945 đến năm 1991",
+   "trang": [
+    52,
+    60
+   ],
+   "nam": null,
+   "tom": "Phong trào giải phóng dân tộc và công cuộc xây dựng đất nước ở Mỹ La-tinh và châu Á.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 13,
+   "chuong": "Chương 4. Việt Nam từ năm 1945 đến năm 1975",
+   "ten": "Việt Nam trong năm đầu sau Cách mạng tháng Tám năm 1945",
+   "trang": [
+    61,
+    66
+   ],
+   "nam": 1945,
+   "tom": "Chính quyền non trẻ vượt qua giặc đói, giặc dốt, thù trong giặc ngoài, bảo vệ thành quả cách mạng.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 14,
+   "chuong": "Chương 4. Việt Nam từ năm 1945 đến năm 1975",
+   "ten": "Việt Nam kháng chiến chống thực dân Pháp xâm lược giai đoạn 1946 – 1950",
+   "trang": [
+    67,
+    72
+   ],
+   "nam": 1946,
+   "tom": "Toàn quốc kháng chiến bùng nổ (12/1946); chiến thắng Việt Bắc 1947 và Biên giới 1950.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 15,
+   "chuong": "Chương 4. Việt Nam từ năm 1945 đến năm 1975",
+   "ten": "Việt Nam kháng chiến chống thực dân Pháp xâm lược giai đoạn 1951 – 1954",
+   "trang": [
+    73,
+    79
+   ],
+   "nam": 1954,
+   "tom": "Cuộc kháng chiến phát triển và kết thúc thắng lợi bằng chiến thắng Điện Biên Phủ, Hiệp định Giơ-ne-vơ (1954).",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 16,
+   "chuong": "Chương 4. Việt Nam từ năm 1945 đến năm 1975",
+   "ten": "Việt Nam kháng chiến chống Mỹ, cứu nước, thống nhất đất nước giai đoạn 1954 – 1965",
+   "trang": [
+    80,
+    84
+   ],
+   "nam": 1960,
+   "tom": "Miền Bắc xây dựng chủ nghĩa xã hội, miền Nam đấu tranh chống chính quyền Sài Gòn và chiến lược của Mỹ.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 17,
+   "chuong": "Chương 4. Việt Nam từ năm 1945 đến năm 1975",
+   "ten": "Việt Nam kháng chiến chống Mỹ, cứu nước, thống nhất đất nước giai đoạn 1965 – 1975",
+   "trang": [
+    85,
+    92
+   ],
+   "nam": 1975,
+   "tom": "Đánh bại các chiến lược chiến tranh của Mỹ; Tổng tiến công và nổi dậy mùa Xuân 1975 giải phóng miền Nam.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 18,
+   "chuong": "Chương 5. Thế giới từ năm 1991 đến nay",
+   "ten": "Trật tự thế giới mới từ năm 1991 đến nay. Liên bang Nga và nước Mỹ từ năm 1991 đến nay",
+   "trang": [
+    93,
+    95
+   ],
+   "nam": 1991,
+   "tom": "Trật tự hai cực sụp đổ, thế giới chuyển dần sang đa cực; Nga và Mỹ sau Chiến tranh lạnh.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 19,
+   "chuong": "Chương 5. Thế giới từ năm 1991 đến nay",
+   "ten": "Châu Á từ năm 1991 đến nay",
+   "trang": [
+    96,
+    100
+   ],
+   "nam": null,
+   "tom": "Châu Á phát triển năng động; ASEAN mở rộng, nhiều nước vươn lên mạnh mẽ.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 20,
+   "chuong": "Chương 6. Việt Nam từ năm 1976 đến nay",
+   "ten": "Việt Nam từ năm 1976 đến nay",
+   "trang": [
+    101,
+    110
+   ],
+   "nam": 1986,
+   "tom": "Thống nhất đất nước về mặt nhà nước, bảo vệ Tổ quốc, công cuộc Đổi mới từ năm 1986 và hội nhập quốc tế.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 21,
+   "chuong": "Chương 7. Cách mạng khoa học – kĩ thuật và xu thế toàn cầu hoá",
+   "ten": "Cách mạng khoa học – kĩ thuật và xu thế toàn cầu hoá",
+   "trang": [
+    111,
+    115
+   ],
+   "nam": null,
+   "tom": "Những thành tựu của cách mạng khoa học – kĩ thuật và tác động của toàn cầu hoá tới thế giới, Việt Nam.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": "CĐ1",
+   "chuong": "Chủ đề chung",
+   "ten": "Đô thị: lịch sử và hiện tại (phần 2)",
+   "trang": [
+    221,
+    224
+   ],
+   "nam": null,
+   "tom": "Chủ đề tích hợp về đô thị Việt Nam qua các thời kì.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": "CĐ2",
+   "chuong": "Chủ đề chung",
+   "ten": "Văn minh châu thổ sông Hồng và sông Cửu Long (phần 2)",
+   "trang": [
+    225,
+    229
+   ],
+   "nam": null,
+   "tom": "Chủ đề tích hợp tiếp nối lớp 8 về văn minh hai vùng châu thổ.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": "CĐ3",
+   "chuong": "Chủ đề chung",
+   "ten": "Bảo vệ chủ quyền, các quyền và lợi ích hợp pháp của Việt Nam ở Biển Đông (phần 2)",
+   "trang": [
+    230,
+    235
+   ],
+   "nam": null,
+   "tom": "Chủ đề tích hợp tiếp nối lớp 8 về chủ quyền biển đảo.",
+   "dang_bien_soan": true
+  }
+ ]
+}

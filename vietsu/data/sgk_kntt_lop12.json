@@ -1,0 +1,211 @@
+{
+ "lop": 12,
+ "sach": "Lịch sử 12 (bộ Kết nối tri thức với cuộc sống, NXB Giáo dục Việt Nam), tr. 6–109",
+ "ghi_chu": "Mục lục theo đúng SGK; phần nội dung chi tiết từng bài đang được Việt Sử biên soạn lại bằng lời văn riêng (không chép nguyên văn sách). Học sinh mở SGK theo số trang.",
+ "bai": [
+  {
+   "so": 1,
+   "chuong": "Chủ đề 1. Thế giới trong và sau Chiến tranh lạnh",
+   "ten": "Liên hợp quốc",
+   "trang": [
+    6,
+    12
+   ],
+   "nam": 1945,
+   "tom": "Bối cảnh ra đời, mục tiêu, nguyên tắc hoạt động và vai trò của Liên hợp quốc.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 2,
+   "chuong": "Chủ đề 1. Thế giới trong và sau Chiến tranh lạnh",
+   "ten": "Trật tự thế giới trong Chiến tranh lạnh",
+   "trang": [
+    13,
+    17
+   ],
+   "nam": 1945,
+   "tom": "Trật tự hai cực I-an-ta hình thành, tồn tại và sụp đổ.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 3,
+   "chuong": "Chủ đề 1. Thế giới trong và sau Chiến tranh lạnh",
+   "ten": "Trật tự thế giới sau Chiến tranh lạnh",
+   "trang": [
+    18,
+    20
+   ],
+   "nam": 1991,
+   "tom": "Xu thế phát triển của thế giới sau Chiến tranh lạnh, hướng tới trật tự đa cực.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 4,
+   "chuong": "Chủ đề 2. ASEAN: những chặng đường lịch sử",
+   "ten": "Sự ra đời và phát triển của Hiệp hội các quốc gia Đông Nam Á (ASEAN)",
+   "trang": [
+    21,
+    24
+   ],
+   "nam": 1967,
+   "tom": "ASEAN thành lập năm 1967 và mở rộng thành tổ chức của cả khu vực.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 5,
+   "chuong": "Chủ đề 2. ASEAN: những chặng đường lịch sử",
+   "ten": "Cộng đồng ASEAN: Từ ý tưởng đến hiện thực",
+   "trang": [
+    25,
+    30
+   ],
+   "nam": 2015,
+   "tom": "Ý tưởng, mục tiêu và ba trụ cột của Cộng đồng ASEAN chính thức thành lập năm 2015.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 6,
+   "chuong": "Chủ đề 3. Cách mạng tháng Tám năm 1945, chiến tranh giải phóng dân tộc và chiến tranh bảo vệ Tổ quốc trong lịch sử Việt Nam (từ tháng 8 năm 1945 đến nay)",
+   "ten": "Cách mạng tháng Tám năm 1945",
+   "trang": [
+    31,
+    36
+   ],
+   "nam": 1945,
+   "tom": "Bối cảnh, diễn biến, nguyên nhân thắng lợi và ý nghĩa của Cách mạng tháng Tám năm 1945.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 7,
+   "chuong": "Chủ đề 3. Cách mạng tháng Tám năm 1945, chiến tranh giải phóng dân tộc và chiến tranh bảo vệ Tổ quốc trong lịch sử Việt Nam (từ tháng 8 năm 1945 đến nay)",
+   "ten": "Cuộc kháng chiến chống thực dân Pháp (1945 – 1954)",
+   "trang": [
+    37,
+    44
+   ],
+   "nam": 1946,
+   "tom": "Các giai đoạn, thắng lợi tiêu biểu và ý nghĩa của cuộc kháng chiến chống Pháp.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 8,
+   "chuong": "Chủ đề 3. Cách mạng tháng Tám năm 1945, chiến tranh giải phóng dân tộc và chiến tranh bảo vệ Tổ quốc trong lịch sử Việt Nam (từ tháng 8 năm 1945 đến nay)",
+   "ten": "Cuộc kháng chiến chống Mỹ, cứu nước (1954 – 1975)",
+   "trang": [
+    45,
+    53
+   ],
+   "nam": 1975,
+   "tom": "Các giai đoạn, thắng lợi tiêu biểu và ý nghĩa của cuộc kháng chiến chống Mỹ, cứu nước.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 9,
+   "chuong": "Chủ đề 3. Cách mạng tháng Tám năm 1945, chiến tranh giải phóng dân tộc và chiến tranh bảo vệ Tổ quốc trong lịch sử Việt Nam (từ tháng 8 năm 1945 đến nay)",
+   "ten": "Cuộc đấu tranh bảo vệ Tổ quốc từ sau tháng 4 – 1975 đến nay. Một số bài học lịch sử của các cuộc kháng chiến bảo vệ Tổ quốc từ năm 1945 đến nay",
+   "trang": [
+    54,
+    60
+   ],
+   "nam": 1979,
+   "tom": "Bảo vệ biên giới Tây Nam, biên giới phía Bắc, chủ quyền biển đảo và các bài học lịch sử.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 10,
+   "chuong": "Chủ đề 4. Công cuộc Đổi mới ở Việt Nam từ năm 1986 đến nay",
+   "ten": "Khái quát về công cuộc Đổi mới từ năm 1986 đến nay",
+   "trang": [
+    61,
+    64
+   ],
+   "nam": 1986,
+   "tom": "Bối cảnh và các giai đoạn của công cuộc Đổi mới bắt đầu từ Đại hội VI (1986).",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 11,
+   "chuong": "Chủ đề 4. Công cuộc Đổi mới ở Việt Nam từ năm 1986 đến nay",
+   "ten": "Thành tựu cơ bản và bài học của công cuộc Đổi mới ở Việt Nam từ năm 1986 đến nay",
+   "trang": [
+    65,
+    72
+   ],
+   "nam": null,
+   "tom": "Thành tựu về kinh tế, chính trị, xã hội, đối ngoại và các bài học kinh nghiệm.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 12,
+   "chuong": "Chủ đề 5. Lịch sử đối ngoại của Việt Nam thời cận – hiện đại",
+   "ten": "Hoạt động đối ngoại của Việt Nam trong đấu tranh giành độc lập dân tộc (từ đầu thế kỉ XX đến trước Cách mạng tháng Tám năm 1945)",
+   "trang": [
+    73,
+    76
+   ],
+   "nam": null,
+   "tom": "Hoạt động đối ngoại của Phan Bội Châu, Phan Châu Trinh, Nguyễn Ái Quốc và Đảng Cộng sản.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 13,
+   "chuong": "Chủ đề 5. Lịch sử đối ngoại của Việt Nam thời cận – hiện đại",
+   "ten": "Hoạt động đối ngoại của Việt Nam trong kháng chiến chống Pháp (1945 – 1954) và kháng chiến chống Mỹ (1954 – 1975)",
+   "trang": [
+    77,
+    81
+   ],
+   "nam": null,
+   "tom": "Ngoại giao phục vụ kháng chiến: Hiệp định Sơ bộ, Giơ-ne-vơ, Pa-ri.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 14,
+   "chuong": "Chủ đề 5. Lịch sử đối ngoại của Việt Nam thời cận – hiện đại",
+   "ten": "Hoạt động đối ngoại của Việt Nam từ năm 1975 đến nay",
+   "trang": [
+    82,
+    87
+   ],
+   "nam": 1995,
+   "tom": "Phá thế bao vây cấm vận, bình thường hoá quan hệ, gia nhập ASEAN (1995) và hội nhập quốc tế.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 15,
+   "chuong": "Chủ đề 6. Hồ Chí Minh trong lịch sử Việt Nam",
+   "ten": "Khái quát cuộc đời và sự nghiệp của Hồ Chí Minh",
+   "trang": [
+    88,
+    93
+   ],
+   "nam": 1890,
+   "tom": "Những nét chính về cuộc đời, sự nghiệp của Chủ tịch Hồ Chí Minh từ năm 1890 đến năm 1969.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 16,
+   "chuong": "Chủ đề 6. Hồ Chí Minh trong lịch sử Việt Nam",
+   "ten": "Hồ Chí Minh – Anh hùng giải phóng dân tộc",
+   "trang": [
+    94,
+    104
+   ],
+   "nam": 1930,
+   "tom": "Vai trò của Hồ Chí Minh trong tìm đường cứu nước, thành lập Đảng, lãnh đạo cách mạng và kháng chiến.",
+   "dang_bien_soan": true
+  },
+  {
+   "so": 17,
+   "chuong": "Chủ đề 6. Hồ Chí Minh trong lịch sử Việt Nam",
+   "ten": "Dấu ấn Hồ Chí Minh trong lòng nhân dân thế giới và Việt Nam",
+   "trang": [
+    105,
+    109
+   ],
+   "nam": null,
+   "tom": "Sự tôn vinh và lòng kính yêu của nhân dân Việt Nam, bạn bè quốc tế đối với Hồ Chí Minh.",
+   "dang_bien_soan": true
+  }
+ ]
+}
