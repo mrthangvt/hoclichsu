@@ -143,7 +143,7 @@
    "Vai: Quân nhà Lý"
   ],
   [
-   "linh-nam-han",
+   "linh-tong",
    "Vai: Lính Tống"
   ]
  ],
@@ -163,7 +163,9 @@
   "quan-ly": {
    "file": "units/quan-ly.nvz",
    "image": "units/quan-ly.jpg",
-   "side": 0
+   "side": 0,
+   "glb": "units/quan-ly.glb",
+   "note": "cận cảnh: units/quan-ly.glb (có xương, 17 động tác); xa: .nvz"
   },
   "ly-thuong-kiet": {
    "file": "units/ly-thuong-kiet.nvz",
@@ -179,18 +181,14 @@
   "linh-tong": {
    "file": "units/linh-tong.nvz",
    "image": "units/linh-tong.jpg",
-   "side": 1
+   "side": 1,
+   "glb": "units/linh-tong.glb",
+   "note": "cận cảnh: units/linh-tong.glb (có xương, 17 động tác); xa: .nvz"
   },
   "quach-quy": {
    "file": "units/quach-quy.nvz",
    "image": "units/quach-quy.jpg",
    "side": 1
-  },
-  "linh-nam-han": {
-   "file": "units/linh-nam-han.nvz",
-   "image": "units/linh-nam-han.jpg",
-   "side": 1,
-   "note": "vai người chơi 'Lính Tống'"
   },
   "ngua": {
    "file": "units/ngua.nvz",
@@ -219,5 +217,16 @@
  "budget": {
   "firstLoadMB": 15
  },
- "sources": "sources.json"
+ "sources": "sources.json",
+ "taiSau": [
+  "units/*.nvz",
+  "units/*.glb",
+  "units/dan-binh.jpg",
+  "units/linh-tong.jpg",
+  "units/ly-thuong-kiet.jpg",
+  "units/quach-quy.jpg",
+  "units/quan-ly.jpg",
+  "units/ngua.jpg",
+  "units/ngua-tong.jpg"
+ ]
 }

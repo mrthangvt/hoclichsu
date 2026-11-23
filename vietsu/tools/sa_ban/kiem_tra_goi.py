@@ -5,7 +5,7 @@
 - Mọi tệp gói nhắc tới đều có thật.
 - Mỗi loại quân trong placement.json có khai báo trong pack.json › units (và ngược lại báo loại thừa).
 - Quy tắc phe: cờ lấy theo phe của loại quân; mỗi phe trong sides phải có ảnh cờ nếu có nhóm cầm cờ.
-- Ước lượng dung lượng tải lần đầu (đã nén gzip, không tính âm thanh) so với ngân sách 15 MB:
+- Ước lượng dung lượng tải lần đầu (đã nén gzip, không tính âm thanh, không tính tệp khai báo trong pack.json › taiSau) so với ngân sách 15 MB:
   bộ máy + three.js + pack.json + địa hình + kịch bản + bố trí + loại quân xuất hiện ở 2 cảnh đầu.
 
 Dùng:  python3 vietsu/tools/sa_ban/kiem_tra_goi.py ngoc-hoi-dong-da   (hoặc đường dẫn thư mục gói)
@@ -37,10 +37,14 @@ def main():
             if "side" not in u: loi.append(f"units.{k} thiếu 'side'")
         E = sorted((KG / "engine").glob("2.*"))[-1]
         eng = sum(gz(p) for p in [E / "loi.js", E / "khung.js", E / "sa-ban.css", E / "sa-ban.html", E / "vendor/three/three.module.min.js", E / "vendor/three/addons/controls/OrbitControls.js"])
-        goi = sum(gz(p) for p in D.rglob("*") if p.is_file() and p.suffix != ".mp3")
+        sau = set()                                                   # pack.json › taiSau: tệp tải sau khi sa bàn đã hiện (nhân vật theo cảnh, mô hình có xương)
+        for g in P.get("taiSau", []): sau.update(p for p in D.glob(g) if p.is_file())
+        goi = sum(gz(p) for p in D.rglob("*") if p.is_file() and p.suffix != ".mp3" and p not in sau)
+        goi_sau = sum(gz(p) for p in sau if p.suffix != ".mp3")
         am = sum(p.stat().st_size for p in D.rglob("*.mp3")) / 1e6; ns = (P.get("budget") or {}).get("firstLoadMB", 15)
         print(f"Gói {P['id']} {P['version']} · bộ máy {P['engine']}")
         print(f"  Tải lần đầu (gzip, không tính âm thanh): {(eng + goi)/1e6:.1f} MB (bộ máy {eng/1e6:.1f} + gói {goi/1e6:.1f}) · ngân sách {ns} MB · âm thanh {am:.1f} MB")
+        if sau: print(f"  Tải sau khi đã hiện (taiSau, {len(sau)} tệp): {goi_sau/1e6:.1f} MB")
         if (eng + goi) / 1e6 > ns: loi.append("vượt ngân sách tải lần đầu")
         for l in loi: print("  ✗", l)
         if not loi: print("  ✓ Gói hợp lệ")

@@ -195,12 +195,22 @@ async function nvLoad(kind, cap) {
   for (const [name, c] of Object.entries(j.clips)) if (c.hip) clips[name].hip = c.hip;
 }
 const NV_KINDS = [['dan-binh', 300], ['linh-tong', 700], ['ly-thuong-kiet', 2], ['quach-quy', 2], ['quan-ly', 1400], ['ngua', 8]];      // V1.4: ngựa chiến (mẫu tĩnh trong kho, động tác đi bộ nướng bằng xoay chân)   // dân binh → quân Lý; lính Nam Hán → quân Tống; quân binh nhà Lý: tướng + cung thủ trên lũy (rig mới, V1.3)
-let nvDone = 0;
-await Promise.all(NV_KINDS.map(async ([k, cap]) => { try { await nvLoad(k, cap); } catch (e) { console.warn('nhân vật', k, e); } nvDone++; progress(0.5 + 0.35 * nvDone / NV_KINDS.length, 'Đang tải nhân vật có động tác…'); }));
-// V1.5: ngựa tướng Tống dùng chung hình ngựa nhưng texture riêng (vải yếm, đệm yên màu chàm, viền bạc) + huy hiệu chữ 宋
-if (NVK.ngua) { const K = NVK.ngua, map = await texLoader.loadAsync('nhanvat/ngua-tong.jpg'); map.colorSpace = THREE.SRGBColorSpace; map.anisotropy = 4;
-  const mat = new THREE.MeshLambertMaterial({ map, side: THREE.DoubleSide }); clipList.push(mat);
-  NVK['ngua-tong'] = { ...K, mat, matM: mat, cap: 8, clips: Object.fromEntries(Object.entries(K.clips).map(([n, c]) => [n, { ...c, ims: [], imsM: undefined }])) }; }
+// Tải nhân vật theo cảnh (23/11/2026): không loại nào xuất hiện trước 3:30, nên sa bàn hiện ngay khi có địa hình; nhân vật tải nền
+// theo thứ tự xuất hiện (giây đầu tiên đo bằng cách chạy hết phim), loại nào cần sớm hơn (tua tới, đổi vai) thì tải ngay khi nvPut gọi tới.
+const NV_FIRST = { 'ly-thuong-kiet': 210, 'dan-binh': 212, 'quan-ly': 280, 'ngua': 352, 'quach-quy': 352, 'linh-tong': 352 };
+const NV_CAP = Object.fromEntries(NV_KINDS), NV_DANG = {};
+function nvNeed(kind) {
+  if (kind === 'ngua-tong') kind = 'ngua';
+  if (NVK[kind] || NV_DANG[kind] || !(kind in NV_CAP)) return NV_DANG[kind];
+  return (NV_DANG[kind] = nvLoad(kind, NV_CAP[kind]).then(async () => {
+    if (kind === 'ngua') {     // V1.5: ngựa tướng Tống dùng chung hình ngựa nhưng texture riêng (vải yếm, đệm yên màu chàm, viền bạc) + huy hiệu chữ 宋
+      const K = NVK.ngua, map = await texLoader.loadAsync('nhanvat/ngua-tong.jpg'); map.colorSpace = THREE.SRGBColorSpace; map.anisotropy = 4;
+      const mat = new THREE.MeshLambertMaterial({ map, side: THREE.DoubleSide }); mat.clippingPlanes = waterMat.clippingPlanes; clipList.push(mat);
+      NVK['ngua-tong'] = { ...K, mat, matM: mat, cap: 8, clips: Object.fromEntries(Object.entries(K.clips).map(([n, c]) => [n, { ...c, ims: [], imsM: undefined }])) };
+    }
+  }).catch((e) => console.warn('nhân vật', kind, e)));
+}
+const nvNen = async () => { for (const k of Object.keys(NV_FIRST).sort((a, b) => NV_FIRST[a] - NV_FIRST[b])) await nvNeed(k); };   // tải nền theo thứ tự xuất hiện
 // phe của từng loại nhân vật — quyết định cờ, huy hiệu (KHÔNG để quân Tống cầm cờ nhà Lý)
 const TONG_KIND = new Set(['linh-tong', 'linh-nam-han', 'luu-hoang-thao', 'quach-quy', 'ngua-tong']);
 //@@ s12
@@ -263,24 +273,118 @@ const NV_TINT = { 'quach-quy': [0xffffff, 0xd8c8b8, 0xc8d0e0].map((c) => new THR
 //@@ s16
 const NV_ALIAS = { di: 'chay', ngam: 'ban', dam: 'chem', thu: 'dung', nga: 'chet', chihuy: 'dung', ban: 'ngam', chet: 'nga', buon: 'dung' };   // động tác thay thế khi nhân vật không có clip đó
 function nvPut(kind, clip, t, ph, pos, yaw, scale, wpn, tSeg = 0, vi = 0, roll = 0, pitch = 0, side = 1, mir = false) {
-  const K = NVK[kind]; if (!K) return;
+  const K = NVK[kind]; if (!K) { nvNeed(kind); return; }
   if (clip === 'dung' && kind === 'dan-binh') clip = 'thu';      // V1.3: bỏ dáng đứng một tay để sau lưng
+  const clip0 = clip;
   if (!K.clips[clip] && NV_ALIAS[clip]) clip = NV_ALIAS[clip];
-  const C = K.clips[clip] || K.clips.dung; const f = nvFrame(C, t, ph, tSeg); const im = nvIM(K, C, f, mir);
+  const C = K.clips[clip] || K.clips.dung;
+  if (XL.on && XL.want(kind, clip0, t, ph, pos, yaw, scale, wpn, tSeg, vi, roll, pitch, side, mir, C, clip)) return;   // để sau, khi máy quay đã đặt xong
+  nvDraw(K, kind, clip, C, t, ph, pos, yaw, scale, wpn, tSeg, vi, roll, pitch, side, mir);
+}
+function nvDraw(K, kind, clip, C, t, ph, pos, yaw, scale, wpn, tSeg, vi, roll, pitch, side, mir) {
+  XL.stat.nvz++;
+  const f = nvFrame(C, t, ph, tSeg); const im = nvIM(K, C, f, mir);
   if (im.count >= im.instanceMatrix.count) return;
   tmpE.set(pitch, yaw, roll, 'YXZ'); tmpQ.setFromEuler(tmpE); tmpS.set(mir ? -scale : scale, scale, scale);
   const Mc = tmpM.compose(pos, tmpQ, tmpS);
   im.setMatrixAt(im.count, Mc); const tints = NV_TINT[kind]; im.setColorAt(im.count, tints ? tints[vi % tints.length] : WHITE); im.count++;
   if (wpn) wpPut(wpn, C, f, Mc, clip in K.clips ? clip : 'dung', side, TONG_KIND.has(kind));
 }
+// ---- Nhân vật lai (thử 23/11/2026): lính ở gần máy quay vẽ bằng mô hình có xương (units/<loại>.glb, rig Mixamo, ~17 động tác
+// từ kho chung), lính ở xa giữ .nvz nướng sẵn. Mọi lính vẫn đi qua nvPut(): cùng vị trí, hướng, thời gian, vũ khí, cờ theo phe.
+// Bật/tắt: ?xuong=0 tắt, ?xuong=60 đổi bán kính (m). Quy trình: docs/KHUNG_SA_BAN.md › Nhân vật lai.
+const XL = (() => {
+  const q = new URLSearchParams(location.search), arg = q.get('xuong');
+  const S = { on: arg !== '0', R: arg && +arg > 1 ? +arg : 55, MAX: 48, kinds: {}, used: 0, n: 0, stat: { xuong: 0, nvz: 0 } };
+  // động tác .nvz → động tác GLB; danh sách thì chọn theo số thứ tự người (vi) cho đa dạng
+  const MAP = { dung: 'dung', thu: 'thu', di: 'di', chay: ['chay', 'chay', 'chay', 'chaynhanh'], chem: ['chem', 'chem2', 'chem', 'do'], dam: ['dam', 'dam', 'dam', 'trung'],
+    ngam: 'ban', ban: 'ban', nga: ['nga', 'chet'], chet: ['chet', 'chet2'], cheo: 'cheo', keo: 'keo', day: 'day' };
+  const ONCE = new Set(['nga', 'chet', 'chet2', 'trung']);
+  const FILES = { 'quan-ly': 'nhanvat/quan-ly.glb', 'linh-tong': 'nhanvat/linh-tong.glb' };
+  let SU = null;
+  S.load = async () => {
+    if (!S.on) { S.ready = true; return; }
+    const [{ GLTFLoader }, { MeshoptDecoder }, su] = await Promise.all([import('@@ENGINE@@vendor/three/addons/loaders/GLTFLoader.js'),
+      import('@@ENGINE@@vendor/three/addons/libs/meshopt_decoder.module.js'), import('@@ENGINE@@vendor/three/addons/utils/SkeletonUtils.js')]);
+    SU = su; const L = new GLTFLoader(); L.setMeshoptDecoder(MeshoptDecoder);
+    await Promise.all(Object.entries(FILES).map(async ([kind, f]) => {
+      try {
+        const g = await L.loadAsync(f); let map = null;
+        g.scene.traverse((o) => { if (o.isMesh && o.material.map) map = o.material.map; });
+        const tints = NV_TINT[kind] || [WHITE];
+        const mats = tints.map((c) => { const m = new THREE.MeshLambertMaterial({ map, color: c, side: THREE.DoubleSide }); m.clippingPlanes = waterMat.clippingPlanes; clipList.push(m); return m; });
+        S.kinds[kind] = { g, clips: Object.fromEntries(g.animations.map((a) => [a.name, a])), mats, pool: [], used: 0 };
+      } catch (e) { console.warn('nhân vật có xương', kind, e); }
+    }));
+    S.ready = true;
+  };
+  function make(K) {
+    const root = SU.clone(K.g.scene); root.matrixAutoUpdate = false; let mesh = null; const b = {};
+    root.traverse((o) => { if (o.isSkinnedMesh) { mesh = o; o.frustumCulled = false; } if (o.isBone) { if (o.name.endsWith('RightHand')) b.r = o; if (o.name.endsWith('LeftHand')) b.l = o; } });
+    const P = { root, mesh, mixer: new THREE.AnimationMixer(root), acts: {}, cur: null, r: b.r, l: b.l };
+    for (const [n, a] of Object.entries(K.clips)) { const ac = P.mixer.clipAction(a); ac.setLoop(ONCE.has(n) ? THREE.LoopOnce : THREE.LoopRepeat); ac.clampWhenFinished = true; P.acts[n] = ac; }
+    root.visible = false; scene.add(root); return P;
+  }
+  const _ci = new THREE.Matrix4(), _hb = new THREE.Matrix4(), _x = new THREE.Vector3(), _y = new THREE.Vector3(), _z = new THREE.Vector3(), _p = new THREE.Vector3();
+  const FC = { mg: new Float32Array(9), mt: new Float32Array(9), frames: [0] };
+  // khung bàn tay trong toạ độ của nhân vật (chưa nhân tỉ lệ) — cùng quy ước mg / mt của .nvz, để wpPut gắn vũ khí, cờ như cũ
+  function hands(P, Mc) {
+    _ci.copy(Mc).invert();
+    _hb.multiplyMatrices(_ci, P.r.matrixWorld); _hb.extractBasis(_x, _y, _z); _y.normalize(); _z.normalize(); _p.setFromMatrixPosition(_hb);
+    FC.mg.set([_y.x, _y.y, _y.z, _z.x, _z.y, _z.z, _p.x, _p.y, _p.z]);
+    _hb.multiplyMatrices(_ci, P.l.matrixWorld); _x.setFromMatrixPosition(_hb).sub(_p).normalize();
+    FC.mt.set([_x.x, _x.y, _x.z, _z.x, _z.y, _z.z, _p.x, _p.y, _p.z]);
+    return FC;
+  }
+  S.begin = () => { nQ = 0; for (const K of Object.values(S.kinds)) K.used = 0; S.used = 0; S.stat.xuong = 0; S.stat.nvz = 0; };
+  S.end = () => { const on = document.getElementById('ly-nv')?.checked !== false;
+    for (const K of Object.values(S.kinds)) K.pool.forEach((P, i) => { if (i >= K.used || !on) P.root.visible = false; }); };
+  // Người có thể vẽ bằng xương: ghi lại, quyết định ở flush() khi máy quay của khung hình này đã đặt xong
+  // (máy quay đặt sau khi xếp quân; xét theo vị trí cũ thì ở khung cắt cảnh sẽ chọn nhầm người).
+  const Q = []; let nQ = 0; const _v = new THREE.Vector3();
+  S.want = (kind, clip, t, ph, pos, yaw, scale, wpn, tSeg, vi, roll, pitch, side, mir, C, clipN) => {
+    const K = S.kinds[kind]; if (!K || mir) return false;
+    let m = MAP[clip]; if (!m) return false; if (Array.isArray(m)) m = m[vi % m.length];
+    if (!K.clips[m]) return false;
+    let r = Q[nQ]; if (!r) Q[nQ] = r = { pos: new THREE.Vector3() };
+    nQ++; r.pos.copy(pos); Object.assign(r, { kind, clip, m, t, ph, yaw, scale, wpn, tSeg, vi, roll, pitch, side, mir, C, clipN });
+    return true;
+  };
+  S.flush = () => {
+    const R2 = S.R * S.R, cp = camera.position, near = [];
+    for (let i = 0; i < nQ; i++) { const r = Q[i]; r.d2 = r.pos.distanceToSquared(cp); if (r.d2 <= R2) near.push(r); else r.x = false; }
+    near.sort((a, b) => a.d2 - b.d2); near.forEach((r, k) => { r.x = k < S.MAX; });
+    for (let i = 0; i < nQ; i++) { const r = Q[i];
+      if (r.x) S.put(r.kind, r.m, r.clip, r.t, r.ph, r.pos, r.yaw, r.scale, r.wpn, r.tSeg, r.vi, r.roll, r.pitch, r.side, r.C);
+      else nvDraw(NVK[r.kind], r.kind, r.clipN, r.C, r.t, r.ph, r.pos, r.yaw, r.scale, r.wpn, r.tSeg, r.vi, r.roll, r.pitch, r.side, r.mir); }
+    nQ = 0;
+  };
+  S.put = (kind, m, clip, t, ph, pos, yaw, scale, wpn, tSeg, vi, roll, pitch, side, C) => {
+    const K = S.kinds[kind], A = K.clips[m];
+    let P = K.pool[K.used]; if (!P) { P = make(K); K.pool.push(P); }
+    K.used++; S.used++; S.stat.xuong++;
+    const ac = P.acts[m]; if (P.cur !== ac) { if (P.cur) P.cur.stop(); ac.reset().play(); P.cur = ac; }
+    let tt;
+    if (ONCE.has(m)) tt = Math.min(Math.max(0, tSeg), A.duration - 1e-3);
+    else if (C && C.frames && C.frames.length > 1 && !C.once) { const n = C.frames.length; tt = ((((t * C.fps) / n + ph) % 1 + 1) % 1) * A.duration; }   // cùng nhịp với .nvz
+    else tt = ((t + ph * A.duration) % A.duration + A.duration) % A.duration;
+    P.mixer.setTime(tt);
+    tmpE.set(pitch, yaw, roll, 'YXZ'); tmpQ.setFromEuler(tmpE); tmpS.set(scale, scale, scale);
+    P.root.matrix.compose(pos, tmpQ, tmpS); P.root.visible = true; P.root.updateMatrixWorld(true);
+    P.mesh.material = K.mats[vi % K.mats.length];
+    if (wpn) wpPut(wpn, hands(P, P.root.matrix), 0, P.root.matrix, clip === 'ngam' || clip === 'ban' ? 'ban' : clip, side, TONG_KIND.has(kind));
+  };
+  return S;
+})();
 // huy hiệu tròn trên yếm ngực và hai bên đệm yên ngựa
 const huyGeo = new THREE.CircleGeometry(0.17, 24);
 const huyMat = (f) => { const tx = new THREE.TextureLoader().load(f); tx.colorSpace = THREE.SRGBColorSpace; const m = new THREE.MeshLambertMaterial({ map: tx, transparent: true, side: THREE.DoubleSide, alphaTest: 0.3 }); clipList.push(m); return m; };
 const HUY = { ly: new THREE.InstancedMesh(huyGeo, huyMat('data/huy-ly.png'), 36), tong: new THREE.InstancedMesh(huyGeo, huyMat('data/huy-tong.png'), 36) };
 for (const m of Object.values(HUY)) { m.frustumCulled = false; m.count = 0; scene.add(m); }
 const TORCH = { on: false, n: 0, max: 220, p: new Float32Array(220 * 3) };     // đuốc (đêm): đầu cán giáo của mỗi người thứ 7
-function nvBegin() { for (const im of NV_IMS) im.count = 0; for (const k in WP) WP[k].count = 0; coFlag.count = 0; coFlagT.count = 0; HUY.ly.count = HUY.tong.count = 0; TORCH.n = 0; for (const K of Object.values(NVK)) for (const C of Object.values(K.clips)) C.__ti = 0; }
+function nvBegin() { XL.begin(); for (const im of NV_IMS) im.count = 0; for (const k in WP) WP[k].count = 0; coFlag.count = 0; coFlagT.count = 0; HUY.ly.count = HUY.tong.count = 0; TORCH.n = 0; for (const K of Object.values(NVK)) for (const C of Object.values(K.clips)) C.__ti = 0; }
 function nvEnd() {
+  XL.end();
   for (const im of NV_IMS) { im.visible = im.count > 0; if (im.count) { im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; } }
   for (const k in WP) WP[k].instanceMatrix.needsUpdate = true; coFlag.instanceMatrix.needsUpdate = true; coFlagT.instanceMatrix.needsUpdate = true; HUY.ly.instanceMatrix.needsUpdate = HUY.tong.instanceMatrix.needsUpdate = true;
 }
@@ -511,7 +615,7 @@ const _rq = new THREE.Vector3();
 const _hm = new THREE.Matrix4(), _hl = new THREE.Matrix4(), _hq = new THREE.Quaternion(), _hv = new THREE.Vector3(), _hs = new THREE.Vector3();
 function drawMounted(o, rider, t, walking, vi, wpn = null) {
   const tong = TONG_KIND.has(rider), hk = tong ? 'ngua-tong' : 'ngua';            // ngựa tướng Tống: yếm chàm + chữ 宋; ngựa nhà Lý: yếm đỏ + chữ 李
-  const H = NVK[hk] || NVK.ngua, Rk = NVK[rider]; if (!H || !Rk) return;
+  const H = NVK[hk] || NVK.ngua, Rk = NVK[rider]; if (!H || !Rk) { nvNeed('ngua'); nvNeed(rider); return; }
   const sc = farScale(o.position.x, o.position.y, o.position.z), yaw = o.rotation.y, ph = t * 0.85 + vi * 0.37;
   nvPut(hk, walking ? 'di' : 'dung', ph, 0, o.position, yaw, sc, null, 0, 0);
   const bob0 = walking ? 0.025 * Math.sin(4 * Math.PI * ((ph * 12 % 12) / 12)) : 0, HM = tong ? HUY.tong : HUY.ly, ch = H.chest || [0, 1.15, 1.09], sd = H.side || [0.32, 1.13, -0.14];
@@ -1473,6 +1577,7 @@ function update(dt) {
   const above = Math.max(1, camera.position.y - Math.max(gh, level));
   camera.near = povDone || (W.on && W.fp) ? 0.05 : clamp(above * 0.05, 0.15, 30); camera.far = 160000; camera.updateProjectionMatrix();
   sky.position.copy(camera.position); fill.position.copy(camera.position);
+  if (XL.on) { XL.flush(); nvEnd(); if (!$('ly-nv').checked) for (const m of NV_IMS) m.visible = false; }     // nhân vật lai: người gần máy quay vẽ bằng xương
   fill.intensity = isNight(t) ? 0.6 : 2.2;
   const under = camera.position.y < level - 0.05 && inR && !sectionMesh.visible;
   $('underwater').style.opacity = under ? 1 : 0; if (under) { scene.fog.color.set(0x2c3a30); scene.fog.density = 0.02; }
@@ -1516,8 +1621,9 @@ setAppMode('film');
 for (const tw of [5, 300, 560, 640, 880]) { T = tw; update(0); renderer.compile(scene, camera); renderer.render(scene, camera); }   // dựng sẵn các cảnh có nhiều hiệu ứng để lúc xem không bị khựng
 T = 0; update(0); renderer.render(scene, camera);
 renderList(); connectStore();
+const NV_XONG = nvNen().then(() => XL.load());   // nhân vật nướng sẵn (theo thứ tự xuất hiện), rồi nhân vật có xương cho cận cảnh — đều tải sau khi sa bàn đã hiện, không tính vào tải lần đầu
 const STILL = location.hash === '#still';
-window.__sa = { NQ, LHT, camera, controls, BOAT_S, AM, MU, NVK, LUY, GAR, RAFT, CAMP, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, boats, render: () => { update(0); renderer.render(scene, camera); } };
+window.__sa = { XL, WP, NV_XONG, NQ, LHT, camera, controls, BOAT_S, AM, MU, NVK, LUY, GAR, RAFT, CAMP, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, boats, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0) };
 function closeLoad() { $('load').classList.add('done'); setTimeout(() => $('load').remove(), 700); }
 if (STILL) { document.body.classList.add('ready'); closeLoad(); }
 else {
