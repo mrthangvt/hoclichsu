@@ -27,6 +27,24 @@ def main():
     D = Path(arg) if Path(arg).is_dir() else KG / "packs" / arg
     loi, canh = [], []
     P = json.loads((D / "pack.json").read_text(encoding="utf-8"))
+    if str(P.get("engine", "")).lstrip("^").startswith("2"):     # bộ máy 2.x (họ Bạch Đằng): tải mọi tệp trừ âm thanh khi mở
+        loi = []
+        for k in ("id", "version", "engine", "title", "script", "story", "placement"):
+            if k not in P: loi.append(f"pack.json thiếu '{k}'")
+        for f in [P.get("script"), P.get("story"), P.get("placement")] + [u.get("file") for u in P.get("units", {}).values()] + [u.get("image") for u in P.get("units", {}).values()] + [s_.get("flag") for s_ in P.get("sides", [])]:
+            if f and not (D / f).exists(): loi.append("thiếu tệp " + f)
+        for k, u in P.get("units", {}).items():
+            if "side" not in u: loi.append(f"units.{k} thiếu 'side'")
+        E = sorted((KG / "engine").glob("2.*"))[-1]
+        eng = sum(gz(p) for p in [E / "loi.js", E / "khung.js", E / "sa-ban.css", E / "sa-ban.html", E / "vendor/three/three.module.min.js", E / "vendor/three/addons/controls/OrbitControls.js"])
+        goi = sum(gz(p) for p in D.rglob("*") if p.is_file() and p.suffix != ".mp3")
+        am = sum(p.stat().st_size for p in D.rglob("*.mp3")) / 1e6; ns = (P.get("budget") or {}).get("firstLoadMB", 15)
+        print(f"Gói {P['id']} {P['version']} · bộ máy {P['engine']}")
+        print(f"  Tải lần đầu (gzip, không tính âm thanh): {(eng + goi)/1e6:.1f} MB (bộ máy {eng/1e6:.1f} + gói {goi/1e6:.1f}) · ngân sách {ns} MB · âm thanh {am:.1f} MB")
+        if (eng + goi) / 1e6 > ns: loi.append("vượt ngân sách tải lần đầu")
+        for l in loi: print("  ✗", l)
+        if not loi: print("  ✓ Gói hợp lệ")
+        sys.exit(1 if loi else 0)
     for k in BAT_BUOC:
         if k not in P: loi.append(f"pack.json thiếu trường '{k}'")
     if not re.match(r"^[a-z0-9]+(-[a-z0-9]+)*$", P.get("id", "")): loi.append("id gói phải là chữ thường không dấu, gạch nối")
