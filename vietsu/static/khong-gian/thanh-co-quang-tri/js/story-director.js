@@ -53,7 +53,7 @@ export async function start(api){
   const ui=createUI(api,data,H);
   ui.setTicks(starts.map(s=>s/total));
 
-  function setPlaying(p){D.playing=p;ui.setPlaying(p);if(!p&&typeof voStop==='function')voStop();if(p)D.vline=null}
+  function setPlaying(p){D.playing=p;ui.setPlaying(p);if(api.keepAwake)api.keepAwake(p||D.mode!=='story');if(!p&&typeof voStop==='function')voStop();if(p)D.vline=null}
   function goto(i,t=0,seeking=false){if(i<0||i>=list.length)return;const changed=true;/* luôn đặt lại trạng thái: tua lùi không giữ hiệu ứng của mốc sau */D.i=i;const e=list[i];
     if(changed){api.setState(e.state);ui.map(e.state);ui.setEpisode(e);audio.reset()}
     D.t=t;D.envIdx=-1;applyEnv(e,t,true);D.fired=new Set((e.cues||[]).filter(c=>c.t<t).map(c=>c.t+c.do));D.line=-1;D.vline=-2;
@@ -78,32 +78,41 @@ export async function start(api){
     const a=api.anchor(w.follow,D.witI*7+3);if(!a)return;const d=a.dir,s=new THREE.Vector3(-d.z,0,d.x);
     camera.position.copy(a.head).addScaledVector(d,-1.3).addScaledVector(s,.45).addScaledVector(UP,.32);controls.target.copy(a.head).addScaledVector(d,40).addScaledVector(UP,-2.5)}
 
-  /* ---------- nhạc của phân cảnh (chỉ phát khi người xem bật Âm thanh; thiếu tệp thì bỏ qua) ---------- */
-  const MUS={el:new Audio(),src:null,ok:true};MUS.el.preload='auto';MUS.el.onerror=()=>{if(MUS.src)MUS.ok=false};
-  function musicTick(e){const m=e&&e.music;const want=!!m&&D.mode==='story'&&D.playing&&api.audio().on;
-    if(!m){if(MUS.el&&!MUS.el.paused)MUS.el.pause();return}
-    if(MUS.src!==m.src){MUS.el.pause();MUS.ok=true;MUS.src=m.src;MUS.el.src=m.src;MUS.el.load()}
-    const el=MUS.el;if(!MUS.ok)return;const t=D.t-m.start;const dur=isFinite(el.duration)?el.duration:1e9;
-    if(!want||t<0||t>dur){if(!el.paused)el.pause();return}
-    if(el.readyState>=1&&Math.abs(el.currentTime-t)>1.2)el.currentTime=Math.max(0,t);
+  /* ---------- nhạc nền theo chương: e.music = [{src, start (giây trong chương), from (vị trí trong bài), volume, fade_in, fade_out}]
+     Chỉ phát khi bật Âm thanh; bám theo giây phim khi tua; tự hạ khi đang có lời dẫn; tắt dần ở cuối đoạn. ---------- */
+  const PRE=window.__AUD||[];   /* phần tử âm thanh đã được mở khoá ngay trong lần bấm "Xem sa bàn" */
+  const MUS={el:PRE[1]||new Audio(),src:null,ok:true,duck:1,dur:{}};MUS.el.preload='auto';MUS.el.onerror=()=>{if(MUS.src)MUS.ok=false};
+  MUS.el.addEventListener('loadedmetadata',()=>{if(MUS.src)MUS.dur[MUS.src]=MUS.el.duration});
+  function segOf(e,t){const L=Array.isArray(e.music)?e.music:(e.music?[e.music]:[]);let k=-1;L.forEach((m,i)=>{if(m.start<=t)k=i});return k<0?null:{m:L[k],end:k+1<L.length?L[k+1].start:e.duration_sec}}
+  function musicTick(e,dt){const sg=e?segOf(e,D.t):null;const m=sg&&sg.m;const want=!!m&&D.mode==='story'&&D.playing&&api.audio().on;
+    const el=MUS.el;if(!m){if(!el.paused)el.pause();return}
+    if(MUS.src!==m.src){el.pause();el.muted=false;MUS.ok=true;MUS.src=m.src;el.src=m.src;el.load()}
+    if(!MUS.ok)return;const from=m.from||0;const tt=D.t-m.start;const pos=from+tt;const dur=MUS.dur[m.src]||(isFinite(el.duration)?el.duration:1e9);
+    if(!want||tt<0||pos>dur){if(!el.paused)el.pause();return}
+    if(el.readyState>=1&&Math.abs(el.currentTime-pos)>1.2)el.currentTime=Math.max(0,pos);
     if(el.playbackRate!==D.speed)el.playbackRate=D.speed;
     if(el.paused)el.play().catch(()=>{});
-    const end=e.duration_sec-m.start;let v=(m.volume??.85)*(voBusy()?.4:1);v*=Math.min(1,t/(m.fade_in||3));v*=Math.min(1,Math.max(0,(end-t)/(m.fade_out||5)));el.volume=Math.max(0,Math.min(1,v))}
+    MUS.duck+=((voBusy()?.45:1)-MUS.duck)*Math.min(1,(dt||.016)*2.5);   /* hạ nhạc mềm khi có lời dẫn */
+    const end=Math.min(sg.end-m.start,dur-from);let v=(m.volume??.8)*MUS.duck;v*=Math.min(1,tt/(m.fade_in||2.5));v*=Math.min(1,Math.max(0,(end-tt)/(m.fade_out||3)));el.volume=Math.max(0,Math.min(1,v))}
   window.__MUS=MUS;
 
   /* ---------- lồng tiếng lời dẫn: ưu tiên tệp audio/voice/<id>-<số dòng>.mp3 (liệt kê trong audio/voice/index.json); thiếu tệp thì dùng giọng đọc tiếng Việt của thiết bị ---------- */
-  const VO={on:true,ex:false,el:new Audio(),f:null,lt:0,active:false,files:null,retry:0};   /* on: nút 🗣 (mặc định bật); ex: người xem tự bấm bật → đọc cả khi chưa bật Âm thanh */
+  const VO={on:true,ex:false,el:PRE[0]||new Audio(),f:null,lt:0,active:false,files:null,retry:0};   /* on: nút 🗣 (mặc định bật); ex: người xem tự bấm bật → đọc cả khi chưa bật Âm thanh */
   VO.el.preload='auto';
-  fetch('audio/voice/index.json').then(r=>r.ok?r.json():[]).then(a=>{VO.files=new Set(a)}).catch(()=>{VO.files=new Set()});
+  VO.blob={};
+  fetch('audio/voice/index.json').then(r=>r.ok?r.json():[]).then(async a=>{VO.files=new Set(a);
+    /* tải sẵn toàn bộ lời dẫn vào bộ nhớ (≈7 MB) theo thứ tự phát: câu nào đến lượt cũng phát ngay, không trễ vì mạng → không bị cắt đuôi câu */
+    for(const f of a){if(VO.blob[f])continue;try{const b=await fetch('audio/voice/'+f).then(r=>r.ok?r.blob():null);if(b)VO.blob[f]=URL.createObjectURL(b)}catch(e){}}
+  }).catch(()=>{VO.files=new Set()});
   /* điện thoại (nhất là iPhone) chỉ cho phát âm thanh từ phần tử đã được mở khoá bằng một lần chạm: dùng lại đúng một phần tử cho giọng đọc và một cho nhạc */
-  let unlocked=false;
+  let unlocked=PRE.length>0;
   const SILENT='data:audio/wav;base64,UklGRmQGAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YUAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
   function unlock(){if(unlocked)return;unlocked=true;
     for(const el of [VO.el,MUS.el]){if(!el.paused)continue;   /* đang phát = đã mở khoá */
       if(el===VO.el)VO.f=null;else MUS.src=null;el.src=SILENT;el.play().then(()=>{if(el.src===SILENT)el.pause()}).catch(()=>{})}
     D.vline=null}   /* câu đang dở (bị chặn trước lần chạm đầu) sẽ đọc lại từ đúng chỗ ở khung hình sau */
   for(const ev of ['pointerdown','touchend','keydown'])addEventListener(ev,unlock,{passive:true,capture:true});
-  function voSeek(){const el=VO.el;const off=D.t-VO.lt;if(off>.6){if(isFinite(el.duration)&&off>el.duration-.4){el.pause();VO.active=false}else el.currentTime=off}}
+  function voSeek(){const el=VO.el;const off=D.t-VO.lt;if(off>1.2){if(isFinite(el.duration)&&off>el.duration-.4){el.pause();VO.active=false}else el.currentTime=off}}
   VO.el.addEventListener('loadedmetadata',()=>{if(VO.active)voSeek()});
   VO.el.addEventListener('ended',()=>{VO.active=false});
   function voStop(){VO.active=false;VO.el.pause();try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
@@ -114,10 +123,9 @@ export async function start(api){
     if(el.paused&&!el.ended&&performance.now()>VO.retry){VO.retry=performance.now()+800;if(el.readyState>=1)voSeek();if(VO.active)el.play().catch(()=>{})}}
   function speak(e,n){voStop();if(!voWant()||n<0||!D.playing)return;const tx=e.lines[n].text;if(!tx)return;const f=e.id+'-'+String(n+1).padStart(2,'0')+'.mp3';
     if(VO.files&&VO.files.has(f)){const el=VO.el;VO.active=true;VO.lt=e.lines[n].t;el.muted=false;
-      if(VO.f!==f){VO.f=f;el.src='audio/voice/'+f;el.load()}else{el.currentTime=0;voSeek()}
+      if(VO.f!==f){VO.f=f;el.src=VO.blob[f]||('audio/voice/'+f);el.load()}else{el.currentTime=0;voSeek()}
       el.playbackRate=D.speed;VO.retry=performance.now()+800;el.play().catch(()=>{});
-      const nx=e.lines[n+1];const nf=e.id+'-'+String(n+2).padStart(2,'0')+'.mp3';if(nx&&VO.files.has(nf))fetch('audio/voice/'+nf).catch(()=>{});   /* tải trước câu sau */
-      return}
+            return}
     if(!VO.ex)return;   /* chưa có tệp thu âm: chỉ dùng giọng máy khi người xem bấm 🗣 */
     if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(tx.replace(/[\u201c\u201d\u2018\u2019\u2026·()]/g,' '));u.lang='vi-VN';
     const v=speechSynthesis.getVoices().find(v=>/^vi/i.test(v.lang));if(v)u.voice=v;u.rate=1.08*D.speed;speechSynthesis.speak(u)}
@@ -128,7 +136,13 @@ export async function start(api){
   /* ---------- vòng lặp ---------- */
   api.tickHooks.push(rawDt=>{const dt=Math.min(rawDt,.25);audio.tick(dt,voBusy());ui.tick(dt);
     if(D.mode==='story'){if(api.walking()){setMode('free');return}
-      const e=list[D.i];if(D.playing){D.t+=dt*D.speed;if(D.t>=e.duration_sec){if(D.i<list.length-1){goto(D.i+1,0);return}D.t=e.duration_sec;setPlaying(false)}}
+      const e=list[D.i];if(D.playing){
+        /* lời dẫn là đồng hồ chính: chưa đọc xong câu (hoặc câu đang tải) thì giữ phim ở cuối câu, tối đa 4 s, để không cắt mất đuôi câu */
+        const nl=(e.lines||[]).find(l=>l.t>D.t+1e-6);const edge=nl?nl.t:e.duration_sec;const el=VO.el;
+        const reading=VO.active&&voWant()&&!el.ended&&(el.paused?el.readyState<3&&D.t-VO.lt<3:isFinite(el.duration)&&el.currentTime<el.duration-.12);
+        const hold=reading&&D.t+dt*D.speed>=edge-.05&&(D.hold||0)<4;
+        if(hold)D.hold=(D.hold||0)+dt;else{D.hold=0;D.t+=dt*D.speed}
+        if(D.t>=e.duration_sec){if(D.i<list.length-1){goto(D.i+1,0);return}D.t=e.duration_sec;setPlaying(false)}}
       for(const c of e.cues||[]){const key=c.t+c.do;if(c.t<=D.t&&!D.fired.has(key)){D.fired.add(key);fire(c)}}
       applyEnv(e,D.t,false);
       const hint=!!e.music&&!api.audio().on&&MUS.ok;const n=lineAt(e,D.t);const key=n+(hint?'h':'');
@@ -137,8 +151,13 @@ export async function start(api){
       if(!D.userCam){const c=camAt(e,D.t);if(c){camera.position.copy(c.p);controls.target.copy(c.l)}}
       ui.setProgress((starts[D.i]+D.t)/total,D.t,e.duration_sec)}
     else if(D.mode==='witness')witnessCam();
-    musicTick(D.mode==='story'?list[D.i]:null)});
+    musicTick(D.mode==='story'?list[D.i]:null,dt)});
 
+  /* màn hình tắt / chuyển ứng dụng: tạm dừng lời dẫn và nhạc; mở lại thì phát tiếp đúng chỗ (lần chạm đầu cũng phát lại ngay, iPhone cần thế) */
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){if(!VO.el.paused)VO.el.pause();if(!MUS.el.paused)MUS.el.pause()}else{D.vline=null}});
+  if(api.resumeHooks)api.resumeHooks.push(()=>{if(D.mode!=='story'||!D.playing)return;
+    if(VO.active&&VO.el.paused&&!VO.el.ended)VO.el.play().catch(()=>{});
+    if(MUS.src&&MUS.el.paused&&api.audio().on)MUS.el.play().catch(()=>{})});
   setMode('story');goto(0,0);
   window.__STORY={D,list,goto,setMode,H};   // để kiểm thử
 }
