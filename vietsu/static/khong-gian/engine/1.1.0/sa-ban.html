@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sa bàn · Việt Sử</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap&subset=vietnamese" rel="stylesheet">
+<link rel="stylesheet" href="sa-ban.css" data-sa-ban="1">
+</head>
+<body>
+<!-- Trang xem chung cho mọi gói: sa-ban.html?goi=ngoc-hoi-dong-da (gói nằm ở ../../packs/<id>/). -->
+<div id="sa-ban"></div>
+<script type="module">
+import { SaBan } from "./sa-ban.js";
+const q = new URLSearchParams(location.search), id = (q.get("goi") || "").replace(/[^a-z0-9-]/g, "");
+const box = document.getElementById("sa-ban");
+if (!id) box.innerHTML = '<p style="padding:24px;font-family:system-ui">Chưa chọn gói sa bàn. Ví dụ: <a href="?goi=ngoc-hoi-dong-da">?goi=ngoc-hoi-dong-da</a></p>';
+else SaBan.mount(box, { pack: "../../packs/" + id + "/" }).then((sb) => { window.saBan = sb; })
+  .catch((e) => { console.error(e); const el = document.getElementById("err"); if (el) el.textContent = String(e.message || e); else box.textContent = String(e.message || e); });
+</script>
+</body>
+</html>

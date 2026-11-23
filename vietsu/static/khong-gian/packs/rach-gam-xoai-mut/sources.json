@@ -1,0 +1,34 @@
+{
+ "pack": "rach-gam-xoai-mut",
+ "reconstruction": "Tái dựng mô phỏng; vị trí pháo, nơi phục binh là giả định chiến thuật; mũi tên là quy ước đồ hoạ.",
+ "sources": [
+  {
+   "title": "Bảo tàng Lịch sử Quốc gia — Di tích Rạch Gầm – Xoài Mút",
+   "type": "tham khảo",
+   "url": "https://baotanglichsu.vn/vi/Articles/1508/48906/di-tich-lich-su-rach-gam-xoai-mut.html",
+   "used_for": "đối chiếu diễn biến, lời bình"
+  },
+  {
+   "title": "Cục Di sản Văn hóa — Địa điểm chiến thắng Rạch Gầm – Xoài Mút",
+   "type": "tham khảo",
+   "url": "https://dsvh.gov.vn/di-tich-lich-su-dia-diem-chien-thang-rach-gam-xoai-mut-2986",
+   "used_for": "đối chiếu diễn biến, lời bình"
+  },
+  {
+   "title": "OpenStreetMap: bờ sông Tiền, cù lao, rạch",
+   "type": "OSM",
+   "license": "© OpenStreetMap contributors (ODbL)",
+   "used_for": "đường bờ, cù lao"
+  },
+  {
+   "title": "Nhạc nền Epidemic Sound (giấy phép của chủ dự án)",
+   "type": "âm nhạc",
+   "used_for": "nhạc nền phim"
+  },
+  {
+   "title": "Nhân vật, thuyền, nhà lá, cây dừa — kho mô hình của dự án (Tripo, Mixamo, Blender)",
+   "type": "mô hình 3D",
+   "used_for": "quân, thuyền, vật thể"
+  }
+ ]
+}
