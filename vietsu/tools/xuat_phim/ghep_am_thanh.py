@@ -35,14 +35,14 @@ def main():
     vao, loc, nhan = [], [], []
     for m, t0 in zip(ds, moc):
         for ld in m.get('loi_dan', []):
-            k = len(vao)
+            k = len(vao) // 2
             vao += ['-i', os.path.join(sb, 'audio', 'voice', ld['tep'])]
             tre = int(round((t0 + ld['luc']) * 1000))
             loc.append(f"[{k}:a]atrim={ld['tu']}:{ld['den']},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
                        f"afade=t=in:d=0.04,afade=t=out:st={max(0, ld['den'] - ld['tu'] - 0.08):.3f}:d=0.08,adelay={tre}|{tre}[v{k}]")
             nhan.append(f'[v{k}]')
     g = cfg.get('giong', {}); nh = cfg['nhac']
-    km = len(vao)
+    km = len(vao) // 2
     vao += ['-i', os.path.join(sb, nh['tep'])]
     loc.append(f"[{km}:a]atrim=start={nh['tu']}:duration={tong:.3f},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,"
                f"volume={nh.get('am_luong', 0.9)},afade=t=in:d={nh.get('vao', 0.4)},afade=t=out:st={max(0, tong - nh.get('ra', 2.5)):.3f}:d={nh.get('ra', 2.5)}[nhac]")
