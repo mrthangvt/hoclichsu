@@ -1,0 +1,177 @@
+// Khung giao diện sa bàn (bố cục Ngọc Hồi – Đống Đa V10, dùng chung cho mọi gói). Chữ riêng của trận lấy từ pack.json.
+const e = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+export function khungHTML(P) {
+  const UI = P.ui || {}, L = UI.layers || {};
+  const MAC = { nha: "Nhà cửa", cay: "Cây cối", quan: "Đồn, trại", nv: "Quân lính", duong: "Đường", ld: "Đường viền hiện nay" };
+  const lop = (id, on) => `<label${L[id] === null ? " hidden" : ""}><input type="checkbox" id="ly-${id}"${on ? " checked" : ""}> ${e(L[id] || MAC[id])}</label>`;
+  return `
+<div id="stage"></div>
+<div id="labels"></div>
+<div id="divider" hidden><span>⟷</span></div>
+<div class="cmpl" id="cmpLA" hidden></div><div class="cmpl" id="cmpLB" hidden></div>
+
+<div id="load"><div class="box">
+  <div class="eyebrow">Không gian lịch sử</div><h1>${e(P.title)}</h1>
+  <div class="track"><div class="fill" id="fill"></div></div><small id="ld-step">Đang tải địa hình…</small>
+  <div id="err"></div>
+</div></div>
+
+<div class="hud top">
+  <div class="card title">
+    <div class="eyebrow">Không gian lịch sử · Việt Sử</div>
+    <h1>${e(P.title)}</h1>
+    <p id="sdate">${e(P.subtitle || "")}</p>
+    <span class="tag">${e((P.label || "Tái dựng mô phỏng").toUpperCase())}</span>
+  </div>
+  <div class="right">
+    <div class="modes" id="modes" role="tablist" aria-label="Chế độ xem">
+      <button data-m="film" class="on" role="tab">🎬 Phim tự động</button><button data-m="explore" role="tab">🧭 Khám phá</button><button data-m="pov" role="tab">👁 Góc nhìn nhân vật</button>
+    </div>
+    <div class="tools">
+      <button class="chip on" id="bsnd">🔊 Âm thanh</button>
+      <button class="chip on" id="barr" title="Bật / tắt mũi tên hướng tiến công (tự ẩn khi máy quay xuống cận)">➤ Mũi tên</button>
+      <button class="chip on" id="bvo" title="Đọc lời bình bằng giọng tiếng Việt của máy">🗣 Lời bình</button>
+      <button class="chip" id="blayers" aria-expanded="false">☰ Lớp</button>
+      <button class="chip" id="blegend" aria-expanded="false">Chú giải</button>
+      <button class="chip" id="bdocs">📖 Tư liệu</button>
+      <button class="chip" id="bhide" title="Ẩn menu, chỉ xem hình (phím H)">🎞 Ẩn menu</button>
+    </div>
+    <div class="card panel" id="layerp" hidden>
+      <div class="eyebrow">Bật / tắt lớp</div>
+      <label><input type="checkbox" id="ly-arr" checked> Mũi tên hướng tiến công</label>
+      <label><input type="checkbox" id="ly-sub" checked> Phụ đề lời bình</label>
+      <label><input type="checkbox" id="ly-lbl" checked> Mốc và tên địa danh</label>
+      <label><input type="checkbox" id="ly-lang"> Tên làng (khi lại gần)</label>
+      ${lop("nha",true)}
+      ${lop("cay",true)}
+      ${lop("quan",true)}
+      ${lop("nv",true)}
+      ${lop("duong",true)}
+      ${lop("ld",false)}
+      <label><input type="checkbox" id="ly-pin" checked> Ghi chú review</label>
+      <label><input type="checkbox" id="ly-mm" checked> Bản đồ nhỏ</label>
+      <div class="exrow"><span>Phóng đại chiều cao</span><button class="chip" id="exbtn">Cao ×1</button></div>
+    </div>
+    <div class="card panel" id="legend" hidden>
+      <div class="eyebrow">Chú giải</div>
+      <div class="items">
+        ${(UI.legend || []).map(([c, t]) => `<div><i class="${e(c)}"></i>${e(t)}</div>`).join("")}
+      </div>
+      <div class="now" id="legNow"></div>
+      <p class="small muted">${e(UI.legendNote || "")}</p>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="info" hidden><button class="x" id="infox" aria-label="Đóng">×</button><div id="infobody"></div></div>
+
+<aside class="card" id="review" hidden aria-label="Review sa bàn">
+  <header>
+    <button class="x" id="revx" aria-label="Đóng">×</button>
+    <div class="eyebrow">Góp ý cho bản dựng</div>
+    <h2>Review sa bàn</h2>
+    <div class="sync"><span id="syncdot" class="dot"></span><span id="synctext">Đang kết nối kho ghi chú…</span></div>
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tab-pins" aria-selected="true">Ghi chú <span id="n-pins">0</span></button>
+      <button role="tab" id="tab-moves" aria-selected="false">Mốc đã dời <span id="n-moves">0</span></button>
+    </div>
+  </header>
+  <div id="list"></div>
+  <footer>
+    <button id="export" class="primary">Sao chép dữ liệu review (JSON)</button>
+    <div class="small">Claude đọc được trực tiếp các ghi chú và mốc đã dời trong trang này để cập nhật file Blender.</div>
+  </footer>
+</aside>
+
+<div class="card minimap" id="minimap" aria-label="Bản đồ nhỏ">
+  <canvas id="mm" width="300" height="376" aria-label="Bấm để bay tới vị trí"></canvas>
+  <div class="mm-leg" id="mmLeg">Bấm để bay tới · chấm vàng là vị trí đang xem</div>
+</div>
+
+<div class="card" id="pad" role="group" aria-label="Điều khiển góc nhìn">
+  <button data-act="left" aria-label="Xoay trái" title="Xoay trái (Q)">⟲</button>
+  <button data-act="up" aria-label="Nhìn cao hơn" title="Nhìn cao hơn (↑)">▲</button>
+  <button data-act="right" aria-label="Xoay phải" title="Xoay phải (E)">⟳</button>
+  <button data-act="in" aria-label="Phóng to" title="Phóng to (+)">＋</button>
+  <button data-act="north" aria-label="Quay về hướng Bắc" title="Hướng Bắc (N)" class="n">B</button>
+  <button data-act="out" aria-label="Thu nhỏ" title="Thu nhỏ (−)">−</button>
+  <button data-act="down" aria-label="Nhìn thấp hơn" title="Nhìn thấp hơn (↓)" style="grid-column:2">▼</button>
+  <button class="wide" id="autorot" aria-pressed="false">Tự xoay</button>
+</div>
+
+<div id="sub" aria-live="polite" hidden></div>
+<div class="card docs" id="docs" hidden role="dialog" aria-label="Tư liệu"><button class="x" id="docsx" aria-label="Đóng">×</button><div id="docsbody"></div></div>
+<div class="card picker" id="scenes" hidden><button class="x" id="scx" aria-label="Đóng">×</button><h3>${e(P.storyLabel || "Kịch bản")}</h3><ol id="slist"></ol></div>
+
+<div class="hud bottom">
+  <div class="card bar" id="filmbar">
+    <div class="row">
+      <button class="sb" id="sprev" aria-label="Cảnh trước">⏮</button>
+      <button class="sb play" id="splay" aria-label="Phát">▶</button>
+      <button class="sb" id="snext" aria-label="Cảnh sau">⏭</button>
+      <div class="t"><b id="stitle">${e(P.storyLabel || "Kịch bản")}</b><small id="snote" hidden></small></div>
+      <small id="stime" class="time">0:00</small>
+      <select id="sspeed" aria-label="Tốc độ"><option value=".5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option><option value="2">2×</option></select>
+      <button class="sb" id="bscenes" aria-label="Danh sách cảnh">☰</button>
+    </div>
+    <div class="seekw"><input type="range" id="seek" min="0" max="1000" value="0" aria-label="Tua"><div id="ticks"></div></div>
+    <button id="sret" hidden>↩ Về góc máy của phim</button>
+  </div>
+  <div class="card bar" id="explorebar" hidden>
+    <div class="row"><span class="lbltxt">Mốc lịch sử</span><input type="range" id="dslider" min="0" max="1" step="1" value="0" aria-label="Chọn thời điểm"><b id="dlabel"></b></div>
+    <div class="views" id="views" role="group" aria-label="Chuyển địa điểm">
+      ${Object.entries(P.views || {}).map(([k, v], n) => `<button data-v="${e(k)}"${n ? "" : ' class="on"'}>${e(v.label || k)}</button>`).join("\n      ")}
+    </div>
+    <div class="row walkrow">
+      <select id="role" aria-label="Chọn vai">${Object.entries(P.roles || {}).map(([k, r]) => `<option value="${e(k)}">${e(r.label || k)}</option>`).join("")}</select>
+      <select id="pov" aria-label="Góc nhìn"><option value="3">Sau vai</option><option value="1">Qua mắt</option></select>
+      <button class="chip" id="bwalk">🚶 Xuống đi bộ</button>
+      <button class="chip" id="m-drag" aria-pressed="false">✋ Kéo mốc</button>
+      <button class="chip add" id="m-add" aria-pressed="false">＋ Ghi chú</button>
+      <button class="chip" id="revbtn" aria-pressed="false" aria-controls="review">Review <span class="n" id="n-all">0</span></button>
+    </div>
+    <small id="walkhelp" class="muted" hidden>Phím ảo bên trái (hoặc W A S D / mũi tên) để đi · đẩy hết cần hoặc giữ Shift để chạy · kéo màn hình để xoay góc nhìn · bấm địa điểm để tới ngay</small>
+    <div class="help"><span id="help"></span><span class="xy" id="readout"></span></div>
+  </div>
+  <div class="card bar" id="comparebar" hidden>
+    <div class="row"><span class="lbltxt">Trái</span><select id="cmpA" aria-label="Mốc bên trái"></select><span class="lbltxt">Phải</span><select id="cmpB" aria-label="Mốc bên phải"></select></div>
+    <small class="muted">Kéo vạch giữa màn hình để so sánh hai thời điểm · xoay, phóng to như chế độ Khám phá</small>
+  </div>
+  <div class="card bar" id="povbar" hidden>
+    <div class="row"><span class="lbltxt">Nhìn qua mắt</span><select id="povsel" aria-label="Chọn nhân vật để xem góc nhìn"></select></div>
+    <small class="muted" id="povmsg">Kéo màn hình để quay đầu nhìn quanh · phim vẫn chạy theo lời bình</small>
+  </div>
+</div>
+<button id="bshow" class="chip" hidden title="Hiện lại menu (phím H)">☰ Hiện menu</button>
+<div id="joy" hidden aria-label="Cần điều khiển di chuyển"><em class="u">▲</em><em class="d">▼</em><em class="l">◀</em><em class="r">▶</em><span></span></div>
+<button id="runbtn" class="chip" hidden aria-pressed="false">🏃 Chạy</button>
+<div id="fps"></div>
+
+<div id="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+  <form id="dlg-form" class="card">
+    <h3 id="dlg-title">Ghi chú review</h3>
+    <div class="small" id="dlg-pos"></div>
+    <label for="f-cat">Loại
+      <select id="f-cat">
+        <option value="vitri">Sửa vị trí / hình dạng</option>
+        <option value="bosung">Bổ sung chi tiết</option>
+        <option value="suseu">Sai lệch sử liệu</option>
+        <option value="hoi">Câu hỏi cần làm rõ</option>
+      </select>
+    </label>
+    <label for="f-title">Tiêu đề
+      <input id="f-title" maxlength="120" required placeholder="VD: Dời đồn Văn Điển sang phía đông đường">
+    </label>
+    <label for="f-text">Nội dung
+      <textarea id="f-text" maxlength="4000" placeholder="Mô tả cần sửa gì, theo nguồn nào…"></textarea>
+    </label>
+    <div class="row">
+      <button type="button" id="f-del" class="danger">Xoá</button>
+      <button type="button" id="f-cancel">Huỷ</button>
+      <button type="submit" class="primary" id="f-save">Lưu ghi chú</button>
+    </div>
+  </form>
+</div>
+
+`;
+}

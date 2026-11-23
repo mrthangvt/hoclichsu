@@ -1,0 +1,237 @@
+{
+  "id": "ten-tran-nam",
+  "version": "0.1.0",
+  "engine": "^1.0",
+  "kind": "battle",
+  "title": "Tên trận năm",
+  "period": "ma-trieu-dai-trong-viet-su",
+  "year": 0,
+  "label": "Tái dựng mô phỏng · chưa thẩm định sử học",
+  "subtitle": "Mùa, năm âm lịch · địa bàn",
+  "storyLabel": "kịch bản V1",
+  "coords": {
+    "system": "blender",
+    "note": "Toạ độ mét theo Blender B(x,y,z) → (x, z, −y); gốc lat0/lon0 và hệ số kx, ky ở terrain/dia-hinh.json › meta"
+  },
+  "terrain": {
+    "data": "terrain/dia-hinh.json",
+    "height": "terrain/h_main.png",
+    "image": "terrain/tex_main.jpg",
+    "patchHeight": "terrain/h_{name}.png",
+    "patchImage": "terrain/tex_{name}.jpg",
+    "patchNoWater": [],
+    "riverExtend": [],
+    "farMountains": {
+      "ridges": [],
+      "karst": []
+    }
+  },
+  "props": {
+    "instances": [
+      [
+        "nha",
+        "nha",
+        true,
+        "nha"
+      ],
+      [
+        "dinh",
+        "dinh",
+        false,
+        "nha"
+      ],
+      [
+        "nhapho",
+        "nha",
+        true,
+        "nha"
+      ],
+      [
+        "cay",
+        "cay",
+        true,
+        "cay"
+      ],
+      [
+        "tre",
+        "tre",
+        false,
+        "cay"
+      ],
+      [
+        "say",
+        "say",
+        false,
+        "cay"
+      ],
+      [
+        "leu",
+        "leu",
+        true,
+        "quan"
+      ],
+      [
+        "gac",
+        "gac",
+        false,
+        "quan"
+      ],
+      [
+        "usung",
+        "usung",
+        false,
+        "quan"
+      ],
+      [
+        "chong",
+        "chong",
+        false,
+        "quan"
+      ]
+    ],
+    "raiseCannons": false,
+    "outerCamps": [],
+    "campFlags": [],
+    "crossMarks": []
+  },
+  "frames": {},
+  "labels": {
+    "anchors": {
+      "Ma_Moc": "Tên mốc hiển thị"
+    },
+    "big": [],
+    "rivers": [
+      [
+        "Tên sông",
+        0.0,
+        0.0
+      ]
+    ]
+  },
+  "views": {
+    "all": {
+      "label": "Toàn cảnh",
+      "X": 0,
+      "Y": 0,
+      "dist": 20000,
+      "az": 180,
+      "el": 20
+    }
+  },
+  "ui": {
+    "layers": {
+      "nha": "Nhà, đình, Hoàng thành",
+      "cay": "Cây, lũy tre, sậy",
+      "quan": "Đồn, trại, lều, chông",
+      "nv": "Quân lính, voi, ngựa, tấm mộc",
+      "duong": "Đường, phố",
+      "ld": "Viền các hồ hiện nay"
+    },
+    "legend": [
+      [
+        "r",
+        "Mũi đỏ: hướng tiến công của phe 1"
+      ],
+      [
+        "b",
+        "Mũi xanh: phe 2"
+      ],
+      [
+        "g",
+        "Mốc vàng: địa danh"
+      ],
+      [
+        "p",
+        "Mốc đỏ: ghi chú review"
+      ],
+      [
+        "w",
+        "Mặt nước"
+      ]
+    ],
+    "legendNote": "Mũi tên là quy ước đồ hoạ theo bản đồ diễn biến.",
+    "unitsLoading": "Nhân vật",
+    "compare": [
+      "",
+      ""
+    ],
+    "arrowHeight": 200
+  },
+  "sides": [
+    {
+      "id": "phe-ta",
+      "name": "Quân ta",
+      "flag": "props/co-ta.jpg"
+    },
+    {
+      "id": "phe-dich",
+      "name": "Quân địch",
+      "flag": "props/co-dich.jpg"
+    }
+  ],
+  "units": {
+    "linh_ta": {
+      "file": "units/linh-ta.nvz",
+      "image": "units/linh-ta.jpg",
+      "side": 0,
+      "dense": true,
+      "alias": {}
+    },
+    "linh_dich": {
+      "file": "units/linh-dich.nvz",
+      "image": "units/linh-dich.jpg",
+      "side": 1,
+      "dense": true,
+      "alias": {}
+    }
+  },
+  "heroes": [],
+  "placement": "placement.json",
+  "groupFrames": {},
+  "roles": {
+    "ta": {
+      "label": "Vai: Quân ta",
+      "kind": "linh_ta",
+      "idle": "dung",
+      "walk": "di",
+      "run": "chay",
+      "walkSpeed": 1,
+      "weapon": 2,
+      "start": [
+        "Ma_Moc",
+        0,
+        0
+      ]
+    }
+  },
+  "pov": {
+    "places": [],
+    "people": []
+  },
+  "fx": {
+    "cannons": [],
+    "shieldFire": [],
+    "campFire": []
+  },
+  "audio": {
+    "voice": "audio/voice.mp3",
+    "dir": "audio/",
+    "beds": [],
+    "layers": {},
+    "march": {},
+    "oneShots": [],
+    "plan": [],
+    "cues": [],
+    "repeats": []
+  },
+  "quality": {
+    "maxPixelRatio": 2,
+    "mobilePixelRatio": 1.5,
+    "unitDrawDist": 6000,
+    "mobileUnitDrawDist": 3500
+  },
+  "budget": {
+    "firstLoadMB": 15
+  },
+  "sources": "sources.json"
+}
