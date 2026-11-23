@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sa bàn · Việt Sử</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap&subset=vietnamese" rel="stylesheet">
+<link rel="stylesheet" href="sa-ban.css">
+</head>
+<body class="m-film">
+<!-- Bộ máy sa bàn 2.0.0 (họ Bạch Đằng): sa-ban.html?goi=bach-dang-938. Trang ghép loi.js (phần chung) với packs/<id>/rieng.js (phần riêng) rồi chạy. -->
+<script type="module">
+import { khungHTML } from "./khung.js";
+const say = (m) => { const el = document.getElementById("err"); if (el) el.textContent = m; else document.body.insertAdjacentHTML("afterbegin", `<p style="padding:24px;font-family:system-ui">${m}</p>`); };
+addEventListener("error", (e) => say("Không dựng được sa bàn: " + (e.message || "lỗi không rõ") + ". Hãy tải lại trang."));
+try {
+  const q = new URLSearchParams(location.search), id = (q.get("goi") || "").replace(/[^a-z0-9-]/g, "");
+  if (!id) throw new Error('chưa chọn gói, ví dụ ?goi=bach-dang-938');
+  const base = new URL(`../../packs/${id}/`, location.href).href, eng = new URL("./", location.href).href;
+  const P = await (await fetch(base + "pack.json")).json();
+  if (!/^\^?2\b/.test(String(P.engine))) throw new Error(`gói ${P.id} cần bộ máy ${P.engine}, trang này là bộ máy 2.0.0`);
+  document.title = "Sa bàn " + P.title;
+  document.body.insertAdjacentHTML("afterbegin", khungHTML(P, base));
+  window.__SB = { pack: P, base };
+  const [loi, rieng] = await Promise.all([fetch(eng + "loi.js").then((r) => r.text()), P.script ? fetch(base + P.script).then((r) => r.text()) : ""]);
+  const doan = {};                                   // //@@ sN … → đoạn sN
+  for (const m of rieng.split(/^\/\/@@ /m).slice(1)) { const k = m.slice(0, m.indexOf("\n")).trim(); doan[k] = m.slice(m.indexOf("\n") + 1); }
+  const thieu = [];
+  const ma = loi.replace(/\/\*@@RIENG:(s\d+)@@\*\//g, (_, k) => { if (!(k in doan)) thieu.push(k); return doan[k] || ""; }).replace(/@@ENGINE@@/g, eng);
+  if (thieu.length) console.warn("rieng.js thiếu đoạn", thieu.join(", "));
+  const url = URL.createObjectURL(new Blob([ma + "\n//# sourceURL=" + eng + "sa-ban-ghep.js"], { type: "text/javascript" }));
+  await import(url);
+} catch (e) { console.error(e); say("Không dựng được sa bàn: " + e.message); }
+</script>
+</body>
+</html>

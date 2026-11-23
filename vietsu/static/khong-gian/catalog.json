@@ -24,6 +24,17 @@
       "url": "engine/1.1.0/sa-ban.html?goi=rach-gam-xoai-mut",
       "status": "thu-nghiem",
       "replaces": "rach-gam-xoai-mut/"
+    },
+    {
+      "id": "bach-dang-938",
+      "version": "1.0.0",
+      "kind": "battle",
+      "title": "Bạch Đằng 938",
+      "period": "ngo",
+      "year": 938,
+      "url": "engine/2.0.0/sa-ban.html?goi=bach-dang-938",
+      "status": "thu-nghiem",
+      "replaces": "artifact 440c9fcf-5cee-4e56-8fa1-2cd73fe5c1a1"
     }
   ]
 }

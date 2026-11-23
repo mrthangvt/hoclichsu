@@ -1,0 +1,28 @@
+{
+ "pack": "bach-dang-938",
+ "reconstruction": "Tái dựng mô phỏng; vị trí bãi cọc, sở chỉ huy, nơi phục binh là giả định (không lấy hiện vật năm 1288); mốc thời gian chưa khớp voice.",
+ "sources": [
+  {
+   "title": "OpenStreetMap: sông Bạch Đằng, lạch, đường bờ (Overpass)",
+   "type": "OSM",
+   "license": "© OpenStreetMap contributors (ODbL)",
+   "used_for": "sông, lạch"
+  },
+  {
+   "title": "AWS Terrain Tiles (Terrarium) z14",
+   "type": "DEM",
+   "url": "https://registry.opendata.aws/terrain-tiles/",
+   "used_for": "độ cao"
+  },
+  {
+   "title": "Nhân vật Ngô Quyền, dân binh, lính Nam Hán, Lưu Hoằng Tháo — kho chung của dự án (Tripo, Mixamo, Blender: bake_bd.py)",
+   "type": "mô hình 3D",
+   "used_for": "nhân vật"
+  },
+  {
+   "title": "Nhạc nền Epidemic Sound (giấy phép của chủ dự án)",
+   "type": "âm nhạc",
+   "used_for": "nhạc nền theo chương"
+  }
+ ]
+}
