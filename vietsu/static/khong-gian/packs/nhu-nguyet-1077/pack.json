@@ -1,0 +1,223 @@
+{
+ "id": "nhu-nguyet-1077",
+ "version": "1.0.0",
+ "engine": "^2.1",
+ "kind": "battle",
+ "title": "Phòng Tuyến Như Nguyệt 1077",
+ "subtitle": "Mùa xuân năm 1077 · phòng tuyến sông Như Nguyệt",
+ "label": "Tái dựng mô phỏng",
+ "period": "ly",
+ "year": 1077,
+ "storyLabel": "14 chương · kịch bản V1",
+ "script": "rieng.js",
+ "coords": {
+  "system": "blender",
+  "note": "Sa bàn tròn: tâm 21.23237 B, 105.94245 Đ, bán kính 3 180 m; độ cao phóng đại 1,35 lần (terrain/meta.json)"
+ },
+ "ui": {
+  "layers": [
+   [
+    "nha",
+    "Nhà lá, làng ven sông",
+    true
+   ],
+   [
+    "cay",
+    "Cây, lũy tre làng",
+    true
+   ],
+   [
+    "coc",
+    "Rào tre, cọc tre trên lũy",
+    true
+   ],
+   [
+    "nv",
+    "Quân lính, thuyền, bè",
+    true
+   ],
+   [
+    "co",
+    "Cờ hiệu hai bên",
+    true
+   ],
+   [
+    "pt",
+    "Làm nổi phòng tuyến (rào, cọc sáng)",
+    false
+   ],
+   [
+    "mc",
+    "Mặt cắt lũy tại bến Như Nguyệt",
+    false
+   ],
+   [
+    "nhac",
+    "Nhạc nền (đàn tranh, đàn bầu, sáo, trống)",
+    true
+   ]
+  ],
+  "legend": [
+   [
+    "g",
+    "Mũi vàng: hướng tiến công, phản công của quân Lý",
+    "width:22px;height:8px;border-radius:3px"
+   ],
+   [
+    "r",
+    "Mũi đỏ: hướng tiến, vượt sông của quân Tống"
+   ],
+   [
+    "g",
+    "Mốc vàng: bến sông, lũy, doanh trại, đền (bấm để đọc)"
+   ],
+   [
+    "p",
+    "Mốc đỏ: ghi chú review của nhóm"
+   ],
+   [
+    "w",
+    "Cờ đỏ chữ 李: quân nhà Lý · cờ đen chữ 宋: quân Tống (tái dựng giản lược)"
+   ]
+  ],
+  "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ; hình dạng lũy, vị trí doanh trại, cầu phao, sở chỉ huy, nơi phục binh là giả định. Sông Cầu, sông Cà Lồ, làng theo OpenStreetMap hiện nay (© OpenStreetMap contributors, ODbL), cao độ AWS Terrarium; đồng bằng đã làm mượt, độ cao phóng đại 1,35 lần. Vòng tròn sa bàn tâm 21,23237° B, 105,94245° Đ, bán kính 3,18 km; ngoài vòng là nền phẳng. Không dựng ngựa (kỵ binh Tống).",
+  "extraHtml": "<div class=\"card\" id=\"tlcard\" hidden><img id=\"tlimg\" alt=\"Kinh thành Thăng Long\"><b>Kinh thành Thăng Long</b><small>Hình ảnh minh họa</small></div>\n<div id=\"poem\" hidden><div class=\"eyebrow\">Nam quốc sơn hà · tương truyền</div><p>Nam quốc sơn hà Nam đế cư,</p><p>Tiệt nhiên định phận tại thiên thư.</p><p>Như hà nghịch lỗ lai xâm phạm,</p><p>Nhữ đẳng hành khan thủ bại hư.</p><div class=\"y\" id=\"poemy\">Ý thơ: Sông núi nước Nam là của người Nam, điều ấy đã định rõ ở sách trời.<br>Kẻ thù nào sang xâm phạm, nhất định sẽ chuốc lấy thất bại.</div></div>",
+  "loaderHtml": "\n  <div id=\"ldgo\" hidden><button id=\"bstart\" class=\"go\" aria-label=\"Phát phim\">▶ Play · Xem phim</button><button id=\"bexplore\" class=\"go2\">🧭 Khám phá sa bàn</button><small>Phim dài 17 phút 30 giây · 14 chương · có âm thanh và lời bình</small></div>",
+  "css": "body:not(.ready) #splay { visibility: hidden; }",
+  "gauge": false,
+  "notePlaceholder": "VD: Dời doanh trại Triệu Tiết lên phía Bắc 200 m",
+  "tide": {
+   "label": "Mực nước sông",
+   "min": -1,
+   "max": 1.5,
+   "step": 0.05,
+   "value": 0.3,
+   "button": "Theo cảnh"
+  }
+ },
+ "views": [
+  [
+   "all",
+   "Toàn cảnh"
+  ],
+  [
+   "nhunguyet",
+   "Bến Như Nguyệt"
+  ],
+  [
+   "luy",
+   "Chiến lũy"
+  ],
+  [
+   "trai",
+   "Trại Triệu Tiết · Mai Đình"
+  ],
+  [
+   "chihuy",
+   "Sở chỉ huy Lý Thường Kiệt"
+  ],
+  [
+   "cauphao",
+   "Cầu phao"
+  ],
+  [
+   "phucbinh",
+   "Phục binh"
+  ],
+  [
+   "den",
+   "Đền Trương Hống – Trương Hát"
+  ],
+  [
+   "ngaba",
+   "Ngã ba Cà Lồ"
+  ],
+  [
+   "vongnguyet",
+   "Vọng Nguyệt"
+  ]
+ ],
+ "roles": [
+  [
+   "dan-binh",
+   "Vai: Quân nhà Lý"
+  ],
+  [
+   "linh-nam-han",
+   "Vai: Lính Tống"
+  ]
+ ],
+ "sides": [
+  {
+   "id": "ly",
+   "name": "Quân nhà Lý",
+   "flag": "props/co-ly.png"
+  },
+  {
+   "id": "tong",
+   "name": "Quân Tống",
+   "flag": "props/co-tong.png"
+  }
+ ],
+ "units": {
+  "quan-ly": {
+   "file": "units/quan-ly.nvz",
+   "image": "units/quan-ly.jpg",
+   "side": 0
+  },
+  "ly-thuong-kiet": {
+   "file": "units/ly-thuong-kiet.nvz",
+   "image": "units/ly-thuong-kiet.jpg",
+   "side": 0
+  },
+  "dan-binh": {
+   "file": "units/dan-binh.nvz",
+   "image": "units/dan-binh.jpg",
+   "side": 0,
+   "note": "vai người chơi 'Quân nhà Lý'"
+  },
+  "linh-tong": {
+   "file": "units/linh-tong.nvz",
+   "image": "units/linh-tong.jpg",
+   "side": 1
+  },
+  "quach-quy": {
+   "file": "units/quach-quy.nvz",
+   "image": "units/quach-quy.jpg",
+   "side": 1
+  },
+  "linh-nam-han": {
+   "file": "units/linh-nam-han.nvz",
+   "image": "units/linh-nam-han.jpg",
+   "side": 1,
+   "note": "vai người chơi 'Lính Tống'"
+  },
+  "ngua": {
+   "file": "units/ngua.nvz",
+   "image": "units/ngua.jpg",
+   "side": null,
+   "note": "ngựa hai phe; ngựa Tống đổi vân units/ngua-tong.jpg"
+  },
+  "thuyen-ts": {
+   "type": "mesh",
+   "file": "units/thuyen-ts.mesh.json",
+   "side": 0
+  }
+ },
+ "terrain": {
+  "data": "terrain/meta.json",
+  "height": "terrain/height.png",
+  "image": "terrain/color.jpg",
+  "outer": "props/outer.png"
+ },
+ "placement": "placement.json",
+ "story": "story.json",
+ "audio": {
+  "dir": "audio/",
+  "credits": "Nhạc nền theo chương: audio/nhac-*.mp3 (đàn tranh, đàn bầu, sáo, trống), theo bản Như Nguyệt 1077 V1.6."
+ },
+ "budget": {
+  "firstLoadMB": 15
+ },
+ "sources": "sources.json"
+}
