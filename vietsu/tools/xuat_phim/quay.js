@@ -92,6 +92,14 @@ XP.chay=async function(){
     throw new Error('Trình duyệt không mã hoá được H.264 ở '+W+'×'+H)}
   async function luu(tenTep,blob){const r=await fetch('/xuat_phim/luu?ten='+encodeURIComponent(tenTep),{method:'POST',body:blob});if(!r.ok)throw new Error('Không lưu được '+tenTep);return r.text()}
 
+  /* ---------- sự kiện dàn dựng trong khoảnh khắc (dùng chính API của sa bàn): su_kien = [{luc, no:[x,y], lon}, {luc, phao_sang:[x,y,cao]}] ---------- */
+  function suKien(m,u0,u1){for(const e of m.su_kien||[]){if(e.luc<u0-1e-6||e.luc>=u1-1e-6)continue;
+    if(e.no)A.boomAt(e.no[0],e.no[1],!!e.lon);
+    if(e.no_truoc){   /* nổ phía trước máy quay: [cách bao nhiêu mét, lệch ngang (+ phải)] */
+      const f=new THREE.Vector3();camera.getWorldDirection(f);f.y=0;f.normalize();const r=new THREE.Vector3(-f.z,0,f.x);
+      const q=camera.position.clone().addScaledVector(f,e.no_truoc[0]).addScaledVector(r,e.no_truoc[1]||0);A.boomAt(q.x,-q.z,e.lon!==false)}
+    if(e.phao_sang)A.flare(e.phao_sang[0],e.phao_sang[1],e.phao_sang[2]||170)}}
+
   /* ---------- chạy ---------- */
   XP.chiemDongHo();
   const ds=cfg.khoanh_khac.filter(m=>!chi||chi.includes(m.id));if(cfg.ket&&(!chi||chi.includes('ket')))ds.push(Object.assign({id:'ket',ket:true},cfg.ket));
@@ -108,10 +116,10 @@ XP.chay=async function(){
     const N=Math.round(m.dai*FPS);
     if(cheDo==='xem_thu'){   /* ?anh=3: chụp 3 ảnh ở 10%, 50%, 90% đoạn; mặc định 1 ảnh ở 55% */
       const nA=+Q.get('anh')||1;const moc=nA>1?Array.from({length:nA},(_,j)=>m.dai*(.1+.8*j/(nA-1))):[m.anh_luc??m.dai*.55];let f=0;
-      for(const [j,lu] of moc.entries()){for(;f<Math.round(lu*FPS);f++){XP.buocToi();if(f%10===9)await XP.nhuong()}
+      for(const [j,lu] of moc.entries()){for(;f<Math.round(lu*FPS);f++){suKien(m,f/FPS,(f+1)/FPS);XP.buocToi();if(f%10===9)await XP.nhuong()}
         veKhung(m,lu,m.dai,glc);const b=await new Promise(r=>cv.toBlob(r,'image/jpeg',.88));await luu(`${ten}_${m.id}${nA>1?'_'+(j+1):''}.jpg`,b)}
       n+=N;log(`Xem thử ${m.id} xong (${((XP.nowThuc()-tm)/1000).toFixed(1)} s)`)}
-    else{for(let f=0;f<N;f++){XP.buocToi();veKhung(m,f/FPS,m.dai,glc);
+    else{for(let f=0;f<N;f++){suKien(m,f/FPS,(f+1)/FPS);XP.buocToi();veKhung(m,f/FPS,m.dai,glc);
         const vf=new VideoFrame(cv,{timestamp:Math.round(n*1e6/FPS),duration:Math.round(1e6/FPS)});enc.encode(vf,{keyFrame:n%(FPS*2)===0});vf.close();n++;
         if(f===Math.round(N*.55)){const b=await new Promise(r=>cv.toBlob(r,'image/jpeg',.85));luu(`${ten}_${m.id}.jpg`,b)}
         while(enc.encodeQueueSize>3)await new Promise(r=>enc.addEventListener('dequeue',r,{once:true}));

@@ -42,6 +42,15 @@ khoảnh khắc), `<ten>_xuat.json` (thời gian xuất thật), `<ten>.mp4` (b�
 
 Phim 16:9 4K: dùng `?w=3840&h=2160` với một danh sách khoảnh khắc ngang (bộ mã hoá tự chọn H.264 level 5.1, 60 Mbit/s).
 
+## Bản B (`khoanh_khac_thanh_co_916_b.json`, 55 s)
+Nhiều cảnh toàn, cảnh cận đặt máy sau lưng nhân vật nhìn về phía đạn, pháo nổ. `su_kien` dàn dựng tiếng nổ/pháo sáng
+bằng chính API của sa bàn (`__QT.boomAt`, `__QT.flare`); `no_truoc: [cách, ngang]` đặt điểm nổ theo hướng máy quay.
+`ghep_am_thanh.py` tự thêm `bom-no.mp3` đúng lúc nổ (trễ theo khoảng cách) và `sung-nen.mp3` theo `nen_sung`.
+Nhạc Epidemic nằm ngoài repo (ổ xMABUx `_KHO-CHUNG/nhac-nen/`), truyền bằng `--nhac`:
+```bash
+python3 vietsu/tools/xuat_phim/ghep_am_thanh.py khoanh_khac_thanh_co_916_b --nhac "/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG/nhac-nen/ES_Final Battle - Max Anson.mp3"
+```
+
 ## Lưu ý nội dung
 - Nhãn "Tái dựng mô phỏng" luôn hiện. Chữ trên trailer **không ghi ngày tháng**: mốc thời gian của kịch bản vượt sông
   chưa chốt (xem `docs/TOM_TAT.md` mục 1).
