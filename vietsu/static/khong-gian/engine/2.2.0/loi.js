@@ -167,7 +167,7 @@ gl_FragColor=outc;
   });
 }
 /*@@RIENG:s6@@*/
-const ground = new THREE.Mesh(new THREE.CircleGeometry(150000, 96), groundMat);
+const ground = new THREE.Mesh(new THREE.RingGeometry(R * 0.995, 150000, 192, 1), groundMat);   // 2.2 (V1.6): vành quanh sa bàn, không trải dưới địa hình — trước đây mặt nền nằm ngay dưới đất, nhìn xa tranh nhau → vệt đen nháy
 ground.rotation.x = -Math.PI / 2; ground.position.y = BASE; scene.add(ground);
 
 // ------------------------------------------------------------------ terrain

@@ -365,3 +365,17 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
 - Lính: nướng lại nhiều khung hơn, tốc độ khớp nhịp bước, thêm động tác quan sát cho lính đứng.
 - Quét lại cả phim sau khi sửa: không còn máy quay dưới đất, không còn lỗi chạy (kết quả ở dưới).
 - Kết quả quét (24/11, bước 0,5 s, chạy liền từ đầu tầng): nội đô 1.122 mốc, chiến dịch 809 mốc. Không có máy quay dưới đất, không có lỗi chạy, không khung nào chậm quá 1 s (trước: 828,5 s đứng 94 s).
+
+## 26. Sửa V1.6 (24/11 đêm, góp ý 22:04 và 22:09)
+- **Nháy đen khi nhìn từ trên cao, máy thấp mất xe (chỉ còn ghim tên):** cùng một lỗi. Lời chú thích ở cuối một dòng mã nuốt mất lệnh cập nhật mặt cắt gần của máy quay. Mặt cắt gần chỉ được áp dụng khi đổi góc rộng hoặc đổi cỡ cửa sổ.
+  - Máy hạ thấp có lúc vẫn giữ mặt cắt của cảnh cao (≈ 565 m), nên đất và xe trước mặt bị cắt, chỉ còn thấy mặt nền dưới sa bàn.
+  - Lúc khác thì mặt cắt quá sát (1 m, xa 900 km), nên mặt nền dưới đất tranh độ sâu với địa hình ở xa, thành vệt đen nhấp nháy.
+  - Đã sửa: cập nhật mỗi khung. Mặt nền nay là vành quanh sa bàn, không trải dưới địa hình. Bộ kiểm tra tự động thêm mục "mặt cắt gần sai".
+- **Góc máy lướt đoàn xe (0:17, 2:56…):** bỏ cú máy thấp sau đuôi đoàn. Nay máy bay song song bên sườn đoàn xe, cao khoảng 75 m, cách đường khoảng 140 m, nhìn chéo xuống giữa đoàn.
+- **Bấm chuyển hồi bị treo:** máy em không tái hiện được. Nguyên nhân khả dĩ: khung cũ và khung nạp sẵn chỉ bị gỡ khỏi trang, bộ nhớ đồ hoạ của chúng vẫn bị giữ tới khi trình duyệt dọn. Vì vậy có lúc hai, ba sa bàn cùng chiếm card đồ hoạ.
+  - Đã sửa: khung bị thay trả bộ nhớ đồ hoạ ngay. Khung nạp sẵn không dùng tới bị bỏ ngay.
+  - Mất ngữ cảnh đồ hoạ quá 2 lần trong 2 phút thì dừng tự tải lại và báo, tránh vòng tải lại vô hạn.
+- **Giảm theo yêu cầu:**
+  - Lính ở Dinh: 204 → 30.
+  - Dân: giảm một nửa (hai bên đường, người đi bộ, trước cổng 260 → 130).
+  - Nhà: giảm thêm một nửa, kể cả nhà chi tiết và nhà lá. Giữ nhà sát lộ trình, giữ xuồng ghe.

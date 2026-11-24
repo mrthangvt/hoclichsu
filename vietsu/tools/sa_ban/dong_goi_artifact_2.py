@@ -94,16 +94,20 @@ fetch("packs/{goi}/{voice}").then((r) => (r.ok ? r.blob() : Promise.reject(r.sta
 <body><script>
 {vjs}
 let khung = null, cho = null, choTang = "";
+const boKhung = (f) => {{ try {{ f.contentWindow.__dong && f.contentWindow.__dong(); }} catch (e) {{}} f.remove(); }};
 // đổi tầng: nếu tầng mới đã được nạp sẵn trong khung chờ (ẩn) thì chỉ việc hiện khung đó và chạy tiếp — không còn màn tải
 window.__doiTang = (q) => {{ const p = new URLSearchParams(q), tg = p.get("tang") || "";
   if (cho && choTang === tg) {{ let w = null; try {{ w = cho.contentWindow; }} catch (e) {{}}
     if (w && w.__sanSang && w.__tiep) {{ const f = cho; cho = null; choTang = ""; f.style.opacity = "1"; f.style.pointerEvents = "auto"; f.style.zIndex = "2";
-      w.__tiep(parseFloat(p.get("t")), p.get("phat") === "1"); try {{ w.focus(); }} catch (e) {{}} if (khung) khung.remove(); khung = f; return; }}
-    cho.remove(); cho = null; choTang = ""; }}
+      w.__tiep(parseFloat(p.get("t")), p.get("phat") === "1"); try {{ w.focus(); }} catch (e) {{}} if (khung) boKhung(khung); khung = f; return; }}
+  }}
+  // V1.6 (bấm chuyển hồi bị treo): khung chờ không dùng tới và khung cũ phải trả bộ nhớ đồ hoạ NGAY (trước đây chỉ gỡ khỏi trang, ngữ cảnh WebGL còn giữ tới khi
+  // trình duyệt dọn rác → hai, ba sa bàn cùng chiếm card đồ hoạ, máy treo)
+  if (cho) {{ boKhung(cho); cho = null; choTang = ""; }}
   const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn"; f.style.zIndex = "2";
   f.src = "app.html#" + q; document.body.append(f); f.addEventListener("load", () => {{ try {{ f.contentWindow.focus(); }} catch (e) {{}} }});
-  if (khung) khung.remove(); khung = f; }};
-window.__chuanBi = (q) => {{ const tg = new URLSearchParams(q).get("tang") || ""; if (cho && choTang === tg) return; if (cho) cho.remove();
+  if (khung) boKhung(khung); khung = f; }};
+window.__chuanBi = (q) => {{ const tg = new URLSearchParams(q).get("tang") || ""; if (cho && choTang === tg) return; if (cho) boKhung(cho);
   const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn (nạp sẵn)"; f.style.cssText = "opacity:0;pointer-events:none;z-index:0";
   f.src = "app.html#" + q + "&cho=1"; document.body.prepend(f); cho = f; choTang = tg; }};
 window.__doiTang(location.hash === "#chan-doan" ? "chan-doan=1" : "");
