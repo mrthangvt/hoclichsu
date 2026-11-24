@@ -1,0 +1,358 @@
+{
+ "pack": "khe-sanh-1968",
+ "reconstruction": "Tái dựng mô phỏng. Mốc ngày giờ, đơn vị, số liệu lấy theo các nguồn dưới đây (S = nguồn Việt Nam, M = nguồn Mỹ). Chỗ các nguồn ghi khác nhau được nêu trong docs/KHE_SANH_1968_TU_LIEU.md mục 2 và chờ anh Thắng chốt. Địa hình, công sự, vị trí từng khẩu pháo, từng chiếc xe là phỏng dựng; chi tiết minh hoạ ghi MINH HOẠ.",
+ "sources": [
+  {
+   "id": "S1",
+   "title": "Chiến dịch Đường 9 - Khe Sanh (20/1 - 15/7/1968)",
+   "type": "niên giám sự kiện (TTXVN)",
+   "url": "https://nvsk.vnanet.vn/chien-dich-duong-9-khe-sanh-20-1-15-7-1968-1-34027.vna",
+   "license": "trích dẫn",
+   "used_for": "mở màn đêm 20/1; Huội San; đợt 2 (10/2 - 31/3) vây lấn Tà Cơn; điểm cao 550, 595, 573; kết thúc 15/7"
+  },
+  {
+   "id": "S2",
+   "title": "Trận Làng Vây (6-7/2/1968)",
+   "type": "niên giám sự kiện (TTXVN)",
+   "url": "https://nvsk.vnanet.vn/tran-lang-vay-6-7-2-1968-1-34437.vna",
+   "license": "trích dẫn",
+   "used_for": "lực lượng: Trung đoàn 24 (Sư đoàn 304), Tiểu đoàn 3 (Trung đoàn 101, Sư đoàn 325), Tiểu đoàn xe tăng 198 (16 PT-76); 17h 6/2 pháo bắn; 23h15 chuyển làn, mở cửa; 10h 7/2 hoàn toàn làm chủ"
+  },
+  {
+   "id": "S3",
+   "title": "Chiến thắng Đường 9 - Khe Sanh: Trận đánh góp phần làm nên chiến công bất tử Tết Mậu Thân 1968",
+   "type": "báo chí (Nhân Dân, chuyên đề)",
+   "url": "https://special.nhandan.vn/chien-thang-Duong9-Khe-Sanh-tran-danh-lam-nen-chien-cong-bat-tu-Tet-Mau-Than-1968-/index.html",
+   "license": "trích dẫn",
+   "used_for": "lực lượng chiến dịch: 4 sư đoàn bộ binh, 5 trung đoàn pháo binh, 3 trung đoàn cao xạ, 4 đại đội xe tăng…; đêm 20/1 tiến công quận lỵ Hướng Hóa"
+  },
+  {
+   "id": "S4",
+   "title": "Chiến dịch Đường 9 - Khe Sanh: Đòn nghi binh chiến lược cho cuộc Tổng tiến công và nổi dậy Xuân Mậu Thân 1968",
+   "type": "báo chí (Quân đội nhân dân)",
+   "url": "https://www.qdnd.vn/vung-buoc-duoi-quan-ky-quyet-thang/nghe-thuat-quan-su/chien-dich-duong-9-khe-sanh-don-nghi-binh-chien-luoc-cho-cuoc-tong-tien-cong-va-noi-day-xuan-mau-than-1968-805926",
+   "license": "trích dẫn",
+   "used_for": "mở màn đêm 20/1, 10 ngày trước Tết; 20/1 - 7/2; 8/5 - 15/7; kết thúc 15/7"
+  },
+  {
+   "id": "S5",
+   "title": "Chiến dịch tiến công Đường 9-Khe Sanh: Tập trung lực lượng vây hãm, vận dụng các hình thức tác chiến linh hoạt",
+   "type": "báo chí (Quân đội nhân dân)",
+   "url": "https://www.qdnd.vn/ho-so-su-kien/70-nam-quan-doi-nhan-dan-viet-nam-anh-hung/chien-dich-tien-cong-duong-9-khe-sanh-tap-trung-luc-luong-vay-ham-van-dung-cac-hinh-thuc-tac-chien-linh-hoat-261556",
+   "license": "trích dẫn",
+   "used_for": "4 đợt; Làng Vây: lần đầu dùng nhiều binh chủng kỹ thuật, xe tăng bí mật, bất ngờ"
+  },
+  {
+   "id": "S6",
+   "title": "Bảo đảm hậu cần Chiến dịch Đường 9-Khe Sanh, Tết Mậu Thân 1968",
+   "type": "tạp chí (Hậu cần quân đội, qdnd.vn)",
+   "url": "https://www.qdnd.vn/tap-chi-hau-can-quan-doi/lich-su-hau-can/bao-dam-hau-can-chien-dich-duong-9-khe-sanh-tet-mau-than-1968-464873",
+   "license": "trích dẫn",
+   "used_for": "đợt 3 (1 - 30/4): Làng Khoai, Cu Bốc, điểm cao 689, 622"
+  },
+  {
+   "id": "S7",
+   "title": "Chiến dịch Đường 9 Khe Sanh",
+   "type": "tư liệu (Học viện Quốc phòng)",
+   "url": "https://nda.edu.vn/tin-tuc/cac-chien-le/chien-dich-duong-9-khe-sanh-959.html",
+   "license": "trích dẫn",
+   "used_for": "đêm 20 rạng 21/1 pháo binh chiến dịch phát hoả; kho đạn 1.500 tấn; 23/2 nổ kho đạn"
+  },
+  {
+   "id": "S8",
+   "title": "Xe tăng PT-76: Bơi qua sông từ Bắc vào Nam, chiến thắng trận đầu Làng Vây",
+   "type": "báo chí (Thanh Niên)",
+   "url": "https://thanhnien.vn/xe-tang-pt-76-chien-thang-tran-dau-lang-vay-185260920135728301.htm",
+   "license": "trích dẫn",
+   "used_for": "Tiểu đoàn 198 (Trung đoàn 203); 16 PT-76 từ hướng nam và tây; 3 giờ sáng 7/2 cơ bản làm chủ; trận đầu đánh thắng của Binh chủng Tăng thiết giáp"
+  },
+  {
+   "id": "S9",
+   "title": "Người lập công Chiến thắng Tà Mây - Làng Vây",
+   "type": "báo chí (Văn nghệ Quân đội)",
+   "url": "http://vannghequandoi.com.vn/nguoi-linh/nguoi-lap-cong-chien-thang-ta-may-lang-vay_13901.html",
+   "license": "trích dẫn",
+   "used_for": "xe PT-76 số 555, trưởng xe Lê Xuân Tấu; khoảng 4 giờ sáng làm chủ hoàn toàn"
+  },
+  {
+   "id": "S10",
+   "title": "50 năm Chiến thắng Khe Sanh",
+   "type": "báo chí (Nhân Dân, phóng sự)",
+   "url": "https://nhandan.vn/phong-su-ghi-chep/50-nam-chien-thang-khe-sanh-325940/",
+   "license": "trích dẫn",
+   "used_for": "xe tăng số 268 dựng làm tượng đài ở Làng Vây; làm chủ căn cứ sau hai giờ"
+  },
+  {
+   "id": "S11",
+   "title": "Chiến thắng Khe Sanh, giải phóng Hướng Hóa - tầm vóc, ý nghĩa và giá trị lịch sử",
+   "type": "báo chí (Quân khu 4)",
+   "url": "https://baoquankhu4.com.vn/dat-va-nguoi-quan-khu-4/tiep-lua-truyen-thong/chien-thang-khe-sanh-giai-phong-huong-hoa-tam-voc-y-nghia-va-gia-tri-lich-su.html",
+   "license": "trích dẫn",
+   "used_for": "Bộ Tư lệnh chiến dịch: Thiếu tướng Trần Quý Hai (Tư lệnh), Thiếu tướng Lê Quang Đạo (Chính ủy)"
+  },
+  {
+   "id": "S12",
+   "title": "Vây lấn Tà Cơn - sự vận dụng sáng tạo nghệ thuật tác chiến",
+   "type": "báo chí (Dân Việt / QĐND, hồi ức Tiểu đoàn trưởng Tiểu đoàn 3, Trung đoàn 9, Sư đoàn 304)",
+   "url": "https://danviet.vn/chien-dich-duong-9-khe-sanh-11000-ten-dich-chu-yeu-la-linh-my-bi-loai-khoi-vong-chien-d1469963.html",
+   "license": "trích dẫn",
+   "used_for": "0h30 24/3/1968 tiến công; 26/3 phản kích chốt 1"
+  },
+  {
+   "id": "S13",
+   "title": "Vây lấn Tà Cơn - sự vận dụng sáng tạo nghệ thuật tác chiến (Báo QĐND)",
+   "type": "báo chí (QĐND qua Báo Mới)",
+   "url": "https://baomoi.com/vay-lan-ta-con-su-van-dung-sang-tao-nghe-thuat-tac-chien-c55596949.epi",
+   "license": "trích dẫn",
+   "used_for": "chốt Làng Khoai dựng 1 - 2/4/1968 chặn Đường 9; 4 ngày chiến đấu với hai tiểu đoàn kỵ binh không vận Mỹ"
+  },
+  {
+   "id": "S14",
+   "title": "Thăm di tích sân bay Tà Cơn",
+   "type": "báo chí (Nhân Dân)",
+   "url": "https://nhandan.vn/ocop/tham-di-tich-san-bay-ta-con-post947325.html",
+   "license": "trích dẫn",
+   "used_for": "9/7/1968 lá cờ chiến thắng tung bay trên cứ điểm sân bay Tà Cơn"
+  },
+  {
+   "id": "S15",
+   "title": "Tà Cơn - chứng tích lịch sử góp phần làm nên đại thắng mùa Xuân 1975",
+   "type": "báo chí (Pháp luật Việt Nam)",
+   "url": "https://baophapluat.vn/ta-con-chung-tich-lich-su-gop-phan-lam-nen-dai-thang-mua-xuan-1975.html",
+   "license": "trích dẫn",
+   "used_for": "khu sân bay dài khoảng 2 km, rộng 1 km; ghi chiến dịch kết thúc 9/7/1968 (lệch S1, S4)"
+  },
+  {
+   "id": "S16",
+   "title": "Phát huy khí thế chiến thắng Tết Mậu Thân 1968…",
+   "type": "báo chí (Nhân Dân)",
+   "url": "https://nhandan.vn/phat-huy-khi-the-chien-thang-tet-mau-than-1968-trong-cong-cuoc-xay-dung-va-bao-ve-to-quoc-viet-nam-xa-hoi-chu-nghia-post878452.html",
+   "license": "trích dẫn",
+   "used_for": "đêm 29 rạng 30/1/1968 miền Trung, Tây Nguyên nổ súng; đêm 30 rạng 31/1 Sài Gòn"
+  },
+  {
+   "id": "S17",
+   "title": "Chiến dịch Đường 9 – Khe Sanh, đòn nghi binh chiến lược Xuân Mậu Thân 1968 (4)",
+   "type": "báo chí (Giáo dục Việt Nam)",
+   "url": "https://giaoduc.net.vn/chien-dich-duong-9-khe-sanh-don-nghi-binh-chien-luoc-xuan-mau-than-1968-4-post183577.gd",
+   "license": "trích dẫn",
+   "used_for": "đêm 23/1 Huội San; gần 400 quân rút về Làng Vây cũ; đợt 2 từ 10/2; đợt 4 từ 8/5 đến 15/7"
+  },
+  {
+   "id": "M1",
+   "title": "The Battle of Khe Sanh (triển lãm Tet Offensive)",
+   "type": "lưu trữ (Vietnam Center & Archive, Texas Tech University)",
+   "url": "https://www.vietnam.ttu.edu/exhibits/Tet68/khesanh.php",
+   "license": "trích dẫn",
+   "used_for": "21/1 - 8/4/1968, 77 ngày; 26th Marines, 37th ARVN Ranger Battalion; sư đoàn 304, 320, 324, 325; Niagara: trung bình mỗi ngày ~350 máy bay cường kích, 60 B-52; 23/2 1.307 quả đạn 130/152 mm"
+  },
+  {
+   "id": "M2",
+   "title": "Operation PEGASUS and the End of Khe Sanh",
+   "type": "lưu trữ (Texas Tech University)",
+   "url": "https://www.vietnam.ttu.edu/exhibits/Tet68/khesanh6.php",
+   "license": "trích dẫn",
+   "used_for": "8/4 Kỵ binh bay tới căn cứ; 11/4 Đường 9 thông; 15/4 kết thúc Pegasus; 1st Marines thay 26th Marines; 3rd ARVN Airborne Task Force"
+  },
+  {
+   "id": "M3",
+   "title": "Pegasus / Lam Son 207",
+   "type": "lưu trữ (Texas Tech VVA, danh mục chiến dịch)",
+   "url": "https://vva.vietnam.ttu.edu/repositories/2/operations/982",
+   "license": "trích dẫn",
+   "used_for": "1/4 - 15/4/1968; LZ Stud phía bắc Cà Lu trên Đường 9"
+  },
+  {
+   "id": "M4",
+   "title": "Operation PEGASUS to Relieve Khe Sanh Begins",
+   "type": "Bộ Quốc phòng Mỹ (Vietnam War 50th Anniversary)",
+   "url": "https://vietnamwar50th.com/1968_tet_and_shifting_views/Operation-PEGASUS-to-Relieve-Khe-Sanh-Begins",
+   "license": "trích dẫn",
+   "used_for": "8/4 Tiểu đoàn 2, Trung đoàn Kỵ binh 7 tới căn cứ; 15/4 kết thúc"
+  },
+  {
+   "id": "M5",
+   "title": "U.S. Marines in Vietnam: The Defining Year, 1968 — Chương 14 The Siege of Khe Sanh",
+   "type": "chuyên khảo (USMC History and Museums Division)",
+   "url": "https://www.marines.mil/Portals/1/Publications/US%20Marines%20In%20Vietnam%20The%20Defining%20Year%201968%20%20PCN%2019000313800_5.pdf",
+   "license": "công khai (chính phủ Mỹ)",
+   "used_for": "bố trí các cao điểm 881 Nam, 861, 558; ba khẩu 105 mm trên 881 Nam; Tiểu đoàn 1, Trung đoàn pháo 13 TQLC trong căn cứ"
+  },
+  {
+   "id": "M6",
+   "title": "Ringed by Fire: U.S. Marines and the Siege of Khe Sanh, 21 January to 9 July 1968",
+   "type": "chuyên khảo (USMC History Division)",
+   "url": "https://www.usmcu.edu/Portals/218/KheSahn_RingedByFire_Web.pdf",
+   "license": "công khai (chính phủ Mỹ)",
+   "used_for": "khung thời gian 21/1 - 9/7; Đường 9 Cà Lu - Khe Sanh là đường bộ duy nhất; pháo từ núi Co Roc (Lào); ảnh chụp căn cứ từ trên cao"
+  },
+  {
+   "id": "M7",
+   "title": "Siege of Khe Sanh begins (21/1/1968)",
+   "type": "cơ sở dữ liệu (Vietnam Helicopter Pilots Association)",
+   "url": "https://www.vhpa.org/KIA/panel/battle/68012100.HTM",
+   "license": "trích dẫn",
+   "used_for": "0h30 21/1 bắt đầu pháo kích; kho đạn lớn nhất bị phá, 1.500 tấn nổ; hôm sau chỉ dùng được nửa đường băng"
+  },
+  {
+   "id": "M8",
+   "title": "Khe Sanh base abandoned (27/6 - 5/7/1968)",
+   "type": "cơ sở dữ liệu (VHPA)",
+   "url": "https://mail.vhpa.org/KIA/panel/battle/68062700.HTM",
+   "license": "trích dẫn",
+   "used_for": "27/6 bắt đầu rút; 5/7 căn cứ đã giải thể, tháo dỡ"
+  },
+  {
+   "id": "M9",
+   "title": "Airpower at Khe Sanh (Walter J. Boyne)",
+   "type": "tạp chí (Air & Space Forces Magazine, 8/1998)",
+   "url": "https://www.airandspaceforces.com/article/0898vietnam/",
+   "license": "trích dẫn",
+   "used_for": "B-52: 2.548 lượt, 59.542 tấn bom; không vận trung bình 165 tấn mỗi ngày; kho đạn 98 % số đạn"
+  },
+  {
+   "id": "M10",
+   "title": "Operation Niagara: A Waterfall of Bombs at Khe Sanh",
+   "type": "bảo tàng (National Museum of the U.S. Air Force)",
+   "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/195674/operation-niagara-a-waterfall-of-bombs-at-khe-sanh/",
+   "license": "công khai",
+   "used_for": "tổng 98.721 tấn bom trong chiến dịch Niagara"
+  },
+  {
+   "id": "M11",
+   "title": "Air Power in the Siege of Khe Sanh",
+   "type": "tạp chí (HistoryNet / Vietnam Magazine)",
+   "url": "https://historynet.com/air-power-in-the-siege-of-khe-sanh/",
+   "license": "trích dẫn",
+   "used_for": "đồi phía tây, bắc cao hơn căn cứ khoảng 1.000 ft; 881 Nam có 3 khẩu 105 mm; làng Khe Sanh cách căn cứ ~2 dặm"
+  },
+  {
+   "id": "M12",
+   "title": "Khe Sanh 1967–68 (Gordon L. Rottman, trích)",
+   "type": "chuyên khảo (Osprey, qua The History Reader)",
+   "url": "https://www.thehistoryreader.com/?p=1277",
+   "license": "trích dẫn",
+   "used_for": "pháo 130 mm, 152 mm trên núi Co Roc, cách căn cứ 13 km về tây nam; 0h50 7/2 phát hiện xe tăng ở hàng rào Làng Vây; 24/1 BV-33 ở Bản Huội San bị tiến công có PT-76"
+  },
+  {
+   "id": "M13",
+   "title": "PT-76 (HistoryNet)",
+   "type": "tạp chí (HistoryNet)",
+   "url": "https://historynet.com/?p=13737402",
+   "license": "trích dẫn",
+   "used_for": "PT-76 lần đầu được QĐNDVN dùng ở Bản Huội San 23/1/1968 (lệch cách nói 'trận đầu' của nguồn Việt Nam, xem tư liệu mục 2)"
+  },
+  {
+   "id": "M14",
+   "title": "Close Air Support and the Battle for Khe Sanh",
+   "type": "chuyên khảo (USMC History Division)",
+   "url": "https://www.marines.mil/Portals/1/Publications/Close%20Air%20Support%20and%20the%20Battle%20for%20Khe%20Sanh%20%20PCN%2010600090000_2.pdf",
+   "license": "công khai (chính phủ Mỹ)",
+   "used_for": "pháo 130 mm của QĐNDVN bắn xa gần gấp đôi pháo 155 mm của TQLC (15 km)"
+  },
+  {
+   "id": "M15",
+   "title": "Khe Sanh, Siege of",
+   "type": "bách khoa (Oxford Companion to American Military History, qua Encyclopedia.com)",
+   "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/khe-sanh-siege",
+   "license": "trích dẫn",
+   "used_for": "6.806 quân Mỹ (5.905 TQLC), chỉ huy Đại tá David E. Lownds; 78 ngày"
+  },
+  {
+   "id": "M16",
+   "title": "Lang Vei (ARSOF History)",
+   "type": "lịch sử binh chủng (US Army Special Operations History)",
+   "url": "https://arsof-history.org/articles/19_aug_lang_vei_page_1.html",
+   "license": "trích dẫn",
+   "used_for": "trại bị tràn ngập trong 90 phút; pháo 152 mm, 122 mm, cối 120 mm từ Co Roc"
+  },
+  {
+   "id": "M17",
+   "title": "The Siege of Khe Sanh (American Legion Magazine, 8/2013)",
+   "type": "tạp chí",
+   "url": "https://www.legion.org/node/216976",
+   "license": "trích dẫn",
+   "used_for": "98.700 tấn bom đạn; trận lớn cuối vào căn cứ: 21/2 (Tiểu đoàn 37 Biệt động quân); Sư đoàn 325C rời đi cuối tháng 2"
+  },
+  {
+   "id": "M18",
+   "title": "Arc Light (John T. Correll)",
+   "type": "tạp chí (Air & Space Forces Magazine, 1/2009)",
+   "url": "https://www.airandspaceforces.com/PDF/MagazineArchive/Documents/2009/January%202009/0109arc.pdf",
+   "license": "trích dẫn",
+   "used_for": "B-52D 'Big Belly' là máy bay chủ lực của Arc Light từ 1966; B-52H không bay Arc Light; từ 2/1968 thêm căn cứ Kadena"
+  },
+  {
+   "id": "M19",
+   "title": "The 'Big Belly' Bomber",
+   "type": "bảo tàng (National Museum of the U.S. Air Force)",
+   "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/195838/the-big-belly-bomber/",
+   "license": "công khai",
+   "used_for": "B-52D Big Belly chở 84 bom 500 lb trong khoang; tham chiếu sơn mặt trên rằn ri Đông Nam Á, bụng đen"
+  },
+  {
+   "id": "M20",
+   "title": "Khe Sanh: Air Power and the Siege (HistoryNet)",
+   "type": "tạp chí (HistoryNet)",
+   "url": "https://historynet.com/?p=8854322",
+   "license": "trích dẫn",
+   "used_for": "từ 1/1968 mũ sắt, áo giáp chống mảnh, mặt nạ phòng độc là bắt buộc trong căn cứ; đường băng 3.900 ft tấm nhôm; 10 xe Ontos"
+  },
+  {
+   "id": "M21",
+   "title": "Operation NIAGARA (Peter Brush)",
+   "type": "bài nghiên cứu (Montclair State University, Vietnam)",
+   "url": "https://msuweb.montclair.edu/~furrg/Vietnam/pbniagara.html",
+   "license": "trích dẫn",
+   "used_for": "khoảng 23/2/1968 phía Mỹ phát hiện hệ thống hào vây lấn tiến về căn cứ"
+  },
+  {
+   "id": "M22",
+   "title": "Battle of Khe Sanh begins (This Day in History, 21/1)",
+   "type": "báo chí (HISTORY.com)",
+   "url": "https://www.history.com/this-day-in-history/january-21/battle-for-khe-sanh-begins",
+   "license": "trích dẫn",
+   "used_for": "ghi vây kết thúc 6/4 (lệch M2, M4: 8/4); khoảng một tuần sau, Tiểu đoàn 3/26 TQLC đánh đuổi đối phương khỏi 881 Bắc"
+  },
+  {
+   "id": "M23",
+   "title": "Siege of Khe Sanh (William E. Welsh)",
+   "type": "tạp chí (Military Heritage, qua Everand)",
+   "url": "https://www.everand.com/article/391923609/Siege-Of-Khe-Sanh",
+   "license": "trích dẫn",
+   "used_for": "đồi 64 bị tiến công rạng sáng 8/2/1968; quân phản kích có một tốp xe tăng M48"
+  },
+  {
+   "id": "M24",
+   "title": "Battle of Lang Vei",
+   "type": "bách khoa (Wikipedia, nguồn bậc ba)",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Lang_Vei",
+   "license": "CC BY-SA",
+   "used_for": "số người ở Làng Vây (24 lính LLĐB Mỹ, ~500 CIDG, ~350 lính Lào); 14 PT-76 — chỉ để đối chiếu"
+  },
+  {
+   "id": "M25",
+   "title": "Khe Sanh Siege (HistoryNet, hồi ức sĩ quan Tiểu đoàn 3/26 TQLC)",
+   "type": "tạp chí (HistoryNet / Vietnam Magazine)",
+   "url": "https://historynet.com/khe-sanh-siege/",
+   "license": "trích dẫn",
+   "used_for": "bố trí đại đội trên 881 Nam, 861, 861A; khoảng 6.000 quân Mỹ giữ căn cứ và các đồi; Tiểu đoàn 3/26 tới Khe Sanh giữa 12/1967"
+  },
+  {
+   "id": "OSM",
+   "title": "OpenStreetMap",
+   "type": "OSM",
+   "url": "https://www.openstreetmap.org",
+   "license": "© OpenStreetMap contributors (ODbL)",
+   "used_for": "sông Rào Quán, Sê Pôn, Đường 9, làng (GĐ2)"
+  },
+  {
+   "id": "DEM",
+   "title": "Copernicus DEM GLO-30 / AWS Terrain Tiles",
+   "type": "DEM",
+   "url": "https://registry.opendata.aws/terrain-tiles/",
+   "license": "xem trang nguồn",
+   "used_for": "độ cao cao nguyên Khe Sanh, các điểm cao (GĐ2)"
+  }
+ ]
+}
