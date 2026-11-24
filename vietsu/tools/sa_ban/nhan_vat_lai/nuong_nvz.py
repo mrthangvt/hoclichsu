@@ -140,7 +140,7 @@ for ten, act, n, once in CLIP:
         if not arm.animation_data.action_slot and len(A.slots): arm.animation_data.action_slot = A.slots[0]
     except Exception: pass
     f0, f1 = A.frame_range; fs = [f1] if once else [f0 + (f1 - f0) * i / n for i in range(n)]
-    pos, nor = [], []
+    pos, nor = [], []; XS = []                                                          # XS: toạ độ từng khung (đo nhịp bước chân)
     for f in fs:
         sc.frame_set(int(f), subframe=f - int(f)); P, N = khung()
         X = np.stack([(P[:, 0] - cx) * k, (P[:, 2] - z0) * k, -(P[:, 1] - cy) * k], 1)          # Z lên → Y lên
@@ -150,9 +150,15 @@ for ten, act, n, once in CLIP:
             im = Image.new('RGB', (240, 240), 'white'); dd = ImageDraw.Draw(im); U2 = np.array(uv)
             for i_, p_ in enumerate(X[::3]): dd.point((120 + p_[2] * 100, 220 - p_[1] * 100), fill='red' if U2[i_ * 3][1] < 64 / 576 else 'black')
             im.save(os.environ['SOI'] + '-' + ten + '.png')
-        pos.append(base64.b64encode(np.round(X / q).astype(np.int16).tobytes()).decode())
+        XS.append(X); pos.append(base64.b64encode(np.round(X / q).astype(np.int16).tobytes()).decode())
         nor.append(base64.b64encode(np.clip(np.round(Nn * 127), -127, 127).astype(np.int8).tobytes()).decode())
     dur = max(0.2, (f1 - f0) / 24.0)
+    if len(XS) > 2:                                                                  # nhịp bước: động tác tại chỗ → bàn chân chạm đất trôi ngược ra sau với tốc độ v
+        dt_ = dur / len(XS); vs = []
+        for A_, B_ in zip(XS, XS[1:] + XS[:1]):
+            g = (A_[:, 1] < 0.06) & (B_[:, 1] < 0.06)
+            if g.sum() > 3: vs.append(-(B_[g, 2] - A_[g, 2]).mean() / dt_)
+        if vs: print('nhịp bước', ten, round(float(np.median(vs)), 2), 'm/s')
     clips[ten] = {'fps': 1.0 if once else round(n / dur, 3), 'pos': pos, 'nor': nor, 'mg': [0, 0, 0]}
     if once: clips[ten]['once'] = 1
     print(ten, act, len(fs), 'khung')

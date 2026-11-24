@@ -348,3 +348,20 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
   - Mặt nước khi nhìn từ xa (trên 0,5–2,5 km) bỏ dần gợn sóng, lấp lánh và bọt. Các chấm sáng nhỏ hơn điểm ảnh làm sông nháy.
   - Mỗi dải màu đường tiến quân có thứ tự vẽ và độ cao riêng. Các dải xanh lam, xanh lục, cam chồng nhau gần Sài Gòn trước đây tranh nhau nên nhấp nháy.
 - **0:17 không thấy đoàn xe, chỉ thấy ghim:** máy quay bay sát đoàn xe hơn (cao 30 m, sau đầu đoàn 150–300 m). Ghim tên khí tài chỉ hiện khi máy ở gần (dưới 900 m).
+
+## 25. Rà soát V1.5 (24/11 đêm, góp ý 21:21: "nhiều lỗi dừng, đơ, mất hình hơn các sa bàn cũ; lính không chuyển động, trượt trên đất")
+**Nguyên nhân (đo bằng công cụ quét tự động cả phim, bước 0,5 s, hai tầng):**
+1. **Đứng hình khi vật mới hiện lần đầu.** Bản V1.3 chỉ dựng sẵn chương trình đồ hoạ; hình khối thì vẫn chỉ nạp lên card khi xuất hiện lần đầu. Mỗi động tác của đám đông là ~10–16 lưới riêng (cả phim ~980 lưới, ~53 MB), xe và cờ ở Dinh thêm ~90 hình khối. Ở 13:44 (Hồi 10–11) nhiều thứ cùng hiện nên đo được một lần đứng 1,5–10 s; chạy liền từ đầu phim có lúc tới 90 s trên máy không card đồ hoạ.
+2. **Lính đứng im, nhấp nháy:** trước mốc giờ Dinh 0, thời gian âm cho chỉ số khung hình âm. Lưới đặt ở chỉ số âm không được xoá mỗi khung nên lính đứng sững và chồng hình.
+3. **Trượt trên đất:** tốc độ chạy trong phim không khớp nhịp bước của động tác (lính chạy 4 m/s nhưng chân bước như đi bộ, hoặc ngược lại). Nay công cụ nướng (`nuong_nvz.py`) in ra nhịp bước đo từ bàn chân chạm đất. Tốc độ trong phim lấy theo đó: bộ binh chạy 3,99 m/s, xung phong 3,2 m/s, đi 1,07 m/s; lính đối phương chạy 3,78 m/s; dân đi 2,38 m/s.
+4. **Máy quay chui xuống đất / chỉ thấy ghim (0:17):** đoạn lộ trình nằm ngoài sa bàn. Đã cắt lộ trình về trong sa bàn. Máy quay luôn được giữ trên mặt đất, mặt nước và mặt cầu.
+5. **Mất hình (màn đen):** máy yếu có thể bị trình duyệt thu hồi bộ nhớ đồ hoạ khi nạp sẵn tầng kế tiếp.
+
+**Đã sửa:**
+- Lúc tải, vẽ thử một lần mọi lưới đám đông và cả cảnh (kể cả vật đang ẩn) vào khung 1×1 điểm ảnh. Mọi thứ được nạp lên card trước khi vào phim. Đo lại 815–835 s: khung chậm nhất 16 ms (trước 1,5–10 s).
+- Đám đông: khung hình lưu số nguyên 16 bit, pháp tuyến 8 bit (giảm một nửa bộ nhớ đồ hoạ). Ở xa trên 45 m dùng lưới thưa (`linh-*-x.nvz`). Chỉ số khung luôn dương.
+- Mất ngữ cảnh đồ hoạ: tự dựng lại tại đúng thời điểm (`webglcontextlost` → tải lại tầng). Chỉ nạp sẵn tầng kế tiếp trên máy mạnh.
+- Một lỗi trong một khung không còn làm dừng vòng vẽ.
+- Lính: nướng lại nhiều khung hơn, tốc độ khớp nhịp bước, thêm động tác quan sát cho lính đứng.
+- Quét lại cả phim sau khi sửa: không còn máy quay dưới đất, không còn lỗi chạy (kết quả ở dưới).
+- Kết quả quét (24/11, bước 0,5 s, chạy liền từ đầu tầng): nội đô 1.122 mốc, chiến dịch 809 mốc. Không có máy quay dưới đất, không có lỗi chạy, không khung nào chậm quá 1 s (trước: 828,5 s đứng 94 s).
