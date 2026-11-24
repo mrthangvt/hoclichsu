@@ -494,7 +494,7 @@ function tamGiac(W, L, h) {
 }
 function muiTen(points, color, radius) {
   const m = dashTube(points, color, radius), curve = new THREE.CatmullRomCurve3(points);
-  const W = radius * 4.2, L = radius * 10, dau = new THREE.Group();
+  const W = radius * 3.2, L = radius * 7.5, dau = new THREE.Group();
   const vien = new THREE.Mesh(tamGiac(W, L, radius * 0.5).translate(0, 0, -L * 0.6).scale(1.16, 1, 1.16).translate(0, -radius * 0.3, L * 0.6), new THREE.MeshBasicMaterial({ color: 0x3a1208, transparent: true, opacity: 0.85, depthWrite: false, side: THREE.DoubleSide }));
   const than = new THREE.Mesh(tamGiac(W, L, radius * 0.8), new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(1.2), transparent: true, opacity: 0.97, depthWrite: false, side: THREE.DoubleSide }));
   vien.renderOrder = 3; than.renderOrder = 4; dau.add(vien, than);

@@ -73,6 +73,14 @@ Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), khô
 | M113/M48 (VNCH), Dinh Độc Lập + cổng, đường phố 1975 | — | Làm mới |
 | Cờ | `props/co-mtdtgp.png`, `props/co-vnch.png` | Đã có (vẽ lại) |
 
+**Pháo của sa bàn Điện Biên Phủ — có dùng lại cho 1975 không** (tra 24/11/2026; mẫu ở `dien-bien-phu/models/static.glb`, `mau.glb`):
+| Mẫu Điện Biên Phủ | Năm 1975 | Việc |
+|---|---|---|
+| `Phao_M101_105` — lựu pháo 105 mm M2A1/M101 | **Còn dùng, ở cả hai phía.** Lựu pháo 105 mm là cỡ phổ biến của cả ta và quân đội Sài Gòn (kienthuc.net.vn, dẫn *Biên niên sự kiện lịch sử ngành Kỹ thuật Pháo binh 1945–1975*); quân ta dùng pháo 105 thu của địch (riêng Tây Nguyên thu 48 khẩu; Đồng Xoài 12/1974 thu nguyên vẹn 4 khẩu — baotintuc.vn). Pháo 105 là pháo chủ lực của VNCH | **Tái dùng mẫu**: đặt cho trận địa pháo VNCH (Đồng Dù, Trảng Bàng…) và vài khẩu QGP (pháo thu được). Không phải chính những khẩu năm 1954 |
+| `Phao_CaoXa_37` — cao xạ 37 mm | **Còn dùng.** Ngày 28/4/1975 pháo cao xạ 37 và 57 của Tiểu đoàn 120, Tiểu đoàn 75 vào Nhơn Trạch (Nhân Dân, "Ngày 28/4/1975…") | **Tái dùng** cho cảnh Nhơn Trạch – Cát Lái (Quân đoàn 2) |
+| `SonPhao_75` — sơn pháo 75 mm (Nhật, Kiểu 41) | **Không tìm thấy nguồn** nói còn dùng trong Chiến dịch Hồ Chí Minh; pháo nhỏ năm 1975 trong nguồn là cối, ĐKZ, ĐKB | **Không dùng** (chưa có nguồn) |
+| — | Pháo chủ lực của ta năm 1975: **pháo nòng dài 130 mm M-46** (bắn Biên Hoà 14/4, Tân Sơn Nhất từ Nhơn Trạch rạng sáng 29/4, Bộ Tổng tham mưu 10h 30/4 — Lữ đoàn 45), **122 mm D-74**, **ĐKB** (bắn Tân Sơn Nhất 27–28/4). Nguồn: baophapluat.vn "Pháo binh Việt Nam với Đại thắng mùa Xuân 1975"; "Chiến dịch Hồ Chí Minh qua ký ức của hai người lính pháo" | **Làm mới** M-46 (130 mm), cùng xe kéo ATS/xe tải |
+
 ## 5. Địa hình (GĐ2, 24/11/2026)
 - Lấy qua Chrome trên máy anh (máy chủ Claude và shell máy anh đều không ra mạng được tới OSM, DEM): `hcm1975_dem.json` (Terrarium z11, z14), `hcm1975_osm.json` (Overpass) — lưu ở `Hoc-lich-su/ChienDichHoChiMinh1975/`, không đưa lên repo. Máy chủ Copernicus không vào được → dùng Terrarium (như Như Nguyệt).
 - `tools/sa_ban/dia_hinh/dem.py` (giải DEM ra lưới hai tầng) → `dung_dia_hinh.py <osm.json> <ra>` (height.png, color.jpg, meta.json theo định dạng bộ máy 2.1).
