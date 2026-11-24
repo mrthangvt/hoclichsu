@@ -1,0 +1,133 @@
+{
+ "ten": "quan-ly",
+ "fbx": "dong-tac/_nguon_fbx/Shooting Arrow.fbx",
+ "cao": 1.7,
+ "tam_giac": 7000,
+ "anh": 1024,
+ "fps": 30,
+ "buoc": 2,
+ "kho": "/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG",
+ "nguon_rig": "nhan-vat/LinhTaySon/LinhTaySon.blend",
+ "clip": [
+  [
+   "dung",
+   "DT_Put_Back_Rifle_Behind_Shoulder",
+   100,
+   120,
+   "lap"
+  ],
+  [
+   "thu",
+   "DT_Standing_Idle_03",
+   1,
+   121,
+   "lap"
+  ],
+  [
+   "di",
+   "DT_Standard_Walk",
+   1,
+   36,
+   "lap"
+  ],
+  [
+   "chay",
+   "DT_Standing_Run_Forward_2",
+   1,
+   27,
+   "lap"
+  ],
+  [
+   "chaynhanh",
+   "DT_Fast_Run",
+   1,
+   17,
+   "lap"
+  ],
+  [
+   "chem",
+   "DT_Sword_And_Shield_Attack",
+   1,
+   40,
+   "lap"
+  ],
+  [
+   "chem2",
+   "DT_Great_Sword_Slash",
+   1,
+   107,
+   "lap"
+  ],
+  [
+   "dam",
+   "DT_Standing_Melee_Attack_Downward",
+   1,
+   69,
+   "lap"
+  ],
+  [
+   "ban",
+   "@rieng",
+   1,
+   151,
+   "lap"
+  ],
+  [
+   "do",
+   "DT_Sword_And_Shield_Crouch_Block",
+   1,
+   25,
+   "lap"
+  ],
+  [
+   "trung",
+   "DT_Medium_Hit_To_Head",
+   1,
+   33,
+   "mot"
+  ],
+  [
+   "nga",
+   "DT_Flying_Back_Death",
+   1,
+   92,
+   "mot"
+  ],
+  [
+   "chet",
+   "DT_Sword_And_Shield_Death",
+   1,
+   70,
+   "mot"
+  ],
+  [
+   "chet2",
+   "DT_Dying_Backwards",
+   1,
+   139,
+   "mot"
+  ],
+  [
+   "cheo",
+   "DT_Paddling",
+   1,
+   218,
+   "lap"
+  ],
+  [
+   "keo",
+   "DT_Pulling_A_Rope",
+   1,
+   120,
+   "lap"
+  ],
+  [
+   "day",
+   "DT_Push_1",
+   1,
+   52,
+   "lap"
+  ]
+ ],
+ "ra": "quan-ly.raw.glb"
+}

@@ -243,7 +243,7 @@ body.walking #pad, body.walking .minimap { display: none; }
   #runbtn { bottom: calc(292px + env(safe-area-inset-bottom, 0px)); }
   .docs { top: auto; bottom: 0; left: 0; right: 0; width: auto; max-height: 62vh; border-radius: 16px 16px 0 0; }
 }
-body.cancanh #labels .lbl:not(.pin) { opacity: 0; transition: opacity .3s; }
+body.cancanh #labels .lbl:not(.pin):not(.hero) { opacity: 0; transition: opacity .3s; }
 
 /* ===== riêng Bạch Đằng 938: thẻ chương, mực nước, dưới nước ===== */
 #stage canvas#c { display: block; width: 100%; height: 100%; }
@@ -311,7 +311,6 @@ body.cinema .c02, body.cinema .c02m { opacity: 1; }
 #tlcard b { display: block; font-size: 13px; margin: 6px 4px 2px; }
 #tlcard small { display: block; font-size: 11.5px; color: var(--muted); margin: 0 4px 2px; }
 body.cinema #tlcard { display: none !important; }
-body.cancanh #labels .lbl:not(.pin):not(.hero) { opacity: 0; transition: opacity .3s; }
 #gauge[hidden] { display: none !important; }
 #poem { position: fixed; left: 50%; top: 22%; transform: translateX(-50%); z-index: 3; text-align: center; pointer-events: none; padding: 18px 34px; background: radial-gradient(rgba(20,14,9,.72), rgba(20,14,9,0) 72%); }
 #poem p { margin: 6px 0; font-family: "Noto Serif", Georgia, serif; font-size: clamp(18px, 2.6vw, 30px); color: #f3dc9a; text-shadow: 0 2px 12px rgba(0,0,0,.9); letter-spacing: .02em; transition: opacity .6s; }

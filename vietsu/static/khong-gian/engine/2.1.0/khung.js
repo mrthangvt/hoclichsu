@@ -1,12 +1,13 @@
-// Khung giao diện bộ máy 2.0 (bố cục Bạch Đằng 938). Chữ riêng của trận lấy từ pack.json › ui, views, roles.
+// Khung giao diện bộ máy 2.1.0 (bố cục Bạch Đằng 938). Chữ riêng của trận lấy từ pack.json › ui, views, roles.
 const e = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 export function khungHTML(P, B) {
-  const UI = P.ui || {};
+  const UI = P.ui || {}, TD = UI.tide || {};
   return `
 <div id="stage"><canvas id="c"></canvas></div>
 <div id="underwater"></div>
 <div id="veil"></div>
 <div id="labels"></div>
+${UI.css ? '<style>' + UI.css + '</style>' : ''}
 ${(UI.extraHtml || '').replace(/\{BASE\}/g, B)}
 <div id="card"><div class="k" id="cardK"></div><div class="t" id="cardT"></div><div class="s" id="cardS"></div></div>
 <div class="card" id="gauge" aria-hidden="true"${UI.gauge === false ? " hidden" : ""}>
@@ -19,7 +20,7 @@ ${(UI.extraHtml || '').replace(/\{BASE\}/g, B)}
 
 <div id="load"><div class="box">
   <div class="eyebrow">Không gian lịch sử</div><h1>${e(P.title)}</h1>
-  <div class="track"><div class="fill" id="fill"></div></div><small id="ld-step">Đang tải địa hình…</small>
+  <div class="track" id="ldtrack"><div class="fill" id="fill"></div></div><small id="ld-step">Đang tải địa hình…</small>${UI.loaderHtml || ""}
   <div id="err"></div>
 </div></div>
 
@@ -132,7 +133,7 @@ ${(UI.extraHtml || '').replace(/\{BASE\}/g, B)}
       <button class="chip" id="revbtn" aria-pressed="false" aria-controls="review">Review <span class="n" id="n-all">0</span></button>
     </div>
     <small id="walkhelp" class="muted" hidden>Phím ảo bên trái (hoặc W A S D / mũi tên) để đi · đẩy hết cần hoặc giữ Shift để chạy · ra tới chỗ nước sâu thì tự lên thuyền chèo · kéo màn hình để xoay góc nhìn · bấm địa điểm để tới ngay</small>
-    <div class="row tiderow"><span class="lbltxt">Mực nước</span><input id="tide" type="range" min="-2.6" max="2.2" step="0.05" value="2.2" aria-label="Mực nước"><button class="chip on" id="btide" aria-pressed="true">Triều theo cảnh</button></div>
+    <div class="row tiderow"><span class="lbltxt">${e(TD.label || "Mực nước")}</span><input id="tide" type="range" min="${TD.min ?? -2}" max="${TD.max ?? 2}" step="${TD.step ?? 0.05}" value="${TD.value ?? 0}" aria-label="Mực nước"><button class="chip on" id="btide" aria-pressed="true">${e(TD.button || "Theo cảnh")}</button></div>
     <div class="help"><span id="help"></span><span class="xy" id="readout"></span></div>
   </div>
   <div class="card bar" id="comparebar" hidden>

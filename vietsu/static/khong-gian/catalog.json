@@ -32,9 +32,20 @@
       "title": "Bạch Đằng 938",
       "period": "ngo",
       "year": 938,
-      "url": "engine/2.0.0/sa-ban.html?goi=bach-dang-938",
+      "url": "engine/2.1.0/sa-ban.html?goi=bach-dang-938",
       "status": "thu-nghiem",
       "replaces": "artifact 440c9fcf-5cee-4e56-8fa1-2cd73fe5c1a1"
+    },
+    {
+      "id": "nhu-nguyet-1077",
+      "version": "1.0.0",
+      "kind": "battle",
+      "title": "Phòng tuyến Như Nguyệt 1077",
+      "period": "ly",
+      "year": 1077,
+      "url": "engine/2.1.0/sa-ban.html?goi=nhu-nguyet-1077",
+      "status": "thu-nghiem",
+      "replaces": "artifact 3b92f7b7-e318-4ede-a7c0-8f0ff3c3ab7f"
     }
   ]
 }
