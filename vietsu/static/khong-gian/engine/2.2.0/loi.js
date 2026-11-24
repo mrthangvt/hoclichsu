@@ -535,11 +535,11 @@ function muiTen(points, color, radius) {
   const than = new THREE.Mesh(tamGiac(W, L, radius * 0.8), new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(1.2), transparent: true, opacity: 0.97, depthWrite: false, side: THREE.DoubleSide }));
   vien.renderOrder = 3; than.renderOrder = 4; dau.add(vien, than);
   dau.visible = false; dau.traverse((o) => { o.frustumCulled = false; }); scene.add(dau);
-  m.userData.curve = curve; m.userData.dau = dau; return m;
+  m.userData.curve = curve; m.userData.dau = dau; m.userData.lui = L * 0.62 / Math.max(1, curve.getLength()); return m;   // lui: ống dừng sau đỉnh mũi (không thò ra)
 }
 function muiTenDat(m, on, p = 1) {          // bật/tắt + tiến độ 0..1 (đầu mũi đi theo chỗ đang vẽ tới)
   m.visible = on; const d = m.userData.dau; if (!d) return; d.visible = on && p > 0.02; if (!on) return;
-  if (m.material.uniforms) m.material.uniforms.uP.value = p;
+  if (m.material.uniforms) m.material.uniforms.uP.value = Math.max(0, p - (m.userData.lui || 0));
   const c = m.userData.curve, u = Math.min(1, Math.max(0.001, p));
   c.getPointAt(u, d.position); c.getTangentAt(u, _mtT); d.rotation.set(0, Math.atan2(-_mtT.x, -_mtT.z), 0);
 }

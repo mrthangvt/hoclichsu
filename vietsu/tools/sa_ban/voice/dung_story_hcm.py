@@ -86,9 +86,10 @@ def token(ws):                                                       # gộp c�
             if [x[0] for x in ws[i:i + len(pat)]] == pat: out.append([rep, ws[i][1], ws[i + len(pat) - 1][2]]); i += len(pat); break
         else: out.append(list(ws[i])); i += 1
     return out
-SUB = []
+SUB, THE = [], []
 for d in doan:
-    if isinstance(d, tuple): SUB.append([d[1], d[2], d[3]]); continue
+    if isinstance(d, tuple):                                          # tiêu đề hồi → THẺ HỒI giữa màn hình (anh Thắng 24/11), không làm phụ đề
+        nho, _, lon = d[3].partition(' · '); THE.append([round(d[1], 2), round(d[2] + 2.8, 2), nho if lon else '', lon or nho]); continue
     if not d: continue
     tk = token(d); tk[0][0] = tk[0][0][:1].upper() + tk[0][0][1:]
     lines, cur = [], []
@@ -122,40 +123,63 @@ M = dict(
     c11_toi=t('gần trưa', 760), c11_843=t('xe mang số'), c11_ram=t('rầm'), c11_390=t('trưởng xe là'), c11_cham=t('một cú chạm'), c11_vao=t('chiếc xe tăng ba chín mươi tiến vào'),
     c11_thao=t('từ chiếc xe tăng tám trăm bốn mươi ba'), c11_chay=t('anh chạy vào dinh'), c11_noc=t('trên nóc dinh', 830), c11_ha=t('bắt đầu hạ lá cờ'), c11_keo=t('được kéo lên'),
     c12_dai=t('tại đài phát thanh', 880), c12_dan=t('trên các tuyến đường người dân'), c12_ket=t('năm cánh quân nhiều hướng'), c12_tt=t('chiến dịch hồ chí minh toàn thắng'))
-def sc(id_, ten, tang, t0, t1, shots, nguon):
+def _sc_cu(id_, ten, tang, t0, t1, shots, nguon):
     sh = []
     for k, (sid, a, size, desc) in enumerate(shots):
         b = shots[k + 1][1] if k + 1 < len(shots) else t1; sh.append(dict(id=sid, t0=round(a, 2), t1=round(b, 2), size=size, desc=desc))
     return dict(id=id_, title=ten, tang=tang, t0=round(t0, 2), t1=round(t1, 2), shots=sh, subs=[s for s in SUB if t0 - 0.01 <= s[0] < t1], nguon=nguon)
+L_ = dict(c01_l1=t('tháng tư năm một nghìn'), c01_d=t('nhưng trên con đường số một'), c01_l2=t('ngày mùng chín tháng tư'), c01_p=t('gần hai tuần giữa'), c01_d2=t('đối phương dồn lực lượng'),
+          c01_l3=t('quân giải phóng kiên trì'), c02_l1=t('trên', 166) if False else t('những tuyến đường những cánh rừng') - 0.6, c02_l2=t('những đoàn xe tăng tiến lên'),
+          c03_p=t('hướng đông và đông nam những trận địa') - 0.6, c03_d=t('tiếng pháo vang lên mở màn'), c03_l=t('dưới sự chi viện của pháo binh'),
+          c05_p=t('rạng sáng ngày hai mươi chín'), c05_d=t('thuộc huyện chi'), c05_l=t('loạt pháo vang lên các đơn vị'), c05_l2=t('bởi từ phía đông những đoàn xe tăng'), c05_l2e=t('một cây cầu phải được giữ vững'),
+          c06_l1=t('rạng sáng ngày ba mươi tháng tư', 410), c06_l2=t('tiếng động cơ xe tăng'))
+M.update(L_)
+def sc(id_, hoi, ten, ngay, tang, t0, t1, shots, nguon):
+    sh = []
+    for k, (sid, a, size, desc) in enumerate(shots):
+        b = shots[k + 1][1] if k + 1 < len(shots) else t1; sh.append(dict(id=sid, t0=round(a, 2), t1=round(b, 2), size=size, desc=desc))
+    return dict(id=id_, hoi=hoi, ten=ten, title=f'{hoi} · {ten} ({ngay})', tang=tang, t0=round(t0, 2), t1=round(t1, 2), shots=sh, subs=[s for s in SUB if t0 - 0.01 <= s[0] < t1], nguon=nguon)
+TT, DQ, PH = 'Trung', 'Toàn', 'Toàn'
 S = [
-    sc('C01', 'Xuân Lộc – cánh cửa phía Đông (9 – 21/4/1975)', 'chien-dich', 0, B['c02'],
-       [('T01-A', 0, 'Đại toàn', 'Mở đầu: toàn chiến dịch'), ('C01-A', M['hoi1'], 'Toàn', 'Xuân Lộc'), ('C01-B', M['c01_rut'] - 1, 'Toàn', 'Cửa phía Đông mở về Biên Hòa')], ['S21']),
-    sc('C02', 'Năm cánh quân, một mục tiêu (14 – 26/4/1975)', 'chien-dich', B['c02'], B['c03'],
-       [('C02-A', B['c02'], 'Đại toàn', 'Bay vào toàn chiến dịch'), ('T01-B', M['c02_m'][0] - 2, 'Toàn', 'Vòng quanh Sài Gòn, năm mũi tên hiện lần lượt'), ('C02-C', M['c02_vay'], 'Đại toàn', 'Vòng vây năm hướng')], ['S3', 'S2', 'S5', 'S4', 'S6']),
-    sc('C03', 'Giờ G đã điểm (17 giờ, 26/4/1975)', 'chien-dich', B['c03'], B['c04'], [('C03-A', B['c03'], 'Toàn', 'Pháo binh Quân đoàn 2 nổ súng, hướng Đông – Đông Nam'), ('C03-B', M['c03_phao1'], 'Đại toàn', 'Các hướng siết vòng vây')], ['S2', 'S26', 'S39']),
-    sc('C04', 'Phi đội Quyết Thắng (16 giờ 15, 28/4/1975)', 'noi-do', B['c04'], B['c05'],
+    sc('C01', 'Hồi 1', 'Xuân Lộc – cánh cửa phía Đông', '9 – 21/4/1975', 'chien-dich', 0, B['c02'],
+       [('T01-A', 0, 'Đại toàn', 'Mở đầu: toàn chiến dịch'), ('C01-L1', M['c01_l1'], TT, 'Lướt trên đoàn quân Quân đoàn 4 tiến về Xuân Lộc'),
+        ('C01-D', M['c01_d'], DQ, 'Bay vòng cung quanh tuyến phòng thủ Xuân Lộc'), ('C01-L2', M['c01_l2'], TT, 'Quân đoàn 4 tiến công Xuân Lộc'),
+        ('C01-P', M['c01_p'], TT, 'Trận địa pháo Quân Giải phóng bắn vào Xuân Lộc'), ('C01-D2', M['c01_d2'], DQ, 'Đối phương cố giữ phòng tuyến'),
+        ('C01-L3', M['c01_l3'], TT, 'Quân Giải phóng kiên trì tiến công'), ('C01-A', M['c01_rut'] - 4.5, 'Toàn', 'Xuân Lộc'), ('C01-B', M['c01_mt'], 'Toàn', 'Cửa phía Đông mở về Biên Hòa')], ['S21']),
+    sc('C02', 'Hồi 2', 'Năm cánh quân, một mục tiêu', '14 – 26/4/1975', 'chien-dich', B['c02'], B['c03'],
+       [('C02-A', B['c02'], 'Đại toàn', 'Bay vào toàn chiến dịch'), ('T01-B', M['c02_m'][0] - 12, 'Toàn', 'Vòng quanh Sài Gòn, năm mũi tên hiện lần lượt'),
+        ('C02-L1', M['c02_l1'], TT, 'Lướt trên đoàn quân hướng Bắc'), ('C02-L2', M['c02_l2'], TT, 'Lướt trên đoàn xe, đoàn pháo hướng Tây Bắc'), ('C02-C', M['c02_vay'], 'Đại toàn', 'Vòng vây năm hướng')], ['S3', 'S2', 'S5', 'S4', 'S6']),
+    sc('C03', 'Hồi 3', 'Giờ G đã điểm', '17 giờ, 26/4/1975', 'chien-dich', B['c03'], B['c04'],
+       [('C03-A', B['c03'], 'Toàn', 'Mở màn chiến dịch'), ('C03-P', M['c03_p'], TT, 'Pháo binh Quân đoàn 2 đồng loạt khai hỏa'), ('C03-D', M['c03_d'], DQ, 'Bay vòng cung quanh tuyến phòng thủ Nước Trong – Long Thành'),
+        ('C03-L', M['c03_l'], TT, 'Bộ binh, xe tiến lên dưới chi viện của pháo binh'), ('C03-B', M['c03_phao1'], 'Đại toàn', 'Các hướng siết vòng vây')], ['S2', 'S26', 'S39']),
+    sc('C04', 'Hồi 4', 'Phi đội Quyết Thắng', '16 giờ 15, 28/4/1975', 'noi-do', B['c04'], B['c05'],
        [('C04-A', B['c04'], 'Toàn', 'Sân bay Tân Sơn Nhất, khu đỗ máy bay (sơ đồ 1968)'), ('C04-B', M['c04_bom'] - 7, 'Trung', 'Bám sau chiếc A-37 dẫn đầu'), ('C04-C', M['c04_bom'] + 6, 'Toàn', 'Khói lửa trên khu đỗ')], ['S29', 'S17', 'S14']),
-    sc('C05', 'Phá tan tuyến phòng thủ vòng ngoài (29/4/1975)', 'chien-dich', B['c05'], B['c06'],
-       [('C05-A', B['c05'], 'Toàn', 'Căn cứ Đồng Dù: pháo bắn chuẩn bị, cắm cờ'), ('C05-B', M['c05_btt'], 'Toàn', '23 giờ: Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu'), ('C05-C', M['c05_rc'], 'Toàn', 'Cầu Rạch Chiếc')], ['S5', 'S19']),
-    sc('C06', 'Rạng sáng 30/4: tổng công kích', 'chien-dich', B['c06'], B['c07'],
-       [('C06-A', B['c06'], 'Đại toàn', 'Năm cánh quân đồng loạt tiến công'), ('C06-B', M['c06_phao'] - 1, 'Toàn', '7 giờ 15: pháo cối vào Tân Sơn Nhất, Bộ Tổng tham mưu'), ('C06-C', M['c06_rc'], 'Toàn', '7 giờ 30: xe tăng Lữ đoàn 203 qua cầu Rạch Chiếc')], ['S1', 'S19']),
-    sc('C07', 'Sân bay Tân Sơn Nhất (30/4, 5 giờ 30 – 11 giờ 30)', 'noi-do', B['c07'], B['c08'],
+    sc('C05', 'Hồi 5', 'Phá tan tuyến phòng thủ vòng ngoài', '29/4/1975', 'chien-dich', B['c05'], B['c06'],
+       [('C05-A0', B['c05'], 'Toàn', 'Căn cứ Đồng Dù'), ('C05-P', M['c05_p'], TT, 'Pháo binh bắn chuẩn bị vào căn cứ Đồng Dù'), ('C05-D', M['c05_d'], DQ, 'Bay vòng cung quanh căn cứ Đồng Dù (Sư đoàn 25)'),
+        ('C05-L', M['c05_l'], TT, 'Bộ binh, xe tiến công vào căn cứ'), ('C05-A', M['c05_phao1'], 'Toàn', 'Cắm cờ trên sở chỉ huy'), ('C05-B', M['c05_btt'], 'Toàn', '23 giờ: Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu'),
+        ('C05-C', M['c05_rc'], 'Toàn', 'Cầu Rạch Chiếc'), ('C05-L2', M['c05_l2'], TT, 'Đoàn xe tăng Quân đoàn 2 tới gần'), ('C05-C2', M['c05_l2e'], 'Toàn', 'Cầu Rạch Chiếc được giữ vững')], ['S5', 'S19']),
+    sc('C06', 'Hồi 6', 'Rạng sáng 30 tháng 4', '30/4/1975', 'chien-dich', B['c06'], B['c07'],
+       [('C06-A0', B['c06'], 'Đại toàn', 'Rạng sáng 30/4'), ('C06-L1', M['c06_l1'], TT, 'Lướt trên các cánh quân tiến vào Sài Gòn'), ('C06-A', M['c06_tc'], 'Đại toàn', 'Năm cánh quân đồng loạt tiến công'),
+        ('C06-L2', M['c06_l2'], TT, 'Đoàn xe thiết giáp, xe vận tải, xe chở bộ binh'), ('C06-P', M['c06_phao'], TT, '7 giờ 15: pháo cối bắn vào Tân Sơn Nhất, Bộ Tổng tham mưu'),
+        ('C06-C', M['c06_rc'], 'Toàn', '7 giờ 30: xe tăng Lữ đoàn 203 qua cầu Rạch Chiếc')], ['S1', 'S19']),
+    sc('C07', 'Hồi 7', 'Sân bay Tân Sơn Nhất', '30/4, 5 giờ 30 – 11 giờ 30', 'noi-do', B['c07'], B['c08'],
        [('C07-A', B['c07'], 'Toàn', 'Tân Sơn Nhất sáng 30/4'), ('C07-B', M['c07_24'], 'Trung', 'Đội hình tiến vào khu đỗ'), ('C07-C', M['c07_chu'], 'Toàn', 'Làm chủ sân bay')], ['S27', 'S1']),
-    sc('C08', 'Bộ Tổng tham mưu (30/4, đến 11 giờ 30)', 'noi-do', B['c08'], B['c09'],
+    sc('C08', 'Hồi 8', 'Bộ Tổng tham mưu', '30/4, đến 11 giờ 30', 'noi-do', B['c08'], B['c09'],
        [('C08-A', B['c08'], 'Toàn', 'Bộ Tổng tham mưu: tiến công từ hai phía'), ('C08-B', M['c08_xt'], 'Trung', 'Làm chủ mục tiêu lúc 11 giờ 30')], ['S1', 'S5']),
-    sc('C09', 'Từ phía Tây Nam tiến vào Sài Gòn (30/4)', 'noi-do', B['c09'], B['c10'],
+    sc('C09', 'Hồi 9', 'Từ phía Tây Nam tiến vào Sài Gòn', '30/4/1975', 'noi-do', B['c09'], B['c10'],
        [('C09-A', B['c09'], 'Toàn', 'Bà Quẹo – Bảy Hiền – Lê Văn Duyệt'), ('C09-B', M['c09_cy'] - 2, 'Toàn', 'Cầu Chữ Y'), ('C09-C', M['c09_hoi'], 'Đại toàn', 'Năm cánh quân hội tụ giữa nội đô')], ['S1']),
-    sc('C10', 'Mũi thọc sâu phía Đông (sáng 30/4)', 'noi-do', B['c10'], B['c11'],
+    sc('C10', 'Hồi 10', 'Mũi thọc sâu phía Đông', 'sáng 30/4', 'noi-do', B['c10'], B['c11'],
        [('C10-A', B['c10'], 'Toàn', 'Đầu cầu Sài Gòn'), ('C10-B', M['c10_cau'], 'Trung', 'Bám xe 843 qua cầu Sài Gòn'), ('C10-C', M['c10_hx'], 'Trung', 'Ngã tư Hàng Xanh: xe 390 bắn cháy M113'),
         ('C10-D', M['c10_tn'], 'Trung', 'Cầu Thị Nghè'), ('C10-E', M['c10_htt'], 'Trung', 'Đường Hồng Thập Tự về Dinh')], ['S18', 'S26', 'S33', 'S36']),
-    sc('C11', 'Cổng Dinh Độc Lập (trưa 30/4)', 'noi-do', B['c11'], B['c12'],
+    sc('C11', 'Hồi 11', 'Cổng Dinh Độc Lập', 'trưa 30/4', 'noi-do', B['c11'], B['c12'],
        [('T02-A', B['c11'], 'Trung', 'Bám sau xe 843'), ('T02-C', M['c11_843'], 'Toàn', 'Cổng Dinh: 843 húc chưa đổ, 390 húc đổ cổng chính'), ('T03-A', M['c11_thao'], 'Trung', 'Bùi Quang Thận rời xe 843, chạy về cổng chính'),
         ('T03-A2', M['c11_chay'], 'Trung', 'Băng qua bãi cỏ vào Dinh'), ('T03-B', M['c11_noc'], 'Cận', 'Nóc Dinh: hạ cờ ba sọc, kéo cờ Mặt trận')], ['S32', 'S10', 'S7', 'S8', 'S18', 'S34', 'S37', 'S38', 'S12']),
-    sc('C12', 'Trưa 30/4 – non sông liền một dải', 'noi-do', B['c12'], DAI,
+    sc('C12', 'Hồi 12', 'Non sông liền một dải', 'trưa 30/4/1975', 'noi-do', B['c12'], DAI,
        [('C12-A', B['c12'], 'Toàn', 'Dinh Độc Lập, lá cờ trên nóc'), ('C12-B', M['c12_dan'], 'Trung', 'Người dân Sài Gòn ra đường'), ('C12-C', M['c12_ket'], 'Đại toàn', 'Sài Gòn từ trên cao')], ['S25', 'S32', 'S1']),
 ]
 ST = json.load(open(f'{GOI}/story.json'))
-ST['scenes'] = S; ST['duration'] = round(DAI, 2); ST['moc'] = {k: (round(v, 2) if not isinstance(v, list) else [round(x, 2) for x in v]) for k, v in M.items()}
+THE[0][1] = min(THE[0][1], THE[1][0] - 0.05)                       # thẻ mở đầu nhường chỗ thẻ Hồi 1
+ST['scenes'] = S; ST['duration'] = round(DAI, 2); ST['the'] = THE; ST['moc'] = {k: (round(v, 2) if not isinstance(v, list) else [round(x, 2) for x in v]) for k, v in M.items()}
 ST['voice'] = dict(file='audio/voice.mp3', nguon='Bản thu của anh Thắng, 24/11/2026 (voi-chiendich-hcm.mp3, 16 phút 08 giây); mốc câu nhận dạng bằng tools/sa_ban/voice/asr_onnx.py')
 ST['note'] = 'Dòng thời gian theo voice thu âm (giây voice). Dựng bằng tools/sa_ban/voice/dung_story_hcm.py. Phụ đề lấy từ lời đọc (nhận dạng tiếng nói, đã sửa tên riêng, số).'
 json.dump(ST, open(f'{GOI}/story.json', 'w'), ensure_ascii=False, indent=1)
