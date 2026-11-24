@@ -483,15 +483,18 @@ async function dongHinh(nvz) {
   return clips;
 }
 function dongXoa() { for (const K of Object.values(DONG)) for (const C of Object.values(K.clips)) for (const im of C.ims) if (im) im.count = 0; }
-const _dq = new THREE.Quaternion(), _dm = new THREE.Matrix4(), _dp = new THREE.Vector3(), _ds = new THREE.Vector3(), _dY = new THREE.Vector3(0, 1, 0);
+const _dc = new THREE.Color(1, 1, 1), _dq = new THREE.Quaternion(), _dm = new THREE.Matrix4(), _dp = new THREE.Vector3(), _ds = new THREE.Vector3(), _dY = new THREE.Vector3(0, 1, 0);
 function dongDat(ten, clip, t, ph, x, y, z, yaw, sc = 1, vi = 0) {   // ph: pha lệch 0..1 để mọi người không cử động đồng loạt
   const K = DONG[ten]; if (!K) return false; const C = K.clips[clip] || K.clips.dung, f = nvFrame(C, t, ph, 0);
-  let im = C.ims[f]; if (!im) { im = new THREE.InstancedMesh(C.frames[f], K.mat, K.cap); im.frustumCulled = false; im.count = 0; scene.add(im); C.ims[f] = im; }
+  let im = C.ims[f]; if (!im) { im = new THREE.InstancedMesh(C.frames[f], K.mat, K.cap); im.frustumCulled = false; im.count = 0; im.setColorAt(0, _dc); scene.add(im); C.ims[f] = im; }
   if (im.count >= K.cap) return false;
   _dm.compose(_dp.set(x, y, z), _dq.setFromAxisAngle(_dY, yaw), _ds.setScalar(sc)); im.setMatrixAt(im.count, _dm); im.setColorAt(im.count, K.tints[vi % K.tints.length]); im.count++;
   return true;
 }
-function dongXong(hien = true) { for (const K of Object.values(DONG)) for (const C of Object.values(K.clips)) for (const im of C.ims) if (im) { im.visible = hien && im.count > 0; im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; } }
+// 2.2: chỉ tải lên GPU phần đang dùng (count), và chỉ khi có người — trước đây mỗi khung tải lại cả bộ đệm (cap × 64 byte) của mọi lưới → giật, đứng hình khi đông người
+function dongXong(hien = true) { for (const K of Object.values(DONG)) for (const C of Object.values(K.clips)) for (const im of C.ims) if (im) { const v = hien && im.count > 0; im.visible = v; if (!v) continue;
+  const M = im.instanceMatrix; M.clearUpdateRanges(); M.addUpdateRange(0, im.count * 16); M.needsUpdate = true;
+  if (im.instanceColor) { const Cc = im.instanceColor; Cc.clearUpdateRanges(); Cc.addUpdateRange(0, im.count * 3); Cc.needsUpdate = true; } } }
 /*@@RIENG:s22@@*/
 const SMOKE_N = 1400;
 const smokeGeo = new THREE.BufferGeometry();

@@ -7,7 +7,7 @@ import json, re, sys
 ASR, GOI = sys.argv[1], sys.argv[2]
 A = json.load(open(ASR)); TU = A['tu']; DAI = A['dai']
 W = [w.lower() for w, a, b in TU]
-def tim(cum, sau=0.0):   # sau: giây voice đã cắt 2 câu lặp (cat_voice.py, ngưỡng cũ lùi 3 s)
+def tim(cum, sau=0.0):   # sau: giây voice đã cắt (cat_voice.py: tạp âm đầu + 2 câu lặp; ngưỡng cũ lùi 3–6 s)
     s = cum.split()
     for i in range(len(W) - len(s) + 1):
         if TU[i][1] >= sau and W[i:i + len(s)] == s: return i
@@ -113,26 +113,26 @@ M = dict(
     c02_m=[t('quân đoàn một tiến'), t('quân đoàn ba hướng tới'), t('quân đoàn bốn nhận'), t('quân đoàn hai cùng'), t('đoàn hai trăm ba mươi hai')], c02_vay=t('năm cánh quân hình thành'),
     c03_phao0=t('pháo của quân đoàn hai') - 1.5, c03_phao1=t('ở những hướng còn lại'),
     c04_catcanh=t('mười sáu giờ mười lăm'), c04_muctieu=t('mục tiêu của phi đội'), c04_bom=t('những quả bom'), c04_ve=t('mười tám giờ mười lăm'),
-    c05_phao0=t('năm giờ ba mươi phút pháo binh'), c05_phao1=t('trận chiến diễn ra quyết liệt đến'), c05_co=t('cắm cờ trên sở chỉ huy'), c05_btt=t('hai mươi ba giờ', 357), c05_rc=t('cầu rạch chiếc', 367),
-    c06_tc=t('năm cánh quân đồng loạt', 407), c06_phao=t('bảy giờ mười lăm'), c06_rc=t('bảy giờ ba mươi phút'),
+    c05_phao0=t('năm giờ ba mươi phút pháo binh'), c05_phao1=t('trận chiến diễn ra quyết liệt đến'), c05_co=t('cắm cờ trên sở chỉ huy'), c05_btt=t('hai mươi ba giờ', 354), c05_rc=t('cầu rạch chiếc', 364),
+    c06_tc=t('năm cánh quân đồng loạt', 404), c06_phao=t('bảy giờ mười lăm'), c06_rc=t('bảy giờ ba mươi phút'),
     c07_tc=t('sư đoàn mười cùng'), c07_24=t('chín giờ bốn mươi lăm'), c07_chu=t('mười một giờ ba mươi phút theo'),
     c08_tc=t('sư đoàn mười đánh'), c08_xt=t('những chiếc xe tăng vượt qua cổng'), c08_chu=t('mười một giờ ba mươi phút bộ'),
     c09_tay=t('trung đoàn một thuộc'), c09_lvd=t('theo đường lê văn duyệt'), c09_cy=t('cầu chữ y'), c09_cs=t('mười giờ ba mươi phút lực'), c09_hoi=t('vòng vây bên ngoài'),
     c10_dai=t('văn minh lên đài'), c10_cau=t('tiến qua cầu sài gòn'), c10_m48=t('tại đầu cầu'), c10_hx=t('tới ngã tư hàng xanh'), c10_ban=t('bắn cháy một chiếc xe bọc thép'),
-    c10_tn=t('không dừng lại', 697), c10_htt=t('phía trước là đường hồng'),
-    c11_toi=t('gần trưa', 757), c11_843=t('xe mang số'), c11_ram=t('rầm'), c11_390=t('trưởng xe là'), c11_cham=t('một cú chạm'), c11_vao=t('chiếc xe tăng ba chín mươi tiến vào'),
-    c11_thao=t('từ chiếc xe tăng tám trăm bốn mươi ba'), c11_chay=t('anh chạy vào dinh'), c11_noc=t('trên nóc dinh', 827), c11_ha=t('bắt đầu hạ lá cờ'), c11_keo=t('được kéo lên'),
-    c12_dai=t('tại đài phát thanh', 877), c12_dan=t('trên các tuyến đường người dân'), c12_ket=t('năm cánh quân nhiều hướng'), c12_tt=t('chiến dịch hồ chí minh toàn thắng'))
+    c10_tn=t('không dừng lại', 694), c10_htt=t('phía trước là đường hồng'),
+    c11_toi=t('gần trưa', 754), c11_843=t('xe mang số'), c11_ram=t('rầm'), c11_390=t('trưởng xe là'), c11_cham=t('một cú chạm'), c11_vao=t('chiếc xe tăng ba chín mươi tiến vào'),
+    c11_thao=t('từ chiếc xe tăng tám trăm bốn mươi ba'), c11_chay=t('anh chạy vào dinh'), c11_noc=t('trên nóc dinh', 824), c11_ha=t('bắt đầu hạ lá cờ'), c11_keo=t('được kéo lên'),
+    c12_dai=t('tại đài phát thanh', 874), c12_dan=t('trên các tuyến đường người dân'), c12_ket=t('năm cánh quân nhiều hướng'), c12_tt=t('chiến dịch hồ chí minh toàn thắng'))
 def _sc_cu(id_, ten, tang, t0, t1, shots, nguon):
     sh = []
     for k, (sid, a, size, desc) in enumerate(shots):
         b = shots[k + 1][1] if k + 1 < len(shots) else t1; sh.append(dict(id=sid, t0=round(a, 2), t1=round(b, 2), size=size, desc=desc))
     return dict(id=id_, title=ten, tang=tang, t0=round(t0, 2), t1=round(t1, 2), shots=sh, subs=[s for s in SUB if t0 - 0.01 <= s[0] < t1], nguon=nguon)
 L_ = dict(c01_l1=t('tháng tư năm một nghìn'), c01_d=t('nhưng trên con đường số một'), c01_l2=t('ngày mùng chín tháng tư'), c01_p=t('gần hai tuần giữa'), c01_d2=t('đối phương dồn lực lượng'),
-          c01_l3=t('quân giải phóng kiên trì'), c02_l1=t('trên', 166) if False else t('những tuyến đường những cánh rừng') - 0.6, c02_l2=t('những đoàn xe tăng tiến lên'),
+          c01_l3=t('quân giải phóng kiên trì'), c02_l1=t('trên', 163) if False else t('những tuyến đường những cánh rừng') - 0.6, c02_l2=t('những đoàn xe tăng tiến lên'),
           c03_p=t('hướng đông và đông nam những trận địa') - 0.6, c03_d=t('tiếng pháo vang lên mở màn'), c03_l=t('dưới sự chi viện của pháo binh'),
           c05_p=t('rạng sáng ngày hai mươi chín'), c05_d=t('thuộc huyện chi'), c05_l=t('loạt pháo vang lên các đơn vị'), c05_l2=t('bởi từ phía đông những đoàn xe tăng'), c05_l2e=t('một cây cầu phải được giữ vững'),
-          c06_l1=t('rạng sáng ngày ba mươi tháng tư', 407), c06_l2=t('tiếng động cơ xe tăng'))
+          c06_l1=t('rạng sáng ngày ba mươi tháng tư', 404), c06_l2=t('tiếng động cơ xe tăng'))
 M.update(L_)
 def sc(id_, hoi, ten, ngay, tang, t0, t1, shots, nguon):
     sh = []

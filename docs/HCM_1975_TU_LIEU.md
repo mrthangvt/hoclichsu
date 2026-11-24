@@ -306,3 +306,28 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
 - **Bùi Quang Thận:** chạy 7 m/s. Quãng đường dài hơn câu đọc nên nối hai đoạn chạy ở chỗ chuyển cú máy. Có ghim tên trên đầu.
 - **Kéo cờ:** máy hạ sát mặt sân thượng, nhìn từ dưới lên lá cờ.
 - **Người dân quá to:** đám đông dân Sài Gòn bị nướng sai cỡ: cờ, hoa cầm tay đặt sai hệ toạ độ nên làm lệch chiều cao chuẩn. Đã sửa: đo chiều cao theo khung đầu của động tác, đặt đồ cầm tay theo vị trí bàn tay trên lưới.
+
+## 22. Sửa V1.2 (24/11 tối, góp ý 20:21)
+- **Bỏ nghỉ đầu hồi:** dừng voice làm ngắt tiếng, ngắt hình. Vẫn giữ nạp sẵn tầng kế tiếp khi đổi tầng.
+- **Hồi 10 đứng hình:** đám đông vẽ hàng loạt trước đây mỗi khung tải lại cả bộ đệm của mọi lưới (cỡ "cap" × 64 byte), nên càng đông người càng giật, tới Hồi 10 thì đứng. Bộ máy 2.2 giờ chỉ tải phần đang dùng (`addUpdateRange`) và tạo sẵn màu từng người để không phải dựng lại chương trình đồ hoạ. Đã giảm "cap" (lính 600, dân 500).
+- **Mẫu lính ta:** dùng hai mẫu lính Thành cổ (mũ tai bèo, đầu trần) có cùng bộ xương với mẫu QĐND, lấy động tác của mẫu QĐND (`nuong_nvz.py`, biến `DONG_TAC`), chia đều hai mẫu.
+- **Súng mất nét:** súng chỉ có 468 tam giác, trước bị giảm lưới chung với thân nên gần như mất. Nay giảm lưới phần thân trước, ghép súng sau, giữ nguyên súng.
+- **Tiếng nổ máy:** có xe chạy là có tiếng động cơ xe tải và xe tăng, to dần khi máy quay lại gần. Áp dụng cho đoàn quân, đoàn xe nội đô, xe 843 và 390, Tân Sơn Nhất, cầu Chữ Y.
+- **Ghim máy bay ở Tân Sơn Nhất:** A-37 (ba dãy), C-130A, UH-1 của không quân VNCH; ghim hiện từ xa tới 3,5 km.
+- **Khám phá – đi bộ:** nút "Xuống đi bộ" cho người xem đi trong vai một chiến sĩ (W A S D, cần ảo, Shift để chạy).
+- **Góc nhìn nhân vật:**
+  - Nội đô: trưởng xe 843, trưởng xe 390, bộ binh ngồi trên xe 390, bộ binh trên xe tải, Bùi Quang Thận, phi công A-37 dẫn đầu, trưởng xe T-54 ở Tân Sơn Nhất. Đứng xem tại: cổng Dinh, nóc Dinh, đầu cầu Thị Nghè, khu đỗ máy bay Tân Sơn Nhất.
+  - Tầng chiến dịch: trưởng xe tăng đi đầu Lữ đoàn 203, bộ binh trên xe tải, pháo thủ M-46, đặc công giữ cầu Rạch Chiếc. Đứng xem tại: đầu cầu Rạch Chiếc, trên đồi nhìn về Sài Gòn.
+- **Đoàn xe dài hơn:**
+  - Tầng chiến dịch: mỗi đoàn 28 xe (6 T-54, xe tải chở quân, K-63, xe kéo pháo M-46). Bộ binh ngồi trên sàn động cơ xe tăng.
+  - Nội đô: đoàn theo sau 390 có 14 xe (3 T-54, 8 xe tải, 3 K-63). 390 chở 4 bộ binh.
+  - Để bù cho đoàn xe dài hơn, em bớt nhà: nhà xa thêm khoảng 25 %, nhà lõi khối phố thêm khoảng 40 %.
+- **Lối lên cầu:** bỏ mọi nhà, nhà lá cách tim cầu dưới 40 m (`cauGan`), nên lối lên cầu Thị Nghè thông thoáng.
+- **Người dân khi đoàn xe tăng qua phố:** dân ra đứng hai bên đường cổ vũ từ lúc đoàn xe qua cầu Thị Nghè (giờ Dinh 26–40), có tiếng reo hò. Thêm người đi bộ qua lại sát mặt tiền dãy nhà.
+  - Lưu ý: điều này khác hồi ức "lúc xe tăng vào, đường phố rất vắng" (nhandan.vn). Em làm theo yêu cầu, gắn nhãn minh hoạ.
+- **A-37 cất cánh:** 5 giây đầu máy quay cận một chiếc (thấy rõ kiểu A-37), sau đó lùi ra thấy cả biên đội. Đã sửa mặt phẳng cắt gần của máy quay, trước đây máy ở cao nên vật ở sát máy bị cắt mất.
+- **Qua cầu Thị Nghè (C10-D), ba đoạn:**
+  1. 843 bắn cháy M41.
+  2. Mắt bộ binh ngồi trên xe 390.
+  3. Phía sau nhìn đoàn xe qua cầu.
+- **Đầu voice:** cắt 2,62 s tạp âm trước khi cất lời. Voice còn 16:02, các mốc dời theo.

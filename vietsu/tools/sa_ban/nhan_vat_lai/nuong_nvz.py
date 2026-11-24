@@ -12,6 +12,11 @@ CLIP = []
 for a in argv[5:]:
     ten, _, r = a.partition('='); p = r.split(':'); CLIP.append((ten, p[0], int(p[1]), len(p) > 2 and p[2] == '1'))
 bpy.ops.wm.read_factory_settings(use_empty=True)
+DT = os.environ.get('DONG_TAC')                                                # mẫu chỉ có lưới + xương (lính Thành cổ mũ tai bèo / đầu trần): lấy động tác từ mẫu khác cùng bộ xương
+if DT:
+    bpy.ops.import_scene.gltf(filepath=DT)
+    for a in list(bpy.data.actions): a.use_fake_user = True
+    for o in list(bpy.data.objects): bpy.data.objects.remove(o, do_unlink=True)
 bpy.ops.import_scene.gltf(filepath=VAO)
 arm = next(o for o in bpy.data.objects if o.type == 'ARMATURE')
 for a in list(bpy.data.actions): a.use_fake_user = True
@@ -30,16 +35,16 @@ for o in bpy.data.objects:                                                     #
         o.data.uv_layers.active.name = me_o.data.uv_layers.active.name
         PHU.append(o); mes.append(o)
 print('phụ', [o.name for o in PHU])
+tri0 = sum(len(p.vertices) - 2 for p in me_o.data.polygons)                    # giảm lưới THÂN trước khi ghép súng (súng ít tam giác, giảm chung thì mất hình súng)
+dm = me_o.modifiers.new('giam', 'DECIMATE'); dm.ratio = min(1.0, TRI / max(tri0, 1))
+with bpy.context.temp_override(object=me_o, active_object=me_o):
+    while me_o.modifiers[0].name != 'giam': bpy.ops.object.modifier_move_up(modifier='giam')
+    bpy.ops.object.modifier_apply(modifier='giam')
 for o in mes: o.select_set(True)
 bpy.context.view_layer.objects.active = me_o
 if len(mes) > 1:
     with bpy.context.temp_override(active_object=me_o, object=me_o, selected_objects=mes, selected_editable_objects=mes): bpy.ops.object.join()
 print('lưới', me_o.name, len(me_o.data.polygons))
-tri0 = sum(len(p.vertices) - 2 for p in me_o.data.polygons)
-dm = me_o.modifiers.new('giam', 'DECIMATE'); dm.ratio = min(1.0, TRI / max(tri0, 1))
-with bpy.context.temp_override(object=me_o, active_object=me_o):
-    while me_o.modifiers[0].name != 'giam': bpy.ops.object.modifier_move_up(modifier='giam')
-    bpy.ops.object.modifier_apply(modifier='giam')
 tm = me_o.modifiers.new('tamgiac', 'TRIANGULATE')
 with bpy.context.temp_override(object=me_o, active_object=me_o):
     while me_o.modifiers[0].name != 'tamgiac': bpy.ops.object.modifier_move_up(modifier='tamgiac')
