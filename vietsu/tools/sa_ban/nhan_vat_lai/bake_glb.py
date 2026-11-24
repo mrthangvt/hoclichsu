@@ -23,6 +23,30 @@ own = arm.animation_data.action if arm.animation_data else None
 arm.name = 'rig'; me.name = C['ten']
 for o in list(bpy.data.objects):
     if o not in (arm, me): bpy.data.objects.remove(o, do_unlink=True)
+# ---- (tuỳ chọn "sua_chan": true) sửa trọng số chân bị gắn nhầm bên: Tripo/Mixamo đôi khi cho đỉnh ống quần, bàn chân TRÁI bám xương chân PHẢI
+# (và ngược lại) → khi bước, chân kia bị kéo theo, trông như hai chân dính nhau. Đỉnh thấp hơn hông nằm bên nào thì chỉ được bám xương chân bên đó.
+if C.get('sua_chan'):
+    import numpy as _np
+    hip = arm.matrix_world @ arm.data.bones['mixamorig:Hips'].head_local
+    lul = arm.matrix_world @ arm.data.bones['mixamorig:LeftUpLeg'].head_local
+    ax = 0 if abs(lul.x - hip.x) > abs(lul.y - hip.y) else 1; sgnL = 1 if (lul.x - hip.x if ax == 0 else lul.y - hip.y) > 0 else -1
+    upv = arm.matrix_world.to_3x3() @ Vector((0, 1, 0))                                 # trục "lên" của xương trong thế giới
+    CHAN = ['UpLeg', 'Leg', 'Foot', 'ToeBase', 'Toe_End']
+    G = {g.name: g for g in me.vertex_groups}; nsua = 0
+    hH = hip.dot(upv)
+    for v in me.data.vertices:
+        w = me.matrix_world @ v.co
+        if w.dot(upv) > hH: continue
+        lech = (w.x - hip.x if ax == 0 else w.y - hip.y) * sgnL
+        if abs(lech) < 0.012 * me.dimensions.length: continue
+        ben, sai = ('Left', 'Right') if lech > 0 else ('Right', 'Left')
+        doi = []
+        for gi in v.groups:
+            n = me.vertex_groups[gi.group].name
+            for c in CHAN:
+                if n == 'mixamorig:' + sai + c and ('mixamorig:' + ben + c) in G: doi.append((n, 'mixamorig:' + ben + c, gi.weight))
+        for n, n2, wt in doi: G[n].remove([v.index]); G[n2].add([v.index], wt, 'ADD'); nsua += 1
+    print('sua_chan: chuyển', nsua, 'trọng số chân về đúng bên')
 own_src = None
 if own is not None:
     own_src = arm.copy(); own_src.data = arm.data.copy(); own_src.name = 'own_src'; bpy.context.scene.collection.objects.link(own_src)
