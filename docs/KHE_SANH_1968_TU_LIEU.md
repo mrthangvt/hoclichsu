@@ -143,7 +143,7 @@ Anh đã có mẫu thô Tripo trong `_KHO-CHUNG` cho ba thứ đầu (em đã xe
 | Mẫu | Phe | Có trong nguồn | Tình trạng / việc | Ảnh tham chiếu đề xuất | Ưu tiên |
 |---|---|---|---|---|---|
 | **Lính thủy đánh bộ Mỹ** | Mỹ | M1, M5, M20 | **Đã sửa (25/11):** `nhan-vat/_moi/linh-my-ao-giap.fbx` — thêm áo giáp chống mảnh kiểu M1955 (phồng thân ~2 cm, tô ô liu sẫm, gân ngang ở vai, khoá kéo; MINH HOẠ) bằng `tools/sa_ban/nhan_vat_lai/them_ao_giap.py`. Mẫu 3D Tripo không có điếu thuốc, vòng tay (chỉ ảnh xem trước có). Súng M16 dính liền thân (đeo chéo) → động tác bắn cần súng rời ở tay như lính VNCH. **Còn:** gắn xương Mixamo (anh tải lên Mixamo, hoặc cho em dùng Chrome), nướng `.nvz` + bản cận | ảnh USMC trong M5, M6 (công khai) | 1 |
-| **Xe tăng PT-76** | QGP | S2, S8, M12 | **Xong (25/11):** `props/xe/xe-tang-pt76.glb` 0,45 MB, 30 nghìn tam giác, số 555 hai bên tháp pháo (S9). Tỉ lệ theo bề rộng 3,15 m, cao ra 2,30 m (công bố 3,15 m; 2,255–2,325 m — PT-76, Wikipedia/inetres). Mẫu Tripo có vài khe hở trên nắp thân (giữ nguyên) | xe 268 tượng đài Làng Vây (S10), xe 555 (S9) | 1 |
+| **Xe tăng PT-76** | QGP | S2, S8, M12 | **Xong (25/11):** `props/xe/xe-tang-pt76.glb` 0,45 MB, 30 nghìn tam giác, số 555 hai bên tháp pháo (S9). Tỉ lệ theo bề rộng 3,15 m, cao ra 2,30 m (công bố 3,14–3,15 m; 2,255–2,325 m — M26). Mẫu Tripo có vài khe hở trên nắp thân (giữ nguyên) | xe 268 tượng đài Làng Vây (S10), xe 555 (S9) | 1 |
 | **B-52** | Mỹ | M1, M9, M18 | **Anh Thắng tự làm B-52D (25/11).** Bản cũ `vat-dung/_moi/MayBay-B52.zip` (+ .webp): **giống B-52H xám hiện đại**. Năm 1968 là **B-52D "Big Belly"**, mặt trên rằn ri Đông Nam Á, bụng đen bóng; B-52H không bay Arc Light (M18, M19). Cần sơn lại (và động cơ J57 thon hơn TF33 nếu làm kỹ) | ảnh NMUSAF (M19), M18 | 2 |
 | Căn cứ Tà Cơn: đường băng tấm nhôm ~1.190 m, tháp điều khiển, hầm bao cát, lô cốt, hàng rào, kho đạn | Mỹ | M11, M20, S15 | Dựng bằng mã (dải đường băng, `uNap` bao cát) + vài GLB mới; ghép 7.2 | ảnh chụp từ trên cao trong M6 và Shore 1969 (UPI); C-130 và đường băng tái dựng tại di tích Tà Cơn | 1 |
 | Các điểm cao | — | M5 | Từ DEM, không cần mẫu; ghim tên | — | 1 |
@@ -167,7 +167,12 @@ Mọi mẫu mới dựng trong Blender trên máy anh (MCP for Blender), không 
 7. Mẫu mới: em sửa ba mẫu Tripo của anh (lính Mỹ thêm áo giáp, PT-76 số hiệu, B-52 sơn lại thành B-52D) hay anh làm lại trên Tripo? Ưu tiên mục 7.3 có đúng ý anh?
 8. Lấy OSM, DEM qua máy anh cho GĐ2 (cần chạy `curl` trên máy anh).
 
-## 9. Kiểm tra GĐ0 (25/11/2026)
+## 9. GĐ2 địa hình (25/11/2026, đang làm)
+- Dữ liệu lấy qua Chrome trên máy anh (máy chủ Claude và shell máy anh không ra được mạng tới OSM, DEM): `khe-sanh-1968_dem.json` (Terrarium: tầng chiến dịch z12, 9×8 ô; tầng Tà Cơn z14, 10×10 ô) và `khe-sanh-1968_osm.json` (Overpass: chiến dịch 1.208 phần tử — đường lớn, sông, làng, điểm cao, di tích; Tà Cơn 2.356 phần tử — mọi đường, suối, đất, rừng). Chrome tải về Downloads; **chờ anh chuyển vào `ChienDichKheSanh1968/`** (em không được cấp quyền vào Downloads).
+- Khung: tầng chiến dịch tâm 16,70 B, 106,82 Đ, R 33 km (gồm Đông Hà, Cam Lộ, Rockpile, Cà Lu, Co Roc, Bản Huội San); tầng Tà Cơn tâm 16,645 B, 106,69 Đ, R 10 km (căn cứ, 881 Nam/Bắc, 861, 558, làng Khe Sanh, Làng Vây), lưới 1024 (66 m và 20 m mỗi ô).
+- Công cụ: `vietsu/tools/sa_ban/dia_hinh/dung_dia_hinh_ks.py <dem.json> <osm.json> <gói>` — lọc sơ bộ theo 1968: bỏ hồ chứa (thuỷ điện Rào Quán…) và lấp lại lòng hồ (phỏng dựng), bỏ đường Hồ Chí Minh, cao tốc; sông suối vùng núi chỉ tô màu, đánh dấu kênh nước (không hạ xuống mặt nước chung).
+
+## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.
 - `quet_phim.py`: **chưa chạy được** — chưa có địa hình và cảnh dựng (GĐ2–4).

@@ -339,6 +339,14 @@
    "used_for": "bố trí đại đội trên 881 Nam, 861, 861A; khoảng 6.000 quân Mỹ giữ căn cứ và các đồi; Tiểu đoàn 3/26 tới Khe Sanh giữa 12/1967"
   },
   {
+   "id": "M26",
+   "title": "PT-76 (thông số)",
+   "type": "bách khoa / cơ sở dữ liệu (Wikipedia; Gary's Combat Vehicle Reference Guide)",
+   "url": "https://en.wikipedia.org/wiki/PT-76",
+   "license": "trích dẫn",
+   "used_for": "kích thước để đặt tỉ lệ mẫu: thân dài 6,91 m, rộng 3,14–3,15 m, cao 2,255–2,325 m (https://www.inetres.com/gp/military/cv/tank/PT-76.html)"
+  },
+  {
    "id": "OSM",
    "title": "OpenStreetMap",
    "type": "OSM",
