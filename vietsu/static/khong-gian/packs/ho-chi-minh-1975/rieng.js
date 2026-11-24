@@ -823,6 +823,10 @@ const VOX = { a: null, ok: false, fail: false, cho: false };
 function voxNoi() { const a = VOX.a; return !!(a && !a.paused && !a.ended); }
 function voxInit() {
   if (!STORY.voice || VOX.a || location.hash === '#still' || QS.get('voice') === '0') return;
+  // bản Artifact: trang khung ngoài giữ một thẻ voice chạy suốt, kể cả lúc đổi tầng địa hình (trang trong nạp lại) → voice không ngắt
+  const K = (() => { try { return window.parent !== window && window.parent.__voxA ? window.parent : null; } catch (e) { return null; } })();
+  if (K) { const a = K.__voxA; VOX.a = a; VOX.ok = a.readyState >= 2; a.addEventListener('canplay', () => { VOX.ok = true; }); a.addEventListener('error', () => { VOX.fail = true; });
+    VOX.tiep = !a.paused && QS.get('phat') === '1'; return; }                              // đang phát dở: phim nhảy tới giây voice khi tải xong
   const a = new Audio(); a.preload = 'auto'; VOX.a = a;
   a.addEventListener('canplay', () => { VOX.ok = true; }); a.addEventListener('error', () => { VOX.fail = true; });
   fetch(PU('am/voice.mp3')).then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => { a.src = URL.createObjectURL(b); a.load(); })
@@ -837,6 +841,7 @@ function voxChan() {
 }
 function voxTick() {                                                                        // true: giây phim vừa lấy theo voice
   const a = VOX.a; if (!a || VOX.fail) return false;
+  if (VOX.tiep) { if (!(playing && appMode === 'film')) return false; VOX.tiep = false; if (!a.paused) { T = a.currentTime; return true; } }
   const want = VO.on && playing && appMode === 'film' && !seeking;
   if (!want) { if (!a.paused) a.pause(); return false; }
   if (!VOX.ok || a.readyState < 2 || T >= a.duration - 0.05) return false;
@@ -866,7 +871,7 @@ function update(dt) {
   U.time.value += dt;
   const i = sceneIdx(t), scn = SC[i], shot = shotAt(t);
   // 2.2: cảnh thuộc tầng khác → đổi tầng (tải lại ở cùng thời điểm)
-  if (appMode === 'film' && scn.tang && scn.tang !== TANG && !update.doi) { update.doi = true; $('sub').hidden = false; $('sub').textContent = 'Đang chuyển sang ' + (scn.tang === 'noi-do' ? 'nội đô Sài Gòn' : 'toàn chiến dịch') + '…'; doiTang(scn.tang, t, playing); return; }
+  if (appMode === 'film' && scn.tang && scn.tang !== TANG && !update.doi) { update.doi = true; $('sub').hidden = false; $('sub').textContent = 'Đang chuyển sang ' + (scn.tang === 'noi-do' ? 'nội đô Sài Gòn' : 'toàn chiến dịch') + '…'; doiTang(scn.tang, Math.max(t, scn.t0 + 0.05), playing); return; }   // t làm tròn có thể rơi về cảnh trước (tầng cũ) → đổi tầng qua lại mãi
   tideNow = 0.3; U.level.value = tideNow; water.position.y = tideNow; U.wetTop.value = tideNow + 0.4;
   applySky(t, appMode === 'explore' ? forcedSky : '');
   scene.fog.density /= 1 + Math.max(0, camera.position.y - R * 0.2) / (R * 0.3);

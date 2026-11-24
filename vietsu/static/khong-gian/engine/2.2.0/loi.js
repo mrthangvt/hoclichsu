@@ -12,7 +12,7 @@ const TT = TANGS ? TANGS[TANG] : { data: 'terrain/meta.json', height: 'terrain/h
 const EXH = (TT && TT.phongDai) || (PACK.terrain && PACK.terrain.phongDai) || 1;          // phóng đại độ cao (sa bàn rộng, đồng bằng thấp)
 // 2.2: đổi tầng = tải lại trang tại cùng thời điểm; giữa hai tầng hiện THẺ CHƯƠNG (tên cảnh sắp tới) để chỗ chuyển thành một ngắt chương
 function doiTang(ten, t, phat) {
-  const q = new URLSearchParams(location.search); q.set('tang', ten); if (t != null) q.set('t', (+t).toFixed(1)); if (phat) q.set('phat', '1'); else q.delete('phat');
+  const q = new URLSearchParams(location.search); q.set('tang', ten); if (t != null) q.set('t', (+t).toFixed(2)); if (phat) q.set('phat', '1'); else q.delete('phat');
   let sc = null; try { sc = STORY.scenes.find((c) => t >= c.t0 && t < c.t1); } catch (e) { /* STORY chưa có */ }
   if (sc && phat) q.set('chuong', sc.title); else q.delete('chuong');
   const ov = document.createElement('div'); ov.id = 'chuong-ov'; ov.innerHTML = '<div><small>Tiếp theo</small><b></b></div>'; ov.querySelector('b').textContent = sc ? sc.title : '';
