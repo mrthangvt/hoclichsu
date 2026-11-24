@@ -88,12 +88,12 @@ Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), khô
 |---|---|---|---|
 | Xe bọc thép **M113** | VNCH | Xe 390 bắn M113 ở ngã tư Hàng Xanh; xe 387 bắn cháy M41 và M113 ở cầu Thị Nghè (lsvn.vn "Tiến vào Dinh Độc Lập"; Tiền Phong 30/4/2026) | 1 — cảnh cuối |
 | Xe tăng **M48A3** | VNCH (và ta dùng xe thu được) | Đầu cầu Sài Gòn sáng 30/4 (viettimes.vn, hồi ức Nguyễn Hữu Cử); hai M48 chặn hướng Bắc bị ĐKZ bắn cháy (giaoduc.net.vn); Sư đoàn 10 (ta) được tăng cường 1 đại đội xe tăng M41–M48 thu được (giaoduc.net.vn "Trận then chốt…") | 1 |
-| Xe tăng **M41A3** | VNCH (và ta) | Mẫu của Thành cổ (`static.glb › XeTang_VNCH_*`) là khối thô 188 tam giác, không ảnh màu → **cần mẫu Tripo mới** | 1 |
+| Xe tăng **M41A3** | VNCH (và ta) | **Xong 24/11** (mẫu Tripo, mục 10) | — |
 | Pháo nòng dài **M-46 130 mm** + xe kéo | QĐVN | Bắn Tân Sơn Nhất 4h30 29/4, Bộ Tổng tham mưu 10h 30/4 | 2 |
 | Lựu pháo **M114 155 mm** | VNCH | Pháo VNCH gồm 105, 155, 175 mm (Wikipedia "1975 spring offensive"; Dân Việt "Số lượng vũ khí thu được sau 1975"); 30 khẩu 105–155 mm chi viện khu Nước Trong (giaoduc.net.vn) | 3 |
 | Pháo tự hành **M107 175 mm** | VNCH | Như trên; số lượng ít | 3 |
 | **Xe V-100** (bánh lốp) | VNCH | Chưa tìm được nguồn tận mặt trận Sài Gòn 26–30/4 — chưa làm | — |
-| **A-37** | Ta (thu được) + VNCH | Mẫu của Thành cổ là khối thô 436 tam giác → **cần mẫu Tripo mới** | 1 |
+| **A-37** | Ta (thu được) + VNCH | **Xong 24/11** (mẫu Tripo, mục 10); còn sơn lại phù hiệu | — |
 | **AC-119K** | VNCH | Bị tên lửa vác vai SA-7 (A72) bắn rơi trên đường băng Tân Sơn Nhất khoảng 7h ngày 29/4 (Texas Tech Vietnam Archive, bộ ảnh LeGro) | 2 |
 | **C-130A** | VNCH | Cháy ở Tân Sơn Nhất sau đợt pháo/rocket 29/4 (Wikimedia Commons) | 3 |
 | **UH-1** (**xong 24/11:** `props/may-bay/uh-1.glb`, thân 12,77 m, đã xoá chữ ARMY) | VNCH/Mỹ | Di tản; trực thăng đậu trên 13 nóc nhà cao tầng (VietnamPlus 28/4) | 3 |
@@ -121,7 +121,7 @@ Máy bay của ta trong Chiến dịch Hồ Chí Minh: chỉ có **A-37 thu đư
 - `rieng.js` của trận viết mới (không chép thuyền, lũy, doanh trại của Như Nguyệt); phần máy móc lấy theo Như Nguyệt: bầu trời (sương chỉnh theo cỡ sa bàn), nhãn, bản đồ nhỏ, review, phụ đề.
 - `story.json` hiện là **bản thử 2 cảnh** (T01 chiến dịch: 5 mũi tên phác thảo; T02 nội đô: xe 843, 390 từ cầu Thị Nghè vào sân Dinh, đường tìm trên mạng đường OSM đã lọc). Dàn ý 12 cảnh có nguồn giữ ở `story.json › danY`.
 - Đã kiểm tra bằng Chrome headless: hai tầng mở được, chuyển tầng giữa phim (0:40 → nội đô, phát tiếp), xe bám đường, trưởng xe đứng ở cửa tháp pháo.
-- **Còn thiếu (GĐ4–5):** nhà phố, cây, Dinh Độc Lập 3D (nội đô mới là ảnh nền phẳng); bộ đội, lính VNCH; lộ trình và lịch giờ thật theo nguồn; lời bình; âm thanh; đổi tầng không tải lại trang (2.3).
+- **Còn thiếu (GĐ4–5):** nhà phố, cây ngoài khuôn viên Dinh (Dinh 3D đã có, mục 9); bộ đội, lính VNCH; lộ trình và lịch giờ thật theo nguồn; lời bình; âm thanh; đổi tầng không tải lại trang (2.3).
 
 ## 8. Người dân (24/11/2026)
 Theo yêu cầu anh Thắng: cảnh có người dân thì đưa mẫu người dân Nam bộ của Rạch Gầm – Xoài Mút vào (`units/dan-nam-bo-1..3.nvz`, chép từ `rach-gam-xoai-mut/units/dan*.nvz`; động tác dung, dung2, di, di2, chay).
