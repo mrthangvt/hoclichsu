@@ -1,7 +1,7 @@
 {
  "lop": 11,
  "sach": "Lịch sử 11 (bộ Kết nối tri thức với cuộc sống, NXB Giáo dục Việt Nam), tr. 6–90",
- "ghi_chu": "Mục lục theo đúng SGK; phần nội dung chi tiết từng bài đang được Việt Sử biên soạn lại bằng lời văn riêng (không chép nguyên văn sách). Học sinh mở SGK theo số trang.",
+ "ghi_chu": "Nội dung do Việt Sử biên soạn lại bằng lời văn riêng theo mạch bài học của SGK; không chép nguyên văn, không dùng hình ảnh của sách. Học sinh mở SGK theo số trang để xem tư liệu, hình và hoạt động.",
  "bai": [
   {
    "so": 1,
@@ -13,7 +13,42 @@
    ],
    "nam": null,
    "tom": "Tiền đề, mục tiêu, nhiệm vụ, giai cấp lãnh đạo, động lực, kết quả và ý nghĩa của các cuộc cách mạng tư sản.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Tiền đề của cách mạng tư sản",
+     [
+      "Kinh tế: quan hệ sản xuất tư bản chủ nghĩa ra đời, phát triển nhưng bị chế độ phong kiến kìm hãm.",
+      "Chính trị – xã hội: mâu thuẫn giữa tư sản, nhân dân với chế độ phong kiến chuyên chế ngày càng gay gắt.",
+      "Tư tưởng: trào lưu Triết học Ánh sáng (Mông-te-xki-ơ, Vôn-te, Rút-xô) chuẩn bị cho cách mạng."
+     ]
+    ],
+    [
+     "2. Một số cuộc cách mạng tư sản tiêu biểu",
+     [
+      "Cách mạng tư sản Anh (thế kỉ XVII) dẫn tới chế độ quân chủ lập hiến.",
+      "Chiến tranh giành độc lập của 13 thuộc địa Anh ở Bắc Mỹ (1775 – 1783) khai sinh Hợp chúng quốc Hoa Kỳ.",
+      "Cách mạng tư sản Pháp (1789 – 1794) lật đổ chế độ quân chủ, công bố Tuyên ngôn Nhân quyền và Dân quyền."
+     ]
+    ],
+    [
+     "3. Mục tiêu, nhiệm vụ, lực lượng và ý nghĩa",
+     [
+      "Mục tiêu: xoá bỏ chế độ phong kiến, xác lập nhà nước tư sản, mở đường cho chủ nghĩa tư bản phát triển.",
+      "Lực lượng lãnh đạo là giai cấp tư sản; động lực là quần chúng nhân dân.",
+      "Ý nghĩa: mở ra thời kì thắng lợi và củng cố của chủ nghĩa tư bản trên thế giới."
+     ]
+    ]
+   ],
+   "nho": [
+    "Triết học Ánh sáng là tiền đề tư tưởng.",
+    "1775 – 1783: chiến tranh giành độc lập ở Bắc Mỹ.",
+    "1789: Cách mạng tư sản Pháp."
+   ],
+   "hoi": [
+    "Trình bày những tiền đề của cách mạng tư sản.",
+    "Nêu mục tiêu và lực lượng tham gia các cuộc cách mạng tư sản.",
+    "Vì sao Cách mạng tư sản Pháp được coi là triệt để nhất?"
+   ]
   },
   {
    "so": 2,
@@ -25,7 +60,31 @@
    ],
    "nam": null,
    "tom": "Chủ nghĩa tư bản được xác lập, chuyển sang giai đoạn đế quốc và chủ nghĩa tư bản hiện đại.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Sự xác lập của chủ nghĩa tư bản",
+     [
+      "Qua các cuộc cách mạng tư sản và cách mạng công nghiệp, chủ nghĩa tư bản được xác lập ở châu Âu, Bắc Mỹ trong thế kỉ XIX.",
+      "Các nước tư bản mở rộng xâm lược thuộc địa, hình thành hệ thống thuộc địa khắp thế giới."
+     ]
+    ],
+    [
+     "2. Chủ nghĩa tư bản hiện đại",
+     [
+      "Cuối thế kỉ XIX – đầu XX, chủ nghĩa tư bản chuyển sang giai đoạn độc quyền; từ sau Chiến tranh thế giới thứ hai là chủ nghĩa tư bản hiện đại.",
+      "Đặc điểm: ứng dụng mạnh mẽ khoa học – công nghệ, các công ti xuyên quốc gia, nhà nước can thiệp vào kinh tế.",
+      "Tiềm năng: khả năng thích ứng, điều chỉnh; hạn chế: bất bình đẳng, khủng hoảng chu kì, chênh lệch giàu nghèo."
+     ]
+    ]
+   ],
+   "nho": [
+    "Chủ nghĩa tư bản xác lập trên phạm vi thế giới trong thế kỉ XIX.",
+    "Chủ nghĩa tư bản hiện đại có khả năng điều chỉnh nhưng còn nhiều hạn chế."
+   ],
+   "hoi": [
+    "Trình bày quá trình xác lập chủ nghĩa tư bản.",
+    "Nêu tiềm năng và hạn chế của chủ nghĩa tư bản hiện đại."
+   ]
   },
   {
    "so": 3,
@@ -37,7 +96,31 @@
    ],
    "nam": 1922,
    "tom": "Cách mạng tháng Mười Nga và sự thành lập Liên Xô (1922).",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Cách mạng tháng Mười Nga năm 1917",
+     [
+      "Đầu thế kỉ XX, nước Nga khủng hoảng toàn diện; Cách mạng tháng Hai (1917) lật đổ Nga hoàng, dẫn đến tình trạng hai chính quyền song song.",
+      "Ngày 25/10/1917 (lịch Nga), dưới sự lãnh đạo của Lê-nin và Đảng Bôn-sê-vích, khởi nghĩa giành thắng lợi ở Pê-tơ-rô-grát, nhà nước Xô viết ra đời."
+     ]
+    ],
+    [
+     "2. Liên Xô được thành lập và xây dựng chủ nghĩa xã hội",
+     [
+      "Sau nội chiến và Chính sách kinh tế mới, Liên Xô được thành lập (12/1922).",
+      "Liên Xô tiến hành công nghiệp hoá, tập thể hoá, trở thành cường quốc công nghiệp.",
+      "Ý nghĩa: chủ nghĩa xã hội từ lí luận trở thành hiện thực ở một quốc gia, cổ vũ phong trào cách mạng thế giới."
+     ]
+    ]
+   ],
+   "nho": [
+    "25/10/1917: Cách mạng tháng Mười Nga thắng lợi.",
+    "12/1922: Liên Xô thành lập."
+   ],
+   "hoi": [
+    "Trình bày những nét chính của Cách mạng tháng Mười Nga.",
+    "Cách mạng tháng Mười có ý nghĩa gì với thế giới?"
+   ]
   },
   {
    "so": 4,
@@ -49,7 +132,38 @@
    ],
    "nam": null,
    "tom": "Chủ nghĩa xã hội mở rộng, khủng hoảng ở Liên Xô, Đông Âu và công cuộc cải cách ở các nước hiện nay.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Chủ nghĩa xã hội mở rộng sau Chiến tranh thế giới thứ hai",
+     [
+      "Các nước Đông Âu, Trung Quốc, Việt Nam, Triều Tiên, Cu-ba… đi theo con đường xã hội chủ nghĩa; hệ thống xã hội chủ nghĩa thế giới hình thành.",
+      "Hội đồng Tương trợ kinh tế (SEV, 1949), Tổ chức Hiệp ước Vác-sa-va (1955)."
+     ]
+    ],
+    [
+     "2. Sự khủng hoảng và sụp đổ ở Liên Xô, Đông Âu",
+     [
+      "Từ những năm 70, các nước lâm vào khủng hoảng; cải tổ thất bại.",
+      "Chế độ xã hội chủ nghĩa ở Đông Âu sụp đổ (1989 – 1991), Liên Xô tan rã (12/1991)."
+     ]
+    ],
+    [
+     "3. Chủ nghĩa xã hội từ năm 1991 đến nay",
+     [
+      "Trung Quốc, Việt Nam, Lào, Cu-ba tiếp tục con đường xã hội chủ nghĩa, tiến hành cải cách, đổi mới, đạt nhiều thành tựu.",
+      "Trung Quốc cải cách mở cửa từ năm 1978; Việt Nam Đổi mới từ năm 1986; Lào đổi mới từ năm 1986; Cu-ba điều chỉnh, cập nhật mô hình."
+     ]
+    ]
+   ],
+   "nho": [
+    "Sau 1945, hệ thống xã hội chủ nghĩa thế giới hình thành.",
+    "1991: Liên Xô tan rã.",
+    "Trung Quốc, Việt Nam, Lào, Cu-ba tiếp tục cải cách, đổi mới."
+   ],
+   "hoi": [
+    "Chủ nghĩa xã hội được mở rộng như thế nào sau năm 1945?",
+    "Nêu thành tựu cải cách, đổi mới của một nước xã hội chủ nghĩa hiện nay."
+   ]
   },
   {
    "so": 5,
@@ -61,7 +175,32 @@
    ],
    "nam": null,
    "tom": "Các nước thực dân phương Tây xâm lược, cai trị Đông Nam Á và hậu quả.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Quá trình xâm lược của thực dân phương Tây",
+     [
+      "Từ thế kỉ XVI, các nước Bồ Đào Nha, Tây Ban Nha, Hà Lan, Anh, Pháp, Mỹ lần lượt xâm nhập Đông Nam Á.",
+      "Đến cuối thế kỉ XIX, hầu hết các nước Đông Nam Á hải đảo và lục địa trở thành thuộc địa; riêng Xiêm giữ được độc lập tương đối."
+     ]
+    ],
+    [
+     "2. Chính sách cai trị của thực dân",
+     [
+      "Chính trị: chia để trị, sử dụng tầng lớp phong kiến bản xứ làm tay sai.",
+      "Kinh tế: khai thác tài nguyên, bóc lột nhân công, biến thuộc địa thành thị trường tiêu thụ hàng hoá.",
+      "Văn hoá – xã hội: chính sách ngu dân; xã hội phân hoá, xuất hiện các giai cấp mới."
+     ]
+    ]
+   ],
+   "nho": [
+    "Từ thế kỉ XVI, thực dân phương Tây xâm nhập Đông Nam Á.",
+    "Cuối thế kỉ XIX, hầu hết Đông Nam Á là thuộc địa, trừ Xiêm."
+   ],
+   "hoi": [
+    "Trình bày quá trình xâm lược Đông Nam Á của thực dân phương Tây.",
+    "Vì sao Xiêm giữ được độc lập tương đối?",
+    "Nêu hậu quả của chính sách cai trị thực dân."
+   ]
   },
   {
    "so": 6,
@@ -73,7 +212,30 @@
    ],
    "nam": null,
    "tom": "Phong trào đấu tranh giành độc lập của các dân tộc Đông Nam Á đến khi thắng lợi.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Phong trào đấu tranh giành độc lập",
+     [
+      "Cuối thế kỉ XIX – đầu thế kỉ XX, phong trào chống thực dân diễn ra ở In-đô-nê-xi-a, Phi-líp-pin, Mi-an-ma, Việt Nam, Lào, Cam-pu-chia…",
+      "Từ những năm 20 của thế kỉ XX, phong trào theo khuynh hướng vô sản phát triển song song với khuynh hướng tư sản."
+     ]
+    ],
+    [
+     "2. Quá trình giành độc lập",
+     [
+      "Năm 1945, nhiều nước nổi dậy giành độc lập: In-đô-nê-xi-a (8/1945), Việt Nam (9/1945), Lào (10/1945).",
+      "Sau đó các nước tiếp tục kháng chiến chống quay lại xâm lược; đến những năm 70 – 80, các nước Đông Nam Á lần lượt hoàn thành giải phóng dân tộc, Bru-nây độc lập năm 1984, Đông Ti-mo năm 2002."
+     ]
+    ]
+   ],
+   "nho": [
+    "1945: nhiều nước Đông Nam Á giành độc lập.",
+    "Bru-nây (1984), Đông Ti-mo (2002) là những nước giành độc lập muộn nhất."
+   ],
+   "hoi": [
+    "Nêu nét chính phong trào đấu tranh giành độc lập ở Đông Nam Á.",
+    "Trình bày quá trình giành độc lập của các nước Đông Nam Á."
+   ]
   },
   {
    "so": 7,
@@ -85,7 +247,44 @@
    ],
    "nam": null,
    "tom": "Vị trí, ý nghĩa và các cuộc kháng chiến bảo vệ Tổ quốc tiêu biểu, nguyên nhân thắng lợi, thất bại.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Vị trí chiến lược của Việt Nam",
+     [
+      "Nằm ở trung tâm Đông Nam Á, nơi giao thoa đường biển, đường bộ quan trọng nên thường xuyên bị các thế lực ngoại xâm nhòm ngó."
+     ]
+    ],
+    [
+     "2. Một số cuộc kháng chiến tiêu biểu",
+     [
+      "Kháng chiến chống Tống thời Tiền Lê (981) và thời Lý (1075 – 1077) với phòng tuyến sông Như Nguyệt.",
+      "Ba lần kháng chiến chống Mông – Nguyên thời Trần (thế kỉ XIII), chiến thắng Bạch Đằng 1288.",
+      "Kháng chiến chống quân Xiêm (1785) với trận Rạch Gầm – Xoài Mút, chống quân Thanh (1789) với trận Ngọc Hồi – Đống Đa của Tây Sơn.",
+      "Một số cuộc kháng chiến không thành công: chống Triệu (thế kỉ II TCN), thời Hồ chống Minh (1406 – 1407), triều Nguyễn chống Pháp (1858 – 1884)."
+     ]
+    ],
+    [
+     "3. Nguyên nhân thắng lợi và bài học",
+     [
+      "Truyền thống yêu nước, tinh thần đoàn kết toàn dân; đường lối, nghệ thuật quân sự đúng đắn, sáng tạo; vai trò của các vị tướng tài.",
+      "Bài học: xây dựng khối đại đoàn kết, “lấy dân làm gốc”, kết hợp sức mạnh dân tộc và thời đại."
+     ]
+    ]
+   ],
+   "nho": [
+    "1077: phòng tuyến Như Nguyệt.",
+    "1288: chiến thắng Bạch Đằng.",
+    "1785: Rạch Gầm – Xoài Mút; 1789: Ngọc Hồi – Đống Đa."
+   ],
+   "hoi": [
+    "Vì sao Việt Nam thường xuyên phải tiến hành chiến tranh bảo vệ Tổ quốc?",
+    "Nêu nguyên nhân thắng lợi của các cuộc kháng chiến.",
+    "Nguyên nhân thất bại của kháng chiến thời Hồ là gì?"
+   ],
+   "sa_ban": {
+    "ten": "Sa bàn 3D Như Nguyệt 1077",
+    "url": "khong-gian/engine/2.1.0/sa-ban.html?goi=nhu-nguyet-1077"
+   }
   },
   {
    "so": 8,
@@ -97,7 +296,50 @@
    ],
    "nam": null,
    "tom": "Các cuộc khởi nghĩa thời Bắc thuộc, khởi nghĩa Lam Sơn, phong trào Tây Sơn: diễn biến và bài học.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Khởi nghĩa và chiến tranh giải phóng thời Bắc thuộc",
+     [
+      "Khởi nghĩa Hai Bà Trưng (40), Bà Triệu (248), Lý Bí (542) lập nước Vạn Xuân, Mai Thúc Loan, Phùng Hưng…",
+      "Năm 938, Ngô Quyền đánh tan quân Nam Hán trên sông Bạch Đằng, chấm dứt thời Bắc thuộc."
+     ]
+    ],
+    [
+     "2. Khởi nghĩa Lam Sơn (1418 – 1427)",
+     [
+      "Lê Lợi lãnh đạo, Nguyễn Trãi bày mưu; từ căn cứ Lam Sơn tiến vào Nghệ An rồi ra Bắc.",
+      "Chiến thắng Tốt Động – Chúc Động, Chi Lăng – Xương Giang buộc quân Minh rút về nước; Bình Ngô đại cáo ra đời."
+     ]
+    ],
+    [
+     "3. Phong trào Tây Sơn",
+     [
+      "Năm 1771, khởi nghĩa Tây Sơn bùng nổ; lật đổ chúa Nguyễn, chúa Trịnh, xoá bỏ ranh giới chia cắt đất nước.",
+      "Đánh tan quân Xiêm (1785), quân Thanh (1789), bảo vệ độc lập dân tộc."
+     ]
+    ],
+    [
+     "4. Ý nghĩa và bài học",
+     [
+      "Giành lại và bảo vệ nền độc lập, khẳng định ý chí tự chủ của dân tộc.",
+      "Bài học: dựa vào dân, đoàn kết toàn dân, biết chọn thời cơ và nghệ thuật quân sự sáng tạo."
+     ]
+    ]
+   ],
+   "nho": [
+    "938: chiến thắng Bạch Đằng, chấm dứt Bắc thuộc.",
+    "1418 – 1427: khởi nghĩa Lam Sơn.",
+    "1771: khởi nghĩa Tây Sơn bùng nổ."
+   ],
+   "hoi": [
+    "Kể tên các cuộc khởi nghĩa tiêu biểu thời Bắc thuộc.",
+    "Nêu nguyên nhân thắng lợi của khởi nghĩa Lam Sơn.",
+    "Phong trào Tây Sơn có những đóng góp gì cho lịch sử dân tộc?"
+   ],
+   "sa_ban": {
+    "ten": "Sa bàn 3D Bạch Đằng 938",
+    "url": "khong-gian/engine/2.0.0/sa-ban.html?goi=bach-dang-938"
+   }
   },
   {
    "so": 9,
@@ -109,7 +351,40 @@
    ],
    "nam": 1400,
    "tom": "Bối cảnh, nội dung, kết quả và ý nghĩa của cải cách Hồ Quý Ly cuối thế kỉ XIV – đầu thế kỉ XV.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Bối cảnh",
+     [
+      "Cuối thế kỉ XIV, nhà Trần suy yếu, kinh tế, xã hội khủng hoảng; nguy cơ ngoại xâm từ phương Bắc.",
+      "Hồ Quý Ly nắm quyền, năm 1400 lập nhà Hồ, đặt quốc hiệu Đại Ngu."
+     ]
+    ],
+    [
+     "2. Nội dung cải cách",
+     [
+      "Chính trị: cải tổ bộ máy, hạn chế quyền lực quý tộc Trần, dời đô vào Tây Đô (Thanh Hoá).",
+      "Kinh tế: phát hành tiền giấy, ban hành phép hạn điền, hạn nô; thống nhất đơn vị đo lường.",
+      "Văn hoá – giáo dục: đề cao chữ Nôm, cải cách thi cử; quân sự: tăng cường quân đội, xây dựng phòng tuyến."
+     ]
+    ],
+    [
+     "3. Ý nghĩa và hạn chế",
+     [
+      "Góp phần củng cố chế độ quân chủ trung ương tập quyền, thể hiện tinh thần dám đổi mới.",
+      "Hạn chế: chưa giải quyết được yêu cầu của nhân dân, chưa tạo được sự đồng thuận, nên kháng chiến chống Minh thất bại."
+     ]
+    ]
+   ],
+   "nho": [
+    "1400: nhà Hồ thành lập, quốc hiệu Đại Ngu.",
+    "Phát hành tiền giấy, phép hạn điền, hạn nô.",
+    "Cải cách chưa tạo được sự đồng thuận của nhân dân."
+   ],
+   "hoi": [
+    "Trình bày bối cảnh cuộc cải cách Hồ Quý Ly.",
+    "Nêu nội dung chính của cải cách.",
+    "Rút ra bài học từ cuộc cải cách của Hồ Quý Ly."
+   ]
   },
   {
    "so": 10,
@@ -121,7 +396,41 @@
    ],
    "nam": 1460,
    "tom": "Bối cảnh, nội dung và kết quả cải cách hành chính, luật pháp của vua Lê Thánh Tông.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Bối cảnh",
+     [
+      "Sau khi nhà Lê sơ thành lập, bộ máy nhà nước còn nhiều hạn chế, quyền lực của các đại thần lớn.",
+      "Năm 1460, Lê Thánh Tông lên ngôi, tiến hành cải cách toàn diện."
+     ]
+    ],
+    [
+     "2. Nội dung cải cách",
+     [
+      "Hành chính: chia cả nước thành 13 đạo thừa tuyên; tổ chức lại bộ máy trung ương với 6 bộ, các cơ quan giám sát.",
+      "Quan lại: tuyển chọn chủ yếu qua thi cử; quy định chặt chẽ về khảo khoá.",
+      "Luật pháp: ban hành Quốc triều hình luật (luật Hồng Đức) với nhiều điểm tiến bộ, bảo vệ quyền lợi của phụ nữ.",
+      "Quân đội, kinh tế, giáo dục: tổ chức lại quân đội; chế độ quân điền; đề cao Nho giáo, phát triển giáo dục khoa cử."
+     ]
+    ],
+    [
+     "3. Kết quả và ý nghĩa",
+     [
+      "Bộ máy nhà nước quân chủ trung ương tập quyền đạt đến đỉnh cao, Đại Việt phát triển cường thịnh.",
+      "Để lại nhiều kinh nghiệm về xây dựng bộ máy nhà nước và pháp luật."
+     ]
+    ]
+   ],
+   "nho": [
+    "1460: Lê Thánh Tông lên ngôi.",
+    "13 đạo thừa tuyên; luật Hồng Đức.",
+    "Đại Việt phát triển cường thịnh thế kỉ XV."
+   ],
+   "hoi": [
+    "Trình bày nội dung cải cách hành chính của Lê Thánh Tông.",
+    "Luật Hồng Đức có những điểm tiến bộ nào?",
+    "Cải cách Lê Thánh Tông có ý nghĩa gì?"
+   ]
   },
   {
    "so": 11,
@@ -133,7 +442,40 @@
    ],
    "nam": 1831,
    "tom": "Cải cách hành chính của vua Minh Mạng: lập 30 tỉnh và phủ Thừa Thiên, củng cố quyền lực trung ương.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Bối cảnh",
+     [
+      "Đầu thế kỉ XIX, bộ máy nhà nước thời Gia Long còn phân quyền, đặc biệt ở Bắc Thành và Gia Định Thành.",
+      "Năm 1820, Minh Mạng lên ngôi, tiến hành cải cách."
+     ]
+    ],
+    [
+     "2. Nội dung cải cách",
+     [
+      "Trung ương: thành lập Văn thư phòng (sau là Nội các), Cơ mật viện; hoàn thiện 6 bộ.",
+      "Địa phương: những năm 1831 – 1832, xoá bỏ Bắc Thành, Gia Định Thành, chia cả nước thành 30 tỉnh và phủ Thừa Thiên.",
+      "Quân sự, văn hoá, giáo dục: tổ chức quân đội theo hướng thống nhất, chính quy; coi trọng Nho giáo và khoa cử."
+     ]
+    ],
+    [
+     "3. Ý nghĩa",
+     [
+      "Hoàn thiện bộ máy nhà nước quân chủ trung ương tập quyền; thống nhất về hành chính trên cả nước.",
+      "Hệ thống tỉnh cơ bản được duy trì lâu dài về sau."
+     ]
+    ]
+   ],
+   "nho": [
+    "1820: Minh Mạng lên ngôi.",
+    "1831 – 1832: chia cả nước thành 30 tỉnh và phủ Thừa Thiên.",
+    "Cải cách thống nhất hành chính trên cả nước."
+   ],
+   "hoi": [
+    "Nêu bối cảnh cuộc cải cách Minh Mạng.",
+    "Trình bày cải cách hành chính địa phương của Minh Mạng.",
+    "Cải cách có ý nghĩa gì đối với đất nước?"
+   ]
   },
   {
    "so": 12,
@@ -145,7 +487,30 @@
    ],
    "nam": null,
    "tom": "Vị trí địa lí, tầm quan trọng chiến lược và tài nguyên của Biển Đông, các quần đảo Hoàng Sa, Trường Sa.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Vị trí và tầm quan trọng của Biển Đông",
+     [
+      "Biển Đông là biển nửa kín, rộng khoảng 3,5 triệu km², nằm trên tuyến hàng hải quốc tế giữa Thái Bình Dương và Ấn Độ Dương.",
+      "Có nhiều đảo, quần đảo, eo biển quan trọng; tài nguyên phong phú: dầu khí, hải sản, khoáng sản."
+     ]
+    ],
+    [
+     "2. Tầm quan trọng chiến lược",
+     [
+      "Là tuyến giao thông biển huyết mạch của khu vực và thế giới.",
+      "Có vị trí quan trọng về an ninh, quốc phòng đối với các nước ven biển, trong đó có Việt Nam."
+     ]
+    ]
+   ],
+   "nho": [
+    "Biển Đông nằm trên tuyến hàng hải quốc tế quan trọng.",
+    "Tài nguyên phong phú, đặc biệt là dầu khí và hải sản."
+   ],
+   "hoi": [
+    "Nêu vị trí và đặc điểm của Biển Đông.",
+    "Vì sao Biển Đông có tầm quan trọng chiến lược?"
+   ]
   },
   {
    "so": 13,
@@ -157,7 +522,40 @@
    ],
    "nam": null,
    "tom": "Quá trình Việt Nam xác lập, thực thi chủ quyền và đấu tranh bảo vệ chủ quyền ở Biển Đông.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Vị trí của Biển Đông với Việt Nam",
+     [
+      "Việt Nam có đường bờ biển dài hơn 3 260 km; vùng biển Việt Nam có nhiều đảo, trong đó có hai quần đảo Hoàng Sa và Trường Sa.",
+      "Biển Đông có vai trò quan trọng đối với kinh tế, quốc phòng, an ninh của Việt Nam."
+     ]
+    ],
+    [
+     "2. Quá trình xác lập và thực thi chủ quyền",
+     [
+      "Từ thế kỉ XVII, chúa Nguyễn lập đội Hoàng Sa, Bắc Hải khai thác và quản lí các quần đảo.",
+      "Thời Nguyễn tiếp tục thực thi chủ quyền: cắm mốc, dựng bia, vẽ bản đồ; thời Pháp thuộc, chính quyền thuộc địa thay mặt Việt Nam quản lí.",
+      "Hiện nay, Việt Nam khẳng định chủ quyền qua Luật Biển Việt Nam (2012), tuân thủ Công ước Liên hợp quốc về Luật Biển năm 1982."
+     ]
+    ],
+    [
+     "3. Chủ trương giải quyết tranh chấp",
+     [
+      "Giải quyết các tranh chấp bằng biện pháp hoà bình trên cơ sở luật pháp quốc tế.",
+      "Thúc đẩy thực hiện Tuyên bố về ứng xử của các bên ở Biển Đông (DOC) và đàm phán Bộ quy tắc ứng xử (COC)."
+     ]
+    ]
+   ],
+   "nho": [
+    "Đội Hoàng Sa, Bắc Hải từ thế kỉ XVII.",
+    "Luật Biển Việt Nam 2012; Công ước Luật Biển 1982.",
+    "Giải quyết tranh chấp bằng biện pháp hoà bình."
+   ],
+   "hoi": [
+    "Trình bày quá trình xác lập, thực thi chủ quyền của Việt Nam ở Hoàng Sa, Trường Sa.",
+    "Nêu chủ trương của Việt Nam trong giải quyết tranh chấp ở Biển Đông.",
+    "Em có thể làm gì để góp phần bảo vệ chủ quyền biển đảo?"
+   ]
   }
  ]
 }
