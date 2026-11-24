@@ -1,6 +1,6 @@
 {
  "note": "Bản thử bộ máy 2.2 (GĐ3): 2 cảnh ngắn để kiểm tra hai tầng địa hình, mũi tên, xe chạy theo đường. Kịch bản thật (12 cảnh, có nguồn) ở 'danY', dựng ở GĐ5.",
- "duration": 115.0,
+ "duration": 150.0,
  "scenes": [
   {
    "id": "T01",
@@ -87,6 +87,51 @@
      "size": "Toàn",
      "desc": "Cổng Dinh: 843 húc chưa đổ, 390 húc đổ cổng chính"
     }
+   ]
+  },
+  {
+   "id": "T03",
+   "title": "Lá cờ trên nóc Dinh (11 giờ 30, trưa 30/4/1975)",
+   "tang": "noi-do",
+   "t0": 115.0,
+   "t1": 150.0,
+   "shots": [
+    {
+     "id": "T03-A",
+     "t0": 115.0,
+     "t1": 127.0,
+     "size": "Trung",
+     "desc": "Bùi Quang Thận rời xe 843, chạy vào Dinh"
+    },
+    {
+     "id": "T03-B",
+     "t0": 127.0,
+     "t1": 150.0,
+     "size": "Cận",
+     "desc": "Nóc Dinh: hạ cờ ba sọc, kéo cờ Mặt trận"
+    }
+   ],
+   "subs": [
+    [
+     115.5,
+     126.5,
+     "Đại đội trưởng Bùi Quang Thận tháo lá cờ trên tháp pháo xe 843, chạy vào Dinh."
+    ],
+    [
+     127.5,
+     138.0,
+     "Trên nóc Dinh, anh hạ lá cờ ba sọc — cờ to, vải dày nên mất nhiều phút."
+    ],
+    [
+     138.5,
+     149.5,
+     "11 giờ 30 phút ngày 30/4/1975, lá cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam tung bay trên nóc Dinh Độc Lập."
+    ]
+   ],
+   "nguon": [
+    "S37",
+    "S38",
+    "S33"
    ]
   }
  ],

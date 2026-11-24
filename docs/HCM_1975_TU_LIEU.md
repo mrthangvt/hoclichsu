@@ -143,3 +143,8 @@ Theo yêu cầu anh Thắng: cảnh có người dân thì đưa mẫu người 
 | A-37 | `props/may-bay/a-37.glb` | dài 8,92 m (A-37B, kể cả cần tiếp dầu) | đã xoá sao trắng, số trắng; còn chữ đuôi "IL" của mẫu — cần sơn lại theo phi đội Quyết Thắng / VNCH |
 | Pháo D-74 122 mm | `props/phao/d-74-122mm.glb` | rộng 2,35 m (khi hành quân) | nòng đang nâng; D-74 có dùng năm 1975 (bắn sân bay Đà Nẵng — baophapluat.vn) |
 Chưa đặt vào phim: C-130A, A-37, UH-1, D-74, cao xạ 37 mm — cảnh Tân Sơn Nhất, Nhơn Trạch dựng ở GĐ5 khi có sơ đồ sân bay 1975 (sân đỗ OSM hiện nay phần lớn làm sau 1975). Còn thiếu: M113, M48, M-46 130 mm, AC-119K.
+
+## 11. Cảnh cắm cờ (T03, 24/11/2026)
+- 1:55–2:07: Bùi Quang Thận (nhân vật `linh-tang.glb`) rời xe 843, chạy vào Dinh — không mang vũ khí, mang lá cờ tháo từ tháp pháo (S37).
+- 2:11–2:17: trên nóc Dinh hạ lá cờ ba sọc (cờ to, vải dày nên mất nhiều phút — S37); 2:19–2:25: kéo cờ Mặt trận Dân tộc Giải phóng miền Nam lên cột cờ; mốc 11 giờ 30 (S38, S37).
+- Giản lược: cờ kéo trên cột giữa của ba cột trên mái lầu thượng; nguồn ghi "cột cờ chính trước ban công" (S38) / "cột cờ trên nóc Dinh" — vị trí cột đúng sẽ đối chiếu ảnh tư liệu. Chưa dựng Vũ Đăng Toàn cầm AK đứng bảo vệ dưới sân (S38).
