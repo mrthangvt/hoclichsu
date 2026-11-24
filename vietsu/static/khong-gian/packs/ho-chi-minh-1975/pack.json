@@ -111,8 +111,10 @@
  },
  "sources": "sources.json",
  "taiSau": [
-  "units/*.nvz",
-  "units/*.glb"
+  "props/xe/*.glb",
+  "terrain/noi-do/*",
+  "units/*.glb",
+  "units/*.nvz"
  ],
  "terrain": {
   "data": "terrain/meta.json",
