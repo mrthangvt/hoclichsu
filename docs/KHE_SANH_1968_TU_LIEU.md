@@ -1,11 +1,11 @@
 # Sa bàn Chiến dịch Đường 9 – Khe Sanh 1968 — tư liệu, kịch bản nháp, tài sản
 
 Gói: `vietsu/static/khong-gian/packs/khe-sanh-1968/` · bộ máy 2.2.0 · nhánh `claude/sa-ban-khe-sanh-1968`.
-Trạng thái (25/11/2026): **GĐ0 xong** (khung gói, tài sản tái dùng đã chép, `kiem_tra_goi.py` đạt) · **GĐ1 chờ anh duyệt**: bảng mốc (mục 2), đối chiếu kịch bản camera của anh (mục 3), đề xuất chia hồi (mục 4), tầng địa hình (mục 5), câu hỏi cần chốt (mục 8).
+Trạng thái (25/11/2026, 1h): **GĐ0, GĐ1 xong** (anh duyệt) · kịch bản 11 hồi, cờ, PT-76 số 555, lính Mỹ thêm áo giáp (chờ gắn xương) · **GĐ2 đang làm**: dữ liệu đã tải, chờ chuyển tệp (mục 9). PR #55.
 **Anh Thắng chốt (25/11/2026, 0h29):** 11 hồi (phương án B, ~13,5 phút) · sửa lời dẫn theo mục 3 · cờ Quân Giải phóng là **cờ đỏ sao vàng** (`props/co-qgp.png`), cờ Mỹ 50 sao (`props/co-my.png`) · em sửa mẫu lính Mỹ, PT-76 trong Blender; **anh tự làm B-52D** · em được chạy lệnh trên máy anh để lấy OSM, độ cao. Địa hình anh chưa chọn → làm theo đề xuất hai tầng (mục 5). Kịch bản 11 hồi: `story.json`, dựng bằng `vietsu/tools/sa_ban/voice/nhap_story_khe_sanh.py` (thời lượng ước theo số chữ, 824 s).
 Nhãn bắt buộc: "Tái dựng mô phỏng". Mã nguồn `S…` (Việt Nam), `M…` (Mỹ) ở `sources.json`. Không đưa con số nào không có nguồn.
 
-Kịch bản gốc của anh: `docs/du-lieu/khe-sanh-1968_camera_timeline_v1.json` (13 cảnh, 81 cú máy, 930 s, lời dẫn từng cảnh). `story.json` V0 chuyển nguyên từ tệp này, giữ thứ tự của anh; mọi đề xuất sửa nằm ở mục 3–4, chưa sửa vào lời dẫn.
+Kịch bản gốc của anh: `docs/du-lieu/khe-sanh-1968_camera_timeline_v1.json` (13 cảnh, 81 cú máy, 930 s, lời dẫn từng cảnh). `story.json` hiện là bản 11 hồi đã sửa lời theo mục 3 (anh duyệt 25/11).
 
 Nguồn hiện là báo chí chính thống, niên giám TTXVN, Học viện Quốc phòng, và chuyên khảo của Cục Lịch sử TQLC Mỹ. Nên bổ sung sách: *Lịch sử Kháng chiến chống Mỹ cứu nước 1954–1975* tập 5 (Viện Lịch sử quân sự), *Chiến dịch tiến công Đường 9 – Khe Sanh xuân hè 1968* (Bộ Tổng Tham mưu), nếu anh có bản trong "Tài liệu sử".
 
@@ -109,8 +109,8 @@ Cách gọi các phe trong lời dẫn của anh ("Quân Giải phóng", "quân 
 
 ## 6. Phe, cờ (quy tắc: một bảng phe, không để phe này mang cờ phe kia)
 `pack.json › sides`: 0 Quân Giải phóng (QĐND Việt Nam) · 1 Quân đội Hoa Kỳ · 2 Quân lực VNCH.
-- **Cờ Quân Giải phóng ở Khe Sanh 1968: chưa có nguồn.** Các bài chỉ nói "lá cờ chiến thắng" trên Tà Cơn 9/7 (S14, S15), không mô tả. Các đơn vị là sư đoàn chủ lực QĐNDVN (S3), khác Chiến dịch HCM 1975 (cờ Mặt trận). Cần anh chốt: cờ đỏ sao vàng, cờ "Quyết chiến quyết thắng", hay cờ khác — tốt nhất theo một ảnh tư liệu TTXVN.
-- Cờ Mỹ (50 sao): chờ duyệt rồi vẽ. Cờ VNCH: dùng lại gói HCM.
+- **Anh chốt 25/11: cờ đỏ sao vàng** (`props/co-qgp.png`). Ghi chú cũ: chưa tìm được nguồn ảnh. Các bài chỉ nói "lá cờ chiến thắng" trên Tà Cơn 9/7 (S14, S15), không mô tả. Các đơn vị là sư đoàn chủ lực QĐNDVN (S3), khác Chiến dịch HCM 1975 (cờ Mặt trận). Cần anh chốt: cờ đỏ sao vàng, cờ "Quyết chiến quyết thắng", hay cờ khác — tốt nhất theo một ảnh tư liệu TTXVN.
+- Cờ Mỹ 50 sao: đã vẽ (`props/co-my.png`). Cờ VNCH: dùng lại gói HCM.
 - BV-33 Hoàng gia Lào, dân vệ CIDG ở Làng Vây: đề xuất không dựng riêng, chỉ ghi trong lời dẫn (tránh thêm phe thứ tư).
 
 ## 7. Tài sản
@@ -157,7 +157,7 @@ Anh đã có mẫu thô Tripo trong `_KHO-CHUNG` cho ba thứ đầu (em đã xe
 
 Mọi mẫu mới dựng trong Blender trên máy anh (MCP for Blender), không chạy việc nặng trong Blender anh đang mở; nướng bằng bpy làm thư viện như các gói trước.
 
-## 8. Cần anh chốt trước GĐ2
+## 8. Câu hỏi đã hỏi trước GĐ2 (anh trả lời 25/11, xem đầu tệp)
 1. Thứ tự, số hồi: phương án A (13 hồi, đưa Tết lên hồi 5) hay B (11 hồi)?
 2. Sửa lời dẫn theo mục 3 (881 Bắc, "trận đầu đánh thắng", giờ Làng Vây, 8/4, 9/7 và 15/7)?
 3. Giờ làm chủ Làng Vây: "rạng sáng cơ bản làm chủ, 10 giờ hoàn toàn làm chủ" (S8 + S2)?
