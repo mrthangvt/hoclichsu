@@ -1,6 +1,6 @@
 {
  "note": "Bản thử bộ máy 2.2 (GĐ3): 2 cảnh ngắn để kiểm tra hai tầng địa hình, mũi tên, xe chạy theo đường. Kịch bản thật (12 cảnh, có nguồn) ở 'danY', dựng ở GĐ5.",
- "duration": 150.0,
+ "duration": 185.0,
  "scenes": [
   {
    "id": "T01",
@@ -43,57 +43,115 @@
    ]
   },
   {
+   "id": "C04",
+   "title": "Phi đội Quyết Thắng (16 giờ 15, 28/4/1975)",
+   "tang": "noi-do",
+   "t0": 40.0,
+   "t1": 75.0,
+   "shots": [
+    {
+     "id": "C04-A",
+     "t0": 40.0,
+     "t1": 49.0,
+     "size": "Toàn",
+     "desc": "Sân bay Tân Sơn Nhất, khu đỗ máy bay (sơ đồ 1968)"
+    },
+    {
+     "id": "C04-B",
+     "t0": 49.0,
+     "t1": 63.0,
+     "size": "Trung",
+     "desc": "Bám sau chiếc A-37 dẫn đầu"
+    },
+    {
+     "id": "C04-C",
+     "t0": 63.0,
+     "t1": 75.0,
+     "size": "Toàn",
+     "desc": "Khói lửa trên khu đỗ"
+    }
+   ],
+   "subs": [
+    [
+     40.5,
+     48.5,
+     "Chiều 28/4/1975, năm chiếc A-37 thu được cất cánh từ sân bay Phan Rang — Phi đội Quyết Thắng."
+    ],
+    [
+     49.0,
+     58.0,
+     "16 giờ 15 xuất kích, phi đội bay thẳng về Sài Gòn, ném bom khu đỗ máy bay sân bay Tân Sơn Nhất."
+    ],
+    [
+     58.5,
+     66.5,
+     "Sau trận ném bom, việc di tản bằng máy bay cánh cố định từ Tân Sơn Nhất bị tê liệt."
+    ],
+    [
+     67.0,
+     74.5,
+     "18 giờ 15, cả phi đội hạ cánh an toàn xuống sân bay Thành Sơn. (Khu đỗ máy bay theo sơ đồ sân bay 1968.)"
+    ]
+   ],
+   "nguon": [
+    "S29",
+    "S17",
+    "S14",
+    "M3"
+   ]
+  },
+  {
    "id": "T02",
    "title": "Xe tăng vào Dinh Độc Lập (thử xe theo đường)",
    "tang": "noi-do",
-   "t0": 40.0,
-   "t1": 115.0,
+   "t0": 75.0,
+   "t1": 150.0,
    "subs": [
     [
-     41.0,
-     52.0,
+     76.0,
+     87.0,
      "Nội đô Sài Gòn · thử xe tăng chạy theo đường phố."
     ],
     [
-     52.5,
-     70.0,
+     87.5,
+     105.0,
      "Đường đi tìm trên mạng đường hôm nay đã lọc; lộ trình thật sẽ chốt theo nguồn."
     ],
     [
-     70.5,
-     83.0,
+     105.5,
+     118.0,
      "Tái dựng mô phỏng."
     ],
     [
-     83.5,
-     89.5,
+     118.5,
+     124.5,
      "Xe 843 húc cổng phụ bên trái và bị kẹt lại."
     ],
     [
-     90.0,
-     99.0,
+     125.0,
+     134.0,
      "Xe 390 húc đổ cổng chính, tiến vào sân Dinh."
     ]
    ],
    "shots": [
     {
      "id": "T02-A",
-     "t0": 40.0,
-     "t1": 66.0,
+     "t0": 75.0,
+     "t1": 101.0,
      "size": "Trung",
      "desc": "Bám sau xe 843"
     },
     {
      "id": "T02-B",
-     "t0": 66.0,
-     "t1": 84.0,
+     "t0": 101.0,
+     "t1": 119.0,
      "size": "Cận",
      "desc": "Bám sau xe 390"
     },
     {
      "id": "T02-C",
-     "t0": 84.0,
-     "t1": 115.0,
+     "t0": 119.0,
+     "t1": 150.0,
      "size": "Toàn",
      "desc": "Cổng Dinh: 843 húc chưa đổ, 390 húc đổ cổng chính"
     }
@@ -103,45 +161,45 @@
    "id": "T03",
    "title": "Lá cờ trên nóc Dinh (11 giờ 30, trưa 30/4/1975)",
    "tang": "noi-do",
-   "t0": 115.0,
-   "t1": 150.0,
+   "t0": 150.0,
+   "t1": 185.0,
    "shots": [
     {
      "id": "T03-A",
-     "t0": 115.0,
-     "t1": 122.5,
+     "t0": 150.0,
+     "t1": 157.5,
      "size": "Trung",
      "desc": "Bùi Quang Thận rời xe 843 ở cổng phụ, chạy về cổng chính"
     },
     {
      "id": "T03-A2",
-     "t0": 122.5,
-     "t1": 129.0,
+     "t0": 157.5,
+     "t1": 164.0,
      "size": "Trung",
      "desc": "Băng qua bãi cỏ vào Dinh"
     },
     {
      "id": "T03-B",
-     "t0": 129.0,
-     "t1": 150.0,
+     "t0": 164.0,
+     "t1": 185.0,
      "size": "Cận",
      "desc": "Nóc Dinh: hạ cờ ba sọc, kéo cờ Mặt trận"
     }
    ],
    "subs": [
     [
-     115.5,
-     126.5,
+     150.5,
+     161.5,
      "Đại đội trưởng Bùi Quang Thận tháo lá cờ trên tháp pháo xe 843, chạy vào Dinh."
     ],
     [
-     127.5,
-     138.0,
+     162.5,
+     173.0,
      "Trên nóc Dinh, anh hạ lá cờ ba sọc — cờ to, vải dày nên mất nhiều phút."
     ],
     [
-     138.5,
-     149.5,
+     173.5,
+     184.5,
      "11 giờ 30 phút ngày 30/4/1975, lá cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam tung bay trên nóc Dinh Độc Lập."
     ]
    ],

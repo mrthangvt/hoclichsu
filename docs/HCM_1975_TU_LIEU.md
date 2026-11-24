@@ -153,3 +153,8 @@ Chưa đặt vào phim: C-130A, A-37, UH-1, D-74, cao xạ 37 mm — cảnh Tân
 
 ## 12. Đường cho cảnh C10 (24/11/2026)
 `placement.json › duong.causg_thinghe`: cầu Sài Gòn → ngã tư Hàng Xanh → cầu Thị Nghè, 2,9 km (`tim_duong.py`, qua điểm Hàng Xanh, sai lệch 7 m), nối vào đầu `duong.dinh` (Thị Nghè → đường Hồng Thập Tự → Dinh, S26). Chưa đưa vào bản thử vì cảnh thử T02 sẽ phải chạy xe quá nhanh; dùng khi dựng C10 (75 s). Cần mẫu M48 (đầu cầu Sài Gòn, S33) và M113 (Hàng Xanh, Thị Nghè, S36).
+
+## 13. Cảnh C04 Phi đội Quyết Thắng (24/11/2026)
+- Phim thử giờ 4 cảnh (3:05): T01 chiến dịch (0–40 s) → **C04 Tân Sơn Nhất (40–75 s)** → T02 vào Dinh (75–150 s) → T03 cắm cờ (150–185 s). Mốc của các cảnh vào Dinh viết theo T02 = 40 s và dời tự động theo `story.json` (`tDinh`).
+- Sơ đồ sân bay 1968 (M3, anh Thắng gửi): khớp affine bằng 2 đầu đường băng (OSM) + "Vietnam Staff Compound" = Bộ Tổng tham mưu = Bộ Tư lệnh Quân khu 7 ngày nay (OSM). Sơ đồ vẽ phỏng (đường băng vẽ dài gấp rưỡi) → dãy "Vietnamese Hangars" rơi lệch Nam ~400 m, nên đặt khu đỗ song song đường băng 07R/25L, phía Bắc Nhà ga Quân sự Tân Sơn Nhất ngày nay (OSM). Thêm mốc "Bộ Tổng tham mưu".
+- Dựng: 2 đường băng (OSM; đầu Đông 07R cắt bằng 07L theo sơ đồ), khu đỗ; 14 A-37, 2 C-130A, 3 UH-1 (bãi trực thăng theo sơ đồ) của không quân VNCH; 5 A-37 phi đội Quyết Thắng bay vào từ hướng Đông Bắc (phía Phan Rang), bổ nhào, ném bom; 8 máy bay trúng bom cháy, khói. **Số máy bay đỗ, số trúng bom là minh hoạ** (các nguồn ghi số máy bay bị phá khác nhau, không nêu).
