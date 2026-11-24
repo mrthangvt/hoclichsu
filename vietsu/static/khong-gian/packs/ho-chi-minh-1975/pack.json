@@ -1,6 +1,6 @@
 {
  "id": "ho-chi-minh-1975",
- "version": "0.2.0",
+ "version": "1.0.0",
  "engine": "^2.2",
  "kind": "battle",
  "title": "Chiến dịch Hồ Chí Minh 1975",
@@ -8,7 +8,7 @@
  "label": "Tái dựng mô phỏng",
  "period": "vndcch",
  "year": 1975,
- "storyLabel": "bản thử bộ máy 2.2 · kịch bản thật ở GĐ5",
+ "storyLabel": "Kịch bản 12 hồi",
  "script": "rieng.js",
  "coords": {
   "system": "blender",
