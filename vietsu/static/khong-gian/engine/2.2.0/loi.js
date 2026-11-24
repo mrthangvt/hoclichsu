@@ -10,7 +10,15 @@ const TANGS = (PACK.terrain && PACK.terrain.tang) || null;
 const TANG = TANGS ? (TANGS[QS.get('tang')] ? QS.get('tang') : Object.keys(TANGS)[0]) : '';
 const TT = TANGS ? TANGS[TANG] : { data: 'terrain/meta.json', height: 'terrain/height.png', image: 'terrain/color.jpg' };
 const EXH = (TT && TT.phongDai) || (PACK.terrain && PACK.terrain.phongDai) || 1;          // phóng đại độ cao (sa bàn rộng, đồng bằng thấp)
-function doiTang(ten, t, phat) { const q = new URLSearchParams(location.search); q.set('tang', ten); if (t != null) q.set('t', (+t).toFixed(1)); if (phat) q.set('phat', '1'); else q.delete('phat'); location.search = q.toString(); }
+// 2.2: đổi tầng = tải lại trang tại cùng thời điểm; giữa hai tầng hiện THẺ CHƯƠNG (tên cảnh sắp tới) để chỗ chuyển thành một ngắt chương
+function doiTang(ten, t, phat) {
+  const q = new URLSearchParams(location.search); q.set('tang', ten); if (t != null) q.set('t', (+t).toFixed(1)); if (phat) q.set('phat', '1'); else q.delete('phat');
+  let sc = null; try { sc = STORY.scenes.find((c) => t >= c.t0 && t < c.t1); } catch (e) { /* STORY chưa có */ }
+  if (sc && phat) q.set('chuong', sc.title); else q.delete('chuong');
+  const ov = document.createElement('div'); ov.id = 'chuong-ov'; ov.innerHTML = '<div><small>Tiếp theo</small><b></b></div>'; ov.querySelector('b').textContent = sc ? sc.title : '';
+  document.body.append(ov); requestAnimationFrame(() => ov.classList.add('on'));
+  setTimeout(() => { location.search = q.toString(); }, sc && phat ? 900 : 0);
+}
 const DUONG = [['data/meta.json', TT.data], ['data/inst.json', 'placement.json'], ['data/story.json', 'story.json'],
   ['data/height.png', TT.height], ['data/color.jpg', TT.image], ['data/', 'props/'], ['models/', 'units/'],
   ['nhanvat/', 'units/'], ['am/', 'audio/'], ['nhac/', 'audio/nhac/']];
@@ -20,6 +28,7 @@ THREE.DefaultLoadingManager.setURLModifier((u) => (/^(blob|data):/.test(u) ? u :
 /*@@RIENG:s1@@*/
 const $ = (id) => document.getElementById(id);
 const lp = $('fill'), lm = $('ld-step');
+if (QS.get('chuong')) { $('load').classList.add('chuong'); $('load').querySelector('.eyebrow').textContent = PACK.title || 'Chương tiếp'; $('load').querySelector('h1').textContent = QS.get('chuong'); }   // thẻ chương khi đổi tầng
 const showErr = (e) => { const el = document.getElementById('lm'); if (el) { el.textContent = 'Lỗi khi tải sa bàn: ' + (e && (e.message || e.reason || e)) ; el.style.color = '#e08a70'; } };
 addEventListener('error', (e) => showErr(e.error || e.message));
 addEventListener('unhandledrejection', (e) => showErr(e.reason));
@@ -452,6 +461,29 @@ function nvxCapNhat(t, dt) {
     N.mixer.update(dt * (v.toc || 1));
   }
 }
+// 2.2: ĐÁM ĐÔNG .nvz dùng chung (người dân, quân đứng xa…) — mỗi khung hình động tác là một InstancedMesh.
+// Mỗi khung phim: dongXoa() → dongDat(...) từng người → dongXong(). Người .nvz nướng sẵn (tools/sa_ban/nv_sang_nvz.py), mặt nhìn +Z.
+const DONG = {};
+async function dongTai(ten, nvz, jpg, tints, cap = 400) {
+  const Z = await nvzRead(nvz), H = Z.H, map = await texLoader.loadAsync(jpg); map.colorSpace = THREE.SRGBColorSpace; map.anisotropy = 4;
+  const mat = new THREE.MeshLambertMaterial({ map, side: THREE.DoubleSide });
+  const index = new THREE.BufferAttribute(H.idx32 ? Z.arr(H.idx, Uint32Array) : Z.arr(H.idx, Uint16Array), 1), uv = new THREE.BufferAttribute(Z.arr(H.uv, Float32Array), 2), clips = {};
+  for (const [name, c] of Object.entries(H.clips)) clips[name] = { fps: c.fps, once: !!c.once, ims: [], frames: nvzFrames(Z, c.pos, c.nor, c.n, H.q).map(([pos, nor]) => {
+    const g = new THREE.BufferGeometry(); g.setIndex(index); g.setAttribute('uv', uv); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+    g.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 1, 0), 3); return g; }) };
+  DONG[ten] = { clips, mat, cap, tints: (tints || [[1, 1, 1]]).map((c) => new THREE.Color(c[0], c[1], c[2])) };
+  return DONG[ten];
+}
+function dongXoa() { for (const K of Object.values(DONG)) for (const C of Object.values(K.clips)) for (const im of C.ims) if (im) im.count = 0; }
+const _dq = new THREE.Quaternion(), _dm = new THREE.Matrix4(), _dp = new THREE.Vector3(), _ds = new THREE.Vector3(), _dY = new THREE.Vector3(0, 1, 0);
+function dongDat(ten, clip, t, ph, x, y, z, yaw, sc = 1, vi = 0) {   // ph: pha lệch 0..1 để mọi người không cử động đồng loạt
+  const K = DONG[ten]; if (!K) return false; const C = K.clips[clip] || K.clips.dung, f = nvFrame(C, t, ph, 0);
+  let im = C.ims[f]; if (!im) { im = new THREE.InstancedMesh(C.frames[f], K.mat, K.cap); im.frustumCulled = false; im.count = 0; scene.add(im); C.ims[f] = im; }
+  if (im.count >= K.cap) return false;
+  _dm.compose(_dp.set(x, y, z), _dq.setFromAxisAngle(_dY, yaw), _ds.setScalar(sc)); im.setMatrixAt(im.count, _dm); im.setColorAt(im.count, K.tints[vi % K.tints.length]); im.count++;
+  return true;
+}
+function dongXong(hien = true) { for (const K of Object.values(DONG)) for (const C of Object.values(K.clips)) for (const im of C.ims) if (im) { im.visible = hien && im.count > 0; im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; } }
 /*@@RIENG:s22@@*/
 const SMOKE_N = 1400;
 const smokeGeo = new THREE.BufferGeometry();
@@ -511,29 +543,6 @@ function muiTenDat(m, on, p = 1) {          // bật/tắt + tiến độ 0..1 (
   const c = m.userData.curve, u = Math.min(1, Math.max(0.001, p));
   c.getPointAt(u, d.position); c.getTangentAt(u, _mtT); d.rotation.set(0, Math.atan2(-_mtT.x, -_mtT.z), 0);
 }
-// 2.2: ĐÁM ĐÔNG .nvz dùng chung (người dân, quân đứng xa…) — mỗi khung hình động tác là một InstancedMesh.
-// Mỗi khung phim: dongXoa() → dongDat(...) từng người → dongXong(). Người .nvz nướng sẵn (tools/sa_ban/nv_sang_nvz.py), mặt nhìn +Z.
-const DONG = {};
-async function dongTai(ten, nvz, jpg, tints, cap = 400) {
-  const Z = await nvzRead(nvz), H = Z.H, map = await texLoader.loadAsync(jpg); map.colorSpace = THREE.SRGBColorSpace; map.anisotropy = 4;
-  const mat = new THREE.MeshLambertMaterial({ map, side: THREE.DoubleSide });
-  const index = new THREE.BufferAttribute(H.idx32 ? Z.arr(H.idx, Uint32Array) : Z.arr(H.idx, Uint16Array), 1), uv = new THREE.BufferAttribute(Z.arr(H.uv, Float32Array), 2), clips = {};
-  for (const [name, c] of Object.entries(H.clips)) clips[name] = { fps: c.fps, once: !!c.once, ims: [], frames: nvzFrames(Z, c.pos, c.nor, c.n, H.q).map(([pos, nor]) => {
-    const g = new THREE.BufferGeometry(); g.setIndex(index); g.setAttribute('uv', uv); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
-    g.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 1, 0), 3); return g; }) };
-  DONG[ten] = { clips, mat, cap, tints: (tints || [[1, 1, 1]]).map((c) => new THREE.Color(c[0], c[1], c[2])) };
-  return DONG[ten];
-}
-function dongXoa() { for (const K of Object.values(DONG)) for (const C of Object.values(K.clips)) for (const im of C.ims) if (im) im.count = 0; }
-const _dq = new THREE.Quaternion(), _dm = new THREE.Matrix4(), _dp = new THREE.Vector3(), _ds = new THREE.Vector3(), _dY = new THREE.Vector3(0, 1, 0);
-function dongDat(ten, clip, t, ph, x, y, z, yaw, sc = 1, vi = 0) {   // ph: pha lệch 0..1 để mọi người không cử động đồng loạt
-  const K = DONG[ten]; if (!K) return false; const C = K.clips[clip] || K.clips.dung, f = nvFrame(C, t, ph, 0);
-  let im = C.ims[f]; if (!im) { im = new THREE.InstancedMesh(C.frames[f], K.mat, K.cap); im.frustumCulled = false; im.count = 0; scene.add(im); C.ims[f] = im; }
-  if (im.count >= K.cap) return false;
-  _dm.compose(_dp.set(x, y, z), _dq.setFromAxisAngle(_dY, yaw), _ds.setScalar(sc)); im.setMatrixAt(im.count, _dm); im.setColorAt(im.count, K.tints[vi % K.tints.length]); im.count++;
-  return true;
-}
-function dongXong(hien = true) { for (const K of Object.values(DONG)) for (const C of Object.values(K.clips)) for (const im of C.ims) if (im) { im.visible = hien && im.count > 0; im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; } }
 /*@@RIENG:s29@@*/
 // ------------------------------------------------------------------ SkyDirector
 /*@@RIENG:s30@@*/

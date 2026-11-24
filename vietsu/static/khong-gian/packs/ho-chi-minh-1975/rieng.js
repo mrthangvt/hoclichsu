@@ -320,6 +320,11 @@ const SHOTS = TANG === 'chien-dich' ? {
   'T01-A': fly(V3(0, R * 0.85, R * 1.25), V3(SG.x + R * 0.1, R * 0.55, SG.z + R * 0.75), V3(0, 0, 0), SG.clone(), 45),
   'T01-B': orbit(SG, R * 0.62, R * 0.5, 0.15, -0.35, 45),
   'T02-A': fly(V3(SG.x + R * 0.1, R * 0.55, SG.z + R * 0.75), V3(SG.x + 800, 2500, SG.z + 3000), SG.clone(), SG.clone(), 45),
+  'C05-A': (u) => orbit(C05.dd, 15000, 8500, 2.6, 3.3, 42)(u),                                         // Đồng Dù: pháo bắn chuẩn bị, cắm cờ
+  'C05-B': (u) => { const bt = LL(10.80326, 106.67153), M = V3((C05.dd.x + bt.x) / 2, 0, (C05.dd.z + bt.z) / 2);   // mũi tên Đồng Dù → Bộ Tổng tham mưu
+    const d = V3(bt.x - C05.dd.x, 0, bt.z - C05.dd.z).normalize(), n = V3(-d.z, 0, d.x);   // nhìn ngang mũi tên
+    return fly(M.clone().addScaledVector(n, 30000).setY(24000), M.clone().addScaledVector(n, 24000).setY(19000), M.clone(), M.clone(), 45)(u); },
+  'C05-C': (u) => orbit(C05.rc, 12000, 7000, 3.6, 4.2, 42)(u),                                          // cầu Rạch Chiếc
 } : {
   'T01-A': orbit(V3(0, 0, 0), R * 1.1, R * 0.9, 0, 0.2, 45),
   'T01-B': orbit(V3(0, 0, 0), R * 1.1, R * 0.9, 0.2, 0.4, 45),
@@ -364,6 +369,55 @@ for (const [name, text, x, z, desc, big] of ANCH) {
   anchors.set(name, A);
 }
 for (const M of MUITEN) { const p = HUONG[M.k][1][0]; const L = addLabel(M.ten, LLx(p[0], p[1]), LLz(p[0], p[1]), 'hero tong', { grp: 'muiten', yFn: () => 2500, show: () => M.m.visible }); }
+// ------------------------------------------------------------------ C05 · PHÁ TUYẾN NGOÀI (29/4/1975) — tầng chiến dịch
+// 5h30 29/4 pháo bắn chuẩn bị vào căn cứ Đồng Dù (Sư đoàn 25 VNCH); 10h30 Sư đoàn 320A (Quân đoàn 3) cắm cờ trên sở chỉ huy sư đoàn;
+// 23h Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu (S5). Lữ đoàn đặc công – biệt động 316 đánh chiếm, giữ cầu Rạch Chiếc 27–30/4 (S19, S40).
+// Toạ độ: căn cứ Đồng Dù 10,9875 B · 106,5125 Đ (S41, Wikipedia "Củ Chi Base Camp"); cầu Rạch Chiếc 10,8133 B · 106,7569 Đ (S42).
+// Vị trí trận địa pháo, đường bay đạn là MINH HOẠ.
+const C05 = {};
+if (TANG === 'chien-dich') {
+  const sc = STORY.scenes.find((c) => c.id === 'C05'); C05.t0 = sc ? sc.t0 : 1e9; C05.t1 = sc ? sc.t1 : 1e9; const T0 = C05.t0;
+  const DD = [10.9875, 106.5125], RC = [10.8133, 106.7569], BT = [10.80326, 106.67153];
+  const dd = LL(DD[0], DD[1]), rc = LL(RC[0], RC[1]); dd.y = hG(dd.x, dd.z); rc.y = hG(rc.x, rc.z); C05.dd = dd; C05.rc = rc;
+  const tex = (src) => { const t = new THREE.TextureLoader().load(src); t.colorSpace = THREE.SRGBColorSpace; return t; };
+  const coTx = tex('data/co-mtdtgp.png');
+  const ghim = (p, h, w) => {                                                            // cờ ghim trên sa bàn (kiểu sa bàn thật): cán + lá cờ bay
+    const g = new THREE.Group(), can = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.035, w * 0.035, h, 6).translate(0, h / 2, 0), new THREE.MeshLambertMaterial({ color: 0x3a2c1c }));
+    const m = new THREE.MeshLambertMaterial({ map: coTx, side: THREE.DoubleSide }); m.onBeforeCompile = (sh) => { sh.uniforms.uT = U.time;
+      sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform float uT;').replace('#include <begin_vertex>', '#include <begin_vertex>\ntransformed.z += sin(uv.x * 5.0 - uT * 3.0) * 0.08 * ' + w.toFixed(1) + ' * uv.x;'); };
+    const la = new THREE.Mesh(new THREE.PlaneGeometry(w, w * 0.66, 10, 2).translate(w / 2, h - w * 0.33, 0), m);
+    g.add(can, la); g.position.copy(p); g.scale.setScalar(0.001); g.visible = false; scene.add(g); return g; };
+  C05.coDD = ghim(dd, 2600, 1500); C05.coRC = ghim(rc, 2200, 1300);
+  const vongMat = new THREE.MeshBasicMaterial({ color: 0xffd36a, transparent: true, opacity: 0.8, depthWrite: false, side: THREE.DoubleSide });
+  const vong = (p) => { const m = new THREE.Mesh(new THREE.RingGeometry(0.86, 1, 64).rotateX(-Math.PI / 2), vongMat.clone()); m.position.copy(p).y += 60; m.visible = false; scene.add(m); return m; };
+  C05.vDD = vong(dd); C05.vRC = vong(rc);
+  // pháo bắn chuẩn bị: 6 trận địa minh hoạ ở phía Bắc – Tây Bắc căn cứ, đạn bay theo đường cong
+  const sprTex = (() => { const cv = document.createElement('canvas'); cv.width = cv.height = 64; const c = cv.getContext('2d'), g = c.createRadialGradient(32, 32, 2, 32, 32, 31);
+    g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.5, 'rgba(255,255,255,.5)'); g.addColorStop(1, 'rgba(255,255,255,0)'); c.fillStyle = g; c.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(cv); })();
+  const spr = (col, s) => { const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: sprTex, color: col, transparent: true, depthWrite: false })); sp.scale.setScalar(s); sp.visible = false; scene.add(sp); return sp; };
+  C05.phao = Array.from({ length: 6 }, (_, k) => { const a = -0.9 + k * 0.32, r = 9000 + (k % 3) * 1800, src = V3(dd.x + Math.sin(a) * r, 0, dd.z - Math.cos(a) * r); src.y = hG(src.x, src.z);
+    const dich = V3(dd.x + (k - 2.5) * 500, dd.y, dd.z + ((k * 37) % 5 - 2) * 400);
+    return { src, dich, dan: spr(0xffe0a0, 700), no: spr(0xff8a3a, 2600), ph: k * 0.37 }; });
+  C05.ten = [addLabel('Căn cứ Đồng Dù (Sư đoàn 25)', dd.x, dd.z, 'hero', { grp: 'muiten', yFn: () => 3600, show: () => C05.vDD.visible }),
+             addLabel('Cầu Rạch Chiếc — đặc công 316 giữ cầu', rc.x, rc.z, 'hero', { grp: 'muiten', yFn: () => 3200, show: () => C05.vRC.visible })];
+  // 23h 29/4: Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu
+  { const bt = LL(BT[0], BT[1]); C05.ten.push(addLabel('Bộ Tổng tham mưu', bt.x, bt.z, 'hero', { grp: 'muiten', yFn: () => 3000, show: () => C05.mt.visible })); }
+  C05.mt = muiTen([dd, LL((DD[0] + BT[0]) / 2 + 0.02, (DD[1] + BT[1]) / 2 - 0.02), LL(BT[0], BT[1])].map((v) => V3(v.x, 900, v.z)), 0xd2442b, 380); muiTenDat(C05.mt, false);
+  C05.cap = (t) => {
+    const on = t >= T0 - 0.5 && t < C05.t1 + 0.5, u = t - T0;
+    C05.vDD.visible = on && u < 40; C05.vRC.visible = on && u >= 38;
+    for (const [v, a] of [[C05.vDD, u], [C05.vRC, u - 38]]) if (v.visible) { const k = (a * 0.5) % 1; v.scale.setScalar(1500 + k * 2500); v.material.opacity = 0.8 * (1 - k); }
+    for (const P of C05.phao) {                                                            // 5h30: bắn chuẩn bị (2–14 s của cảnh)
+      const ph = ((u - 2 + P.ph) / 2.4) % 1, ban = on && u > 2 && u < 14;
+      P.dan.visible = ban && ph < 0.8; P.no.visible = ban && ph >= 0.8;
+      if (P.dan.visible) { const k = ph / 0.8; P.dan.position.lerpVectors(P.src, P.dich, k).y += Math.sin(Math.PI * k) * 4500; }
+      if (P.no.visible) { const k = (ph - 0.8) / 0.2; P.no.position.copy(P.dich).y += 600; P.no.scale.setScalar(1500 + k * 3000); P.no.material.opacity = 1 - k; }
+    }
+    const cm = (g, a) => { g.visible = on && a > 0; if (g.visible) g.scale.setScalar(Math.min(1, a / 1.2)); };
+    cm(C05.coDD, u - 15); cm(C05.coRC, u - 44);                                            // 10h30 cắm cờ Đồng Dù; cờ ở cầu Rạch Chiếc
+    muiTenDat(C05.mt, on && u >= 26, sstep(26, 34, u));                                   // 23h: nhiệm vụ mới → Bộ Tổng tham mưu
+  };
+}
 const HERO_PINS = TANG === 'noi-do' ? [['Xe tăng 843', () => (XEX.x843 && XEX.x843.obj.visible ? XEX.x843.obj.position : null)], ['Xe tăng 390', () => (XEX.x390 && XEX.x390.obj.visible ? XEX.x390.obj.position : null)]] : [];
 for (const [text, get] of HERO_PINS) { const L = addLabel(text, 0, 0, 'hero ly', { grp: 'hero', maxDist: 1200 }); L.dyn = get; L.dy = 3.4; }
 //@@ s40
@@ -521,7 +575,8 @@ function update(dt) {
   }
   const xeOn = $('ly-nv').checked; for (const m of LAYER.xe) m.visible = m.visible && xeOn; for (const N of NVX) N.obj.visible = N.obj.visible && xeOn;
   const arrOn = $('ly-arr').checked && $('ly-muiten').checked, ex = appMode === 'explore';
-  for (const M of MUITEN) { const t0 = 8 + M.k * 5; const on = arrOn && (ex || t >= t0); muiTenDat(M.m, on, ex ? 1 : sstep(t0, t0 + 8, t)); }
+  for (const M of MUITEN) { const t0 = 8 + M.k * 5; const on = arrOn && (ex || (t >= t0 && t < (STORY.scenes[0].t1 || 1e9))); muiTenDat(M.m, on, ex ? 1 : sstep(t0, t0 + 8, t)); }   // năm hướng: cảnh T01
+  if (C05.cap) C05.cap(t);
   // máy quay
   if (appMode === 'film' && !userCam) {
     const fn = SHOTS[shot.id], u = clamp((t - shot.t0) / (shot.t1 - shot.t0), 0, 1);

@@ -1,6 +1,6 @@
 {
  "note": "Bản thử bộ máy 2.2 (GĐ3): 2 cảnh ngắn để kiểm tra hai tầng địa hình, mũi tên, xe chạy theo đường. Kịch bản thật (12 cảnh, có nguồn) ở 'danY', dựng ở GĐ5.",
- "duration": 185.0,
+ "duration": 245.0,
  "scenes": [
   {
    "id": "T01",
@@ -101,57 +101,116 @@
    ]
   },
   {
+   "id": "C05",
+   "title": "Phá tuyến ngoài (29/4/1975)",
+   "tang": "chien-dich",
+   "t0": 75.0,
+   "t1": 135.0,
+   "shots": [
+    {
+     "id": "C05-A",
+     "t0": 75.0,
+     "t1": 100.0,
+     "size": "Toàn",
+     "desc": "Căn cứ Đồng Dù: pháo bắn chuẩn bị, cắm cờ"
+    },
+    {
+     "id": "C05-B",
+     "t0": 100.0,
+     "t1": 112.0,
+     "size": "Toàn",
+     "desc": "23 giờ: Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu"
+    },
+    {
+     "id": "C05-C",
+     "t0": 112.0,
+     "t1": 135.0,
+     "size": "Toàn",
+     "desc": "Cầu Rạch Chiếc"
+    }
+   ],
+   "subs": [
+    [
+     75.5,
+     89.0,
+     "Rạng sáng 29/4, năm giờ ba mươi, pháo binh bắn chuẩn bị vào căn cứ Đồng Dù ở Củ Chi, nơi đóng quân của Sư đoàn 25 quân đội Sài Gòn."
+    ],
+    [
+     89.5,
+     100.0,
+     "Mười giờ ba mươi, Sư đoàn 320A thuộc Quân đoàn 3 cắm cờ trên sở chỉ huy sư đoàn."
+    ],
+    [
+     100.5,
+     112.0,
+     "Hai mươi ba giờ đêm đó, Quân đoàn 3 nhận thêm nhiệm vụ chính thức: đánh chiếm Bộ Tổng tham mưu."
+    ],
+    [
+     112.5,
+     134.5,
+     "Ở phía Đông, Lữ đoàn đặc công – biệt động 316 đánh chiếm và giữ cầu Rạch Chiếc từ 27 đến 30/4, chờ đoàn xe tăng của Quân đoàn 2."
+    ]
+   ],
+   "nguon": [
+    "S5",
+    "S19",
+    "S40",
+    "S41",
+    "S42"
+   ]
+  },
+  {
    "id": "T02",
    "title": "Xe tăng vào Dinh Độc Lập (thử xe theo đường)",
    "tang": "noi-do",
-   "t0": 75.0,
-   "t1": 150.0,
+   "t0": 135.0,
+   "t1": 210.0,
    "subs": [
     [
-     76.0,
-     87.0,
+     136.0,
+     147.0,
      "Nội đô Sài Gòn · thử xe tăng chạy theo đường phố."
     ],
     [
-     87.5,
-     105.0,
+     147.5,
+     165.0,
      "Đường đi tìm trên mạng đường hôm nay đã lọc; lộ trình thật sẽ chốt theo nguồn."
     ],
     [
-     105.5,
-     118.0,
+     165.5,
+     178.0,
      "Tái dựng mô phỏng."
     ],
     [
-     118.5,
-     124.5,
+     178.5,
+     184.5,
      "Xe 843 húc cổng phụ bên trái và bị kẹt lại."
     ],
     [
-     125.0,
-     134.0,
+     185.0,
+     194.0,
      "Xe 390 húc đổ cổng chính, tiến vào sân Dinh."
     ]
    ],
    "shots": [
     {
      "id": "T02-A",
-     "t0": 75.0,
-     "t1": 101.0,
+     "t0": 135.0,
+     "t1": 161.0,
      "size": "Trung",
      "desc": "Bám sau xe 843"
     },
     {
      "id": "T02-B",
-     "t0": 101.0,
-     "t1": 119.0,
+     "t0": 161.0,
+     "t1": 179.0,
      "size": "Cận",
      "desc": "Bám sau xe 390"
     },
     {
      "id": "T02-C",
-     "t0": 119.0,
-     "t1": 150.0,
+     "t0": 179.0,
+     "t1": 210.0,
      "size": "Toàn",
      "desc": "Cổng Dinh: 843 húc chưa đổ, 390 húc đổ cổng chính"
     }
@@ -161,45 +220,45 @@
    "id": "T03",
    "title": "Lá cờ trên nóc Dinh (11 giờ 30, trưa 30/4/1975)",
    "tang": "noi-do",
-   "t0": 150.0,
-   "t1": 185.0,
+   "t0": 210.0,
+   "t1": 245.0,
    "shots": [
     {
      "id": "T03-A",
-     "t0": 150.0,
-     "t1": 157.5,
+     "t0": 210.0,
+     "t1": 217.5,
      "size": "Trung",
      "desc": "Bùi Quang Thận rời xe 843 ở cổng phụ, chạy về cổng chính"
     },
     {
      "id": "T03-A2",
-     "t0": 157.5,
-     "t1": 164.0,
+     "t0": 217.5,
+     "t1": 224.0,
      "size": "Trung",
      "desc": "Băng qua bãi cỏ vào Dinh"
     },
     {
      "id": "T03-B",
-     "t0": 164.0,
-     "t1": 185.0,
+     "t0": 224.0,
+     "t1": 245.0,
      "size": "Cận",
      "desc": "Nóc Dinh: hạ cờ ba sọc, kéo cờ Mặt trận"
     }
    ],
    "subs": [
     [
-     150.5,
-     161.5,
+     210.5,
+     221.5,
      "Đại đội trưởng Bùi Quang Thận tháo lá cờ trên tháp pháo xe 843, chạy vào Dinh."
     ],
     [
-     162.5,
-     173.0,
+     222.5,
+     233.0,
      "Trên nóc Dinh, anh hạ lá cờ ba sọc — cờ to, vải dày nên mất nhiều phút."
     ],
     [
-     173.5,
-     184.5,
+     233.5,
+     244.5,
      "11 giờ 30 phút ngày 30/4/1975, lá cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam tung bay trên nóc Dinh Độc Lập."
     ]
    ],

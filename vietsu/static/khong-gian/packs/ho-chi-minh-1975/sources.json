@@ -378,6 +378,30 @@
    "url": "",
    "license": "tư liệu",
    "used_for": "vị trí khu nhà chứa máy bay của không quân VNCH (Vietnamese Hangars), bãi trực thăng, Bộ Tổng tham mưu (Vietnam Staff Compound) — khớp affine: 2 đầu đường băng (OSM) + Bộ Tư lệnh Quân khu 7 (OSM) = Vietnam Staff Compound; sơ đồ vẽ phỏng, sai số vài trăm m"
+  },
+  {
+   "id": "S40",
+   "title": "VietTimes: Người về muộn đêm 30 tháng Tư (khu tưởng niệm Lữ đoàn 316 ở cầu Rạch Chiếc)",
+   "type": "báo chí",
+   "url": "https://viettimes.vn/nguoi-ve-muon-dem-30-thang-tu-post103618.html",
+   "license": "trích dẫn",
+   "used_for": "Lữ đoàn đặc công – biệt động 316 đánh và chiếm giữ cầu Rạch Chiếc từ 27–30/4/1975 để đón xe tăng Quân đoàn 2"
+  },
+  {
+   "id": "S41",
+   "title": "Wikipedia: Củ Chi Base Camp",
+   "type": "bách khoa",
+   "url": "https://en.wikipedia.org/wiki/Cu_Chi_Base_Camp",
+   "license": "CC BY-SA",
+   "used_for": "toạ độ căn cứ Đồng Dù 10°59′15″B 106°30′45″Đ; căn cứ Sư đoàn 25 VNCH sau 1972"
+  },
+  {
+   "id": "S42",
+   "title": "Wikipedia tiếng Việt: Cầu Rạch Chiếc",
+   "type": "bách khoa",
+   "url": "https://vi.wikipedia.org/wiki/Cầu_Rạch_Chiếc",
+   "license": "CC BY-SA",
+   "used_for": "toạ độ cầu cũ trên Xa lộ Hà Nội 10°48′48″B 106°45′25″Đ"
   }
  ]
 }
