@@ -274,3 +274,35 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
   - Tên khí tài (hiện khi máy quay ở gần): T-54, K-63, xe tải chở bộ binh, pháo M-46 130 mm, M41, M113, M48.
 - **Nhà ven lộ trình:** nhà 2–3 tầng chi tiết giảm từ 30 % xuống 14 %, còn lại là nhà mái ngói đỏ (`xep_nha.py`).
 - **Còn thiếu (MISSING_ASSET):** mẫu pháo đối phương (105/155 mm) để đặt trong đồn; mẫu ĐKZ; tên đường năm 1975 đoạn Hàng Xanh – Thị Nghè (cần bản đồ 1:100 000 năm 1970).
+
+## 21. Sửa theo góp ý 24/11 tối (19:22) — Đợt 2b
+- **Màn tải đầu Hồi 4 (và các lần đổi tầng):** bản Artifact nạp sẵn tầng địa hình kế tiếp trong một khung ẩn (`#cho=1`) khoảng 35 s trước giờ đổi tầng. Tới giờ thì khung này hiện lên và chạy tiếp, không còn màn tải. Nếu máy chậm, nạp chưa xong, thì quay về cách cũ (khung mới, có thẻ chương).
+- **Nghỉ đầu mỗi hồi:** voice dừng 2,6 s, thẻ "HỒI n" đứng yên, nhạc vẫn chạy, rồi mới đọc tiếp.
+- **Cắt 2 câu đọc lặp trong voice** (`tools/sa_ban/voice/cat_voice.py`, ffmpeg): "đó là những chiếc máy bay" ở 4:24,4–4:26,0 và "và Sài Gòn" ở 6:43,1–6:44,3; giữ lần đọc sau. Voice còn 16:05. Mốc nhận dạng dời theo, `story.json` dựng lại. Bản gốc giữ ngoài kho.
+- **Phi đội Quyết Thắng:** từ câu "cất cánh", 5 chiếc A-37 bay đội hình từ hướng Đông Bắc về Tân Sơn Nhất, máy quay bám theo. Bom trúng thì máy bay cháy (lửa nhấp nháy, khói bốc cao). Có tiếng phản lực tổng hợp (nhiễu lọc, không tải tệp).
+- **Ghim tên khí tài, ghi rõ bên nào:**
+  - Phía ta: A-37 của Phi đội Quyết Thắng (máy bay thu được), T-54, K-63, xe tải, M-46 130 mm.
+  - Phía đối phương: A-37, C-130A, UH-1 (không quân VNCH), M41, M113, M48.
+  - Xe 843 ghi "T-54B", xe 390 ghi "T-59".
+- **Lính trên xe:** mỗi xe tải chở 13 người: 10 người quỳ hai bên thành xe, 3 người đứng giữa. Dáng ngồi duỗi chân cũ bị thành xe che nên trông như thủng sàn.
+- **Khói bụi, tiếng xe:** khói bụi cuốn sau mỗi xe. Tiếng động cơ xe tải tổng hợp cộng tiếng xe tăng, to nhỏ theo khoảng cách máy quay.
+- **Cú máy qua vai:** C01-L2, C03-L, C05-L2, C06-L2 đặt máy sau vai một chiến sĩ trong tổ bộ binh ven đường, nhìn đoàn xe tiến về Sài Gòn.
+- **Tướng chỉ huy** (ghi dưới tên từng cánh quân):
+  - Quân đoàn 1: Thiếu tướng Nguyễn Hòa – Thiếu tướng Hoàng Minh Thi (nhandan.vn).
+  - Quân đoàn 2: Thiếu tướng Nguyễn Hữu An – Thiếu tướng Lê Linh (sggp.org.vn).
+  - Quân đoàn 3: Thiếu tướng Vũ Lăng – Đại tá Đặng Vũ Hiệp, khi thành lập 27/3/1975 (baophapluat.vn).
+  - Quân đoàn 4: Thiếu tướng Hoàng Cầm – Thiếu tướng Hoàng Thế Thiện (nhandan.vn).
+  - Cánh Tây – Tây Nam: Trung tướng Lê Đức Anh, Phó Tư lệnh chiến dịch (vtcnews.vn).
+  - Bộ Tư lệnh chiến dịch: Đại tướng Văn Tiến Dũng (Tư lệnh), Phạm Hùng (Chính ủy).
+- **Giao tranh ở cầu** (cầu Rạch Chiếc, cầu Sài Gòn): lính chạy qua lại giữa hai chỗ nấp, đứng bắn, quỳ bắn, nằm bắn; lính đối phương ngã dần; có nổ. C05-C đặt máy thấp giữa tổ đặc công, rung nhẹ.
+- **7:31 (nay 7:28) — chiếc xe tăng đầu tiên của Lữ đoàn 203 qua cầu Rạch Chiếc:** có đoàn xe tăng đi đầu, xe dẫn đầu tới cầu đúng câu đọc. Máy quay đi theo ba bước:
+  1. Đặt thấp bên mũi xe, nhìn về sau thấy đoàn quân đang tiến lên.
+  2. Vòng ra sau xe, nhìn con đường vào nội đô.
+  3. Cẩu lên cao.
+- **8:11 (nay 8:08) — Tân Sơn Nhất:** 2 xe tăng T-54 của Trung đoàn 273 dẫn đầu (S27), bắn cháy 6 máy bay trên khu đỗ; bộ binh chạy theo, khi xe dừng thì quỳ, đứng bắn. Đường đi trên sân bay rút ngắn để xe chạy khoảng 16 m/s. MINH HOẠ.
+- **Động tác bộ binh:** mẫu QĐND có động tác "ChạyTới" là dáng xung phong khom người, không phải chạy thường. Đổi sang "ChạyBắn" (chạy thẳng người, cầm súng). Thêm động tác nằm bắn, ném lựu đạn, xung phong; lính đối phương thêm động tác trườn.
+- **Cầu:** dò dọc tuyến xe chạy, chỗ nào thấp hơn mặt nước thì tự dựng cầu bê tông có mặt cầu, lan can, trụ, dốc hai đầu. Xe chạy trên mặt cầu (`CAU_Y`, bộ máy 2.2). Nội đô có cầu Sài Gòn, Thị Nghè, Chữ Y; tầng chiến dịch có cầu trên các tuyến tiến quân. Hình dáng cầu GIẢN LƯỢC.
+- **Đoàn xe vượt cầu Chữ Y (C09):** 6 xe (K-63, xe tải có bộ binh), tuyến tìm trên mạng đường OSM (`placement.json › duong.chu_y`).
+- **Bùi Quang Thận:** chạy 7 m/s. Quãng đường dài hơn câu đọc nên nối hai đoạn chạy ở chỗ chuyển cú máy. Có ghim tên trên đầu.
+- **Kéo cờ:** máy hạ sát mặt sân thượng, nhìn từ dưới lên lá cờ.
+- **Người dân quá to:** đám đông dân Sài Gòn bị nướng sai cỡ: cờ, hoa cầm tay đặt sai hệ toạ độ nên làm lệch chiều cao chuẩn. Đã sửa: đo chiều cao theo khung đầu của động tác, đặt đồ cầm tay theo vị trí bàn tay trên lưới.

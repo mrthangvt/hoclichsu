@@ -93,10 +93,19 @@ fetch("packs/{goi}/{voice}").then((r) => (r.ok ? r.blob() : Promise.reject(r.sta
 <style>html,body{{margin:0;height:100%;background:#17130f;overflow:hidden}}iframe{{position:fixed;inset:0;width:100%;height:100%;border:0;display:block}}</style></head>
 <body><script>
 {vjs}
-let khung = null;
-window.__doiTang = (q) => {{ const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn";
+let khung = null, cho = null, choTang = "";
+// đổi tầng: nếu tầng mới đã được nạp sẵn trong khung chờ (ẩn) thì chỉ việc hiện khung đó và chạy tiếp — không còn màn tải
+window.__doiTang = (q) => {{ const p = new URLSearchParams(q), tg = p.get("tang") || "";
+  if (cho && choTang === tg) {{ let w = null; try {{ w = cho.contentWindow; }} catch (e) {{}}
+    if (w && w.__sanSang && w.__tiep) {{ const f = cho; cho = null; choTang = ""; f.style.opacity = "1"; f.style.pointerEvents = "auto"; f.style.zIndex = "2";
+      w.__tiep(parseFloat(p.get("t")), p.get("phat") === "1"); try {{ w.focus(); }} catch (e) {{}} if (khung) khung.remove(); khung = f; return; }}
+    cho.remove(); cho = null; choTang = ""; }}
+  const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn"; f.style.zIndex = "2";
   f.src = "app.html#" + q; document.body.append(f); f.addEventListener("load", () => {{ try {{ f.contentWindow.focus(); }} catch (e) {{}} }});
   if (khung) khung.remove(); khung = f; }};
+window.__chuanBi = (q) => {{ const tg = new URLSearchParams(q).get("tang") || ""; if (cho && choTang === tg) return; if (cho) cho.remove();
+  const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn (nạp sẵn)"; f.style.cssText = "opacity:0;pointer-events:none;z-index:0";
+  f.src = "app.html#" + q + "&cho=1"; document.body.prepend(f); cho = f; choTang = tg; }};
 window.__doiTang(location.hash === "#chan-doan" ? "chan-doan=1" : "");
 </script></body></html>
 """, encoding="utf-8")

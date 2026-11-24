@@ -4,6 +4,7 @@
 import * as THREE from '@@ENGINE@@vendor/three/three.module.min.js';
 import { OrbitControls } from '@@ENGINE@@vendor/three/addons/controls/OrbitControls.js';
 const PACK = window.__SB.pack, PBASE = window.__SB.base;
+let CAU_Y = () => -1e9;                                                                // 2.2: mặt cầu (gói đặt): xe chạy trên mặt cầu, không lội nước
 // 2.2: tầng địa hình (pack.json › terrain.tang). Chọn bằng ?tang=<tên>; mặc định tầng đầu tiên. Đổi tầng = tải lại trang tại cùng thời điểm (doiTang).
 const QS = new URLSearchParams(location.search);
 const TANGS = (PACK.terrain && PACK.terrain.tang) || null;
@@ -437,7 +438,7 @@ function xeCapNhat(t) {
     const on = X.D && X.hien(t); X.obj.visible = on; if (!on) continue;
     const d = keys(X.lich, t); const p = diemTren(X.D, d), q = diemTren(X.D, d + 4), r = diemTren(X.D, d - 4);
     const ox = Math.cos(p.yaw) * X.lech, oz = -Math.sin(p.yaw) * X.lech;
-    const y = Math.max(hG(p.x + ox, p.z + oz), tideNow);
+    const y = Math.max(hG(p.x + ox, p.z + oz), tideNow, CAU_Y(p.x + ox, p.z + oz));
     X.obj.position.set(p.x + ox, y, p.z + oz);
     const pitch = Math.atan2(hG(q.x, q.z) - hG(r.x, r.z), 8);
     X.obj.rotation.set(0, p.yaw, 0); X.obj.rotateX(-pitch);

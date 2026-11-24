@@ -1,6 +1,6 @@
 {
  "note": "Dòng thời gian theo voice thu âm (giây voice). Dựng bằng tools/sa_ban/voice/dung_story_hcm.py. Phụ đề lấy từ lời đọc (nhận dạng tiếng nói, đã sửa tên riêng, số).",
- "duration": 967.75,
+ "duration": 965.0,
  "scenes": [
   {
    "id": "C01",
@@ -486,26 +486,26 @@
    "title": "Hồi 4 · Phi đội Quyết Thắng (16 giờ 15, 28/4/1975)",
    "tang": "noi-do",
    "t0": 252.33,
-   "t1": 321.54,
+   "t1": 320.01,
    "shots": [
     {
      "id": "C04-A",
      "t0": 252.33,
-     "t1": 284.72,
+     "t1": 283.19,
      "size": "Toàn",
      "desc": "Sân bay Tân Sơn Nhất, khu đỗ máy bay (sơ đồ 1968)"
     },
     {
      "id": "C04-B",
-     "t0": 284.72,
-     "t1": 297.72,
+     "t0": 283.19,
+     "t1": 296.19,
      "size": "Trung",
      "desc": "Bám sau chiếc A-37 dẫn đầu"
     },
     {
      "id": "C04-C",
-     "t0": 297.72,
-     "t1": 321.54,
+     "t0": 296.19,
+     "t1": 320.01,
      "size": "Toàn",
      "desc": "Khói lửa trên khu đỗ"
     }
@@ -518,87 +518,87 @@
     ],
     [
      259.95,
-     264.63,
-     "5 chiếc máy bay cường kích A-37 đang chuẩn bị thực hiện một nhiệm vụ đặc biệt đó"
+     264.39,
+     "5 chiếc máy bay cường kích A-37 đang chuẩn bị thực hiện một nhiệm vụ đặc biệt"
     ],
     [
-     264.68,
-     268.4,
-     "là những chiếc máy bay đó là những chiếc máy bay thu được của đối phương"
+     264.44,
+     267.92,
+     "đó là những chiếc máy bay thu được của đối phương và lần này"
     ],
     [
-     268.45,
-     271.97,
-     "và lần này chúng cất cánh dưới sự điều khiển của các phi công"
+     267.97,
+     270.44,
+     "chúng cất cánh dưới sự điều khiển của các phi công"
     ],
     [
-     272.02,
-     276.59,
+     270.49,
+     275.06,
      "thuộc lực lượng cách mạng Phi đội Quyết Thắng 16 giờ 15 phút"
     ],
     [
-     276.64,
-     280.89,
+     275.11,
+     279.36,
      "5 chiếc A-37 lần lượt rời đường băng hướng về Sài Gòn."
     ],
     [
-     281.41,
-     285.21,
+     279.88,
+     283.68,
      "Mục tiêu của phi đội là sân bay Tân Sơn Nhất một đầu mối"
     ],
     [
-     285.26,
-     288.59,
+     283.73,
+     287.06,
      "quân sự và hàng không quan trọng của chính quyền Sài Gòn."
     ],
     [
-     288.71,
-     291.35,
+     287.18,
+     289.82,
      "Những chiếc máy bay lao về phía mục tiêu"
     ],
     [
-     291.4,
-     294.88,
+     289.87,
+     293.35,
      "rồi những quả bom được thả xuống khu vực đỗ máy bay"
     ],
     [
-     294.93,
-     298.01,
+     293.4,
+     296.48,
      "tiếng nổ vang lên giữa sân bay cuộc tập kích"
     ],
     [
-     298.06,
-     301.54,
+     296.53,
+     300.01,
      "gây thêm sức ép lên hoạt động hàng không quân sự của đối phương"
     ],
     [
-     301.59,
-     303.38,
-     "trong những ngày cuối cùng chiến tranh"
+     300.06,
+     303.94,
+     "trong những ngày cuối cùng chiến tranh 18 giờ 15 phút"
     ],
     [
-     303.43,
-     306.99,
-     "18 giờ 15 phút cùng ngày cả 5 chiếc máy bay"
+     303.99,
+     305.46,
+     "cùng ngày cả 5 chiếc máy bay"
     ],
     [
-     307.04,
-     311.85,
+     305.51,
+     310.32,
      "hạ cánh an toàn xuống sân bay Thành Sơn Phi đội Quyết Thắng đã trở về"
     ],
     [
-     311.9,
-     315.71,
+     310.37,
+     314.18,
      "trên bầu trời một đòn tấn công táo bạo vừa được thực hiện"
     ],
     [
-     315.76,
-     319.76,
+     314.23,
+     318.23,
      "dưới mặt đất các cánh Quân Giải phóng tiếp tục áp sát Sài Gòn"
     ],
     [
-     319.81,
-     321.98,
+     318.28,
+     320.45,
      "vòng vây đang ngày một khép chặt."
     ]
    ],
@@ -614,168 +614,168 @@
    "ten": "Phá tan tuyến phòng thủ vòng ngoài",
    "title": "Hồi 5 · Phá tan tuyến phòng thủ vòng ngoài (29/4/1975)",
    "tang": "chien-dich",
-   "t0": 321.54,
-   "t1": 407.74,
+   "t0": 320.01,
+   "t1": 404.99,
    "shots": [
     {
      "id": "C05-A0",
-     "t0": 321.54,
-     "t1": 326.51,
+     "t0": 320.01,
+     "t1": 324.98,
      "size": "Toàn",
      "desc": "Căn cứ Đồng Dù"
     },
     {
      "id": "C05-P",
-     "t0": 326.51,
-     "t1": 334.54,
+     "t0": 324.98,
+     "t1": 333.01,
      "size": "Trung",
      "desc": "Pháo binh bắn chuẩn bị vào căn cứ Đồng Dù"
     },
     {
      "id": "C05-D",
-     "t0": 334.54,
-     "t1": 342.68,
+     "t0": 333.01,
+     "t1": 341.15,
      "size": "Toàn",
      "desc": "Bay vòng cung quanh căn cứ Đồng Dù (Sư đoàn 25)"
     },
     {
      "id": "C05-L",
-     "t0": 342.68,
-     "t1": 348.76,
+     "t0": 341.15,
+     "t1": 347.23,
      "size": "Trung",
      "desc": "Bộ binh, xe tiến công vào căn cứ"
     },
     {
      "id": "C05-A",
-     "t0": 348.76,
-     "t1": 368.46,
+     "t0": 347.23,
+     "t1": 366.93,
      "size": "Toàn",
      "desc": "Cắm cờ trên sở chỉ huy"
     },
     {
      "id": "C05-B",
-     "t0": 368.46,
-     "t1": 378.84,
+     "t0": 366.93,
+     "t1": 377.31,
      "size": "Toàn",
      "desc": "23 giờ: Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu"
     },
     {
      "id": "C05-C",
-     "t0": 378.84,
-     "t1": 391.25,
+     "t0": 377.31,
+     "t1": 389.72,
      "size": "Toàn",
      "desc": "Cầu Rạch Chiếc"
     },
     {
      "id": "C05-L2",
-     "t0": 391.25,
-     "t1": 395.55,
+     "t0": 389.72,
+     "t1": 394.02,
      "size": "Trung",
      "desc": "Đoàn xe tăng Quân đoàn 2 tới gần"
     },
     {
      "id": "C05-C2",
-     "t0": 395.55,
-     "t1": 407.74,
+     "t0": 394.02,
+     "t1": 404.99,
      "size": "Toàn",
      "desc": "Cầu Rạch Chiếc được giữ vững"
     }
    ],
    "subs": [
     [
-     326.51,
-     331.96,
+     324.98,
+     330.43,
      "Rạng sáng ngày 29 tháng 4 5 giờ 30 phút pháo binh Quân Giải phóng"
     ],
     [
-     332.01,
-     334.49,
+     330.48,
+     332.96,
      "đồng loạt bắn vào căn cứ Đồng Dù"
     ],
     [
-     334.54,
-     339.38,
+     333.01,
+     337.85,
      "thuộc huyện Củ Chi đây là nơi đóng quân của Sư đoàn 25 quân đội Sài Gòn"
     ],
     [
-     339.43,
-     342.63,
+     337.9,
+     341.1,
      "một vị trí phòng thủ quan trọng ở phía Tây Bắc từng"
     ],
     [
-     342.68,
-     348.71,
+     341.15,
+     347.18,
      "loạt pháo vang lên các đơn vị bộ binh và lực lượng phối thuộc tiến công vào căn cứ."
     ],
     [
-     348.76,
-     352.65,
+     347.23,
+     351.12,
      "Trận chiến diễn ra quyết liệt đến 10 giờ 30 phút cùng ngày"
     ],
     [
-     352.7,
-     359.17,
+     351.17,
+     357.64,
      "Sư đoàn 320A thuộc Quân đoàn 3 đã cắm cờ trên sở chỉ huy sư đoàn đối phương."
     ],
     [
-     359.37,
-     363.51,
+     357.84,
+     361.98,
      "Căn cứ Đồng Dù bị đánh chiếm một mắt xích quan trọng trong phòng"
     ],
     [
-     363.56,
-     366.29,
+     362.03,
+     364.76,
      "tuyến phòng thủ của Sài Gòn bị phá vỡ."
     ],
     [
-     366.65,
-     372.19,
+     365.12,
+     370.66,
      "Đêm 29 tháng 4 23 giờ Quân đoàn 3 nhận nhiệm vụ chính thức tiến"
     ],
     [
-     372.24,
-     376.54,
+     370.71,
+     375.01,
      "công Bộ Tổng tham mưu quân đội Sài Gòn trong khi đó ở hướng Đông"
     ],
     [
-     376.59,
-     380.04,
+     375.06,
+     378.51,
      "một cuộc tiến công khác đang diễn ra ở cầu Rạch Chiếc."
     ],
     [
-     380.21,
-     384.78,
+     378.68,
+     383.25,
      "Những chiến sĩ đặc công biệt động đã tiến công và kiên cường giữ cầu."
     ],
     [
-     384.83,
-     388.76,
+     383.3,
+     387.23,
      "Giữa làn đạn họ chiến đấu để bảo đảm cây cầu không bị phá hủy"
     ],
     [
-     388.81,
-     391.2,
+     387.28,
+     389.67,
      "giữ thông con đường tiến vào nội đô"
     ],
     [
-     391.25,
-     395.5,
+     389.72,
+     393.97,
      "bởi từ phía Đông những đoàn xe tăng của Quân đoàn 2 đang tới gần"
     ],
     [
-     395.55,
-     400.67,
+     394.02,
+     399.14,
      "một cây cầu phải được giữ vững để cả một mũi tiến công có thể tiến lên."
     ],
     [
-     400.72,
-     404.28,
+     399.19,
+     402.37,
      "Đêm cuối cùng của tháng tư đang trôi qua và Sài Gòn"
     ],
     [
-     404.33,
-     407.62,
-     "và Sài Gòn chuẩn bị bước vào một buổi sáng lịch sử."
+     402.42,
+     404.87,
+     "chuẩn bị bước vào một buổi sáng lịch sử."
     ]
    ],
    "nguon": [
@@ -789,126 +789,126 @@
    "ten": "Rạng sáng 30 tháng 4",
    "title": "Hồi 6 · Rạng sáng 30 tháng 4 (30/4/1975)",
    "tang": "chien-dich",
-   "t0": 407.74,
-   "t1": 476.65,
+   "t0": 404.99,
+   "t1": 473.9,
    "shots": [
     {
      "id": "C06-A0",
-     "t0": 407.74,
-     "t1": 411.2,
+     "t0": 404.99,
+     "t1": 408.45,
      "size": "Đại toàn",
      "desc": "Rạng sáng 30/4"
     },
     {
      "id": "C06-L1",
-     "t0": 411.2,
-     "t1": 421.74,
+     "t0": 408.45,
+     "t1": 418.99,
      "size": "Trung",
      "desc": "Lướt trên các cánh quân tiến vào Sài Gòn"
     },
     {
      "id": "C06-A",
-     "t0": 421.74,
-     "t1": 433.2,
+     "t0": 418.99,
+     "t1": 430.45,
      "size": "Đại toàn",
      "desc": "Năm cánh quân đồng loạt tiến công"
     },
     {
      "id": "C06-L2",
-     "t0": 433.2,
-     "t1": 441.07,
+     "t0": 430.45,
+     "t1": 438.32,
      "size": "Trung",
      "desc": "Đoàn xe thiết giáp, xe vận tải, xe chở bộ binh"
     },
     {
      "id": "C06-P",
-     "t0": 441.07,
-     "t1": 447.09,
+     "t0": 438.32,
+     "t1": 444.34,
      "size": "Trung",
      "desc": "7 giờ 15: pháo cối bắn vào Tân Sơn Nhất, Bộ Tổng tham mưu"
     },
     {
      "id": "C06-C",
-     "t0": 447.09,
-     "t1": 476.65,
+     "t0": 444.34,
+     "t1": 473.9,
      "size": "Toàn",
      "desc": "7 giờ 30: xe tăng Lữ đoàn 203 qua cầu Rạch Chiếc"
     }
    ],
    "subs": [
     [
-     411.2,
-     417.39,
+     408.45,
+     414.64,
      "Rạng sáng ngày 30 tháng 4 năm 1975 trên những tuyến đường dẫn vào Sài Gòn."
     ],
     [
-     417.44,
-     421.69,
+     414.69,
+     418.94,
      "Hàng nghìn cán bộ chiến sĩ đang thực hiện nhiệm vụ trong trận đánh cuối cùng"
     ],
     [
-     421.74,
-     424.26,
+     418.99,
+     421.51,
      "năm cánh quân đồng loạt tiến công."
     ],
     [
-     424.31,
-     428.08,
+     421.56,
+     425.33,
      "Từ phía Bắc phía Tây Bắc phía Đông Nam."
     ],
     [
-     428.13,
-     433.12,
+     425.38,
+     430.37,
      "Và Tây Nam các đơn vị chủ lực tiến về những mục tiêu đã được xác định."
     ],
     [
-     433.2,
-     437.65,
+     430.45,
+     434.9,
      "Tiếng động cơ xe tăng vang lên những đoàn xe thiết giáp xe vận tải"
     ],
     [
-     437.7,
-     441.02,
+     434.95,
+     438.27,
      "xe chở bộ binh liên tục tiến về phía trước"
     ],
     [
-     441.07,
-     447.01,
+     438.32,
+     444.26,
      "7 giờ 15 phút pháo cối bắn vào khu vực sân bay Tân Sơn Nhất và Bộ Tổng tham mưu."
     ],
     [
-     447.09,
-     450.09,
+     444.34,
+     447.34,
      "7 giờ 30 phút tại cầu Rạch Chiếc."
     ],
     [
-     450.18,
-     453.62,
+     447.43,
+     450.87,
      "Xe tăng đầu tiên của Lữ đoàn 203 vượt qua cây cầu"
     ],
     [
-     453.67,
-     458.67,
+     450.92,
+     455.92,
      "mà các chiến sĩ Lữ đoàn đặc công biệt động 316 đã giữ được sau những trận ác liệt."
     ],
     [
-     458.72,
-     462.85,
+     455.97,
+     460.1,
      "Phía trước đoàn xe là những con đường dẫn thẳng vào nội đô"
     ],
     [
-     462.9,
-     466.4,
+     460.15,
+     463.65,
      "phía sau là những lực lượng đang tiếp tục tiến lên."
     ],
     [
-     466.69,
-     471.34,
+     463.94,
+     468.59,
      "Cầu Rạch Chiếc đã thông con đường tiến vào trung tâm Sài Gòn đang rộng mở"
     ],
     [
-     471.39,
-     476.37,
+     468.64,
+     473.62,
      "và từ thời khắc ấy nhịp độ cuộc tiến công ngày càng trở nên dồn dập."
     ]
    ],
@@ -923,115 +923,115 @@
    "ten": "Sân bay Tân Sơn Nhất",
    "title": "Hồi 7 · Sân bay Tân Sơn Nhất (30/4, 5 giờ 30 – 11 giờ 30)",
    "tang": "noi-do",
-   "t0": 476.65,
-   "t1": 546.01,
+   "t0": 473.9,
+   "t1": 543.26,
    "shots": [
     {
      "id": "C07-A",
-     "t0": 476.65,
-     "t1": 505.06,
+     "t0": 473.9,
+     "t1": 502.31,
      "size": "Toàn",
      "desc": "Tân Sơn Nhất sáng 30/4"
     },
     {
      "id": "C07-B",
-     "t0": 505.06,
-     "t1": 524.6,
+     "t0": 502.31,
+     "t1": 521.85,
      "size": "Trung",
      "desc": "Đội hình tiến vào khu đỗ"
     },
     {
      "id": "C07-C",
-     "t0": 524.6,
-     "t1": 546.01,
+     "t0": 521.85,
+     "t1": 543.26,
      "size": "Toàn",
      "desc": "Làm chủ sân bay"
     }
    ],
    "subs": [
     [
-     479.1,
-     481.91,
+     476.35,
+     479.16,
      "5 giờ 30 phút ngày 30 tháng 4."
     ],
     [
-     482.03,
-     486.16,
+     479.28,
+     483.41,
      "Trên hướng Tây Bắc Sư đoàn 10 cùng hai đại đội xe tăng"
     ],
     [
-     486.21,
-     490.33,
+     483.46,
+     487.58,
      "thuộc Trung đoàn 273 mở cuộc tiến công vào sân bay Tân Sơn Nhất."
     ],
     [
-     490.38,
-     495.73,
+     487.63,
+     492.98,
      "Một mục tiêu quân sự trọng yếu đang nằm trong tầm tiến công của Quân Giải phóng."
     ],
     [
-     495.85,
-     500.15,
+     493.1,
+     497.4,
      "Một đội hình bộ binh phối hợp với xe tăng tiến về sân bay."
     ],
     [
-     500.2,
-     504.33,
+     497.45,
+     501.58,
      "Qua từng tuyến phòng thủ các đơn vị chiến đấu nhằm làm chủ khu vực."
     ],
     [
-     504.38,
-     509.71,
+     501.63,
+     506.96,
      "Đến 9 giờ 45 phút Trung đoàn 24 tiếp tục tiến công."
     ],
     [
-     510.08,
-     513.6,
+     507.33,
+     510.85,
      "Cuộc chiến diễn ra trong những giờ phút đặc biệt căng thẳng của buổi"
     ],
     [
-     513.65,
-     519.09,
+     510.9,
+     516.34,
      "sáng 30 tháng 4 tại trung tâm Sài Gòn tình thế đã thay đổi nhanh chóng"
     ],
     [
-     519.14,
-     524.14,
+     516.39,
+     521.39,
      "các cơ quan đầu não của quân đội Sài Gòn lần lượt trở thành mục tiêu tiến công."
     ],
     [
-     524.19,
-     527.47,
+     521.44,
+     524.72,
      "Đến 11 giờ 30 phút theo diễn biến được"
     ],
     [
-     527.52,
-     529.28,
+     524.77,
+     526.53,
      "ghi nhận trong kịch bản chiến dịch"
     ],
     [
-     529.33,
-     533.05,
+     526.58,
+     530.3,
      "Trung đoàn 24 đã hoàn toàn làm chủ sân bay Tân Sơn Nhất"
     ],
     [
-     533.1,
-     536.22,
+     530.35,
+     533.47,
      "một trong những căn cứ quân sự lớn nhất bảo vệ Sài Gòn"
     ],
     [
-     536.27,
-     539.07,
+     533.52,
+     536.32,
      "đã nằm trong sự kiểm soát của Quân Giải phóng."
     ],
     [
-     539.44,
-     543.6,
+     536.69,
+     540.85,
      "Trên bầu trời và dưới mặt đất những mắt xích quan trọng của hệ thống phòng"
     ],
     [
-     543.65,
-     545.89,
+     540.9,
+     543.14,
      "thủ đã lần lượt bị phá vỡ."
     ]
    ],
@@ -1046,108 +1046,108 @@
    "ten": "Bộ Tổng tham mưu",
    "title": "Hồi 8 · Bộ Tổng tham mưu (30/4, đến 11 giờ 30)",
    "tang": "noi-do",
-   "t0": 546.01,
-   "t1": 608.58,
+   "t0": 543.26,
+   "t1": 605.83,
    "shots": [
     {
      "id": "C08-A",
-     "t0": 546.01,
-     "t1": 577.63,
+     "t0": 543.26,
+     "t1": 574.88,
      "size": "Toàn",
      "desc": "Bộ Tổng tham mưu: tiến công từ hai phía"
     },
     {
      "id": "C08-B",
-     "t0": 577.63,
-     "t1": 608.58,
+     "t0": 574.88,
+     "t1": 605.83,
      "size": "Trung",
      "desc": "Làm chủ mục tiêu lúc 11 giờ 30"
     }
    ],
    "subs": [
     [
-     548.34,
-     551.66,
+     545.59,
+     548.91,
      "Cùng lúc ấy tại Bộ Tổng tham mưu quân đội Sài Gòn"
     ],
     [
-     551.71,
-     554.28,
+     548.96,
+     551.53,
      "một cuộc tiến công quyết định diễn ra."
     ],
     [
-     554.52,
-     558.17,
+     551.77,
+     555.42,
      "Đây là cơ quan chỉ huy quân sự đầu não của chính quyền Sài Gòn"
     ],
     [
-     558.22,
-     561.94,
+     555.47,
+     559.19,
      "và giờ đây những cánh Quân Giải phóng đã áp sát mục tiêu"
     ],
     [
-     561.99,
-     564.55,
+     559.24,
+     561.8,
      "từ hai phía các đơn vị đồng loạt"
     ],
     [
-     564.6,
-     570.52,
+     561.85,
+     567.77,
      "tiến công Sư đoàn 10 đánh vào cổng số 1 Trung đoàn 48 tiến công cổng số 2"
     ],
     [
-     570.57,
-     574.82,
+     567.82,
+     572.07,
      "và khi đó đội hình của Trung đoàn 28 với xe tăng dẫn đầu"
     ],
     [
-     574.87,
-     577.07,
+     572.12,
+     574.32,
      "tiến thẳng về khu vực cổng chính."
     ],
     [
-     577.63,
-     581.56,
+     574.88,
+     578.81,
      "Những chiếc xe tăng vượt qua cổng bộ binh nhanh chóng triển khai"
     ],
     [
-     581.61,
-     585.12,
+     578.86,
+     582.37,
      "và tiến vào ngôi nhà chính các lực lượng tiến công"
     ],
     [
-     585.17,
-     587.05,
+     582.42,
+     584.3,
      "phối hợp làm chủ mục tiêu"
     ],
     [
-     587.1,
-     592.51,
+     584.35,
+     589.76,
      "11 giờ 30 phút Bộ Tổng tham mưu quân đội Sài Gòn bị đánh chiếm"
     ],
     [
-     592.56,
-     595.2,
+     589.81,
+     592.45,
      "cơ quan chỉ huy quân sự đầu não của đối phương"
     ],
     [
-     595.25,
-     598.13,
+     592.5,
+     595.38,
      "đã không còn giữ được quyền kiểm soát tại chỗ."
     ],
     [
-     598.18,
-     601.5,
+     595.43,
+     598.75,
      "Một mục tiêu trọng yếu của chiến dịch đã được hoàn thành"
     ],
     [
-     601.55,
-     603.87,
+     598.8,
+     601.12,
      "nhưng cuộc tiến công vẫn chưa dừng lại"
     ],
     [
-     603.92,
-     608.74,
+     601.17,
+     605.99,
      "trên khắp Sài Gòn các cánh quân tiếp tục tiến về những vị trí còn lại."
     ]
    ],
@@ -1162,110 +1162,110 @@
    "ten": "Từ phía Tây Nam tiến vào Sài Gòn",
    "title": "Hồi 9 · Từ phía Tây Nam tiến vào Sài Gòn (30/4/1975)",
    "tang": "noi-do",
-   "t0": 608.58,
-   "t1": 680.26,
+   "t0": 605.83,
+   "t1": 677.51,
    "shots": [
     {
      "id": "C09-A",
-     "t0": 608.58,
-     "t1": 642.86,
+     "t0": 605.83,
+     "t1": 640.11,
      "size": "Toàn",
      "desc": "Bà Quẹo – Bảy Hiền – Lê Văn Duyệt"
     },
     {
      "id": "C09-B",
-     "t0": 642.86,
-     "t1": 664.23,
+     "t0": 640.11,
+     "t1": 661.48,
      "size": "Toàn",
      "desc": "Cầu Chữ Y"
     },
     {
      "id": "C09-C",
-     "t0": 664.23,
-     "t1": 680.26,
+     "t0": 661.48,
+     "t1": 677.51,
      "size": "Đại toàn",
      "desc": "Năm cánh quân hội tụ giữa nội đô"
     }
    ],
    "subs": [
     [
-     613.48,
-     616.64,
+     610.73,
+     613.89,
      "Trong khi những cánh quân phía Bắc và phía Đông"
     ],
     [
-     616.69,
-     618.97,
+     613.94,
+     616.22,
      "liên tiếp đánh chiếm các mục tiêu quan trọng"
     ],
     [
-     619.02,
-     625.2,
+     616.27,
+     622.45,
      "ở hướng Tây và Tây Nam các đơn vị thuộc Đoàn 232 cũng đang tiến sâu vào thành phố."
     ],
     [
-     625.6,
-     629.93,
+     622.85,
+     627.18,
      "Trên hướng Tây Trung đoàn 1 thuộc Sư đoàn 9 tiến qua Bà Quẹo."
     ],
     [
-     629.98,
-     633.74,
+     627.23,
+     630.99,
      "Bảy Hiền những địa danh quen thuộc của Sài Gòn bấy giờ"
     ],
     [
-     633.79,
-     636.24,
+     631.04,
+     633.49,
      "trở thành những điểm trên đường tiến quân."
     ],
     [
-     636.64,
-     641.8,
+     633.89,
+     639.05,
      "Theo đường Lê Văn Duyệt lực lượng tiến công hướng tới Bộ Tư lệnh Biệt khu Thủ đô"
     ],
     [
-     641.85,
-     645.97,
+     639.1,
+     643.22,
      "ở phía Nam một trung đoàn khác cũng vượt qua cầu Chữ Y."
     ],
     [
-     646.02,
-     651.68,
+     643.27,
+     648.93,
      "Đến 10 giờ 30 phút lực lượng tiến công đánh chiếm Bộ Tư lệnh Cảnh sát quốc gia."
     ],
     [
-     651.96,
-     656.05,
+     649.21,
+     653.3,
      "Từng tuyến được mở từng mục tiêu được tiếp cận và đánh chiếm."
     ],
     [
-     656.13,
-     660.01,
+     653.38,
+     657.26,
      "Từ phía Đông đến phía Tây từ phía Bắc đến phía Nam"
     ],
     [
-     660.06,
-     663.95,
+     657.31,
+     661.2,
      "các đơn vị Quân Giải phóng đang tiến vào những vị trí trọng yếu."
     ],
     [
-     664.23,
-     668.19,
+     661.48,
+     665.44,
      "Vòng vây bên ngoài đã chuyển thành những mũi tiến công trong nội đô"
     ],
     [
-     668.24,
-     671.69,
+     665.49,
+     668.94,
      "năm cánh quân đang hội tụ giữa lòng Sài Gòn."
     ],
     [
-     671.77,
-     674.86,
+     669.02,
+     672.11,
      "Và lúc ấy trên hướng Đông một đoàn xe tăng"
     ],
     [
-     674.91,
-     679.49,
+     672.16,
+     676.74,
      "đang lao về mục tiêu quan trọng nhất của buổi sáng hôm đó Dinh Độc Lập."
     ]
    ],
@@ -1279,154 +1279,154 @@
    "ten": "Mũi thọc sâu phía Đông",
    "title": "Hồi 10 · Mũi thọc sâu phía Đông (sáng 30/4)",
    "tang": "noi-do",
-   "t0": 680.26,
-   "t1": 765.9,
+   "t0": 677.51,
+   "t1": 763.15,
    "shots": [
     {
      "id": "C10-A",
-     "t0": 680.26,
-     "t1": 706.93,
+     "t0": 677.51,
+     "t1": 704.18,
      "size": "Toàn",
      "desc": "Đầu cầu Sài Gòn"
     },
     {
      "id": "C10-B",
-     "t0": 706.93,
-     "t1": 719.06,
+     "t0": 704.18,
+     "t1": 716.31,
      "size": "Trung",
      "desc": "Bám xe 843 qua cầu Sài Gòn"
     },
     {
      "id": "C10-C",
-     "t0": 719.06,
-     "t1": 727.01,
+     "t0": 716.31,
+     "t1": 724.26,
      "size": "Trung",
      "desc": "Ngã tư Hàng Xanh: xe 390 bắn cháy M113"
     },
     {
      "id": "C10-D",
-     "t0": 727.01,
-     "t1": 741.46,
+     "t0": 724.26,
+     "t1": 738.71,
      "size": "Trung",
      "desc": "Cầu Thị Nghè"
     },
     {
      "id": "C10-E",
-     "t0": 741.46,
-     "t1": 765.9,
+     "t0": 738.71,
+     "t1": 763.15,
      "size": "Trung",
      "desc": "Đường Hồng Thập Tự về Dinh"
     }
    ],
    "subs": [
     [
-     683.11,
-     687.89,
+     680.36,
+     685.14,
      "9 giờ 30 phút ngày 30 tháng 4 tình hình tại Sài Gòn chuyển biến từng phút."
     ],
     [
-     687.94,
-     692.91,
+     685.19,
+     690.16,
      "Dương Văn Minh lên Đài phát thanh Sài Gòn đề nghị Quân Giải phóng ngừng tiến công"
     ],
     [
-     692.96,
-     694.88,
+     690.21,
+     692.13,
      "để bàn giao chính quyền."
     ],
     [
-     695.09,
-     700.03,
+     692.34,
+     697.28,
      "Nhưng trên những tuyến đường phía Đông các mũi tiến công vẫn đang thực hiện nhiệm vụ."
     ],
     [
-     700.23,
-     705.72,
+     697.48,
+     702.97,
      "Đoàn xe tăng từ Lữ đoàn 203 phối hợp cùng bộ binh Trung đoàn 66"
     ],
     [
-     705.77,
-     708.7,
+     703.02,
+     705.95,
      "thuộc Quân đoàn 2 tiến qua cầu Sài Gòn."
     ],
     [
-     708.86,
-     713.15,
+     706.11,
+     710.4,
      "Tại đầu cầu một chiếc xe tăng M48 của đối phương chặn đường"
     ],
     [
-     713.2,
-     716.52,
+     710.45,
+     713.77,
      "cuộc giao tranh bùng lên đoàn xe vượt qua chướng ngại"
     ],
     [
-     716.57,
-     718.9,
+     713.82,
+     716.15,
      "tiếp tục tiến sâu vào thành phố."
     ],
     [
-     719.06,
-     724.39,
+     716.31,
+     721.64,
      "Tới ngã tư Hàng Xanh xe tăng mang số hiệu 390 bắn cháy một chiếc xe bọc thép"
     ],
     [
-     724.44,
-     726.93,
+     721.69,
+     724.18,
      "M113 đang cản đường."
     ],
     [
-     727.01,
-     731.18,
+     724.26,
+     728.43,
      "Không dừng lại đội hình tiếp tục lao về phía cầu Thị Nghè"
     ],
     [
-     731.23,
-     735.03,
+     728.48,
+     732.28,
      "tại đây những chiếc xe đi đầu chiến đấu với lực lượng phòng thủ"
     ],
     [
-     735.08,
-     739.13,
+     732.33,
+     736.38,
      "có xe tăng M41 và xe bọc thép M113."
     ],
     [
-     739.49,
-     743.86,
+     736.74,
+     741.11,
      "Chướng ngại tiếp tục bị vượt qua phía trước là đường Hồng Thập Tự."
     ],
     [
-     743.91,
-     746.44,
+     741.16,
+     743.69,
      "Con đường dẫn thẳng về Dinh Độc Lập."
     ],
     [
-     746.85,
-     751.46,
+     744.1,
+     748.71,
      "Từng chiếc xe tăng nối nhau tiến lên tiếng xích sắt nhấn trên mặt đường"
     ],
     [
-     751.51,
-     754.33,
+     748.76,
+     751.58,
      "tiếng động cơ vang giữa những dãy phố."
     ],
     [
-     754.45,
-     757.49,
+     751.7,
+     754.74,
      "Mục tiêu đã ở ngay phía trước Dinh Độc Lập"
     ],
     [
-     757.54,
-     759.9,
+     754.79,
+     757.15,
      "trung tâm quyền lực của chính quyền Sài Gòn"
     ],
     [
-     759.95,
-     762.92,
+     757.2,
+     760.17,
      "và cũng là điểm đến của một trong những mũi tiến công"
     ],
     [
-     762.97,
-     765.9,
+     760.22,
+     763.15,
      "mang tính biểu tượng nhất của Chiến dịch Hồ Chí Minh."
     ]
    ],
@@ -1443,174 +1443,174 @@
    "ten": "Cổng Dinh Độc Lập",
    "title": "Hồi 11 · Cổng Dinh Độc Lập (trưa 30/4)",
    "tang": "noi-do",
-   "t0": 765.9,
-   "t1": 879.6,
+   "t0": 763.15,
+   "t1": 876.85,
    "shots": [
     {
      "id": "T02-A",
-     "t0": 765.9,
-     "t1": 787.33,
+     "t0": 763.15,
+     "t1": 784.58,
      "size": "Trung",
      "desc": "Bám sau xe 843"
     },
     {
      "id": "T02-C",
-     "t0": 787.33,
-     "t1": 829.55,
+     "t0": 784.58,
+     "t1": 826.8,
      "size": "Toàn",
      "desc": "Cổng Dinh: 843 húc đổ cổng phụ rồi chết máy, kẹt lại; 390 húc đổ cổng chính"
     },
     {
      "id": "T03-A",
-     "t0": 829.55,
-     "t1": 835.89,
+     "t0": 826.8,
+     "t1": 833.14,
      "size": "Trung",
      "desc": "Bùi Quang Thận rời xe 843, chạy về cổng chính"
     },
     {
      "id": "T03-A2",
-     "t0": 835.89,
-     "t1": 843.84,
+     "t0": 833.14,
+     "t1": 841.09,
      "size": "Trung",
      "desc": "Băng qua bãi cỏ vào Dinh"
     },
     {
      "id": "T03-B",
-     "t0": 843.84,
-     "t1": 879.6,
+     "t0": 841.09,
+     "t1": 876.85,
      "size": "Cận",
      "desc": "Nóc Dinh: hạ cờ ba sọc, kéo cờ Mặt trận"
     }
    ],
    "subs": [
     [
-     768.55,
-     774.08,
+     765.8,
+     771.33,
      "Gần trưa ngày 30 tháng 4 năm 1975 đoàn xe tăng thuộc Đại đội 4"
     ],
     [
-     774.13,
-     777.57,
+     771.38,
+     774.82,
      "Lữ đoàn xe tăng 203 tiến đến trước Dinh Độc Lập một"
     ],
     [
-     777.62,
-     780.54,
+     774.87,
+     777.79,
      "công trình đã trở thành biểu tượng quyền lực của chính quyền Sài Gòn"
     ],
     [
-     780.59,
-     784.43,
+     777.84,
+     781.68,
      "suốt nhiều năm và giờ đây những chiếc xe tăng Quân Giải phóng đang"
     ],
     [
-     784.48,
-     786.09,
+     781.73,
+     783.34,
      "tiến thẳng về phía cổng."
     ],
     [
-     787.33,
-     792.86,
+     784.58,
+     790.11,
      "Xe mang số 843 do đại đội trưởng Bùi Quang Thận chỉ huy lao tới."
     ],
     [
-     793.03,
-     799.04,
+     790.28,
+     796.29,
      "Rầm! xe 843 húc vào cổng phụ bên trái nhưng bị mắc kẹt ngay phía sau"
     ],
     [
-     799.09,
-     802.65,
+     796.34,
+     799.9,
      "chiếc xe tăng mang số hiệu 390 đang tiến lên."
     ],
     [
-     802.7,
-     806.54,
+     799.95,
+     803.79,
      "Trưởng xe là Vũ Đăng Toàn lái xe Nguyễn Văn Tập"
     ],
     [
-     806.59,
-     811.24,
+     803.84,
+     808.49,
      "không chần chừ xe 390 lao thẳng về phía cánh cổng chính"
     ],
     [
-     811.29,
-     815.3,
+     808.54,
+     812.55,
      "một cú chạm dữ dội cánh cổng Dinh Độc Lập đổ xuống"
     ],
     [
-     815.35,
-     820.92,
+     812.6,
+     818.17,
      "chiếc xe tăng 390 tiến vào sân Dinh những chiếc xe khác nối nhau tiến vào"
     ],
     [
-     820.97,
-     823.73,
+     818.22,
+     820.98,
      "khoảnh khắc ấy đã trở thành một trong những hình ảnh"
     ],
     [
-     823.78,
-     827.18,
+     821.03,
+     824.43,
      "được ghi nhớ đậm sâu nhất của lịch sử Việt Nam hiện đại."
     ],
     [
-     827.39,
-     831.75,
+     824.64,
+     829.0,
      "Nhưng nhiệm vụ vẫn chưa kết thúc từ chiếc xe tăng 843"
     ],
     [
-     831.8,
-     835.84,
+     829.05,
+     833.09,
      "đại đội trưởng Bùi Quang Thận đã tháo lá cờ mang theo trên tháp pháo"
     ],
     [
-     835.89,
-     840.01,
+     833.14,
+     837.26,
      "anh chạy vào Dinh tiến vào các tầng cao để thực hiện nhiệm vụ"
     ],
     [
-     840.06,
-     843.79,
+     837.31,
+     841.04,
      "Vũ Đăng Toàn cầm súng xuống xe bảo vệ phía trước"
     ],
     [
-     843.84,
-     848.25,
+     841.09,
+     845.5,
      "trên nóc Dinh Độc Lập Bùi Quang Thận bắt đầu hạ lá cờ ba sọc."
     ],
     [
-     848.3,
-     853.03,
+     845.55,
+     850.28,
      "Lá cờ lớn lớp vải dày khiến công việc mất nhiều phút và rồi"
     ],
     [
-     853.08,
-     857.57,
+     850.33,
+     854.82,
      "đúng 11 giờ 30 phút ngày 30 tháng 4 năm 1975"
     ],
     [
-     857.62,
-     860.54,
+     854.87,
+     857.79,
      "lá cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam được"
     ],
     [
-     860.59,
-     864.44,
+     857.84,
+     861.69,
      "kéo lên trên nóc Dinh Độc Lập giữa bầu trời Sài Gòn."
     ],
     [
-     864.88,
-     870.04,
+     862.13,
+     867.29,
      "Tung bay bên dưới những chiếc xe tăng của Quân Giải phóng đã tiến vào sân Dinh"
     ],
     [
-     870.09,
-     874.18,
+     867.34,
+     871.43,
      "thời khắc lịch sử đã đến một biểu tượng quyền lực của chính quyền Sài Gòn"
     ],
     [
-     874.23,
-     879.64,
+     871.48,
+     876.89,
      "đã đổi chủ và cuộc chiến tranh kéo dài nhiều thập niên đã đi tới hồi kết."
     ]
    ],
@@ -1632,130 +1632,130 @@
    "ten": "Non sông liền một dải",
    "title": "Hồi 12 · Non sông liền một dải (trưa 30/4/1975)",
    "tang": "noi-do",
-   "t0": 879.6,
-   "t1": 967.75,
+   "t0": 876.85,
+   "t1": 965.0,
    "shots": [
     {
      "id": "C12-A",
-     "t0": 879.6,
-     "t1": 897.54,
+     "t0": 876.85,
+     "t1": 894.79,
      "size": "Toàn",
      "desc": "Dinh Độc Lập, lá cờ trên nóc"
     },
     {
      "id": "C12-B",
-     "t0": 897.54,
-     "t1": 917.17,
+     "t0": 894.79,
+     "t1": 914.42,
      "size": "Trung",
      "desc": "Người dân Sài Gòn ra đường"
     },
     {
      "id": "C12-C",
-     "t0": 917.17,
-     "t1": 967.75,
+     "t0": 914.42,
+     "t1": 965.0,
      "size": "Đại toàn",
      "desc": "Sài Gòn từ trên cao"
     }
    ],
    "subs": [
     [
-     885.07,
-     889.85,
+     882.32,
+     887.1,
      "Trưa ngày 30 tháng 4 năm 1975 tại Đài phát thanh Sài Gòn"
     ],
     [
-     889.9,
-     894.11,
+     887.15,
+     891.36,
      "lời tuyên bố đầu hàng của Tổng thống Dương Văn Minh đã được phát đi những"
     ],
     [
-     894.16,
-     897.49,
+     891.41,
+     894.74,
      "cuộc tiến công quyết định đã hoàn thành mục tiêu của chiến dịch"
     ],
     [
-     897.54,
-     902.48,
+     894.79,
+     899.73,
      "trên các tuyến đường người dân Sài Gòn đổ ra cùng đoàn quân tiến vào thành phố"
     ],
     [
-     902.53,
-     906.71,
+     899.78,
+     903.96,
      "những lá cờ tung bay những tiếng reo mừng vang lên giữa các con phố"
     ],
     [
-     906.76,
-     909.4,
+     904.01,
+     906.65,
      "từ Xuân Lộc Đồng Dù Rạch Chiếc"
     ],
     [
-     909.45,
-     912.5,
+     906.7,
+     909.75,
      "Tân Sơn Nhất Bộ Tổng tham mưu cho tới Dinh Độc Lập"
     ],
     [
-     912.55,
-     917.01,
+     909.8,
+     914.26,
      "những địa danh của trận chiến cuối cùng đã trở thành những dấu mốc của lịch sử."
     ],
     [
-     917.17,
-     921.55,
+     914.42,
+     918.8,
      "Năm cánh quân nhiều hướng tiến công và một chiến dịch quyết định."
     ],
     [
-     921.6,
-     926.81,
+     918.85,
+     924.06,
      "Chiến dịch Hồ Chí Minh toàn thắng ngày 30 tháng 4 năm 1975"
     ],
     [
-     926.86,
-     929.25,
+     924.11,
+     926.5,
      "đánh dấu sự kết thúc của cuộc kháng chiến"
     ],
     [
-     929.3,
-     933.75,
+     926.55,
+     931.0,
      "mở đường cho việc thống nhất đất nước về mặt nhà nước trong những năm tiếp theo"
     ],
     [
-     933.8,
-     936.44,
+     931.05,
+     933.69,
      "sau những thập niên chia cắt khát vọng hòa bình"
     ],
     [
-     936.49,
-     940.29,
+     933.74,
+     937.54,
      "và thống nhất của biết bao thế hệ người Việt Nam đã trở thành hiện thực"
     ],
     [
-     940.34,
-     944.74,
+     937.59,
+     941.99,
      "lịch sử sẽ còn ghi nhớ những con người đã chiến đấu đã hy sinh"
     ],
     [
-     944.79,
-     948.83,
+     942.04,
+     946.08,
      "và những mất mát mà chiến tranh để lại cho hàng triệu gia đình để rồi"
     ],
     [
-     948.88,
-     952.32,
+     946.13,
+     949.57,
      "từ những đau thương ấy một tương lai mới được mở ra"
     ],
     [
-     952.37,
-     957.86,
+     949.62,
+     955.11,
      "ngày 30 tháng 4 năm 1975 một dấu mốc lớn lao trong lịch sử Việt Nam"
     ],
     [
-     957.91,
-     962.2,
+     955.16,
+     959.45,
      "ngày đất nước bước sang thời kỳ hòa bình độc lập và thống nhất."
     ],
     [
-     962.32,
-     967.46,
+     959.57,
+     964.71,
      "Chiến dịch Hồ Chí Minh năm 1975 bản hùng ca thống nhất non sông."
     ]
    ],
@@ -1958,51 +1958,51 @@
   "c02_vay": 182.99,
   "c03_phao0": 204.53,
   "c03_phao1": 228.65,
-  "c04_catcanh": 274.31,
-  "c04_muctieu": 281.41,
-  "c04_bom": 291.72,
-  "c04_ve": 303.43,
-  "c05_phao0": 328.92,
-  "c05_phao1": 348.76,
-  "c05_co": 356.08,
-  "c05_btt": 368.46,
-  "c05_rc": 378.84,
-  "c06_tc": 421.74,
-  "c06_phao": 441.07,
-  "c06_rc": 447.09,
-  "c07_tc": 483.68,
-  "c07_24": 505.06,
-  "c07_chu": 524.6,
-  "c08_tc": 565.12,
-  "c08_xt": 577.63,
-  "c08_chu": 587.1,
-  "c09_tay": 626.77,
-  "c09_lvd": 636.64,
-  "c09_cy": 644.86,
-  "c09_cs": 646.34,
-  "c09_hoi": 664.23,
-  "c10_dai": 688.7,
-  "c10_cau": 706.93,
-  "c10_m48": 708.86,
-  "c10_hx": 719.06,
-  "c10_ban": 722.96,
-  "c10_tn": 727.01,
-  "c10_htt": 741.46,
-  "c11_toi": 768.55,
-  "c11_843": 787.33,
-  "c11_ram": 793.03,
-  "c11_390": 802.7,
-  "c11_cham": 811.29,
-  "c11_vao": 815.35,
-  "c11_thao": 829.55,
-  "c11_chay": 835.89,
-  "c11_noc": 843.84,
-  "c11_ha": 846.09,
-  "c11_keo": 860.35,
-  "c12_dai": 888.17,
-  "c12_dan": 897.54,
-  "c12_ket": 917.17,
-  "c12_tt": 921.6,
+  "c04_catcanh": 272.78,
+  "c04_muctieu": 279.88,
+  "c04_bom": 290.19,
+  "c04_ve": 301.9,
+  "c05_phao0": 327.39,
+  "c05_phao1": 347.23,
+  "c05_co": 354.55,
+  "c05_btt": 366.93,
+  "c05_rc": 377.31,
+  "c06_tc": 418.99,
+  "c06_phao": 438.32,
+  "c06_rc": 444.34,
+  "c07_tc": 480.93,
+  "c07_24": 502.31,
+  "c07_chu": 521.85,
+  "c08_tc": 562.37,
+  "c08_xt": 574.88,
+  "c08_chu": 584.35,
+  "c09_tay": 624.02,
+  "c09_lvd": 633.89,
+  "c09_cy": 642.11,
+  "c09_cs": 643.59,
+  "c09_hoi": 661.48,
+  "c10_dai": 685.95,
+  "c10_cau": 704.18,
+  "c10_m48": 706.11,
+  "c10_hx": 716.31,
+  "c10_ban": 720.21,
+  "c10_tn": 724.26,
+  "c10_htt": 738.71,
+  "c11_toi": 765.8,
+  "c11_843": 784.58,
+  "c11_ram": 790.28,
+  "c11_390": 799.95,
+  "c11_cham": 808.54,
+  "c11_vao": 812.6,
+  "c11_thao": 826.8,
+  "c11_chay": 833.14,
+  "c11_noc": 841.09,
+  "c11_ha": 843.34,
+  "c11_keo": 857.6,
+  "c12_dai": 885.42,
+  "c12_dan": 894.79,
+  "c12_ket": 914.42,
+  "c12_tt": 918.85,
   "c01_l1": 13.93,
   "c01_d": 29.83,
   "c01_l2": 50.85,
@@ -2014,13 +2014,13 @@
   "c03_p": 202.86,
   "c03_d": 209.08,
   "c03_l": 220.39,
-  "c05_p": 326.51,
-  "c05_d": 334.54,
-  "c05_l": 342.68,
-  "c05_l2": 391.25,
-  "c05_l2e": 395.55,
-  "c06_l1": 411.2,
-  "c06_l2": 433.2
+  "c05_p": 324.98,
+  "c05_d": 333.01,
+  "c05_l": 341.15,
+  "c05_l2": 389.72,
+  "c05_l2e": 394.02,
+  "c06_l1": 408.45,
+  "c06_l2": 430.45
  },
  "voice": {
   "file": "audio/voice.mp3",
@@ -2058,50 +2058,50 @@
    "PHI ĐỘI QUYẾT THẮNG"
   ],
   [
-   321.54,
-   328.47,
+   320.01,
+   326.94,
    "HỒI 5",
    "PHÁ TAN TUYẾN PHÒNG THỦ VÒNG NGOÀI"
   ],
   [
-   407.74,
-   412.91,
+   404.99,
+   410.16,
    "HỒI 6",
    "RẠNG SÁNG 30 THÁNG 4"
   ],
   [
-   476.65,
-   481.42,
+   473.9,
+   478.67,
    "HỒI 7",
    "SÂN BAY TÂN SƠN NHẤT"
   ],
   [
-   546.01,
-   550.7,
+   543.26,
+   547.95,
    "HỒI 8",
    "BỘ TỔNG THAM MƯU"
   ],
   [
-   608.58,
-   615.15,
+   605.83,
+   612.4,
    "HỒI 9",
    "TỪ PHÍA TÂY NAM TIẾN VÀO SÀI GÒN"
   ],
   [
-   680.26,
-   685.47,
+   677.51,
+   682.72,
    "HỒI 10",
    "MŨI THỌC SÂU PHÍA ĐÔNG"
   ],
   [
-   765.9,
-   770.75,
+   763.15,
+   768.0,
    "HỒI 11",
    "CỔNG DINH ĐỘC LẬP"
   ],
   [
-   879.6,
-   887.39,
+   876.85,
+   884.64,
    "HỒI 12",
    "TRƯA 30 THÁNG 4 – NON SÔNG LIỀN MỘT DẢI"
   ]

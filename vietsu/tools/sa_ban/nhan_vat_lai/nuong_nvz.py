@@ -5,7 +5,7 @@ Ví dụ: python3 nuong_nvz.py qdnd.plain.glb linh-qgp.nvz linh-qgp.jpg 1800 1.6
 - Toạ độ ra: Y lên, mặt nhân vật theo +Z (như các .nvz khác của bộ máy)."""
 import bpy, bmesh, sys, os, json, base64, math
 import numpy as np
-from mathutils import Matrix
+from mathutils import Matrix, Vector
 argv = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else sys.argv[1:]
 VAO, RA, JPG, TRI, CAO = argv[0], argv[1], argv[2], int(argv[3]), float(argv[4])
 CLIP = []
@@ -55,12 +55,17 @@ for p_ in me.polygons:                                                         #
 if CAM:
     uvn = me.uv_layers.active.name
     W = me_o.matrix_world; inv = W.inverted()
-    Pw = [W @ v.co for v in me.vertices]; h0w = max(p.z for p in Pw) - min(p.z for p in Pw); s = h0w / CAO
-    bn = arm.data.bones['mixamorig:RightHand']; M = arm.matrix_world @ bn.matrix_local
-    H = M.translation; X = M.col[0].xyz.normalized(); Y = M.col[1].xyz.normalized(); Z = M.col[2].xyz.normalized()
+    # vị trí, hướng bàn tay lấy ngay trên lưới (tư thế buộc xương của lưới có thể khác tư thế nghỉ của xương): tâm các đỉnh thuộc bàn tay / cẳng tay phải
+    gi = {g.name: g.index for g in me_o.vertex_groups}
+    def tam(ten):
+        k = gi.get(ten); P_ = [W @ v.co for v in me.vertices if any(e.group == k and e.weight > 0.5 for e in v.groups)]
+        return sum(P_, Vector()) / len(P_) if P_ else None
+    H = tam('mixamorig:RightHand'); Fa = tam('mixamorig:RightForeArm'); Y = (H - Fa).normalized()
+    Z = Y.cross(Vector((0, 0, 1))); Z = Z.normalized() if Z.length > 1e-4 else Vector((1, 0, 0)); X = Y.cross(Z).normalized()
+    zz = [(W @ v.co).z for v in me.vertices]; s = (max(zz) - min(zz)) / CAO; print('đồ cầm tay: s', round(s, 4))
     bm = bmesh.new(); uvb = bm.loops.layers.uv.new(uvn)
     def quad(a, b, c, d, u0, u1, v0, v1):
-        vs = [bm.verts.new(inv @ p) for p in (a, b, c, d)]; f = bm.faces.new(vs)
+        vs = [bm.verts.new(p) for p in (a, b, c, d)]; f = bm.faces.new(vs)   # toạ độ thế giới: khi ghép, Blender tự đổi về hệ của lưới thân; f = bm.faces.new(vs)
         for l, uvv in zip(f.loops, ((u0, v0), (u1, v0), (u1, v1), (u0, v1))): l[uvb].uv = (uvv[0] / 512, uvv[1] / 576)
     if CAM == 'co':
         y0, y1, w = -0.10, 0.62, 0.012
@@ -112,7 +117,15 @@ def khung():
     P = np.array([W @ v.co for v in m.vertices]); N = np.array([(W.to_3x3() @ v.normal).normalized() for v in m.vertices]); ev.to_mesh_clear()
     return P[vid], N[vid]
 # chiều cao: theo tư thế nghỉ
-P0, _ = khung(); h0 = P0[:, 2].max() - P0[:, 2].min(); k = CAO / h0; z0 = P0[:, 2].min(); cx, cy = P0[:, 0].mean(), P0[:, 1].mean()
+P0, _ = khung()
+A1 = bpy.data.actions.get(CLIP[0][1])                                           # đo chiều cao theo khung đầu của động tác đầu (đứng): có mẫu (dân SG) động tác co giãn khác tư thế nghỉ
+if A1:
+    arm.animation_data.action = A1
+    try: arm.animation_data.action_slot = A1.slots[0]
+    except Exception: pass
+    sc0 = bpy.context.scene; sc0.frame_set(int(A1.frame_range[0])); P0, _ = khung()
+h0 = P0[:, 2].max() - P0[:, 2].min(); k = CAO / h0; z0 = P0[:, 2].min(); cx, cy = P0[:, 0].mean(), P0[:, 1].mean()
+print('cao gốc', round(h0, 3), '→', CAO)
 q = 0.001; clips = {}
 for ten, act, n, once in CLIP:
     A = bpy.data.actions.get(act)
@@ -127,6 +140,11 @@ for ten, act, n, once in CLIP:
         sc.frame_set(int(f), subframe=f - int(f)); P, N = khung()
         X = np.stack([(P[:, 0] - cx) * k, (P[:, 2] - z0) * k, -(P[:, 1] - cy) * k], 1)          # Z lên → Y lên
         Nn = np.stack([N[:, 0], N[:, 2], -N[:, 1]], 1)
+        if os.environ.get('SOI') and f == fs[0]:                                       # ảnh soi kiểm tra tư thế (nhìn ngang)
+            from PIL import Image, ImageDraw
+            im = Image.new('RGB', (240, 240), 'white'); dd = ImageDraw.Draw(im); U2 = np.array(uv)
+            for i_, p_ in enumerate(X[::3]): dd.point((120 + p_[2] * 100, 220 - p_[1] * 100), fill='red' if U2[i_ * 3][1] < 64 / 576 else 'black')
+            im.save(os.environ['SOI'] + '-' + ten + '.png')
         pos.append(base64.b64encode(np.round(X / q).astype(np.int16).tobytes()).decode())
         nor.append(base64.b64encode(np.clip(np.round(Nn * 127), -127, 127).astype(np.int8).tobytes()).decode())
     dur = max(0.2, (f1 - f0) / 24.0)
