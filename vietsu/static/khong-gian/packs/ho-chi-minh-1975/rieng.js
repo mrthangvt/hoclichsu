@@ -96,10 +96,10 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   // đường vào: theo Lê Duẩn tới cổng chính (trục Dinh) — bỏ đoạn rẽ phải cũ của tim_duong
   const iNga = DUONG_DINH.reduce((b, p, i) => { const q = DL(2, 151), e = Math.hypot(p[0] - q[0], p[1] - q[1]); return e < b[0] ? [e, i] : b; }, [1e9, 0])[1];
   const GOC = DUONG_DINH.slice(0, iNga + 1);
-  const D843 = [...GOC, DL(40, 152), DL(56, 155), DL(60, 153.5), DL(60, 149.3)],     // 843: rẽ trái theo đường trước rào tới cổng phụ bên trái (s = +60)
-        D390 = [...GOC, DL(-1.5, 149.3), DL(-1.5, 138), DL(-10, 118), DL(-20, 100), DL(-19, 72), DL(-9, 42)];
+  const D843 = [...GOC.slice(0, -1), DL(5, 164), DL(8.2, 157), DL(8.2, 149.7)],      // 843: lệch trái vào cổng phụ bên trái, sát cổng chính (ảnh 30/4)
+        D390 = [...GOC.slice(0, -1), DL(0, 162), DL(0, 149.3), DL(-1.5, 138), DL(-10, 118), DL(-20, 100), DL(-19, 72), DL(-9, 42)];
   const dai = (P, k) => { let a = 0; for (let i = 1; i <= k; i++) a += Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]); return a; };
-  const g843 = dai(D843, GOC.length), g390 = dai(D390, GOC.length);
+  const g843 = dai(D843, D843.length - 1), g390 = dai(D390, GOC.length);   // 843: tới cổng phụ (điểm cuối); 390: tới cổng chính
   // 843 húc cổng phụ bên trái, bị kẹt lại ở cổng phụ (TƯ LIỆU §2: S7, S8, S18; vietnamnet); xe 390 húc đổ cổng chính (S34, S33)
   XEX.x843 = await xeTao('data/xe/xe-tang-843.glb', { duong: D843, lich: [[42, 0], [84, g843], [999, g843]], hien: (t) => t >= 40, ten: 'Xe tăng 843' });
   XEX.x390 = await xeTao('data/xe/xe-tang-390.glb', { duong: D390, lich: [[44, -45], [90, g390], [108, dai(D390, D390.length - 1)]], hien: (t) => t >= 44, ten: 'Xe tăng 390' });
@@ -112,7 +112,7 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
       if (t < 115) return null;
       const X = XEX.x843.obj.position, ben = { x: X.x + Math.cos(XEX.x843.obj.rotation.y) * 2.6, z: X.z - Math.sin(XEX.x843.obj.rotation.y) * 2.6 };
       if (t < 116.4) { const u = (t - 115) / 1.4; const p = lerpP(X, ben, u); return { ...p, y: X.y + 1.35 * (1 - u), yaw: yawTo(X, ben), clip: 'leo' }; }
-      const ngoai = P3(8, 152), trong = P3(0, 62);
+      const ngoai = P3(1, 151), trong = P3(0, 62);
       if (t < 122.5) { const u = (t - 116.4) / 6.1, p = lerpP(ben, ngoai, u); return { ...p, yaw: yawTo(ben, ngoai), clip: 'chaynhanh' }; }   // dọc rào tới cổng chính
       if (t < 128) { const u = (t - 122.5) / 5.5, p = lerpP(trong, cua, u); return { ...p, yaw: yawTo(trong, cua), clip: 'chaynhanh' }; }      // (cắt cảnh) băng qua bãi cỏ tới thềm
       if (t < 129) return null;                                                                // trong Dinh, lên cầu thang
@@ -265,7 +265,7 @@ const SHOTS = TANG === 'chien-dich' ? {
   'T03-A2': (u) => SHOTS['T03-A'](u),
   'T03-B': (u) => { const [x, z] = XEX.DL(0, -4), c = V3(x, (XEX.hDinh || 0) + 29.5, -z); return orbit(c, 17, 1.5, 1.95, 2.75, 48, 4)(u); },   // nóc Dinh, nhìn lá cờ
   'T02-C': (u) => { const DL = XEX.DL, h = XEX.hDinh || 0, P = (a, b, y) => { const [x, z] = DL(a, b); return V3(x, h + y, -z); };   // cổng Dinh: nhìn từ ngoài vào
-    if (u < 0.5) return fly(P(30, 214, 21), P(24, 196, 15), P(30, 146, 2), P(14, 140, 2), 52)(u / 0.5);           // ngoài rào, thấy cả cổng phụ trái (843) và cổng chính (390)
+    if (u < 0.5) return fly(P(-14, 186, 7), P(-8, 172, 6), P(3, 146, 2.5), P(0, 140, 2.5), 46)(u / 0.5);          // ngoài cổng, góc ảnh tư liệu: cổng phụ trái (843) và cổng chính (390)
     return fly(P(4, 3, 23), P(0, 6, 25), P(-4, 120, 0), P(0, 100, 0), 52)((u - 0.5) / 0.5); },                    // từ sân thượng Dinh nhìn ra (góc ảnh tư liệu 30/4)
 };
 //@@ s35

@@ -136,32 +136,41 @@ for z in (7.8, 12.6):
     for sx in (-16.5, 15.9): box(sx - 0.05, sx + 0.05, -74, -30, z - 1.4, z + 1.2, 'kinh')
 box(-17, 16.4, -77, -27, 15.6, 17.0, 'trang'); box(-13, 12, -70, -30, 17.0, 20.6, 'tuong')
 
-# ---------------------------------------------------------------- hàng rào, cổng, chòi gác
+# ---------------------------------------------------------------- hàng rào, cổng (theo ảnh tư liệu 30/4/1975, anh Thắng gửi)
+# Cụm cổng trên trục Lê Duẩn: 4 trụ đá cao, đỉnh có đèn lồng; cổng chính hai cánh ở giữa, hai cổng phụ một cánh hai bên ngay sát
+# (ảnh: xe 843 kẹt ở cổng phụ bên trái, xe 390 húc đổ cổng chính). Rào: chân đá thấp, song sắt đứng đầu nhọn, trụ đá cách quãng.
 DF = 146.0
-CP = 60.0          # hai cổng phụ hai bên cổng chính (s = ±60 m, phỏng theo ảnh/nguồn "cổng chính và 2 cổng phụ hai bên"; vị trí chính xác chưa đối chiếu)
-for x in np.arange(-104, 104.1, 3.2):
-    if abs(x) < 8.6 or abs(abs(x) - CP) < 3.6: continue
-    box(x - 0.22, x + 0.22, DF - 0.22, DF + 0.22, 0, 2.3, 'trang')
-for sgn in (-1, 1):
-    for a, b in ([(8.6, CP - 3.6), (CP + 3.6, 104)] if sgn > 0 else [(-CP + 3.6, -8.6), (-104, -CP - 3.6)]):
-        box(a, b, DF - 0.15, DF + 0.15, 0, 0.55, 'trang'); box(a, b, DF - 0.04, DF + 0.04, 0.55, 2.0, 'sat'); box(a, b, DF - 0.08, DF + 0.08, 2.0, 2.1, 'sat')
-    for e in (-3.6, 3.6): box(sgn * CP + e - 0.4, sgn * CP + e + 0.4, DF - 0.4, DF + 0.4, 0, 2.7, 'trang')       # trụ cổng phụ
-    box(sgn * 8.0 - 0.5, sgn * 8.0 + 0.5, DF - 0.5, DF + 0.5, 0, 3.0, 'trang')          # trụ cổng
-    box(sgn * 12 - 1.5, sgn * 12 + 1.5, DF - 6, DF - 3, 0, 2.8, 'tuong'); box(sgn * 12 - 1.8, sgn * 12 + 1.8, DF - 6.3, DF - 2.7, 2.8, 3.1, 'trang')   # chòi gác
+TI, TN, BT = 5.6, 10.8, 0.55             # tâm trụ trong, trụ ngoài; nửa bề rộng trụ
+def tru(x, h=5.2):                       # trụ đá + mũ + đèn lồng
+    box(x - BT, x + BT, DF - BT, DF + BT, 0, h, 'bechong'); box(x - 0.72, x + 0.72, DF - 0.72, DF + 0.72, h, h + 0.35, 'trang')
+    box(x - 0.45, x + 0.45, DF - 0.45, DF + 0.45, h + 0.35, h + 0.55, 'bechong'); cyl(x, DF, h + 0.55, h + 1.5, 0.06, 'sat', 5)
+    box(x - 0.2, x + 0.2, DF - 0.2, DF + 0.2, h + 1.45, h + 1.6, 'sat'); lathe(x, DF, h + 1.6, [(0, 0.08), (0.12, 0.3), (0.38, 0.32), (0.62, 0.2), (0.72, 0.03)], 'tuong', 10)   # đèn cầu trắng
+for x in (-TN, -TI, TI, TN): tru(x)
+for sgn in (-1, 1):                                                                     # rào hai bên cụm cổng
+    a, b = sorted((sgn * (TN + BT), sgn * 104))
+    box(a, b, DF - 0.25, DF + 0.25, 0, 0.6, 'bechong'); box(a, b, DF - 0.05, DF + 0.05, 0.6, 0.7, 'sat'); box(a, b, DF - 0.05, DF + 0.05, 2.15, 2.25, 'sat')
+    for x in np.arange(a + 0.15, b, 0.26): box(x - 0.025, x + 0.025, DF - 0.025, DF + 0.025, 0.6, 2.45, 'sat')
+    for x in np.arange(a + 4.0, b - 1, 4.2): box(x - 0.3, x + 0.3, DF - 0.3, DF + 0.3, 0, 2.7, 'bechong'); box(x - 0.36, x + 0.36, DF - 0.36, DF + 0.36, 2.7, 2.85, 'trang')
 for x in (-104, 104): box(x - 0.15, x + 0.15, -100, DF, 0, 2.0, 'sat')
-# hai cánh cổng sắt — đối tượng riêng để xe tăng húc (bản lề ở trụ ±7,5 m, cánh hướng vào giữa)
+def canh(w, h, T):                                                                       # một cánh cổng sắt hoa, đỉnh vòm; gốc ở bản lề, chạy theo +x
+    for z in (0.15, 1.2, h - 0.5): box(0, w, -0.06, 0.06, z, z + 0.12, 'sat', T)
+    n = int(w / 0.2)
+    for k in range(n + 1):
+        xx = k * w / n; hh = h + 0.9 * math.sin(math.pi * xx / w)
+        box(xx - 0.035, xx + 0.035, -0.035, 0.035, 0.15, hh, 'sat', T)
+    for k in range(int(w / 0.6)): box(0.3 + k * 0.6 - 0.2, 0.3 + k * 0.6 + 0.2, -0.03, 0.03, 1.55, 1.95, 'sat', T)       # dải hoa văn giữa cánh (giản lược)
+# cổng chính: hai cánh, bản lề ở mặt trụ trong (±(TI − BT)), cánh hướng vào giữa — đối tượng riêng để xe húc đổ
+W0 = TI - BT
 for ten, sgn in (('CongTrai', -1), ('CongPhai', 1)):
-    T = ([], [], []); x0 = 0.0
-    box(0, 7.4, -0.06, 0.06, 0.1, 0.25, 'sat', T); box(0, 7.4, -0.06, 0.06, 2.25, 2.4, 'sat', T)
-    for k in range(25): xx = 0.15 + k * 0.29; box(xx - 0.04, xx + 0.04, -0.04, 0.04, 0.1, 2.55, 'sat', T)
-    box(0, 7.4, -0.05, 0.05, 1.2, 1.32, 'sat', T)
-    if sgn > 0: T = ([(-x, y, z) for x, y, z in T[0]], [q[::-1] for q in T[1]], T[2])        # cánh phải: từ bản lề +7,5 m vào giữa
-    OBJ[ten] = (T, (sgn * 7.5, DF, 0))
-
-for ten, sgn in (('CongPhuDuong', 1), ('CongPhuAm', -1)):                                  # cổng phụ: hai cánh liền một khối, gốc ở giữa chân cổng (để rung/oằn khi bị húc)
-    T = ([], [], []); box(-3.2, 3.2, -0.06, 0.06, 0.1, 0.25, 'sat', T); box(-3.2, 3.2, -0.06, 0.06, 2.05, 2.2, 'sat', T); box(-3.2, 3.2, -0.05, 0.05, 1.1, 1.2, 'sat', T)
-    for k in range(22): xx = -3.1 + k * 0.295; box(xx - 0.04, xx + 0.04, -0.04, 0.04, 0.1, 2.35, 'sat', T)
-    OBJ[ten] = (T, (sgn * CP, DF, 0))
+    T = ([], [], []); canh(W0 - 0.05, 3.6, T)
+    if sgn > 0: T = ([(-x, y, z) for x, y, z in T[0]], [q[::-1] for q in T[1]], T[2])
+    OBJ[ten] = (T, (sgn * W0, DF, 0))
+# cổng phụ: một cánh, bản lề ở trụ ngoài; CongPhuDuong ở phía s > 0 = bên TRÁI khi nhìn từ ngoài vào (cổng xe 843 húc)
+WP = (TN - BT) - (TI + BT)
+for ten, sgn in (('CongPhuDuong', 1), ('CongPhuAm', -1)):
+    T = ([], [], []); canh(WP - 0.05, 3.0, T)
+    if sgn > 0: T = ([(-x, y, z) for x, y, z in T[0]], [q[::-1] for q in T[1]], T[2])
+    OBJ[ten] = (T, (sgn * (TN - BT), DF, 0))
 # ---------------------------------------------------------------- cây (trong khuôn viên và công viên hai bên Lê Duẩn)
 rng = np.random.default_rng(1975)
 def tree(x, y, h):                                                                       # cây nhiệt đới tán tròn rộng (sao, dầu, me…)
