@@ -1,6 +1,6 @@
 # Sa bàn Chiến dịch Hồ Chí Minh 1975 — tư liệu, kịch bản nháp, tài sản
 
-Gói: `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` · bộ máy 2.1.0 · nhánh `claude/sa-ban-hcm-1975`.
+Gói: `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` · bộ máy 2.2.0 · nhánh `claude/sa-ban-hcm-1975`.
 Trạng thái (24/11/2026): GĐ0 xong · GĐ1 nháp, đã chốt 3 mốc giờ · GĐ2 địa hình hai tầng xong · **GĐ3 bộ máy 2.2.0 + bản thử chạy được — chờ duyệt** · GĐ4 phần xe + lính lái tăng xong.
 Xem: `khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975` (thêm `&tang=noi-do` để mở thẳng nội đô).
 Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S31`, `M1`, bản đồ `B1`, `B2` ở `sources.json`.
