@@ -11,7 +11,8 @@ const SA_BAN_3D={
  battle1785:{title:'Rạch Gầm – Xoài Mút 1785',href:'khong-gian/rach-gam-xoai-mut/'},
  battle1789:{title:'Ngọc Hồi – Đống Đa 1789',href:'khong-gian/ngoc-hoi-dong-da/'},
  war1954:{title:'Điện Biên Phủ 1954',href:'khong-gian/dien-bien-phu/'},
- war1972:{title:'Thành cổ Quảng Trị 1972',href:'khong-gian/thanh-co-quang-tri/'}
+ war1972:{title:'Thành cổ Quảng Trị 1972',href:'khong-gian/thanh-co-quang-tri/'},
+ war1975:{title:'Chiến dịch Hồ Chí Minh 1975',href:'khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975'}
 };
 
 /* ---------- 1. Logo ---------- */

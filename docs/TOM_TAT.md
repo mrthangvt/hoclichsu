@@ -188,6 +188,13 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - **24/11 (đêm, V1.6):** sửa mặt cắt gần máy quay (hết nháy đen từ trên cao, hết mất xe khi máy thấp), máy lướt đoàn xe bay bên sườn, khung cũ trả bộ nhớ đồ hoạ ngay khi chuyển hồi; lính Dinh còn 30, dân và nhà giảm một nửa (TƯ LIỆU §26).
 - **24/11 (đêm, V1.9):** anh Thắng xem trọn V1.8 không còn lỗi; ghi bài học sa bàn lớn (KHUNG_SA_BAN §10), công cụ `quet_phim.py`, `soat_chu_thich.py`; lính cận cảnh đủ lưới, băng đạn quay xuống, địch tháo chạy khi bị pháo kích, chữ ngày giờ theo voice, ụ nấp ở Rạch Chiếc và cầu Sài Gòn, cổng Dinh đổ ra hai bên, thêm dân áo Nam bộ (TƯ LIỆU §27).
 - **24/11 (khuya):** gói `ho-chi-minh-1975` lên bản 1.0.0, thêm vào `catalog.json` (trạng thái thử nghiệm, mở bằng `engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975`); PR #50 chuyển sang chờ duyệt.
+- **25/11 (nối vào Việt Sử, theo yêu cầu chủ dự án):**
+  - Điểm pin "Chiến dịch Hồ Chí Minh" trên bản đồ Không gian lịch sử (Dinh Độc Lập, 10,777 B, 106,695 Đ) và thẻ địa điểm.
+  - Popup có nút "Vào sa bàn 3D" (`V23_SCENES`, `V2_EXPERIENCES`, `KHONG_GIAN_3D` trong `Viet_Su_Timeline_V4.1_Offline.html`; `v46.js` SCENES).
+  - Thẻ "SA BÀN 3D · 1975" trên Dòng thời gian (`v42.js` EXP + ảnh thẻ véc-tơ), nút sa bàn trong popup "Chiến dịch mùa Xuân 1975" (`v53.js` war1975).
+  - Dữ liệu CMS: `data/experiences_seed.json`, `data/experience_locations.json`. Đường dẫn: `khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975`.
+  - **Pin bản đồ nhỏ lại và đổi tỉ lệ theo mức phóng:** vòng tròn còn 70 %. Cả pin nhân hệ số 0,9 × (độ rộng khung nhìn / 760)^0,85, nên phóng to 4 lần thì pin trên màn hình chỉ to thêm khoảng 23 %, không che bản đồ.
+  - Tên pin có thể đặt bên trái (`la: "trai"`) hoặc lệch dọc (`ly`) để hai pin gần nhau (Rạch Gầm và Sài Gòn) không đè chữ.
 - **Artifact xem trước (24/11):** https://claude.ai/artifact/8nUE52QiFy42qcpcns1TBg (slug `3f0937ee-310c-4b6d-b6ca-02cd9b831993`). Đóng gói: `python3 vietsu/tools/sa_ban/dong_goi_artifact_2.py ho-chi-minh-1975 <thư mục>` rồi `publish_files` (mode replace) vào slug đó. Đổi tầng địa hình trong Artifact chuyền tham số qua sessionStorage.
 - Lộ trình: GĐ2 địa hình hai tầng (chiến dịch ~130 × 100 km, nội đô ~8–10 km) · GĐ3 bộ máy 2.2.0 (xe chạy theo đường, hai tầng địa hình) · GĐ4 quân và xe (bộ đội `qdvn_a/b` + lính `vnch` của Thành cổ, xe tăng 390/843 và xe tải từ `_KHO-CHUNG/vat-dung/_moi`) · GĐ5 dựng cảnh, cảnh cuối xe tăng vào Dinh, cắm cờ 11h30 · GĐ6 kiểm tra, `catalog.json`.
 

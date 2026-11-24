@@ -159,5 +159,42 @@
         "text": "Lũy, bãi chông, đội mộc và voi chiến (tái dựng)."
       }
     ]
+  },
+  {
+    "id": "ho-chi-minh-1975",
+    "title": "Chiến dịch Hồ Chí Minh 1975",
+    "period": "26 – 30/4/1975",
+    "entity_id": "war1975",
+    "timeline_year": 1975,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975",
+    "notes": "Sa bàn 3D (bộ máy 2.2.0, gói packs/ho-chi-minh-1975 1.0.0) — tái dựng mô phỏng theo lời dẫn thu âm 16 phút; mốc giờ, đơn vị, số hiệu xe theo nguồn trong sources.json; số xe, vị trí lính, người dân là minh họa.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "nam-canh-quan",
+        "name": "Năm cánh quân",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Các hướng tiến công vào Sài Gòn (mũi tên là quy ước đồ hoạ)."
+      },
+      {
+        "id": "dinh-doc-lap",
+        "name": "Dinh Độc Lập",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Xe tăng 390, 843 vào Dinh; cắm cờ trên nóc Dinh lúc 11 giờ 30 ngày 30/4/1975."
+      }
+    ]
   }
 ]
