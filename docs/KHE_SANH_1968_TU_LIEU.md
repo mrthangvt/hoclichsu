@@ -181,6 +181,7 @@ Mọi mẫu mới dựng trong Blender trên máy anh (MCP for Blender), không 
 
 ## 9b. GĐ4 dàn cảnh — bản đầu (25/11/2026)
 Mã biên đạo: `vietsu/tools/sa_ban/khe_sanh/bien_dao_gd4.js`, chèn vào `rieng.js` bằng `rieng_tu_hcm.py` (gọi `KS.cap` mỗi khung). Mọi vị trí, số lượng dưới đây là **MINH HOẠ** trừ chỗ ghi nguồn.
+
 | Hồi | Dựng | Nguồn / ghi chú |
 |---|---|---|
 | Căn cứ Tà Cơn (mọi hồi) | đường băng tấm nhôm ~1.190 m, hướng ~100° (Đông – Tây); vòng chiến hào, hàng rào dây thép gai ~2,0 × 0,9 km; ~260 hầm bao cát, 46 lều, tháp điều khiển, kho đạn đầu đông, 3 M48 | M11, M20 (chiều dài, tấm nhôm), S15 (cỡ căn cứ); **hướng đường băng chưa đối chiếu ảnh 1968** |
@@ -191,7 +192,8 @@ Mã biên đạo: `vietsu/tools/sa_ban/khe_sanh/bien_dao_gd4.js`, chèn vào `ri
 | H09 (chiến dịch) | mũi tên xanh Pegasus theo Đường 9 (Cà Lu → Tà Cơn, đường OSM), đoàn xe tải + M48, 6 UH-1 | M2, M3; chỉ hiện ở cảnh đại toàn để không che đoàn xe |
 | H03, H11 (chiến dịch) | mũi tên đỏ áp sát từ phía bắc và từ Lào theo Đường 9 | hướng MINH HOẠ |
 | H05 | thẻ chữ Tết Mậu Thân | S16 |
-| H10 | công sự căn cứ thưa dần (Mỹ rút) | M4, M5 |
+| H10 | công sự căn cứ thưa dần (Mỹ rút, phá căn cứ 27/6 – 5/7) | M8 |
+
 Máy quay riêng: H04 (xoay quanh căn cứ), H06 (bám PT-76 dẫn đầu), H08 (bám C-130), H09 (bám đoàn xe); các hồi khác vẫn máy quay tạm GĐ3.
 Kiểm tra: `quet_phim.py` hai tầng sạch (`out = []`, `slow = []`; đã sửa một khung đứng 65 s ở 9:19 do xe M48 tải sau bước "dựng sẵn" — nay mẫu nạp lên GPU ngay khi tải xong). `kiem_tra_goi.py`: tải lần đầu 2,9 MB, tải sau 14,9 MB.
 Còn lại: lính TQLC Mỹ (chờ gắn xương) nên trong căn cứ chưa có người; giao tranh trên các điểm cao 881 Nam, 861 chưa dựng; máy quay hồi 1, 2, 3, 5, 7, 10, 11 còn tạm; lời dẫn, âm thanh chưa khớp (GĐ5).
