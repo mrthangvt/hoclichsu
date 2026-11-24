@@ -2,7 +2,7 @@
 
 Gói: `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` · bộ máy 2.1.0 · nhánh `claude/sa-ban-hcm-1975`.
 Trạng thái: **Giai đoạn 0 xong, Giai đoạn 1 bản nháp — chờ anh Thắng duyệt** (24/11/2026).
-Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S28` ở `sources.json`.
+Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S29` ở `sources.json`.
 Nguồn hiện là báo chí chính thống (Nhân Dân, SGGP, VnExpress, TTXVN…) dẫn lại tư liệu bảo tàng, nhân chứng. Nên bổ sung sách chuyên khảo (ví dụ *Lịch sử Kháng chiến chống Mỹ cứu nước*, Viện Lịch sử quân sự; *Đại thắng mùa xuân* của Văn Tiến Dũng) nếu anh có bản trong thư mục "Tài liệu sử".
 
 ## 1. Năm hướng và mục tiêu (bản đồ Quyết tâm)
@@ -19,12 +19,12 @@ Nguồn hiện là báo chí chính thống (Nhân Dân, SGGP, VnExpress, TTXVN�
 |---|---|---|---|---|
 | 9 – 21/4 | Trận Xuân Lộc; 21/4 quân VNCH rút khỏi Xuân Lộc | Quân đoàn 4 | S21 | |
 | 17h 26/4 | Chiến dịch bắt đầu | các quân đoàn | S2, S26 | |
-| chiều 28/4 | 5 A-37 thu được ném bom khu đỗ máy bay Tân Sơn Nhất; hạ cánh Thành Sơn 18h15 | Phi đội Quyết Thắng | S14, S15, S16, S17 | **Giờ cất cánh lệch: 15h (S16), 16h25 (S14), 16h40 (S15)** |
+| 16h15 28/4 | 5 A-37 thu được xuất kích từ Phan Rang, ném bom khu đỗ máy bay Tân Sơn Nhất; hạ cánh Thành Sơn 18h15 | Phi đội Quyết Thắng | S29, S17 (S14, S15, S16) | **Chốt 16h15 (anh Thắng, 24/11)** theo S29; nguồn khác ghi 15h (S16), 16h25 (S14), 16h40 (S15) |
 | 5h30 29/4 | Pháo bắn chuẩn bị vào căn cứ Đồng Dù (Sư đoàn 25 VNCH); 10h30 cắm cờ tại Sở chỉ huy sư đoàn | Sư đoàn 320A, Quân đoàn 3 | S5 | |
 | 23h 29/4 | Quân đoàn 3 nhận nhiệm vụ chính thức đánh Bộ Tổng tham mưu | Quân đoàn 3 | S5 | |
 | 5h30 30/4 | Tấn công Tân Sơn Nhất | Sư đoàn 10 + 2 đại đội xe tăng Trung đoàn 273 | S27 | |
 | 7h15 30/4 | Pháo cối bắn vào Tân Sơn Nhất, Bộ Tổng tham mưu | Quân đoàn 3, Sư đoàn 10 | S1 | |
-| sáng 30/4 | Xe tăng đầu tiên qua cầu Rạch Chiếc | Lữ đoàn 203; cầu do Lữ đoàn đặc công – biệt động 316 giữ | S19, S20 | **Lệch: 7h30 (S19), khoảng 9h30 (S20)** |
+| 7h30 30/4 | Xe tăng đầu tiên qua cầu Rạch Chiếc | Lữ đoàn 203; cầu do Lữ đoàn đặc công – biệt động 316 giữ | S19 (S20) | **Chốt 7h30 (anh Thắng, 24/11)** theo S19; S20 ghi khoảng 9h30 |
 | 9h30 30/4 | Dương Văn Minh lên Đài Sài Gòn đề nghị ngừng tiến công để "bàn giao chánh quyền" | — | S18, S1 | |
 | ~9h 30/4 | Mũi thọc sâu Quân đoàn 2 vượt cầu Sài Gòn, qua Hàng Xanh, cầu Thị Nghè | Lữ đoàn 203, Trung đoàn 66 | S18, S26 | 843 bắn cháy 2 xe M41 tại cầu Thị Nghè (S26) |
 | 9h45 → 11h30 30/4 | Trung đoàn 24 đánh vào Tân Sơn Nhất; 11h30 làm chủ hoàn toàn | Trung đoàn 24, Sư đoàn 10 | S1 | |
@@ -43,8 +43,8 @@ Kíp xe 390 (S7): trưởng xe, Chính trị viên Vũ Đăng Toàn; pháo thủ
 | C01 | Cánh cửa phía Đông: Xuân Lộc 9–21/4 | chiến dịch | S21 |
 | C02 | Thế bao vây năm hướng, mũi tên lần lượt từng hướng | chiến dịch | S3, S4, S6 |
 | C03 | 17h 26/4 nổ súng mở màn | chiến dịch | S2, S26 |
-| C04 | Chiều 28/4 Phi đội Quyết Thắng ném bom Tân Sơn Nhất | nội đô | S14–S17 |
-| C05 | 29/4 phá tuyến ngoài: Đồng Dù, hướng Bắc, cầu Rạch Chiếc | chiến dịch | S5, S20 |
+| C04 | 16h15 28/4 Phi đội Quyết Thắng xuất kích, ném bom Tân Sơn Nhất | nội đô | S29, S17 |
+| C05 | 29/4 phá tuyến ngoài: Đồng Dù, hướng Bắc, cầu Rạch Chiếc | chiến dịch | S5, S19 |
 | C06 | Rạng sáng 30/4 tổng công kích, 5 mũi vào nội đô | nội đô | S1 |
 | C07 | Tân Sơn Nhất | nội đô | S1, S27 |
 | C08 | Bộ Tổng tham mưu | nội đô | S1, S5 |

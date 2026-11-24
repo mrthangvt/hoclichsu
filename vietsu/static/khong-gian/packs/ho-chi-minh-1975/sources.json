@@ -113,7 +113,7 @@
    "type": "báo chí (VietnamPlus)",
    "url": "https://www.vietnamplus.vn/50-nam-thong-nhat-dat-nuoc-ngay-2841975-quan-ta-bao-vay-chat-sai-gon-danh-san-bay-tan-son-nhat-post1035423.vnp",
    "license": "trích dẫn",
-   "used_for": "Phi đội Quyết Thắng 5 A-37 cất cánh 16h25 từ Thành Sơn"
+   "used_for": "Phi đội Quyết Thắng 5 A-37 cất cánh 16h25 từ Thành Sơn (không dùng làm mốc giờ; ghi để đối chiếu)"
   },
   {
    "id": "S15",
@@ -121,7 +121,7 @@
    "type": "báo chí (Nhân Dân)",
    "url": "https://nhandan.vn/ngay-2841975-tong-cong-kich-dot-2-chien-dich-ho-chi-minh-bat-dau-post875741.html",
    "license": "trích dẫn",
-   "used_for": "Phi đội cất cánh 16h40 — KHÁC S14; tên các phi công"
+   "used_for": "Phi đội cất cánh 16h40 — KHÁC S14; tên các phi công (không dùng làm mốc giờ; ghi để đối chiếu)"
   },
   {
    "id": "S16",
@@ -129,7 +129,7 @@
    "type": "báo chí (Hà Tĩnh)",
    "url": "https://baohatinh.vn/dung-may-bay-dich-danh-dich-trong-chien-dich-ho-chi-minh-lich-su-post230805.html",
    "license": "trích dẫn",
-   "used_for": "phi đội cất cánh 15h — KHÁC S14, S15"
+   "used_for": "phi đội cất cánh 15h — KHÁC S14, S15 (không dùng làm mốc giờ; ghi để đối chiếu)"
   },
   {
    "id": "S17",
@@ -153,7 +153,7 @@
    "type": "báo chí (Nhân Dân)",
    "url": "https://nhandan.vn/oanh-liet-tran-danh-cau-rach-chiec-gop-phan-vao-chien-thang-304-lich-su-post876737.html",
    "license": "trích dẫn",
-   "used_for": "xe tăng đầu tiên qua cầu Rạch Chiếc 7h30 — KHÁC S20"
+   "used_for": "xe tăng đầu tiên qua cầu Rạch Chiếc 7h30 — mốc được chọn cho sa bàn"
   },
   {
    "id": "S20",
@@ -161,7 +161,7 @@
    "type": "báo chí (VOH)",
    "url": "https://voh.com.vn/ngay-nay-nam-ay/ky-uc-tran-danh-cau-rach-chiec-truoc-gio-giai-phong-sai-gon-362593.html",
    "license": "trích dẫn",
-   "used_for": "xe tăng Lữ 203 qua cầu Rạch Chiếc khoảng 9h30"
+   "used_for": "xe tăng Lữ 203 qua cầu Rạch Chiếc khoảng 9h30 (không dùng làm mốc; ghi để đối chiếu)"
   },
   {
    "id": "S21",
@@ -226,6 +226,14 @@
    "url": "https://baonghean.vn/en/print/10137788.html",
    "license": "trích dẫn",
    "used_for": "T59 chế tạo trên cơ sở T-54 → dùng chung một lưới xe tăng"
+  },
+  {
+   "id": "S29",
+   "title": "Chuyện chưa kể về cuộc ném bom phá tan âm mưu 'nhuộm máu Sài Gòn' của Mỹ",
+   "type": "báo chí (VTC News), hồi ức phi đội trưởng Nguyễn Văn Lục",
+   "url": "https://www.vtcnews.vn/chuyen-chua-ke-ve-cuoc-nem-bom-pha-tan-am-muu-nhuom-mau-sai-gon-cua-my-ar254179.html",
+   "license": "trích dẫn",
+   "used_for": "16h15 ngày 28/4 năm A-37 xuất kích từ Phan Rang — mốc được chọn cho sa bàn"
   }
  ]
 }

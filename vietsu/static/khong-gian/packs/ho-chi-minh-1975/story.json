@@ -45,17 +45,19 @@
   {
    "id": "C04",
    "title": "Phi đội Quyết Thắng",
-   "date": "chiều 28/4/1975",
+   "date": "16h15 28/4/1975 (xuất kích)",
    "place": "sân bay Tân Sơn Nhất",
    "tang": "noi-do",
    "duKien": 60,
    "nguon": [
+    "S29",
+    "S17",
     "S14",
     "S15",
-    "S16",
-    "S17"
+    "S16"
    ],
-   "subs": []
+   "subs": [],
+   "ghiChu": "Chốt 16h15 theo S29 (anh Thắng duyệt 24/11/2026); S16 ghi 15h, S14 16h25, S15 16h40."
   },
   {
    "id": "C05",
@@ -66,7 +68,7 @@
    "duKien": 75,
    "nguon": [
     "S5",
-    "S20"
+    "S19"
    ],
    "subs": []
   },
