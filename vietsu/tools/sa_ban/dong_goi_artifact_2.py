@@ -31,6 +31,12 @@ def dien(mo):
     return doan.get(k, "")
 ma = re.sub(r"/\*@@RIENG:(s\d+)@@\*/", dien, loi).replace("@@ENGINE@@", f"./engine/{E.name}/")
 if thieu: print("rieng.js thiếu đoạn:", ", ".join(thieu))
+# bộ máy 2.2 đổi tầng địa hình bằng cách tải lại trang với ?tang=…&t=…; trong Artifact tham số trên địa chỉ có thể không giữ được
+# → gửi tham số qua sessionStorage rồi tải lại (lỗi thì vẫn dùng location.search như cũ)
+ma = ma.replace("const QS = new URLSearchParams(location.search);",
+  "const QS = (() => { const q = new URLSearchParams(location.search); try { const s = sessionStorage.getItem('sb_qs'); if (s) { sessionStorage.removeItem('sb_qs'); for (const [k, v] of new URLSearchParams(s)) q.set(k, v); } } catch (e) {} return q; })();", 1)
+ma = ma.replace("setTimeout(() => { location.search = q.toString(); }",
+  "setTimeout(() => { try { sessionStorage.setItem('sb_qs', q.toString()); location.reload(); } catch (e) { location.search = q.toString(); } }", 1)
 (RA / "app.js").write_text(ma, encoding="utf-8")
 
 # 2. bộ máy (trừ loi.js, sa-ban.html) và gói (trừ rieng.js)

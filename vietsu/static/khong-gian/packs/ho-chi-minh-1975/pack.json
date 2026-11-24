@@ -55,7 +55,7 @@
   "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ. Mốc giờ, đơn vị, số hiệu xe ghi theo nguồn trong sources.json; chỗ các nguồn ghi khác nhau được nêu rõ.",
   "gauge": false,
   "notePlaceholder": "VD: Dời mũi tên Quân đoàn 1 sang đường 13",
-  "loaderHtml": "\n  <div id=\"ldgo\" hidden><button id=\"bstart\" class=\"go\" aria-label=\"Phát phim\">▶ Xem bản thử</button><button id=\"bexplore\" class=\"go2\">🧭 Khám phá sa bàn</button><small>Bản thử bộ máy 2.2 · 1 phút 40 giây · chưa có lời bình</small></div>",
+  "loaderHtml": "\n  <div id=\"ldgo\" hidden><button id=\"bstart\" class=\"go\" aria-label=\"Phát phim\">▶ Xem phim</button><button id=\"bexplore\" class=\"go2\">🧭 Khám phá sa bàn</button><small>12 hồi · 16 phút · có lời dẫn, nhạc nền — nên bật âm thanh · Tái dựng mô phỏng</small></div>",
   "css": "body:not(.ready) #splay { visibility: hidden; } #views .tang { font-weight: 700; }"
  },
  "views": [
