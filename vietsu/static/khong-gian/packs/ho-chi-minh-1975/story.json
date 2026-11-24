@@ -1,95 +1,208 @@
 {
  "note": "Bản thử bộ máy 2.2 (GĐ3): 2 cảnh ngắn để kiểm tra hai tầng địa hình, mũi tên, xe chạy theo đường. Kịch bản thật (12 cảnh, có nguồn) ở 'danY', dựng ở GĐ5.",
- "duration": 245.0,
+ "duration": 365.0,
  "scenes": [
   {
-   "id": "T01",
-   "title": "Thế bao vây năm hướng (phác thảo)",
+   "id": "C01",
+   "title": "Cánh cửa phía Đông (9 – 21/4/1975)",
    "tang": "chien-dich",
    "t0": 0.0,
-   "t1": 40.0,
+   "t1": 45.0,
+   "shots": [
+    {
+     "id": "C01-A",
+     "t0": 0.0,
+     "t1": 26.0,
+     "size": "Toàn",
+     "desc": "Xuân Lộc"
+    },
+    {
+     "id": "C01-B",
+     "t0": 26.0,
+     "t1": 45.0,
+     "size": "Toàn",
+     "desc": "Cửa phía Đông mở về Biên Hòa"
+    }
+   ],
    "subs": [
     [
-     1.0,
-     9.0,
-     "Tái dựng mô phỏng · bản thử bộ máy sa bàn 2.2."
+     0.5,
+     11.5,
+     "Tháng Tư năm 1975. Phía Đông Sài Gòn, thị xã Xuân Lộc trên đường số 1 là cánh cửa của tuyến phòng thủ cuối cùng."
     ],
     [
-     9.5,
-     24.0,
-     "Năm hướng tiến công vào Sài Gòn (phác thảo theo bản đồ Quyết tâm; vị trí mũi tên sẽ chốt theo nguồn)."
+     12.0,
+     25.5,
+     "Từ ngày 9 tháng 4, Quân đoàn 4 Quân Giải phóng tiến công Xuân Lộc. Hai bên giao tranh quyết liệt gần hai tuần."
     ],
     [
-     24.5,
-     39.0,
-     "Địa hình đã bỏ hồ Trị An và các đường làm sau năm 1975."
+     26.0,
+     44.5,
+     "Ngày 21 tháng 4, quân đội Sài Gòn rút khỏi Xuân Lộc. Cánh cửa phía Đông mở ra, con đường về Biên Hòa và Sài Gòn không còn bị chặn."
     ]
    ],
+   "nguon": [
+    "S21"
+   ]
+  },
+  {
+   "id": "C02",
+   "title": "Thế bao vây năm hướng (trước 26/4/1975)",
+   "tang": "chien-dich",
+   "t0": 45.0,
+   "t1": 115.0,
    "shots": [
     {
      "id": "T01-A",
-     "t0": 0.0,
-     "t1": 20.0,
+     "t0": 45.0,
+     "t1": 70.0,
      "size": "Đại toàn",
      "desc": "Bay vào toàn chiến dịch"
     },
     {
      "id": "T01-B",
-     "t0": 20.0,
-     "t1": 40.0,
+     "t0": 70.0,
+     "t1": 115.0,
      "size": "Toàn",
-     "desc": "Vòng quanh Sài Gòn, năm mũi tên hiện dần"
+     "desc": "Vòng quanh Sài Gòn, năm mũi tên hiện lần lượt"
     }
+   ],
+   "subs": [
+    [
+     45.5,
+     52.5,
+     "Ngày 14 tháng 4, Bộ Chính trị đồng ý đặt tên cho chiến dịch giải phóng Sài Gòn là Chiến dịch Hồ Chí Minh."
+    ],
+    [
+     53.0,
+     58.5,
+     "Trên tấm bản đồ Quyết tâm, năm mũi tên đỏ chỉ thẳng vào trung tâm Sài Gòn."
+    ],
+    [
+     59.0,
+     67.5,
+     "Hướng Bắc là Quân đoàn 1, mục tiêu Bộ Tổng tham mưu và khu bộ tư lệnh các binh chủng."
+    ],
+    [
+     68.0,
+     76.5,
+     "Hướng Tây Bắc là Quân đoàn 3, mục tiêu sân bay Tân Sơn Nhất."
+    ],
+    [
+     77.0,
+     85.5,
+     "Hướng Đông là Quân đoàn 4, nhắm vào Bộ Quốc phòng, cảng Bạch Đằng và Đài phát thanh."
+    ],
+    [
+     86.0,
+     94.5,
+     "Hướng Đông Nam là Quân đoàn 2, mục tiêu Dinh Độc Lập."
+    ],
+    [
+     95.0,
+     103.5,
+     "Hướng Tây và Tây Nam là Đoàn 232, mục tiêu Biệt khu Thủ đô và Tổng nha Cảnh sát."
+    ],
+    [
+     104.0,
+     114.5,
+     "Năm mũi tiến công khép lại thành một vòng vây quanh Sài Gòn. (Vị trí mũi tên phác thảo theo bản đồ Quyết tâm.)"
+    ]
+   ],
+   "nguon": [
+    "S3",
+    "S2",
+    "S5",
+    "S6",
+    "S4"
+   ]
+  },
+  {
+   "id": "C03",
+   "title": "Nổ súng mở màn (17 giờ, 26/4/1975)",
+   "tang": "chien-dich",
+   "t0": 115.0,
+   "t1": 160.0,
+   "shots": [
+    {
+     "id": "C03-A",
+     "t0": 115.0,
+     "t1": 160.0,
+     "size": "Toàn",
+     "desc": "Pháo binh Quân đoàn 2 nổ súng, hướng Đông – Đông Nam"
+    }
+   ],
+   "subs": [
+    [
+     115.5,
+     126.0,
+     "Mười bảy giờ ngày 26 tháng 4 năm 1975, Chiến dịch Hồ Chí Minh bắt đầu."
+    ],
+    [
+     126.5,
+     145.0,
+     "Trên hướng Đông và Đông Nam, pháo binh Quân đoàn 2 đồng loạt nổ súng, chi viện bộ binh đánh vào căn cứ Nước Trong và Long Thành."
+    ],
+    [
+     145.5,
+     159.5,
+     "Các mũi tiến công trên những hướng khác lần lượt vào vị trí, siết dần vòng vây."
+    ]
+   ],
+   "nguon": [
+    "S2",
+    "S26",
+    "S39"
    ]
   },
   {
    "id": "C04",
    "title": "Phi đội Quyết Thắng (16 giờ 15, 28/4/1975)",
    "tang": "noi-do",
-   "t0": 40.0,
-   "t1": 75.0,
+   "t0": 160.0,
+   "t1": 195.0,
    "shots": [
     {
      "id": "C04-A",
-     "t0": 40.0,
-     "t1": 49.0,
+     "t0": 160.0,
+     "t1": 169.0,
      "size": "Toàn",
      "desc": "Sân bay Tân Sơn Nhất, khu đỗ máy bay (sơ đồ 1968)"
     },
     {
      "id": "C04-B",
-     "t0": 49.0,
-     "t1": 63.0,
+     "t0": 169.0,
+     "t1": 183.0,
      "size": "Trung",
      "desc": "Bám sau chiếc A-37 dẫn đầu"
     },
     {
      "id": "C04-C",
-     "t0": 63.0,
-     "t1": 75.0,
+     "t0": 183.0,
+     "t1": 195.0,
      "size": "Toàn",
      "desc": "Khói lửa trên khu đỗ"
     }
    ],
    "subs": [
     [
-     40.5,
-     48.5,
+     160.5,
+     168.5,
      "Chiều 28/4/1975, năm chiếc A-37 thu được cất cánh từ sân bay Phan Rang — Phi đội Quyết Thắng."
     ],
     [
-     49.0,
-     58.0,
+     169.0,
+     178.0,
      "16 giờ 15 xuất kích, phi đội bay thẳng về Sài Gòn, ném bom khu đỗ máy bay sân bay Tân Sơn Nhất."
     ],
     [
-     58.5,
-     66.5,
+     178.5,
+     186.5,
      "Sau trận ném bom, việc di tản bằng máy bay cánh cố định từ Tân Sơn Nhất bị tê liệt."
     ],
     [
-     67.0,
-     74.5,
+     187.0,
+     194.5,
      "18 giờ 15, cả phi đội hạ cánh an toàn xuống sân bay Thành Sơn. (Khu đỗ máy bay theo sơ đồ sân bay 1968.)"
     ]
    ],
@@ -104,50 +217,50 @@
    "id": "C05",
    "title": "Phá tuyến ngoài (29/4/1975)",
    "tang": "chien-dich",
-   "t0": 75.0,
-   "t1": 135.0,
+   "t0": 195.0,
+   "t1": 255.0,
    "shots": [
     {
      "id": "C05-A",
-     "t0": 75.0,
-     "t1": 100.0,
+     "t0": 195.0,
+     "t1": 220.0,
      "size": "Toàn",
      "desc": "Căn cứ Đồng Dù: pháo bắn chuẩn bị, cắm cờ"
     },
     {
      "id": "C05-B",
-     "t0": 100.0,
-     "t1": 112.0,
+     "t0": 220.0,
+     "t1": 232.0,
      "size": "Toàn",
      "desc": "23 giờ: Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu"
     },
     {
      "id": "C05-C",
-     "t0": 112.0,
-     "t1": 135.0,
+     "t0": 232.0,
+     "t1": 255.0,
      "size": "Toàn",
      "desc": "Cầu Rạch Chiếc"
     }
    ],
    "subs": [
     [
-     75.5,
-     89.0,
+     195.5,
+     209.0,
      "Rạng sáng 29/4, năm giờ ba mươi, pháo binh bắn chuẩn bị vào căn cứ Đồng Dù ở Củ Chi, nơi đóng quân của Sư đoàn 25 quân đội Sài Gòn."
     ],
     [
-     89.5,
-     100.0,
+     209.5,
+     220.0,
      "Mười giờ ba mươi, Sư đoàn 320A thuộc Quân đoàn 3 cắm cờ trên sở chỉ huy sư đoàn."
     ],
     [
-     100.5,
-     112.0,
+     220.5,
+     232.0,
      "Hai mươi ba giờ đêm đó, Quân đoàn 3 nhận thêm nhiệm vụ chính thức: đánh chiếm Bộ Tổng tham mưu."
     ],
     [
-     112.5,
-     134.5,
+     232.5,
+     254.5,
      "Ở phía Đông, Lữ đoàn đặc công – biệt động 316 đánh chiếm và giữ cầu Rạch Chiếc từ 27 đến 30/4, chờ đoàn xe tăng của Quân đoàn 2."
     ]
    ],
@@ -163,54 +276,54 @@
    "id": "T02",
    "title": "Xe tăng vào Dinh Độc Lập (thử xe theo đường)",
    "tang": "noi-do",
-   "t0": 135.0,
-   "t1": 210.0,
+   "t0": 255.0,
+   "t1": 330.0,
    "subs": [
     [
-     136.0,
-     147.0,
+     256.0,
+     267.0,
      "Nội đô Sài Gòn · thử xe tăng chạy theo đường phố."
     ],
     [
-     147.5,
-     165.0,
+     267.5,
+     285.0,
      "Đường đi tìm trên mạng đường hôm nay đã lọc; lộ trình thật sẽ chốt theo nguồn."
     ],
     [
-     165.5,
-     178.0,
+     285.5,
+     298.0,
      "Tái dựng mô phỏng."
     ],
     [
-     178.5,
-     184.5,
+     298.5,
+     304.5,
      "Xe 843 húc cổng phụ bên trái và bị kẹt lại."
     ],
     [
-     185.0,
-     194.0,
+     305.0,
+     314.0,
      "Xe 390 húc đổ cổng chính, tiến vào sân Dinh."
     ]
    ],
    "shots": [
     {
      "id": "T02-A",
-     "t0": 135.0,
-     "t1": 161.0,
+     "t0": 255.0,
+     "t1": 281.0,
      "size": "Trung",
      "desc": "Bám sau xe 843"
     },
     {
      "id": "T02-B",
-     "t0": 161.0,
-     "t1": 179.0,
+     "t0": 281.0,
+     "t1": 299.0,
      "size": "Cận",
      "desc": "Bám sau xe 390"
     },
     {
      "id": "T02-C",
-     "t0": 179.0,
-     "t1": 210.0,
+     "t0": 299.0,
+     "t1": 330.0,
      "size": "Toàn",
      "desc": "Cổng Dinh: 843 húc chưa đổ, 390 húc đổ cổng chính"
     }
@@ -220,45 +333,45 @@
    "id": "T03",
    "title": "Lá cờ trên nóc Dinh (11 giờ 30, trưa 30/4/1975)",
    "tang": "noi-do",
-   "t0": 210.0,
-   "t1": 245.0,
+   "t0": 330.0,
+   "t1": 365.0,
    "shots": [
     {
      "id": "T03-A",
-     "t0": 210.0,
-     "t1": 217.5,
+     "t0": 330.0,
+     "t1": 337.5,
      "size": "Trung",
      "desc": "Bùi Quang Thận rời xe 843 ở cổng phụ, chạy về cổng chính"
     },
     {
      "id": "T03-A2",
-     "t0": 217.5,
-     "t1": 224.0,
+     "t0": 337.5,
+     "t1": 344.0,
      "size": "Trung",
      "desc": "Băng qua bãi cỏ vào Dinh"
     },
     {
      "id": "T03-B",
-     "t0": 224.0,
-     "t1": 245.0,
+     "t0": 344.0,
+     "t1": 365.0,
      "size": "Cận",
      "desc": "Nóc Dinh: hạ cờ ba sọc, kéo cờ Mặt trận"
     }
    ],
    "subs": [
     [
-     210.5,
-     221.5,
+     330.5,
+     341.5,
      "Đại đội trưởng Bùi Quang Thận tháo lá cờ trên tháp pháo xe 843, chạy vào Dinh."
     ],
     [
-     222.5,
-     233.0,
+     342.5,
+     353.0,
      "Trên nóc Dinh, anh hạ lá cờ ba sọc — cờ to, vải dày nên mất nhiều phút."
     ],
     [
-     233.5,
-     244.5,
+     353.5,
+     364.5,
      "11 giờ 30 phút ngày 30/4/1975, lá cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam tung bay trên nóc Dinh Độc Lập."
     ]
    ],

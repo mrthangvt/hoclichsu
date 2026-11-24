@@ -320,6 +320,10 @@ const SHOTS = TANG === 'chien-dich' ? {
   'T01-A': fly(V3(0, R * 0.85, R * 1.25), V3(SG.x + R * 0.1, R * 0.55, SG.z + R * 0.75), V3(0, 0, 0), SG.clone(), 45),
   'T01-B': orbit(SG, R * 0.62, R * 0.5, 0.15, -0.35, 45),
   'T02-A': fly(V3(SG.x + R * 0.1, R * 0.55, SG.z + R * 0.75), V3(SG.x + 800, 2500, SG.z + 3000), SG.clone(), SG.clone(), 45),
+  'C01-A': (u) => orbit(C01.xl, 22000, 12000, 2.2, 2.9, 42)(u),                                         // Xuân Lộc
+  'C01-B': (u) => { const bh = META.places.find((p) => p[1] === 'Biên Hòa'), M = V3((C01.xl.x + bh[2]) / 2, 0, (C01.xl.z - bh[3]) / 2);
+    return fly(V3(M.x + 2000, 30000, M.z + 36000), V3(M.x - 2000, 26000, M.z + 30000), M.clone(), M.clone(), 45)(u); },   // cửa phía Đông mở về Biên Hòa
+  'C03-A': (u) => orbit(C03.lt, 20000, 11000, 1.4, 2.1, 42)(u),                                         // Long Thành, Nước Trong
   'C05-A': (u) => orbit(C05.dd, 15000, 8500, 2.6, 3.3, 42)(u),                                         // Đồng Dù: pháo bắn chuẩn bị, cắm cờ
   'C05-B': (u) => { const bt = LL(10.80326, 106.67153), M = V3((C05.dd.x + bt.x) / 2, 0, (C05.dd.z + bt.z) / 2);   // mũi tên Đồng Dù → Bộ Tổng tham mưu
     const d = V3(bt.x - C05.dd.x, 0, bt.z - C05.dd.z).normalize(), n = V3(-d.z, 0, d.x);   // nhìn ngang mũi tên
@@ -334,9 +338,11 @@ const SHOTS = TANG === 'chien-dich' ? {
   'C04-B': (u) => { const L = C04.bay[0].o; if (!L.visible) { const c = V3(C04.tam[0], 0, -C04.tam[1]); return [c.clone().add(V3(900, 520, -700)), c, 45]; }
     const p = L.position, y = L.rotation.y; return [V3(p.x + Math.sin(y) * 160, p.y + 50, p.z + Math.cos(y) * 160), V3(p.x - Math.sin(y) * 300, p.y - 120, p.z - Math.cos(y) * 300), 50]; },   // bám sau chiếc dẫn đầu
   'C04-C': (u) => { const c = V3(C04.tam[0], 0, -C04.tam[1]); return orbit(c, 520, 210, 1.0, 1.6, 48)(u); },              // khói lửa trên khu đỗ
-  'T03-A': (u) => { const o = XEX.than.obj, p = o.position, y = o.rotation.y, v = o.visible ? p : XEX.x843.obj.position;   // bám sau Bùi Quang Thận
-    return [V3(v.x - Math.sin(y) * 9 + Math.cos(y) * 4, v.y + 4.5, v.z - Math.cos(y) * 9 - Math.sin(y) * 4), V3(v.x + Math.sin(y) * 6, v.y + 1.4, v.z + Math.cos(y) * 6), 50]; },
-  'T03-A2': (u) => SHOTS['T03-A'](u),
+  'T03-A': (u) => { const o = XEX.than.obj, v = o.visible ? o.position : XEX.x843.obj.position, [x, z] = XEX.DL(14 - u * 6, 178 - u * 8), h = XEX.hDinh || 0;   // ngoài cổng nhìn vào: Thận rời 843 ở cổng phụ
+    return [V3(x, h + 8, -z), V3(v.x, v.y + 1.5, v.z), 42]; },
+  'T03-A2b': (u) => { const o = XEX.than.obj, p = o.position, y = o.rotation.y;          // bám sau khi băng qua bãi cỏ
+    return [V3(p.x - Math.sin(y) * 10, p.y + 5, p.z - Math.cos(y) * 10), V3(p.x + Math.sin(y) * 8, p.y + 1.4, p.z + Math.cos(y) * 8), 50]; },
+  'T03-A2': (u) => SHOTS['T03-A2b'](u),
   'T03-B': (u) => { const [x, z] = XEX.DL(0, -4), c = V3(x, (XEX.hDinh || 0) + 29.5, -z); return orbit(c, 17, 1.5, 1.95, 2.75, 48, 4)(u); },   // nóc Dinh, nhìn lá cờ
   'T02-C': (u) => { const DL = XEX.DL, h = XEX.hDinh || 0, P = (a, b, y) => { const [x, z] = DL(a, b); return V3(x, h + y, -z); };   // cổng Dinh: nhìn từ ngoài vào
     if (u < 0.5) return fly(P(-14, 186, 7), P(-8, 172, 6), P(3, 146, 2.5), P(0, 140, 2.5), 46)(u / 0.5);          // ngoài cổng, góc ảnh tư liệu: cổng phụ trái (843) và cổng chính (390)
@@ -374,7 +380,7 @@ for (const M of MUITEN) { const p = HUONG[M.k][1][0]; const L = addLabel(M.ten, 
 // 23h Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu (S5). Lữ đoàn đặc công – biệt động 316 đánh chiếm, giữ cầu Rạch Chiếc 27–30/4 (S19, S40).
 // Toạ độ: căn cứ Đồng Dù 10,9875 B · 106,5125 Đ (S41, Wikipedia "Củ Chi Base Camp"); cầu Rạch Chiếc 10,8133 B · 106,7569 Đ (S42).
 // Vị trí trận địa pháo, đường bay đạn là MINH HOẠ.
-const C05 = {};
+const C05 = {}, C01 = {}, C03 = {};
 if (TANG === 'chien-dich') {
   const sc = STORY.scenes.find((c) => c.id === 'C05'); C05.t0 = sc ? sc.t0 : 1e9; C05.t1 = sc ? sc.t1 : 1e9; const T0 = C05.t0;
   const DD = [10.9875, 106.5125], RC = [10.8133, 106.7569], BT = [10.80326, 106.67153];
@@ -395,11 +401,35 @@ if (TANG === 'chien-dich') {
   const sprTex = (() => { const cv = document.createElement('canvas'); cv.width = cv.height = 64; const c = cv.getContext('2d'), g = c.createRadialGradient(32, 32, 2, 32, 32, 31);
     g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.5, 'rgba(255,255,255,.5)'); g.addColorStop(1, 'rgba(255,255,255,0)'); c.fillStyle = g; c.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(cv); })();
   const spr = (col, s) => { const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: sprTex, color: col, transparent: true, depthWrite: false })); sp.scale.setScalar(s); sp.visible = false; scene.add(sp); return sp; };
-  C05.phao = Array.from({ length: 6 }, (_, k) => { const a = -0.9 + k * 0.32, r = 9000 + (k % 3) * 1800, src = V3(dd.x + Math.sin(a) * r, 0, dd.z - Math.cos(a) * r); src.y = hG(src.x, src.z);
-    const dich = V3(dd.x + (k - 2.5) * 500, dd.y, dd.z + ((k * 37) % 5 - 2) * 400);
+  const phaoTao = (p, huong, n = 6) => Array.from({ length: n }, (_, k) => {               // trận địa pháo MINH HOẠ quanh hướng `huong` (rad, 0 = Bắc), bắn vào p
+    const a = huong - 0.45 + k * 0.9 / (n - 1), r = 9000 + (k % 3) * 1800, src = V3(p.x + Math.sin(a) * r, 0, p.z - Math.cos(a) * r); src.y = hG(src.x, src.z);
+    const dich = V3(p.x + (k - n / 2) * 500, p.y, p.z + ((k * 37) % 5 - 2) * 400);
     return { src, dich, dan: spr(0xffe0a0, 700), no: spr(0xff8a3a, 2600), ph: k * 0.37 }; });
+  const phaoCap = (L, on, u0, u1, u) => { for (const P of L) {                             // đạn bay theo đường cong, nổ ở đích
+    const ph = ((u - u0 + P.ph) / 2.4) % 1, ban = on && u > u0 && u < u1;
+    P.dan.visible = ban && ph < 0.8; P.no.visible = ban && ph >= 0.8;
+    if (P.dan.visible) { const k = ph / 0.8; P.dan.position.lerpVectors(P.src, P.dich, k).y += Math.sin(Math.PI * k) * 4500; }
+    if (P.no.visible) { const k = (ph - 0.8) / 0.2; P.no.position.copy(P.dich).y += 600; P.no.scale.setScalar(1500 + k * 3000); P.no.material.opacity = 1 - k; } } };
+  C05.phao = phaoTao(dd, -0.4);
   C05.ten = [addLabel('Căn cứ Đồng Dù (Sư đoàn 25)', dd.x, dd.z, 'hero', { grp: 'muiten', yFn: () => 3600, show: () => C05.vDD.visible }),
              addLabel('Cầu Rạch Chiếc — đặc công 316 giữ cầu', rc.x, rc.z, 'hero', { grp: 'muiten', yFn: () => 3200, show: () => C05.vRC.visible })];
+  // ---- C01 · Cánh cửa phía Đông: Xuân Lộc 9–21/4 (S21). Toạ độ thị xã theo terrain/meta.json (OSM). Mũi tên theo đường số 1 về Biên Hòa: MINH HOẠ ý "cửa mở".
+  const noi = (ten) => { const q = META.places.find((p) => p[1].startsWith(ten)); const v = V3(q[2], 0, -q[3]); v.y = hG(v.x, v.z); return v; };
+  { const sc1 = STORY.scenes.find((c) => c.id === 'C01'); C01.t0 = sc1 ? sc1.t0 : 1e9; C01.t1 = sc1 ? sc1.t1 : 1e9;
+    C01.xl = noi('Xuân Lộc'); C01.v = vong(C01.xl); C01.phao = phaoTao(C01.xl, 0.3, 5);
+    C01.ten = addLabel('Xuân Lộc — trận đánh 9–21/4', C01.xl.x, C01.xl.z, 'hero', { grp: 'muiten', yFn: () => 3600, show: () => C01.v.visible });
+    const dg = noi('Dầu Giây'), bh = noi('Biên Hòa');
+    C01.mt = muiTen([C01.xl, dg, bh].map((v) => V3(v.x, 900, v.z)), 0xd2442b, 420); muiTenDat(C01.mt, false);
+    C01.cap = (t) => { const on = t >= C01.t0 - 0.5 && t < C01.t1 + 0.5, u = t - C01.t0;
+      C01.v.visible = on; if (on) { const k = (u * 0.5) % 1; C01.v.scale.setScalar(2500 + k * 4000); C01.v.material.opacity = 0.8 * (1 - k); }
+      phaoCap(C01.phao, on, 4, 22, u); muiTenDat(C01.mt, on && u >= 26, sstep(26, 36, u)); }; }
+  // ---- C03 · Nổ súng mở màn 17h 26/4 (S2, S26): pháo binh Quân đoàn 2 nổ súng hướng Đông, Đông Nam, chi viện đánh Nước Trong, Long Thành (S39).
+  { const sc3 = STORY.scenes.find((c) => c.id === 'C03'); C03.t0 = sc3 ? sc3.t0 : 1e9; C03.t1 = sc3 ? sc3.t1 : 1e9;
+    C03.lt = noi('Long Thành'); C03.v = vong(C03.lt); C03.phao = phaoTao(C03.lt, 1.3, 8);
+    C03.ten = addLabel('Long Thành, Nước Trong — 17 giờ 26/4', C03.lt.x, C03.lt.z, 'hero', { grp: 'muiten', yFn: () => 3600, show: () => C03.v.visible });
+    C03.cap = (t) => { const on = t >= C03.t0 - 0.5 && t < C03.t1 + 0.5, u = t - C03.t0;
+      C03.v.visible = on; if (on) { const k = (u * 0.5) % 1; C03.v.scale.setScalar(2500 + k * 4000); C03.v.material.opacity = 0.8 * (1 - k); }
+      phaoCap(C03.phao, on, 3, 40, u); }; }
   // 23h 29/4: Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu
   { const bt = LL(BT[0], BT[1]); C05.ten.push(addLabel('Bộ Tổng tham mưu', bt.x, bt.z, 'hero', { grp: 'muiten', yFn: () => 3000, show: () => C05.mt.visible })); }
   C05.mt = muiTen([dd, LL((DD[0] + BT[0]) / 2 + 0.02, (DD[1] + BT[1]) / 2 - 0.02), LL(BT[0], BT[1])].map((v) => V3(v.x, 900, v.z)), 0xd2442b, 380); muiTenDat(C05.mt, false);
@@ -407,12 +437,7 @@ if (TANG === 'chien-dich') {
     const on = t >= T0 - 0.5 && t < C05.t1 + 0.5, u = t - T0;
     C05.vDD.visible = on && u < 40; C05.vRC.visible = on && u >= 38;
     for (const [v, a] of [[C05.vDD, u], [C05.vRC, u - 38]]) if (v.visible) { const k = (a * 0.5) % 1; v.scale.setScalar(1500 + k * 2500); v.material.opacity = 0.8 * (1 - k); }
-    for (const P of C05.phao) {                                                            // 5h30: bắn chuẩn bị (2–14 s của cảnh)
-      const ph = ((u - 2 + P.ph) / 2.4) % 1, ban = on && u > 2 && u < 14;
-      P.dan.visible = ban && ph < 0.8; P.no.visible = ban && ph >= 0.8;
-      if (P.dan.visible) { const k = ph / 0.8; P.dan.position.lerpVectors(P.src, P.dich, k).y += Math.sin(Math.PI * k) * 4500; }
-      if (P.no.visible) { const k = (ph - 0.8) / 0.2; P.no.position.copy(P.dich).y += 600; P.no.scale.setScalar(1500 + k * 3000); P.no.material.opacity = 1 - k; }
-    }
+    phaoCap(C05.phao, on, 2, 14, u);                                                      // 5h30: bắn chuẩn bị (2–14 s của cảnh)
     const cm = (g, a) => { g.visible = on && a > 0; if (g.visible) g.scale.setScalar(Math.min(1, a / 1.2)); };
     cm(C05.coDD, u - 15); cm(C05.coRC, u - 44);                                            // 10h30 cắm cờ Đồng Dù; cờ ở cầu Rạch Chiếc
     muiTenDat(C05.mt, on && u >= 26, sstep(26, 34, u));                                   // 23h: nhiệm vụ mới → Bộ Tổng tham mưu
@@ -575,8 +600,9 @@ function update(dt) {
   }
   const xeOn = $('ly-nv').checked; for (const m of LAYER.xe) m.visible = m.visible && xeOn; for (const N of NVX) N.obj.visible = N.obj.visible && xeOn;
   const arrOn = $('ly-arr').checked && $('ly-muiten').checked, ex = appMode === 'explore';
-  for (const M of MUITEN) { const t0 = 8 + M.k * 5; const on = arrOn && (ex || (t >= t0 && t < (STORY.scenes[0].t1 || 1e9))); muiTenDat(M.m, on, ex ? 1 : sstep(t0, t0 + 8, t)); }   // năm hướng: cảnh T01
-  if (C05.cap) C05.cap(t);
+  { const c2 = STORY.scenes.find((c) => c.id === 'C02') || STORY.scenes[0];                // năm hướng: cảnh C02, mũi tên lần lượt từng hướng theo lời dẫn
+    for (const M of MUITEN) { const t0 = c2.t0 + 14 + M.k * 9; const on = arrOn && (ex || (t >= t0 && t < c2.t1)); muiTenDat(M.m, on, ex ? 1 : sstep(t0, t0 + 6, t)); } }
+  if (C05.cap) C05.cap(t); if (C01.cap) C01.cap(t); if (C03.cap) C03.cap(t);
   // máy quay
   if (appMode === 'film' && !userCam) {
     const fn = SHOTS[shot.id], u = clamp((t - shot.t0) / (shot.t1 - shot.t0), 0, 1);

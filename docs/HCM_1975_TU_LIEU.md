@@ -158,3 +158,15 @@ Chưa đặt vào phim: C-130A, A-37, UH-1, D-74, cao xạ 37 mm — cảnh Tân
 - Phim thử giờ 4 cảnh (3:05): T01 chiến dịch (0–40 s) → **C04 Tân Sơn Nhất (40–75 s)** → T02 vào Dinh (75–150 s) → T03 cắm cờ (150–185 s). Mốc của các cảnh vào Dinh viết theo T02 = 40 s và dời tự động theo `story.json` (`tDinh`).
 - Sơ đồ sân bay 1968 (M3, anh Thắng gửi): khớp affine bằng 2 đầu đường băng (OSM) + "Vietnam Staff Compound" = Bộ Tổng tham mưu = Bộ Tư lệnh Quân khu 7 ngày nay (OSM). Sơ đồ vẽ phỏng (đường băng vẽ dài gấp rưỡi) → dãy "Vietnamese Hangars" rơi lệch Nam ~400 m, nên đặt khu đỗ song song đường băng 07R/25L, phía Bắc Nhà ga Quân sự Tân Sơn Nhất ngày nay (OSM). Thêm mốc "Bộ Tổng tham mưu".
 - Dựng: 2 đường băng (OSM; đầu Đông 07R cắt bằng 07L theo sơ đồ), khu đỗ; 14 A-37, 2 C-130A, 3 UH-1 (bãi trực thăng theo sơ đồ) của không quân VNCH; 5 A-37 phi đội Quyết Thắng bay vào từ hướng Đông Bắc (phía Phan Rang), bổ nhào, ném bom; 8 máy bay trúng bom cháy, khói. **Số máy bay đỗ, số trúng bom là minh hoạ** (các nguồn ghi số máy bay bị phá khác nhau, không nêu).
+
+## 14. Phim theo chương (24/11/2026, chiều)
+| Chương | Tầng | Phim | Đã dựng |
+|---|---|---|---|
+| C01 Cánh cửa phía Đông (Xuân Lộc 9–21/4) | chiến dịch | 0:00–0:45 | vòng đánh dấu, pháo minh hoạ, mũi tên Xuân Lộc → Dầu Giây → Biên Hòa ("cửa mở", minh hoạ) |
+| C02 Thế bao vây năm hướng | chiến dịch | 0:45–1:55 | 5 mũi tên (phác thảo theo bản đồ Quyết tâm) hiện lần lượt theo lời dẫn |
+| C03 Nổ súng mở màn 17h 26/4 | chiến dịch | 1:55–2:40 | pháo Quân đoàn 2 bắn vào khu Long Thành, Nước Trong (vị trí trận địa minh hoạ) |
+| C04 Phi đội Quyết Thắng 28/4 | nội đô | 2:40–3:15 | mục 13 |
+| C05 Phá tuyến ngoài 29/4 | chiến dịch | 3:15–4:15 | Đồng Dù (S41): pháo 5h30, cờ 10h30; mũi tên Quân đoàn 3 → Bộ Tổng tham mưu (23h); cầu Rạch Chiếc (S42, S40) |
+| (C10–C11) Xe tăng vào Dinh | nội đô | 4:15–5:30 | T02 (đường từ cầu Thị Nghè; C10 đầy đủ chờ mẫu M48, M113) |
+| (C11) Cắm cờ | nội đô | 5:30–6:05 | T03 |
+Lời dẫn từng chương là phụ đề (theo `docs/HCM_1975_LOI_DAN.md`). Đổi tầng giữa chương: tải lại trang, có **thẻ chương** (màn đen, tên chương sắp tới). Chưa dựng: C06 tổng công kích, C07 Tân Sơn Nhất 30/4, C08 Bộ Tổng tham mưu, C09 hướng Tây – Tây Nam, C12 tuyên bố trên đài.
