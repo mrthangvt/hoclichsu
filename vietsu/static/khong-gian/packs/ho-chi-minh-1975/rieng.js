@@ -131,7 +131,7 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
       const hv = t < 131 ? 6.9 : t < 137 ? 6.9 - (t - 131) / 6 * 5.6 : -1, hm = t < 139 ? -1 : 1.4 + Math.min(1, (t - 139) / 6) * 5.5;
       XEX.coVnch.visible = hv > 0; XEX.coVnch.position.y = H + 26 + hv; XEX.coMt.visible = hm > 0; XEX.coMt.position.y = H + 26 + hm;
     }; }
-  // Xác M41 cháy án ngữ đầu cầu Thị Nghè: xe 387 bắn cháy một M41 và một M113 ở đây sáng 30/4 (S36). Chưa có mẫu M113 — đặt M41.
+  // Xác M41 cháy án ngữ đầu cầu Thị Nghè: xe 387 bắn cháy một M41 và một M113 ở đây sáng 30/4 (S36).
   { const D = duong(GOC), tn = [LLx(MOC.thinghe[0], MOC.thinghe[1]), LLz(MOC.thinghe[0], MOC.thinghe[1])];
     let best = [1e9, 0]; for (let d = 0; d < D.L; d += 5) { const p = diemTren(D, d), e = Math.hypot(p.x - tn[0], p.z - tn[1]); if (e < best[0]) best = [e, d]; }
     const p = diemTren(D, best[1] + 45), g = await glbLoad('data/xe/xe-tang-m41.glb'), o = g.scene.clone(true);
@@ -141,7 +141,16 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
     const cv = document.createElement('canvas'); cv.width = cv.height = 64; const cx = cv.getContext('2d'), gr = cx.createRadialGradient(32, 32, 2, 32, 32, 31);
     gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.5, 'rgba(255,255,255,0.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); cx.fillStyle = gr; cx.fillRect(0, 0, 64, 64);
     const km = new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), color: 0x3a3836, transparent: true, opacity: 0.4, depthWrite: false });   // khói đen bốc lên
-    XEX.khoi = Array.from({ length: 10 }, (_, i) => { const sp = new THREE.Sprite(km.clone()); sp.userData.k = i / 10; scene.add(sp); LAYER.xe.push(sp); return sp; }); }
+    const khoi = () => Array.from({ length: 10 }, (_, i) => { const sp = new THREE.Sprite(km.clone()); sp.userData.k = i / 10; scene.add(sp); LAYER.xe.push(sp); return sp; });
+    XEX.chay = [{ o, khoi: khoi() }];
+    // xác M113 cháy cạnh M41, bên kia đường (S36: xe 387 bắn cháy M41 và M113 án ngữ cầu Thị Nghè)
+    { const q = diemTren(D, best[1] + 60), g2 = await glbLoad('data/xe/xe-boc-thep-m113.glb'), o2 = g2.scene.clone(true);
+      o2.traverse((m) => { if (m.isMesh) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.3); m.material.roughness = 1; } });
+      const x2 = q.x - Math.cos(q.yaw) * 8, z2 = q.z + Math.sin(q.yaw) * 8; o2.position.set(x2, hG(x2, z2), z2); o2.rotation.set(-0.03, q.yaw - 0.6, 0.05); scene.add(o2); LAYER.xe.push(o2);
+      XEX.chay.push({ o: o2, khoi: khoi() }); }
+    // M48 ở đầu cầu Sài Gòn phía nội đô (S33: tại đầu cầu Sài Gòn, đơn vị xe tăng ta đối mặt xe tăng M48) — tình trạng xe không rõ trong nguồn, đặt nguyên vẹn
+    { const cs = LL(MOC.causg[0], MOC.causg[1]), g3 = await glbLoad('data/xe/xe-tang-m48.glb'), o3 = g3.scene.clone(true);
+      const x3 = cs.x - 160, z3 = cs.z + 40; o3.position.set(x3, hG(x3, z3), z3); o3.rotation.y = 1.3; scene.add(o3); LAYER.xe.push(o3); XEX.m48 = o3; } }
   const tren = (X, dy, lui) => (t) => { if (!X.obj.visible) return null; const p = X.obj.position, y = X.obj.rotation.y; return { x: p.x - Math.sin(y) * lui, z: p.z - Math.cos(y) * lui, y: p.y + dy, yaw: y, clip: 'dung' }; };   // trưởng xe đứng ở cửa tháp pháo
   const t843 = tren(XEX.x843, 1.35, 0.4);
   XEX.lai843 = await nvxTao('models/linh-tang.glb', (t) => (t < 115 ? t843(t) : null), { ten: 'Trưởng xe 843' });   // từ 1:55 Bùi Quang Thận rời xe (nhân vật riêng bên dưới)
@@ -591,7 +600,7 @@ function update(dt) {
   xeCapNhat(t); nvxCapNhat(t, dt);
   if (DAN.dat) DAN.dat(t);
   if (XEX.coCap) XEX.coCap(t);
-  if (XEX.khoi) { const p = XEX.m41chay.position; for (const sp of XEX.khoi) { const u = (sp.userData.k + U.time.value * 0.06) % 1;
+  if (XEX.chay) for (const C of XEX.chay) { const p = C.o.position; for (const sp of C.khoi) { const u = (sp.userData.k + U.time.value * 0.06) % 1;
     sp.position.set(p.x + u * 6, p.y + 2 + u * 28, p.z - u * 4); sp.scale.setScalar(2.5 + u * 10); sp.material.opacity = 0.45 * (1 - u); } }
   if (XEX.cong && XEX.cong.phai) {                                                       // 843 húc cổng phụ (84 s): rung rồi oằn, không đổ; 390 húc đổ cổng chính (90 s)
     const rung = t > 84 && t < 86.5 ? 0.08 * Math.sin((t - 84) * 20) * (1 - (t - 84) / 2.5) : 0, k = sstep(90, 91.4, t) * Math.PI / 2;

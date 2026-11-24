@@ -170,3 +170,22 @@ Chưa đặt vào phim: C-130A, A-37, UH-1, D-74, cao xạ 37 mm — cảnh Tân
 | (C10–C11) Xe tăng vào Dinh | nội đô | 4:15–5:30 | T02 (đường từ cầu Thị Nghè; C10 đầy đủ chờ mẫu M48, M113) |
 | (C11) Cắm cờ | nội đô | 5:30–6:05 | T03 |
 Lời dẫn từng chương là phụ đề (theo `docs/HCM_1975_LOI_DAN.md`). Đổi tầng giữa chương: tải lại trang, có **thẻ chương** (màn đen, tên chương sắp tới). Chưa dựng: C06 tổng công kích, C07 Tân Sơn Nhất 30/4, C08 Bộ Tổng tham mưu, C09 hướng Tây – Tây Nam, C12 tuyên bố trên đài.
+
+## 15. Mẫu đợt 3 (24/11/2026, chiều) và danh sách còn thiếu
+Đã nướng: **M113** (`props/xe/xe-boc-thep-m113.glb`, rộng 2,686 m), **M48A3** (`xe-tang-m48.glb`, rộng 3,63 m), **AC-119K** (`props/may-bay/ac-119k.glb`, sải cánh 33,31 m; còn sao Mỹ trên đuôi), **M-46 130 mm** (`props/phao/m-46-130mm.glb`, rộng 2,45 m — tệp "pháo nòng dài" trước đây em ghi nhầm là D-74, anh đã đặt tên lại là M-46; bỏ `d-74-122mm.glb`). Xác M113 cháy cạnh M41 ở đầu cầu Thị Nghè (S36); M48 ở đầu cầu Sài Gòn phía nội đô (S33, tình trạng xe không rõ → đặt nguyên vẹn).
+Bộ binh: dùng lại `thanh-co-quang-tri/models/qdvn_a/b.glb` + `qdnd.glb` (35 động tác) cho Quân Giải phóng, `vnch.glb` (19 động tác) cho quân lực VNCH.
+
+**Còn thiếu — anh làm mẫu** (xếp theo chương cần):
+| Ưu tiên | Mẫu | Chương | Ghi chú |
+|---|---|---|---|
+| 1 | Dân Sài Gòn thành thị 1975: nam sơ mi quần tây, nữ áo dài, học sinh (có xương) | C10–C12 | người dân đổ ra đường; mẫu Nam bộ hiện có là nông thôn |
+| 1 | Xe Jeep (QGP dùng xe thu được) | C12 | xe Jeep thu ở sân bay Đà Nẵng 29/3/1975, Phạm Xuân Thệ (Trung đoàn 66) dùng tiến vào Dinh trưa 30/4 và đưa Dương Văn Minh sang Đài phát thanh (VnExpress "Những kỷ vật ngày 30/4/1975") |
+| 1 | Nhà phố Sài Gòn 1975 (3–4 kiểu nhà ống 2–4 tầng, mái bằng, ban công, bảng hiệu) | C06, C10, C12 | đặt dọc lộ trình xe tăng, nội đô hiện còn trống |
+| 2 | Tòa nhà chính Bộ Tổng tham mưu | C08 | ảnh tư liệu nếu có → em dựng hình khối như Dinh |
+| 2 | Đài phát thanh Sài Gòn (nay số 3 Nguyễn Đình Chiểu) | C12 | như trên |
+| 2 | Cầu Sài Gòn, cầu Thị Nghè, cầu Rạch Chiếc (cầu 1961) | C05, C10 | em có thể dựng hình khối nếu anh gửi ảnh thời đó |
+| 3 | Lính tăng cầm AK (Vũ Đăng Toàn đứng bảo vệ khi cắm cờ, S38) | C11 | lính tăng hiện chỉ có súng ngắn |
+| 3 | Bộ Tư lệnh Biệt khu Thủ đô, Tổng nha Cảnh sát | C09 | ảnh tư liệu |
+| 3 | Lựu pháo M114 155 mm, pháo tự hành M107 175 mm (VNCH) | C03, C05 | |
+| 4 | Tàu hải quân VNCH (cảng Bạch Đằng, căn cứ Cát Lái) | C02, C06 | hướng Đông Quân đoàn 4, Quân đoàn 2 |
+| 4 | F-5E | C04 | |
