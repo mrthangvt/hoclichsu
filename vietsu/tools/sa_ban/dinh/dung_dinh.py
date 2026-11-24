@@ -80,14 +80,28 @@ ring(0, 86, 3.2, 4.2, 0.0, 1.1, 'trang', 24)                                    
 for k in range(8):
     a = 2 * math.pi * k / 8; lathe(3.7 * math.cos(a), 86 + 3.7 * math.sin(a), 1.1, [(0, 0.5), (0.5, 0.25)], 'trang', 4)
 # hồ bán nguyệt trước sảnh + bể phun nước bên phải (ảnh)
-slab([(x, 13 + 4 * math.cos(x / 44 * math.pi / 2)) for x in np.linspace(-44, 44, 23)] + [(44, 12), (-44, 12)], 0.0, 0.1, 'nuoc')
-box(30, 46, 10, 16, 0, 1.0, 'da'); box(31, 45, 11, 15, 1.0, 1.05, 'nuoc')
 
+
+# ---------------------------------------------------------------- nền cao (ảnh hiện trạng anh Thắng gửi 24/11): Dinh đứng trên nền ốp đá cao hơn sân;
+# giữa là bậc thềm lớn, hai bên là HAI ĐƯỜNG DỐC cho xe chạy lên (từ hai đầu, lên dần về giữa), giữa tường đá và đường dốc là dải nước.
+W0B = W = 42.8
+NEN = 1.5                                                                                 # nhà chính nâng thêm 1,5 m (mặt sảnh cao ~2,7 m so với sân — phỏng theo ảnh)
+TOP = NEN + 1.2; YW = 11.5                                                                # mặt nền; mặt tường đá (y)
+box(-W0B - 1, W0B + 1, -80, YW, 0, NEN, 'da')                                             # khối nền ốp đá
+nb = 12
+for i in range(nb):                                                                       # bậc thềm lớn ở giữa
+    box(-10, 10, YW + i * 0.4, YW + (i + 1) * 0.4, 0, TOP - i * TOP / nb, 'bechong')
+for sg in (-1, 1):
+    a_, b_ = sorted((sg * 10, sg * 15)); box(a_, b_, YW, 19.5, 0, TOP, 'da'); box(a_, b_, YW, 19.5, TOP, TOP + 0.08, 'bechong')   # chiếu nghỉ hai bên bậc
+    x0, x1 = sg * 15, sg * 46                                                             # đường dốc: cao TOP ở |x| = 15, xuống 0 ở |x| = 46
+    for (ya, yb, m, dz) in ((14.6, 19.5, 'bechong', 0.0), (19.5, 19.9, 'trang', 0.7)):      # mặt dốc + lan can thấp mép ngoài
+        v = [(x0, ya, 0), (x1, ya, 0), (x1, yb, 0), (x0, yb, 0), (x0, ya, TOP + dz), (x1, ya, 0.02 + dz), (x1, yb, 0.02 + dz), (x0, yb, TOP + dz)]
+        _add(v, [[0, 3, 2, 1], [4, 5, 6, 7], [0, 1, 5, 4], [1, 2, 6, 5], [2, 3, 7, 6], [3, 0, 4, 7]], m)
+    a_, b_ = sorted((sg * 15, sg * 44)); slab([(a_, YW), (b_, YW), (b_, 14.6), (a_, 14.6)], 0.0, 0.35, 'nuoc')   # dải nước chân tường
+    box(a_, b_, YW - 0.05, YW + 0.02, 0.35, NEN, 'nuoc')                                  # thác nước chảy trên tường đá (giản lược)
+_v0 = len(V)
 # ---------------------------------------------------------------- nhà chính (chữ T)
-W = 42.8
 box(-W - 1, W + 1, -28.5, 11.5, 0, 1.2, 'bechong')                                       # bệ, sân trước sảnh
-for i in range(10):                                                                      # bậc thềm giữa
-    box(-12, 12, 11.5 + i * 0.45, 11.5 + (i + 1) * 0.45, 0, 1.2 - i * 0.12, 'bechong')
 for s in np.linspace(-38, 38, 14):                                                       # chậu cây cảnh trên thềm
     if abs(s) < 13: continue
     box(s - 0.5, s + 0.5, 9.6, 10.6, 1.2, 1.9, 'trang'); lathe(s, 10.1, 1.9, [(0, 0.2), (0.6, 0.9), (1.8, 0.6), (3.0, 0.1)], 'la', 6)
@@ -136,6 +150,7 @@ for z in (7.8, 12.6):
     for sx in (-16.5, 15.9): box(sx - 0.05, sx + 0.05, -74, -30, z - 1.4, z + 1.2, 'kinh')
 box(-17, 16.4, -77, -27, 15.6, 17.0, 'trang'); box(-13, 12, -70, -30, 17.0, 20.6, 'tuong')
 
+for _i in range(_v0, len(V)): V[_i] = (V[_i][0], V[_i][1], V[_i][2] + NEN)                # nhà chính đứng trên nền cao
 # ---------------------------------------------------------------- hàng rào, cổng (theo ảnh hiện trạng + mô hình 1:35 "Gate of Independence Palace", anh Thắng gửi 24/11)
 # Cụm cổng trên trục Lê Duẩn: TRỤ SẮT HOA rỗng (khung vuông, mặt là các vòng hoa văn), đỉnh có giá sắt uốn đỡ đèn trắng; HAI TRỤ GIỮA CAO HƠN.
 # Cổng chính hai cánh giữa hai trụ cao, trên có vòm hoa văn; mỗi bên một đoạn rào rồi cổng phụ hai cánh (vòm thấp hơn) giữa hai trụ thấp.

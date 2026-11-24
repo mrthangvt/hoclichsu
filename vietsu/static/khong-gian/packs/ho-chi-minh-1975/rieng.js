@@ -108,7 +108,7 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   XEX.DL = DL;
   // CẮM CỜ TRÊN NÓC DINH (cảnh T03): Đại đội trưởng Bùi Quang Thận (trưởng xe 843) tháo lá cờ Mặt trận trên tháp pháo, không mang vũ khí,
   // chạy vào Dinh (S37); trên nóc hạ lá cờ ba sọc — cờ to, vải dày nên mất nhiều phút (S37, S38); đúng 11 giờ 30 cờ được kéo lên cột cờ (S38).
-  { const H = XEX.hDinh, P3 = (a, b) => { const [x, y] = DL(a, b); return { x, z: -y }; }, cot = P3(0, -4), dung = P3(1.0, -2.6), cua = P3(0, 13);
+  { const H = XEX.hDinh, P3 = (a, b) => { const [x, y] = DL(a, b); return { x, z: -y }; }, cot = P3(0, -4), dung = P3(1.0, -2.6), cua = P3(0, 20);   // chân bậc thềm (nền Dinh cao 2,7 m)
     const yawTo = (f, t) => Math.atan2(t.x - f.x, t.z - f.z), lerpP = (a, b, u) => ({ x: a.x + (b.x - a.x) * u, z: a.z + (b.z - a.z) * u });
     XEX.than = await nvxTao('models/linh-tang.glb', (t) => {
       if (t < 115) return null;
@@ -119,17 +119,17 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
       if (t < 128) { const u = (t - 122.5) / 5.5, p = lerpP(trong, cua, u); return { ...p, yaw: yawTo(trong, cua), clip: 'chaynhanh' }; }      // (cắt cảnh) băng qua bãi cỏ tới thềm
       if (t < 129) return null;                                                                // trong Dinh, lên cầu thang
       const keo = t >= 131 && t < 146;
-      return { ...dung, y: H + 26, yaw: t < 147 ? yawTo(dung, cot) : yawTo(dung, P3(1.0, 20)), clip: keo ? 'keo' : 'dung' };
+      return { ...dung, y: H + 27.5, yaw: t < 147 ? yawTo(dung, cot) : yawTo(dung, P3(1.0, 20)), clip: keo ? 'keo' : 'dung' };
     }, { ten: 'Bùi Quang Thận' });
     const cv = (src) => { const tx = new THREE.TextureLoader().load(src); tx.colorSpace = THREE.SRGBColorSpace; return tx; };
     const coMat = (tx) => { const m = new THREE.MeshLambertMaterial({ map: tx, side: THREE.DoubleSide }); m.onBeforeCompile = (sh) => { sh.uniforms.uT = U.time;
       sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform float uT;').replace('#include <begin_vertex>', '#include <begin_vertex>\ntransformed.z += sin(uv.x * 6.0 - uT * 5.0) * 0.16 * uv.x;'); }; return m; };
     const co = (src, w, h) => { const g = new THREE.Group(), m = new THREE.Mesh(new THREE.PlaneGeometry(w, h, 12, 3).translate(w / 2, -h / 2, 0), coMat(cv(src)));
-      g.add(m); g.position.set(cot.x, H + 26, cot.z); g.rotation.y = -0.7441; scene.add(g); LAYER.xe.push(g); return g; };
+      g.add(m); g.position.set(cot.x, H + 27.5, cot.z); g.rotation.y = -0.7441; scene.add(g); LAYER.xe.push(g); return g; };
     XEX.coVnch = co('data/co-vnch.png', 2.4, 1.6); XEX.coMt = co('data/co-mtdtgp.png', 1.8, 1.2);
     XEX.coCap = (t) => {                                                                     // độ cao mép trên lá cờ so với chân cột (cột 7 m)
       const hv = t < 131 ? 6.9 : t < 137 ? 6.9 - (t - 131) / 6 * 5.6 : -1, hm = t < 139 ? -1 : 1.4 + Math.min(1, (t - 139) / 6) * 5.5;
-      XEX.coVnch.visible = hv > 0; XEX.coVnch.position.y = H + 26 + hv; XEX.coMt.visible = hm > 0; XEX.coMt.position.y = H + 26 + hm;
+      XEX.coVnch.visible = hv > 0; XEX.coVnch.position.y = H + 27.5 + hv; XEX.coMt.visible = hm > 0; XEX.coMt.position.y = H + 27.5 + hm;
     }; }
   // Xác M41 cháy án ngữ đầu cầu Thị Nghè: xe 387 bắn cháy một M41 và một M113 ở đây sáng 30/4 (S36).
   { const D = duong(GOC), tn = [LLx(MOC.thinghe[0], MOC.thinghe[1]), LLz(MOC.thinghe[0], MOC.thinghe[1])];
@@ -352,7 +352,7 @@ const SHOTS = TANG === 'chien-dich' ? {
   'T03-A2b': (u) => { const o = XEX.than.obj, p = o.position, y = o.rotation.y;          // bám sau khi băng qua bãi cỏ
     return [V3(p.x - Math.sin(y) * 10, p.y + 5, p.z - Math.cos(y) * 10), V3(p.x + Math.sin(y) * 8, p.y + 1.4, p.z + Math.cos(y) * 8), 50]; },
   'T03-A2': (u) => SHOTS['T03-A2b'](u),
-  'T03-B': (u) => { const [x, z] = XEX.DL(0, -4), c = V3(x, (XEX.hDinh || 0) + 29.5, -z); return orbit(c, 17, 1.5, 1.95, 2.75, 48, 4)(u); },   // nóc Dinh, nhìn lá cờ
+  'T03-B': (u) => { const [x, z] = XEX.DL(0, -4), c = V3(x, (XEX.hDinh || 0) + 31, -z); return orbit(c, 17, 1.5, 1.95, 2.75, 48, 4)(u); },   // nóc Dinh, nhìn lá cờ
   'T02-C': (u) => { const DL = XEX.DL, h = XEX.hDinh || 0, P = (a, b, y) => { const [x, z] = DL(a, b); return V3(x, h + y, -z); };   // cổng Dinh: nhìn từ ngoài vào
     if (u < 0.5) return fly(P(-22, 192, 8), P(-15, 178, 7), P(6, 146, 2.5), P(4, 140, 2.5), 46)(u / 0.5);          // ngoài cổng, góc ảnh tư liệu: cổng phụ trái (843) và cổng chính (390)
     return fly(P(4, 3, 23), P(0, 6, 25), P(-4, 120, 0), P(0, 100, 0), 52)((u - 0.5) / 0.5); },                    // từ sân thượng Dinh nhìn ra (góc ảnh tư liệu 30/4)
