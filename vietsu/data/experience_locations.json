@@ -48,5 +48,15 @@
     "year": 1785,
     "category": "Chiến trận – sa bàn",
     "source_note": "Vị trí đại diện cho khúc sông Rạch Gầm – Xoài Mút (sông Tiền), không phải vị trí từng đơn vị."
+  },
+  {
+    "id": "ho-chi-minh-1975",
+    "kind": "battle",
+    "lat": 10.777,
+    "lon": 106.695,
+    "name": "Chiến dịch Hồ Chí Minh",
+    "year": 1975,
+    "category": "Chiến dịch – sa bàn",
+    "source_note": "Vị trí đại diện: Dinh Độc Lập (tâm tầng nội đô của sa bàn, 10,7770 B, 106,6953 Đ), không phải vị trí từng đơn vị."
   }
 ]

@@ -4,6 +4,9 @@
 
   // Chỉ công bố lối vào sa bàn khi có trang 3D thực sự trong repository.
   const SCENES = {
+    'ho-chi-minh-1975': { title: 'Chiến dịch Hồ Chí Minh 1975',
+                   href: 'khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975',
+                   subtitle: 'Sa bàn tương tác Three.js · phim tự động 16:02 có lời dẫn, khám phá, góc nhìn nhân vật · tái dựng mô phỏng' },
     'rach-gam': { title: 'Rạch Gầm – Xoài Mút 1785',
                    href: 'khong-gian/rach-gam-xoai-mut/',
                    subtitle: 'Sa bàn tương tác Three.js · phim tự động 11:16 có lời dẫn, khám phá, góc nhìn nhân vật · tái dựng mô phỏng' },
