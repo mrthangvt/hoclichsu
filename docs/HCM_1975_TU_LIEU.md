@@ -81,6 +81,23 @@ Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), khô
 | `SonPhao_75` — sơn pháo 75 mm (Nhật, Kiểu 41) | **Không tìm thấy nguồn** nói còn dùng trong Chiến dịch Hồ Chí Minh; pháo nhỏ năm 1975 trong nguồn là cối, ĐKZ, ĐKB | **Không dùng** (chưa có nguồn) |
 | — | Pháo chủ lực của ta năm 1975: **pháo nòng dài 130 mm M-46** (bắn Biên Hoà 14/4, Tân Sơn Nhất từ Nhơn Trạch rạng sáng 29/4, Bộ Tổng tham mưu 10h 30/4 — Lữ đoàn 45), **122 mm D-74**, **ĐKB** (bắn Tân Sơn Nhất 27–28/4). Nguồn: baophapluat.vn "Pháo binh Việt Nam với Đại thắng mùa Xuân 1975"; "Chiến dịch Hồ Chí Minh qua ký ức của hai người lính pháo" | **Làm mới** M-46 (130 mm), cùng xe kéo ATS/xe tải |
 
+**Danh sách mẫu cần làm thêm (24/11/2026, anh Thắng làm mẫu, đưa vào `_KHO-CHUNG/vat-dung/_moi/`)** — xếp theo mức cần cho các cảnh:
+| Mẫu | Phe | Có trong cảnh nào / nguồn | Ưu tiên |
+|---|---|---|---|
+| Xe bọc thép **M113** | VNCH | Xe 390 bắn M113 ở ngã tư Hàng Xanh; xe 387 bắn cháy M41 và M113 ở cầu Thị Nghè (lsvn.vn "Tiến vào Dinh Độc Lập"; Tiền Phong 30/4/2026) | 1 — cảnh cuối |
+| Xe tăng **M48A3** | VNCH (và ta dùng xe thu được) | Đầu cầu Sài Gòn sáng 30/4 (viettimes.vn, hồi ức Nguyễn Hữu Cử); hai M48 chặn hướng Bắc bị ĐKZ bắn cháy (giaoduc.net.vn); Sư đoàn 10 (ta) được tăng cường 1 đại đội xe tăng M41–M48 thu được (giaoduc.net.vn "Trận then chốt…") | 1 |
+| Xe tăng **M41A3** | VNCH (và ta) | Có sẵn `thanh-co-quang-tri/static.glb › XeTang_VNCH_*` — chỉ cần tách mẫu, đổi phù hiệu | 1 (tách) |
+| Pháo nòng dài **M-46 130 mm** + xe kéo | QĐVN | Bắn Tân Sơn Nhất 4h30 29/4, Bộ Tổng tham mưu 10h 30/4 | 2 |
+| Lựu pháo **M114 155 mm** | VNCH | Pháo VNCH gồm 105, 155, 175 mm (Wikipedia "1975 spring offensive"; Dân Việt "Số lượng vũ khí thu được sau 1975"); 30 khẩu 105–155 mm chi viện khu Nước Trong (giaoduc.net.vn) | 3 |
+| Pháo tự hành **M107 175 mm** | VNCH | Như trên; số lượng ít | 3 |
+| **Xe V-100** (bánh lốp) | VNCH | Chưa tìm được nguồn tận mặt trận Sài Gòn 26–30/4 — chưa làm | — |
+| **A-37** | Ta (thu được) + VNCH | Có sẵn `static.glb › MayBay_CuongKich_*`; cần sơn phi đội Quyết Thắng | 1 (tách) |
+| **AC-119K** | VNCH | Bị tên lửa vác vai SA-7 (A72) bắn rơi trên đường băng Tân Sơn Nhất khoảng 7h ngày 29/4 (Texas Tech Vietnam Archive, bộ ảnh LeGro) | 2 |
+| **C-130A** | VNCH | Cháy ở Tân Sơn Nhất sau đợt pháo/rocket 29/4 (Wikimedia Commons) | 3 |
+| **UH-1** | VNCH/Mỹ | Di tản; trực thăng đậu trên 13 nóc nhà cao tầng (VietnamPlus 28/4) | 3 |
+| **F-5E** | VNCH | Nguyễn Thành Trung ném bom Dinh Độc Lập 8/4 (trước chiến dịch); phi đội Quyết Thắng phá huỷ máy bay ở TSN | 4 |
+Máy bay của ta trong Chiến dịch Hồ Chí Minh: chỉ có **A-37 thu được** (phi đội Quyết Thắng, 5 chiếc, 28/4). Các phi công vốn bay MiG-17, chuyển loại sang A-37 trong vài ngày; MiG không tham chiến ở Sài Gòn. Phòng không của ta: cao xạ 37/57 mm, tên lửa vác vai A72 (SA-7), tên lửa SAM-2 đưa vào chiến trường.
+
 ## 5. Địa hình (GĐ2, 24/11/2026)
 - Lấy qua Chrome trên máy anh (máy chủ Claude và shell máy anh đều không ra mạng được tới OSM, DEM): `hcm1975_dem.json` (Terrarium z11, z14), `hcm1975_osm.json` (Overpass) — lưu ở `Hoc-lich-su/ChienDichHoChiMinh1975/`, không đưa lên repo. Máy chủ Copernicus không vào được → dùng Terrarium (như Như Nguyệt).
 - `tools/sa_ban/dia_hinh/dem.py` (giải DEM ra lưới hai tầng) → `dung_dia_hinh.py <osm.json> <ra>` (height.png, color.jpg, meta.json theo định dạng bộ máy 2.1).
