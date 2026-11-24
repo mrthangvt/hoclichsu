@@ -1,7 +1,7 @@
 # Sa bàn Chiến dịch Hồ Chí Minh 1975 — tư liệu, kịch bản nháp, tài sản
 
 Gói: `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` · bộ máy 2.1.0 · nhánh `claude/sa-ban-hcm-1975`.
-Trạng thái: **Giai đoạn 0 xong, Giai đoạn 1 bản nháp — chờ anh Thắng duyệt** (24/11/2026).
+Trạng thái (24/11/2026): GĐ0 xong · GĐ1 nháp, đã chốt 3 mốc giờ · **GĐ2 địa hình hai tầng xong — chờ duyệt** · GĐ4 phần xe + lính lái tăng xong.
 Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S31`, `M1`, bản đồ `B1`, `B2` ở `sources.json`.
 Nguồn hiện là báo chí chính thống (Nhân Dân, SGGP, VnExpress, TTXVN…) dẫn lại tư liệu bảo tàng, nhân chứng. Nên bổ sung sách chuyên khảo (ví dụ *Lịch sử Kháng chiến chống Mỹ cứu nước*, Viện Lịch sử quân sự; *Đại thắng mùa xuân* của Văn Tiến Dũng) nếu anh có bản trong thư mục "Tài liệu sử".
 
@@ -72,10 +72,12 @@ Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), khô
 | M113/M48 (VNCH), Dinh Độc Lập + cổng, đường phố 1975 | — | Làm mới |
 | Cờ | `props/co-mtdtgp.png`, `props/co-vnch.png` | Đã có (vẽ lại) |
 
-## 5. Dữ liệu cần tải (chờ anh cho phép)
-- Copernicus DEM GLO-30, các ô N10E106, N10E107, N11E106 (~100 MB) — qua máy anh.
-- OSM (Overpass, `curl` trên máy anh) — đường, sông, ranh khu phố; cắt theo hai tầng.
-- Bản đồ AMS L7014 1:50 000 (khoảng năm 1970, phạm vi công cộng) cho mạng đường, khu dân cư thời 1975.
+## 5. Địa hình (GĐ2, 24/11/2026)
+- Lấy qua Chrome trên máy anh (máy chủ Claude và shell máy anh đều không ra mạng được tới OSM, DEM): `hcm1975_dem.json` (Terrarium z11, z14), `hcm1975_osm.json` (Overpass) — lưu ở `Hoc-lich-su/ChienDichHoChiMinh1975/`, không đưa lên repo. Máy chủ Copernicus không vào được → dùng Terrarium (như Như Nguyệt).
+- `tools/sa_ban/dia_hinh/dem.py` (giải DEM ra lưới hai tầng) → `dung_dia_hinh.py <osm.json> <ra>` (height.png, color.jpg, meta.json theo định dạng bộ máy 2.1).
+- **Tầng chiến dịch** `terrain/`: tâm 10,83 B, 106,83 Đ, R 56,5 km (vừa khít vùng DEM 10,315–11,351 B), ~113 m/ô; bao Củ Chi, Tân An, Biên Hòa, Xuân Lộc, Cần Giờ. **Tầng nội đô** `terrain/noi-do/`: tâm Dinh Độc Lập, R 6,8 km, ~14 m/ô.
+- Lọc theo 1975: bỏ hồ chứa > 3 km² (Trị An 295 km², Sông Ray, Đá Đen — lấp lại mặt đất nội suy từ bờ, hạ lòng sông Đồng Nai cũ: **phỏng dựng**); bỏ cao tốc; bỏ ~1 100–1 560 đoạn đường, cầu, hầm làm sau 1975 theo tên (Võ Văn Kiệt, Mai Chí Thọ, Nguyễn Văn Linh, Phạm Văn Đồng, Nguyễn Hữu Cảnh, Nguyễn Hữu Thọ, Võ Chí Công, cầu Phú Mỹ, cầu Sài Gòn 2, hầm Thủ Thiêm, cầu vượt…). Giữ Xa lộ Hà Nội (nay Võ Nguyên Giáp). Biển lấy từ DEM (thấp hơn 0,5 m, nối mép Nam). Nội đô: lọc trung vị + mượt bỏ nhà cao tầng hôm nay.
+- **Còn hạn chế:** mạng đường vẫn là OSM hôm nay đã lọc sơ bộ (khu Thủ Thiêm, Phú Mỹ Hưng, đô thị mới chưa lọc hết; đoạn bến Chương Dương – Hàm Tử cũ bị bỏ cùng Võ Văn Kiệt). Cần bản đồ 1:50 000 hoặc 1:100 000 khoảng 1970 (xem mục 6) để dựng đúng. Nhãn thị trấn đổi sang tên 1975 (Sài Gòn, Biên Hòa, Xuân Lộc); tên đường 1975 làm ở GĐ5.
 
 ## 6. Đối chiếu bản đồ cũ (24/11/2026)
 **B1 — IV CTZ Major Road Net & Airfields (11/1969, 1:515 000).** Khớp ảnh chụp với 12 thị xã (homography, `tools/sa_ban/khop_ban_do_anh.py`, kết quả `docs/du-lieu/ho-chi-minh-1975_khop_IVCTZ.json`): sai số trung bình 2,2 km, lớn nhất 3,7 km; kiểm chéo bỏ-1: trung bình 3,6 km, lớn nhất 5,8 km (ảnh chụp có phối cảnh, nếp gấp; toạ độ thị xã lấy gần đúng).

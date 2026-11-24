@@ -274,6 +274,22 @@
    "url": "",
    "license": "tư liệu riêng",
    "used_for": "chưa dùng (vùng Sóc Trăng – Trần Đề, ngoài sa bàn); cần tờ cùng hệ phủ Sài Gòn – Biên Hòa – Củ Chi"
+  },
+  {
+   "id": "D1",
+   "title": "AWS Terrain Tiles (Terrarium), z11 (tầng chiến dịch) và z14 (nội đô)",
+   "type": "DEM",
+   "url": "https://registry.opendata.aws/terrain-tiles/",
+   "license": "xem trang nguồn (tổng hợp SRTM, GMTED, ETOPO…)",
+   "used_for": "độ cao terrain/height.png; tải qua Chrome trên máy anh Thắng 24/11/2026"
+  },
+  {
+   "id": "D2",
+   "title": "OpenStreetMap (Overpass API), tải 24/11/2026",
+   "type": "OSM",
+   "url": "https://www.openstreetmap.org",
+   "license": "© OpenStreetMap contributors (ODbL)",
+   "used_for": "sông, kênh, mặt nước, đường, thị trấn — lọc theo 1975: bỏ hồ Trị An, Sông Ray, Đá Đen; bỏ cao tốc và đường, cầu, hầm làm sau 1975 theo tên (sơ bộ)"
   }
  ]
 }

@@ -12,32 +12,79 @@
  "script": "rieng.js",
  "coords": {
   "system": "blender",
-  "note": "Hai tầng địa hình (dự kiến, Giai đoạn 2): tầng chiến dịch ~130 × 100 km (Củ Chi – Xuân Lộc – Tân An) và tầng nội đô ~8–10 km quanh Dinh Độc Lập (tâm tạm 10,7770 B, 106,6953 Đ — sẽ lấy lại theo OSM)."
+  "note": "Hai tầng địa hình. Tầng chiến dịch (terrain/, mặc định): tâm 10,83 B, 106,83 Đ, bán kính 56,5 km, lưới 1024 (~113 m/ô). Tầng nội đô (terrain/noi-do/): tâm Dinh Độc Lập 10,7770 B, 106,6953 Đ, bán kính 6,8 km, lưới 1024 (~14 m/ô). Độ cao thật trong height.png; phóng đại khi hiển thị (đề xuất ×6 tầng chiến dịch, ×3 nội đô)."
  },
  "ui": {
   "layers": [
-   ["nv", "Quân lính, xe cơ giới", true],
-   ["co", "Cờ hiệu hai bên", true],
-   ["muiten", "Mũi tên 5 hướng tiến công", true],
-   ["muctieu", "5 mục tiêu nội đô", true]
+   [
+    "nv",
+    "Quân lính, xe cơ giới",
+    true
+   ],
+   [
+    "co",
+    "Cờ hiệu hai bên",
+    true
+   ],
+   [
+    "muiten",
+    "Mũi tên 5 hướng tiến công",
+    true
+   ],
+   [
+    "muctieu",
+    "5 mục tiêu nội đô",
+    true
+   ]
   ],
   "legend": [
-   ["r", "Mũi đỏ: hướng tiến công của Quân Giải phóng (5 hướng)", "width:22px;height:8px;border-radius:3px"],
-   ["g", "Mốc vàng: mục tiêu, cầu, căn cứ (bấm để đọc)"],
-   ["p", "Mốc đỏ: ghi chú review của nhóm"]
+   [
+    "r",
+    "Mũi đỏ: hướng tiến công của Quân Giải phóng (5 hướng)",
+    "width:22px;height:8px;border-radius:3px"
+   ],
+   [
+    "g",
+    "Mốc vàng: mục tiêu, cầu, căn cứ (bấm để đọc)"
+   ],
+   [
+    "p",
+    "Mốc đỏ: ghi chú review của nhóm"
+   ]
   ],
   "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ. Mốc giờ, đơn vị, số hiệu xe ghi theo nguồn trong sources.json; chỗ các nguồn ghi khác nhau được nêu rõ.",
   "gauge": false,
   "notePlaceholder": "VD: Dời mũi tên Quân đoàn 1 sang đường 13"
  },
  "views": [
-  ["all", "Toàn chiến dịch"],
-  ["noido", "Nội đô Sài Gòn"],
-  ["dinh", "Dinh Độc Lập"],
-  ["tsn", "Sân bay Tân Sơn Nhất"],
-  ["bttm", "Bộ Tổng tham mưu"],
-  ["bkthudo", "Biệt khu Thủ đô"],
-  ["tongnha", "Tổng nha Cảnh sát"]
+  [
+   "all",
+   "Toàn chiến dịch"
+  ],
+  [
+   "noido",
+   "Nội đô Sài Gòn"
+  ],
+  [
+   "dinh",
+   "Dinh Độc Lập"
+  ],
+  [
+   "tsn",
+   "Sân bay Tân Sơn Nhất"
+  ],
+  [
+   "bttm",
+   "Bộ Tổng tham mưu"
+  ],
+  [
+   "bkthudo",
+   "Biệt khu Thủ đô"
+  ],
+  [
+   "tongnha",
+   "Tổng nha Cảnh sát"
+  ]
  ],
  "roles": [],
  "sides": [
@@ -66,5 +113,25 @@
  "taiSau": [
   "units/*.nvz",
   "units/*.glb"
- ]
+ ],
+ "terrain": {
+  "data": "terrain/meta.json",
+  "height": "terrain/height.png",
+  "image": "terrain/color.jpg",
+  "tang": {
+   "chien-dich": {
+    "data": "terrain/meta.json",
+    "height": "terrain/height.png",
+    "image": "terrain/color.jpg",
+    "phongDai": 6
+   },
+   "noi-do": {
+    "data": "terrain/noi-do/meta.json",
+    "height": "terrain/noi-do/height.png",
+    "image": "terrain/noi-do/color.jpg",
+    "phongDai": 3
+   }
+  },
+  "note": "Bộ máy 2.1 mới đọc một tầng (terrain/); chuyển tầng là việc của bộ máy 2.2 (Giai đoạn 3)."
+ }
 }
