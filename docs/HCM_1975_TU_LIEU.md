@@ -1,7 +1,8 @@
 # Sa bàn Chiến dịch Hồ Chí Minh 1975 — tư liệu, kịch bản nháp, tài sản
 
 Gói: `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` · bộ máy 2.1.0 · nhánh `claude/sa-ban-hcm-1975`.
-Trạng thái (24/11/2026): GĐ0 xong · GĐ1 nháp, đã chốt 3 mốc giờ · **GĐ2 địa hình hai tầng xong — chờ duyệt** · GĐ4 phần xe + lính lái tăng xong.
+Trạng thái (24/11/2026): GĐ0 xong · GĐ1 nháp, đã chốt 3 mốc giờ · GĐ2 địa hình hai tầng xong · **GĐ3 bộ máy 2.2.0 + bản thử chạy được — chờ duyệt** · GĐ4 phần xe + lính lái tăng xong.
+Xem: `khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975` (thêm `&tang=noi-do` để mở thẳng nội đô).
 Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S31`, `M1`, bản đồ `B1`, `B2` ở `sources.json`.
 Nguồn hiện là báo chí chính thống (Nhân Dân, SGGP, VnExpress, TTXVN…) dẫn lại tư liệu bảo tàng, nhân chứng. Nên bổ sung sách chuyên khảo (ví dụ *Lịch sử Kháng chiến chống Mỹ cứu nước*, Viện Lịch sử quân sự; *Đại thắng mùa xuân* của Văn Tiến Dũng) nếu anh có bản trong thư mục "Tài liệu sử".
 
@@ -87,3 +88,10 @@ Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), khô
 - Nét chì xám và dấu X vẽ tay dọc sông Vàm Cỏ trên bản giấy: chưa rõ ý nghĩa, không dùng.
 
 **B2 — Bản đồ 1:100 000 tờ 6128 (Cục Bản đồ BTTM QĐNDVN, in tại Đà Lạt):** vùng Trà Ôn – Sóc Trăng – cửa Trần Đề, nằm ngoài sa bàn. Cùng hệ này, các tờ phủ Sài Gòn – Biên Hòa – Củ Chi – Long An là nguồn tốt nhất cho mạng đường, khu dân cư thời 1975 (thay cho OSM hôm nay) — xác định số tờ qua bảng chắp.
+
+## 7. Bộ máy 2.2.0 và bản thử (GĐ3, 24/11/2026)
+- `engine/2.2.0/` (xem `docs/KHUNG_SA_BAN.md`): nhiều tầng địa hình, phóng đại độ cao theo tầng, thuyền tuỳ chọn, xe GLB theo đường, nhân vật GLB có xương. Bạch Đằng, Như Nguyệt giữ 2.1.0.
+- `rieng.js` của trận viết mới (không chép thuyền, lũy, doanh trại của Như Nguyệt); phần máy móc lấy theo Như Nguyệt: bầu trời (sương chỉnh theo cỡ sa bàn), nhãn, bản đồ nhỏ, review, phụ đề.
+- `story.json` hiện là **bản thử 2 cảnh** (T01 chiến dịch: 5 mũi tên phác thảo; T02 nội đô: xe 843, 390 từ cầu Thị Nghè vào sân Dinh, đường tìm trên mạng đường OSM đã lọc). Dàn ý 12 cảnh có nguồn giữ ở `story.json › danY`.
+- Đã kiểm tra bằng Chrome headless: hai tầng mở được, chuyển tầng giữa phim (0:40 → nội đô, phát tiếp), xe bám đường, trưởng xe đứng ở cửa tháp pháo.
+- **Còn thiếu (GĐ4–5):** nhà phố, cây, Dinh Độc Lập 3D (nội đô mới là ảnh nền phẳng); bộ đội, lính VNCH; lộ trình và lịch giờ thật theo nguồn; lời bình; âm thanh; đổi tầng không tải lại trang (2.3).

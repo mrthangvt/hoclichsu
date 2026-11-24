@@ -1,8 +1,102 @@
 {
- "note": "Kịch bản NHÁP V0 (Giai đoạn 1) — chờ anh Thắng duyệt. Chưa có lời bình, phụ đề, góc máy; thời lượng là ước tính. Mỗi cảnh ghi nguồn (sources.json) và tầng địa hình. Chỗ nguồn ghi khác nhau xem docs/HCM_1975_TU_LIEU.md.",
- "draft": true,
- "duration": 0,
+ "note": "Bản thử bộ máy 2.2 (GĐ3): 2 cảnh ngắn để kiểm tra hai tầng địa hình, mũi tên, xe chạy theo đường. Kịch bản thật (12 cảnh, có nguồn) ở 'danY', dựng ở GĐ5.",
+ "duration": 100.0,
  "scenes": [
+  {
+   "id": "T01",
+   "title": "Thế bao vây năm hướng (phác thảo)",
+   "tang": "chien-dich",
+   "t0": 0.0,
+   "t1": 40.0,
+   "subs": [
+    [
+     1.0,
+     9.0,
+     "Tái dựng mô phỏng · bản thử bộ máy sa bàn 2.2."
+    ],
+    [
+     9.5,
+     24.0,
+     "Năm hướng tiến công vào Sài Gòn (phác thảo theo bản đồ Quyết tâm; vị trí mũi tên sẽ chốt theo nguồn)."
+    ],
+    [
+     24.5,
+     39.0,
+     "Địa hình đã bỏ hồ Trị An và các đường làm sau năm 1975."
+    ]
+   ],
+   "shots": [
+    {
+     "id": "T01-A",
+     "t0": 0.0,
+     "t1": 20.0,
+     "size": "Đại toàn",
+     "desc": "Bay vào toàn chiến dịch"
+    },
+    {
+     "id": "T01-B",
+     "t0": 20.0,
+     "t1": 40.0,
+     "size": "Toàn",
+     "desc": "Vòng quanh Sài Gòn, năm mũi tên hiện dần"
+    }
+   ]
+  },
+  {
+   "id": "T02",
+   "title": "Xe tăng vào Dinh Độc Lập (thử xe theo đường)",
+   "tang": "noi-do",
+   "t0": 40.0,
+   "t1": 100.0,
+   "subs": [
+    [
+     41.0,
+     52.0,
+     "Nội đô Sài Gòn · thử xe tăng chạy theo đường phố."
+    ],
+    [
+     52.5,
+     70.0,
+     "Đường đi tìm trên mạng đường hôm nay đã lọc; lộ trình thật sẽ chốt theo nguồn."
+    ],
+    [
+     70.5,
+     99.0,
+     "Tái dựng mô phỏng."
+    ]
+   ],
+   "shots": [
+    {
+     "id": "T02-A",
+     "t0": 40.0,
+     "t1": 66.0,
+     "size": "Trung",
+     "desc": "Bám sau xe 843"
+    },
+    {
+     "id": "T02-B",
+     "t0": 66.0,
+     "t1": 86.0,
+     "size": "Cận",
+     "desc": "Bám sau xe 390"
+    },
+    {
+     "id": "T02-C",
+     "t0": 86.0,
+     "t1": 100.0,
+     "size": "Toàn",
+     "desc": "Vòng quanh sân Dinh"
+    }
+   ]
+  }
+ ],
+ "arrows": {},
+ "states": {
+  "none": []
+ },
+ "legend": {},
+ "refs": [],
+ "danY": [
   {
    "id": "C01",
    "title": "Cánh cửa phía Đông",
@@ -171,11 +265,5 @@
    "subs": [],
    "ghiChu": "Giờ tuyên bố trên đài: chốt 11h30 theo S25 (anh Thắng duyệt 24/11/2026); S24 ghi 12h, S23 ghi khoảng 14h."
   }
- ],
- "arrows": {},
- "states": {
-  "none": []
- },
- "legend": {},
- "refs": []
+ ]
 }

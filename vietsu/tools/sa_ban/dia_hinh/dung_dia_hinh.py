@@ -84,6 +84,7 @@ for tang, L in zip(['chien-dich', 'noi-do'], OSM['layers']):
         s = (np.array(song) > 127) & binary_dilation(hm, iterations=3); H[s] -= 6; nuocN |= s
     H[nuocN] = np.minimum(H[nuocN], np.percentile(H[nuocN], 50) if nuocN.any() else 0)
     H[nuocN] -= 1.5
+    H[~nuocN] = np.maximum(H[~nuocN], 0.6)          # đất (không phải sông, kênh, biển) luôn trên mực nước của bộ máy (0,3 m) → không lốm đốm nước
     hmin, hmax = float(H.min()), float(H.max())
     q = np.round((H - hmin) / (hmax - hmin) * 65535).astype(np.uint32)
     hp = np.stack([(q >> 8).astype(np.uint8), (q & 255).astype(np.uint8), (nuocN * 255).astype(np.uint8)], -1)

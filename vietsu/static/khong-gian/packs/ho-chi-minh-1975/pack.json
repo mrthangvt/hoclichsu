@@ -1,39 +1,29 @@
 {
  "id": "ho-chi-minh-1975",
- "version": "0.1.0",
- "engine": "^2.1",
+ "version": "0.2.0",
+ "engine": "^2.2",
  "kind": "battle",
  "title": "Chiến dịch Hồ Chí Minh 1975",
  "subtitle": "26 – 30/4/1975 · Sài Gòn – Gia Định và vùng ven",
  "label": "Tái dựng mô phỏng · cần đối chiếu tư liệu",
  "period": "vndcch",
  "year": 1975,
- "storyLabel": "kịch bản nháp V0 · đang tra nguồn",
+ "storyLabel": "bản thử bộ máy 2.2 · kịch bản thật ở GĐ5",
  "script": "rieng.js",
  "coords": {
   "system": "blender",
-  "note": "Hai tầng địa hình. Tầng chiến dịch (terrain/, mặc định): tâm 10,83 B, 106,83 Đ, bán kính 56,5 km, lưới 1024 (~113 m/ô). Tầng nội đô (terrain/noi-do/): tâm Dinh Độc Lập 10,7770 B, 106,6953 Đ, bán kính 6,8 km, lưới 1024 (~14 m/ô). Độ cao thật trong height.png; phóng đại khi hiển thị (đề xuất ×6 tầng chiến dịch, ×3 nội đô)."
+  "note": "Hai tầng địa hình. Tầng chiến dịch (terrain/, mặc định): tâm 10,83 B, 106,83 Đ, bán kính 56,5 km, lưới 1024 (~113 m/ô). Tầng nội đô (terrain/noi-do/): tâm Dinh Độc Lập 10,7770 B, 106,6953 Đ, bán kính 6,8 km, lưới 1024 (~14 m/ô). Độ cao thật trong height.png; phóng đại khi hiển thị (đề xuất ×6 tầng chiến dịch, ×1 nội đô (Sài Gòn bằng phẳng, nhân độ cao làm mặt đất nhấp nhô))."
  },
  "ui": {
   "layers": [
    [
     "nv",
-    "Quân lính, xe cơ giới",
-    true
-   ],
-   [
-    "co",
-    "Cờ hiệu hai bên",
+    "Xe, lính",
     true
    ],
    [
     "muiten",
-    "Mũi tên 5 hướng tiến công",
-    true
-   ],
-   [
-    "muctieu",
-    "5 mục tiêu nội đô",
+    "Mũi tên 5 hướng (phác thảo)",
     true
    ]
   ],
@@ -54,16 +44,18 @@
   ],
   "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ. Mốc giờ, đơn vị, số hiệu xe ghi theo nguồn trong sources.json; chỗ các nguồn ghi khác nhau được nêu rõ.",
   "gauge": false,
-  "notePlaceholder": "VD: Dời mũi tên Quân đoàn 1 sang đường 13"
+  "notePlaceholder": "VD: Dời mũi tên Quân đoàn 1 sang đường 13",
+  "loaderHtml": "\n  <div id=\"ldgo\" hidden><button id=\"bstart\" class=\"go\" aria-label=\"Phát phim\">▶ Xem bản thử</button><button id=\"bexplore\" class=\"go2\">🧭 Khám phá sa bàn</button><small>Bản thử bộ máy 2.2 · 1 phút 40 giây · chưa có lời bình</small></div>",
+  "css": "body:not(.ready) #splay { visibility: hidden; } #views .tang { font-weight: 700; }"
  },
  "views": [
   [
    "all",
-   "Toàn chiến dịch"
+   "Toàn cảnh"
   ],
   [
-   "noido",
-   "Nội đô Sài Gòn"
+   "saigon",
+   "Sài Gòn"
   ],
   [
    "dinh",
@@ -71,19 +63,15 @@
   ],
   [
    "tsn",
-   "Sân bay Tân Sơn Nhất"
+   "Tân Sơn Nhất"
   ],
   [
-   "bttm",
-   "Bộ Tổng tham mưu"
+   "thinghe",
+   "Cầu Thị Nghè"
   ],
   [
-   "bkthudo",
-   "Biệt khu Thủ đô"
-  ],
-  [
-   "tongnha",
-   "Tổng nha Cảnh sát"
+   "causg",
+   "Cầu Sài Gòn"
   ]
  ],
  "roles": [],
@@ -131,7 +119,7 @@
     "data": "terrain/noi-do/meta.json",
     "height": "terrain/noi-do/height.png",
     "image": "terrain/noi-do/color.jpg",
-    "phongDai": 3
+    "phongDai": 1
    }
   },
   "note": "Bộ máy 2.1 mới đọc một tầng (terrain/); chuyển tầng là việc của bộ máy 2.2 (Giai đoạn 3)."
