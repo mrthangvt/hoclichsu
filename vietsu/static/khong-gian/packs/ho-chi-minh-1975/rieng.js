@@ -103,6 +103,17 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   XEX.x843 = await xeTao('data/xe/xe-tang-843.glb', { duong: D843, lich: [[42, 0], [84, g843], [94, g843], [106, dai(D843, D843.length - 1)]], hien: (t) => t >= 40, ten: 'Xe tăng 843' });
   XEX.x390 = await xeTao('data/xe/xe-tang-390.glb', { duong: D390, lich: [[44, -45], [90, g390], [108, dai(D390, D390.length - 1)]], hien: (t) => t >= 44, ten: 'Xe tăng 390' });
   XEX.DL = DL;
+  // Xác M41 cháy án ngữ đầu cầu Thị Nghè: xe 387 bắn cháy một M41 và một M113 ở đây sáng 30/4 (S36). Chưa có mẫu M113 — đặt M41.
+  { const D = duong(GOC), tn = [LLx(MOC.thinghe[0], MOC.thinghe[1]), LLz(MOC.thinghe[0], MOC.thinghe[1])];
+    let best = [1e9, 0]; for (let d = 0; d < D.L; d += 5) { const p = diemTren(D, d), e = Math.hypot(p.x - tn[0], p.z - tn[1]); if (e < best[0]) best = [e, d]; }
+    const p = diemTren(D, best[1] + 45), g = await glbLoad('data/xe/xe-tang-m41.glb'), o = g.scene.clone(true);
+    o.traverse((m) => { if (m.isMesh) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.3); m.material.roughness = 1; } });   // cháy đen
+    const x = p.x + Math.cos(p.yaw) * 9, z = p.z - Math.sin(p.yaw) * 9; o.position.set(x, hG(x, z), z); o.rotation.set(0.04, p.yaw + 2.3, -0.06); scene.add(o);
+    XEX.m41chay = o; LAYER.xe.push(o);
+    const cv = document.createElement('canvas'); cv.width = cv.height = 64; const cx = cv.getContext('2d'), gr = cx.createRadialGradient(32, 32, 2, 32, 32, 31);
+    gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.5, 'rgba(255,255,255,0.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); cx.fillStyle = gr; cx.fillRect(0, 0, 64, 64);
+    const km = new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), color: 0x3a3836, transparent: true, opacity: 0.4, depthWrite: false });   // khói đen bốc lên
+    XEX.khoi = Array.from({ length: 10 }, (_, i) => { const sp = new THREE.Sprite(km.clone()); sp.userData.k = i / 10; scene.add(sp); LAYER.xe.push(sp); return sp; }); }
   const tren = (X, dy, lui) => (t) => { if (!X.obj.visible) return null; const p = X.obj.position, y = X.obj.rotation.y; return { x: p.x - Math.sin(y) * lui, z: p.z - Math.cos(y) * lui, y: p.y + dy, yaw: y, clip: 'dung' }; };   // trưởng xe đứng ở cửa tháp pháo
   XEX.lai843 = await nvxTao('models/linh-tang.glb', tren(XEX.x843, 1.35, 0.4), { ten: 'Trưởng xe 843' });
   XEX.lai390 = await nvxTao('models/linh-tang.glb', tren(XEX.x390, 1.35, 0.4), { ten: 'Trưởng xe 390' });
@@ -398,6 +409,8 @@ function update(dt) {
   scene.fog.density /= 1 + Math.max(0, camera.position.y - R * 0.2) / (R * 0.3);
   xeCapNhat(t); nvxCapNhat(t, dt);
   if (DAN.dat) DAN.dat(t);
+  if (XEX.khoi) { const p = XEX.m41chay.position; for (const sp of XEX.khoi) { const u = (sp.userData.k + U.time.value * 0.06) % 1;
+    sp.position.set(p.x + u * 6, p.y + 2 + u * 28, p.z - u * 4); sp.scale.setScalar(2.5 + u * 10); sp.material.opacity = 0.45 * (1 - u); } }
   if (XEX.cong && XEX.cong.phai) {                                                       // cổng: 843 húc rung (84–86 s), 390 húc đổ (90 s)
     const rung = t > 84 && t < 86.5 ? 0.07 * Math.sin((t - 84) * 20) * (1 - (t - 84) / 2.5) : 0, k = sstep(90, 91.4, t) * Math.PI / 2;
     XEX.cong.phai.rotation.x = k || rung; XEX.cong.trai.rotation.x = k;

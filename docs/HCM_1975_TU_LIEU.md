@@ -134,3 +134,12 @@ Theo yêu cầu anh Thắng: cảnh có người dân thì đưa mẫu người 
 - Dáng: theo hai ảnh anh Thắng gửi (A1) — rèm hoa đá, ban công giữa, lầu thượng mái bằng, hàng cau sân thượng; hồ tròn có tượng trắng giữa bãi cỏ (ảnh trưa 30/4).
 - Cổng: hai cánh sắt là đối tượng riêng. Phim: 843 tới cổng 1:24, húc cánh phải, cổng rung nhưng chưa đổ (S33); 390 húc đổ cổng chính 1:30 (S34), vào sân vòng qua hồ; 843 vào sau. Cảnh cuối nhìn từ sân thượng Dinh ra cổng (góc ảnh tư liệu).
 - Chưa có: cờ trên nóc, nội thất, công viên 30/4 chi tiết; số ô cửa, cây là giản lược. Thời điểm chính xác từng xe tới cổng sẽ chốt ở GĐ5.
+
+## 10. Mẫu mới đã nướng (24/11/2026, chiều)
+| Mẫu | Tệp | Tỉ lệ theo | Ghi chú |
+|---|---|---|---|
+| Xe tăng M41 | `props/xe/xe-tang-m41.glb` | rộng 3,19 m (Wikipedia: thân 5,81 m, rộng 3,19 m, cao 2,72 m) | mẫu Tripo nòng ngắn hơn thật; đo theo bề rộng cho thân, chiều cao đúng hơn. Đặt 1 xác cháy + khói ở đầu cầu Thị Nghè (S36) |
+| C-130A | `props/may-bay/c-130a.glb` | dài 29,79 m (97 ft 9 in) | đã xoá chữ tối vô nghĩa trên thân (`XOA_TOI=1`); chưa có phù hiệu VNCH |
+| A-37 | `props/may-bay/a-37.glb` | dài 8,92 m (A-37B, kể cả cần tiếp dầu) | đã xoá sao trắng, số trắng; còn chữ đuôi "IL" của mẫu — cần sơn lại theo phi đội Quyết Thắng / VNCH |
+| Pháo D-74 122 mm | `props/phao/d-74-122mm.glb` | rộng 2,35 m (khi hành quân) | nòng đang nâng; D-74 có dùng năm 1975 (bắn sân bay Đà Nẵng — baophapluat.vn) |
+Chưa đặt vào phim: C-130A, A-37, UH-1, D-74, cao xạ 37 mm — cảnh Tân Sơn Nhất, Nhơn Trạch dựng ở GĐ5 khi có sơ đồ sân bay 1975 (sân đỗ OSM hiện nay phần lớn làm sau 1975). Còn thiếu: M113, M48, M-46 130 mm, AC-119K.

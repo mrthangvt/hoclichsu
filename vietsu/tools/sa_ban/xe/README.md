@@ -12,3 +12,4 @@
 Đã làm (HCM 1975): xe tăng 390 (T-59), 843 (T-54B) — thân 6,04 m; xe tải 6,7 m (ước lượng).
 
 Đã làm (24/11): pháo cao xạ 37 mm hai nòng (Type 65) — rộng 1,80 m theo weaponsystems.net; trực thăng UH-1 — thân 12,77 m, đã xoá chữ ARMY và sao Mỹ máy sinh.
+Đã làm (24/11 chiều): M41 (rộng 3,19 m), C-130A (dài 29,79 m, `XOA_TOI=1`), A-37 (dài 8,92 m, `XOAY=90 XOA_TRANG=1`), D-74 (rộng 2,35 m, `XOAY=-90`).

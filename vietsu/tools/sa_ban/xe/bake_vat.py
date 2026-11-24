@@ -4,6 +4,7 @@ python3 bake_vat.py <fbx> <ra.raw.glb> <trục đo: dai|rong|cao> <số đo m> <
 Biến môi trường:
   XOAY=<độ>      xoay quanh trục đứng trước khi đo (để mũi / nòng nhìn −Y Blender như xe)
   XOA_TRANG=1    xoá chữ, phù hiệu màu trắng do máy sinh trong ảnh màu (cv2.inpaint) — vd. chữ "ARMY", sao Mỹ
+  XOA_TOI=1      xoá chữ tối trên thân sáng (vd. chữ vô nghĩa trên thân C-130)
 Sau đó: gltf-transform meshopt <ra>.raw.glb packs/<gói>/props/<…>.glb"""
 import bpy, sys, os, math, mathutils, numpy as np
 from PIL import Image
@@ -31,6 +32,10 @@ if os.environ.get('XOA_TRANG') == '1':
     mask = ((hsv[..., 2] > 170) & (hsv[..., 1] < 50)).astype(np.uint8) * 255
     mask = cv2.dilate(mask, np.ones((5, 5), np.uint8))
     img = cv2.inpaint(img, mask, 6, cv2.INPAINT_TELEA)
+if os.environ.get('XOA_TOI') == '1':                                                   # chữ tối máy sinh trên thân sáng (vd. C-130): điểm tối mà vùng quanh sáng
+    g = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY); nen = cv2.medianBlur(g, 41)
+    mask = ((g < nen.astype(int) - 45) & (nen > 140)).astype(np.uint8) * 255
+    mask = cv2.dilate(mask, np.ones((5, 5), np.uint8)); img = cv2.inpaint(img, mask, 6, cv2.INPAINT_TELEA)
 im = Image.fromarray(img).resize((1024, 1024), Image.LANCZOS); tex = out + '.jpg'; im.save(tex, quality=88)
 mat = bpy.data.materials.new('vat'); mat.use_nodes = True; nt = mat.node_tree; b = nt.nodes['Principled BSDF']
 b.inputs['Roughness'].default_value = 0.75; b.inputs['Metallic'].default_value = 0.3
