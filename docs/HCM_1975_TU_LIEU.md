@@ -251,3 +251,26 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
   - Vị trí đồn, trận địa và đội hình xe đều là minh hoạ.
 - **Vòng tròn bung tỏa:** đưa lên cao 450 m và vẽ không bị núi che; tự ẩn khi máy quay xuống thấp. Thêm vòng tròn ở Sài Gòn khi các cánh quân áp sát (cuối hồi 2, cuối hồi 3, hồi 6).
 - **Đầu mũi tên:** phần ống dừng sau đỉnh mũi, không thò ra trước đầu mũi (bộ máy 2.2, `muiTenDat`).
+
+## 20. Người, giao tranh, đồn vuông, ghim tên (24/11/2026, tối) — Đợt 2
+- **Sửa chi tiết cổng (anh Thắng 24/11, 18:29):** xe 843 **húc đổ cổng phụ rồi chết máy, kẹt lại ở cổng phụ** (khớp §2: S7, S8, S18). Bỏ đoạn 843 lùi ra rồi theo 390 vào sân. Cánh cổng phụ đổ đè dưới xích xe. Bùi Quang Thận rời xe ở cổng phụ, chạy vào sân.
+- **Đám đông hàng loạt (.nvz):** `tools/sa_ban/nhan_vat_lai/nuong_nvz.py` nướng nhân vật có xương thành khung hình đám đông (bpy làm thư viện, không đụng Blender của anh Thắng). Trước đó giải nén meshopt bằng `giai_nen_glb.mjs`. Súng gắn cứng vào xương được đổi thành nhóm đỉnh của xương. Ảnh màu có thêm dải 64 px để vẽ cờ Mặt trận, bó hoa, cán cờ, màu súng. `doi_mau_ao.py` đổi màu áo dài (trắng, xanh, hồng, tím, vàng) và sơ mi (trắng, kem, xanh, kẻ) mà không thêm lưới. Bộ máy 2.2: nhiều ảnh màu dùng chung một bộ khung hình (`DONG_GEO`).
+- **Mẫu lính:** QĐND (`qdnd.glb`) và VNCH (`vnch.glb`) của sa bàn Thành cổ, giảm còn 1.900 tam giác. Động tác: đứng, đứng bắn, quỳ bắn, chạy, đi, ngồi, ngã (lính VNCH thêm "núp").
+- **Người dân trưa 30/4** (nhandan.vn: lúc xe tăng vào đường rất vắng, sau đó người dân tràn ra đường): đứng thẳng thành hai hàng mỗi bên đường, quay mặt ra lòng đường. Họ vẫy cờ Mặt trận, vẫy hoa, vỗ tay; nữ mặc áo dài nhiều màu, nam mặc sơ mi. Có khoảng 260 người trước cổng Dinh. Chỉ vẽ người ở gần máy quay. Tỉ lệ các kiểu người là MINH HOẠ.
+- **Bộ binh Quân Giải phóng ở Dinh:** sau khi 390 húc đổ cổng (giờ Dinh 90), bộ binh chạy qua cổng chính vào sân rồi toả ra hai bãi cỏ (120 người). Sau đó bộ binh đứng trên thềm (26), ban công giữa (10), sân thượng (34) và mái bằng (14). MINH HOẠ theo ảnh tư liệu.
+- **Đoàn xe chở bộ binh theo sau xe tăng** (giaoduc.net.vn: Trung đoàn 66 cùng xe tăng Lữ đoàn 203): 6 xe tải và 2 xe K-63 cắm cờ chạy sau 390 từ cầu Thị Nghè, qua Hồng Thập Tự, rồi dừng thành hàng ngoài cổng. Bộ binh ngồi trên thùng xe, xuống xe vào sân. Cú máy C10-E đi lùi trước mũi 390 để thấy cả đoàn. Số xe là MINH HOẠ.
+- **Xe tăng bắn nhau, bộ binh đấu súng (nội đô):**
+  - Đầu cầu Sài Gòn: M48 bắn trước, trượt; xe ta bắn trả; M48 trúng đạn và cháy. Nguồn: Tiền Phong 30/4/2026 (đối phương chống trả quyết liệt), giaoduc.net.vn (hai M48 bị ĐKZ bắn cháy; Tiểu đoàn trưởng Ngô Văn Nhỡ hy sinh trên tháp pháo). M48 dời về vệ đường đầu cầu phía nội đô.
+  - Cầu Thị Nghè: M41 bắn trước, 843 bắn cháy M41 (S26), xe cùng đoàn bắn cháy M113 (S36). Hai xe này nguyên vẹn cho tới lúc trúng đạn.
+  - Đạn vạch phía ta màu xanh lục, phía đối phương màu đỏ. Từng phát bắn là MINH HOẠ theo câu đọc.
+- **Tầng chiến dịch:**
+  - **Đồn vuông:** cạnh 360 m, tường đất từng đoạn, hai cổng có tháp, bốn lô cốt góc, rào thép gai, 5 dãy nhà lính, M41, M113, cờ ba sọc, lính trên tường và trong đồn. Khi pháo ta bắn, trong đồn có nổ. Sau khi đồn mất: tường sụt, nhà sập, xe cháy đen, có lửa và khói, lính tử trận (Xuân Lộc 20 %, Long Thành và Đồng Dù 35 %), cờ Mặt trận lên cột, bộ đội ta đứng trong đồn. Mốc mất đồn: Xuân Lộc theo `c01_rut`, Long Thành `c03_phao1` + 4 s, Đồng Dù `c05_co`. Tất cả là MINH HOẠ.
+  - **Đoàn quân:** chạy 9 m/s, các xe cách nhau 55 m, máy quay đi chậm theo đoàn. Thêm xe tăng T-54 (mẫu 390, ẩn số hiệu) có trưởng xe đứng ở tháp pháo. Bộ binh ngồi trên xe tải, ngồi trên nóc K-63.
+  - **Trận địa pháo:** mỗi khẩu có 3 pháo thủ, thêm 12 bộ binh đứng hoặc quỳ bắn phía trước.
+  - **Cầu Rạch Chiếc** (VOH: rạng sáng 28/4 đối phương phản công chiếm lại cầu, 29/4 ta đánh chiếm lại và giữ cầu): đặc công giữ hai đầu cầu, đối phương phản kích từ phía nội đô, hai bên bắn đạn vạch. Cú máy C05-C đặt sau công sự nhìn về phía đối phương.
+- **Ghim tên:**
+  - Tên đường năm 1975 dọc tuyến tiến quân, lấy từ số hiệu OSM trong `tuyen_cot.py` → `placement.json › duong.ten_cot`: Quốc lộ 20, Quốc lộ 1, Quốc lộ 13, Quốc lộ 22, Xa lộ Biên Hòa, Quốc lộ 15 (nay QL51), Đường số 4 (nay QL1 phía Tây Nam). Đoạn QL1 hôm nay ở Gò Vấp (xa lộ Đại Hàn cũ?) và các tỉnh lộ chưa chắc tên → không ghim.
+  - Nội đô: Xa lộ Biên Hòa, Ngã tư Hàng Xanh, Đường Hồng Thập Tự, Đại lộ Thống Nhất. Đoạn Hàng Xanh – Thị Nghè chưa rõ tên năm 1975 nên chưa ghim.
+  - Tên khí tài (hiện khi máy quay ở gần): T-54, K-63, xe tải chở bộ binh, pháo M-46 130 mm, M41, M113, M48.
+- **Nhà ven lộ trình:** nhà 2–3 tầng chi tiết giảm từ 30 % xuống 14 %, còn lại là nhà mái ngói đỏ (`xep_nha.py`).
+- **Còn thiếu (MISSING_ASSET):** mẫu pháo đối phương (105/155 mm) để đặt trong đồn; mẫu ĐKZ; tên đường năm 1975 đoạn Hàng Xanh – Thị Nghè (cần bản đồ 1:100 000 năm 1970).

@@ -9,7 +9,7 @@ T = json.load(open(f'{GOI}/terrain/meta.json')); kx = 111320 * math.cos(math.rad
 src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dung_dia_hinh.py')).read()
 MOI = re.compile(src.split("MOI = re.compile(r'")[1].split("')")[0].replace("'\n                 r'", ''))
 XY = lambda lo, la: ((lo - T['lon0']) * kx, (la - T['lat0']) * ky)
-G = {}; key = lambda p: (round(p[0], 5), round(p[1], 5))
+G = {}; key = lambda p: (round(p[0], 5), round(p[1], 5)); CANH = {}   # CANH: cạnh → (ref, name) OSM, để ghim tên đường
 for e in L['el']:
     t = e['tags']
     if e['t'] != 'w' or 'highway' not in t or MOI.search(t.get('name', '') + ' ' + t.get('ref', '')): continue
@@ -17,7 +17,7 @@ for e in L['el']:
     w = {'trunk': 1, 'primary': 1, 'secondary': 1.15}.get(t['highway'], 1.5)
     for a, b in zip(e['g'], e['g'][1:]):
         A, B = key(a), key(b); d = math.hypot((A[0] - B[0]) * kx, (A[1] - B[1]) * ky) * w
-        G.setdefault(A, []).append((B, d)); G.setdefault(B, []).append((A, d))
+        G.setdefault(A, []).append((B, d)); G.setdefault(B, []).append((A, d)); CANH[(A, B)] = CANH[(B, A)] = (t.get('ref', ''), t.get('name', ''))
 def gan(la, lo): return min(G, key=lambda n: (n[0] - lo) ** 2 * kx * kx + (n[1] - la) ** 2 * ky * ky)
 def dij(s, g):
     D = {s: 0}; P = {}; Q = [(0, s)]
@@ -41,7 +41,18 @@ TUYEN = {   # tên: [điểm đầu, (qua…), điểm cuối] (vĩ, kinh)
     'lt': [(10.70, 107.12), (10.78, 106.95)],                         # Quân đoàn 2 tới Long Thành
     'tn': [(10.62, 106.45), (10.70, 106.56), (10.76, 106.63)],        # Đoàn 232: Long An → Bình Chánh → Phú Lâm (QL1, QL4)
 }
-pl = json.load(open(f'{GOI}/placement.json')); pl.setdefault('duong', {})
+# Tên đường năm 1975 (ghim trên sa bàn): OSM chỉ có số hiệu hôm nay → đổi theo năm 1975. QL51 nay = Quốc lộ 15 (Sài Gòn – Vũng Tàu) năm 1975;
+# QL1 phía Tây Nam (Bình Chánh – Long An) năm 1975 là "Đường số 4" (TƯ LIỆU §6, S4); Xa lộ Hà Nội năm 1975 là Xa lộ Biên Hòa. Đường làm sau 1975, tỉnh lộ chưa rõ tên: không ghim.
+def ten75(tuyen, ref, name):
+    r = ref.replace(' ', '').upper()
+    if 'XA LỘ HÀ NỘI' in name.upper(): return 'Xa lộ Biên Hòa'
+    if r in ('QL.20',): return 'Quốc lộ 20'
+    if r in ('QL.13',): return 'Quốc lộ 13'
+    if r in ('QL.22',): return 'Quốc lộ 22'
+    if r in ('QL.51', 'QL.1;QL.51'): return 'Quốc lộ 15'
+    if r == 'QL.1': return 'Đường số 4' if tuyen == 'tn' else None if tuyen == 'bac' else 'Quốc lộ 1'   # 'bac': đoạn QL1 hôm nay ở Gò Vấp là xa lộ Đại Hàn cũ — chưa rõ, không ghim
+    return None
+pl = json.load(open(f'{GOI}/placement.json')); pl.setdefault('duong', {}); GHIM = []
 for ten, seq in TUYEN.items():
     out = []
     for a, b in zip(seq, seq[1:]):
@@ -54,5 +65,14 @@ for ten, seq in TUYEN.items():
     if gon[-1] != xy[-1]: gon.append(xy[-1])
     Ld = sum(math.hypot(gon[i][0] - gon[i - 1][0], gon[i][1] - gon[i - 1][1]) for i in range(1, len(gon)))
     pl['duong']['cot_' + ten] = gon; print(ten, len(gon), 'điểm', round(Ld / 1000, 1), 'km')
+    chay, cur = [], None                                                          # các đoạn liền cùng tên 1975 → ghim ở giữa đoạn dài ≥ 3 km
+    for a_, b_ in zip(out, out[1:]):
+        n = ten75(ten, *CANH.get((a_, b_), ('', ''))); d = math.hypot((a_[0] - b_[0]) * kx, (a_[1] - b_[1]) * ky)
+        if cur and cur[0] == n: cur[1].append(b_); cur[2] += d
+        else: cur = [n, [a_, b_], d]; chay.append(cur)
+    for n, ps, d in chay:
+        if not n or d < 3000 or any(g[2] == n and math.hypot(g[0] - XY(*ps[len(ps) // 2])[0], g[1] - XY(*ps[len(ps) // 2])[1]) < 12000 for g in GHIM): continue
+        x, y = XY(*ps[len(ps) // 2]); GHIM.append([round(x), round(y), n, ten])
+pl['duong']['ten_cot'] = GHIM; print('ghim tên đường', GHIM)
 pl['ghiChu'] = (pl.get('ghiChu') or '') if isinstance(pl.get('ghiChu'), str) else pl.get('ghiChu')
 json.dump(pl, open(f'{GOI}/placement.json', 'w'), ensure_ascii=False)

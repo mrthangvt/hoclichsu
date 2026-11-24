@@ -464,15 +464,22 @@ function nvxCapNhat(t, dt) {
 // 2.2: ĐÁM ĐÔNG .nvz dùng chung (người dân, quân đứng xa…) — mỗi khung hình động tác là một InstancedMesh.
 // Mỗi khung phim: dongXoa() → dongDat(...) từng người → dongXong(). Người .nvz nướng sẵn (tools/sa_ban/nv_sang_nvz.py), mặt nhìn +Z.
 const DONG = {};
+const DONG_GEO = {};                                                                     // 2.2: nhiều ảnh màu (áo khác màu) dùng chung một bộ khung hình .nvz
 async function dongTai(ten, nvz, jpg, tints, cap = 400) {
-  const Z = await nvzRead(nvz), H = Z.H, map = await texLoader.loadAsync(jpg); map.colorSpace = THREE.SRGBColorSpace; map.anisotropy = 4;
+  const map = await texLoader.loadAsync(jpg); map.colorSpace = THREE.SRGBColorSpace; map.anisotropy = 4;
   const mat = new THREE.MeshLambertMaterial({ map, side: THREE.DoubleSide });
+  const G = await (DONG_GEO[nvz] = DONG_GEO[nvz] || dongHinh(nvz)), clips = {};
+  for (const [name, c] of Object.entries(G)) clips[name] = { fps: c.fps, once: c.once, ims: [], frames: c.frames };
+  DONG[ten] = { clips, mat, cap, tints: (tints || [[1, 1, 1]]).map((c) => new THREE.Color(c[0], c[1], c[2])) };
+  return DONG[ten];
+}
+async function dongHinh(nvz) {
+  const Z = await nvzRead(nvz), H = Z.H;
   const index = new THREE.BufferAttribute(H.idx32 ? Z.arr(H.idx, Uint32Array) : Z.arr(H.idx, Uint16Array), 1), uv = new THREE.BufferAttribute(Z.arr(H.uv, Float32Array), 2), clips = {};
   for (const [name, c] of Object.entries(H.clips)) clips[name] = { fps: c.fps, once: !!c.once, ims: [], frames: nvzFrames(Z, c.pos, c.nor, c.n, H.q).map(([pos, nor]) => {
     const g = new THREE.BufferGeometry(); g.setIndex(index); g.setAttribute('uv', uv); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
     g.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 1, 0), 3); return g; }) };
-  DONG[ten] = { clips, mat, cap, tints: (tints || [[1, 1, 1]]).map((c) => new THREE.Color(c[0], c[1], c[2])) };
-  return DONG[ten];
+  return clips;
 }
 function dongXoa() { for (const K of Object.values(DONG)) for (const C of Object.values(K.clips)) for (const im of C.ims) if (im) im.count = 0; }
 const _dq = new THREE.Quaternion(), _dm = new THREE.Matrix4(), _dp = new THREE.Vector3(), _ds = new THREE.Vector3(), _dY = new THREE.Vector3(0, 1, 0);

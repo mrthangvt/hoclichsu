@@ -132,7 +132,7 @@ for cap, r, p in roads:
                 i, j = o(mx, my)
                 if not (0 <= i < Hh and 0 <= j < W) or not VUNG[i, j]: s += 6; continue
                 gan = SAT[i, j] and cap <= 3
-                if gan and rnd.random() < 0.3: kieu, w = chon([('NhaA', 0.4), ('NhaD', 0.3), ('NhaC', 0.2), ('NhaB', 0.1)]), 0; w = dict(CHI_TIET)[kieu]; d, lui = 14.0, max(18.0, r / 2 + 1.5)   # anh Thắng 24/11: nhà 2–3 tầng lác đác
+                if gan and rnd.random() < 0.14: kieu, w = chon([('NhaA', 0.4), ('NhaD', 0.3), ('NhaC', 0.2), ('NhaB', 0.1)]), 0; w = dict(CHI_TIET)[kieu]; d, lui = 14.0, max(18.0, r / 2 + 1.5)   # anh Thắng 24/11: nhà 2–3 tầng lác đác
                 elif gan: kieu, w = 'XaNgoi^', 7.0; d, lui = 12.4, max(18.0, r / 2 + 1.5)                     # xen giữa nhà mái ngói đỏ (không tỉa)
                 else:
                     kieu = 'XaBietThu' if cap >= 5 and rnd.random() < 0.07 else chon(MAT); w = XA[kieu]; d = SAU[kieu]; lui = r / 2 + (4.0 if kieu == 'XaBietThu' else 1.2)

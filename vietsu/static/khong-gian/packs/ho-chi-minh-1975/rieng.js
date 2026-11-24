@@ -91,6 +91,57 @@ const tDinh = (() => {
     for (let i = 1; i < K.length; i++) if (t <= K[i][0]) return K[i - 1][1] + (t - K[i - 1][0]) / (K[i][0] - K[i - 1][0]) * (K[i][1] - K[i - 1][1]);
     return K[K.length - 1][1] + t - K[K.length - 1][0]; };
 })();
+// ĐÁM ĐÔNG (.nvz nướng từ nhân vật có xương bằng tools/sa_ban/nhan_vat_lai/nuong_nvz.py; ảnh màu áo: doi_mau_ao.py). Vẽ hàng loạt mỗi khung:
+// DAM = các hàm (tDinh, tVoice) đặt người qua dongDat; chỉ vẽ người gần máy quay. Mẫu lính Quân Giải phóng, lính đối phương: mẫu QĐND, VNCH của
+// sa bàn Thành cổ Quảng Trị (dùng lại, giảm lưới). Vị trí, số người, động tác: TÁI DỰNG MINH HOẠ.
+const DAN = [], DAM = [];
+const dongNap = (ten, nvz, jpg, cap = 1200, tints = [[1, 1, 1], [0.93, 0.92, 0.9], [0.85, 0.84, 0.82]]) => dongTai(ten, 'models/' + nvz + '.nvz', 'models/' + jpg + '.jpg', tints, cap).catch((e) => console.warn('đám đông', ten, e));
+const ganMay = (x, z, r) => { const dx = camera.position.x - x, dz = camera.position.z - z; return dx * dx + dz * dz < r * r; };
+const rndS = (s) => () => (s = (s * 16807) % 2147483647) / 2147483647;
+const quayXe = (o, lx, ly, lz) => { const p = o.position, y = o.rotation.y, c = Math.cos(y), s = Math.sin(y); return [p.x + lx * c + lz * s, p.y + ly, p.z - lx * s + lz * c, y]; };   // điểm trên xe (mũi +z) → thế giới
+// bộ binh ngồi trên thùng xe tải (hai băng ghế dọc, quay mặt vào giữa) / trên nóc xe bọc thép K-63; sc: tỉ lệ (tầng chiến dịch phóng to ×3 như xe)
+const LINH_XE = { tai: [[-0.78, 1.2, -2.9, 1], [-0.78, 1.2, -2.15, 1], [-0.78, 1.2, -1.4, 1], [0.78, 1.2, -2.9, -1], [0.78, 1.2, -2.15, -1], [0.78, 1.2, -1.4, -1], [0, 1.2, -3.05, 0]],
+  k63: [[-0.6, 2.5, -1.8, 1], [0.6, 2.5, -1.8, -1], [-0.55, 2.5, -0.6, 1], [0.6, 2.5, -0.4, -1]] };
+const linhTrenXe = (o, loai, t, sc = 1, vi = 0) => { if (!o || !o.visible) return;
+  for (const [lx, ly, lz, q] of LINH_XE[loai]) { const [x, y, z, yaw] = quayXe(o, lx * sc, ly * sc, lz * sc);
+    dongDat('qgp', 'ngoi', t, (lx + lz) * 0.37 % 1, x, y, z, yaw + (q ? q * Math.PI / 2 : Math.PI), sc, vi++); } };
+if (true) { dongNap('qgp', 'linh-qgp', 'linh-qgp', 2500); dongNap('vnch', 'linh-vnch', 'linh-vnch', 1500); }
+// GIAO TRANH (anh Thắng 24/11: bộ binh bắn nhau khi giữ cầu, xe tăng bắn nhau): đường đạn vạch sáng (đạn vạch phía ta xanh lục, phía đối phương đỏ — màu
+// đạn vạch thông dụng của súng Liên Xô / Mỹ), chớp nòng, nổ. Mỗi trận: hai nhóm lính .nvz, thời gian, tỉ lệ (tầng chiến dịch ×3). Thế trận: MINH HOẠ.
+const TRV = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.95, blending: THREE.AdditiveBlending, depthWrite: false }), 900);
+TRV.count = 0; TRV.frustumCulled = false; TRV.setColorAt(0, new THREE.Color()); scene.add(TRV);
+const _tq = new THREE.Quaternion(), _tm = new THREE.Matrix4(), _ta = new THREE.Vector3(), _tb = new THREE.Vector3(), _tz = new THREE.Vector3(0, 0, 1), _ts = new THREE.Vector3(), _tc = new THREE.Color();
+const vach = (ax, ay, az, bx, by, bz, u, dai, day, mau) => {               // một viên đạn vạch đang bay ở phần u (0..1) của đường a→b
+  if (TRV.count >= 900) return; _ta.set(bx - ax, by - ay, bz - az); const L = _ta.length(); if (L < 1) return; _ta.divideScalar(L);
+  const k = Math.min(dai, L * 0.5), d = u * (L - k); _tb.set(ax + _ta.x * (d + k / 2), ay + _ta.y * (d + k / 2), az + _ta.z * (d + k / 2));
+  _tq.setFromUnitVectors(_tz, _ta); _tm.compose(_tb, _tq, _ts.set(day, day, k)); TRV.setMatrixAt(TRV.count, _tm); TRV.setColorAt(TRV.count, _tc.set(mau)); TRV.count++; };
+const NHOE_TEX = (() => { const cv = document.createElement('canvas'); cv.width = cv.height = 64; const cx = cv.getContext('2d'), gr = cx.createRadialGradient(32, 32, 2, 32, 32, 31);
+  gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.45, 'rgba(255,255,255,0.6)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); cx.fillStyle = gr; cx.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(cv); })();
+const nhoe = (mau, cong = true) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: NHOE_TEX, color: mau, transparent: true, depthWrite: false, blending: cong ? THREE.AdditiveBlending : THREE.NormalBlending })); s.visible = false; scene.add(s); return s; };
+const GT = [];                                                                             // các trận bộ binh
+// o = { t0, t1, voice: dùng giây voice (tầng chiến dịch) hay giờ Dinh, sc, r: bán kính vẽ, A: [[x,z,yaw,clip]…] (ta), B: (đối phương), chet: phần đối phương ngã sau trận }
+const giaoTranh = (o) => { o.sc = o.sc || 1; o.r = o.r || 700; o.ph = o.A.concat(o.B).map((_, i) => (i * 0.618) % 1); for (const P of o.A.concat(o.B)) P[4] = hG(P[0], P[1]); GT.push(o); return o; };
+const BAN = [];                                                                            // các phát pháo xe tăng: { tu, a(), b(), no: nổ ở b, voice }
+const banTao = (tu, a, b, o = {}) => { const S = { tu, a, b, sc: o.sc || 1, voice: !!o.voice, loe: nhoe(0xffd08a), no: nhoe(0xff8a3a), khoi: nhoe(0x5a524a, false) }; BAN.push(S); return S; };
+DAM.push((t, tv) => {
+  for (const o of GT) { const tt = o.voice ? tv : t; if (tt < o.t0 - 0.5 || tt > o.t1 + (o.sau || 25)) continue;
+    const c = o.A[0]; if (!ganMay(c[0], c[1], o.r)) continue; const on = tt < o.t1, sc = o.sc;
+    o.A.forEach((P, i) => dongDat('qgp', on ? P[3] : 'dung', tt, o.ph[i], P[0], P[4], P[1], P[2], sc, i));
+    const nc = Math.floor(o.B.length * (o.chet || 0));
+    o.B.forEach((P, i) => { const j = o.A.length + i; if (!on && i >= nc) return; dongDat('vnch', on ? P[3] : 'nam', tt, o.ph[j], P[0], P[4], P[1], P[2], sc, i); });
+    if (!on) continue;
+    const ban = (P, Q, ph, mau) => { const u = (tt * 1.6 + ph) % 1; if (u > 0.55) return; const y0 = P[4] + (P[3] === 'quy' ? 1.0 : 1.35) * sc;
+      vach(P[0] + Math.sin(P[2]) * 0.6 * sc, y0, P[1] + Math.cos(P[2]) * 0.6 * sc, Q[0], Q[4] + 1.1 * sc, Q[1], u / 0.55, 2.4 * sc, 0.07 * sc, mau); };
+    o.A.forEach((P, i) => { if (i % 2 === 0) ban(P, o.B[(i * 7) % o.B.length], o.ph[i], 0x9dff7a); });
+    o.B.forEach((P, i) => { if (i % 2 === 1) ban(P, o.A[(i * 5) % o.A.length], o.ph[o.A.length + i], 0xff5a3c); }); }
+  for (const S of BAN) { const a = (S.voice ? tv : t) - S.tu, sc = S.sc;
+    S.loe.visible = a > 0 && a < 0.3; S.no.visible = a > 0.35 && a < 1.6; S.khoi.visible = a > 0.5 && a < 6;
+    if (a < 0 || a > 6) continue; const A = S.a(), B = S.b(); if (!A || !B) { S.loe.visible = S.no.visible = S.khoi.visible = false; continue; }
+    if (S.loe.visible) { S.loe.position.copy(A); S.loe.scale.setScalar((3 + a * 12) * sc); }
+    if (a < 0.35) vach(A.x, A.y, A.z, B.x, B.y, B.z, a / 0.35, 6 * sc, 0.25 * sc, 0xffc070);
+    if (S.no.visible) { const b = a - 0.35; S.no.position.set(B.x, B.y + (1 + b * 3) * sc, B.z); S.no.scale.setScalar((5 + b * 14) * sc); S.no.material.opacity = 0.95 * (1 - b / 1.25); }
+    if (S.khoi.visible) { const b = (a - 0.5) / 5.5; S.khoi.position.set(B.x, B.y + (2 + b * 16) * sc, B.z); S.khoi.scale.setScalar((6 + b * 22) * sc); S.khoi.material.opacity = 0.55 * (1 - b); } }
+});
 const XEX = { x843: null, x390: null, lai843: null, ctt: null, than: null };
 if (TANG === 'noi-do' && DUONG_DINH.length) {
   progress(0.4, 'Đang tải xe tăng 843, 390…');
@@ -111,10 +162,10 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   // C10 (bản voice): đoàn xe đi từ cầu Sài Gòn → ngã tư Hàng Xanh → cầu Thị Nghè (placement.json › duong.causg_thinghe, tim_duong.py) rồi theo GOC vào Dinh
   const CT = (INST.duong && INST.duong.causg_thinghe) || [GOC[0]];
   const D843 = [...CT.slice(0, -1), ...GOC.slice(0, -1), DL(6, 168), DL(13, 159), DL(13, 149.6),      // 843: lệch trái vào cổng phụ bên trái, sát cổng chính (ảnh 30/4)
-                DL(13, 159.4), DL(5, 156.5), DL(1.5, 149.3), DL(3, 138), DL(10, 123), DL(14, 109)],   // rồi lùi ra, theo 390 qua cổng chính vào sân (anh Thắng 24/11)
+                DL(13, 140)],                                                                          // húc đổ cổng phụ, chết máy, kẹt lại ở cổng (anh Thắng 24/11)
         D390 = [...CT.slice(0, -1), ...GOC.slice(0, -1), DL(0, 162), DL(0, 149.3), DL(-1.5, 138), DL(-10, 118), DL(-20, 100), DL(-19, 72), DL(-9, 42)];
   const dai = (P, k) => { let a = 0; for (let i = 1; i <= k; i++) a += Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]); return a; };
-  const L1 = dai(CT, CT.length - 1), g843 = dai(D843, D843.length - 7), gLui = dai(D843, D843.length - 6), g843v = dai(D843, D843.length - 1), g390 = dai(D390, CT.length - 1 + GOC.length);   // L1: cầu Sài Gòn → Thị Nghè; 843 tới cổng phụ; 390 tới cổng chính
+  const L1 = dai(CT, CT.length - 1), g843 = dai(D843, D843.length - 2), g390 = dai(D390, CT.length - 1 + GOC.length);   // L1: cầu Sài Gòn → Thị Nghè; 843 tới cổng phụ; 390 tới cổng chính
   const HX = LL(10.8013, 106.7113);                                                       // ngã tư Hàng Xanh (toạ độ OSM 2026)
   const dHX = (() => { let b = [1e9, 0], a = 0; for (let i = 1; i < CT.length; i++) { a += Math.hypot(CT[i][0] - CT[i - 1][0], CT[i][1] - CT[i - 1][1]);
     const e = Math.hypot(CT[i][0] - HX.x, -CT[i][1] - HX.z); if (e < b[0]) b = [e, a]; } return b[1]; })();
@@ -123,7 +174,7 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   XEX.L1 = L1; XEX.dHX = dHX;
   // 843 húc cổng phụ bên trái, bị kẹt lại ở cổng phụ (TƯ LIỆU §2: S7, S8, S18; vietnamnet); xe 390 húc đổ cổng chính (S34, S33)
   const LC = MV.c10_cau ? (a, b, c, d, e) => [[-999, a], [fD(MV.c10_cau), a], [fD(MV.c10_hx) - cat, a + 160], [fD(MV.c10_hx), b], [fD(MV.c10_tn) - cat, c], [fD(MV.c10_tn), d], [42, e]] : () => [[42, L1]];
-  XEX.x843 = await xeTao('data/xe/xe-tang-843.glb', { duong: D843, lich: [...LC(60, dHX - 120, dHX + 10, L1 - 210, L1 + 40), [84, g843], [91.6, g843], [93.6, gLui], [104, g843v], [999, g843v]], hien: (t) => t >= -60, ten: 'Xe tăng 843' });
+  XEX.x843 = await xeTao('data/xe/xe-tang-843.glb', { duong: D843, lich: [...LC(60, dHX - 120, dHX + 10, L1 - 210, L1 + 40), [84, g843], [85.2, g843 + 4], [999, g843 + 4]], hien: (t) => t >= -60, ten: 'Xe tăng 843' });
   XEX.x390 = await xeTao('data/xe/xe-tang-390.glb', { duong: D390, lich: [...LC(15, dHX - 60, dHX + 70, L1 - 255, L1 - 5), [90, g390], [108, dai(D390, D390.length - 1)]], hien: (t) => t >= -60, ten: 'Xe tăng 390' });
   XEX.DL = DL;
   // NHÀ CỬA SÀI GÒN 1975 — vị trí xếp sẵn bằng tools/sa_ban/nha/xep_nha.py (props/nha/xep.json), mẫu dung_nha_pho.py (props/nha/nha-pho.glb).
@@ -162,6 +213,19 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
     const la = new THREE.Mesh(new THREE.PlaneGeometry(w, w * 0.66, 10, 2).translate(w / 2, cao - w * 0.33, 0).rotateY(Math.PI / 2), m);   // lá cờ bay về phía sau xe (−z)
     g.add(can, la); g.position.set(sz.x * 0.17, sz.y * 0.8, -sz.z * 0.1); obj.add(g); return g; };
   XEX.co843 = coXe(XEX.x843.obj); XEX.co390 = coXe(XEX.x390.obj); XEX.coXe = coXe;
+  // ĐOÀN XE CHỞ BỘ BINH theo sau xe tăng (anh Thắng 24/11, mốc 12:22 — đường Hồng Thập Tự): Trung đoàn 66 đi cùng Lữ đoàn 203 trong mũi thọc sâu
+  // (giaoduc.net.vn: "Trung đoàn 66 cùng với xe tăng của Lữ đoàn 203"). Số xe, thứ tự xe tải / K-63, khoảng cách: MINH HOẠ. Đoàn dừng ngoài cổng, bộ binh xuống xe vào sân.
+  { const KX = ['tai', 'tai', 'k63', 'tai', 'tai', 'k63', 'tai', 'tai'], L390 = [...LC(15, dHX - 60, dHX + 70, L1 - 255, L1 - 5), [90, g390]];
+    XEX.doan = [];
+    for (let k = 0; k < KX.length; k++) {
+      const lui = 34 + k * 21, ld = (d) => Math.max(0, d - lui), dung = g390 - 22 - k * 15;     // dừng thành hàng trên đại lộ Thống Nhất, trước cổng
+      const X = await xeTao(KX[k] === 'tai' ? 'data/xe/xe-tai.glb' : 'data/xe/xe-boc-thep-k63.glb', { duong: D390, lich: [...L390.map(([t, d]) => [t, ld(d)]), [90 + k * 0.8, Math.min(dung, ld(g390))], [999, Math.min(dung, ld(g390))]],
+        hien: (t) => t >= fD(MV.c10_tn) - 1, lech: k % 2 ? 1.6 : -1.6, ten: KX[k] === 'tai' ? 'Xe tải chở bộ binh' : 'Xe bọc thép K-63' });
+      coXe(X.obj, KX[k] === 'tai' ? 2.4 : 2.0, 1.0); LAYER.xe.push(X.obj); XEX.doan.push({ X, loai: KX[k], k }); }
+    DAM.push((t) => { for (const { X, loai, k } of XEX.doan) if (t < 93 + k * 0.6 && ganMay(X.obj.position.x, X.obj.position.z, 600)) linhTrenXe(X.obj, loai, t, 1, k * 9); }); }
+  // XE TĂNG BẮN NHAU (anh Thắng 24/11). Đầu cầu Sài Gòn: đối phương chống trả quyết liệt (Tiền Phong 30/4/2026), M48 chặn đầu cầu (S33), hai M48 bị bắn cháy
+  // (giaoduc.net.vn: ĐKZ). Cầu Thị Nghè: xe 843 bắn cháy 2 xe M41 (S26). Chớp nòng, đường đạn, nổ, cháy theo câu đọc; từng phát bắn: MINH HOẠ.
+  XEX.ban = [];                                                                              // { tu, a: () => điểm nòng, b: () => điểm trúng, no: true khi trúng xe }
   // NGƯỜI DÂN SÀI GÒN 1975 cận cảnh (có xương; mẫu anh Thắng 24/11: nữ áo dài, nam sơ mi quần tây) — trước cổng Dinh, vẫy tay, vỗ tay khi xe tăng vào.
   // Vị trí, số người là TÁI DỰNG MINH HOẠ (S32: người dân đổ ra đường trưa 30/4).
   { const rnd = (() => { let a = 30475; return () => (a = (a * 16807) % 2147483647) / 2147483647; })(), CL = ['vay', 'vay2', 'vota', 'dung', 'vay'];
@@ -181,7 +245,7 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
       if (t < 116.4) { const u = (t - 115) / 1.4; const p = lerpP(X, ben, u); return { ...p, y: X.y + 1.35 * (1 - u), yaw: yawTo(X, ben), clip: 'leo' }; }
       const ngoai = P3(2, 151), trong = P3(0, 62);
       const giua = P3(5, 70);
-      if (t < 122.5) { const u = (t - 116.4) / 6.1, p = lerpP(ben, giua, u); return { ...p, yaw: yawTo(ben, giua), clip: 'chaynhanh', toc: 1.35 }; }   // từ xe 843 trong sân chạy thẳng về phía Dinh
+      if (t < 122.5) { const u = (t - 116.4) / 6.1, p = lerpP(ben, giua, u); return { ...p, yaw: yawTo(ben, giua), clip: 'chaynhanh', toc: 1.35 }; }   // từ xe 843 kẹt ở cổng phụ chạy vào sân, thẳng về phía Dinh
       if (t < 128) { const u = (t - 122.5) / 5.5, p = lerpP(giua, cua, u); return { ...p, yaw: yawTo(giua, cua), clip: 'chaynhanh', toc: 1.35 }; }      // băng qua bãi cỏ tới thềm
       if (t < 129) return null;                                                                // trong Dinh, lên cầu thang
       const keo = t >= 131 && t < 146;
@@ -201,17 +265,16 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   { const D = duong(GOC), tn = [LLx(MOC.thinghe[0], MOC.thinghe[1]), LLz(MOC.thinghe[0], MOC.thinghe[1])];
     let best = [1e9, 0]; for (let d = 0; d < D.L; d += 5) { const p = diemTren(D, d), e = Math.hypot(p.x - tn[0], p.z - tn[1]); if (e < best[0]) best = [e, d]; }
     const p = diemTren(D, best[1] + 45), g = await glbLoad('data/xe/xe-tang-m41.glb'), o = g.scene.clone(true);
-    o.traverse((m) => { if (m.isMesh) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.3); m.material.roughness = 1; } });   // cháy đen
+    XEX.matsCua = (o) => { const M = []; o.traverse((m) => { if (m.isMesh) { if (!m.material.userData.rieng) { m.material = m.material.clone(); m.material.userData.rieng = 1; } M.push([m.material, m.material.color.clone()]); } }); return M; };   // cháy đen từ lúc trúng đạn (tu)
     const x = p.x + Math.cos(p.yaw) * 9, z = p.z - Math.sin(p.yaw) * 9; o.position.set(x, hG(x, z), z); o.rotation.set(0.04, p.yaw + 2.3, -0.06); scene.add(o);
     XEX.m41chay = o; LAYER.xe.push(o);
     const cv = document.createElement('canvas'); cv.width = cv.height = 64; const cx = cv.getContext('2d'), gr = cx.createRadialGradient(32, 32, 2, 32, 32, 31);
     gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.5, 'rgba(255,255,255,0.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); cx.fillStyle = gr; cx.fillRect(0, 0, 64, 64);
     const km = new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), color: 0x3a3836, transparent: true, opacity: 0.4, depthWrite: false });   // khói đen bốc lên
     const khoi = () => Array.from({ length: 10 }, (_, i) => { const sp = new THREE.Sprite(km.clone()); sp.userData.k = i / 10; scene.add(sp); LAYER.xe.push(sp); return sp; });
-    XEX.chay = [{ o, khoi: khoi() }];
+    XEX.chay = [{ o, khoi: khoi() }]; XEX.khoiTao = khoi;
     // xác M113 cháy cạnh M41, bên kia đường (S36: xe 387 bắn cháy M41 và M113 án ngữ cầu Thị Nghè)
     { const q = diemTren(D, best[1] + 60), g2 = await glbLoad('data/xe/xe-boc-thep-m113.glb'), o2 = g2.scene.clone(true);
-      o2.traverse((m) => { if (m.isMesh) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.3); m.material.roughness = 1; } });
       const x2 = q.x - Math.cos(q.yaw) * 8, z2 = q.z + Math.sin(q.yaw) * 8; o2.position.set(x2, hG(x2, z2), z2); o2.rotation.set(-0.03, q.yaw - 0.6, 0.05); scene.add(o2); LAYER.xe.push(o2);
       XEX.chay.push({ o: o2, khoi: khoi() }); }
     // M113 ở ngã tư Hàng Xanh: lời dẫn (S36) — xe 390 bắn cháy chiếc M113 cản đường. Vị trí trên ngã tư, hướng xe: MINH HOẠ.
@@ -223,52 +286,90 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
       XEX.loe = spr(0xffd08a); XEX.no113 = spr(0xff8a3a); XEX.tBan = tDinh(MV.c10_ban + 0.6); }
     // M48 ở đầu cầu Sài Gòn phía nội đô (S33: tại đầu cầu Sài Gòn, đơn vị xe tăng ta đối mặt xe tăng M48) — tình trạng xe không rõ trong nguồn, đặt nguyên vẹn
     { const cs = LL(MOC.causg[0], MOC.causg[1]), g3 = await glbLoad('data/xe/xe-tang-m48.glb'), o3 = g3.scene.clone(true);
-      const x3 = cs.x - 160, z3 = cs.z + 40; o3.position.set(x3, hG(x3, z3), z3); o3.rotation.y = 1.3; scene.add(o3); LAYER.xe.push(o3); XEX.m48 = o3; } }
+      const pm = diemTren(duong(CT), 150), x3 = pm.x + Math.cos(pm.yaw) * 7, z3 = pm.z - Math.sin(pm.yaw) * 7; o3.position.set(x3, hG(x3, z3), z3); o3.rotation.y = pm.yaw + Math.PI + 0.35;  /* chặn đầu cầu phía nội đô, mũi hướng về cầu */ scene.add(o3); LAYER.xe.push(o3); XEX.m48 = o3; } }
+  // GHIM TÊN ĐƯỜNG (tên năm 1975) và TÊN KHÍ TÀI (anh Thắng 24/11). Đoạn Hàng Xanh – Thị Nghè chưa chắc tên năm 1975 → chưa ghim.
+  XEX.ghimND = () => { const DC = duong(CT), DG = duong(GOC), du = (D, d, ten) => { const p = diemTren(D, d); const L = addLabel(ten, p.x, p.z, 'vil duong', { maxDist: 2500 }); L.yFn = () => hG(p.x, p.z) + 14; };
+    du(DC, Math.min(400, XEX.dHX * 0.5), 'Xa lộ Biên Hòa'); du(DC, XEX.dHX, 'Ngã tư Hàng Xanh'); du(DG, DG.L * 0.35, 'Đường Hồng Thập Tự'); du(DG, DG.L - 160, 'Đại lộ Thống Nhất');
+    const gx = (ten, get, dy = 4.2, xa = 450) => { const L = addLabel(ten, 0, 0, 'hero ly', { grp: 'hero', maxDist: xa }); L.dyn = get; L.dy = dy; };
+    const vt = (o) => () => (o.visible ? o.position : null);
+    gx('Xe tăng M48 (đối phương)', vt(XEX.m48)); gx('Xe tăng M41 (đối phương)', vt(XEX.chay[0].o)); gx('Xe bọc thép M113 (đối phương)', vt(XEX.chay[1].o));
+    if (XEX.m113hx) gx('Xe bọc thép M113 (đối phương)', vt(XEX.m113hx));
+    const d1 = XEX.doan.find((d) => d.loai === 'tai'), d2 = XEX.doan.find((d) => d.loai === 'k63');
+    if (d1) gx('Xe tải chở bộ binh', vt(d1.X.obj), 4); if (d2) gx('Xe bọc thép K-63', vt(d2.X.obj), 4); };   // gọi sau khi có addLabel
+  // ---- XE TĂNG BẮN NHAU, BỘ BINH GIAO TRANH Ở CẦU (anh Thắng 24/11). Phát bắn, vị trí bộ binh: MINH HOẠ theo câu đọc.
+  { const V3 = (x, y, z) => new THREE.Vector3(x, y, z), tD = tDinh, nong = (X, k = 4.2) => () => { const o = X.obj || X; if (!o.visible) return null; const y = o.rotation.y; return V3(o.position.x + Math.sin(y) * k, o.position.y + 2.2, o.position.z + Math.cos(y) * k); };
+    const than = (o) => () => V3(o.position.x, o.position.y + 1.4, o.position.z), canh = (o, dx, dz) => () => V3(o.position.x + dx, hG(o.position.x + dx, o.position.z + dz) + 0.5, o.position.z + dz);
+    const m48 = XEX.m48, mats48 = []; m48.traverse((m) => { if (m.isMesh) { m.material = m.material.clone(); mats48.push([m.material, m.material.color.clone()]); } });
+    const k48 = () => { const y = m48.rotation.y; return () => V3(m48.position.x + Math.sin(y) * 5, m48.position.y + 2.2, m48.position.z + Math.cos(y) * 5); };
+    // đầu cầu Sài Gòn: M48 bắn trước (trượt, nổ cạnh xe 843), xe ta bắn trả, M48 trúng đạn bốc cháy (tiếng đại bác, nổ đã có ở mốc c10_m48 + 1,6 / 2,1)
+    banTao(tD(MV.c10_m48 + 0.5), k48(), canh(XEX.x843.obj, 6, -5)); banTao(tD(MV.c10_m48 + 1.6), nong(XEX.x843), than(m48));
+    banTao(tD(MV.c10_m48 + 4.2), nong(XEX.x390), than(m48));
+    XEX.chay.push({ o: m48, khoi: XEX.khoiTao(), tu: tD(MV.c10_m48 + 2.0), mats: mats48 });
+    // bộ binh Trung đoàn 66 (ta) bám xe tăng ở đầu cầu, đối phương chốt quanh M48 phía nội đô
+    { const DC = duong(CT), r = rndS(66), A = [], B = [], p0 = diemTren(DC, 40), f = V3(m48.position.x - p0.x, 0, m48.position.z - p0.z).normalize(), n = V3(f.z, 0, -f.x), yf = Math.atan2(f.x, f.z);
+      for (let i = 0; i < 22; i++) { const p = diemTren(DC, 10 + r() * 70), s = (r() < 0.5 ? -1 : 1) * (4 + r() * 7); A.push([p.x + Math.cos(p.yaw) * s, p.z - Math.sin(p.yaw) * s, yf + (r() - 0.5) * 0.4, r() < 0.5 ? 'quy' : 'ban']); }
+      for (let i = 0; i < 16; i++) { const a = 8 + r() * 40, b = (r() - 0.5) * 50; B.push([m48.position.x + f.x * a + n.x * b, m48.position.z + f.z * a + n.z * b, yf + Math.PI + (r() - 0.5) * 0.4, r() < 0.4 ? 'quy' : 'ban']); }
+      giaoTranh({ t0: tD(MV.c10_cau), t1: tD(MV.c10_m48 + 5), A, B, chet: 0.4, sau: tD(MV.c10_hx) - tD(MV.c10_m48 + 5), r: 900 }); }
+    // cầu Thị Nghè: M41 bắn trước, xe 843 bắn cháy M41 (S26), xe cùng đoàn bắn cháy M113 (S36: xe 387)
+    const [c41, c113] = XEX.chay; c41.mats = XEX.matsCua(c41.o); c113.mats = XEX.matsCua(c113.o); c41.tu = tD(MV.c10_tn + 2.6); c113.tu = tD(MV.c10_tn + 4.6);
+    const k41 = () => { const o = c41.o, y = o.rotation.y; return V3(o.position.x + Math.sin(y) * 4.5, o.position.y + 2.0, o.position.z + Math.cos(y) * 4.5); };
+    banTao(tD(MV.c10_tn + 0.8), k41, canh(XEX.x843.obj, -5, 7)); banTao(tD(MV.c10_tn + 2.2), nong(XEX.x843), than(c41.o)); banTao(tD(MV.c10_tn + 4.2), nong(XEX.x390), than(c113.o)); }
   const tren = (X, dy, lui) => (t) => { if (!X.obj.visible) return null; const p = X.obj.position, y = X.obj.rotation.y; return { x: p.x - Math.sin(y) * lui, z: p.z - Math.cos(y) * lui, y: p.y + dy, yaw: y, clip: 'dung' }; };   // trưởng xe đứng ở cửa tháp pháo
   const t843 = tren(XEX.x843, 1.35, 0.4);
   XEX.lai843 = await nvxTao('models/linh-tang.glb', (t) => (t < 115 ? t843(t) : null), { ten: 'Trưởng xe 843' });   // từ 1:55 Bùi Quang Thận rời xe (nhân vật riêng bên dưới)
   XEX.lai390 = await nvxTao('models/linh-tang.glb', tren(XEX.x390, 1.35, 0.4), { ten: 'Trưởng xe 390' });
   for (const X of [XEX.x843, XEX.x390]) LAYER.xe.push(X.obj);
 }
-// NGƯỜI DÂN (mẫu người dân Nam bộ của sa bàn Rạch Gầm – Xoài Mút: áo bà ba, nón lá, khăn rằn; ba biến thể, .nvz dùng chung bộ máy 2.2).
-// Trưa 30/4 người dân đổ ra đường đón quân giải phóng (S32). Dọc lộ trình: người đứng hai bên vỉa hè, một số đi bộ; trước cổng Dinh:
-// dân kéo tới tụ lại sau khi xe tăng vào (từ 1:30 phim). Vị trí, số người là TÁI DỰNG MINH HOẠ, không theo ảnh từng điểm.
-const DAN = [];
 if (TANG === 'noi-do' && DUONG_DINH.length) {
-  const TINT = [[1, 1, 1], [0.85, 0.82, 0.78], [0.72, 0.7, 0.66], [0.95, 0.9, 0.82]];
-  Promise.all([1, 2, 3].map((k) => dongTai('dan' + k, 'models/dan-nam-bo-' + k + '.nvz', 'models/dan-nam-bo-' + k + '.jpg', TINT, 500)))
-    .catch((e) => console.warn('người dân', e));
-  const D = duong(DUONG_DINH), L0 = D.L, rnd = (() => { let a = 1975; return () => (a = (a * 16807) % 2147483647) / 2147483647; })();
-  const ben = (d, lech) => { const p = diemTren(D, d); return { x: p.x + Math.cos(p.yaw) * lech, z: p.z - Math.sin(p.yaw) * lech, yaw: p.yaw }; };   // lệch sang phải (+) / trái (−) theo hướng xe
-  for (let d = 40; d < L0 - 230; d += 9 + rnd() * 14) for (const s of [-1, 1]) {        // hai bên đường, mỗi 9–23 m một người
-    if (rnd() < 0.35) continue;
-    const lech = s * (11 + rnd() * 5), di = rnd() < 0.2;
-    DAN.push({ k: 1 + (DAN.length % 3), d, lech, di, v: (rnd() < 0.5 ? 1 : -1) * (1 + rnd() * 0.4), ph: rnd(), vi: DAN.length, t0: 150 + rnd() * 14, quay: s });   // lúc xe tăng vào đường rất vắng; dân ra đường sau trưa
+  // NGƯỜI DÂN SÀI GÒN đón quân giải phóng trưa 30/4 (S32; nhandan.vn: lúc xe tăng vào đường rất vắng, sau đó người dân tràn ra đường): đứng thẳng hai bên
+  // đường thành hàng, quay mặt ra lòng đường, vẫy cờ Mặt trận, vẫy hoa, vỗ tay. Áo dài nhiều màu, đàn ông sơ mi; tỉ lệ các kiểu: MINH HOẠ.
+  const LOAI = [['nuco', 'dan-sg-nu-co', ['trang', 'xanh', 'vang', 'hong'], ['vay', 'vay2', 'vay']], ['nuhoa', 'dan-sg-nu-hoa', ['trang', 'hong', 'xanh'], ['vay', 'vay2']],
+    ['nu', 'dan-sg-nu', ['trang', 'xanh', 'hong', 'tim'], ['vota', 'vay', 'vota']], ['namco', 'dan-sg-nam-co', ['trang', 'ke'], ['vay', 'vay2']], ['nam', 'dan-sg-nam', ['trang', 'kem', 'xanh'], ['vota', 'vay', 'dung']]];
+  const TL = [0.26, 0.14, 0.18, 0.22, 0.2];
+  for (const [ten, nvz, mau] of LOAI) mau.forEach((m, i) => dongNap(ten + i, nvz, (ten === 'nuhoa' ? 'dan-sg-nu-co' : nvz) + '-' + m, 1500));
+  const D = duong(DUONG_DINH), L0 = D.L, rnd = rndS(1975);
+  const chon = () => { let r = rnd(), k = 0; while (k < TL.length - 1 && r > TL[k]) r -= TL[k++]; const L = LOAI[k]; return { ten: L[0] + Math.floor(rnd() * L[2].length), clip: L[3][Math.floor(rnd() * L[3].length)] }; };
+  for (let d = 40; d < L0 - 200;) {                                                      // hai bên đường, hai hàng, mỗi 1,4–2 m một người; chừa khoảng trống ở ngã tư, hẻm
+    if (rnd() < 0.08) { d += 18 + rnd() * 25; continue; }
+    for (const s of [-1, 1]) for (const h of [0, 1]) { if (rnd() < 0.18) continue; const c = chon();
+      DAN.push({ ...c, d: d + (h ? 0.7 : 0) + rnd() * 0.3, lech: s * (10.6 + h * 1.25 + rnd() * 0.3), quay: s, ph: rnd(), vi: DAN.length, t0: 148 + rnd() * 12 + d / L0 * 4 }); }
+    d += 1.4 + rnd() * 0.6;
   }
-  const G = (() => { const [x, y] = XEX.DL(0, 160); const p = diemTren(D, L0 - 95); return { x, z: -y, yaw: p.yaw }; })();   // ngoài cổng Dinh, đầu Lê Duẩn
-  for (let i = 0; i < 160; i++) {
-    const r = 10 + rnd() * 60, lat = (rnd() < 0.5 ? -1 : 1) * (13 + rnd() * 35);      // hai bên đường trước cổng, chừa lòng đường cho xe 390 vào sau
-    const sy = Math.sin(G.yaw), cy = Math.cos(G.yaw);
-    DAN.push({ k: 1 + (i % 3), cong: true, x: G.x - sy * r + cy * lat, z: G.z - cy * r - sy * lat, ph: rnd(), vi: i, t0: 152 + rnd() * 10, buoc: 4 + rnd() * 8 });
+  const G = (() => { const [x, y] = XEX.DL(0, 160); const p = diemTren(D, L0 - 95); return { x, z: -y, yaw: p.yaw }; })();   // ngoài cổng Dinh, đầu đại lộ Thống Nhất
+  for (let i = 0; i < 260; i++) {                                                         // trước cổng: dân kéo tới, đứng thành từng lớp hai bên, chừa lòng đường
+    const r = 8 + rnd() * 50, lat = (rnd() < 0.5 ? -1 : 1) * (12 + rnd() * 30), sy = Math.sin(G.yaw), cy = Math.cos(G.yaw), c = chon();
+    DAN.push({ ...c, cong: true, x: G.x - sy * r + cy * lat, z: G.z - cy * r - sy * lat, ph: rnd(), vi: i, t0: 150 + rnd() * 10, buoc: 4 + rnd() * 8 });
   }
-  DAN.dat = (t) => {
-    dongXoa(); if (!$('ly-nv').checked) return dongXong(false);
+  const ben = (d, lech) => { const p = diemTren(D, d); return { x: p.x + Math.cos(p.yaw) * lech, z: p.z - Math.sin(p.yaw) * lech, yaw: p.yaw }; };
+  for (const N of DAN) if (!N.cong) { const p = ben(N.d, N.lech); N.x = p.x; N.z = p.z; N.y = hG(p.x, p.z) + 0.1; N.yaw = p.yaw + N.quay * Math.PI / 2 + (rnd() - 0.5) * 0.25; }   // quay mặt ra đường
+  DAM.push((t) => {
+    const r = camera.position.y < 300 ? 420 : 900;
     for (const N of DAN) {
-      if (t < N.t0) continue;
+      if (t < N.t0 || !ganMay(N.x, N.z, r)) continue;
       if (N.cong) {                                                                       // đi về phía cổng rồi đứng lại
-        const u = Math.min(1, (t - N.t0) / 9);
-        const dx = G.x - N.x, dz = G.z - N.z, l = Math.hypot(dx, dz) || 1, w = Math.min(N.buoc, l - 6) * u;
-        const px = N.x + dx / l * w, pz = N.z + dz / l * w;
-        dongDat('dan' + N.k, u < 1 ? 'di' : (N.vi % 4 ? 'dung' : 'dung2'), t, N.ph, px, hG(px, pz) + 0.1, pz, Math.atan2(dx, dz), 1.08, N.vi);
-        continue;
+        const u = Math.min(1, (t - N.t0) / 9), dx = G.x - N.x, dz = G.z - N.z, l = Math.hypot(dx, dz) || 1, w = Math.min(N.buoc, l - 6) * u, px = N.x + dx / l * w, pz = N.z + dz / l * w;
+        dongDat(N.ten, u < 1 ? 'dung' : N.clip, t, N.ph, px, hG(px, pz) + 0.1, pz, Math.atan2(dx, dz), 1.0, N.vi); continue;
       }
-      let d = N.d, clip = N.vi % 5 ? 'dung' : 'dung2';
-      if (N.di) { d = N.d + ((N.v * (t - 40)) % 40 + 40) % 40 - 20; clip = 'di'; }
-      const p = ben(d, N.lech), yaw = N.di ? p.yaw + (N.v > 0 ? 0 : Math.PI) : p.yaw + N.quay * Math.PI / 2;   // người đứng quay mặt ra đường
-      dongDat('dan' + N.k, clip, t, N.ph, p.x, hG(p.x, p.z) + 0.1, p.z, yaw, 1.08, N.vi);
+      dongDat(N.ten, N.clip, t, N.ph, N.x, N.y, N.z, N.yaw, 1.0, N.vi);
     }
-    dongXong(true);
-  };
+  });
+  // BỘ BINH QUÂN GIẢI PHÓNG Ở DINH (ảnh tư liệu trưa 30/4: bộ đội đứng khắp sân, trên thềm, ban công, sân thượng): sau khi xe 390 húc đổ cổng (90 s),
+  // bộ binh đi theo xe tăng chạy vào sân rồi toả ra đứng gác; khoảng 118 s lên ban công, 126 s lên sân thượng, mái bằng (sau Bùi Quang Thận). MINH HOẠ.
+  { const H = XEX.hDinh, CG = XEX.DL(0, 156), CT2 = XEX.DL(0, 136), L = [], r2 = rndS(304), A0 = XEX.DL(0, 0), A1 = XEX.DL(0, 10), YG = Math.atan2(A1[0] - A0[0], -(A1[1] - A0[1]));   // YG: mặt nhìn ra cổng
+    const them = (n, sd0, sd1, dd0, dd1, y, t0, dt, clips) => { for (let i = 0; i < n; i++) { const sd = sd0 + r2() * (sd1 - sd0), dd = dd0 + r2() * (dd1 - dd0), [x, yb] = XEX.DL(sd, dd);
+      L.push({ x, z: -yb, y: H + y, t0: t0 + r2() * dt, clip: clips[Math.floor(r2() * clips.length)], ph: r2(), vi: L.length, yaw: YG + (r2() - 0.5) * (y < 1 ? 1.6 : 0.5), chay: y < 3 }); } };
+    them(60, -95, -30, 25, 138, 0.05, 92, 14, ['dung', 'dung', 'quy', 'di']); them(60, 30, 95, 25, 138, 0.05, 92, 14, ['dung', 'dung', 'quy', 'di']);   // hai bãi cỏ
+    them(26, -40, 40, 4, 10.5, 2.75, 100, 12, ['dung', 'dung', 'ban']);                                                  // thềm trước sảnh
+    them(5, -6.5, 6.5, 1, 3.5, 11.95, 118, 6, ['dung']); them(5, -6.5, 6.5, 1, 3.5, 16.75, 120, 6, ['dung']);              // ban công giữa
+    them(34, -44, 44, -3.5, 0.8, 18.55, 126, 12, ['dung', 'dung', 'ban']); them(14, -18, 18, -22, -6, 27.55, 129, 8, ['dung', 'quy']);   // sân thượng, mái bằng
+    DAM.push((t) => { if (t < 90) return; const r = camera.position.y < 300 ? 500 : 900;
+      for (const N of L) { if (t < N.t0 || !ganMay(N.x, N.z, r)) continue; let x = N.x, z = N.z, clip = N.clip, yaw = N.yaw;
+        if (N.chay) { const u = (t - N.t0) * 5.2, l1 = Math.hypot(CT2[0] - CG[0], CT2[1] - CG[1]);   // chạy qua cổng chính (CG → CT2 trong sân) rồi tới chỗ đứng, 5,2 m/s
+          const dx = N.x - CT2[0], dz = N.z + CT2[1], l2 = Math.hypot(dx, dz);
+          if (u < l1) { const k = u / l1; x = CG[0] + (CT2[0] - CG[0]) * k; z = -(CG[1] + (CT2[1] - CG[1]) * k); clip = 'chay'; yaw = Math.atan2(CT2[0] - CG[0], -(CT2[1] - CG[1])); }
+          else if (u < l1 + l2) { const k = (u - l1) / l2; x = CT2[0] + dx * k; z = -CT2[1] + dz * k; clip = 'chay'; yaw = Math.atan2(dx, dz); } }
+        dongDat('qgp', clip, t, N.ph, x, N.y, z, yaw, 1.0, N.vi); } });
+    XEX.linhDinh = L; }
 }
 // ------------------------------------------------------------------ C04 · PHI ĐỘI QUYẾT THẮNG (28/4/1975)
 // 16h15 năm A-37 thu được xuất kích từ Phan Rang (S29), ném bom khu đỗ máy bay Tân Sơn Nhất; 18h15 hạ cánh Thành Sơn (S17).
@@ -345,7 +446,8 @@ if (TANG === 'noi-do' && C04.apY && MV.c07_tc) {
   if (gk && gt) for (let k = 0; k < 4; k++) {
     const D = duong(P), L = D.L, f0 = fD(MV.c07_tc + k * 1.5), f1 = fD(MV.c07_chu - 6 + k * 1.5);
     const X = await xeTao(k % 2 ? 'data/xe/xe-tai.glb' : 'data/xe/xe-boc-thep-k63.glb', { duong: P, lich: [[-1e4, 0], [f0, 0], [f1, L - 30 - k * 28], [1e4, L - 30 - k * 28]], hien: (t) => t >= f0 - 2, ten: k % 2 ? 'Xe tải (minh hoạ)' : 'Xe bọc thép K-63 (minh hoạ)' });
-    if (XEX.coXe) XEX.coXe(X.obj, 2.2, 1.1); LAYER.xe.push(X.obj); C07.xe.push(X); }
+    if (XEX.coXe) XEX.coXe(X.obj, 2.2, 1.1); LAYER.xe.push(X.obj); X.loai = k % 2 ? 'tai' : 'k63'; C07.xe.push(X); }
+  DAM.push((t) => { for (const X of C07.xe) if (X.obj.visible && ganMay(X.obj.position.x, X.obj.position.z, 700)) linhTrenXe(X.obj, X.loai, t, 1, 3); });   // bộ binh trên xe (Sư đoàn 10)
   C07.no = Array.from({ length: 6 }, (_, k) => ({ sp: C04.sprite(0xff9a4a, 0.9), p: A(-0.6 + k * 0.28, 20 + (k % 3) * 35), ph: k * 0.43 }));
   C07.cap = (t) => { const on = t > MV.c07_tc && t < MV.c07_chu;
     for (const N of C07.no) { const u = ((t - MV.c07_tc + N.ph * 2.4) / 2.4) % 1, v = on && u < 0.45; N.sp.visible = v;
@@ -428,7 +530,7 @@ const SHOTS = TANG === 'chien-dich' ? {
   'C05-B': (u) => { const bt = LL(10.80326, 106.67153), M = V3((C05.dd.x + bt.x) / 2, 0, (C05.dd.z + bt.z) / 2);   // mũi tên Đồng Dù → Bộ Tổng tham mưu
     const d = V3(bt.x - C05.dd.x, 0, bt.z - C05.dd.z).normalize(), n = V3(-d.z, 0, d.x);   // nhìn ngang mũi tên
     return fly(M.clone().addScaledVector(n, 30000).setY(24000), M.clone().addScaledVector(n, 24000).setY(19000), M.clone(), M.clone(), 45)(u); },
-  'C05-C': (u) => orbit(C05.rc, 12000, 7000, 3.6, 4.2, 42)(u),                                          // cầu Rạch Chiếc
+  'C05-C': (u) => (KT.camRC ? KT.camRC(u) : orbit(C05.rc, 12000, 7000, 3.6, 4.2, 42)(u)),             // cầu Rạch Chiếc: sau công sự đặc công nhìn về phía đối phương phản kích
   'C02-A': fly(V3(0, R * 0.85, R * 1.25), V3(SG.x + R * 0.1, R * 0.55, SG.z + R * 0.75), V3(0, 0, 0), SG.clone(), 45),
   'C01-L1': (u, t) => KT.camCot(KT.c01a)(u, t), 'C01-L2': (u, t) => KT.camCot(KT.c01b)(u, t), 'C01-L3': (u, t) => KT.camCot(KT.c01c)(u, t),
   'C01-D': (u) => KT.camDon(KT.don.xl, 0.6, 2.2)(u), 'C01-D2': (u) => KT.camDon(KT.don.xl, 3.4, 4.4)(u), 'C01-P': (u) => KT.camTD(KT.td1)(u),
@@ -471,7 +573,7 @@ const SHOTS = TANG === 'chien-dich' ? {
     const c = V3(q.x + Math.cos(q.yaw) * 4, hG(q.x, q.z) + 11 + u * 3, q.z - Math.sin(q.yaw) * 4); return [c, V3(m.x, m.y + 2, m.z), 44]; },
   'C10-D': (u) => { const X = XEX.x843, q = diemTren(X.D, XEX.L1 - 40), w = diemTren(X.D, XEX.L1 - 170 + u * 120);   // cầu Thị Nghè, xác M41, M113
     return [V3(q.x - Math.cos(q.yaw) * 5, hG(q.x, q.z) + 14, q.z + Math.sin(q.yaw) * 5), V3(w.x, hG(w.x, w.z) + 2, w.z), 46]; },
-  'C10-E': (u) => xeCam(XEX.x390, 24, 8, 40, 45)(u),
+  'C10-E': (u) => xeCam(XEX.x390, -40 + u * 10, 13, -70, 45)(u),                         // đi lùi trước mũi 390, nhìn về sau: xe tăng và đoàn xe chở bộ binh theo sau
   'C12-A': (u) => { const [x, z] = XEX.DL(0, 30), c = V3(x, (XEX.hDinh || 0) + 12, -z); return orbit(c, 250, 90, 2.15, 2.65, 45)(u); },   // Dinh, lá cờ trên nóc
   'C12-B': (u) => { const DL = XEX.DL, h = XEX.hDinh || 0, P = (a, b, y) => { const [x, z] = DL(a, b); return V3(x, h + y, -z); };   // người dân trước cổng Dinh
     return fly(P(4, 238, 9), P(-4, 226, 8), P(-6, 150, 2), P(6, 156, 2), 48)(u); },
@@ -581,7 +683,7 @@ if (TANG === 'chien-dich') {
   // Quân Giải phóng → máy lướt sát trên đầu đoàn quân đang tiến về Sài Gòn; nói về pháo → cận cảnh, trung cảnh trận địa pháo ta đang bắn.
   // Mẫu xe, pháo phóng to ×3 (kiểu quân cờ trên sa bàn) để thấy được ở tầm chiến dịch. Vị trí đồn, trận địa, đội hình đoàn xe: MINH HOẠ.
   { const KS = 3, tx = (src) => { const t = new THREE.TextureLoader().load(PU(src)); t.colorSpace = THREE.SRGBColorSpace; return t; }, txM = tx('data/co-mtdtgp.png'), txV = tx('data/co-vnch.png');
-    const [gK, gT, gP, g41, g113] = await Promise.all(['data/xe/xe-boc-thep-k63.glb', 'data/xe/xe-tai.glb', 'data/phao/m-46-130mm.glb', 'data/xe/xe-tang-m41.glb', 'data/xe/xe-boc-thep-m113.glb'].map((f) => glbLoad(f).catch(() => null)));
+    const [gK, gT, gP, g41, g113, gTK] = await Promise.all(['data/xe/xe-boc-thep-k63.glb', 'data/xe/xe-tai.glb', 'data/phao/m-46-130mm.glb', 'data/xe/xe-tang-m41.glb', 'data/xe/xe-boc-thep-m113.glb', 'data/xe/xe-tang-390.glb'].map((f) => glbLoad(f).catch(() => null)));
     const coMat = (t) => { const m = new THREE.MeshLambertMaterial({ map: t, side: THREE.DoubleSide }); m.onBeforeCompile = (sh) => { sh.uniforms.uT = U.time;
       sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform float uT;').replace('#include <begin_vertex>', '#include <begin_vertex>\ntransformed.z += sin(uv.x * 6.0 - uT * 5.0) * 0.12 * uv.x * 6.0;'); }; return m; };
     const mMT = coMat(txM), mVN = coMat(txV), mCan = new THREE.MeshLambertMaterial({ color: 0x3a2c1c });
@@ -589,28 +691,63 @@ if (TANG === 'chien-dich') {
       new THREE.Mesh(new THREE.PlaneGeometry(w, w * 0.66, 8, 1).translate(w / 2, cao - w * 0.33, 0), mat)); return g; };
     const moi = (g, s = KS) => { const o = g.scene.clone(true); o.scale.setScalar(s); return o; };
     const huong = (a, b) => Math.atan2(b.x - a.x, b.z - a.z);                              // mũi xe theo +z
-    // đồn lũy đối phương: bờ đất, hàng rào, lô cốt, tháp canh, cờ ba sọc, xe tăng M41, xe bọc thép M113 (phóng to)
-    const don = (p) => { const g = new THREE.Group(), dat = new THREE.MeshLambertMaterial({ color: 0x7b6040 }), bt = new THREE.MeshLambertMaterial({ color: 0x5d6150 });
-      const cao = (m, y) => { m.position.y = y; return m; };
-      g.add(cao(new THREE.Mesh(new THREE.TorusGeometry(150, 18, 6, 48).rotateX(Math.PI / 2).scale(1, 0.4, 1), dat), 4),
-            cao(new THREE.Mesh(new THREE.CircleGeometry(140, 48).rotateX(-Math.PI / 2), new THREE.MeshLambertMaterial({ color: 0x9c8b67 })), 1.5),
-            cao(new THREE.Mesh(new THREE.TorusGeometry(190, 1.8, 4, 72).rotateX(Math.PI / 2), new THREE.MeshLambertMaterial({ color: 0x2b2b28 })), 6));
-      for (let k = 0; k < 8; k++) { const a = k / 8 * Math.PI * 2, b = new THREE.Mesh(new THREE.BoxGeometry(24, 10, 15), bt); b.position.set(Math.sin(a) * 118, 6, Math.cos(a) * 118); b.rotation.y = a; g.add(b); }
-      const th = new THREE.Group(); th.add(new THREE.Mesh(new THREE.CylinderGeometry(3, 4, 34, 6).translate(0, 17, 0), bt), new THREE.Mesh(new THREE.BoxGeometry(16, 7, 16).translate(0, 37, 0), bt)); th.position.set(-40, 0, 30); g.add(th);
-      const cv = co(70, 34, mVN); cv.position.set(10, 0, -20); g.add(cv);
-      [[g41, 40, 10, 0.5], [g41, -20, -50, 2.0], [g113, 55, -45, 3.6], [g113, -60, 20, 1.2]].forEach(([gg, x, z, y]) => { if (!gg) return; const o = moi(gg); o.position.set(x, 1, z); o.rotation.y = y; g.add(o); });
-      g.position.set(p.x, hG(p.x, p.z), p.z); scene.add(g); return g; };
-    KT.don.xl = don(C01.xl); KT.don.lt = don(C03.lt); KT.don.dd = don(C05.dd);
+    // ĐỒN LŨY ĐỐI PHƯƠNG (anh Thắng 24/11): thành vuông như thành trì — tường đất, hai cổng ra vào, bốn lô cốt góc, hàng rào dây thép gai, dãy nhà lính,
+    // xe tăng M41, xe bọc thép M113, cờ ba sọc, lính đối phương trên tường và trong đồn. Trong lúc pháo ta bắn: nổ trong đồn; sau khi đồn mất (tDo): tường sụt,
+    // nhà sập, xe cháy, lính tử trận, cờ Mặt trận trên cột cờ, bộ đội ta trong đồn. Kích thước (cạnh 360 m), bố trí: MINH HOẠ kiểu "quân cờ" trên sa bàn.
+    const mat = (c) => new THREE.MeshLambertMaterial({ color: c }), cua = (o) => { const M = []; o.traverse((m) => { if (m.isMesh) { m.material = m.material.clone(); M.push([m.material, m.material.color.clone()]); } }); return M; };
+    const don = (p, tTC, tDo, chet = 0.35, quay = 0.3) => { const g = new THREE.Group(), S = 180, dat = mat(0x7b6040), bt = mat(0x5d6150), mai = mat(0x8d918a), soi = mat(0xa39272);
+      const D = { g, tTC, tDo, chet, tuong: [], nha: [], xe: [], lua: [], no: [], A: [], B: [], hu: null };
+      const hop = (w, h, d, m, x, y, z, ry = 0) => { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); b.position.set(x, y, z); b.rotation.y = ry; g.add(b); return b; };
+      hop(2 * S - 10, 1, 2 * S - 10, soi, 0, 0.4, 0);                                               // nền đồn
+      for (const [sx, sz, ngang, cong] of [[0, S, 1, 1], [0, -S, 1, 1], [S, 0, 0, 0], [-S, 0, 0, 0]])  // tường đất từng đoạn 60 m; hai cạnh trước, sau chừa cổng 36 m
+        for (let k = 0; k < 6; k++) { let a = -S + k * 60, b = a + 60; const doan = cong && a < 18 && b > -18 ? [[a, -18], [18, b]] : [[a, b]];
+          for (const [a1, b1] of doan) { const m = (a1 + b1) / 2, L = b1 - a1; const w = hop(ngang ? L : 14, 7, ngang ? 14 : L, dat, ngang ? m : sx, 3.5, ngang ? sz : m); D.tuong.push(w);
+            for (let j = 0; j < 2; j++) { const u = (j + 0.5) / 2, q = a1 + L * u, x = ngang ? q : sx, z = ngang ? sz : q; D.B.push([x, z, Math.atan2(ngang ? 0 : sx, ngang ? sz : 0), 7.2, 'tuong']); } } }
+      for (const sz of [S, -S]) for (const sx of [-24, 24]) hop(12, 13, 16, bt, sx, 6.5, sz);      // tháp hai bên cổng
+      for (const sx of [-S, S]) for (const sz of [-S, S]) { hop(20, 16, 20, bt, sx, 8, sz); hop(24, 2, 24, mai, sx, 17, sz); }   // lô cốt bốn góc
+      for (const [w, d, x, z] of [[2 * S + 80, 1.6, 0, S + 40], [2 * S + 80, 1.6, 0, -S - 40], [1.6, 2 * S + 80, S + 40, 0], [1.6, 2 * S + 80, -S - 40, 0]]) hop(w, 2.4, d, mat(0x2b2b28), x, 1.2, z);   // rào thép gai
+      for (const [x, z] of [[-95, -100], [95, -100], [-95, 15], [95, 15], [-95, 110]]) D.nha.push(hop(80, 9, 18, mai, x, 4.5, z));   // dãy nhà lính mái tôn
+      const cv = co(70, 34, mVN); cv.position.set(0, 0, -40); g.add(cv); D.coV = cv; const cm = co(70, 34, mMT); cm.position.set(0, 0, -40); cm.visible = false; g.add(cm); D.coM = cm;
+      [[g41, 40, 60, 0.5], [g41, -30, 90, 2.0], [g113, 60, -40, 3.6], [g113, -50, -50, 1.2], [g113, 20, 120, 0.2]].forEach(([gg, x, z, y]) => { if (!gg) return; const o = moi(gg); o.position.set(x, 1, z); o.rotation.y = y; g.add(o); D.xe.push({ o, mats: cua(o), ten: gg === g41 ? 'Xe tăng M41 (đối phương)' : 'Xe bọc thép M113 (đối phương)' }); });
+      const r = rndS(Math.round(p.x) % 9999 + 7); for (let i = 0; i < 22; i++) D.B.push([(r() - 0.5) * 260, (r() - 0.5) * 260, r() * 6.28, 1, r() < 0.4 ? 'nup' : r() < 0.5 ? 'di' : 'dung']);
+      for (let i = 0; i < 24; i++) D.A.push([(r() - 0.5) * 240, (r() - 0.5) * 240, r() * 6.28, 1, 'dung']);   // bộ đội ta trong đồn sau trận
+      for (let i = 0; i < 7; i++) { D.lua.push(nhoe(0xff7a2a)); D.no.push(nhoe(0x58504a, false)); }
+      g.position.set(p.x, hG(p.x, p.z), p.z); g.rotation.y = quay; scene.add(g); g.updateMatrixWorld(true);
+      const W = (P) => { const v = g.localToWorld(V3(P[0], P[3], P[1])); return [v.x, v.y, v.z, P[2] + quay, P[4]]; };
+      D.Bw = D.B.map(W); D.Aw = D.A.map(W); D.ph = D.B.map((_, i) => (i * 0.61) % 1);
+      D.hong = D.tuong.filter((_, i) => (i * 7) % 5 < 2);                                         // các đoạn tường bị phá
+      D.cap = (t) => { const hu = t >= tDo; if (hu !== D.hu) { D.hu = hu;
+          for (const w of D.hong) { w.position.y = hu ? 1.2 : 3.5; w.rotation.z = hu ? 0.22 : 0; w.scale.y = hu ? 0.45 : 1; }
+          for (const n of D.nha) { n.scale.y = hu ? 0.3 : 1; n.position.y = hu ? 1.4 : 4.5; n.material = hu ? mat(0x3a3532) : mai; }
+          for (const X of D.xe) if (X.mats) for (const [m, c0] of X.mats) m.color.copy(c0).multiplyScalar(hu ? 0.28 : 1);
+          D.coV.visible = !hu; D.coM.visible = hu; }
+        const danh = t >= tTC && t < tDo, chay = hu && t < tDo + 40;
+        D.lua.forEach((s, i) => { const P = i < D.xe.length ? D.xe[i].o.position : D.nha[i % D.nha.length].position, w = g.localToWorld(V3(P.x, 2, P.z));
+          if (danh) { const u = (t * 0.55 + i * 0.37) % 1; s.visible = u < 0.4; if (s.visible) { const q = g.localToWorld(V3(((i * 53) % 300) - 150, 2, ((i * 97) % 300) - 150)); s.position.set(q.x, q.y + 6 + u * 40, q.z); s.scale.setScalar(25 + u * 120); s.material.opacity = 0.95 * (1 - u / 0.4); } }
+          else if (chay) { s.visible = true; s.position.set(w.x, w.y + 6 + (Math.sin(t * 9 + i) + 1) * 2, w.z); s.scale.setScalar(16 + Math.sin(t * 13 + i * 2) * 4); s.material.opacity = 0.85; }
+          else s.visible = false;
+          const k = D.no[i]; k.visible = danh || chay; if (k.visible) { const u = (t * 0.12 + i / 7) % 1; k.position.set(w.x + u * 40, w.y + 10 + u * 160, w.z - u * 25); k.scale.setScalar(30 + u * 120); k.material.opacity = 0.5 * (1 - u); } }); };
+      KT.dons.push(D); return D; };
+    KT.dons = [];
+    KT.don.xl = don(C01.xl, MV.c01_phao0, MV.c01_rut, 0.2, 0.4); KT.don.lt = don(C03.lt, MV.c03_phao0, MV.c03_phao1 + 4, 0.35, 1.1); KT.don.dd = don(C05.dd, MV.c05_phao0, MV.c05_co, 0.35, -0.2);
+    for (const k of ['xl', 'lt', 'dd']) KT.don[k] = Object.assign(KT.don[k].g, { D: KT.don[k] });
+    DAM.push((t, tv) => { for (const D of KT.dons) { const p = D.g.position; if (!ganMay(p.x, p.z, 2600)) continue; D.cap(tv); const hu = tv >= D.tDo, nc = Math.floor(D.Bw.length * D.chet);
+      D.Bw.forEach((P, i) => { if (hu && i >= nc) return; const clip = hu ? 'nam' : P[4] === 'tuong' ? (tv >= D.tTC ? 'ban' : 'dung') : P[4]; dongDat('vnch', clip, tv, D.ph[i], P[0], P[1] + (hu ? 0.3 : 0), P[2], P[3], KS, i); });
+      if (hu) D.Aw.forEach((P, i) => dongDat('qgp', 'dung', tv, D.ph[i % D.ph.length], P[0], P[1], P[2], P[3], KS, i)); }
+      for (const D of KT.dons) if (!ganMay(D.g.position.x, D.g.position.z, 2600)) D.cap(tv); });
     // trận địa pháo ta: 4 khẩu M-46 130 mm (cắm cờ Mặt trận), chớp lửa đầu nòng, khói — đặt ở điểm xuất phát đường đạn phaoTao
     const tranDia = (P, t0, t1) => { const f = V3().subVectors(P.dich, P.src).setY(0).normalize(), r = V3(f.z, 0, -f.x), yaw = Math.atan2(f.x, f.z), S = [];
       for (let k = 0; k < 4; k++) { if (!gP) break; const o = moi(gP, 2.6), x = P.src.x + r.x * (k - 1.5) * 42, z = P.src.z + r.z * (k - 1.5) * 42;
         o.position.set(x, hG(x, z), z); o.rotation.y = yaw; scene.add(o); const c = co(11, 5, mMT); c.position.set(x - f.x * 14, hG(x, z), z - f.z * 14); scene.add(c);
         const lua = spr(0xffc070, 40), khoi = spr(0xbab4a8, 60); S.push({ x, z, y: hG(x, z), lua, khoi, ph: k * 0.29 }); }
-      const T = { P, f, r, S, t0, t1 }; KT.td.push(T); return T; };
+      const N = [], rr = rndS(Math.round(P.src.x) % 9999 + 3);                                        // pháo thủ (3 người mỗi khẩu) + bộ binh bảo vệ trận địa đứng bắn (anh Thắng 24/11)
+      for (const G of S) for (let j = 0; j < 3; j++) { const x = G.x - f.x * (12 + j * 4) + r.x * (j - 1) * 5, z = G.z - f.z * (12 + j * 4) + r.z * (j - 1) * 5; N.push([x, hG(x, z), z, yaw + (j - 1) * 0.5, j === 1 ? 'quy' : 'dung']); }
+      for (let j = 0; j < 12; j++) { const a = 70 + rr() * 30, b = (j - 5.5) * 13, x = P.src.x + f.x * a + r.x * b, z = P.src.z + f.z * a + r.z * b; N.push([x, hG(x, z), z, yaw + (rr() - 0.5) * 0.3, rr() < 0.65 ? 'ban' : 'quy']); }
+      const T = { P, f, r, S, t0, t1, N }; KT.td.push(T); return T; };
     KT.td1 = tranDia(C01.phao[0], MV.c01_phao0, MV.c01_phao1); KT.td3 = tranDia(C03.phao[0], MV.c03_phao0, MV.c03_phao1);
     KT.td5 = tranDia(C05.phao[0], MV.c05_phao0, MV.c05_phao1); KT.td6 = tranDia(C06.phao[0], MV.c06_phao, MV.c06_rc + 3);
     // đoàn quân ta: xe bọc thép K-63, xe tải chở bộ binh, xe kéo pháo M-46 (cắm cờ), chạy theo đường tiến về Sài Gòn trong khung giờ của cú máy
-    const VAN = 24;                                                                       // tốc độ đoàn xe trên sa bàn (m/s) — chậm như xe chạy thật, không "tua nhanh"
+    const VAN = 9, CACH = 55;                                                             // tốc độ (m/s), khoảng cách xe — anh Thắng 24/11: chạy chậm như xe thật, không "tua nhanh"
     const RT = (k) => (INST.duong && INST.duong['cot_' + k]) || [];                          // tuyến theo đường bộ OSM (tools/sa_ban/dia_hinh/tuyen_cot.py), không xuyên sông hồ
     const MAU = { xl: 0xd2442b, dong: 0xd2442b, bac: 0xe58a1f, tb: 0xc0408c, dd: 0xc0408c, dn: 0x2f7fd6, lt: 0x2f7fd6, tn: 0x2fa35a };
     const vet = (P, mau, rong = 16) => { const D = duong(P), n = Math.max(2, Math.floor(D.L / 40)), pos = new Float32Array(n * 2 * 3), idx = [];
@@ -621,10 +758,11 @@ if (TANG === 'chien-dich') {
       m.renderOrder = 2; m.visible = false; m.userData = { n, L: D.L }; scene.add(m); return m; };
     KT.vetDat = (m, d) => { const k = Math.max(0, Math.min(m.userData.n - 1, Math.floor(d / m.userData.L * (m.userData.n - 1)))); m.geometry.setDrawRange(0, k * 6); };
     const cot = (k, t0, t1, f1) => { const P = RT(k), D = duong(P), X = [];
-      ['K', 'T', 'TP', 'K', 'T', 'T', 'K', 'TP', 'T', 'K', 'T', 'T'].forEach((k, i) => { const g = k === 'K' ? gK : gT; if (!g) return;
-        const o = moi(g); o.visible = false; scene.add(o); const c = co(3.6, 1.8, mMT); c.position.set(0, 2.4, -2.2); o.add(c);
-        let keo = null; if (k === 'TP' && gP) { keo = moi(gP, KS * 0.8); keo.visible = false; scene.add(keo); } X.push({ o, keo, i }); });
-      const d1 = f1 * D.L, d0 = Math.max(0, d1 - VAN * (t1 - t0)); const C = { D, X, t0, t1, d0, d1, vet: vet(P, MAU[k] || 0xd2442b) }; KT.cot.push(C); return C; };
+      ['TK', 'TK', 'K', 'T', 'TP', 'K', 'T', 'T', 'TK', 'TP', 'T', 'K', 'T', 'T'].forEach((k, i) => { const g = k === 'K' ? gK : k === 'TK' ? gTK : gT; if (!g) return;   // TK: xe tăng T-54 (mẫu 390, ẩn số hiệu)
+        const o = moi(g); o.visible = false; scene.add(o); const c = co(3.6, 1.8, mMT); c.position.set(0, k === 'TK' ? 2.9 : 2.4, -2.2); o.add(c);
+        if (k === 'TK') o.traverse((m) => { if (/^so-hieu/.test(m.name)) m.visible = false; });
+        let keo = null; if (k === 'TP' && gP) { keo = moi(gP, KS * 0.8); keo.visible = false; scene.add(keo); } X.push({ o, keo, i, k }); });
+      const d1 = f1 * D.L, d0 = Math.max(0, d1 - VAN * (t1 - t0)); const C = { D, X, t0, t1, d0, d1, k, vet: vet(P, MAU[k] || 0xd2442b) }; KT.cot.push(C); return C; };
     KT.c01a = cot('xl', MV.c01_l1 - 1, MV.c01_d + 1, 0.55); KT.c01b = cot('xl', MV.c01_l2 - 1, MV.c01_p + 1, 0.82); KT.c01c = cot('xl', MV.c01_l3 - 1, MV.c01_rut, 0.95);
     KT.c02a = cot('bac', MV.c02_l1 - 1, MV.c02_l2 + 1, 0.75); KT.c02b = cot('tb', MV.c02_l2 - 1, MV.c02_vay + 1, 0.8);
     KT.c03 = cot('lt', MV.c03_l - 1, MV.c03_phao1 + 1, 0.92); KT.c05 = cot('dd', MV.c05_l - 1, MV.c05_phao1 + 1, 0.94);
@@ -637,25 +775,51 @@ if (TANG === 'chien-dich') {
     KT.cap = (t) => {
       { const on6 = t >= C06.t0 && t < C06.t1; for (const m of KT.vet6) { m.visible = on6; if (on6) KT.vetDat(m, m.userData.L * sstep(C06.t0, MV.c06_tc + 4, t)); } }
       for (const C of KT.cot) { const on = t >= C.t0 && t < C.t1, dh = C.d0 + (C.d1 - C.d0) * clamp((t - C.t0) / (C.t1 - C.t0), 0, 1);
-        C.vet.visible = on; if (on) KT.vetDat(C.vet, dh - C.X.length * 80);
+        C.vet.visible = on; if (on) KT.vetDat(C.vet, dh - C.X.length * CACH);
         for (const X of C.X) { X.o.visible = on; if (X.keo) X.keo.visible = on; if (!on) continue;
-          const d = dh - X.i * 80, p = diemTren(C.D, d), q = diemTren(C.D, d + 8), y = huong(p, q);
+          const d = dh - X.i * CACH, p = diemTren(C.D, d), q = diemTren(C.D, d + 8), y = huong(p, q);
           X.o.position.set(p.x, hG(p.x, p.z) + 0.5, p.z); X.o.rotation.y = y;
           if (X.keo) { const b = diemTren(C.D, d - 34); X.keo.position.set(b.x, hG(b.x, b.z) + 0.5, b.z); X.keo.rotation.y = y + Math.PI; } } }
-      for (const T of KT.td) { const on = t >= T.t0 && t < T.t1;
+      for (const T of KT.td) { const on = t >= T.t0 && t < T.t1; T.on = on;
         for (const G of T.S) { const ph = ((t - T.t0) / 2.4 + G.ph) % 1, ban = on && ph < 0.09;
           G.lua.visible = ban; if (ban) { G.lua.position.set(G.x + T.f.x * 40, G.y + 9, G.z + T.f.z * 40); G.lua.scale.setScalar(30 + ph * 300); }
           G.khoi.visible = on && ph < 0.7; if (G.khoi.visible) { G.khoi.position.set(G.x + T.f.x * (44 + ph * 30), G.y + 10 + ph * 40, G.z + T.f.z * (44 + ph * 30)); G.khoi.scale.setScalar(40 + ph * 160); G.khoi.material.opacity = 0.55 * (1 - ph / 0.7); } } }
       const sg = (t >= MV.c02_vay && t < S2.t1) || (t >= MV.c03_phao1 && t < S3.t1) || (t >= C06.t0 && t < C06.t1);
       KT.vSG.visible = sg; if (sg) { const k = (t * 0.5) % 1; KT.vSG.scale.setScalar(3000 + k * 6000); KT.vSG.material.opacity = 0.8 * (1 - k); }
-      if (camera.position.y < 2500) for (const v of VONG()) if (v) v.visible = false; };   // cảnh cận (đoàn quân, trận địa, đồn): ẩn vòng tròn (vòng nằm trên cao, không bị núi che)
+      if (camera.position.y < 2500) for (const v of [...VONG(), C05.coDD, C05.coRC]) if (v) v.visible = false; };   // cảnh cận (đoàn quân, trận địa, đồn): ẩn vòng tròn (vòng nằm trên cao, không bị núi che)
     // máy quay: lướt trên đoàn quân (từ cuối đoàn lên đầu, sát trên nóc xe); vòng cung quanh đồn; trung cảnh trận địa pháo
-    KT.camCot = (C) => (u, t) => { const dh = C.d0 + (C.d1 - C.d0) * clamp((t - C.t0) / (C.t1 - C.t0), 0, 1), dc = dh - 1000 + u * 900;
-      const a = diemTren(C.D, dc), b = diemTren(C.D, dc + 420), ha = hG(a.x, a.z), hb = hG(b.x, b.z), n = V3(b.z - a.z, 0, a.x - b.x).normalize().multiplyScalar(45);
+    KT.camCot = (C) => (u, t) => { const dh = C.d0 + (C.d1 - C.d0) * clamp((t - C.t0) / (C.t1 - C.t0), 0, 1), dc = dh - 520 + u * 260;   // máy đi chậm, gần bằng tốc độ đoàn xe
+      const a = diemTren(C.D, dc), b = diemTren(C.D, dc + 320), ha = hG(a.x, a.z), hb = hG(b.x, b.z), n = V3(b.z - a.z, 0, a.x - b.x).normalize().multiplyScalar(45);
       return [V3(a.x + n.x, Math.max(ha, hb) + 55, a.z + n.z), V3(b.x, hb + 4, b.z), 46]; };
     KT.camDon = (g, a0, a1) => (u) => orbit(g.position, 700, 260, a0, a1, 42, 200)(u);
     KT.camTD = (T) => (u) => { const c = V3(T.P.src.x, hG(T.P.src.x, T.P.src.z), T.P.src.z), f = T.f, r = T.r, w = -1 + u * 0.6;
       return [V3(c.x - f.x * 150 + r.x * 150 * w, c.y + 38, c.z - f.z * 150 + r.z * 150 * w), V3(c.x + f.x * 160, c.y + 30, c.z + f.z * 160), 44]; };
+    // người trên khí tài: bộ binh ngồi trên xe tải, trên nóc K-63; trưởng xe đứng ở cửa tháp pháo xe tăng; pháo thủ, bộ binh ở trận địa pháo (×3 như xe)
+    DAM.push((t, tv) => {
+      for (const C of KT.cot) { if (tv < C.t0 || tv >= C.t1) continue;
+        for (const X of C.X) { const p = X.o.position; if (!X.o.visible || !ganMay(p.x, p.z, 1500)) continue;
+          if (X.k === 'T' || X.k === 'TP') linhTrenXe(X.o, 'tai', tv, KS, X.i * 7); else if (X.k === 'K') linhTrenXe(X.o, 'k63', tv, KS, X.i * 7);
+          else { const [x, y, z, yaw] = quayXe(X.o, 0.45 * KS, 1.55 * KS, -0.35 * KS); dongDat('qgp', 'dung', tv, 0.3, x, y, z, yaw, KS, X.i); } } }
+      for (const T of KT.td) { if (tv < T.t0 - 2 || tv > T.t1 + 2 || !ganMay(T.P.src.x, T.P.src.z, 2200)) continue;
+        T.N.forEach((P, i) => dongDat('qgp', P[4], tv, (i * 0.37) % 1, P[0], P[1], P[2], P[3], 2.6, i)); } });
+    // CẦU RẠCH CHIẾC (VOH: rạng sáng 28/4 đối phương phản công chiếm lại cầu; 29/4 ta đánh chiếm lại, giữ cầu cho đại quân): đặc công giữ hai đầu cầu,
+    // đối phương phản kích từ phía nội đô — đấu súng bộ binh, đạn vạch. Vị trí từng người: MINH HOẠ.
+    { const P = RT('dong'), D = duong(P); let bd = [1e18, 0]; for (let d = 0; d < D.L; d += 20) { const q = diemTren(D, d), e = (q.x - C05.rc.x) ** 2 + (q.z - C05.rc.z) ** 2; if (e < bd[0]) bd = [e, d]; }
+      const d0 = bd[1], r = rndS(316), A = [], B = [], o = diemTren(D, d0), q = diemTren(D, d0 + 40), f = V3(q.x - o.x, 0, q.z - o.z).normalize(), yf = Math.atan2(f.x, f.z);
+      const ben = (d, lech) => { const p = diemTren(D, d); return [p.x + Math.cos(p.yaw) * lech, p.z - Math.sin(p.yaw) * lech]; };
+      for (let i = 0; i < 26; i++) { const [x, z] = ben(d0 + (i < 13 ? -40 - r() * 50 : 20 + r() * 50), (r() < 0.5 ? -1 : 1) * (8 + r() * 30)); A.push([x, z, yf + (r() - 0.5) * 0.4, r() < 0.6 ? 'quy' : 'ban']); }
+      for (let i = 0; i < 22; i++) { const [x, z] = ben(d0 + 200 + r() * 220, (r() < 0.5 ? -1 : 1) * (6 + r() * 60)); B.push([x, z, yf + Math.PI + (r() - 0.5) * 0.4, r() < 0.5 ? 'ban' : r() < 0.6 ? 'quy' : 'chay']); }
+      KT.rc = giaoTranh({ voice: true, t0: MV.c05_rc - 1, t1: (STORY.scenes.find((c) => c.id === 'C05') || {}).t1 || MV.c05_rc + 25, A, B, sc: KS, chet: 0.3, sau: 60, r: 3000 });
+      const cA = V3(...ben(d0 - 150, -40).flatMap((v, i) => (i ? [0, v] : [v]))), cB = V3(...ben(d0 + 300, 0).flatMap((v, i) => (i ? [0, v] : [v])));
+      KT.camRC = (u) => { const y = hG(cA.x, cA.z); return [V3(cA.x - f.z * 30 * (1 - u), y + 28 + u * 10, cA.z + f.x * 30 * (1 - u)), V3(cB.x, hG(cB.x, cB.z) + 6, cB.z), 42]; }; }
+    // GHIM TÊN (anh Thắng 24/11): tên đường năm 1975 dọc tuyến tiến quân (tools/sa_ban/dia_hinh/tuyen_cot.py › duong.ten_cot), tên khí tài khi máy quay ở gần.
+    for (const [x, y, ten, k] of (INST.duong && INST.duong.ten_cot) || []) { const L = addLabel(ten, x, -y, 'vil duong', { grp: 'muiten', maxDist: 60000, show: () => KT.cot.some((C) => C.vet.visible && C.k === k) || KT.vet6.some((m) => m.visible) }); L.yFn = () => hG(x, -y) + 300; }
+    const ghimXe = (ten, get, dy, xa = 1600) => { const L = addLabel(ten, 0, 0, 'hero ly', { grp: 'hero', maxDist: xa }); L.dyn = get; L.dy = dy; };
+    const dau = (k) => () => { for (const C of KT.cot) for (const X of C.X) if (X.k === k && X.o.visible) return X.o.position; return null; };
+    ghimXe('Xe tăng T-54', dau('TK'), 11); ghimXe('Xe bọc thép K-63', dau('K'), 10); ghimXe('Xe tải chở bộ binh', dau('T'), 10); ghimXe('Pháo M-46 130 mm (kéo)', () => { for (const C of KT.cot) for (const X of C.X) if (X.keo && X.keo.visible) return X.keo.position; return null; }, 9);
+    ghimXe('Pháo M-46 130 mm', () => { for (const T of KT.td) if (T.on && T.S[0]) return V3(T.S[0].x, T.S[0].y, T.S[0].z); return null; }, 12, 2200);
+    for (const D of KT.dons) { const X41 = D.xe.find((X) => /M41/.test(X.ten)), X113 = D.xe.find((X) => /M113/.test(X.ten)), w = (X) => () => X.o.getWorldPosition(V3());
+      if (X41) ghimXe('Xe tăng M41 (đối phương)', w(X41), 10, 1400); if (X113) ghimXe('Xe bọc thép M113 (đối phương)', w(X113), 9, 1400); }
   }
   // 23h 29/4: Quân đoàn 3 nhận nhiệm vụ đánh Bộ Tổng tham mưu
   { const bt = LL(BT[0], BT[1]); C05.ten.push(addLabel('Bộ Tổng tham mưu', bt.x, bt.z, 'hero', { grp: 'muiten', yFn: () => 3000, show: () => C05.mt.visible })); }
@@ -706,7 +870,9 @@ if (TANG === 'noi-do' && MV.c08_tc) {
     C89.co.visible = (on8 && t >= MV.c08_chu) || (t >= S8.t1 && t < S9.t1); if (C89.co.visible) C89.co.scale.setScalar(Math.min(1, (t - MV.c08_chu) / 1.5) || 1); };
 }
 const HERO_PINS = TANG === 'noi-do' ? [['Xe tăng 843', () => (XEX.x843 && XEX.x843.obj.visible ? XEX.x843.obj.position : null)], ['Xe tăng 390', () => (XEX.x390 && XEX.x390.obj.visible ? XEX.x390.obj.position : null)]] : [];
+if (XEX.ghimND) XEX.ghimND();
 for (const [text, get] of HERO_PINS) { const L = addLabel(text, 0, 0, 'hero ly', { grp: 'hero', maxDist: 1200 }); L.dyn = get; L.dy = 3.4; }
+DAN.dat = (t) => { dongXoa(); TRV.count = 0; if ($('ly-nv').checked) for (const f of DAM) f(t, T); TRV.instanceMatrix.needsUpdate = true; if (TRV.instanceColor) TRV.instanceColor.needsUpdate = true; dongXong($('ly-nv').checked); };   // mọi đám đông vẽ chung một lượt
 //@@ s40
 
 function updateLabels() {
@@ -841,7 +1007,7 @@ function amPlan(i, u) {                                                         
     case 'C07': return { ak47: 0.26, xetang: 0.22 };
     case 'C08': return { ak47: 0.26, xetang: t > MV.c08_xt ? 0.3 : 0.08 };
     case 'C09': return { ak47: 0.16, gio: 0.12 };
-    case 'C10': return { xetang: 0.22 + gan * 0.55, ak47: t > MV.c10_m48 && t < MV.c10_htt ? 0.2 : 0 };
+    case 'C10': return { xetang: 0.22 + gan * 0.55, ak47: t > MV.c10_cau && t < MV.c10_hx ? 0.3 : t > MV.c10_tn && t < MV.c10_tn + 6 ? 0.15 : 0 };
     case 'C11': return { xetang: t < MV.c11_thao ? 0.22 + gan * 0.55 : 0.1, reoho: t > MV.c11_keo + 1 ? 0.3 : 0 };
     case 'C12': return { reoho: t > MV.c12_dan - 2 ? 0.45 : 0.2, gio: t > MV.c12_ket ? 0.16 : 0 };
   }
@@ -851,7 +1017,7 @@ function amPlan(i, u) {                                                         
 const AM_LAP = () => [[MV.c01_phao0, MV.c01_phao1, 'daibac', 0.32, 1.1, 1.6], [MV.c03_phao0, MV.c03_phao1, 'daibac', 0.36, 0.9, 1.4], [MV.c05_phao0, MV.c05_phao1, 'daibac', 0.36, 0.9, 1.4],
   [MV.c06_phao, MV.c06_rc + 3, 'no', 0.32, 0.8, 1.2], [MV.c07_tc, MV.c07_chu, 'no', 0.3, 1.2, 2.2], [MV.c08_tc, MV.c08_chu, 'no', 0.26, 1.6, 2.4], [MV.c09_tay, MV.c09_cs, 'no', 0.2, 2.0, 3.0]];
 // tiếng theo đúng câu đọc: [giây voice, tệp, âm lượng]
-const AM_MOC = () => [[MV.c04_bom - 5, 'vut', 0.7], ...Array.from({ length: 8 }, (_, n) => [MV.c04_bom + n * 0.55, 'no', 0.75]), [MV.c10_m48 + 1.6, 'daibac', 0.6], [MV.c10_m48 + 2.1, 'no', 0.55],
+const AM_MOC = () => [[MV.c04_bom - 5, 'vut', 0.7], ...Array.from({ length: 8 }, (_, n) => [MV.c04_bom + n * 0.55, 'no', 0.75]), [MV.c10_m48 + 0.5, 'daibac', 0.5], [MV.c10_m48 + 1.6, 'daibac', 0.6], [MV.c10_m48 + 2.1, 'no', 0.55], [MV.c10_m48 + 4.2, 'daibac', 0.5], [MV.c10_m48 + 4.6, 'no', 0.5], [MV.c10_tn + 0.8, 'daibac', 0.5], [MV.c10_tn + 2.2, 'daibac', 0.6], [MV.c10_tn + 2.6, 'no', 0.6], [MV.c10_tn + 4.2, 'daibac', 0.5], [MV.c10_tn + 4.6, 'no', 0.55],
   [MV.c10_ban + 0.6, 'daibac', 0.85], [MV.c10_ban + 1.1, 'no', 0.9], [MV.c10_ban + 1.3, 'lua', 0.5], [MV.c10_tn + 2, 'daibac', 0.55], [MV.c11_ram, 'no', 0.85], [MV.c11_ram + 0.1, 'lua', 0.35],
   [MV.c11_cham, 'no', 0.95], [MV.c11_cham + 0.15, 'lua', 0.45], [MV.c11_keo - 9, 'dang', 0.35], [MV.c11_keo + 0.5, 'votay', 0.6], [MV.c12_dan + 3, 'coi', 0.25], [MV.c12_dan + 9, 'coi', 0.2], [MV.c12_dan, 'votay', 0.55]];
 async function amLoad() {
@@ -979,9 +1145,8 @@ function update(dt) {
   if (C04.cap) C04.cap(t, dt);                                                          // cảnh C04 Phi đội Quyết Thắng: dùng giây phim gốc
   { const t = tDinh(T);                                                                  // các cảnh vào Dinh viết theo mốc cũ (T02 bắt đầu 40 s) → dời theo story
   xeCapNhat(t);
-  if (XEX.x843) { const o = XEX.x843.obj; if (t < 91.6) XEX.yaw843 = o.rotation.y; else if (t < 93.6 && XEX.yaw843 !== undefined) o.rotation.y = XEX.yaw843; }   // lùi thẳng khỏi cổng phụ
   nvxCapNhat(t, dt);
-  if (DAN.dat) DAN.dat(t);
+  DAN.dat(t);
   if (XEX.coCap) XEX.coCap(t);
   if (XEX.co843) XEX.co843.visible = t < 115;                                         // cờ xe 843 đã được tháo mang lên nóc Dinh
   if (XEX.loe) { const a = t - XEX.tBan, X = XEX.x390.obj, y = X.rotation.y;              // Hàng Xanh: chớp nòng pháo 390, nổ ở M113
@@ -992,10 +1157,10 @@ function update(dt) {
     if (!chay) { for (const sp of C.khoi) sp.visible = false; continue; }
     for (const sp of C.khoi) { sp.visible = true; const u = (sp.userData.k + U.time.value * 0.06) % 1;
     sp.position.set(p.x + u * 6, p.y + 2 + u * 28, p.z - u * 4); sp.scale.setScalar(2.5 + u * 10); sp.material.opacity = 0.45 * (1 - u); } }
-  if (XEX.cong && XEX.cong.phai) {                                                       // 843 húc cổng phụ (84 s): rung rồi oằn, không đổ; 390 húc đổ cổng chính (90 s)
+  if (XEX.cong && XEX.cong.phai) {                                                       // 843 húc đổ cổng phụ (84 s) rồi kẹt lại; 390 húc đổ cổng chính (90 s)
     const rung = t > 84 && t < 86.5 ? 0.08 * Math.sin((t - 84) * 20) * (1 - (t - 84) / 2.5) : 0, k1 = sstep(90, 90.7, t), k2 = sstep(90.45, 91.6, t);
     XEX.cong.trai.rotation.set(-k2 * Math.PI / 2, -1.75 * k1, 0, 'YXZ'); XEX.cong.phai.rotation.set(-k2 * Math.PI / 2, 1.75 * k1, 0, 'YXZ');   // bung vào trong hai bên rồi đổ nằm xuống đất
-    if (XEX.cong.phu) XEX.cong.phu.rotation.x = rung + sstep(84, 84.6, t) * 0.14;
+    if (XEX.cong.phu) XEX.cong.phu.rotation.x = rung + sstep(84, 84.9, t) * 1.25;          // 843 húc đổ cổng phụ, cánh cổng đổ đè dưới xích xe (xe chết máy, kẹt lại)
   }
   }
   { const on = !$('ly-nha') || $('ly-nha').checked, c = camera.position; for (const m of LAYER.nha) m.visible = on && Math.hypot(m.userData.tam.x - c.x, m.userData.tam.z - c.z) < m.userData.xa + Math.max(0, c.y) * 2; }
@@ -1047,7 +1212,7 @@ setAppMode('film');
 update(0); renderer.compile(scene, camera); renderer.render(scene, camera);
 renderList(); connectStore();
 const STILL = location.hash === '#still';
-window.__sa = { DAN, DONG, get NHA() { return XEX.nhaTong; }, get VOX() { return VOX; }, XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
+window.__sa = { scene, THREE, KT, DAN, DONG, get NHA() { return XEX.nhaTong; }, get VOX() { return VOX; }, XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
 function closeLoad() { $('load').classList.add('done'); setTimeout(() => $('load').remove(), 700); }
 if (STILL) { document.body.classList.add('ready'); closeLoad(); }
 else {

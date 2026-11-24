@@ -172,7 +172,7 @@ S = [
        [('C10-A', B['c10'], 'Toàn', 'Đầu cầu Sài Gòn'), ('C10-B', M['c10_cau'], 'Trung', 'Bám xe 843 qua cầu Sài Gòn'), ('C10-C', M['c10_hx'], 'Trung', 'Ngã tư Hàng Xanh: xe 390 bắn cháy M113'),
         ('C10-D', M['c10_tn'], 'Trung', 'Cầu Thị Nghè'), ('C10-E', M['c10_htt'], 'Trung', 'Đường Hồng Thập Tự về Dinh')], ['S18', 'S26', 'S33', 'S36']),
     sc('C11', 'Hồi 11', 'Cổng Dinh Độc Lập', 'trưa 30/4', 'noi-do', B['c11'], B['c12'],
-       [('T02-A', B['c11'], 'Trung', 'Bám sau xe 843'), ('T02-C', M['c11_843'], 'Toàn', 'Cổng Dinh: 843 húc chưa đổ, 390 húc đổ cổng chính'), ('T03-A', M['c11_thao'], 'Trung', 'Bùi Quang Thận rời xe 843, chạy về cổng chính'),
+       [('T02-A', B['c11'], 'Trung', 'Bám sau xe 843'), ('T02-C', M['c11_843'], 'Toàn', 'Cổng Dinh: 843 húc đổ cổng phụ rồi chết máy, kẹt lại; 390 húc đổ cổng chính'), ('T03-A', M['c11_thao'], 'Trung', 'Bùi Quang Thận rời xe 843, chạy về cổng chính'),
         ('T03-A2', M['c11_chay'], 'Trung', 'Băng qua bãi cỏ vào Dinh'), ('T03-B', M['c11_noc'], 'Cận', 'Nóc Dinh: hạ cờ ba sọc, kéo cờ Mặt trận')], ['S32', 'S10', 'S7', 'S8', 'S18', 'S34', 'S37', 'S38', 'S12']),
     sc('C12', 'Hồi 12', 'Non sông liền một dải', 'trưa 30/4/1975', 'noi-do', B['c12'], DAI,
        [('C12-A', B['c12'], 'Toàn', 'Dinh Độc Lập, lá cờ trên nóc'), ('C12-B', M['c12_dan'], 'Trung', 'Người dân Sài Gòn ra đường'), ('C12-C', M['c12_ket'], 'Đại toàn', 'Sài Gòn từ trên cao')], ['S25', 'S32', 'S1']),
