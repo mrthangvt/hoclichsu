@@ -138,12 +138,14 @@ box(-17, 16.4, -77, -27, 15.6, 17.0, 'trang'); box(-13, 12, -70, -30, 17.0, 20.6
 
 # ---------------------------------------------------------------- hàng rào, cổng, chòi gác
 DF = 146.0
+CP = 60.0          # hai cổng phụ hai bên cổng chính (s = ±60 m, phỏng theo ảnh/nguồn "cổng chính và 2 cổng phụ hai bên"; vị trí chính xác chưa đối chiếu)
 for x in np.arange(-104, 104.1, 3.2):
-    if abs(x) < 8.6: continue
+    if abs(x) < 8.6 or abs(abs(x) - CP) < 3.6: continue
     box(x - 0.22, x + 0.22, DF - 0.22, DF + 0.22, 0, 2.3, 'trang')
 for sgn in (-1, 1):
-    a, b = (8.6, 104) if sgn > 0 else (-104, -8.6)
-    box(a, b, DF - 0.15, DF + 0.15, 0, 0.55, 'trang'); box(a, b, DF - 0.04, DF + 0.04, 0.55, 2.0, 'sat'); box(a, b, DF - 0.08, DF + 0.08, 2.0, 2.1, 'sat')
+    for a, b in ([(8.6, CP - 3.6), (CP + 3.6, 104)] if sgn > 0 else [(-CP + 3.6, -8.6), (-104, -CP - 3.6)]):
+        box(a, b, DF - 0.15, DF + 0.15, 0, 0.55, 'trang'); box(a, b, DF - 0.04, DF + 0.04, 0.55, 2.0, 'sat'); box(a, b, DF - 0.08, DF + 0.08, 2.0, 2.1, 'sat')
+    for e in (-3.6, 3.6): box(sgn * CP + e - 0.4, sgn * CP + e + 0.4, DF - 0.4, DF + 0.4, 0, 2.7, 'trang')       # trụ cổng phụ
     box(sgn * 8.0 - 0.5, sgn * 8.0 + 0.5, DF - 0.5, DF + 0.5, 0, 3.0, 'trang')          # trụ cổng
     box(sgn * 12 - 1.5, sgn * 12 + 1.5, DF - 6, DF - 3, 0, 2.8, 'tuong'); box(sgn * 12 - 1.8, sgn * 12 + 1.8, DF - 6.3, DF - 2.7, 2.8, 3.1, 'trang')   # chòi gác
 for x in (-104, 104): box(x - 0.15, x + 0.15, -100, DF, 0, 2.0, 'sat')
@@ -156,6 +158,10 @@ for ten, sgn in (('CongTrai', -1), ('CongPhai', 1)):
     if sgn > 0: T = ([(-x, y, z) for x, y, z in T[0]], [q[::-1] for q in T[1]], T[2])        # cánh phải: từ bản lề +7,5 m vào giữa
     OBJ[ten] = (T, (sgn * 7.5, DF, 0))
 
+for ten, sgn in (('CongPhuDuong', 1), ('CongPhuAm', -1)):                                  # cổng phụ: hai cánh liền một khối, gốc ở giữa chân cổng (để rung/oằn khi bị húc)
+    T = ([], [], []); box(-3.2, 3.2, -0.06, 0.06, 0.1, 0.25, 'sat', T); box(-3.2, 3.2, -0.06, 0.06, 2.05, 2.2, 'sat', T); box(-3.2, 3.2, -0.05, 0.05, 1.1, 1.2, 'sat', T)
+    for k in range(22): xx = -3.1 + k * 0.295; box(xx - 0.04, xx + 0.04, -0.04, 0.04, 0.1, 2.35, 'sat', T)
+    OBJ[ten] = (T, (sgn * CP, DF, 0))
 # ---------------------------------------------------------------- cây (trong khuôn viên và công viên hai bên Lê Duẩn)
 rng = np.random.default_rng(1975)
 def tree(x, y, h):                                                                       # cây nhiệt đới tán tròn rộng (sao, dầu, me…)

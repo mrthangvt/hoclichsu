@@ -132,7 +132,7 @@ Theo yêu cầu anh Thắng: cảnh có người dân thì đưa mẫu người 
 - Mô hình `props/dinh/dinh-doc-lap.glb` (~24 nghìn tam giác, 0,3 MB) dựng bằng hình khối: `tools/sa_ban/dinh/dung_dinh.py`.
 - Số đo: nền nhà chữ T theo đường bao OSM (thân trước 85,6 × ~28 m, thân sau ~32 × 53 m), cao 26 m, bãi cỏ bầu dục đường kính 102 m (S35); mặt tiền nhìn phương vị 42,6°, cổng trên trục Lê Duẩn cách mặt tiền ~146 m (OSM: đường trước rào cách 151 m).
 - Dáng: theo hai ảnh anh Thắng gửi (A1) — rèm hoa đá, ban công giữa, lầu thượng mái bằng, hàng cau sân thượng; hồ tròn có tượng trắng giữa bãi cỏ (ảnh trưa 30/4).
-- Cổng: hai cánh sắt là đối tượng riêng. Phim: 843 tới cổng 1:24, húc cánh phải, cổng rung nhưng chưa đổ (S33); 390 húc đổ cổng chính 1:30 (S34), vào sân vòng qua hồ; 843 vào sau. Cảnh cuối nhìn từ sân thượng Dinh ra cổng (góc ảnh tư liệu).
+- Cổng: cổng chính hai cánh + hai cổng phụ (s = ±60 m, vị trí phỏng chừng — nguồn ghi "cổng chính và 2 cổng phụ hai bên"), đều là đối tượng riêng. **Sửa 24/11 theo bảng mốc §2 (S7, S8, S18):** 843 rẽ trái theo đường trước rào, húc cổng phụ bên trái lúc 1:24, cổng oằn nhưng không đổ, xe kẹt lại; 390 húc đổ cổng chính 1:30 (S34), vào sân vòng qua hồ. Bùi Quang Thận rời 843 ở cổng phụ, chạy dọc rào vào cổng chính. Cảnh cuối nhìn từ sân thượng Dinh ra cổng (góc ảnh tư liệu).
 - Chưa có: cờ trên nóc, nội thất, công viên 30/4 chi tiết; số ô cửa, cây là giản lược. Thời điểm chính xác từng xe tới cổng sẽ chốt ở GĐ5.
 
 ## 10. Mẫu mới đã nướng (24/11/2026, chiều)

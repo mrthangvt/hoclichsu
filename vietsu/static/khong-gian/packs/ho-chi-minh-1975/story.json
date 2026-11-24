@@ -61,8 +61,18 @@
     ],
     [
      70.5,
-     99.0,
+     83.0,
      "Tái dựng mô phỏng."
+    ],
+    [
+     83.5,
+     89.5,
+     "Xe 843 húc cổng phụ bên trái và bị kẹt lại."
+    ],
+    [
+     90.0,
+     99.0,
+     "Xe 390 húc đổ cổng chính, tiến vào sân Dinh."
     ]
    ],
    "shots": [
@@ -99,13 +109,20 @@
     {
      "id": "T03-A",
      "t0": 115.0,
-     "t1": 127.0,
+     "t1": 122.5,
      "size": "Trung",
-     "desc": "Bùi Quang Thận rời xe 843, chạy vào Dinh"
+     "desc": "Bùi Quang Thận rời xe 843 ở cổng phụ, chạy về cổng chính"
+    },
+    {
+     "id": "T03-A2",
+     "t0": 122.5,
+     "t1": 129.0,
+     "size": "Trung",
+     "desc": "Băng qua bãi cỏ vào Dinh"
     },
     {
      "id": "T03-B",
-     "t0": 127.0,
+     "t0": 129.0,
      "t1": 150.0,
      "size": "Cận",
      "desc": "Nóc Dinh: hạ cờ ba sọc, kéo cờ Mặt trận"
