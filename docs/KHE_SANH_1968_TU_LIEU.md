@@ -1,7 +1,7 @@
 # Sa bàn Chiến dịch Đường 9 – Khe Sanh 1968 — tư liệu, kịch bản nháp, tài sản
 
 Gói: `vietsu/static/khong-gian/packs/khe-sanh-1968/` · bộ máy 2.2.0 · nhánh `claude/sa-ban-khe-sanh-1968`.
-Trạng thái (25/11/2026, 1h): **GĐ0, GĐ1 xong** (anh duyệt) · kịch bản 11 hồi, cờ, PT-76 số 555, lính Mỹ thêm áo giáp (chờ gắn xương) · **GĐ2 đang làm**: dữ liệu đã tải, chờ chuyển tệp (mục 9). PR #55.
+Trạng thái (25/11/2026, 1h10): **GĐ0, GĐ1 xong** (anh duyệt) · kịch bản 11 hồi, cờ, PT-76 số 555, lính Mỹ thêm áo giáp (chờ gắn xương) · **GĐ2 xong, GĐ3 khung xong** (mục 9) · PR #55 · artifact xem trước https://claude.ai/artifact/DpNoFM5hMMrQPfE4quu1gA.
 **Anh Thắng chốt (25/11/2026, 0h29):** 11 hồi (phương án B, ~13,5 phút) · sửa lời dẫn theo mục 3 · cờ Quân Giải phóng là **cờ đỏ sao vàng** (`props/co-qgp.png`), cờ Mỹ 50 sao (`props/co-my.png`) · em sửa mẫu lính Mỹ, PT-76 trong Blender; **anh tự làm B-52D** · em được chạy lệnh trên máy anh để lấy OSM, độ cao. Địa hình anh chưa chọn → làm theo đề xuất hai tầng (mục 5). Kịch bản 11 hồi: `story.json`, dựng bằng `vietsu/tools/sa_ban/voice/nhap_story_khe_sanh.py` (thời lượng ước theo số chữ, 824 s).
 Nhãn bắt buộc: "Tái dựng mô phỏng". Mã nguồn `S…` (Việt Nam), `M…` (Mỹ) ở `sources.json`. Không đưa con số nào không có nguồn.
 
@@ -167,10 +167,17 @@ Mọi mẫu mới dựng trong Blender trên máy anh (MCP for Blender), không 
 7. Mẫu mới: em sửa ba mẫu Tripo của anh (lính Mỹ thêm áo giáp, PT-76 số hiệu, B-52 sơn lại thành B-52D) hay anh làm lại trên Tripo? Ưu tiên mục 7.3 có đúng ý anh?
 8. Lấy OSM, DEM qua máy anh cho GĐ2 (cần chạy `curl` trên máy anh).
 
-## 9. GĐ2 địa hình (25/11/2026, đang làm)
-- Dữ liệu lấy qua Chrome trên máy anh (máy chủ Claude và shell máy anh không ra được mạng tới OSM, DEM): `khe-sanh-1968_dem.json` (Terrarium: tầng chiến dịch z12, 9×8 ô; tầng Tà Cơn z14, 10×10 ô) và `khe-sanh-1968_osm.json` (Overpass: chiến dịch 1.208 phần tử — đường lớn, sông, làng, điểm cao, di tích; Tà Cơn 2.356 phần tử — mọi đường, suối, đất, rừng). Chrome tải về Downloads; **chờ anh chuyển vào `ChienDichKheSanh1968/`** (em không được cấp quyền vào Downloads).
-- Khung: tầng chiến dịch tâm 16,70 B, 106,82 Đ, R 33 km (gồm Đông Hà, Cam Lộ, Rockpile, Cà Lu, Co Roc, Bản Huội San); tầng Tà Cơn tâm 16,645 B, 106,69 Đ, R 10 km (căn cứ, 881 Nam/Bắc, 861, 558, làng Khe Sanh, Làng Vây), lưới 1024 (66 m và 20 m mỗi ô).
-- Công cụ: `vietsu/tools/sa_ban/dia_hinh/dung_dia_hinh_ks.py <dem.json> <osm.json> <gói>` — lọc sơ bộ theo 1968: bỏ hồ chứa (thuỷ điện Rào Quán…) và lấp lại lòng hồ (phỏng dựng), bỏ đường Hồ Chí Minh, cao tốc; sông suối vùng núi chỉ tô màu, đánh dấu kênh nước (không hạ xuống mặt nước chung).
+## 9. GĐ2 địa hình, GĐ3 khung (25/11/2026)
+- **Dữ liệu** lấy qua Chrome trên máy anh (máy chủ Claude và shell máy anh không ra được mạng tới OSM, DEM), chuyển vào `ChienDichKheSanh1968/` (không đưa lên repo): `khe-sanh-1968_dem.json` (Terrarium: tầng chiến dịch z12, 9×8 ô; tầng Tà Cơn z14, 10×10 ô), `khe-sanh-1968_osm.json` (Overpass: chiến dịch 1.208 phần tử — đường lớn, sông, làng, điểm cao, di tích; Tà Cơn 2.356 phần tử — mọi đường, suối, đất, rừng).
+- **Hai tầng** (`terrain/`, `terrain/ta-con/`), dựng bằng `vietsu/tools/sa_ban/dia_hinh/dung_dia_hinh_ks.py`:
+  - chiến dịch: tâm 16,70 B, 106,82 Đ, R 33 km, lưới 1024 (66 m/ô), độ cao 0,6–1.678 m, phóng đại ×2; gồm Đông Hà, Trại Carroll, Rockpile, Tà Cơn, Làng Vây, Bản Huội San, Co Roc.
+  - Tà Cơn: tâm 16,645 B, 106,69 Đ, R 10 km, lưới 1024 (20 m/ô), độ cao 55–1.198 m, ×1; gồm căn cứ, 881 Bắc/Nam, 861, 861A, 558, 950, làng Khe Sanh, Cu Bốc, Làng Vây, Co Roc.
+  - Lọc 1968 (sơ bộ, theo tên): bỏ hồ chứa (Rào Quán 6,9 km², La Ngà, Trúc Kinh, Hà Thượng, Kinh Môn, Triệu Ái, các hồ thuỷ điện Đakrông…) và lấp lại lòng hồ bằng nội suy từ bờ, hạ lòng suối cũ 4 m — **phỏng dựng**; bỏ 64 đoạn đường Hồ Chí Minh, cao tốc. Sông suối vùng núi chỉ tô màu và đánh dấu kênh nước. Màu đất là MINH HOẠ.
+- **Mốc** (`rieng.js › MOC`): căn cứ Tà Cơn, làng Khe Sanh, Cu Bốc, Làng Vây, Rockpile, Trại Carroll theo OSM; 881 Nam/Bắc (M27), 950 (M28), Bản Huội San (M29); 861, 861A, 558 theo lưới bản đồ quân sự (M30), khớp mô tả của Shore 1969 và Ringed by Fire; **Co Roc còn ước lượng** (~13 km tây nam căn cứ, M12).
+- **GĐ3 khung `rieng.js`**: dựng từ bản HCM V1.9 bằng `vietsu/tools/sa_ban/khe_sanh/rieng_tu_hcm.py` — tắt toàn bộ biên đạo Sài Gòn (cờ `HCM = false`), giữ các hàm dùng lại (giao tranh, ụ nấp, đồn, trận địa pháo, đạn vạch, bụi xe, chữ ngày giờ, `__kiem`); thay mốc, góc nhìn, nút đổi tầng, chỗ đứng xem; chữ ngày giờ theo từng hồi; **máy quay tạm** xoay quanh mốc chính của hồi theo cỡ cảnh (đại toàn / toàn / trung / cận) — chỉnh từng cú máy ở GĐ4.
+- **Kiểm tra:** `quet_phim.py khe-sanh-1968 chien-dich` 702 mốc, `ta-con` 946 mốc: `out = []`, `slow = []`. `kiem_tra_goi.py`: tải lần đầu 2,9 MB, tải sau 14,6 MB.
+- **Artifact xem trước (mới, không ghi đè HCM):** https://claude.ai/artifact/DpNoFM5hMMrQPfE4quu1gA (slug `67cb0de1-0c9a-4892-b8dd-0c5a2ac1af7f`). Đóng gói: `python3 vietsu/tools/sa_ban/dong_goi_artifact_2.py khe-sanh-1968 <thư mục>` rồi `publish_files` vào slug đó.
+- **Còn hạn chế:** đường, làng là OSM hôm nay (Đường 9 năm 1968 cần đối chiếu ảnh 1968, bản đồ 1:50 000); ảnh màu tầng chiến dịch mờ khi máy xuống thấp (2.048 điểm ảnh cho 68 km); chưa có căn cứ, đường băng, quân, xe (GĐ4).
 
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.

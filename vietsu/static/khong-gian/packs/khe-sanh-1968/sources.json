@@ -347,6 +347,38 @@
    "used_for": "kích thước để đặt tỉ lệ mẫu: thân dài 6,91 m, rộng 3,14–3,15 m, cao 2,255–2,325 m (https://www.inetres.com/gp/military/cv/tank/PT-76.html)"
   },
   {
+   "id": "M27",
+   "title": "The Hill Fights",
+   "type": "bách khoa (Wikipedia, dẫn Telfer và cộng sự, USMC)",
+   "url": "https://en.wikipedia.org/wiki/The_Hill_Fights",
+   "license": "CC BY-SA",
+   "used_for": "toạ độ điểm cao 881 Nam (16,67167 B; 106,66256 Đ), 881 Bắc (16°41′26,5″B; 106°39′34,5″Đ)"
+  },
+  {
+   "id": "M28",
+   "title": "Hill 950",
+   "type": "bách khoa (Wikipedia)",
+   "url": "https://en.wikipedia.org/wiki/Hill_950",
+   "license": "CC BY-SA",
+   "used_for": "toạ độ điểm cao 950 (16,6885 B; 106,725 Đ)"
+  },
+  {
+   "id": "M29",
+   "title": "Battle of Ban Houei Sane",
+   "type": "bách khoa (Wikipedia)",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Ban_Houei_Sane",
+   "license": "CC BY-SA",
+   "used_for": "toạ độ Bản Huội San (16,611 B; 106,538 Đ)"
+  },
+  {
+   "id": "M30",
+   "title": "Map of Khe Sanh Area (ảnh bản đồ kèm chú thích lưới toạ độ quân sự)",
+   "type": "bản đồ (ảnh lưu trữ, Flickr)",
+   "url": "https://www.flickr.com/photos/13476480@N07/27595074031",
+   "license": "trích dẫn",
+   "used_for": "lưới XD: căn cứ 841-419, điểm cao 861 803-443, 861A 806-445, 558 820-451 → vị trí tương đối; khớp với mô tả trong Shore 1969 (861 cách đường băng ~5 km về tây bắc) và Ringed by Fire (558 cách căn cứ 4 km bắc tây bắc)"
+  },
+  {
    "id": "OSM",
    "title": "OpenStreetMap",
    "type": "OSM",
