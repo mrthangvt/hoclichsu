@@ -91,6 +91,46 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   XEX.lai390 = await nvxTao('models/linh-tang.glb', tren(XEX.x390, 1.35, 0.4), { ten: 'Trưởng xe 390' });
   for (const X of [XEX.x843, XEX.x390]) LAYER.xe.push(X.obj);
 }
+// NGƯỜI DÂN (mẫu người dân Nam bộ của sa bàn Rạch Gầm – Xoài Mút: áo bà ba, nón lá, khăn rằn; ba biến thể, .nvz dùng chung bộ máy 2.2).
+// Trưa 30/4 người dân đổ ra đường đón quân giải phóng (S32). Dọc lộ trình: người đứng hai bên vỉa hè, một số đi bộ; trước cổng Dinh:
+// dân kéo tới tụ lại sau khi xe tăng vào (từ 1:30 phim). Vị trí, số người là TÁI DỰNG MINH HOẠ, không theo ảnh từng điểm.
+const DAN = [];
+if (TANG === 'noi-do' && DUONG_DINH.length) {
+  const TINT = [[1, 1, 1], [0.85, 0.82, 0.78], [0.72, 0.7, 0.66], [0.95, 0.9, 0.82]];
+  Promise.all([1, 2, 3].map((k) => dongTai('dan' + k, 'models/dan-nam-bo-' + k + '.nvz', 'models/dan-nam-bo-' + k + '.jpg', TINT, 500)))
+    .catch((e) => console.warn('người dân', e));
+  const D = duong(DUONG_DINH), L0 = D.L, rnd = (() => { let a = 1975; return () => (a = (a * 16807) % 2147483647) / 2147483647; })();
+  const ben = (d, lech) => { const p = diemTren(D, d); return { x: p.x + Math.cos(p.yaw) * lech, z: p.z - Math.sin(p.yaw) * lech, yaw: p.yaw }; };   // lệch sang phải (+) / trái (−) theo hướng xe
+  for (let d = 40; d < L0 - 140; d += 9 + rnd() * 14) for (const s of [-1, 1]) {        // hai bên đường, mỗi 9–23 m một người
+    if (rnd() < 0.35) continue;
+    const lech = s * (11 + rnd() * 5), di = rnd() < 0.2;
+    DAN.push({ k: 1 + (DAN.length % 3), d, lech, di, v: (rnd() < 0.5 ? 1 : -1) * (1 + rnd() * 0.4), ph: rnd(), vi: DAN.length, t0: 40 + rnd() * 6, quay: s });
+  }
+  const G = diemTren(D, L0 - 95);                                                     // trước cổng Dinh (ngoài cổng, phía công viên)
+  for (let i = 0; i < 160; i++) {
+    const r = 10 + rnd() * 60, lat = (rnd() < 0.5 ? -1 : 1) * (13 + rnd() * 35);      // hai bên đường trước cổng, chừa lòng đường cho xe 390 vào sau
+    const sy = Math.sin(G.yaw), cy = Math.cos(G.yaw);
+    DAN.push({ k: 1 + (i % 3), cong: true, x: G.x - sy * r + cy * lat, z: G.z - cy * r - sy * lat, ph: rnd(), vi: i, t0: 90 + rnd() * 6, buoc: 4 + rnd() * 8 });
+  }
+  DAN.dat = (t) => {
+    dongXoa(); if (!$('ly-nv').checked) return dongXong(false);
+    for (const N of DAN) {
+      if (t < N.t0) continue;
+      if (N.cong) {                                                                       // đi về phía cổng rồi đứng lại
+        const u = Math.min(1, (t - N.t0) / 9);
+        const dx = G.x - N.x, dz = G.z - N.z, l = Math.hypot(dx, dz) || 1, w = Math.min(N.buoc, l - 6) * u;
+        const px = N.x + dx / l * w, pz = N.z + dz / l * w;
+        dongDat('dan' + N.k, u < 1 ? 'di' : (N.vi % 4 ? 'dung' : 'dung2'), t, N.ph, px, hG(px, pz) + 0.1, pz, Math.atan2(dx, dz), 1.08, N.vi);
+        continue;
+      }
+      let d = N.d, clip = N.vi % 5 ? 'dung' : 'dung2';
+      if (N.di) { d = N.d + ((N.v * (t - 40)) % 40 + 40) % 40 - 20; clip = 'di'; }
+      const p = ben(d, N.lech), yaw = N.di ? p.yaw + (N.v > 0 ? 0 : Math.PI) : p.yaw + N.quay * Math.PI / 2;   // người đứng quay mặt ra đường
+      dongDat('dan' + N.k, clip, t, N.ph, p.x, hG(p.x, p.z) + 0.1, p.z, yaw, 1.08, N.vi);
+    }
+    dongXong(true);
+  };
+}
 //@@ s23
 const ARROW_N = 1;
 function updateSmoke() {}
@@ -338,6 +378,7 @@ function update(dt) {
   applySky(t, appMode === 'explore' ? forcedSky : '');
   scene.fog.density /= 1 + Math.max(0, camera.position.y - R * 0.2) / (R * 0.3);
   xeCapNhat(t); nvxCapNhat(t, dt);
+  if (DAN.dat) DAN.dat(t);
   const xeOn = $('ly-nv').checked; for (const m of LAYER.xe) m.visible = m.visible && xeOn; for (const N of NVX) N.obj.visible = N.obj.visible && xeOn;
   const arrOn = $('ly-arr').checked && $('ly-muiten').checked, ex = appMode === 'explore';
   for (const M of MUITEN) { const t0 = 8 + M.k * 5; const on = arrOn && (ex || t >= t0); muiTenDat(M.m, on, ex ? 1 : sstep(t0, t0 + 8, t)); }
@@ -380,7 +421,7 @@ setAppMode('film');
 update(0); renderer.compile(scene, camera); renderer.render(scene, camera);
 renderList(); connectStore();
 const STILL = location.hash === '#still';
-window.__sa = { XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
+window.__sa = { DAN, DONG, XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
 function closeLoad() { $('load').classList.add('done'); setTimeout(() => $('load').remove(), 700); }
 if (STILL) { document.body.classList.add('ready'); closeLoad(); }
 else {

@@ -290,6 +290,22 @@
    "url": "https://www.openstreetmap.org",
    "license": "© OpenStreetMap contributors (ODbL)",
    "used_for": "sông, kênh, mặt nước, đường, thị trấn — lọc theo 1975: bỏ hồ Trị An, Sông Ray, Đá Đen; bỏ cao tốc và đường, cầu, hầm làm sau 1975 theo tên (sơ bộ)"
+  },
+  {
+   "id": "S32",
+   "title": "Báo Quốc tế: Cận cảnh hai chiếc xe tăng húc đổ cổng Dinh Độc Lập",
+   "type": "báo chí",
+   "url": "https://baoquocte.vn/can-canh-hai-chiec-xe-tang-huc-do-cong-dinh-doc-lap-48403.html",
+   "license": "trích dẫn",
+   "used_for": "người dân đổ ra đường trưa 30/4/1975 — căn cứ đưa người dân vào cảnh nội đô (vị trí, số người là tái dựng minh hoạ)"
+  },
+  {
+   "id": "M2",
+   "title": "Mẫu người dân Nam bộ (3 biến thể) — sa bàn Rạch Gầm – Xoài Mút 1785",
+   "type": "mô hình",
+   "url": "packs/rach-gam-xoai-mut/units/dan*.nvz",
+   "license": "dự án Việt Sử",
+   "used_for": "người dân dọc lộ trình xe tăng và trước cổng Dinh; trang phục áo bà ba, nón lá — giản lược, chưa phân biệt trang phục đô thị 1975"
   }
  ]
 }

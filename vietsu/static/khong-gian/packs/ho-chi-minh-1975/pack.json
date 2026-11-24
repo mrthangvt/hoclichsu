@@ -102,7 +102,10 @@
   "props/xe/*.glb",
   "terrain/noi-do/*",
   "units/*.glb",
-  "units/*.nvz"
+  "units/*.nvz",
+  "units/*.jpg",
+  "props/phao/*.glb",
+  "props/may-bay/*.glb"
  ],
  "terrain": {
   "data": "terrain/meta.json",

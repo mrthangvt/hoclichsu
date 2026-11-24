@@ -5,7 +5,10 @@
   Có `[số hiệu]`: xoá chữ trắng máy sinh trong ảnh màu (cv2.inpaint) rồi dán số hiệu thật hai bên tháp pháo, bám mặt cong (Shrinkwrap), đặt liền sau phù hiệu tròn.
   Xe tải: xoá chữ vô nghĩa và lốp viền trắng. Đầu xe tải đoán sai thì chạy lại với `LAT=1`.
   Sau đó: `gltf-transform meshopt <ra>.raw.glb packs/<gói>/props/xe/<tên>.glb`.
+- `bake_vat.py <fbx> <ra.raw.glb> dai|rong|cao <số đo m> <số tam giác>` — vật dụng không phải xe (pháo, máy bay, trực thăng): đo theo một cạnh, `XOAY=<độ>` xoay mũi về −Y, `XOA_TRANG=1` xoá chữ / phù hiệu trắng máy sinh.
 - `chup.py`, `chup_can.py` — ảnh 3 góc / cận hai bên (Cycles CPU) để duyệt.
 - `bang_dt.py <glb có xương> <thư mục>` — bảng soát động tác (mỗi clip 3 thời điểm).
 
 Đã làm (HCM 1975): xe tăng 390 (T-59), 843 (T-54B) — thân 6,04 m; xe tải 6,7 m (ước lượng).
+
+Đã làm (24/11): pháo cao xạ 37 mm hai nòng (Type 65) — rộng 1,80 m theo weaponsystems.net; trực thăng UH-1 — thân 12,77 m, đã xoá chữ ARMY và sao Mỹ máy sinh.
