@@ -93,6 +93,13 @@ for z in (1.0, 4.4, 7.8): mat(T, -2.6, 2.6, -0.05, z, z + 1.9, 'kinh')
 T = bat('XaPho'); vo(T, -2.5, 2.5, 0, 14, 0, 7.0, 'tuong2'); mat(T, -2.2, 2.2, -0.05, 0.2, 2.6, 'xanh'); mat(T, -1.6, 1.6, -0.05, 4.0, 6.2, 'kinh')
 V, F, C = T; b = len(V); V += [(-2.5, -1.0, 3.5), (2.5, -1.0, 3.5), (2.5, 0, 3.5), (-2.5, 0, 3.5)]; F.append([b, b + 1, b + 2, b + 3]); C.append(COL['tran'])
 T = bat('XaBietThu'); vo(T, -6, 6, 0, 11, 0, 7.0, 'tran'); hip(T, -6.6, 6.6, -0.6, 11.6, 7.0, 2.8, 'ngoi'); vo(T, -2, 2, -2.5, 0, 0, 3.2, 'tran')
+# ---- KHỐI NHÀ BỘ TỔNG THAM MƯU (minh hoạ, chưa có ảnh tư liệu): khối dài 2 tầng, khối chính 3 tầng, mái bằng, dải cửa kính
+T = bat('KhoiDai'); vo(T, -20, 20, 0, 12, 0, 7.2, 'tuong2')
+for z in (0.8, 4.2): mat(T, -19, 19, -0.05, z, z + 2.0, 'kinh')
+vo(T, -20.5, 20.5, -0.5, 12.5, 7.2, 7.6, 'tran')
+T = bat('KhoiChinh'); vo(T, -35, 35, 0, 18, 0, 11.0, 'tuong')
+for z in (0.8, 4.3, 7.8): mat(T, -33, 33, -0.05, z, z + 2.2, 'kinh')
+vo(T, -36, 36, -1.0, 19, 11.0, 11.5, 'tran'); vo(T, -6, 6, -4, 0, 0, 4.5, 'tran')
 # ---- NHÀ LÁ VEN KÊNH (theo ảnh kênh Hàng Bàng – Chợ Lớn trước 1975 anh gửi): sàn gỗ trên cọc, vách lá, mái lá.
 # Gốc: mép bờ; −y (mặt trước) chìa ra sông; z = 0 là mặt sàn (đặt sàn cao hơn bờ ~0,5 m); cọc xuống tới z = −3,5.
 def coc(T, xs, ys, z0=-3.5):

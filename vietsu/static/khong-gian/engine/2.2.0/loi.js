@@ -896,7 +896,11 @@ const AM_ONE = ['tauchim', 'daroi', 'cung', 'muiten', 'chem'];
 function amShot(n, vol) { const b = AM.buf[n]; if (!b || !AM.ready || !AM.on) return; const s = AM.ctx.createBufferSource(); s.buffer = b; s.playbackRate.value = 0.94 + Math.random() * 0.12; const g = AM.ctx.createGain(); g.gain.value = vol; s.connect(g).connect(AM.sfx); s.start(); }
 function amEnable(on) {
   AM.on = on;
-  if (on && !AM.ctx) { AM.ctx = new (window.AudioContext || window.webkitAudioContext)(); AM.out = AM.ctx.createGain(); AM.out.gain.value = 0.9; AM.out.connect(AM.ctx.destination); AM.sfx = AM.ctx.createGain(); AM.sfx.connect(AM.out); MU.init(); amLoad(); }
+  if (on && !AM.ctx) {
+    const S = window.__amChung ? window.__amChung() : null;                                  // 2.2: âm thanh dùng chung với trang khung ngoài (Artifact) → chạy liền khi đổi tầng
+    if (S) { AM.ctx = S.ctx; AM.out = S.out; AM.sfx = S.sfx; AM.buf = S.buf; AM.beds = S.beds; }
+    else { AM.ctx = new (window.AudioContext || window.webkitAudioContext)(); AM.out = AM.ctx.createGain(); AM.out.gain.value = 0.9; AM.out.connect(AM.ctx.destination); AM.sfx = AM.ctx.createGain(); AM.sfx.connect(AM.out); }
+    MU.init(); amLoad(); }
   if (AM.ctx) { if (on) AM.ctx.resume(); else AM.ctx.suspend(); }
   const b = $('bsnd'); b.classList.toggle('on', on); b.classList.remove('hint'); b.textContent = on ? '🔊 Âm thanh' : '🔇 Âm thanh';
 }

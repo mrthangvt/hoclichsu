@@ -143,7 +143,7 @@ for s in [-37, -31, -26, -21, -15, 15, 21, 26, 31, 37]:                         
 box(-15, 15, -20, -6, 21.4, 24.6, 'kinh')                                                # lầu thượng: kính + cột trắng
 for s in np.linspace(-15, 15, 9): box(s - 0.3, s + 0.3, -6.3, -5.7, 21.4, 24.6, 'trang')
 box(-19.5, 19.5, -23.5, -2.5, 24.6, 26.0, 'trang')                                       # mái bằng đua rộng — đỉnh 26 m
-for s in (-1.6, 0, 1.6): cyl(s, -4.0, 26.0, 33.0, 0.07, 'sat', 5)                         # cột cờ
+for s in (0,): cyl(s, -4.0, 26.0, 33.0, 0.07, "sat", 5)                                # cột cờ: một cột (anh Thắng 24/11)
 # thân sau (nối chữ T)
 box(-16.4, 15.8, -76.5, -27.5, 1.2, 15.6, 'tuong')
 for z in (7.8, 12.6):
