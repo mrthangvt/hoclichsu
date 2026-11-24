@@ -46,6 +46,17 @@
       "url": "engine/2.1.0/sa-ban.html?goi=nhu-nguyet-1077",
       "status": "thu-nghiem",
       "replaces": "artifact 3b92f7b7-e318-4ede-a7c0-8f0ff3c3ab7f"
+    },
+    {
+      "id": "ho-chi-minh-1975",
+      "version": "1.0.0",
+      "kind": "battle",
+      "title": "Chiến dịch Hồ Chí Minh 1975",
+      "period": "vndcch",
+      "year": 1975,
+      "url": "engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975",
+      "status": "thu-nghiem",
+      "replaces": "artifact 3f0937ee-310c-4b6d-b6ca-02cd9b831993"
     }
   ]
 }

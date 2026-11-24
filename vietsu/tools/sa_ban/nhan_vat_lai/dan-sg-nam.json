@@ -1,0 +1,58 @@
+{
+ "cao": 1.66,
+ "tam_giac": 7000,
+ "anh": 1024,
+ "fps": 30,
+ "buoc": 2,
+ "kho": "/mnt/user-data/uploads/_KHO-CHUNG",
+ "nguon_rig": "nhan-vat/LinhTaySon/LinhTaySon.blend",
+ "ten": "dan-sg-nam",
+ "fbx": "/mnt/user-data/uploads/nhan-vat--_moi/Waving.fbx",
+ "sua_chan": true,
+ "ghi_chu": "Người dân Sài Gòn 1975 — nam sơ mi quần tây (Tripo + Mixamo, anh Thắng 24/11).",
+ "clip": [
+  [
+   "dung",
+   "DT_Standing_Idle_03",
+   1,
+   121,
+   "lap"
+  ],
+  [
+   "di",
+   "DT_Standard_Walk",
+   1,
+   36,
+   "lap"
+  ],
+  [
+   "vay",
+   "fbx:/mnt/user-data/uploads/nhan-vat--_moi/Waving (1).fbx",
+   1,
+   96,
+   "lap"
+  ],
+  [
+   "vay2",
+   "fbx:/mnt/user-data/uploads/nhan-vat--_moi/Waving (2).fbx",
+   1,
+   143,
+   "lap"
+  ],
+  [
+   "vota",
+   "fbx:/mnt/user-data/uploads/nhan-vat--_moi/Clapping.fbx",
+   1,
+   36,
+   "lap"
+  ],
+  [
+   "vay3",
+   "@rieng",
+   1,
+   17,
+   "lap"
+  ]
+ ],
+ "ra": "/home/claude/xe/out/dan-sg-nam.raw.glb"
+}
