@@ -239,3 +239,15 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
   4. **C02:** voice đọc "từ phía Tây, Quân đoàn 3"; lời dẫn V0 và S2, S5 ghi hướng **Tây Bắc**.
   5. **C07:** cụm "theo diễn biến được ghi nhận trong kịch bản chiến dịch" nghe như lời ghi chú, anh cân nhắc bỏ.
   6. Còn để ngỏ như trước: Trung đoàn 48 thuộc sư đoàn nào (C08) và trung đoàn đánh Tổng nha (C09).
+
+## 19. Máy quay bám lời dẫn, thẻ hồi, sửa lỗi Hồi 4 (24/11/2026, chiều tối)
+- **Lỗi Hồi 4 trên Artifact:** khi chuyển tầng, giây phim bị làm tròn (`toFixed(1)`) nên rơi về cuối Hồi 3. Trang mới lại tự chuyển ngược về tầng chiến dịch rồi đứng ở màn "Xem phim". Đã sửa bằng hai cách: giây ghi 2 chữ số thập phân, và đặt giây bằng max(t, đầu cảnh mới + 0,05).
+- **Bản Artifact:** dùng trang khung ngoài (`index.html`) giữ thẻ voice, sa bàn nằm trong iframe `app.html#tang=…&t=…`. Khi đổi tầng chỉ thay iframe, trang ngoài không tải lại, nên voice chạy liền. Thêm `#chan-doan` vào địa chỉ artifact để hiện nhịp chạy và lỗi trên màn hình.
+- **Thẻ hồi:** đầu mỗi hồi hiện "HỒI n" và tên hồi giữa màn hình (`story.the`). Tiêu đề hồi không còn hiện thành phụ đề. Tên cảnh đổi thành "Hồi n · …".
+- **Máy quay theo lời dẫn** (tầng chiến dịch; mẫu xe, pháo phóng to ×3 kiểu quân cờ):
+  - Câu nói về **đối phương** → máy bay vòng cung quanh **đồn lũy** (minh hoạ), gồm bờ đất, rào, lô cốt, tháp canh, cờ ba sọc, M41, M113. Có ở Xuân Lộc, Long Thành, Đồng Dù.
+  - Câu nói về **Quân Giải phóng** → máy lướt sát trên **đoàn quân** (K-63, xe tải, xe kéo pháo M-46, cắm cờ Mặt trận) đang chạy về Sài Gòn. Có ở hồi 1, 2, 3, 5, 6.
+  - Câu nói về **pháo** → trung cảnh **trận địa 4 khẩu M-46** có chớp lửa đầu nòng và khói. Có ở Xuân Lộc, Long Thành, Đồng Dù, và trận pháo cối 7h15 hồi 6.
+  - Vị trí đồn, trận địa và đội hình xe đều là minh hoạ.
+- **Vòng tròn bung tỏa:** đưa lên cao 450 m và vẽ không bị núi che; tự ẩn khi máy quay xuống thấp. Thêm vòng tròn ở Sài Gòn khi các cánh quân áp sát (cuối hồi 2, cuối hồi 3, hồi 6).
+- **Đầu mũi tên:** phần ống dừng sau đỉnh mũi, không thò ra trước đầu mũi (bộ máy 2.2, `muiTenDat`).
