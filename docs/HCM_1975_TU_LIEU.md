@@ -331,3 +331,11 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
   2. Mắt bộ binh ngồi trên xe 390.
   3. Phía sau nhìn đoàn xe qua cầu.
 - **Đầu voice:** cắt 2,62 s tạp âm trước khi cất lời. Voice còn 16:02, các mốc dời theo.
+
+## 23. Sửa V1.3 (24/11 tối, góp ý 20:56)
+- **Hồi 10 đứng hình (lần 2):** máy em không có card đồ hoạ nên không tái hiện được, và không có lỗi chạy nào. Nguyên nhân nhiều khả năng nhất: các vật ẩn tới cảnh sau (đám đông, xe, đạn vạch) chỉ được dựng chương trình đồ hoạ và nạp ảnh màu lên card khi hiện lần đầu. Trên Windows mỗi lần như vậy tốn hàng trăm ms, mà Hồi 10 có nhiều thứ cùng hiện.
+  - Đã sửa: lúc tải sa bàn, chờ nạp xong đám đông (tối đa 20 s), cho hiện tạm mọi vật để dựng sẵn mọi chương trình đồ hoạ, nạp sẵn mọi ảnh màu, rồi mới vào phim.
+- **Góc nhìn trên xe:** bộ binh đứng trên thùng xe tải ở giữa đoàn (sau cabin), nhìn thấy cả đoàn xe phía trước qua cầu Thị Nghè. Trước đây máy đặt trên xe 390 nên đoàn xe ở phía sau, không nhìn thấy.
+- **Bản đồ toàn cảnh bị nháy:** các ô nhà bật tắt theo khoảng cách nay có độ trễ, không bật tắt liên tục khi máy quay ở sát ngưỡng.
+- **Bộ binh nhìn gần bị thủng:** tăng lưới lính ta lên 4.668 tam giác (trước 2.168), lính đối phương lên 4.708; bớt khung hình để tệp không tăng nhiều.
+- **Nhà:** giảm tiếp một nửa (nhà xa giữ khoảng 38 %, nhà lõi khối phố khoảng 30 %), bỏ hết nhà ở bán đảo Thủ Thiêm.
