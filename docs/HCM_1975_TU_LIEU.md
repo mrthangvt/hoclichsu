@@ -179,14 +179,27 @@ Bộ binh: dùng lại `thanh-co-quang-tri/models/qdvn_a/b.glb` + `qdnd.glb` (35
 **Còn thiếu — anh làm mẫu** (xếp theo chương cần):
 | Ưu tiên | Mẫu | Chương | Ghi chú |
 |---|---|---|---|
-| 1 | Dân Sài Gòn thành thị 1975: nam sơ mi quần tây, nữ áo dài, học sinh (có xương) | C10–C12 | người dân đổ ra đường; mẫu Nam bộ hiện có là nông thôn |
+| 1 | ~~Dân Sài Gòn thành thị 1975~~ — đã có nam/nữ (24/11); còn thiếu học sinh | C10–C12 | |
 | 1 | Xe Jeep (QGP dùng xe thu được) | C12 | xe Jeep thu ở sân bay Đà Nẵng 29/3/1975, Phạm Xuân Thệ (Trung đoàn 66) dùng tiến vào Dinh trưa 30/4 và đưa Dương Văn Minh sang Đài phát thanh (VnExpress "Những kỷ vật ngày 30/4/1975") |
-| 1 | Nhà phố Sài Gòn 1975 (3–4 kiểu nhà ống 2–4 tầng, mái bằng, ban công, bảng hiệu) | C06, C10, C12 | đặt dọc lộ trình xe tăng, nội đô hiện còn trống |
+| 1 | ~~Nhà phố Sài Gòn 1975~~ — em đã dựng hình khối 4 kiểu (§16); anh làm mẫu chi tiết hơn thì em thay | C06, C10, C12 | |
 | 2 | Tòa nhà chính Bộ Tổng tham mưu | C08 | ảnh tư liệu nếu có → em dựng hình khối như Dinh |
 | 2 | Đài phát thanh Sài Gòn (nay số 3 Nguyễn Đình Chiểu) | C12 | như trên |
 | 2 | Cầu Sài Gòn, cầu Thị Nghè, cầu Rạch Chiếc (cầu 1961) | C05, C10 | em có thể dựng hình khối nếu anh gửi ảnh thời đó |
 | 3 | Lính tăng cầm AK (Vũ Đăng Toàn đứng bảo vệ khi cắm cờ, S38) | C11 | lính tăng hiện chỉ có súng ngắn |
 | 3 | Bộ Tư lệnh Biệt khu Thủ đô, Tổng nha Cảnh sát | C09 | ảnh tư liệu |
 | 3 | Lựu pháo M114 155 mm, pháo tự hành M107 175 mm (VNCH) | C03, C05 | |
-| 4 | Tàu hải quân VNCH (cảng Bạch Đằng, căn cứ Cát Lái) | C02, C06 | hướng Đông Quân đoàn 4, Quân đoàn 2 |
+| 4 | ~~Tàu hải quân VNCH~~ — em đã dựng hình khối kiểu PCE (§16); còn thiếu tàu đổ bộ LST, tàu tuần giang | C02, C06 | |
 | 4 | F-5E | C04 | |
+
+## 16. Nhà phố và tàu hải quân (24/11/2026, tối)
+- **Nhà phố Sài Gòn** (`tools/sa_ban/nha/dung_nha_pho.py` → `props/nha/nha-pho.glb`, 38 kB, 4 kiểu, màu theo đỉnh). Dựng theo ảnh mẫu anh gửi:
+  - A: 2 tầng có bông gió, ban công lõm, giàn bê tông trên mái.
+  - B: 4 tầng góc phố, ban công viền xanh.
+  - C: 1 tầng mái ngói, có bảng hiệu.
+  - D: nhà ống 3 tầng.
+
+  Nhà được vẽ hàng loạt hai bên lộ trình xe tăng (cầu Sài Gòn → Thị Nghè → Dinh), mặt tiền cách tim đường 18 m. Không đặt nhà ở đoạn công viên cách Dinh dưới 420 m và ở chỗ trũng hoặc có nước. Kiểu nhà, khoảng hở và độ sáng tối giữa các căn là **minh hoạ**, chưa theo từng dãy phố thật năm 1975.
+- **Tàu kiểu PCE** (`dung_tau.py` → `props/tau/tau-hq-pce.glb`, 6 kB). Dựng theo ảnh HQ-07 Đống Đa II (nguyên là USS PCE-895, theo navypedia). Thông số lấy từ S43: dài 56,24 m, rộng 10,08 m, pháo 76 mm ở mũi, pháo 40 mm ở đuôi.
+
+  2 tàu neo ở sông Sài Gòn trước bến Bạch Đằng. Số tàu và chỗ neo là **minh hoạ**.
+- **Cờ Mặt trận** đã cắm trên xe tăng 843 và 390. Lá cờ trên xe 843 được ẩn khi Bùi Quang Thận cầm cờ chạy vào Dinh. Hiện các cảnh chưa đặt K-63, xe tải hay M-46 của Quân Giải phóng. Pháo ở C01/C03/C05 vẽ bằng đường đạn trên bản đồ chiến dịch, không dùng mẫu pháo. Khi thêm khí tài Quân Giải phóng vào cảnh, gọi `coXe(obj)` để cắm cờ.

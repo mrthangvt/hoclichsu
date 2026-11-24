@@ -106,6 +106,28 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   XEX.x843 = await xeTao('data/xe/xe-tang-843.glb', { duong: D843, lich: [[42, 0], [84, g843], [999, g843]], hien: (t) => t >= 40, ten: 'Xe tăng 843' });
   XEX.x390 = await xeTao('data/xe/xe-tang-390.glb', { duong: D390, lich: [[44, -45], [90, g390], [108, dai(D390, D390.length - 1)]], hien: (t) => t >= 44, ten: 'Xe tăng 390' });
   XEX.DL = DL;
+  // NHÀ PHỐ SÀI GÒN 1975 (tools/sa_ban/nha/dung_nha_pho.py, 4 kiểu theo ảnh mẫu anh Thắng gửi 24/11) — vẽ hàng loạt (InstancedMesh), hai bên
+  // lộ trình xe tăng: cầu Sài Gòn → Hàng Xanh → Thị Nghè → Dinh; mặt tiền cách tim đường 18 m. Bỏ đoạn công viên trước Dinh (< 420 m) và chỗ trũng/nước.
+  // Kiểu nhà, khoảng hở, màu là MINH HOẠ — chưa theo ảnh từng dãy phố năm 1975.
+  { const g = await glbLoad('data/nha/nha-pho.glb'), KIEU = [['NhaA', 8.0], ['NhaB', 6.0], ['NhaC', 5.0], ['NhaD', 4.5]], dinh = DL(0, 0);
+    const rnd = (() => { let a = 1975; return () => (a = (a * 16807) % 2147483647) / 2147483647; })(), dat = KIEU.map(() => []);
+    for (const tuyen of [DUONG_DINH, (INST.duong && INST.duong.causg_thinghe) || []]) {
+      if (tuyen.length < 2) continue; const Dz = duong(tuyen);
+      for (const sg of [-1, 1]) for (let d = 30; d < Dz.L - 10;) {
+        const k = Math.floor(rnd() * 4), w = KIEU[k][1], p = diemTren(Dz, d + w / 2), nx = Math.cos(p.yaw) * sg, nz = -Math.sin(p.yaw) * sg;
+        const x = p.x + nx * 18, z = p.z + nz * 18; d += w + (rnd() < 0.12 ? 3 + rnd() * 6 : 0.05);
+        if (Math.hypot(x - dinh[0], z + dinh[1]) < 420 || hG(x, z) < 0.3) continue;
+        dat[k].push([x, z, Math.atan2(-nx, -nz), 0.85 + rnd() * 0.25]);
+      } }
+    const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), Y1 = new THREE.Vector3(0, 1, 0), cl = new THREE.Color();
+    KIEU.forEach(([ten], k) => { const src = g.scene.getObjectByName(ten); if (!src || !dat[k].length) return; const mesh = src.isMesh ? src : src.children.find((c) => c.isMesh);
+      mesh.updateWorldMatrix(true, false); const mq = mesh.matrixWorld.clone(), im = new THREE.InstancedMesh(mesh.geometry, mesh.material, dat[k].length);   // mq: ma trận giải nén toạ độ (meshopt lượng tử hoá)
+      dat[k].forEach(([x, z, yaw, c], i) => { m4.compose(new THREE.Vector3(x, hG(x, z) - 0.2, z), q.setFromAxisAngle(Y1, yaw), new THREE.Vector3(1, 1, 1)); im.setMatrixAt(i, m4.multiply(mq)); im.setColorAt(i, cl.setRGB(c, c * 0.98, c * 0.95)); });
+      scene.add(im); LAYER.xe.push(im); });
+    XEX.nha = dat.reduce((a, b) => a + b.length, 0); }
+  // TÀU HẢI QUÂN VNCH kiểu PCE (ảnh HQ-07 anh Thắng gửi) neo ở bến Bạch Đằng — Bộ Tư lệnh Hải quân, mục tiêu hướng Đông (S3, S6). Kích thước lớp PCE: S43. Số tàu, vị trí neo: MINH HOẠ.
+  { const g = await glbLoad('data/tau/tau-hq-pce.glb');
+    for (const [x, y] of [[1312, -215], [1316, -290]]) { const o = g.scene.clone(true); o.position.set(x, 0.3, -y); o.rotation.y = Math.atan2(0.058, -0.998) + Math.PI; scene.add(o); LAYER.xe.push(o); } }
   // CỜ MẶT TRẬN trên khí tài Quân Giải phóng (anh Thắng dặn 24/11; ảnh tư liệu 30/4: xe tăng cắm cờ trên tháp pháo; "xe nào cũng được trang bị lá cờ", S12/baophapluat).
   // Bùi Quang Thận tháo lá cờ trên tháp pháo xe 843 mang lên nóc Dinh (S37) → cờ xe 843 biến mất khi anh rời xe.
   const coXeTex = new THREE.TextureLoader().load('data/co-mtdtgp.png'); coXeTex.colorSpace = THREE.SRGBColorSpace;
@@ -672,7 +694,7 @@ setAppMode('film');
 update(0); renderer.compile(scene, camera); renderer.render(scene, camera);
 renderList(); connectStore();
 const STILL = location.hash === '#still';
-window.__sa = { DAN, DONG, XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
+window.__sa = { DAN, DONG, get NHA() { return XEX.nha; }, XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
 function closeLoad() { $('load').classList.add('done'); setTimeout(() => $('load').remove(), 700); }
 if (STILL) { document.body.classList.add('ready'); closeLoad(); }
 else {
