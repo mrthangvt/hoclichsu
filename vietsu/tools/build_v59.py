@@ -102,6 +102,13 @@ def build():
     result=source.replace("</head>",css+"</head>",1).replace("</body>",js+"</body>",1)
     assert result.replace(css,"",1).replace(js,"",1)==source, "Không được thay nội dung V5.8"
     result=xuat_ban(result)
+    # Favicon Việt Sử (24/11/2026): cổng – lầu vàng trên nền xanh đen, tệp trong static/favicon/.
+    fav=('<link rel="icon" href="static/favicon/favicon.ico" sizes="any">'
+         '<link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32.png">'
+         '<link rel="apple-touch-icon" href="static/favicon/apple-touch-icon.png">'
+         '<link rel="manifest" href="static/favicon/site.webmanifest"><meta name="theme-color" content="#13222b">')
+    assert 'rel="icon"' not in result.split("</head>")[0]
+    result=result.replace("</head>",fav+"</head>",1)
     (STATIC/"Viet_Su_Timeline_V5.9_Offline.html").write_text(result,encoding="utf-8")
     print(f"V5.9: nội dung V5.8 bỏ {len(XUAT_BAN)} nhãn kiểm duyệt; thêm v59.css, v59-data.js ({n[0]} nhân vật, {n[1]} sự kiện, {n[2]} mốc Hồ Chí Minh, bài viết 7 chặng), v59.js")
 

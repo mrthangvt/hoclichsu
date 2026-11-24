@@ -566,6 +566,12 @@ def sitemap():
     return Response("".join(parts), media_type="application/xml", headers={"Cache-Control": "public, max-age=3600"})
 
 
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    return FileResponse(STATIC / "favicon" / "favicon.ico", media_type="image/x-icon",
+                        headers={"Cache-Control": "public, max-age=604800"})
+
+
 @app.get("/robots.txt")
 def robots():
     access = "Allow: /" if site_is_public() else "Disallow: /"

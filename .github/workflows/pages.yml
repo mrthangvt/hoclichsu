@@ -38,6 +38,8 @@ jobs:
           cp -r vietsu/static/v49 _site/static/v49
           cp -r vietsu/static/v53 _site/static/v53
           cp -r vietsu/static/v58 _site/static/v58
+          cp -r vietsu/static/favicon _site/static/favicon
+          cp vietsu/static/favicon/favicon.ico _site/favicon.ico
           cp -r vietsu/static/on-thi _site/on-thi
           cp -r vietsu/static/assets _site/assets
           cp -r vietsu/static/khong-gian _site/khong-gian
