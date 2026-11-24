@@ -40,3 +40,10 @@ Chromium desktop 1440 px và mobile 390 px:
 - Dòng thời gian hiện 78 thẻ sự kiện (34 cũ + 44 mới); cửa sổ sự kiện, nút nhân vật liên quan, nút về năm hoạt động;
 - trang Hồ Chí Minh có 29 thẻ, không thẻ nào chồng nhau; mở được các mốc mới;
 - không có lỗi JavaScript.
+
+## V5.9.1 (24/11/2026, nhánh `claude/v591-hcm-tieu-su`) — Chủ tịch Hồ Chí Minh theo cuốn “Hồ Chí Minh – Tiểu sử”
+Chủ dự án bổ sung tệp `1TieuSuVeBac.pdf`: **Hồ Chí Minh – Tiểu sử** (Bảo tàng Hồ Chí Minh, Chu Đức Tính chủ biên, NXB Chính trị quốc gia, tái bản 2017, 332 trang, có lớp chữ). Cuốn này chi tiết hơn bản tiểu sử ngắn dùng ở V5.9 nên được dùng làm nguồn chính cho menu Chủ tịch Hồ Chí Minh.
+- **Dòng thời gian Hồ Chí Minh: 29 → 39 mốc.** Viết lại toàn bộ 35 mốc theo sách (kèm số trang); thêm các mốc 1895 (vào Huế), 1905–1907 (học trường Pháp – Việt), 4/1908 (biểu tình chống thuế, Quốc học Huế), 1909–1911 (Bình Khê, Quy Nhơn, Phan Thiết, Sài Gòn), cuối 1912 (sang Mỹ), 1913–1917 (Luân Đôn), 1928–1929 (Xiêm), 10/1934 (Trường Quốc tế Lê-nin), 1/1950 (ngoại giao phá thế bao vây), 1970–1978 (thực hiện Di chúc); bỏ ghi chú “mốc bổ sung” vì đã có nguồn.
+- **Bài viết theo chặng:** mục “Đề cương bài viết cùng chặng” (nội dung mẫu, nút “Xem đề cương” chỉ báo chưa có) được thay bằng bài tóm lược thật cho 7 chặng, kèm danh sách mốc của chặng (bấm để chuyển mốc) và nguồn, số trang.
+- Hồ sơ nhân vật Hồ Chí Minh cập nhật nguồn.
+- Đã kiểm tra desktop 1440 px và mobile 390 px: 39 thẻ, không chồng nhau; bài viết chặng và nút chuyển mốc hoạt động; cảnh Làng Sen vẫn hiện ở mốc 1890; không lỗi JavaScript.
