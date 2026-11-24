@@ -1,7 +1,7 @@
 # Sa bàn Chiến dịch Hồ Chí Minh 1975 — tư liệu, kịch bản nháp, tài sản
 
 Gói: `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` · bộ máy 2.2.0 · nhánh `claude/sa-ban-hcm-1975`.
-Trạng thái (24/11/2026): GĐ0 xong · GĐ1 nháp, đã chốt 3 mốc giờ · GĐ2 địa hình hai tầng xong · **GĐ3 bộ máy 2.2.0 + bản thử chạy được — chờ duyệt** · GĐ4 phần xe + lính lái tăng xong.
+Trạng thái (24/11/2026, chiều): GĐ0–GĐ3 xong · GĐ4: xe 390, 843, K-63, xe tải, M41, lính lái tăng, người dân, Dinh Độc Lập + cổng, C-130A, A-37, UH-1, D-74, cao xạ 37 mm xong — còn chờ mẫu M113, M48, M-46, AC-119K · bản thử 3 cảnh (2:30) có cảnh cắm cờ · **lời dẫn nháp V0 12 cảnh** (`docs/HCM_1975_LOI_DAN.md`) chờ duyệt.
 Xem: `khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975` (thêm `&tang=noi-do` để mở thẳng nội đô).
 Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S31`, `M1`, bản đồ `B1`, `B2` ở `sources.json`.
 Nguồn hiện là báo chí chính thống (Nhân Dân, SGGP, VnExpress, TTXVN…) dẫn lại tư liệu bảo tàng, nhân chứng. Nên bổ sung sách chuyên khảo (ví dụ *Lịch sử Kháng chiến chống Mỹ cứu nước*, Viện Lịch sử quân sự; *Đại thắng mùa xuân* của Văn Tiến Dũng) nếu anh có bản trong thư mục "Tài liệu sử".
@@ -65,14 +65,14 @@ Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), khô
 | Bộ đội (đám đông) | như trên | Nướng `.nvz` |
 | Lính VNCH | `vnch.glb` (19 clip, M16) | Sửa: thêm texture rằn ri (Dù, Biệt động quân, Thủy quân lục chiến) |
 | Súng AK, M16 | trong GLB, thế cầm IK `ik2` | Tái dùng |
-| A-37 | `static.glb` `MayBay_CuongKich_1/2` | Tái dùng cho C04 |
-| Xe tăng M41 (VNCH) | `static.glb` `XeTang_VNCH_0..3` | Tách thành mẫu riêng |
+| A-37 | Mẫu Thành cổ là khối thô → mẫu Tripo mới | **Xong:** `props/may-bay/a-37.glb` (mục 10) |
+| Xe tăng M41 (VNCH) | Mẫu Thành cổ là khối thô → mẫu Tripo mới | **Xong:** `props/xe/xe-tang-m41.glb` (mục 10) |
 | Xe tăng 390 (T-59) | `_KHO-CHUNG/vat-dung/_moi/XeTang-Huc-Dinh-Doc-Lap.zip` (Tripo, số 390) | **Xong (24/11):** `props/xe/xe-tang-390.glb` 0,40 MB, 16k tam giác, thân dài 6,04 m (S30), mũi xe −Y; xoá số máy sinh, dán lại "390" bám mặt tháp pháo hai bên. Còn: soát phù hiệu tròn theo ảnh tư liệu |
 | Xe tăng 843 (T-54B) | `vat-dung/_moi/Xetang834.zip` (Tripo) | **Xong:** `props/xe/xe-tang-843.glb` 0,40 MB; ảnh máy sinh ghi một bên "834" → đã xoá, dán lại "843" hai bên |
 | Lính lái tăng QĐVN | `nhan-vat/_moi/LinhTangQDVN.zip` + `Driving.fbx` (lưới đã gắn xương), `Pistol Aim.fbx` | **Xong (có xương):** `units/linh-tang.glb`, 7 000 tam giác, cao 1,68 m, 12 động tác: dung, thu, di, chay, chaynhanh, lai (ngồi lái), ngam (súng ngắn), keo (kéo cờ), leo, trung, nga, chet (`tools/sa_ban/nhan_vat_lai/linh-tang.json`). Còn: bản `.nvz` cho đám đông nếu cần |
 | Xe bọc thép K-63 | `vat-dung/_moi/xebocthep.zip` (Tripo) | **Xong:** `props/xe/xe-boc-thep-k63.glb` 0,36 MB, dài 5,476 m (S31) → rộng 3,08 m, cao 2,55 m (công bố 2,978 m, 2,58 m: khớp). Còn: ngôi sao trên thân do máy sinh bị méo, cần vẽ lại theo ảnh tư liệu |
 | Xe tải | `Xetai-QDVN.zip` (Tripo) | **Xong:** `props/xe/xe-tai.glb` 0,32 MB; đã xoá chữ vô nghĩa trên cửa và lốp viền trắng; dài 6,7 m là ước lượng — chưa rõ loại xe |
-| M113/M48 (VNCH), Dinh Độc Lập + cổng, đường phố 1975 | — | Làm mới |
+| M113/M48 (VNCH), đường phố 1975 | — | Làm mới (chờ mẫu) · Dinh Độc Lập + cổng: **xong** (mục 9) |
 | Cờ | `props/co-mtdtgp.png`, `props/co-vnch.png` | Đã có (vẽ lại) |
 
 **Pháo của sa bàn Điện Biên Phủ — có dùng lại cho 1975 không** (tra 24/11/2026; mẫu ở `dien-bien-phu/models/static.glb`, `mau.glb`):
@@ -135,7 +135,7 @@ Theo yêu cầu anh Thắng: cảnh có người dân thì đưa mẫu người 
 - Số đo: nền nhà chữ T theo đường bao OSM (thân trước 85,6 × ~28 m, thân sau ~32 × 53 m), cao 26 m, bãi cỏ bầu dục đường kính 102 m (S35); mặt tiền nhìn phương vị 42,6°, cổng trên trục Lê Duẩn cách mặt tiền ~146 m (OSM: đường trước rào cách 151 m).
 - Dáng: theo hai ảnh anh Thắng gửi (A1) — rèm hoa đá, ban công giữa, lầu thượng mái bằng, hàng cau sân thượng; hồ tròn có tượng trắng giữa bãi cỏ (ảnh trưa 30/4).
 - Cổng: cổng chính hai cánh + hai cổng phụ (s = ±60 m, vị trí phỏng chừng — nguồn ghi "cổng chính và 2 cổng phụ hai bên"), đều là đối tượng riêng. **Sửa 24/11 theo bảng mốc §2 (S7, S8, S18):** 843 rẽ trái theo đường trước rào, húc cổng phụ bên trái lúc 1:24, cổng oằn nhưng không đổ, xe kẹt lại; 390 húc đổ cổng chính 1:30 (S34), vào sân vòng qua hồ. Bùi Quang Thận rời 843 ở cổng phụ, chạy dọc rào vào cổng chính. Cảnh cuối nhìn từ sân thượng Dinh ra cổng (góc ảnh tư liệu).
-- Chưa có: cờ trên nóc, nội thất, công viên 30/4 chi tiết; số ô cửa, cây là giản lược. Thời điểm chính xác từng xe tới cổng sẽ chốt ở GĐ5.
+- Cờ trên nóc: xong (mục 11). Chưa có: nội thất, công viên 30/4 chi tiết; số ô cửa, cây là giản lược. Thời điểm chính xác từng xe tới cổng sẽ chốt ở GĐ5.
 
 ## 10. Mẫu mới đã nướng (24/11/2026, chiều)
 | Mẫu | Tệp | Tỉ lệ theo | Ghi chú |
