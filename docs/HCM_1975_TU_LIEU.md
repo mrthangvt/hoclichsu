@@ -54,6 +54,8 @@ Kíp xe 390 (S7): trưởng xe, Chính trị viên Vũ Đăng Toàn; pháo thủ
 | C11 | **Cảnh cuối:** 843 kẹt cổng phụ, 390 húc đổ cổng chính, 11h30 cắm cờ | cận cảnh Dinh | S7–S13, S18 |
 | C12 | 11h30 trưa 30/4: tuyên bố trên đài, người dân ra phố | nội đô | S25 (S18, S22–S24) |
 
+Lời dẫn nháp V0 cho cả 12 cảnh (có mã nguồn từng câu): `docs/HCM_1975_LOI_DAN.md` (24/11/2026, chờ duyệt).
+
 Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), không dùng từ ngữ miệt thị cho bên nào; chỗ các nguồn ghi khác nhau thì nói "theo các nguồn, khoảng…".
 
 ## 4. Tài sản: tái dùng / sửa / làm mới
