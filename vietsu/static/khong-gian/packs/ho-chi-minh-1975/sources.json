@@ -250,6 +250,30 @@
    "url": "",
    "license": "nội bộ dự án",
    "used_for": "props/xe/*.glb, units/linh-tang.glb; số hiệu dán lại bằng chữ thật (ảnh máy sinh ghi sai 834); xe tải: bỏ chữ vô nghĩa trên cửa, lốp viền trắng; chiều dài xe tải 6,7 m là ước lượng, chưa rõ loại xe"
+  },
+  {
+   "id": "S31",
+   "title": "Type 63 (armoured personnel carrier) — thông số",
+   "type": "bách khoa (Wikipedia, dẫn Jane's Armour and Artillery)",
+   "url": "https://www.wikipedia.com/wiki/YW531",
+   "license": "trích dẫn",
+   "used_for": "K-63 dài 5,476 m → tỉ lệ mô hình xe bọc thép"
+  },
+  {
+   "id": "B1",
+   "title": "IV CTZ Major Road Net & Airfields, tỉ lệ 1:515 000 (569th Engr Co, 11/1969)",
+   "type": "bản đồ quân sự (ảnh chụp bản giấy của anh Thắng)",
+   "url": "",
+   "license": "tư liệu riêng; bản đồ quân đội Mỹ",
+   "used_for": "đối chiếu số hiệu đường 1969 (QL4 Sài Gòn – Mỹ Tho – Cần Thơ, nay là QL1), địa giới tỉnh 1969 ở hướng Tây Nam; khớp ảnh 12 điểm: sai số TB 2,2 km"
+  },
+  {
+   "id": "B2",
+   "title": "Bản đồ 1:100 000 tờ 6128, Cục Bản đồ BTTM QĐNDVN, in tại Xưởng In Đà Lạt",
+   "type": "bản đồ địa hình (ảnh chụp, góc lề)",
+   "url": "",
+   "license": "tư liệu riêng",
+   "used_for": "chưa dùng (vùng Sóc Trăng – Trần Đề, ngoài sa bàn); cần tờ cùng hệ phủ Sài Gòn – Biên Hòa – Củ Chi"
   }
  ]
 }

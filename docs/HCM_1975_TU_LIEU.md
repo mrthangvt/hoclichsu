@@ -2,7 +2,7 @@
 
 Gói: `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` · bộ máy 2.1.0 · nhánh `claude/sa-ban-hcm-1975`.
 Trạng thái: **Giai đoạn 0 xong, Giai đoạn 1 bản nháp — chờ anh Thắng duyệt** (24/11/2026).
-Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S30`, `M1` ở `sources.json`.
+Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S31`, `M1`, bản đồ `B1`, `B2` ở `sources.json`.
 Nguồn hiện là báo chí chính thống (Nhân Dân, SGGP, VnExpress, TTXVN…) dẫn lại tư liệu bảo tàng, nhân chứng. Nên bổ sung sách chuyên khảo (ví dụ *Lịch sử Kháng chiến chống Mỹ cứu nước*, Viện Lịch sử quân sự; *Đại thắng mùa xuân* của Văn Tiến Dũng) nếu anh có bản trong thư mục "Tài liệu sử".
 
 ## 1. Năm hướng và mục tiêu (bản đồ Quyết tâm)
@@ -67,7 +67,7 @@ Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), khô
 | Xe tăng 390 (T-59) | `_KHO-CHUNG/vat-dung/_moi/XeTang-Huc-Dinh-Doc-Lap.zip` (Tripo, số 390) | **Xong (24/11):** `props/xe/xe-tang-390.glb` 0,40 MB, 16k tam giác, thân dài 6,04 m (S30), mũi xe −Y; xoá số máy sinh, dán lại "390" bám mặt tháp pháo hai bên. Còn: soát phù hiệu tròn theo ảnh tư liệu |
 | Xe tăng 843 (T-54B) | `vat-dung/_moi/Xetang834.zip` (Tripo) | **Xong:** `props/xe/xe-tang-843.glb` 0,40 MB; ảnh máy sinh ghi một bên "834" → đã xoá, dán lại "843" hai bên |
 | Lính lái tăng QĐVN | `nhan-vat/_moi/LinhTangQDVN.zip` + `Driving.fbx` (lưới đã gắn xương), `Pistol Aim.fbx` | **Xong (có xương):** `units/linh-tang.glb`, 7 000 tam giác, cao 1,68 m, 12 động tác: dung, thu, di, chay, chaynhanh, lai (ngồi lái), ngam (súng ngắn), keo (kéo cờ), leo, trung, nga, chet (`tools/sa_ban/nhan_vat_lai/linh-tang.json`). Còn: bản `.nvz` cho đám đông nếu cần |
-| Xe bọc thép K-63 | `vat-dung/_moi/Xebocthep_K63.webp` — **mới có ảnh, chưa có tệp mô hình** | Chờ anh gửi zip; soát phù hiệu ngôi sao theo ảnh tư liệu |
+| Xe bọc thép K-63 | `vat-dung/_moi/xebocthep.zip` (Tripo) | **Xong:** `props/xe/xe-boc-thep-k63.glb` 0,36 MB, dài 5,476 m (S31) → rộng 3,08 m, cao 2,55 m (công bố 2,978 m, 2,58 m: khớp). Còn: ngôi sao trên thân do máy sinh bị méo, cần vẽ lại theo ảnh tư liệu |
 | Xe tải | `Xetai-QDVN.zip` (Tripo) | **Xong:** `props/xe/xe-tai.glb` 0,32 MB; đã xoá chữ vô nghĩa trên cửa và lốp viền trắng; dài 6,7 m là ước lượng — chưa rõ loại xe |
 | M113/M48 (VNCH), Dinh Độc Lập + cổng, đường phố 1975 | — | Làm mới |
 | Cờ | `props/co-mtdtgp.png`, `props/co-vnch.png` | Đã có (vẽ lại) |
@@ -76,3 +76,12 @@ Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), khô
 - Copernicus DEM GLO-30, các ô N10E106, N10E107, N11E106 (~100 MB) — qua máy anh.
 - OSM (Overpass, `curl` trên máy anh) — đường, sông, ranh khu phố; cắt theo hai tầng.
 - Bản đồ AMS L7014 1:50 000 (khoảng năm 1970, phạm vi công cộng) cho mạng đường, khu dân cư thời 1975.
+
+## 6. Đối chiếu bản đồ cũ (24/11/2026)
+**B1 — IV CTZ Major Road Net & Airfields (11/1969, 1:515 000).** Khớp ảnh chụp với 12 thị xã (homography, `tools/sa_ban/khop_ban_do_anh.py`, kết quả `docs/du-lieu/ho-chi-minh-1975_khop_IVCTZ.json`): sai số trung bình 2,2 km, lớn nhất 3,7 km; kiểm chéo bỏ-1: trung bình 3,6 km, lớn nhất 5,8 km (ảnh chụp có phối cảnh, nếp gấp; toạ độ thị xã lấy gần đúng).
+- Bản đồ chỉ vẽ **Vùng 4 chiến thuật**; Sài Gòn, Biên Hòa, Củ Chi, Xuân Lộc (Vùng 3) để trống. Phần trùng với sa bàn chỉ là dải phía Nam tầng chiến dịch (sông Vàm Cỏ Tây, Tân An, giáp Gò Công) → dùng cho **hướng Tây Nam**, không dùng dựng nội đô.
+- **Số hiệu đường năm 1969 khác hôm nay:** "Quốc lộ 4" đi Mỹ Tho – Vĩnh Long – Cần Thơ – Sóc Trăng – Bạc Liêu, tức tuyến nay mang số QL1. Nhãn sa bàn phải ghi theo năm 1975 ("Đường số 4") — khớp với S4 ("Đoàn 232… cắt đường số 4"). OSM chỉ có số hiệu hiện nay.
+- Tên tỉnh năm 1969 (Định Tường, Kiến Hòa, Gò Công, Kiến Tường…) khác hiện nay; OSM/Nominatim đã theo địa giới sau sáp nhập 2025 (Mỹ Tho thuộc tỉnh Đồng Tháp) → không lấy tên hành chính từ OSM cho nhãn 1975.
+- Nét chì xám và dấu X vẽ tay dọc sông Vàm Cỏ trên bản giấy: chưa rõ ý nghĩa, không dùng.
+
+**B2 — Bản đồ 1:100 000 tờ 6128 (Cục Bản đồ BTTM QĐNDVN, in tại Đà Lạt):** vùng Trà Ôn – Sóc Trăng – cửa Trần Đề, nằm ngoài sa bàn. Cùng hệ này, các tờ phủ Sài Gòn – Biên Hòa – Củ Chi – Long An là nguồn tốt nhất cho mạng đường, khu dân cư thời 1975 (thay cho OSM hôm nay) — xác định số tờ qua bảng chắp.

@@ -5,7 +5,7 @@ import bpy, sys, os, math, mathutils, numpy as np
 from PIL import Image
 fbx, out, kieu, L, ntri = sys.argv[1], sys.argv[2], sys.argv[3], float(sys.argv[4]), int(sys.argv[5])
 SO = sys.argv[6] if len(sys.argv) > 6 else ''        # số hiệu dán lại hai bên tháp pháo (xoá chữ máy sinh trong ảnh màu)
-XOA = kieu == 'truck' or bool(SO)                     # xe tải: xoá chữ vô nghĩa trên cửa + lốp viền trắng
+XOA = (kieu == 'truck' and os.environ.get('GIU_CHU') != '1') or bool(SO)                     # xe tải: xoá chữ vô nghĩa trên cửa + lốp viền trắng
 import cv2
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.fbx(filepath=fbx)
