@@ -1,7 +1,7 @@
 {
  "lop": 10,
  "sach": "Lịch sử 10 (bộ Kết nối tri thức với cuộc sống, NXB Giáo dục Việt Nam), tr. 6–106",
- "ghi_chu": "Mục lục theo đúng SGK; phần nội dung chi tiết từng bài đang được Việt Sử biên soạn lại bằng lời văn riêng (không chép nguyên văn sách). Học sinh mở SGK theo số trang.",
+ "ghi_chu": "Nội dung do Việt Sử biên soạn lại bằng lời văn riêng theo mạch bài học của SGK; không chép nguyên văn, không dùng hình ảnh của sách. Học sinh mở SGK theo số trang để xem tư liệu, hình và hoạt động.",
  "bai": [
   {
    "so": 1,
@@ -13,7 +13,41 @@
    ],
    "nam": null,
    "tom": "Phân biệt quá khứ đã diễn ra với hiểu biết của con người về quá khứ; đối tượng, chức năng, nhiệm vụ của Sử học.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Lịch sử là gì?",
+     [
+      "Lịch sử là tất cả những gì đã diễn ra trong quá khứ của xã hội loài người, tồn tại khách quan, không phụ thuộc vào ý muốn con người (hiện thực lịch sử).",
+      "Nhận thức lịch sử là những hiểu biết, hình dung của con người về quá khứ, được trình bày qua lời kể, bài viết, công trình nghiên cứu."
+     ]
+    ],
+    [
+     "2. Hiện thực lịch sử và nhận thức lịch sử",
+     [
+      "Hiện thực lịch sử là duy nhất, còn nhận thức lịch sử có thể khác nhau tuỳ nguồn tư liệu, quan điểm, phương pháp của người tìm hiểu.",
+      "Nhận thức lịch sử càng gần với hiện thực lịch sử khi dựa trên sử liệu tin cậy và phương pháp khoa học."
+     ]
+    ],
+    [
+     "3. Sử học",
+     [
+      "Sử học là khoa học nghiên cứu về quá khứ của con người và xã hội loài người.",
+      "Đối tượng nghiên cứu rộng: chính trị, kinh tế, văn hoá, xã hội…; chức năng: khoa học (khôi phục, giải thích quá khứ) và xã hội (giáo dục, dự báo).",
+      "Nguyên tắc cơ bản: khách quan, trung thực, tiến bộ.",
+      "Nguồn sử liệu gồm: tư liệu chữ viết, hiện vật, truyền miệng, hình ảnh…; cần thu thập, phân loại, thẩm định trước khi sử dụng."
+     ]
+    ]
+   ],
+   "nho": [
+    "Hiện thực lịch sử là khách quan; nhận thức lịch sử có thể khác nhau.",
+    "Sử học nghiên cứu quá khứ con người, theo nguyên tắc khách quan, trung thực.",
+    "Sử liệu cần được thẩm định trước khi sử dụng."
+   ],
+   "hoi": [
+    "Phân biệt hiện thực lịch sử và nhận thức lịch sử.",
+    "Nêu chức năng và nhiệm vụ của Sử học.",
+    "Vì sao cần thẩm định nguồn sử liệu?"
+   ]
   },
   {
    "so": 2,
@@ -25,7 +59,39 @@
    ],
    "nam": null,
    "tom": "Vì sao cần học tập, khám phá lịch sử suốt đời và vận dụng tri thức lịch sử vào cuộc sống.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Vai trò của tri thức lịch sử",
+     [
+      "Tri thức lịch sử giúp con người hiểu nguồn gốc, cội rễ, bản sắc của bản thân, cộng đồng, dân tộc.",
+      "Rút ra bài học kinh nghiệm từ quá khứ để vận dụng cho hiện tại và tương lai."
+     ]
+    ],
+    [
+     "2. Học tập lịch sử suốt đời",
+     [
+      "Tri thức lịch sử rộng lớn và luôn được bổ sung, vì vậy cần học tập thường xuyên, suốt đời.",
+      "Có thể tự học qua sách báo, bảo tàng, di tích, phim tư liệu, Internet… và cần biết chọn lọc nguồn tin cậy."
+     ]
+    ],
+    [
+     "3. Vận dụng tri thức lịch sử vào cuộc sống",
+     [
+      "Giải thích các sự kiện, hiện tượng đang diễn ra; nhìn nhận các vấn đề thời sự có chiều sâu.",
+      "Góp phần giữ gìn, phát huy giá trị di sản, xây dựng quê hương, đất nước."
+     ]
+    ]
+   ],
+   "nho": [
+    "Tri thức lịch sử giúp hiểu cội nguồn và rút bài học.",
+    "Học lịch sử là việc cần làm suốt đời.",
+    "Có nhiều cách tự học: bảo tàng, di tích, sách, tư liệu số."
+   ],
+   "hoi": [
+    "Vì sao cần học tập lịch sử suốt đời?",
+    "Nêu một ví dụ vận dụng tri thức lịch sử để hiểu một vấn đề hiện nay.",
+    "Em đã từng tìm hiểu lịch sử qua những kênh nào ngoài lớp học?"
+   ]
   },
   {
    "so": 3,
@@ -37,7 +103,39 @@
    ],
    "nam": null,
    "tom": "Sử học với bảo tồn di sản văn hoá, phát triển du lịch và các ngành nghề liên quan.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Sử học với công tác bảo tồn, phát huy di sản",
+     [
+      "Di sản văn hoá gồm di sản vật thể (di tích, hiện vật) và phi vật thể (lễ hội, nghệ thuật, tri thức dân gian), cùng di sản thiên nhiên.",
+      "Sử học giúp xác định giá trị, nguồn gốc của di sản, là cơ sở để bảo tồn đúng và phát huy giá trị."
+     ]
+    ],
+    [
+     "2. Sử học với phát triển du lịch",
+     [
+      "Lịch sử, văn hoá là nguồn tài nguyên quan trọng của du lịch; hiểu biết lịch sử giúp xây dựng sản phẩm du lịch hấp dẫn.",
+      "Du lịch góp phần quảng bá, tạo nguồn lực cho bảo tồn di sản; nhưng cần tránh khai thác quá mức làm tổn hại di sản."
+     ]
+    ],
+    [
+     "3. Mối quan hệ giữa Sử học với các ngành khoa học khác",
+     [
+      "Sử học sử dụng thành tựu của nhiều ngành (khảo cổ học, địa lí, nhân học, khoa học tự nhiên…) để nghiên cứu.",
+      "Ngược lại, tri thức lịch sử cung cấp bối cảnh cho nhiều ngành khoa học khác."
+     ]
+    ]
+   ],
+   "nho": [
+    "Sử học là cơ sở để bảo tồn và phát huy di sản.",
+    "Lịch sử, văn hoá là tài nguyên của du lịch.",
+    "Sử học có tính liên ngành."
+   ],
+   "hoi": [
+    "Sử học có vai trò gì trong bảo tồn di sản?",
+    "Mối quan hệ giữa Sử học và du lịch thể hiện ở đâu?",
+    "Hãy giới thiệu một di sản ở địa phương em và giá trị lịch sử của nó."
+   ]
   },
   {
    "so": 4,
@@ -49,7 +147,46 @@
    ],
    "nam": null,
    "tom": "Khái niệm văn minh, văn hoá; thành tựu của văn minh Ai Cập, Lưỡng Hà, Ấn Độ, Trung Hoa.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Khái niệm văn minh và văn hoá",
+     [
+      "Văn hoá là tổng thể những giá trị vật chất và tinh thần do con người sáng tạo ra trong lịch sử.",
+      "Văn minh là trạng thái tiến bộ của văn hoá, khi con người đã có nhà nước, chữ viết, đô thị; văn hoá có từ khi có loài người, văn minh xuất hiện muộn hơn."
+     ]
+    ],
+    [
+     "2. Văn minh Ai Cập cổ đại",
+     [
+      "Hình thành bên lưu vực sông Nin; nhà nước ra đời sớm, đứng đầu là Pha-ra-ông.",
+      "Thành tựu: chữ tượng hình, giấy pa-pi-rút, lịch, toán học, kĩ thuật ướp xác, kim tự tháp và tượng nhân sư."
+     ]
+    ],
+    [
+     "3. Văn minh Trung Hoa cổ – trung đại",
+     [
+      "Hình thành ở lưu vực Hoàng Hà, Trường Giang.",
+      "Thành tựu: chữ Hán, Nho giáo, Đạo giáo; sử học, văn học (thơ Đường, tiểu thuyết Minh – Thanh); bốn phát minh kĩ thuật: giấy, la bàn, thuốc súng, kĩ thuật in; Vạn Lí Trường Thành."
+     ]
+    ],
+    [
+     "4. Văn minh Ấn Độ cổ – trung đại",
+     [
+      "Hình thành ở lưu vực sông Ấn, sông Hằng.",
+      "Thành tựu: chữ Phạn; Phật giáo, Ấn Độ giáo; sử thi Ra-ma-y-a-na, Ma-ha-bha-ra-ta; hệ số đếm có số 0; kiến trúc chùa hang, đền tháp."
+     ]
+    ]
+   ],
+   "nho": [
+    "Văn minh là giai đoạn phát triển cao của văn hoá.",
+    "Ai Cập: chữ tượng hình, kim tự tháp.",
+    "Trung Hoa: Nho giáo, bốn phát minh; Ấn Độ: Phật giáo, chữ số 0."
+   ],
+   "hoi": [
+    "Phân biệt văn hoá và văn minh.",
+    "Nêu những thành tựu tiêu biểu của văn minh Ai Cập cổ đại.",
+    "Văn minh Trung Hoa và Ấn Độ có ảnh hưởng thế nào đến Việt Nam?"
+   ]
   },
   {
    "so": 5,
@@ -61,7 +198,31 @@
    ],
    "nam": null,
    "tom": "Văn minh Hy Lạp – La Mã cổ đại và văn minh thời Phục hưng.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Văn minh Hy Lạp – La Mã cổ đại",
+     [
+      "Hình thành ven Địa Trung Hải, kinh tế thủ công nghiệp và thương nghiệp phát triển; thể chế dân chủ chủ nô ở A-ten, cộng hoà rồi đế chế ở La Mã.",
+      "Thành tựu: chữ cái La-tinh, triết học, khoa học (Ta-lét, Pi-ta-go, Ác-si-mét), sử thi I-li-át, Ô-đi-xê, kịch, kiến trúc đền Pác-tê-nông, đấu trường Cô-li-dê, luật La Mã, Thế vận hội."
+     ]
+    ],
+    [
+     "2. Văn minh Tây Âu thời Phục hưng",
+     [
+      "Thế kỉ XIV – XVII, phong trào Phục hưng khởi đầu ở I-ta-li-a, đề cao giá trị con người (chủ nghĩa nhân văn).",
+      "Thành tựu: văn học (Đan-tê, Sếch-xpia, Xéc-van-téc), hội hoạ (Lê-ô-na-đô đa Vin-xi, Mi-ken-lăng-giơ, Ra-pha-en), khoa học (Cô-péc-ních, Ga-li-lê)."
+     ]
+    ]
+   ],
+   "nho": [
+    "Hy Lạp – La Mã: chữ cái La-tinh, triết học, khoa học, Thế vận hội.",
+    "Phục hưng đề cao con người, khởi đầu ở I-ta-li-a."
+   ],
+   "hoi": [
+    "Nêu những thành tựu tiêu biểu của văn minh Hy Lạp – La Mã.",
+    "Phong trào Văn hoá Phục hưng có ý nghĩa gì?",
+    "Kể tên một tác phẩm thời Phục hưng mà em biết."
+   ]
   },
   {
    "so": 6,
@@ -73,7 +234,38 @@
    ],
    "nam": null,
    "tom": "Cách mạng công nghiệp lần thứ nhất và lần thứ hai: thành tựu và tác động.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Cách mạng công nghiệp lần thứ nhất",
+     [
+      "Bắt đầu ở Anh từ giữa thế kỉ XVIII; thành tựu tiêu biểu: máy kéo sợi, máy dệt, máy hơi nước (Giêm Oát), đầu máy xe lửa, tàu thuỷ chạy bằng hơi nước.",
+      "Lao động thủ công chuyển sang lao động bằng máy móc."
+     ]
+    ],
+    [
+     "2. Cách mạng công nghiệp lần thứ hai",
+     [
+      "Diễn ra từ nửa sau thế kỉ XIX đến đầu thế kỉ XX ở Mỹ, Đức, Anh, Pháp…",
+      "Thành tựu: điện năng, động cơ đốt trong, ô tô, máy bay, điện thoại, điện tín; sản xuất dây chuyền."
+     ]
+    ],
+    [
+     "3. Ý nghĩa và tác động",
+     [
+      "Năng suất lao động tăng vọt, nền sản xuất công nghiệp hình thành; đô thị hoá diễn ra mạnh.",
+      "Xã hội hình thành hai giai cấp cơ bản: tư sản và vô sản; đồng thời là ô nhiễm môi trường, các nước tư bản tranh giành thuộc địa."
+     ]
+    ]
+   ],
+   "nho": [
+    "CMCN lần 1: giữa thế kỉ XVIII ở Anh, máy hơi nước.",
+    "CMCN lần 2: điện, động cơ đốt trong, dây chuyền.",
+    "Tạo ra nền sản xuất công nghiệp và biến đổi xã hội."
+   ],
+   "hoi": [
+    "Nêu những thành tựu tiêu biểu của hai cuộc cách mạng công nghiệp thời cận đại.",
+    "Cách mạng công nghiệp đã tác động thế nào đến xã hội?"
+   ]
   },
   {
    "so": 7,
@@ -85,7 +277,40 @@
    ],
    "nam": null,
    "tom": "Cách mạng công nghiệp lần thứ ba và lần thứ tư: thành tựu và ý nghĩa.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Cách mạng công nghiệp lần thứ ba",
+     [
+      "Bắt đầu từ những năm 1950 – 1960; thành tựu: máy tính, tự động hoá, Internet, vật liệu mới, năng lượng nguyên tử, chinh phục vũ trụ.",
+      "Đặc điểm: khoa học trở thành lực lượng sản xuất trực tiếp."
+     ]
+    ],
+    [
+     "2. Cách mạng công nghiệp lần thứ tư",
+     [
+      "Bắt đầu từ đầu thế kỉ XXI, dựa trên công nghệ số; thành tựu: trí tuệ nhân tạo, Internet vạn vật, dữ liệu lớn, in 3D, công nghệ sinh học…",
+      "Xoá nhoà ranh giới giữa thế giới vật lí, kĩ thuật số và sinh học."
+     ]
+    ],
+    [
+     "3. Ý nghĩa và tác động",
+     [
+      "Tích cực: năng suất tăng, đời sống thay đổi, kết nối toàn cầu.",
+      "Thách thức: thất nghiệp do tự động hoá, an ninh mạng, khoảng cách số, ô nhiễm môi trường.",
+      "Việt Nam cần chủ động nắm bắt cơ hội, phát triển nguồn nhân lực chất lượng cao."
+     ]
+    ]
+   ],
+   "nho": [
+    "CMCN lần 3: máy tính, Internet, tự động hoá.",
+    "CMCN lần 4: trí tuệ nhân tạo, Internet vạn vật, dữ liệu lớn.",
+    "Vừa là cơ hội vừa là thách thức."
+   ],
+   "hoi": [
+    "So sánh cách mạng công nghiệp lần thứ ba và lần thứ tư.",
+    "Cách mạng công nghiệp lần thứ tư tác động thế nào đến đời sống của em?",
+    "Học sinh cần chuẩn bị gì để thích ứng?"
+   ]
   },
   {
    "so": 8,
@@ -97,7 +322,40 @@
    ],
    "nam": null,
    "tom": "Cơ sở hình thành, các thời kì phát triển và thành tựu tiêu biểu của văn minh Đông Nam Á.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Cơ sở hình thành",
+     [
+      "Điều kiện tự nhiên: khí hậu nhiệt đới gió mùa, nhiều sông ngòi, đồng bằng phù sa, biển rộng; nền nông nghiệp lúa nước.",
+      "Là nơi giao lưu giữa hai nền văn minh lớn Ấn Độ và Trung Hoa."
+     ]
+    ],
+    [
+     "2. Tiến trình phát triển",
+     [
+      "Những thế kỉ đầu Công nguyên, các quốc gia sơ kì ra đời (Văn Lang – Âu Lạc, Phù Nam, Chăm-pa…).",
+      "Thế kỉ X – XV là thời kì phát triển thịnh đạt; từ thế kỉ XVI bước vào giai đoạn suy thoái, rồi bị thực dân phương Tây xâm lược."
+     ]
+    ],
+    [
+     "3. Thành tựu tiêu biểu",
+     [
+      "Tín ngưỡng, tôn giáo: tín ngưỡng phồn thực, thờ cúng tổ tiên; Phật giáo, Hin-đu giáo, Hồi giáo, Công giáo.",
+      "Chữ viết: tiếp thu chữ Phạn, chữ Hán để sáng tạo chữ viết riêng (chữ Chăm cổ, chữ Khơ-me cổ, chữ Nôm…).",
+      "Kiến trúc, điêu khắc: Ăng-co Vát, Bô-rô-bu-đua, tháp Chăm, chùa Vàng…"
+     ]
+    ]
+   ],
+   "nho": [
+    "Nền tảng là nông nghiệp lúa nước.",
+    "Tiếp thu văn minh Ấn Độ, Trung Hoa nhưng mang bản sắc riêng.",
+    "Ăng-co Vát, Bô-rô-bu-đua là công trình tiêu biểu."
+   ],
+   "hoi": [
+    "Nêu cơ sở hình thành văn minh Đông Nam Á.",
+    "Kể tên một số thành tựu kiến trúc tiêu biểu của Đông Nam Á.",
+    "Vì sao văn minh Đông Nam Á vừa có nét chung vừa có bản sắc riêng?"
+   ]
   },
   {
    "so": 9,
@@ -109,7 +367,40 @@
    ],
    "nam": null,
    "tom": "Văn minh Văn Lang – Âu Lạc, văn minh Chăm-pa, văn minh Phù Nam.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Văn minh Văn Lang – Âu Lạc",
+     [
+      "Hình thành ở lưu vực sông Hồng, sông Mã, sông Cả; cơ sở là nông nghiệp lúa nước và kĩ thuật đúc đồng (trống đồng Đông Sơn).",
+      "Nhà nước Văn Lang của các vua Hùng, Âu Lạc của An Dương Vương; thành Cổ Loa.",
+      "Đời sống tinh thần: thờ cúng tổ tiên, các vị thần tự nhiên; tục nhuộm răng, ăn trầu, xăm mình."
+     ]
+    ],
+    [
+     "2. Văn minh Chăm-pa",
+     [
+      "Hình thành ở vùng duyên hải miền Trung; kinh tế nông nghiệp kết hợp khai thác biển, buôn bán.",
+      "Thành tựu: chữ Chăm cổ, Hin-đu giáo và Phật giáo, khu đền tháp Mỹ Sơn, nghệ thuật điêu khắc đá."
+     ]
+    ],
+    [
+     "3. Văn minh Phù Nam",
+     [
+      "Hình thành ở vùng Nam Bộ ngày nay; Óc Eo là thương cảng quốc tế sầm uất.",
+      "Thành tựu: kinh tế thương mại biển phát triển, kiến trúc gạch đá, đồ trang sức; tiếp thu văn hoá Ấn Độ."
+     ]
+    ]
+   ],
+   "nho": [
+    "Văn Lang – Âu Lạc: lúa nước, trống đồng Đông Sơn, thành Cổ Loa.",
+    "Chăm-pa: tháp Chăm, Mỹ Sơn.",
+    "Phù Nam: thương cảng Óc Eo."
+   ],
+   "hoi": [
+    "Trình bày cơ sở hình thành văn minh Văn Lang – Âu Lạc.",
+    "Nêu thành tựu tiêu biểu của văn minh Chăm-pa và Phù Nam.",
+    "Ba nền văn minh cổ có ý nghĩa gì đối với lịch sử Việt Nam?"
+   ]
   },
   {
    "so": 10,
@@ -121,7 +412,46 @@
    ],
    "nam": 1010,
    "tom": "Cơ sở hình thành và thành tựu của văn minh Đại Việt trên các lĩnh vực.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Cơ sở hình thành",
+     [
+      "Kế thừa văn minh Văn Lang – Âu Lạc; được xây dựng trên nền độc lập dân tộc từ thế kỉ X.",
+      "Tiếp thu có chọn lọc văn minh Trung Hoa, Ấn Độ."
+     ]
+    ],
+    [
+     "2. Quá trình phát triển",
+     [
+      "Hình thành từ thời Ngô, Đinh, Tiền Lê; phát triển rực rỡ thời Lý, Trần, Lê sơ; tiếp tục phát triển, có nhiều biến đổi thời Mạc, Lê trung hưng, Tây Sơn và đầu thời Nguyễn."
+     ]
+    ],
+    [
+     "3. Thành tựu tiêu biểu",
+     [
+      "Chính trị: nhà nước quân chủ trung ương tập quyền ngày càng hoàn thiện; các bộ luật Hình thư, Quốc triều hình luật (luật Hồng Đức).",
+      "Kinh tế: nông nghiệp lúa nước, đê điều; thủ công nghiệp với nhiều làng nghề; thương nghiệp với Thăng Long, Phố Hiến, Hội An.",
+      "Tư tưởng, tôn giáo: Phật giáo phát triển thời Lý – Trần (Thiền phái Trúc Lâm), Nho giáo chiếm địa vị độc tôn thời Lê sơ.",
+      "Giáo dục, khoa cử: Văn Miếu (1070), Quốc Tử Giám (1076); văn học chữ Hán, chữ Nôm; nghệ thuật kiến trúc chùa Một Cột, Hoàng thành Thăng Long; khoa học: Đại Việt sử kí toàn thư, bản đồ Hồng Đức…"
+     ]
+    ],
+    [
+     "4. Ý nghĩa",
+     [
+      "Thể hiện sức sáng tạo của dân tộc, tạo nên sức mạnh để bảo vệ độc lập; là nền tảng cho văn hoá Việt Nam hiện nay."
+     ]
+    ]
+   ],
+   "nho": [
+    "Văn minh Đại Việt phát triển rực rỡ thời Lý, Trần, Lê sơ.",
+    "1070: Văn Miếu; 1076: Quốc Tử Giám.",
+    "Phật giáo thịnh thời Lý – Trần, Nho giáo độc tôn thời Lê sơ."
+   ],
+   "hoi": [
+    "Nêu cơ sở hình thành văn minh Đại Việt.",
+    "Trình bày thành tựu tiêu biểu của văn minh Đại Việt về giáo dục, khoa cử.",
+    "Văn minh Đại Việt có ý nghĩa gì đối với lịch sử dân tộc?"
+   ]
   },
   {
    "so": 11,
@@ -133,7 +463,31 @@
    ],
    "nam": null,
    "tom": "Thành phần dân tộc, các ngữ hệ và sự phân bố của 54 dân tộc ở Việt Nam.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Thành phần dân tộc theo dân số",
+     [
+      "Việt Nam là quốc gia thống nhất gồm 54 dân tộc; dân tộc Kinh (Việt) chiếm khoảng 85% dân số, 53 dân tộc còn lại là dân tộc thiểu số.",
+      "Các dân tộc có dân số trên 1 triệu người: Tày, Thái, Mường, Khơ-me, Hoa, Nùng, H'Mông."
+     ]
+    ],
+    [
+     "2. Thành phần dân tộc theo ngữ hệ",
+     [
+      "Các dân tộc được xếp vào 5 ngữ hệ: Nam Á, Thái – Ka-đai, H'Mông – Dao, Nam Đảo, Hán – Tạng; gồm 8 nhóm ngôn ngữ.",
+      "Các dân tộc sinh sống xen kẽ, không có lãnh thổ tộc người riêng biệt."
+     ]
+    ]
+   ],
+   "nho": [
+    "Việt Nam có 54 dân tộc, dân tộc Kinh chiếm khoảng 85%.",
+    "Các dân tộc thuộc 5 ngữ hệ.",
+    "Các dân tộc cư trú xen kẽ."
+   ],
+   "hoi": [
+    "Nêu cách phân chia thành phần dân tộc theo dân số và theo ngữ hệ.",
+    "Kể tên một số dân tộc ở địa phương em."
+   ]
   },
   {
    "so": 12,
@@ -145,7 +499,33 @@
    ],
    "nam": null,
    "tom": "Những nét chính về sản xuất, ăn, mặc, ở, tín ngưỡng, lễ hội của các dân tộc.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Đời sống vật chất",
+     [
+      "Hoạt động kinh tế: người Kinh chủ yếu trồng lúa nước, làm nghề thủ công, buôn bán; các dân tộc thiểu số làm ruộng bậc thang, nương rẫy, chăn nuôi, khai thác lâm sản.",
+      "Ở: nhà trệt (người Kinh), nhà sàn (nhiều dân tộc miền núi), nhà dài (một số dân tộc Tây Nguyên).",
+      "Ăn, mặc: lúa gạo là lương thực chính; trang phục phong phú, mang bản sắc riêng của mỗi dân tộc."
+     ]
+    ],
+    [
+     "2. Đời sống tinh thần",
+     [
+      "Tín ngưỡng: thờ cúng tổ tiên, thờ Mẫu, thờ thần tự nhiên; tôn giáo: Phật giáo, Công giáo, Tin Lành, Hồi giáo, Cao Đài, Hoà Hảo…",
+      "Phong tục, lễ hội: Tết Nguyên đán, lễ hội cầu mùa, lễ mừng cơm mới; nghệ thuật dân gian phong phú (hát quan họ, then, cồng chiêng Tây Nguyên)."
+     ]
+    ]
+   ],
+   "nho": [
+    "Mỗi dân tộc có nét riêng về ăn, mặc, ở.",
+    "Thờ cúng tổ tiên là tín ngưỡng phổ biến.",
+    "Không gian văn hoá cồng chiêng Tây Nguyên là di sản tiêu biểu."
+   ],
+   "hoi": [
+    "Trình bày những nét chính về đời sống vật chất của các dân tộc Việt Nam.",
+    "Kể tên một số lễ hội tiêu biểu của các dân tộc.",
+    "Em cần làm gì để giữ gìn bản sắc văn hoá các dân tộc?"
+   ]
   },
   {
    "so": 13,
@@ -157,7 +537,31 @@
    ],
    "nam": null,
    "tom": "Vai trò của khối đại đoàn kết dân tộc trong dựng nước, giữ nước và chính sách dân tộc hiện nay.",
-   "dang_bien_soan": true
+   "muc": [
+    [
+     "1. Khối đại đoàn kết dân tộc trong lịch sử",
+     [
+      "Hình thành từ sớm trong quá trình dựng nước và giữ nước, trị thuỷ, chống ngoại xâm.",
+      "Là nhân tố quyết định thắng lợi trong các cuộc kháng chiến chống ngoại xâm và công cuộc xây dựng đất nước."
+     ]
+    ],
+    [
+     "2. Chính sách dân tộc của Đảng và Nhà nước",
+     [
+      "Nguyên tắc: bình đẳng, đoàn kết, tôn trọng, giúp nhau cùng phát triển.",
+      "Nội dung: phát triển kinh tế – xã hội vùng dân tộc thiểu số, xoá đói giảm nghèo; giữ gìn, phát huy bản sắc văn hoá; đào tạo cán bộ người dân tộc thiểu số; bảo đảm quốc phòng, an ninh."
+     ]
+    ]
+   ],
+   "nho": [
+    "Đại đoàn kết dân tộc là truyền thống và sức mạnh của dân tộc.",
+    "Chính sách dân tộc: bình đẳng, đoàn kết, tôn trọng, giúp nhau cùng phát triển."
+   ],
+   "hoi": [
+    "Vì sao khối đại đoàn kết dân tộc có vai trò quan trọng?",
+    "Trình bày nội dung cơ bản của chính sách dân tộc hiện nay.",
+    "Học sinh có thể làm gì để góp phần củng cố khối đại đoàn kết dân tộc?"
+   ]
   }
  ]
 }

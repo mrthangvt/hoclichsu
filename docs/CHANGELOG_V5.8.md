@@ -20,3 +20,8 @@ Theo yêu cầu chủ dự án: đưa nội dung bài học lớp 6, lớp 7 và
 ## Kiểm tra
 - Desktop 1440 px và mobile 390 px: lớp 6–12 hiện đủ 20, 20, 21, 24, 13, 13, 17 bài theo thứ tự SGK; mở bài, Bài tiếp theo / Bài trước (nút và phím mũi tên), nút timeline hoạt động; icon Hồ Chí Minh còn sau khi chọn menu; ảnh chặng 1 đã thay; không có lỗi JavaScript.
 - Nguồn đọc: bản PDF SGK lớp 6–12 chủ dự án cung cấp; mục lục đọc trực tiếp từ trang mục lục, lớp 6, 7 nhận dạng chữ (OCR) để đối chiếu nội dung, mốc thời gian.
+
+## Cập nhật dữ liệu 24/11/2026 (nhánh `claude/v59-sgk-lop8-12`)
+- **Lớp 8–12 đủ nội dung từng bài** (88 bài): mục chính, ghi nhớ, câu hỏi ôn tập, biên soạn lại bằng lời văn riêng theo mạch bài của SGK; không còn bài "đang biên soạn". Lớp 10–12 chủ dự án chỉ có bản PDF trích (59/51/59 trang) nên các bài sau phần trích được viết theo chương trình Lịch sử 2018, đối chiếu tên bài và trang trong mục lục.
+- **Liên kết sa bàn 3D** trong bài: lớp 9 bài 15 và lớp 12 bài 7 → Điện Biên Phủ; lớp 11 bài 7 → Như Nguyệt (cần merge PR #42); lớp 11 bài 8 → Bạch Đằng 938; lớp 12 bài 8 → Thành cổ Quảng Trị.
+- Không đổi mã; chỉ sửa `vietsu/data/sgk_kntt_lop8..12.json` và sinh lại `v58-sgk.js`.
