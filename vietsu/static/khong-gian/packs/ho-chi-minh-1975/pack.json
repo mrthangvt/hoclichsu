@@ -22,6 +22,11 @@
     true
    ],
    [
+    "nha",
+    "Nhà cửa, ghe xuồng (minh hoạ)",
+    true
+   ],
+   [
     "muiten",
     "Mũi tên 5 hướng (phác thảo)",
     true
@@ -108,7 +113,8 @@
   "props/may-bay/*.glb",
   "props/dinh/*.glb",
   "props/nha/*.glb",
-  "props/tau/*.glb"
+  "props/tau/*.glb",
+  "props/nha/*.json"
  ],
  "terrain": {
   "data": "terrain/meta.json",

@@ -37,7 +37,7 @@ const sectionMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.Mesh
 sectionMesh.visible = false; scene.add(sectionMesh);
 progress(0.35, 'Đang dựng địa hình ' + (TANG === 'noi-do' ? 'nội đô Sài Gòn' : 'toàn chiến dịch') + '…');
 //@@ s8
-const LAYER = { nv: [], xe: [] };
+const LAYER = { nv: [], xe: [], nha: [] };
 //@@ s9
 //@@ s10
 async function loadModel(name) { throw new Error('trận này không dùng mô hình .mesh.json: ' + name); }
@@ -106,25 +106,25 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   XEX.x843 = await xeTao('data/xe/xe-tang-843.glb', { duong: D843, lich: [[42, 0], [84, g843], [999, g843]], hien: (t) => t >= 40, ten: 'Xe tăng 843' });
   XEX.x390 = await xeTao('data/xe/xe-tang-390.glb', { duong: D390, lich: [[44, -45], [90, g390], [108, dai(D390, D390.length - 1)]], hien: (t) => t >= 44, ten: 'Xe tăng 390' });
   XEX.DL = DL;
-  // NHÀ PHỐ SÀI GÒN 1975 (tools/sa_ban/nha/dung_nha_pho.py, 4 kiểu theo ảnh mẫu anh Thắng gửi 24/11) — vẽ hàng loạt (InstancedMesh), hai bên
-  // lộ trình xe tăng: cầu Sài Gòn → Hàng Xanh → Thị Nghè → Dinh; mặt tiền cách tim đường 18 m. Bỏ đoạn công viên trước Dinh (< 420 m) và chỗ trũng/nước.
-  // Kiểu nhà, khoảng hở, màu là MINH HOẠ — chưa theo ảnh từng dãy phố năm 1975.
-  { const g = await glbLoad('data/nha/nha-pho.glb'), KIEU = [['NhaA', 8.0], ['NhaB', 6.0], ['NhaC', 5.0], ['NhaD', 4.5]], dinh = DL(0, 0);
-    const rnd = (() => { let a = 1975; return () => (a = (a * 16807) % 2147483647) / 2147483647; })(), dat = KIEU.map(() => []);
-    for (const tuyen of [DUONG_DINH, (INST.duong && INST.duong.causg_thinghe) || []]) {
-      if (tuyen.length < 2) continue; const Dz = duong(tuyen);
-      for (const sg of [-1, 1]) for (let d = 30; d < Dz.L - 10;) {
-        const k = Math.floor(rnd() * 4), w = KIEU[k][1], p = diemTren(Dz, d + w / 2), nx = Math.cos(p.yaw) * sg, nz = -Math.sin(p.yaw) * sg;
-        const x = p.x + nx * 18, z = p.z + nz * 18; d += w + (rnd() < 0.12 ? 3 + rnd() * 6 : 0.05);
-        if (Math.hypot(x - dinh[0], z + dinh[1]) < 420 || hG(x, z) < 0.3) continue;
-        dat[k].push([x, z, Math.atan2(-nx, -nz), 0.85 + rnd() * 0.25]);
-      } }
-    const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), Y1 = new THREE.Vector3(0, 1, 0), cl = new THREE.Color();
-    KIEU.forEach(([ten], k) => { const src = g.scene.getObjectByName(ten); if (!src || !dat[k].length) return; const mesh = src.isMesh ? src : src.children.find((c) => c.isMesh);
-      mesh.updateWorldMatrix(true, false); const mq = mesh.matrixWorld.clone(), im = new THREE.InstancedMesh(mesh.geometry, mesh.material, dat[k].length);   // mq: ma trận giải nén toạ độ (meshopt lượng tử hoá)
-      dat[k].forEach(([x, z, yaw, c], i) => { m4.compose(new THREE.Vector3(x, hG(x, z) - 0.2, z), q.setFromAxisAngle(Y1, yaw), new THREE.Vector3(1, 1, 1)); im.setMatrixAt(i, m4.multiply(mq)); im.setColorAt(i, cl.setRGB(c, c * 0.98, c * 0.95)); });
-      scene.add(im); LAYER.xe.push(im); });
-    XEX.nha = dat.reduce((a, b) => a + b.length, 0); }
+  // NHÀ CỬA SÀI GÒN 1975 — vị trí xếp sẵn bằng tools/sa_ban/nha/xep_nha.py (props/nha/xep.json), mẫu dung_nha_pho.py (props/nha/nha-pho.glb).
+  // Theo ảnh anh Thắng gửi 24/11: nhà phố cũ (4 kiểu chi tiết sát lộ trình xe tăng), phố nhìn từ trên cao (nhà xa: mái ngói, mái tôn, bê tông kín lõi khối phố),
+  // nhà lá trên cọc ven kênh (ảnh kênh Hàng Bàng – Chợ Lớn), xuồng, ghe. MINH HOẠ mật độ đô thị, không phải bản đồ từng căn.
+  // Vẽ hàng loạt theo ô 1,5 km × kiểu (InstancedMesh), ô xa thì ẩn bớt (ẩn trước: nhà chi tiết, nhà lá, ghe).
+  { const [g, X] = await Promise.all([glbLoad('data/nha/nha-pho.glb'), fetch(PU('data/nha/xep.json')).then((r) => r.json())]);
+    const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), Y1 = new THREE.Vector3(0, 1, 0), cl = new THREE.Color(), O = 1500;
+    XEX.nha = []; let tong = 0;
+    for (const [ten, A] of Object.entries(X.kieu)) {
+      const src = g.scene.getObjectByName(ten); if (!src) continue; const mesh = src.isMesh ? src : src.children.find((c) => c.isMesh);
+      mesh.updateWorldMatrix(true, false); const mq = mesh.matrixWorld.clone();             // ma trận giải nén toạ độ (meshopt lượng tử hoá)
+      const la = ten.startsWith('La'), ghe = ten === 'Xuong' || ten === 'Ghe', xa = la || ghe || ten.startsWith('Nha') ? 1800 : 5200, o = new Map();
+      for (let i = 0; i < A.length; i += 4) { const k = Math.floor(A[i] / O) + ',' + Math.floor(A[i + 1] / O); if (!o.has(k)) o.set(k, []); o.get(k).push(i); }
+      for (const [k, L] of o) {
+        const im = new THREE.InstancedMesh(mesh.geometry, mesh.material, L.length); let cx = 0, cz = 0;
+        L.forEach((i, n) => { const x = A[i], z = -A[i + 1], h = ghe ? 0.3 : la ? Math.max(hG(x, z), 0.6) + 0.5 : hG(x, z) - 0.2, r = ((i * 2654435761) >>> 0) / 4294967296;
+          m4.compose(new THREE.Vector3(x, h, z), q.setFromAxisAngle(Y1, A[i + 2] * Math.PI / 180), new THREE.Vector3(A[i + 3] / 100, 1, 1)); im.setMatrixAt(n, m4.multiply(mq));
+          const c = 0.8 + r * 0.28; im.setColorAt(n, cl.setRGB(c, c * (0.96 + r * 0.05), c * (0.92 + r * 0.06))); cx += x; cz += z; });
+        im.computeBoundingSphere(); im.userData.tam = new THREE.Vector3(cx / L.length, 0, cz / L.length); im.userData.xa = xa; scene.add(im); LAYER.nha.push(im); XEX.nha.push(im); tong += L.length; } }
+    XEX.nhaTong = tong; }
   // TÀU HẢI QUÂN VNCH kiểu PCE (ảnh HQ-07 anh Thắng gửi) neo ở bến Bạch Đằng — Bộ Tư lệnh Hải quân, mục tiêu hướng Đông (S3, S6). Kích thước lớp PCE: S43. Số tàu, vị trí neo: MINH HOẠ.
   { const g = await glbLoad('data/tau/tau-hq-pce.glb');
     for (const [x, y] of [[1312, -215], [1316, -290]]) { const o = g.scene.clone(true); o.position.set(x, 0.3, -y); o.rotation.y = Math.atan2(0.058, -0.998) + Math.PI; scene.add(o); LAYER.xe.push(o); } }
@@ -650,6 +650,7 @@ function update(dt) {
     XEX.cong.phai.rotation.x = k; XEX.cong.trai.rotation.x = k; if (XEX.cong.phu) XEX.cong.phu.rotation.x = rung + sstep(84, 84.6, t) * 0.14;
   }
   }
+  { const on = !$('ly-nha') || $('ly-nha').checked, c = camera.position; for (const m of LAYER.nha) m.visible = on && Math.hypot(m.userData.tam.x - c.x, m.userData.tam.z - c.z) < m.userData.xa + Math.max(0, c.y) * 2; }
   const xeOn = $('ly-nv').checked; for (const m of LAYER.xe) m.visible = m.visible && xeOn; for (const N of NVX) N.obj.visible = N.obj.visible && xeOn;
   const arrOn = $('ly-arr').checked && $('ly-muiten').checked, ex = appMode === 'explore';
   { const c2 = STORY.scenes.find((c) => c.id === 'C02') || STORY.scenes[0];                // năm hướng: cảnh C02, mũi tên lần lượt từng hướng theo lời dẫn
@@ -694,7 +695,7 @@ setAppMode('film');
 update(0); renderer.compile(scene, camera); renderer.render(scene, camera);
 renderList(); connectStore();
 const STILL = location.hash === '#still';
-window.__sa = { DAN, DONG, get NHA() { return XEX.nha; }, XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
+window.__sa = { DAN, DONG, get NHA() { return XEX.nhaTong; }, XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
 function closeLoad() { $('load').classList.add('done'); setTimeout(() => $('load').remove(), 700); }
 if (STILL) { document.body.classList.add('ready'); closeLoad(); }
 else {
