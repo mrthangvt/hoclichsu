@@ -172,3 +172,49 @@ Các sa bàn cũ chạy song song tới khi bản theo khung được duyệt.
 | Như Nguyệt 1077 V1.6 | Artifact slug `3b92f7b7-e318-4ede-a7c0-8f0ff3c3ab7f` | Đã chuyển vào `packs/nhu-nguyet-1077/` (tải ZIP qua Xuất › ZIP của artifact, `tools/sa_ban/chuyen_nhu_nguyet.py`). Script dựng (build_geo, build_story, bake_nn, bake_ngua2, nhac) ở phiên Claude cũ, **chưa chép về máy** | Nhân vật JSON ~64 MB (quan-ly 14,6 MB, dan-binh 13 MB) |
 
 Ghi chép chi tiết từng sa bàn (quy ước, bài học nướng động tác, quy tắc phe): Project "Dự án làm sa bàn" › `sa-ban-bach-dang-938-v1.md`, `sa-ban-nhu-nguyet-1077-v1.md`. Các quy tắc chung trong đó (một bảng phe duy nhất, không để phe này mang cờ phe kia; chỉ quân chính quy giao chiến; chuyển động tác Mixamo theo xoay thế giới) **áp dụng cho mọi gói**.
+
+## 10. Bài học sa bàn lớn — lỗi cần né (rút từ Chiến dịch Hồ Chí Minh 1975, V1.2–V1.8, 24/11/2026)
+Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa hình (56 km và 6,8 km), 16 phút, khoảng 25 nghìn nhà, hàng trăm xe, hàng nghìn người. Nó lộ ra nhiều lỗi mà sa bàn nhỏ không gặp. Anh Thắng xem trọn bản V1.8 không còn lỗi. **Làm sa bàn lớn mới thì đối chiếu danh sách này trước khi gửi bản đầu.**
+
+**A. Lỗi viết mã**
+1. **Chú thích `//` giữa dòng nuốt mã.** Gặp 5 lần (vị trí M48, cột xe, công cụ nướng, mặt cắt gần máy quay, hàng dân hai bên phố). Mã đặt sau `// …` trên cùng dòng không chạy và không báo lỗi. Chú thích giữa dòng dùng `/* … */`, hoặc xuống dòng mới. Soát bằng `python3 vietsu/tools/sa_ban/soat_chu_thich.py <tệp.js>` trước mỗi lần gửi.
+2. **Chỉ số âm.** Trong JS, `a % n` âm khi `a` âm, nên `mang[-3]` là `undefined`. Hệ quả đã gặp: "cannot read properties of undefined (reading '5')" làm đứng phim Hồi 10; khung động tác âm làm lính đứng sững, nhấp nháy. Luôn dùng `((a % n) + n) % n`.
+3. **TDZ (dùng biến `const`/`let` trước khi khai báo)** giữa các khối `//@@ sN`. Khai báo hằng dùng chung ở đầu `rieng.js`.
+4. **Vòng vẽ:** hẹn `requestAnimationFrame` trước, rồi `try { update() } catch`. Mỗi hàm vẽ đám đông có `try` riêng. Một lỗi không được làm đứng cả phim (voice chạy, hình đứng).
+
+**B. Máy quay**
+5. **Mặt cắt gần (`camera.near`) phải gọi `updateProjectionMatrix()` mỗi khung.** Đặt `near` theo độ cao và khoảng cách tới điểm nhìn, `far` vừa đủ (không 900 km). Nếu sai sẽ có cả hai triệu chứng: nhìn cao thì nháy đen, máy thấp thì mất xe và đất, chỉ còn ghim tên.
+6. **Không trải mặt nền dưới địa hình.** Mặt nền chỉ là vành quanh sa bàn. Nếu trải dưới, nhìn xa hai mặt tranh độ sâu thành vệt đen.
+7. **Mọi lộ trình và điểm máy quay phải nằm trong vòng R.** Kẹp máy trên mặt đất, mặt nước, mặt cầu ở mọi chế độ (phim, khám phá, góc nhìn nhân vật).
+8. **Cú máy lướt đoàn xe:** bay bên sườn đoàn (cao ~75 m, cách ~140 m), không bám sát đuôi ở độ cao thấp. Đồi và mặt đất dễ che xe.
+9. **Lớp phẳng chồng nhau** (dải đường tiến quân, mặt đường, mặt nước) cần `renderOrder` và độ cao riêng cho mỗi lớp. Mặt nước nhìn xa thì tắt dần gợn sóng, lấp lánh, bọt, nếu không sông sẽ nháy.
+
+**C. Card đồ hoạ (máy em không có card nên không tự thấy — phải đo)**
+10. **`renderer.compile()` chỉ dựng chương trình, không nạp hình khối.** Vật ẩn tới cảnh sau và mỗi khung động tác đám đông (~1.000 lưới) chỉ được nạp khi hiện lần đầu, gây đứng hình 1–90 s. Lúc tải phải vẽ thử cả cảnh (bỏ cắt khung nhìn, cho hiện tạm vật ẩn) và mọi khung đám đông vào khung 1×1 điểm ảnh.
+11. **Đám đông:** chỉ tải lên GPU phần đang dùng (`count`). Lưu khung hình 16 bit và pháp tuyến 8 bit. Ở xa trên 45 m dùng lưới thưa.
+12. **Mất ngữ cảnh WebGL:** tự dựng lại đúng thời điểm, nhưng tối đa 2 lần trong 2 phút. Quá thì dừng và báo, không lặp vô hạn. Khung bị thay (đổi tầng) phải `renderer.forceContextLoss()` ngay. Gỡ iframe không trả bộ nhớ đồ hoạ.
+13. **Nạp sẵn tầng kế tiếp** (để khỏi màn tải) chỉ làm trên máy ≥ 8 GB. Hai sa bàn cùng lúc dễ tràn bộ nhớ đồ hoạ.
+14. **Mức số lượng anh Thắng chốt:**
+    - Nhà: còn khoảng 1/8 so với bản đầu (51 nghìn). Giữ nhà sát lộ trình, bỏ nhà che lối cầu, bỏ khu máy quay không nhìn tới.
+    - Lính đứng ở một địa điểm (Dinh): ~30.
+    - Dân hai bên đường: vừa phải (khoảng một nửa bản đầu), chủ yếu vỗ tay, vẫy hoa, có cả áo Nam bộ. Đông quá thì nặng mà không thêm ý nghĩa.
+
+**D. Nhân vật, động tác**
+15. **Tốc độ di chuyển phải khớp nhịp bước** đo từ động tác, nếu không lính trượt trên đất. `nhan_vat_lai/nuong_nvz.py` in "nhịp bước … m/s" khi nướng. Bộ binh chạy ~4 m/s, đi ~1,1 m/s.
+16. **Nướng phụ kiện** (cờ, hoa, súng):
+    - Đặt theo toạ độ thế giới. Đặt theo toạ độ cục bộ thì Blender nhân ma trận hai lần, phụ kiện to gấp bội.
+    - Giảm lưới thân trước rồi mới ghép súng, nếu không súng bị giảm mất.
+    - Chỉ lấy lưới có bộ điều chỉnh ARMATURE (tránh khối cầu lạ), súng phải có lớp UV.
+17. **Lính ngồi, đứng trên xe:** đo mặt sàn từng loại xe. Không dùng một độ cao chung, vì lính trông như đứng lơ lửng.
+    - Cách đo: chiếu tia thẳng xuống mẫu xe theo lưới điểm, lấy độ cao mặt sàn (K-63: 1,86–1,92 m; thùng xe tải: 1,47 m).
+18. **Súng gắn tay:** kiểm tra băng đạn quay xuống đất ở tư thế ngắm bắn. Mẫu Thành cổ quay ngang, phải xoay −114° quanh trục nòng (M16 của mẫu VNCH: −64°). `nuong_nvz.py` có biến `SUNG_XOAY`.
+19. **Cảnh cận người:** không dùng đám đông đã giảm lưới (rách ở mũ, ba lô). Dùng mẫu đủ lưới có xương cho vài người gần máy (`nhan_vat_lai/lam_linh_gan.py`).
+20. **Gốc toạ độ vật trong GLB** có thể ở tâm vật, không ở bản lề hay chân. Muốn xoay, đổ vật thì đo hộp bao trước, nếu không vật sẽ nằm lơ lửng.
+
+**E. Kiểm tra trước khi gửi**
+21. Chạy `python3 vietsu/tools/sa_ban/quet_phim.py <gói> <tầng>` cho mọi tầng: bước 0,5 s, chạy liền từ đầu tầng. Bản gửi phải có `out = []` và `slow = []`.
+    - Gói tự khai báo `window.__kiem()`: máy dưới đất, mặt cắt gần sai, ra ngoài sa bàn.
+22. Khi có báo đứng hình: đo số hình khối (`renderer.info.memory.geometries`) và số chương trình đồ hoạ trước, sau từng bước. Chỗ nào tăng vọt là chỗ nạp giữa phim.
+23. Voice là đồng hồ chính. Không thêm khoảng nghỉ đầu hồi, vì nó cắt tiếng và hình.
+
+Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.

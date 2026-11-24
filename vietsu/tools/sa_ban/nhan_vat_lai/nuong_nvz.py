@@ -28,6 +28,9 @@ mes.sort(key=lambda o: -len(o.data.polygons)); me_o = mes[0]
 PHU = []
 for o in bpy.data.objects:                                                     # súng… gắn cứng vào một xương: đổi thành nhóm đỉnh của xương đó (trọng số 1)
     if o.type == 'MESH' and o.parent == arm and o.parent_type == 'BONE' and o.parent_bone:
+        if os.environ.get('SUNG_XOAY'):                                          # xoay súng quanh trục nòng (độ) — mẫu Thành cổ: băng đạn quay ngang, cần quay xuống đất (anh Thắng 24/11)
+            P_ = np.array([v.co[:] for v in o.data.vertices]); c_ = P_.mean(0); ax_ = np.linalg.svd(P_ - c_)[2][0]; ax_ = -ax_ if ax_[1] > 0 else ax_   # chiều trục cố định (mẫu Thành cổ: nòng theo −Y cục bộ)
+            o.data.transform(Matrix.Translation(Vector(c_)) @ Matrix.Rotation(math.radians(float(os.environ['SUNG_XOAY'])), 4, Vector(ax_)) @ Matrix.Translation(-Vector(c_)))
         Mw = o.matrix_world.copy(); xb = o.parent_bone; o.parent = None; o.matrix_world = Mw
         vg = o.vertex_groups.new(name=xb); vg.add(list(range(len(o.data.vertices))), 1.0, 'REPLACE')
         if not o.data.uv_layers: o.data.uv_layers.new(name=me_o.data.uv_layers.active.name)

@@ -379,3 +379,28 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
   - Lính ở Dinh: 204 → 30.
   - Dân: giảm một nửa (hai bên đường, người đi bộ, trước cổng 260 → 130).
   - Nhà: giảm thêm một nửa, kể cả nhà chi tiết và nhà lá. Giữ nhà sát lộ trình, giữ xuồng ghe.
+
+## 27. Sửa V1.9 (24/11 đêm, góp ý 22:54, 23:00, 23:09; anh Thắng đã xem trọn bản V1.8, không còn lỗi dừng, đơ, mất hình)
+- **Bài học sa bàn lớn:** ghi thành danh sách cần né ở `docs/KHUNG_SA_BAN.md` §10. Thêm công cụ `tools/sa_ban/quet_phim.py` (quét cả phim) và `tools/sa_ban/soat_chu_thich.py` (soát chú thích nuốt mã).
+  - Khi soát lần này tìm thêm một lỗi chú thích nuốt mã: từ V1.6, hàng dân hai bên phố không hiện. Đã sửa.
+- **Lính trên K-63 lơ lửng:** đo mặt sàn mẫu xe bằng tia chiếu (1,86–1,92 m), trước đặt 2,5 m.
+- **Ghim khí tài đối phương:** nền xanh cờ Mỹ, chữ trắng (cả máy bay VNCH).
+- **Bỏ chữ "cần đối chiếu tư liệu"** ở bảng tên, chỉ còn "Tái dựng mô phỏng".
+- **Cảnh cận 0:50, 3:40 lính bị thủng:** sáu lính cạnh máy quay dùng mẫu Thành cổ đủ lưới có xương (21 nghìn tam giác, `units/linh-qgp-a|b-gan.glb`, `tools/sa_ban/nhan_vat_lai/lam_linh_gan.py`).
+- **Băng đạn quay ngang:** súng AK của mẫu lính ta xoay −114° quanh trục nòng, M16 của lính đối phương −64°. Băng đạn nay quay xuống đất ở tư thế ngắm. Đã nướng lại cả bốn bộ đám đông.
+- **Trận địa pháo:** 3 pháo thủ sát khoá nòng (quỳ, quan sát, đứng). Bộ binh bảo vệ chạy qua lại 4 s (4 m/s, khớp nhịp bước) rồi dừng bắn 5 s.
+- **Pháo ta bắn vào cứ điểm (Xuân Lộc, Long Thành 3:25, Đồng Dù):**
+  - Lính trong đồn chạy loạn rồi tháo chạy ra cổng phía Sài Gòn.
+  - Lính trên tường bắn trả nửa đầu trận rồi mới bỏ chạy.
+  - Xe tăng M41, M113 chạy vòng trong đồn rồi ra cổng.
+  - Khi đồn mất, người trúng đạn nằm lại chỗ đang chạy, xe cháy tại chỗ.
+  - Đường chạy: MINH HOẠ.
+- **Đầu Hồi 2 (1:41–2:12) chỉ có voice:** bản nhạc "Hiệp sĩ" có 35 s đầu rất nhỏ (−25 đến −35 dB). Hồi 2 nay vào nhạc từ giây 50 của bản nhạc, âm lượng 0,42. Máy bay vòng quanh Sài Gòn nhanh gấp ba (1,6 rad trong 44 s).
+- **Chữ ngày giờ bên phải màn hình:** 24 mốc, hiện đúng lúc voice đọc ngày giờ, mỗi mốc 6,5 s. Trên điện thoại, chữ nằm trên phụ đề, có nền tối.
+- **Rạch Chiếc:** thêm ụ bê tông, ụ đất trước chỗ nấp hai bên. Trong cú máy cận (12 s), 16/22 lính đối phương bị bắn ngã.
+- **Máy quay lướt đoàn xe:** mỗi cú máy lấy một xe khác làm tâm (xe tăng, xe tải chở bộ binh, xe kéo pháo, K-63…), lia dần sang xe kế tiếp, xen kẽ hai bên sườn.
+- **Góp ý 23:00:**
+  - Dân hai bên phố: nhiều người vỗ tay, cầm hoa vẫy hơn, bớt cờ. Thêm người mặc áo Nam bộ (mẫu Rạch Gầm, khoảng 28 %). Người đi tới cổng Dinh bước chân khớp tốc độ.
+  - Cảnh 11:30: máy bắt đầu từ xa (900 m, cao 320 m) rồi bay vào đầu cầu Sài Gòn. Có ụ bê tông, ụ đất cho bộ binh hai bên khi giao tranh với M48.
+  - 11:57: bỏ nhà trong vòng 55 m quanh ngã tư Hàng Xanh và mọi nhà nằm trên lòng đường đoàn xe đi (cách tim đường dưới 12 m).
+  - 390 húc cổng: hai cánh cổng bật vào sân, gãy khỏi trụ, đổ nằm trên bãi cỏ hai bên lối vào. Trước đây cánh cổng nằm lơ lửng chắn ngang lối, vì gốc toạ độ cánh ở tâm cánh.
