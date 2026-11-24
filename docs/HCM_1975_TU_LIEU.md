@@ -150,3 +150,6 @@ Chưa đặt vào phim: C-130A, A-37, UH-1, D-74, cao xạ 37 mm — cảnh Tân
 - 1:55–2:07: Bùi Quang Thận (nhân vật `linh-tang.glb`) rời xe 843, chạy vào Dinh — không mang vũ khí, mang lá cờ tháo từ tháp pháo (S37).
 - 2:11–2:17: trên nóc Dinh hạ lá cờ ba sọc (cờ to, vải dày nên mất nhiều phút — S37); 2:19–2:25: kéo cờ Mặt trận Dân tộc Giải phóng miền Nam lên cột cờ; mốc 11 giờ 30 (S38, S37).
 - Giản lược: cờ kéo trên cột giữa của ba cột trên mái lầu thượng; nguồn ghi "cột cờ chính trước ban công" (S38) / "cột cờ trên nóc Dinh" — vị trí cột đúng sẽ đối chiếu ảnh tư liệu. Chưa dựng Vũ Đăng Toàn cầm AK đứng bảo vệ dưới sân (S38).
+
+## 12. Đường cho cảnh C10 (24/11/2026)
+`placement.json › duong.causg_thinghe`: cầu Sài Gòn → ngã tư Hàng Xanh → cầu Thị Nghè, 2,9 km (`tim_duong.py`, qua điểm Hàng Xanh, sai lệch 7 m), nối vào đầu `duong.dinh` (Thị Nghè → đường Hồng Thập Tự → Dinh, S26). Chưa đưa vào bản thử vì cảnh thử T02 sẽ phải chạy xe quá nhanh; dùng khi dựng C10 (75 s). Cần mẫu M48 (đầu cầu Sài Gòn, S33) và M113 (Hàng Xanh, Thị Nghè, S36).
