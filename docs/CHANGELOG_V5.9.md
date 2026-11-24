@@ -47,3 +47,13 @@ Chủ dự án bổ sung tệp `1TieuSuVeBac.pdf`: **Hồ Chí Minh – Tiểu s
 - **Bài viết theo chặng:** mục “Đề cương bài viết cùng chặng” (nội dung mẫu, nút “Xem đề cương” chỉ báo chưa có) được thay bằng bài tóm lược thật cho 7 chặng, kèm danh sách mốc của chặng (bấm để chuyển mốc) và nguồn, số trang.
 - Hồ sơ nhân vật Hồ Chí Minh cập nhật nguồn.
 - Đã kiểm tra desktop 1440 px và mobile 390 px: 39 thẻ, không chồng nhau; bài viết chặng và nút chuyển mốc hoạt động; cảnh Làng Sen vẫn hiện ở mốc 1890; không lỗi JavaScript.
+
+## V5.9.2 (24/11/2026, cùng nhánh `claude/v591-hcm-tieu-su`) — Bỏ kiểm duyệt khi xuất bản
+Theo yêu cầu chủ dự án: bỏ các nhãn “chờ thẩm định” trên trang và bỏ bước duyệt bài trong CMS.
+- **Trang web (tĩnh):** `build_v59.py` có bước `xuat_ban()` gỡ 25 nhãn kiểm duyệt khỏi bản dựng cuối (“chờ thẩm định”, “Bài biên soạn mẫu”, “HỒ SƠ NHÂN VẬT · BẢN THẢO”, “DỮ LIỆU MẪU”, “nội dung mẫu”, “thử nghiệm · V3.7”, “Đề cương bài viết cùng chặng… chưa thay cho bài thẩm định”…); mỗi nhãn phải tìm thấy, nếu không bản dựng báo lỗi. `v56.js`, `v59.js` bỏ cụm “chờ thẩm định” ở dòng nguồn. **Giữ nguyên** ghi nguồn sách – trang và các ghi chú sử học: truyền thuyết, niên đại ước lệ/còn tranh luận, ảnh minh họa không phải chân dung tư liệu, “Tái dựng mô phỏng” của sa bàn.
+- **CMS (backend FastAPI):**
+  - Bài viết: tạo/sửa là **xuất bản ngay** (không còn nháp → duyệt). Nút “Xuất bản” không cần mã thẩm định, không bắt buộc nguồn/độ dài. Bài do **AI viết vẫn lưu nháp** để biên tập viên đọc lại rồi bấm Xuất bản một lần. Nhập hàng loạt: bài có nội dung ≥ 150 ký tự xuất bản luôn, dòng chỉ có tiêu đề là nháp. Trang bài viết bỏ chip “Đã thẩm định”.
+  - Bài học SGK: Lưu là xuất bản (`_xuat_ban`), không cần mã thẩm định, không bắt buộc nguồn; Gỡ xuất bản cũng dùng mã quản trị. Xóa bài vẫn cần mã thẩm định (hoặc `VIETSU_ADMIN_CAN_PUBLISH=1`, nay là mặc định).
+  - Hồ sơ nhân vật `/nhan-vat/…`: tất cả đều công khai, được đánh chỉ mục và có trong sitemap; bỏ câu “Dữ liệu còn chờ thẩm định”.
+  - Giao diện `/admin`: đổi “Lưu nháp” thành “Lưu & xuất bản”, cập nhật các ghi chú.
+- Kiểm tra: quét chữ hiển thị trên trang chính, các hồ sơ, triều đại, sự kiện, Hồ Chí Minh, Không gian, SGK → không còn nhãn kiểm duyệt; thử API bằng TestClient (tạo/sửa bài → published, trang `/bai-viet/…` 200; nhập hàng loạt; lưu bài SGK → live_state published).
