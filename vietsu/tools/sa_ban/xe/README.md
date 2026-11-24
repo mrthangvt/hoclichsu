@@ -13,3 +13,5 @@
 
 Đã làm (24/11): pháo cao xạ 37 mm hai nòng (Type 65) — rộng 1,80 m theo weaponsystems.net; trực thăng UH-1 — thân 12,77 m, đã xoá chữ ARMY và sao Mỹ máy sinh.
 Đã làm (24/11 chiều): M41 (rộng 3,19 m), C-130A (dài 29,79 m, `XOA_TOI=1`), A-37 (dài 8,92 m, `XOAY=90 XOA_TRANG=1`), D-74 (rộng 2,35 m, `XOAY=-90`).
+
+Đã làm (25/11, Khe Sanh 1968): PT-76 số 555 — `bake_xe.py <fbx> <ra.glb> tank 5.442 30000 555` (số đo 5,442 cho ra rộng 3,15 m, cao 2,30 m). Thêm: đọc Color.jpg khi Tripo không xuất png; xe không có chữ số cũ thì dán số giữa hai bên tháp pháo, chiếu thẳng theo trục X (tránh tay nắm, móc).
