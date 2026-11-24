@@ -206,7 +206,7 @@ Bộ binh: dùng lại `thanh-co-quang-tri/models/qdvn_a/b.glb` + `qdnd.glb` (35
 
 ## 17. Phố kín lõi, nhà lá ven kênh (24/11/2026, chiều)
 Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và ảnh nhà lá ven kênh Hàng Bàng (Chợ Lớn) trước năm 1975.
-- Vị trí nhà tính sẵn bằng `tools/sa_ban/nha/xep_nha.py`, ghi ra `props/nha/xep.json` (~380 kB gzip, tải sau). Vùng xếp là vòng bán kính 2,6 km quanh trung tâm, cộng hành lang 400 m dọc lộ trình xe tăng và xóm Thủ Thiêm. Tổng cộng khoảng 78.000 nhà, vẽ hàng loạt theo ô 1,5 km.
+- Vị trí nhà tính sẵn bằng `tools/sa_ban/nha/xep_nha.py`, ghi ra `props/nha/xep.json` (~380 kB gzip, tải sau). Vùng xếp là vòng bán kính 2,6 km quanh trung tâm, cộng hành lang 400 m dọc lộ trình xe tăng và xóm Thủ Thiêm. Tổng cộng khoảng 78.000 nhà, vẽ hàng loạt theo ô 1,5 km. **Đã tỉa còn 65 %** (khoảng 51.000 nhà) theo yêu cầu anh Thắng: bỏ ngẫu nhiên 45 % nhà lõi khối phố, phần còn lại bỏ ở nhà xa mặt phố. Giữ nguyên nhà chi tiết dọc lộ trình xe tăng, nhà lá và ghe xuồng. Trên điện thoại, bộ máy tỉa thêm (nhà lõi còn một nửa, nhà xa mặt phố bỏ 1/4) và khoảng cách hiện nhà giảm còn 65 %. Tên kiểu có dấu `~` là nhà lõi khối phố.
   - **Mặt phố:** xếp hai bên mọi đường OSM, đã bỏ đường làm sau năm 1975. Sát lộ trình xe tăng dùng 4 kiểu nhà chi tiết, mặt tiền cách tim đường 18 m. Dải 17,5 m hai bên lộ trình để trống cho người dân đứng.
   - **Lõi khối phố:** dùng 5 kiểu nhà xa ít mặt (mái ngói, mái tôn, bê tông, nhà phố, biệt thự) đặt theo lưới 8 m, mặt nhà quay về đường gần nhất.
   - **Ven kênh:** nhà lá trên cọc (3 kiểu), xuồng và ghe mui lá đặt dọc Thị Nghè, Bến Nghé và các rạch rộng dưới 90 m, cùng bờ Thủ Thiêm. Không đặt ở chỗ bờ là đường (bến, kè) và ở hồ nhỏ.

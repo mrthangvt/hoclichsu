@@ -112,11 +112,14 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   // Vẽ hàng loạt theo ô 1,5 km × kiểu (InstancedMesh), ô xa thì ẩn bớt (ẩn trước: nhà chi tiết, nhà lá, ghe).
   { const [g, X] = await Promise.all([glbLoad('data/nha/nha-pho.glb'), fetch(PU('data/nha/xep.json')).then((r) => r.json())]);
     const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), Y1 = new THREE.Vector3(0, 1, 0), cl = new THREE.Color(), O = 1500;
+    const DT = matchMedia('(pointer: coarse)').matches || Math.min(screen.width, screen.height) < 820;   // điện thoại, máy tính bảng: tỉa tiếp, nhìn gần hơn
     XEX.nha = []; let tong = 0;
-    for (const [ten, A] of Object.entries(X.kieu)) {
+    for (const [kieu, A0] of Object.entries(X.kieu)) {
+      const ten = kieu.replace('~', ''), tia = !DT || !ten.startsWith('Xa') ? 0 : kieu.endsWith('~') ? 0.5 : 0.25;   // tên có ~ : nhà lõi khối phố
+      const A = []; for (let i = 0; i < A0.length; i += 4) if (!tia || ((((i >> 2) * 2246822519) >>> 0) / 4294967296) >= tia) A.push(A0[i], A0[i + 1], A0[i + 2], A0[i + 3]);
       const src = g.scene.getObjectByName(ten); if (!src) continue; const mesh = src.isMesh ? src : src.children.find((c) => c.isMesh);
       mesh.updateWorldMatrix(true, false); const mq = mesh.matrixWorld.clone();             // ma trận giải nén toạ độ (meshopt lượng tử hoá)
-      const la = ten.startsWith('La'), ghe = ten === 'Xuong' || ten === 'Ghe', xa = la || ghe || ten.startsWith('Nha') ? 1800 : 5200, o = new Map();
+      const la = ten.startsWith('La'), ghe = ten === 'Xuong' || ten === 'Ghe', xa = (la || ghe || ten.startsWith('Nha') ? 1800 : 5200) * (DT ? 0.65 : 1), o = new Map();
       for (let i = 0; i < A.length; i += 4) { const k = Math.floor(A[i] / O) + ',' + Math.floor(A[i + 1] / O); if (!o.has(k)) o.set(k, []); o.get(k).push(i); }
       for (const [k, L] of o) {
         const im = new THREE.InstancedMesh(mesh.geometry, mesh.material, L.length); let cx = 0, cz = 0;

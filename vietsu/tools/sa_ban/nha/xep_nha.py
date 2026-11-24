@@ -7,6 +7,7 @@ nhà lá trên cọc ven kênh (ảnh kênh Hàng Bàng, Chợ Lớn trước 19
   2. Lõi khối phố: lưới 8 m, nhà xa quay mặt về đường gần nhất.
   3. Ven kênh hẹp (rộng < 90 m) và bờ Thủ Thiêm: nhà lá trên cọc chìa ra nước, xuồng, ghe — trừ chỗ bờ là đường (bến, kè).
 Không xếp: đường, nước, công viên, nghĩa trang, đất quân sự, sân bay, khuôn viên Dinh. Vùng xếp: bán kính 2,6 km quanh trung tâm + hành lang 400 m theo lộ trình.
+4. Tỉa còn 65 % (bỏ bớt nhà lõi khối phố), theo yêu cầu anh Thắng 24/11.
 Toàn bộ là MINH HOẠ mật độ đô thị năm 1975, không phải bản đồ từng căn nhà."""
 import json, math, re, sys, random
 import numpy as np
@@ -140,7 +141,7 @@ for x, y in O:
     if g > 60:                                                      # xa đường: xoay theo hướng đường gần nhất cho thẳng hàng
         a = math.radians(GOC[ii[i, j], jj[i, j]] - 1); fx, fy = (-math.sin(a), -math.cos(a)) if (-math.sin(a)) * gx + (-math.cos(a)) * gy > 0 else (math.sin(a), math.cos(a))
     kieu = chon(LOI); sx = rnd.uniform(0.9, 1.5) if kieu in ('XaNgoi', 'XaTon') else 1.0; w = XA[kieu] * sx; d = SAU[kieu]
-    if dat_duoc(x, y, fx, fy, w, d): danh_dau(x, y, fx, fy, w, d); them(kieu, x, y, fx, fy, sx)
+    if dat_duoc(x, y, fx, fy, w, d): danh_dau(x, y, fx, fy, w, d); them(kieu + '~', x, y, fx, fy, sx)     # '~': nhà lõi khối phố (được tỉa trước)
 # 3. nhà lá ven kênh
 hw = distance_transform_edt(NUOC) * M; RONGK = maximum_filter(hw, size=int(120 / M) + 1) * 2       # bề rộng sông/kênh gần đó (m)
 dW, (wi, wj) = distance_transform_edt(~NUOC, return_indices=True)
@@ -183,8 +184,17 @@ for x, y in O:
     if dat_duoc(x, y, fx, fy, w, 5.0, CHAN_LA | NUOC, -6.0):
         danh_dau(x, y, fx, fy, w, 5.0, -6.0); them(kieu, x, y, fx, fy); nla += 1
 print('nhà lá', nla)
+# 5. tỉa mật độ (anh Thắng 24/11: máy tính giảm 35 %) — bỏ ngẫu nhiên nhà xa: lõi khối phố 45 %, phần còn thiếu lấy ở mặt phố;
+#    giữ nguyên nhà chi tiết sát lộ trình, nhà lá, ghe xuồng. Trên điện thoại bộ máy tỉa tiếp nhà lõi (rieng.js).
+GIU = float(os.environ.get('GIU', '0.65'))
+dau = sum(len(v) // 4 for v in OUT.values()); bo = dau - round(dau * GIU)
+loi = sum(len(v) // 4 for k, v in OUT.items() if k.endswith('~')); mat = sum(len(v) // 4 for k, v in OUT.items() if k.startswith('Xa') and not k.endswith('~'))
+qL = min(0.45, bo / max(loi, 1)); qM = min(1.0, max(0.0, (bo - loi * qL) / max(mat, 1)))
+for k in [k for k in OUT if k.startswith('Xa')]:
+    q = qL if k.endswith('~') else qM; v = OUT[k]; OUT[k] = [a for n in range(0, len(v), 4) if rnd.random() >= q for a in v[n:n + 4]]
+print('trước tỉa', dau, '· nhà lõi', loi)
 tong = {k: len(v) // 4 for k, v in OUT.items()}
 print(tong, 'tổng', sum(tong.values()))
-json.dump(dict(ghiChu='Xếp bằng tools/sa_ban/nha/xep_nha.py — MINH HOẠ mật độ nhà năm 1975 (không phải bản đồ từng căn). Mỗi kiểu: dãy [x, y_Bắc (m, Blender), góc quay độ (three, quanh trục đứng), bề ngang %].',
+json.dump(dict(ghiChu='Xếp bằng tools/sa_ban/nha/xep_nha.py — MINH HOẠ mật độ nhà năm 1975 (không phải bản đồ từng căn). Mỗi kiểu: dãy [x, y_Bắc (m, Blender), góc quay độ (three, quanh trục đứng), bề ngang %]. Tên kiểu có dấu ~ là nhà lõi khối phố (điện thoại tỉa bớt).',
                nguon='Đường, sông, công viên: © OpenStreetMap contributors (ODbL); kiểu nhà theo ảnh anh Thắng gửi 24/11/2026', kieu=OUT),
           open(f'{GOI}/props/nha/xep.json', 'w'), ensure_ascii=False, separators=(',', ':'))
