@@ -23,7 +23,7 @@ PL = json.load(open(f'{GOI}/placement.json'))
 TUYEN = [np.array(PL['duong']['dinh']), np.array(PL['duong']['causg_thinghe'])]
 TAM, RV, HL = (900.0, 800.0), 2600.0, 400.0           # tâm, bán kính vùng xếp, hành lang theo lộ trình
 M = 2.0                                                # m / ô
-X0, X1, Y0, Y1 = -2200.0, 4000.0, -2200.0, 4000.0
+X0, X1, Y0, Y1 = -6800.0, 4000.0, -3600.0, 4400.0
 W, Hh = int((X1 - X0) / M), int((Y1 - Y0) / M)
 def P(g): return [((lo - meta['lon0']) * kx - X0) / M for lo, la in g], [(Y1 - (la - meta['lat0']) * ky) / M for lo, la in g]
 def pts(g): xs, ys = P(g); return list(zip(xs, ys))
@@ -69,6 +69,14 @@ def kc_tuyen(x, y):
 hl = Image.new('L', (W, Hh), 0); dh = ImageDraw.Draw(hl)
 for T in TUYEN: dh.line([((x - X0) / M, (Y1 - y) / M) for x, y in T], fill=255, width=round(2 * HL / M))
 VUNG |= np.array(hl) > 0
+# vùng thêm cho các hồi theo voice: C08 quanh Bộ Tổng tham mưu, C09 dọc Bà Quẹo – Bảy Hiền – Lê Văn Duyệt và phía cầu Chữ Y (toạ độ như rieng.js)
+def bl(la, lo): return ((lo - meta['lon0']) * kx, (la - meta['lat0']) * ky)
+for tuyen, rr in [([(10.80326, 106.67153)], 900), ([(10.7915, 106.6380), (10.7932, 106.6532), (10.7870, 106.6640), (10.7805, 106.6780), (10.7740, 106.6880)], 600),
+                  ([(10.7420, 106.6850), (10.7509, 106.6874), (10.7600, 106.6890), (10.7700, 106.6920)], 600)]:
+    q = [((bl(*a)[0] - X0) / M, (Y1 - bl(*a)[1]) / M) for a in tuyen]
+    if len(q) == 1: dh.ellipse([q[0][0] - rr / M, q[0][1] - rr / M, q[0][0] + rr / M, q[0][1] + rr / M], fill=255)
+    else: dh.line(q, fill=255, width=round(2 * rr / M))
+VUNG |= np.array(hl) > 0
 SAT = np.zeros_like(VUNG); sat = Image.new('L', (W, Hh), 0); ds = ImageDraw.Draw(sat)
 for T in TUYEN: ds.line([((x - X0) / M, (Y1 - y) / M) for x, y in T], fill=255, width=round(2 * 40 / M))
 SAT = np.array(sat) > 0                                             # sát lộ trình: nhà chi tiết
@@ -89,9 +97,11 @@ def khung(x, y, fx, fy, w, d, y0=0.0):                               # lưới �
     return out
 def dat_duoc(x, y, fx, fy, w, d, cho=CHAN, y0=0.0):
     return all(not chan(px, py, cho) for px, py in khung(x, y, fx, fy, w, d, y0))
+def occ(px, py):
+    i, j = o(px, py)
+    if 0 <= i < Hh and 0 <= j < W: OCC[i, j] = True
 def danh_dau(x, y, fx, fy, w, d, y0=0.0):
-    for px, py in khung(x, y, fx, fy, w, d, y0): i, j = o(px, py); OCC[i, j] = True
-    for px, py in khung(x, y, fx, fy, w + 1.0, d + 0.5, y0): i, j = o(px, py); OCC[i, j] = True
+    for px, py in khung(x, y, fx, fy, w + 1.0, d + 0.5, y0): occ(px, py)
 OUT = {}
 def them(kieu, x, y, fx, fy, sx=1.0):
     OUT.setdefault(kieu, []).extend([round(x), round(y), round(math.degrees(math.atan2(fx, -fy))) % 360, round(sx * 100)])
@@ -167,7 +177,7 @@ for i, j in cand:
     sau = {'LaA': 5.0, 'LaB': 4.5, 'LaC': 3.0}[kieu]
     if not dat_duoc(x, y, fx, fy, w, sau, CHAN_LA): continue
     danh_dau(x, y, fx, fy, w, sau); them(kieu, x, y, fx, fy); nla += 1
-    for px, py in khung(x + fx * 6, y + fy * 6, fx, fy, w, 6.0): i2, j2 = o(px, py); OCC[i2, j2] = True     # sàn chìa ra nước
+    for px, py in khung(x + fx * 6, y + fy * 6, fx, fy, w, 6.0): occ(px, py)     # sàn chìa ra nước
     if rnd.random() < 0.45:                                         # xuồng, ghe đậu trước nhà, song song bờ
         bx, by = x + fx * (8.5 + rnd.random() * 2), y + fy * (8.5 + rnd.random() * 2); bi, bj = o(bx, by)
         if 0 <= bi < Hh and 0 <= bj < W and NUOC[bi, bj]: sg = 1 if rnd.random() < .5 else -1; them('Ghe' if rnd.random() < 0.35 else 'Xuong', bx, by, sg * fy, -sg * fx)

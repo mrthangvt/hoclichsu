@@ -30,6 +30,11 @@
     "muiten",
     "Mũi tên 5 hướng (phác thảo)",
     true
+   ],
+   [
+    "nhac",
+    "Nhạc nền",
+    true
    ]
   ],
   "legend": [
@@ -97,7 +102,10 @@
  "placement": "placement.json",
  "story": "story.json",
  "audio": {
-  "dir": "audio/"
+  "dir": "audio/",
+  "voice": "audio/voice.mp3",
+  "music": "audio/nhac/",
+  "credits": "Lời dẫn: bản thu của anh Thắng (24/11/2026). Nhạc nền (Epidemic Sound): It Has Awoken, I Will Be Your Knight, The Thick of It, Final Battle, Arbitrary Enemy, Hero Epilogue. Hiệu ứng: tiengdong.com (xe tăng, súng AK, tiếng nổ, reo hò, vỗ tay), Epidemic Sound (Fire Burst, Whoosh, Riser, Vehicle Horn, Wind Drone); tiếng pháo dùng lại của gói Ngọc Hồi – Đống Đa."
  },
  "budget": {
   "firstLoadMB": 15

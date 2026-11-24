@@ -213,3 +213,29 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
   - **Để trống:** đường, sông, công viên, nghĩa trang, đất quân sự, sân bay, khuôn viên Dinh và trục công viên trước cổng Dinh tới nhà thờ Đức Bà.
 - Bảng **Lớp** có mục "Nhà cửa, ghe xuồng (minh hoạ)" để bật/tắt. Nhà ở xa camera tự ẩn: nhà chi tiết, nhà lá và ghe ẩn khi cách quá 1,8 km; nhà xa ẩn khi cách quá 5,2 km.
 - Đây là **minh hoạ mật độ đô thị** năm 1975, không phải bản đồ từng căn nhà. Thủ Thiêm năm 1975 còn là xóm lá, ruộng vườn; đường hiện vẽ trên nền là đường OSM hôm nay.
+
+## 18. Voice thu âm và kịch bản camera theo voice (24/11/2026, chiều)
+- **Voice:** bản thu của anh Thắng `voi-chiendich-hcm.mp3` (16 phút 08 giây, 12 hồi), nén mono 32 kHz 48 kbps → `audio/voice.mp3` (5,8 MB). Voice là đồng hồ chính của phim: khi đang phát, giây phim chạy theo giây voice. Nếu voice chưa tải xong, bị chặn hoặc tắt lời bình thì phim tự đếm giờ. Khi trình duyệt chặn tiếng (mở trang hay tải lại để đổi tầng), phim dừng và hiện nút "Tiếp tục cùng lời dẫn".
+- **Nhận dạng tiếng nói:** dùng `tools/sa_ban/voice/asr_onnx.py`, chạy mô hình zipformer-vi bằng onnxruntime, không cần gói sherpa-onnx. Kết quả 3.182 từ có mốc giây, lưu ở `asr_hcm1975.json`.
+- **Dựng lại kịch bản:** `tools/sa_ban/voice/dung_story_hcm.py` dựng lại `story.json` gồm 12 cảnh theo 12 hồi, 41 cú máy và 241 dòng phụ đề. Phụ đề lấy từ chính lời đọc, đã sửa tên riêng, số và lỗi nhận dạng. Mốc sự kiện ghi ở `story.moc`, ví dụ pháo Xuân Lộc, năm mũi tên theo từng câu, bom rơi ở Tân Sơn Nhất, xe 843 húc cổng phụ ("Rầm"), 390 húc đổ cổng chính, kéo cờ. Thứ tự tầng: C01–C03 chiến dịch, C04 nội đô, C05–C06 chiến dịch, C07–C12 nội đô; phim tải lại 3 lần để đổi tầng.
+- **Cảnh mới (minh hoạ):**
+  - **C06**, tầng chiến dịch: năm mũi tên cùng lúc; pháo cối vào Tân Sơn Nhất và Bộ Tổng tham mưu lúc 7h15; mũi tên qua cầu Rạch Chiếc về cầu Sài Gòn lúc 7h30.
+  - **C07:** K-63 và xe tải cắm cờ Mặt trận vào khu đỗ Tân Sơn Nhất, có điểm nổ. Chưa có mẫu xe tăng không số hiệu nên cảnh này không đặt xe tăng. Máy bay cháy hôm 28/4 chỉ còn là xác đen, không còn khói.
+  - **C08:** hai mũi tên từ hai phía vào Bộ Tổng tham mưu và cờ ghim lúc 11h30. Vị trí từng cổng chưa có nguồn.
+  - **C09:** mũi tên Bà Quẹo – Bảy Hiền – Lê Văn Duyệt và mũi tên qua cầu Chữ Y. Cuối hồi hiện các mũi tên hội tụ, kể cả mũi phía Đông.
+  - **C10:** xe đi từ cầu Sài Gòn (xe M48 ở đầu cầu), qua ngã tư Hàng Xanh (xe 390 bắn cháy M113, có chớp nòng và nổ), tới cầu Thị Nghè, theo đường Hồng Thập Tự. Xe "nhảy" theo cú máy ở mỗi đoạn.
+  - **C12:** người dân ra đường sau khi cờ kéo lên. Theo ký ức người lái xe 380 (Nhân Dân), lúc xe tăng vào Dinh đường phố rất vắng, nên các cảnh C10–C11 không có dân. Cảnh cuối kéo máy lên cao nhìn toàn Sài Gòn.
+- **Âm thanh:**
+  - Nền: xe tăng, gió, súng AK, reo hò.
+  - Hiệu ứng theo câu đọc: pháo, nổ, lửa, máy bay bổ nhào, húc cổng, vỗ tay, còi xe.
+  - Nhạc theo hồi: 6 bản Epidemic Sound, bản nén dùng lại của gói Bạch Đằng.
+  - Bảng **Lớp** có thêm mục "Nhạc nền".
+  - Dung lượng âm thanh 13,1 MB (voice 5,8; nhạc 6,4; hiệu ứng 0,9).
+- **Nhà:** vùng xếp nhà mở rộng quanh Bộ Tổng tham mưu (bán kính 900 m), dọc hướng Tây (Bà Quẹo – Bảy Hiền – Lê Văn Duyệt) và phía cầu Chữ Y, vẫn tỉa còn 65 %. Tổng cộng khoảng 79.000 nhà.
+- **Chỗ trong bản thu cần anh xem lại:**
+  1. **C04:** voice đọc "hạ cánh an toàn xuống sân bay **Tân Sơn Nhất**", nhưng theo S17 phi đội hạ cánh ở **Thành Sơn** (Phan Rang). Phụ đề đã ghi Thành Sơn; cần thu lại câu này.
+  2. **C11:** máy nhận dạng nghe tên đại đội trưởng thành "Bùi Quang **Thuận**", trong khi đúng là **Thận**. Anh nghe lại hai chỗ ở 13:07 và 13:51.
+  3. **C11:** voice đọc "Mặt trận Giải phóng Dân tộc miền Nam Việt Nam"; tên chính thức là "Mặt trận **Dân tộc Giải phóng** miền Nam Việt Nam". Phụ đề đã ghi đúng tên chính thức.
+  4. **C02:** voice đọc "từ phía Tây, Quân đoàn 3"; lời dẫn V0 và S2, S5 ghi hướng **Tây Bắc**.
+  5. **C07:** cụm "theo diễn biến được ghi nhận trong kịch bản chiến dịch" nghe như lời ghi chú, anh cân nhắc bỏ.
+  6. Còn để ngỏ như trước: Trung đoàn 48 thuộc sư đoàn nào (C08) và trung đoàn đánh Tổng nha (C09).
