@@ -2,7 +2,7 @@
    1) Nhân vật mới: Từ điển nhân vật lịch sử Việt Nam, Những tấm gương anh hùng liệt sĩ của tuổi trẻ Việt Nam.
    2) Dòng thời gian Chủ tịch Hồ Chí Minh: nội dung từng mốc theo Tiểu sử Chủ tịch Hồ Chí Minh, thêm mốc mới.
    3) Dòng thời gian chung: thêm sự kiện theo Việt sử toàn thư (Phạm Văn Sơn).
-   Dữ liệu: static/v59-data.js (VS59_DATA, sinh bởi tools/build_v59.py). Nội dung viết lại bằng lời mới, chờ thẩm định. */
+   Dữ liệu: static/v59-data.js (VS59_DATA, sinh bởi tools/build_v59.py). Nội dung viết lại bằng lời mới. */
 (function(){
 'use strict';
 const D=window.VS59_DATA;if(!D)return;
@@ -16,7 +16,7 @@ const namChu=y=>y<0?Math.abs(y)+' TCN':String(y);
 function themNhanVat(){
  const ps=P();if(!ps)return 0;let n=0;
  (D.nhan_vat||[]).forEach(x=>{
-  const nguon='Nguồn: '+x.src+'. Bản tóm lược viết lại, chờ thẩm định.';
+  const nguon='Nguồn: '+x.src+'. Viết lại bằng lời mới.';
   if(ps[x.id]){ // hồ sơ đã có: bổ sung tiểu sử nếu còn sơ sài
    const p=ps[x.id];
    if(x.bo_sung&&!p.vs59&&(!p.bioParagraphs||p.bioParagraphs.join(' ').length<x.bio.join(' ').length)){
@@ -49,7 +49,7 @@ function hoSoHCM(){
 function capNhatHCM(){
  if(typeof hcmEvents==='undefined'||!Array.isArray(hcmEvents)||!D.hcm)return;
  D.hcm.forEach(m=>{
-  const detail=m.doan.map(esc).join('</p><p>')+'</p><p class="vs59-nguon">Nguồn: '+esc(D.hcm_nguon)+(m.trang?', tr. '+esc(m.trang):'')+(m.bo_sung?' (mốc bổ sung theo tiểu sử chính thức, chờ thẩm định)':'')+'. Viết lại bằng lời mới, chờ thẩm định.';
+  const detail=m.doan.map(esc).join('</p><p>')+'</p><p class="vs59-nguon">Nguồn: '+esc(D.hcm_nguon)+(m.trang?', tr. '+esc(m.trang):'')+'. Viết lại bằng lời mới.';
   const e=hcmEvents.find(x=>x.year===m.nam);
   if(e){e.date=m.ngay;e.title=m.ten;e.detail=detail;}
   else hcmEvents.push({year:m.nam,date:m.ngay,title:m.ten,detail});
@@ -76,7 +76,7 @@ function baiChang(){
   let h='<div class="panel vs59-bai"><span class="chip">BÀI VIẾT THEO CHẶNG · '+(i+1)+'/'+BV.length+'</span><h3>'+esc(bv.ten)+'</h3>';
   h+=bv.doan.map(t=>'<p>'+esc(t)+'</p>').join('');
   if(moc.length)h+='<div class="vs59-moc"><b>Các mốc trong chặng</b><div class="vs59-nut">'+moc.map(e=>'<button type="button" class="secondary'+(e.year===year?' vs59-dang':'')+'" onclick="openHCM('+e.year+')">'+esc(e.date)+' · '+esc(e.title)+'</button>').join('')+'</div></div>';
-  h+='<p class="vs59-nguon">Nguồn: '+esc(D.hcm_nguon)+', tr. '+esc(bv.trang)+'. Tóm lược bằng lời mới, chờ thẩm định.</p></div>';
+  h+='<p class="vs59-nguon">Nguồn: '+esc(D.hcm_nguon)+', tr. '+esc(bv.trang)+'. Tóm lược bằng lời mới.</p></div>';
   try{if(typeof V2_SOURCES!=='undefined'&&V2_SOURCES.hcm)h=h.replace(/<\/div>$/,'<p><a style="color:#f1d7a0" href="'+esc(V2_SOURCES.hcm)+'" target="_blank" rel="noopener">Tư liệu tiểu sử của Bảo tàng Hồ Chí Minh ↗</a></p></div>');}catch(err){}
   let canh='';try{if(year<=1901&&typeof v2SceneHtml==='function'&&typeof V2_EXPERIENCES!=='undefined')canh=v2SceneHtml(V2_EXPERIENCES[0]);}catch(err){}
   return h+canh;
@@ -124,7 +124,7 @@ function moSuKien(id){
  const lien=(e.lien||[]).filter(x=>ps[x]);
  if(lien.length)h+='<section><h3>Nhân vật liên quan</h3><div class="vs59-nut">'+lien.map(x=>'<button type="button" class="secondary" onclick="openItem(\''+esc(x)+'\')">'+esc(ps[x].name)+' ↗</button>').join('')+'</div></section>';
  h+='<div class="vs59-nut"><button type="button" class="secondary" data-vs59-nam="'+esc(e.nam)+'">Đến năm '+esc(namChu(e.nam))+' trên Dòng thời gian ↗</button></div>';
- h+='<p class="vs59-nguon">Nguồn: '+esc(e.src)+'. Viết lại bằng lời mới, chờ thẩm định.</p></div>';
+ h+='<p class="vs59-nguon">Nguồn: '+esc(e.src)+'. Viết lại bằng lời mới.</p></div>';
  document.getElementById('modtype').textContent='SỰ KIỆN LỊCH SỬ';
  document.getElementById('modtitle').textContent=e.ten;
  const md=document.getElementById('moddesc');if(md)md.textContent=namChu(e.nam);
@@ -140,7 +140,7 @@ function hoSoDayDu(){
  const bio=document.getElementById('v24-bio');
  if(bio)bio.innerHTML='<h3>Tiểu sử và thời đại</h3>'+p.bioParagraphs.map((t,i,a)=>'<p'+(i===a.length-1?' class="vs59-nguon"':'')+'>'+esc(t)+'</p>').join('');
  const head=document.querySelector('.v24-article-header .panel > p');if(head)head.textContent=p.bioParagraphs[0];
- document.querySelectorAll('.v24-article-facts dt').forEach(dt=>{if(/Nguồn/.test(dt.textContent)&&dt.nextElementSibling)dt.nextElementSibling.textContent=(p.sourceBook||'')+' · chờ thẩm định';});
+ document.querySelectorAll('.v24-article-facts dt').forEach(dt=>{if(/Nguồn/.test(dt.textContent)&&dt.nextElementSibling)dt.nextElementSibling.textContent=p.sourceBook||'Ban biên tập Việt Sử';});
 }
 function caiModal(){
  if(typeof renderModal!=='function'||window.__vs59Modal)return;

@@ -324,7 +324,7 @@ def _prepare_article(d: dict) -> dict:
 
 @app.post("/api/v2.7/articles/bulk-drafts")
 def bulk_import_drafts(payload: BulkDraftImport, request: Request, x_admin_token: str | None = Header(None)):
-    """Import tối đa 100 bản nháp mỗi yêu cầu; bỏ qua slug trùng, không tự xuất bản."""
+    """Import tối đa 100 bài mỗi yêu cầu; bỏ qua slug trùng. Bài có nội dung xuất bản luôn, dòng chỉ có tiêu đề là nháp."""
     require_role(x_admin_token, request=request)
     imported, skipped = [], []
     timestamp = now()
@@ -335,13 +335,17 @@ def bulk_import_drafts(payload: BulkDraftImport, request: Request, x_admin_token
             try:
                 data["title"] = title
                 data["intro"] = data["intro"] or ("Đề cương đang biên tập: " + title)
-                data["tags"] = list(dict.fromkeys(data["tags"] + ["Nháp nhập hàng loạt", "Cần thẩm định"]))
+                co_bai = len((data.get("body") or "").strip()) >= 150
+                if not co_bai:
+                    data["tags"] = list(dict.fromkeys(data["tags"] + ["Nháp nhập hàng loạt"]))
                 data = _prepare_article(data)
             except HTTPException:
                 skipped.append({"line": i, "title": title, "reason": "URL nguồn không hợp lệ"}); continue
             if con.execute("SELECT 1 FROM articles WHERE slug=?", (data["slug"],)).fetchone():
                 skipped.append({"line": i, "title": title, "reason": "Slug đã có trong CMS"}); continue
-            data.update(created_at=timestamp, updated_at=timestamp, status="draft")
+            # V5.9.2: bài đã có nội dung (≥ 150 ký tự) xuất bản luôn; dòng chỉ có tiêu đề vẫn là nháp.
+            data.update(created_at=timestamp, updated_at=timestamp, status="published" if co_bai else "draft",
+                        published_at=timestamp if co_bai else "")
             try:
                 cur = con.execute(f"INSERT INTO articles ({','.join(data)}) VALUES ({','.join('?' for _ in data)})",
                                   tuple(data.values()))
@@ -349,19 +353,22 @@ def bulk_import_drafts(payload: BulkDraftImport, request: Request, x_admin_token
             except sqlite3.IntegrityError:
                 skipped.append({"line": i, "title": title, "reason": "Trùng hoặc không hợp lệ"})
     return {"imported_count": len(imported), "skipped_count": len(skipped), "imported": imported,
-            "skipped": skipped, "status": "draft_only"}
+            "skipped": skipped, "status": "published_if_has_body"}
 
 
-def _create_article(item: ArticleIn) -> dict:
+def _create_article(item: ArticleIn, xuat_ban: bool = True) -> dict:
     d = _prepare_article(item.model_dump())
     d["created_at"] = d["updated_at"] = now()
-    d["status"] = "draft"
+    # V5.9.2: bỏ bước duyệt — bài do biên tập viên soạn lưu là xuất bản; riêng bài AI viết vẫn là nháp để đọc lại.
+    d["status"] = "published" if xuat_ban else "draft"
+    d["published_at"] = d["created_at"] if xuat_ban else ""
     with db() as con:
         try:
             cur = con.execute(f"INSERT INTO articles ({','.join(d)}) VALUES ({','.join('?' for _ in d)})", tuple(d.values()))
         except sqlite3.IntegrityError:
             raise HTTPException(409, "Slug đã tồn tại")
-        return {"id": cur.lastrowid, "slug": d["slug"], "status": "draft"}
+        return {"id": cur.lastrowid, "slug": d["slug"], "status": d["status"],
+                "url": f"{SITE_URL}/bai-viet/{d['slug']}" if xuat_ban else None}
 
 
 @app.post("/api/articles", status_code=201)
@@ -381,28 +388,24 @@ def update_article(article_id: int, item: ArticleIn, request: Request, x_admin_t
                     (article_id, json.dumps(as_article(old), ensure_ascii=False), now()))
         d = _prepare_article(item.model_dump())
         d["updated_at"] = now()
-        d["status"] = "draft"
-        d["reviewer_name"] = ""
+        d["status"] = "published"  # V5.9.2: sửa là cập nhật bản công khai luôn
+        d["published_at"] = old["published_at"] or d["updated_at"]
         try:
             con.execute("UPDATE articles SET " + ",".join(f"{k}=?" for k in d) + " WHERE id=?", (*d.values(), article_id))
         except sqlite3.IntegrityError:
             raise HTTPException(409, "Slug đã tồn tại")
-        return {"id": article_id, "slug": d["slug"], "status": "draft"}
+        return {"id": article_id, "slug": d["slug"], "status": "published", "url": f"{SITE_URL}/bai-viet/{d['slug']}"}
 
 
 @app.post("/api/articles/{article_id}/publish")
-def publish_article(article_id: int, request: Request, reviewer_name: str = "Người thẩm định",
+def publish_article(article_id: int, request: Request, reviewer_name: str = "",
                     x_admin_token: str | None = Header(None)):
-    require_role(x_admin_token, reviewer=True, request=request)
-    reviewer_name = re.sub(r"[\x00-\x1f<>]", "", reviewer_name)[:120] or "Người thẩm định"
+    require_role(x_admin_token, request=request)
+    reviewer_name = re.sub(r"[\x00-\x1f<>]", "", reviewer_name)[:120]
     with db() as con:
         row = con.execute("SELECT * FROM articles WHERE id=?", (article_id,)).fetchone()
         if not row:
             raise HTTPException(404, "Không tìm thấy bài viết")
-        if not row["source_urls"] or row["source_urls"] == "[]":
-            raise HTTPException(422, "Cần ít nhất một nguồn tư liệu trước khi công bố.")
-        if len(row["body"].strip()) < 150:
-            raise HTTPException(422, "Bài viết quá ngắn để công bố.")
         ts = now()
         con.execute("UPDATE articles SET status='published', reviewer_name=?, published_at=?,updated_at=? WHERE id=?",
                     (reviewer_name, ts, ts, article_id))
@@ -471,7 +474,7 @@ def ai_draft(payload: DraftRequest, request: Request, x_admin_token: str | None 
                      meta_description=f"Tìm hiểu {payload.title} qua bối cảnh, diễn biến và các nhân vật lịch sử liên quan."[:320],
                      focus_keyword=payload.focus_keyword, timeline_year=payload.timeline_year,
                      entity_id=payload.entity_id, source_urls=all_urls, tags=["AI nháp", "Cần thẩm định"])
-    created = _create_article(body)
+    created = _create_article(body, xuat_ban=False)
     created.update(body=generated, source_urls=all_urls, warning="Bản nháp tự động, chưa được thẩm định hoặc công bố.")
     return created
 
@@ -534,8 +537,6 @@ def article_page(slug: str):
                       for u in a["source_urls"] if u.startswith("https://"))
     year = a["timeline_year"]
     chips = [a["category"]] + ([f"{abs(year)} TCN" if year < 0 else str(year)] if year is not None else [])
-    if a["reviewer_name"]:
-        chips.append("Đã thẩm định: " + a["reviewer_name"])
     body = ('<div class="crumb"><a href="/">Việt Sử</a> / Bài viết</div>'
             f'<h1>{esc(a["title"])}</h1><div class="meta">' + "".join(f'<span class="chip">{esc(c)}</span>' for c in chips)
             + f'</div><p class="lede">{esc(a["intro"])}</p>' + ad_slot_html(ads, "article_top")
@@ -559,7 +560,7 @@ def sitemap():
     for url, lastmod in vs_textbook.sitemap_urls():
         parts.append(f"<url><loc>{html.escape(url)}</loc>" + (f"<lastmod>{lastmod}</lastmod>" if lastmod else "") + "</url>")
     for person in historical_characters():
-        if person.get("status") == "published":
+        if person.get("slug"):  # V5.9.2: mọi hồ sơ đều công khai
             parts.append(f'<url><loc>{html.escape(SITE_URL + "/nhan-vat/" + quote(person["slug"]))}</loc></url>')
     parts.append("</urlset>")
     return Response("".join(parts), media_type="application/xml", headers={"Cache-Control": "public, max-age=3600"})
@@ -848,14 +849,14 @@ def character_detail_page(slug: str):
     paras = person.get("paragraphs") or [person.get("summary", "")]
     bio = "".join("<p>" + esc(p) + "</p>" for p in paras if p)
     ads = _ads()
-    indexable = person.get("status") == "published"
+    indexable = True  # V5.9.2: không còn trạng thái chờ duyệt
     body = ('<div class="crumb"><a href="/">Việt Sử</a> / Nhân vật lịch sử</div>'
             f'<h1>{esc(person["name"])}</h1><div class="meta"><span class="chip">{esc(person.get("period"))}</span>'
             f'<span class="chip">{esc(person.get("role"))}</span></div>'
             f'<figure style="float:right;max-width:min(220px,40%);margin:0 0 12px 18px"><img src="{esc(media)}" '
             f'alt="Hình minh họa {esc(person["name"])}" loading="lazy"></figure>'
             + ad_slot_html(ads, "article_top") + bio
-            + f'<p style="clear:both;font-size:13px;color:var(--muted)">Tham khảo: {esc(person.get("source_book", "Đại Việt Sử Ký Toàn Thư"))}. Dữ liệu còn chờ thẩm định.</p>'
+            + f'<p style="clear:both;font-size:13px;color:var(--muted)">Tham khảo: {esc(person.get("source_book", "Đại Việt Sử Ký Toàn Thư"))}.</p>'
             + ad_slot_html(ads, "article_bottom")
             + f'<p><a href="/#ho-so={esc(person.get("entity_id", ""))}">↗ Khám phá nhân vật trong dòng thời gian</a></p>'
             '<p class="back"><a href="/">← Dòng thời gian Việt Sử</a></p>')

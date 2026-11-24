@@ -32,7 +32,7 @@ function buildProfiles(){
    if(!persons[id]){
     const bio=info.bio||k[3]||'Hồ sơ ngắn đang được bổ sung.';
     persons[id]={name:label(k),period:k[2],role:(d.legend?'Nhân vật truyền thuyết · ':'')+(aside?'':'Vua thứ '+(i+1-d.kings.slice(0,i).filter(x=>x[3]&&/^(Tiếm|Sử cũ không xếp)/.test(x[3])).length)+' · ')+d.name,
-     desc:bio,bioParagraphs:[bio,'Trị vì: '+k[2]+'.'+(k[3]&&k[3]!==bio?' '+k[3]+'.':''),'Nguồn: '+SRC_DEFAULT(d)+'. Bản tóm lược, chờ thẩm định.'],
+     desc:bio,bioParagraphs:[bio,'Trị vì: '+k[2]+'.'+(k[3]&&k[3]!==bio?' '+k[3]+'.':''),'Nguồn: '+SRC_DEFAULT(d)+'.'],
      sourceBook:SRC_DEFAULT(d),classification:d.legend?'truyền thuyết':'sử liệu',country:'vn',ties:[],stories:[],battles:[],vs56:true};
    }
    return {id,k,aside};
@@ -45,7 +45,7 @@ function buildProfiles(){
  (DATA.people||[]).forEach(x=>{
   if(persons[x.id])return;
   const d=BY[x.dyn];
-  persons[x.id]={name:x.name,period:x.period,role:x.role,desc:x.bio,bioParagraphs:[x.bio,'Nguồn: '+x.src+'. Bản tóm lược, chờ thẩm định.'],sourceBook:x.src,classification:'sử liệu',country:'vn',
+  persons[x.id]={name:x.name,period:x.period,role:x.role,desc:x.bio,bioParagraphs:[x.bio,'Nguồn: '+x.src+'.'],sourceBook:x.src,classification:'sử liệu',country:'vn',
    ties:d&&KINGS[d.id]&&KINGS[d.id][0]?[[label(KINGS[d.id][0].k)+' (vua đầu triều)',KINGS[d.id][0].id]]:[],stories:[],battles:[],vs56:true};
  });
 }
@@ -80,7 +80,7 @@ function fixGraph(d,body){
 function peopleBlock(d){
  const ks=KINGS[d.id]||[];if(!ks.length)return '';
  const cards=ks.map((x,i)=>`<button type="button" class="vs56-kcard${x.aside?' vs56-aside':''}" onclick="openItem('${esc(x.id)}')"><span class="vs56-kn">${i+1}</span><span><b>${esc(x.k[0])}</b><small>${esc(x.k[0]===x.k[1]?'':x.k[1]+' · ')}${esc(x.k[2])}</small></span></button>`).join('');
- return `<section class="vs56 vs56-people"><span class="vs56-tag">CÁC ĐỜI VUA · ${esc(d.name.toUpperCase())}</span><p class="vs56-lead">Chạm vào từng vua để mở hồ sơ ngắn (năm trị vì, việc chính, vua trước – vua sau).</p><div class="vs56-kgrid">${cards}</div><p class="vs56-src">Tướng lĩnh và danh nhân của triều này ở mục bên dưới. Hồ sơ là bản tóm lược có nguồn, chờ thẩm định.</p></section>`;
+ return `<section class="vs56 vs56-people"><span class="vs56-tag">CÁC ĐỜI VUA · ${esc(d.name.toUpperCase())}</span><p class="vs56-lead">Chạm vào từng vua để mở hồ sơ ngắn (năm trị vì, việc chính, vua trước – vua sau).</p><div class="vs56-kgrid">${cards}</div><p class="vs56-src">Tướng lĩnh và danh nhân của triều này ở mục bên dưới. Hồ sơ là bản tóm lược có nguồn.</p></section>`;
 }
 function cultureBlock(d){
  const ev=DATA.culture[d.id]||[];if(!ev.length)return '';

@@ -299,6 +299,7 @@ def admin_create(item: LessonIn, request: Request, x_admin_token: str | None = H
                     (lesson_id, item.grade, order, "cms", blob, json.dumps(outline, ensure_ascii=False), "hidden", 1,
                      now(), role))
         _snapshot(con, lesson_id, "create", rec, role)
+        _xuat_ban(con, lesson_id, role)  # V5.9.2: tạo là xuất bản
         return _admin_view(_row(con, lesson_id))
 
 
@@ -319,35 +320,39 @@ def admin_save(lesson_id: str, item: LessonIn, request: Request, x_admin_token: 
         _snapshot(con, lesson_id, "save", old, role)
         con.execute("UPDATE textbook_lessons SET draft=?, dirty=1, updated_at=?, updated_by=?, sort_order=COALESCE(?,sort_order) "
                     "WHERE id=?", (json.dumps(rec, ensure_ascii=False), now(), role, item.sort_order, lesson_id))
+        _xuat_ban(con, lesson_id, role)  # V5.9.2: lưu là xuất bản
         return _admin_view(_row(con, lesson_id))
+
+
+def _xuat_ban(con, lesson_id: str, role: str) -> dict:
+    """V5.9.2: đưa bản đang soạn lên bản công khai (không cần mã thẩm định, không bắt buộc nguồn)."""
+    r = _row(con, lesson_id)
+    d = json.loads(r["draft"])
+    if not d.get("title"):
+        raise HTTPException(422, "Cần có tiêu đề trước khi xuất bản.")
+    state = "outline"
+    if has_content(d):
+        state = "published"
+        d["status"] = "đã có bài học · tóm tắt"
+    _snapshot(con, lesson_id, "publish", json.loads(r["live"]), role)
+    ts = now()
+    con.execute("UPDATE textbook_lessons SET live=?, draft=?, live_state=?, dirty=0, published_at=?, updated_at=?, "
+                "updated_by=? WHERE id=?", (json.dumps(d, ensure_ascii=False), json.dumps(d, ensure_ascii=False),
+                                            state, ts, ts, role, lesson_id))
+    bump_version(con)
+    return {"ok": True, "live_state": state, "url": public_url(d) if state == "published" else None}
 
 
 @router.post("/api/admin/textbook/lessons/{lesson_id}/publish")
 def admin_publish(lesson_id: str, request: Request, x_admin_token: str | None = Header(None)):
-    role = require_role(x_admin_token, reviewer=True, request=request)
+    role = require_role(x_admin_token, request=request)
     with db() as con:
-        r = _row(con, lesson_id)
-        d = json.loads(r["draft"])
-        if not d.get("title") or not d.get("summary"):
-            raise HTTPException(422, "Cần có tiêu đề và đoạn tóm tắt trước khi xuất bản.")
-        state = "outline"
-        if has_content(d):
-            if not d.get("sources"):
-                raise HTTPException(422, "Bài có nội dung cần ít nhất một nguồn tư liệu trước khi xuất bản.")
-            state = "published"
-            d["status"] = "đã có bài học · tóm tắt"
-        _snapshot(con, lesson_id, "publish", json.loads(r["live"]), role)
-        ts = now()
-        con.execute("UPDATE textbook_lessons SET live=?, draft=?, live_state=?, dirty=0, published_at=?, updated_at=?, "
-                    "updated_by=? WHERE id=?", (json.dumps(d, ensure_ascii=False), json.dumps(d, ensure_ascii=False),
-                                                state, ts, ts, role, lesson_id))
-        bump_version(con)
-        return {"ok": True, "live_state": state, "url": public_url(d) if state == "published" else None}
+        return _xuat_ban(con, lesson_id, role)
 
 
 @router.post("/api/admin/textbook/lessons/{lesson_id}/unpublish")
 def admin_unpublish(lesson_id: str, request: Request, x_admin_token: str | None = Header(None)):
-    role = require_role(x_admin_token, reviewer=True, request=request)
+    role = require_role(x_admin_token, request=request)
     with db() as con:
         r = _row(con, lesson_id)
         live = json.loads(r["live"])

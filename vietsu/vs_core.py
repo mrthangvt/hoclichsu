@@ -46,7 +46,8 @@ DB_PATH = Path(os.getenv("VIETSU_DB", str(DATA / "vietsucms.sqlite3")))
 SITE_URL = os.getenv("SITE_URL", "http://127.0.0.1:8000").rstrip("/")
 ADMIN_TOKEN = os.getenv("VIETSU_ADMIN_TOKEN", "")
 REVIEW_TOKEN = os.getenv("VIETSU_REVIEW_TOKEN", "")
-ADMIN_CAN_PUBLISH = os.getenv("VIETSU_ADMIN_CAN_PUBLISH", "0") == "1"
+# V5.9.2: bỏ bước thẩm định riêng — mã quản trị được xuất bản (đặt VIETSU_ADMIN_CAN_PUBLISH=0 để bật lại).
+ADMIN_CAN_PUBLISH = os.getenv("VIETSU_ADMIN_CAN_PUBLISH", "1") == "1"
 ENABLE_DOCS = os.getenv("VIETSU_ENABLE_DOCS", "0") == "1"
 ALLOWED_HOSTS = [h.strip() for h in os.getenv("ALLOWED_HOSTS", "").split(",") if h.strip()]
 MIN_TOKEN_LEN = 24
