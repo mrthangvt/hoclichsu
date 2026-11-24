@@ -331,3 +331,8 @@ Cả ba lệnh đã được chạy thử trong gói này và cho kết quả tr
 
 ### 10.9 (22/11/2026)
 - Nút "▶ Bắt đầu xem" và nút Phát chỉ hiện/bấm được khi đã tải xong địa hình + kịch bản, nhân vật (NV.ok) và lời dẫn thu âm (VC.ok, hoặc tải lỗi thì bỏ qua); trong lúc chờ hiện thanh tiến độ 3 bước.
+
+## V10.10 — Quang Trung model mới (2026-11-24)
+- Thay model Quang Trung bằng `_KHO-CHUNG/nhan-vat/QuangTrung/Unarmed Idle.fbx` (bản không áo choàng): rig Mixamo, cao 1,75 m, ~27k tam giác, texture 1024.
+- Động tác dang tay/chỉ tay 8 s (QT_DangTay2) dựng trên dáng idle gốc, giữ nguyên xoay Hips của Mixamo nên không bị nằm/kéo giãn tay.
+- Chỉ thay `m_quangtrung.json`; vị trí trên lưng voi giữ nguyên.
