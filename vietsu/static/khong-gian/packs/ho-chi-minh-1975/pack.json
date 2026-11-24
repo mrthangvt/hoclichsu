@@ -105,7 +105,8 @@
   "units/*.nvz",
   "units/*.jpg",
   "props/phao/*.glb",
-  "props/may-bay/*.glb"
+  "props/may-bay/*.glb",
+  "props/dinh/*.glb"
  ],
  "terrain": {
   "data": "terrain/meta.json",

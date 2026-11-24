@@ -1,6 +1,6 @@
 {
  "note": "Bản thử bộ máy 2.2 (GĐ3): 2 cảnh ngắn để kiểm tra hai tầng địa hình, mũi tên, xe chạy theo đường. Kịch bản thật (12 cảnh, có nguồn) ở 'danY', dựng ở GĐ5.",
- "duration": 100.0,
+ "duration": 115.0,
  "scenes": [
   {
    "id": "T01",
@@ -47,7 +47,7 @@
    "title": "Xe tăng vào Dinh Độc Lập (thử xe theo đường)",
    "tang": "noi-do",
    "t0": 40.0,
-   "t1": 100.0,
+   "t1": 115.0,
    "subs": [
     [
      41.0,
@@ -76,16 +76,16 @@
     {
      "id": "T02-B",
      "t0": 66.0,
-     "t1": 86.0,
+     "t1": 84.0,
      "size": "Cận",
      "desc": "Bám sau xe 390"
     },
     {
      "id": "T02-C",
-     "t0": 86.0,
-     "t1": 100.0,
+     "t0": 84.0,
+     "t1": 115.0,
      "size": "Toàn",
-     "desc": "Vòng quanh sân Dinh"
+     "desc": "Cổng Dinh: 843 húc chưa đổ, 390 húc đổ cổng chính"
     }
    ]
   }

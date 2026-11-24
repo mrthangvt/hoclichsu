@@ -84,8 +84,25 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
   progress(0.4, 'Đang tải xe tăng 843, 390…');
   const L0 = (() => { let a = 0; for (let i = 1; i < DUONG_DINH.length; i++) a += Math.hypot(DUONG_DINH[i][0] - DUONG_DINH[i - 1][0], DUONG_DINH[i][1] - DUONG_DINH[i - 1][1]); return a; })();
   XEX.L = L0;
-  XEX.x843 = await xeTao('data/xe/xe-tang-843.glb', { duong: DUONG_DINH, lich: [[42, 0], [88, L0 - 75]], hien: (t) => t >= 40, ten: 'Xe tăng 843' });
-  XEX.x390 = await xeTao('data/xe/xe-tang-390.glb', { duong: DUONG_DINH, lich: [[44, -45], [98, L0]], hien: (t) => t >= 44, ten: 'Xe tăng 390' });
+  // DINH ĐỘC LẬP (dáng trước 1975, tools/sa_ban/dinh/dung_dinh.py): gốc giữa mặt tiền O, mặt tiền nhìn phương vị 42,6° (nền nhà OSM)
+  progress(0.45, 'Đang dựng Dinh Độc Lập…');
+  const DO = [27.5, 21], DU = [0.7357, -0.6773], DN = [0.6773, 0.7357];
+  const DL = (sd, dd) => [DO[0] + sd * DU[0] + dd * DN[0], DO[1] + sd * DU[1] + dd * DN[1]];          // (dọc mặt tiền, ra cổng) → Blender [x, y_Bắc]
+  { const hs = []; for (let a = -100; a <= 100; a += 20) for (let b = -90; b <= 140; b += 23) { const [x, y] = DL(a, b); hs.push(hG(x, -y)); }
+    hs.sort((p, q) => p - q); XEX.hDinh = hs[Math.floor(hs.length * 0.85)]; }
+  matPhang(DO[0], -DO[1], Math.atan2(-DU[1], DU[0]), -110, 110, -100, 146, XEX.hDinh);     // trong rào: mặt sân phẳng
+  { const g = await glbLoad('data/dinh/dinh-doc-lap.glb'); const o = g.scene; o.position.set(DO[0], XEX.hDinh, -DO[1]); o.rotation.y = -0.7441; scene.add(o);
+    XEX.dinh = o; XEX.cong = { trai: o.getObjectByName('CongTrai'), phai: o.getObjectByName('CongPhai') }; LAYER.xe.push(o); }
+  // đường vào: theo Lê Duẩn tới cổng chính (trục Dinh) — bỏ đoạn rẽ phải cũ của tim_duong
+  const iNga = DUONG_DINH.reduce((b, p, i) => { const q = DL(2, 151), e = Math.hypot(p[0] - q[0], p[1] - q[1]); return e < b[0] ? [e, i] : b; }, [1e9, 0])[1];
+  const GOC = DUONG_DINH.slice(0, iNga + 1);
+  const D843 = [...GOC, DL(4, 149.3), DL(4, 140), DL(12, 112), DL(16, 96)], D390 = [...GOC, DL(-1.5, 149.3), DL(-1.5, 138), DL(-10, 118), DL(-20, 100), DL(-19, 72), DL(-9, 42)];
+  const dai = (P, k) => { let a = 0; for (let i = 1; i <= k; i++) a += Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]); return a; };
+  const g843 = dai(D843, GOC.length), g390 = dai(D390, GOC.length);
+  // 843 húc cổng (cánh phải) nhưng cổng chưa đổ, xe khác lao lên phá tung cổng (S33); xe 390 húc đổ cổng chính (S34)
+  XEX.x843 = await xeTao('data/xe/xe-tang-843.glb', { duong: D843, lich: [[42, 0], [84, g843], [94, g843], [106, dai(D843, D843.length - 1)]], hien: (t) => t >= 40, ten: 'Xe tăng 843' });
+  XEX.x390 = await xeTao('data/xe/xe-tang-390.glb', { duong: D390, lich: [[44, -45], [90, g390], [108, dai(D390, D390.length - 1)]], hien: (t) => t >= 44, ten: 'Xe tăng 390' });
+  XEX.DL = DL;
   const tren = (X, dy, lui) => (t) => { if (!X.obj.visible) return null; const p = X.obj.position, y = X.obj.rotation.y; return { x: p.x - Math.sin(y) * lui, z: p.z - Math.cos(y) * lui, y: p.y + dy, yaw: y, clip: 'dung' }; };   // trưởng xe đứng ở cửa tháp pháo
   XEX.lai843 = await nvxTao('models/linh-tang.glb', tren(XEX.x843, 1.35, 0.4), { ten: 'Trưởng xe 843' });
   XEX.lai390 = await nvxTao('models/linh-tang.glb', tren(XEX.x390, 1.35, 0.4), { ten: 'Trưởng xe 390' });
@@ -101,16 +118,16 @@ if (TANG === 'noi-do' && DUONG_DINH.length) {
     .catch((e) => console.warn('người dân', e));
   const D = duong(DUONG_DINH), L0 = D.L, rnd = (() => { let a = 1975; return () => (a = (a * 16807) % 2147483647) / 2147483647; })();
   const ben = (d, lech) => { const p = diemTren(D, d); return { x: p.x + Math.cos(p.yaw) * lech, z: p.z - Math.sin(p.yaw) * lech, yaw: p.yaw }; };   // lệch sang phải (+) / trái (−) theo hướng xe
-  for (let d = 40; d < L0 - 140; d += 9 + rnd() * 14) for (const s of [-1, 1]) {        // hai bên đường, mỗi 9–23 m một người
+  for (let d = 40; d < L0 - 230; d += 9 + rnd() * 14) for (const s of [-1, 1]) {        // hai bên đường, mỗi 9–23 m một người
     if (rnd() < 0.35) continue;
     const lech = s * (11 + rnd() * 5), di = rnd() < 0.2;
     DAN.push({ k: 1 + (DAN.length % 3), d, lech, di, v: (rnd() < 0.5 ? 1 : -1) * (1 + rnd() * 0.4), ph: rnd(), vi: DAN.length, t0: 40 + rnd() * 6, quay: s });
   }
-  const G = diemTren(D, L0 - 95);                                                     // trước cổng Dinh (ngoài cổng, phía công viên)
+  const G = (() => { const [x, y] = XEX.DL(0, 160); const p = diemTren(D, L0 - 95); return { x, z: -y, yaw: p.yaw }; })();   // ngoài cổng Dinh, đầu Lê Duẩn
   for (let i = 0; i < 160; i++) {
     const r = 10 + rnd() * 60, lat = (rnd() < 0.5 ? -1 : 1) * (13 + rnd() * 35);      // hai bên đường trước cổng, chừa lòng đường cho xe 390 vào sau
     const sy = Math.sin(G.yaw), cy = Math.cos(G.yaw);
-    DAN.push({ k: 1 + (i % 3), cong: true, x: G.x - sy * r + cy * lat, z: G.z - cy * r - sy * lat, ph: rnd(), vi: i, t0: 90 + rnd() * 6, buoc: 4 + rnd() * 8 });
+    DAN.push({ k: 1 + (i % 3), cong: true, x: G.x - sy * r + cy * lat, z: G.z - cy * r - sy * lat, ph: rnd(), vi: i, t0: 98 + rnd() * 8, buoc: 4 + rnd() * 8 });
   }
   DAN.dat = (t) => {
     dongXoa(); if (!$('ly-nv').checked) return dongXong(false);
@@ -205,7 +222,9 @@ const SHOTS = TANG === 'chien-dich' ? {
   'T01-B': orbit(V3(0, 0, 0), R * 1.1, R * 0.9, 0.2, 0.4, 45),
   'T02-A': (u) => xeCam(XEX.x843, 40, 16, 30, 42)(u),
   'T02-B': (u) => xeCam(XEX.x390, 22, 7, 40, 45)(u),
-  'T02-C': (() => { const c = LL(MOC.dinh[0], MOC.dinh[1], 6); return orbit(c, 190, 55, 0.9, 0.55, 42); })(),
+  'T02-C': (u) => { const DL = XEX.DL, h = XEX.hDinh || 0, P = (a, b, y) => { const [x, z] = DL(a, b); return V3(x, h + y, -z); };   // cổng Dinh: nhìn từ ngoài vào
+    if (u < 0.5) return fly(P(3, 196, 9), P(2, 172, 11), P(1, 146, 2), P(-2, 120, 2), 46)(u / 0.5);              // trên trục Lê Duẩn nhìn vào cổng
+    return fly(P(4, 3, 23), P(0, 6, 25), P(-4, 120, 0), P(0, 100, 0), 52)((u - 0.5) / 0.5); },                    // từ sân thượng Dinh nhìn ra (góc ảnh tư liệu 30/4)
 };
 //@@ s35
 function sceneAt(t) { for (const s of STORY.scenes) if (t >= s.t0 && t < s.t1) return s; return STORY.scenes[STORY.scenes.length - 1]; }
@@ -379,6 +398,10 @@ function update(dt) {
   scene.fog.density /= 1 + Math.max(0, camera.position.y - R * 0.2) / (R * 0.3);
   xeCapNhat(t); nvxCapNhat(t, dt);
   if (DAN.dat) DAN.dat(t);
+  if (XEX.cong && XEX.cong.phai) {                                                       // cổng: 843 húc rung (84–86 s), 390 húc đổ (90 s)
+    const rung = t > 84 && t < 86.5 ? 0.07 * Math.sin((t - 84) * 20) * (1 - (t - 84) / 2.5) : 0, k = sstep(90, 91.4, t) * Math.PI / 2;
+    XEX.cong.phai.rotation.x = k || rung; XEX.cong.trai.rotation.x = k;
+  }
   const xeOn = $('ly-nv').checked; for (const m of LAYER.xe) m.visible = m.visible && xeOn; for (const N of NVX) N.obj.visible = N.obj.visible && xeOn;
   const arrOn = $('ly-arr').checked && $('ly-muiten').checked, ex = appMode === 'explore';
   for (const M of MUITEN) { const t0 = 8 + M.k * 5; const on = arrOn && (ex || t >= t0); muiTenDat(M.m, on, ex ? 1 : sstep(t0, t0 + 8, t)); }

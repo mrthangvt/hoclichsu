@@ -306,6 +306,38 @@
    "url": "packs/rach-gam-xoai-mut/units/dan*.nvz",
    "license": "dự án Việt Sử",
    "used_for": "người dân dọc lộ trình xe tăng và trước cổng Dinh; trang phục áo bà ba, nón lá — giản lược, chưa phân biệt trang phục đô thị 1975"
+  },
+  {
+   "id": "S33",
+   "title": "VietTimes: Vệt máu, nụ cười và giờ khắc toàn thắng qua hồi ức người lính xe tăng tiến vào Dinh Độc Lập",
+   "type": "báo chí, hồi ức",
+   "url": "https://viettimes.vn/vet-mau-nu-cuoi-va-gio-khac-toan-thang-qua-hoi-uc-nguoi-linh-xe-tang-tien-vao-dinh-doc-lap-post197204.html",
+   "license": "trích dẫn",
+   "used_for": "843 húc cổng nhưng chưa đổ, xe khác lao lên phá tung cổng; M48 ở đầu cầu Sài Gòn"
+  },
+  {
+   "id": "S34",
+   "title": "Đại biểu Nhân dân: Gặp những người lính đã đi vào huyền thoại (kíp xe 390)",
+   "type": "báo chí, hồi ức",
+   "url": "https://daibieunhandan.vn/gap-nhung-nguoi-linh-da-di-vao-huyen-thoai-10415463.html",
+   "license": "trích dẫn",
+   "used_for": "xe tăng 390 húc đổ cánh cổng chính Dinh Độc Lập trưa 30/4/1975"
+  },
+  {
+   "id": "S35",
+   "title": "Dinh Độc Lập — Kiến trúc; Vị trí và thông tin chung (trang chính thức)",
+   "type": "trang di tích",
+   "url": "https://dinhdoclap.gov.vn/en/?p=409",
+   "license": "trích dẫn",
+   "used_for": "Dinh cao 26 m, mặt bằng chữ T, bãi cỏ bầu dục đường kính 102 m trước Dinh — mô hình props/dinh/dinh-doc-lap.glb"
+  },
+  {
+   "id": "A1",
+   "title": "Ảnh tư liệu: mặt tiền Dinh Độc Lập trước 1975; xe tăng vào sân Dinh trưa 30/4/1975 (anh Thắng cung cấp 24/11/2026)",
+   "type": "ảnh tư liệu",
+   "url": "",
+   "license": "tư liệu",
+   "used_for": "dáng mặt tiền (rèm hoa đá, ban công giữa, lầu thượng, hàng cau sân thượng), hồ tròn có tượng trắng giữa bãi cỏ, hàng rào và cổng"
   }
  ]
 }

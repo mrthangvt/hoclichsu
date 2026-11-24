@@ -164,7 +164,11 @@ ground.rotation.x = -Math.PI / 2; ground.position.y = BASE; scene.add(ground);
 // TH: cao độ đỉnh lưới địa hình; hG(): cao độ đúng theo tam giác lưới (người, cây đặt bằng hàm này để không lún vào sườn đồi)
 const TG = 700, TH = new Float32Array((TG + 1) * (TG + 1));
 let TERRAIN = null;
+// 2.2: VÙNG PHẲNG — công trình dựng sẵn (vd. khuôn viên Dinh) có mặt sân riêng; hG trả độ cao mặt sân trong vùng đó để xe, người không lún
+const PHANG = [];        // { cx, cz, c, s, s0, s1, d0, d1, h } — hình chữ nhật xoay (s dọc, d ngang) quanh (cx, cz) three
+function matPhang(cx, cz, yaw, s0, s1, d0, d1, h) { PHANG.push({ cx, cz, c: Math.cos(yaw), s: Math.sin(yaw), s0, s1, d0, d1, h }); }
 function hG(x, z) {
+  for (const P of PHANG) { const dx = x - P.cx, dz = z - P.cz, ss = dx * P.c - dz * P.s, dd = -dx * P.s - dz * P.c; if (ss > P.s0 && ss < P.s1 && dd > P.d0 && dd < P.d1) return P.h; }
   if (Math.hypot(x, z) > R - 20) return hAt(x, z);
   const cs = (2 * R) / TG, gj = (x + R) / cs, gi = (z + R) / cs, j = Math.min(TG - 1, Math.max(0, Math.floor(gj))), i = Math.min(TG - 1, Math.max(0, Math.floor(gi)));
   const fx = gj - j, fz = gi - i, n = TG + 1, a = TH[i * n + j], b = TH[i * n + j + 1], c = TH[(i + 1) * n + j], d = TH[(i + 1) * n + j + 1];
