@@ -1,0 +1,231 @@
+{
+ "pack": "ho-chi-minh-1975",
+ "reconstruction": "Tái dựng mô phỏng. Mốc giờ, đơn vị, số hiệu xe lấy theo các nguồn dưới đây; chỗ các nguồn ghi khác nhau được nêu trong docs/HCM_1975_TU_LIEU.md và trong lời bình. Địa hình, đường phố, hình dáng công trình là phỏng dựng.",
+ "sources": [
+  {
+   "id": "S1",
+   "title": "Ngày 30/4/1975: Chiến dịch Hồ Chí Minh toàn thắng",
+   "type": "báo chí (Nhân Dân)",
+   "url": "https://nhandan.vn/post-876420.html",
+   "license": "trích dẫn",
+   "used_for": "diễn biến 30/4: Tân Sơn Nhất, Bộ Tổng tham mưu, Biệt khu Thủ đô, Tổng nha Cảnh sát, giờ làm chủ"
+  },
+  {
+   "id": "S2",
+   "title": "Ngày 26-4-1975: Mở màn chiến dịch Hồ Chí Minh",
+   "type": "báo chí (SGGP)",
+   "url": "https://www.sggp.org.vn/ngay-26-4-1975-mo-man-chien-dich-ho-chi-minh-post283259.html",
+   "license": "trích dẫn",
+   "used_for": "giờ mở màn 17h 26/4; mục tiêu hướng Tây Bắc, Bắc"
+  },
+  {
+   "id": "S3",
+   "title": "Tấm bản đồ quyết tâm thống nhất đất nước",
+   "type": "báo chí (VnExpress) về hiện vật Bảo tàng LSQS",
+   "url": "https://vnexpress.net/tam-ban-do-quyet-tam-thong-nhat-dat-nuoc-3203698.html",
+   "license": "trích dẫn",
+   "used_for": "5 hướng, phân công mục tiêu theo bản đồ Quyết tâm"
+  },
+  {
+   "id": "S4",
+   "title": "Tấm bản đồ quyết tâm thống nhất đất nước",
+   "type": "báo chí (VietTimes)",
+   "url": "https://viettimes.vn/tam-ban-do-quyet-tam-thong-nhat-dat-nuoc-post3683.html",
+   "license": "trích dẫn",
+   "used_for": "hướng Tây Nam: Đoàn 232 — Biệt khu Thủ đô, Tổng nha Cảnh sát"
+  },
+  {
+   "id": "S5",
+   "title": "Binh đoàn Tây Nguyên trên hướng Tây Bắc của Chiến dịch Hồ Chí Minh",
+   "type": "báo chí (Nhân Dân, chuyên đề)",
+   "url": "https://special.nhandan.vn/binhdoanTayNguyentrenhuongTayBaccuachiendichHoChiMinh/index.html",
+   "license": "trích dẫn",
+   "used_for": "Quân đoàn 3: Đồng Dù 29/4, nhiệm vụ bổ sung đánh Bộ Tổng tham mưu lúc 23h 29/4"
+  },
+  {
+   "id": "S6",
+   "title": "Binh đoàn Cửu Long trên hướng Đông",
+   "type": "báo chí (Nhân Dân, chuyên đề)",
+   "url": "https://special.nhandan.vn/binh-doan-cuu-long-tren-huong-dong/index.html",
+   "license": "trích dẫn",
+   "used_for": "thế bao vây 5 hướng; Quân đoàn 4 hướng Đông"
+  },
+  {
+   "id": "S7",
+   "title": "Chiếc xe tăng húc đổ cổng chính Dinh Độc Lập mang số hiệu bao nhiêu?",
+   "type": "tổng hợp pháp lý (Thư viện Pháp luật), dẫn danh mục Bảo vật quốc gia đợt 1",
+   "url": "https://thuvienphapluat.vn/hoi-dap-phap-luat/chiec-xe-tang-huc-do-cong-chinh-dinh-doc-lap-mang-so-hieu-bao-nhieu-xe-tang-390-trung-bay-o-dau-138048807.html",
+   "license": "trích dẫn",
+   "used_for": "xe 390 (T-59) và 843 (T-54B); kíp xe 390; 843 húc cổng phụ 11h"
+  },
+  {
+   "id": "S8",
+   "title": "Hành trình trở thành bảo vật quốc gia của xe tăng 390",
+   "type": "báo chí (Tiền Phong)",
+   "url": "https://tienphong.vn/hanh-trang-nguoi-linh/603959/Hanh-trinh-tro-thanh-bao-vat-quoc-gia-cua-xe-tang-390-tpp.html",
+   "license": "trích dẫn",
+   "used_for": "xe 390 húc đổ cổng chính khi 843 kẹt ở cổng phụ bên trái"
+  },
+  {
+   "id": "S9",
+   "title": "Những bí mật ẩn chứa trong xe tăng 390 huyền thoại Việt Nam",
+   "type": "báo chí (VTC News)",
+   "url": "https://vtcnews.vn/nhung-bi-mat-an-chua-trong-xe-tang-390-huyen-thoai-viet-nam-ar201329.html",
+   "license": "trích dẫn",
+   "used_for": "390 là xe tăng kiểu 59 do Trung Quốc sản xuất; 843 là T-54"
+  },
+  {
+   "id": "S10",
+   "title": "Cận cảnh bản gốc 2 kỷ vật làm nên chiến thắng 30/4/1975 thành bảo vật",
+   "type": "báo chí (VietTimes), dẫn hồ sơ Cục Di sản văn hoá",
+   "url": "https://viettimes.vn/can-canh-ban-goc-2-ky-vat-lam-nen-chien-thang-3041975-thanh-bao-vat-post185112.html",
+   "license": "trích dẫn",
+   "used_for": "843 thuộc Đại đội 4, Tiểu đoàn 1, Lữ đoàn 203, Quân đoàn 2"
+  },
+  {
+   "id": "S11",
+   "title": "Chuyện về chiếc xe tăng đầu tiên húc đổ cánh cổng Dinh Độc Lập",
+   "type": "báo chí (Pháp Luật)",
+   "url": "https://baophapluat.vn/chuyen-ve-chiec-xe-tang-dau-tien-huc-do-canh-cong-dinh-doc-lap-post195597.html",
+   "license": "trích dẫn",
+   "used_for": "ghi 843 và 390 thuộc Tiểu đoàn 2 — KHÁC S10",
+   "note": "đã thấy ghi \"Đại hội 4\" (lỗi gõ của nguồn, đúng là Đại đội 4)"
+  },
+  {
+   "id": "S12",
+   "title": "Trưởng xe tăng đầu tiên húc đổ cổng Dinh Độc Lập là người tỉnh nào?",
+   "type": "báo chí (VietNamNet)",
+   "url": "https://vietnamnet.vn/truong-xe-tang-dau-tien-huc-do-cong-dinh-doc-lap-la-nguoi-tinh-nao-2275856.html",
+   "license": "trích dẫn",
+   "used_for": "Bùi Quang Thận cắm cờ Mặt trận DTGP miền Nam lúc 11h30"
+  },
+  {
+   "id": "S13",
+   "title": "Ký ức ngày 30/4",
+   "type": "báo chí (Nhân Dân, chuyên đề, lời nhân chứng)",
+   "url": "https://special.nhandan.vn/ky-uc-ngay-30-4/index.html",
+   "license": "trích dẫn",
+   "used_for": "cắm cờ khoảng 11h30; đường phố vắng khi xe tăng Lữ 203 vào"
+  },
+  {
+   "id": "S14",
+   "title": "Ngày 28/4/1975 - Quân ta bao vây chặt Sài Gòn, đánh sân bay Tân Sơn Nhất",
+   "type": "báo chí (VietnamPlus)",
+   "url": "https://www.vietnamplus.vn/50-nam-thong-nhat-dat-nuoc-ngay-2841975-quan-ta-bao-vay-chat-sai-gon-danh-san-bay-tan-son-nhat-post1035423.vnp",
+   "license": "trích dẫn",
+   "used_for": "Phi đội Quyết Thắng 5 A-37 cất cánh 16h25 từ Thành Sơn"
+  },
+  {
+   "id": "S15",
+   "title": "Ngày 28/4/1975: Tổng công kích đợt 2 Chiến dịch Hồ Chí Minh bắt đầu",
+   "type": "báo chí (Nhân Dân)",
+   "url": "https://nhandan.vn/ngay-2841975-tong-cong-kich-dot-2-chien-dich-ho-chi-minh-bat-dau-post875741.html",
+   "license": "trích dẫn",
+   "used_for": "Phi đội cất cánh 16h40 — KHÁC S14; tên các phi công"
+  },
+  {
+   "id": "S16",
+   "title": "Dùng máy bay địch đánh địch trong chiến dịch Hồ Chí Minh lịch sử",
+   "type": "báo chí (Hà Tĩnh)",
+   "url": "https://baohatinh.vn/dung-may-bay-dich-danh-dich-trong-chien-dich-ho-chi-minh-lich-su-post230805.html",
+   "license": "trích dẫn",
+   "used_for": "phi đội cất cánh 15h — KHÁC S14, S15"
+  },
+  {
+   "id": "S17",
+   "title": "Phi đội Quyết thắng - \"Giải mã\" sau 50 năm (Phần 1)",
+   "type": "báo chí (Nhân Dân, video)",
+   "url": "https://nhandan.vn/ocop/video-phi-doi-quyet-thang-giai-ma-sau-50-nam-phan-1-post876316.html",
+   "license": "trích dẫn",
+   "used_for": "hạ cánh Thành Sơn 18h15, không tổn thất"
+  },
+  {
+   "id": "S18",
+   "title": "Ngày 30-4-1975: Giải phóng Sài Gòn, Chiến dịch Hồ Chí Minh toàn thắng",
+   "type": "báo chí (SGGP)",
+   "url": "https://www.sggp.org.vn/ngay-30-4-1975-giai-phong-sai-gon-chien-dich-ho-chi-minh-toan-thang-post283287.html",
+   "license": "trích dẫn",
+   "used_for": "9h30 tuyên bố của Dương Văn Minh; mũi thọc sâu Quân đoàn 2 qua cầu Sài Gòn, Hàng Xanh, Thị Nghè; 843 cổng phụ, 390 cổng chính"
+  },
+  {
+   "id": "S19",
+   "title": "Oanh liệt trận đánh cầu Rạch Chiếc",
+   "type": "báo chí (Nhân Dân)",
+   "url": "https://nhandan.vn/oanh-liet-tran-danh-cau-rach-chiec-gop-phan-vao-chien-thang-304-lich-su-post876737.html",
+   "license": "trích dẫn",
+   "used_for": "xe tăng đầu tiên qua cầu Rạch Chiếc 7h30 — KHÁC S20"
+  },
+  {
+   "id": "S20",
+   "title": "Ký ức trận đánh cầu Rạch Chiếc trước giờ giải phóng Sài Gòn",
+   "type": "báo chí (VOH)",
+   "url": "https://voh.com.vn/ngay-nay-nam-ay/ky-uc-tran-danh-cau-rach-chiec-truoc-gio-giai-phong-sai-gon-362593.html",
+   "license": "trích dẫn",
+   "used_for": "xe tăng Lữ 203 qua cầu Rạch Chiếc khoảng 9h30"
+  },
+  {
+   "id": "S21",
+   "title": "Chiến thắng Xuân Lộc – Long Khánh",
+   "type": "báo chí (Nhân Dân, chuyên đề)",
+   "url": "https://special.nhandan.vn/chien-thang-xuan-loc-long-khanh/index.html",
+   "license": "trích dẫn",
+   "used_for": "Xuân Lộc 9–21/4/1975"
+  },
+  {
+   "id": "S22",
+   "title": "Đại thắng mùa Xuân 1975",
+   "type": "báo chí (VietnamPlus, ảnh TTXVN)",
+   "url": "https://www.vietnamplus.vn/dai-thang-mua-xuan-1975-thang-loi-giai-phong-dan-toc-vi-dai-nhat-post709052.vnp",
+   "license": "trích dẫn",
+   "used_for": "10h45 yêu cầu Dương Văn Minh lên đài; 11h30 kéo cờ"
+  },
+  {
+   "id": "S23",
+   "title": "Chuyện chưa kể về Chương trình phát thanh đặc biệt ngày 30/4/1975",
+   "type": "báo chí (Luật sư Việt Nam)",
+   "url": "https://lsvn.vn/chuyen-chua-ke-ve-chuong-trinh-phat-thanh-dac-biet-ngay-30-4-1975-a39466.html",
+   "license": "trích dẫn",
+   "used_for": "Đài Sài Gòn phát lời tuyên bố khoảng 14h — KHÁC S24, S25"
+  },
+  {
+   "id": "S24",
+   "title": "Vì sao tôi thảo lời đầu hàng cho tổng thống ngụy Sài Gòn?",
+   "type": "báo chí (Nhân Dân, hồi ức Bùi Văn Tùng)",
+   "url": "https://nhandan.vn/vi-sao-toi-thao-loi-dau-hang-cho-tong-thong-nguy-sai-gon-post466145.html",
+   "license": "trích dẫn",
+   "used_for": "đưa Dương Văn Minh ra đài lúc 12h"
+  },
+  {
+   "id": "S25",
+   "title": "Vang mãi bài ca chiến thắng",
+   "type": "báo chí (Nhân Dân, chuyên đề)",
+   "url": "https://special.nhandan.vn/vangmaibaicachienthang/index.html",
+   "license": "trích dẫn",
+   "used_for": "ghi 11h30 Đài Sài Gòn phát lời tuyên bố"
+  },
+  {
+   "id": "S26",
+   "title": "5 cánh quân giải phóng Sài Gòn — Quân đoàn 2 tiến về Sài Gòn từ hướng Đông Nam",
+   "type": "báo chí (SGGP)",
+   "url": "https://www.sggp.org.vn/bai-2-quan-doan-2-tien-ve-sai-gon-tu-huong-dong-nam-225700.html",
+   "license": "trích dẫn",
+   "used_for": "biên chế Quân đoàn 2; 843 bắn cháy 2 M41 tại cầu Thị Nghè, theo đường Hồng Thập Tự"
+  },
+  {
+   "id": "S27",
+   "title": "Bài 10075104 (bản in, song ngữ)",
+   "type": "báo chí (Nghệ An)",
+   "url": "https://baonghean.vn/en/print/10075104.html",
+   "license": "trích dẫn",
+   "used_for": "5h30 Sư đoàn 10 + 2 đại đội xe tăng Trung đoàn 273 tấn công Tân Sơn Nhất"
+  },
+  {
+   "id": "S28",
+   "title": "The power of T-54 tanks entering Saigon on April 30",
+   "type": "báo chí (Nghệ An)",
+   "url": "https://baonghean.vn/en/print/10137788.html",
+   "license": "trích dẫn",
+   "used_for": "T59 chế tạo trên cơ sở T-54 → dùng chung một lưới xe tăng"
+  }
+ ]
+}

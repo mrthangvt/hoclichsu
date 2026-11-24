@@ -168,6 +168,12 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - **Tạm bỏ không gian Thành Cổ Loa** (theo yêu cầu chủ dự án 22/11): gỡ `co-loa` khỏi `V2_EXPERIENCES`, `V23_SCENES`, `experiences_seed.json`, `experience_locations.json`. Ảnh thẻ `co-loa` trong `v42.js` ART vẫn giữ để khôi phục sau.
 - Nội dung là tái dựng mô phỏng: số thuyền, số quân là mật độ minh họa; vị trí pháo, phục binh là giả định chiến thuật; cần đối chiếu tư liệu.
 
+## Sa bàn Chiến dịch Hồ Chí Minh 1975 (nhánh `claude/sa-ban-hcm-1975`, 24/11/2026)
+
+- Gói `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` trên bộ máy 2.1.0 (`engine: ^2.1`). **Giai đoạn 0 xong** (khung gói, cờ hai phe, `rieng.js` 53 đoạn rỗng, `kiem_tra_goi.py` hợp lệ). Chưa mở được trang sa bàn cho tới khi có `terrain/` (Giai đoạn 2).
+- **Giai đoạn 1 nháp, chờ duyệt:** `docs/HCM_1975_TU_LIEU.md` — 5 hướng và mục tiêu, bảng mốc giờ kèm nguồn S1–S28 (`sources.json`), các chỗ nguồn ghi khác nhau, kịch bản 12 cảnh (`story.json` nháp), danh sách tài sản tái dùng từ Thành cổ.
+- Lộ trình: GĐ2 địa hình hai tầng (chiến dịch ~130 × 100 km, nội đô ~8–10 km) · GĐ3 bộ máy 2.2.0 (xe chạy theo đường, hai tầng địa hình) · GĐ4 quân và xe (bộ đội `qdvn_a/b` + lính `vnch` của Thành cổ, xe tăng 390/843 và xe tải từ `_KHO-CHUNG/vat-dung/_moi`) · GĐ5 dựng cảnh, cảnh cuối xe tăng vào Dinh, cắm cờ 11h30 · GĐ6 kiểm tra, `catalog.json`.
+
 ## Lấy toạ độ OpenStreetMap cho sa bàn (dành cho Codex/ChatGPT)
 - Đổi toạ độ: `python3 tools/osm_sang_sa_ban.py <vĩ độ> <kinh độ>` hoặc `python3 tools/osm_sang_sa_ban.py file.geojson > ket_qua.json`. Kết quả là toạ độ sa bàn (m, Blender X/Y); sang three.js dùng `B(x,y,z)=(x,z,−y)`.
 - Kiểm tra: Đài tưởng niệm giữa Thành cổ ra ≈ (0, 0); Cổng Tiền ≈ (0, −250).

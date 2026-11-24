@@ -1,0 +1,70 @@
+{
+ "id": "ho-chi-minh-1975",
+ "version": "0.1.0",
+ "engine": "^2.1",
+ "kind": "battle",
+ "title": "Chiến dịch Hồ Chí Minh 1975",
+ "subtitle": "26 – 30/4/1975 · Sài Gòn – Gia Định và vùng ven",
+ "label": "Tái dựng mô phỏng · cần đối chiếu tư liệu",
+ "period": "vndcch",
+ "year": 1975,
+ "storyLabel": "kịch bản nháp V0 · đang tra nguồn",
+ "script": "rieng.js",
+ "coords": {
+  "system": "blender",
+  "note": "Hai tầng địa hình (dự kiến, Giai đoạn 2): tầng chiến dịch ~130 × 100 km (Củ Chi – Xuân Lộc – Tân An) và tầng nội đô ~8–10 km quanh Dinh Độc Lập (tâm tạm 10,7770 B, 106,6953 Đ — sẽ lấy lại theo OSM)."
+ },
+ "ui": {
+  "layers": [
+   ["nv", "Quân lính, xe cơ giới", true],
+   ["co", "Cờ hiệu hai bên", true],
+   ["muiten", "Mũi tên 5 hướng tiến công", true],
+   ["muctieu", "5 mục tiêu nội đô", true]
+  ],
+  "legend": [
+   ["r", "Mũi đỏ: hướng tiến công của Quân Giải phóng (5 hướng)", "width:22px;height:8px;border-radius:3px"],
+   ["g", "Mốc vàng: mục tiêu, cầu, căn cứ (bấm để đọc)"],
+   ["p", "Mốc đỏ: ghi chú review của nhóm"]
+  ],
+  "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ. Mốc giờ, đơn vị, số hiệu xe ghi theo nguồn trong sources.json; chỗ các nguồn ghi khác nhau được nêu rõ.",
+  "gauge": false,
+  "notePlaceholder": "VD: Dời mũi tên Quân đoàn 1 sang đường 13"
+ },
+ "views": [
+  ["all", "Toàn chiến dịch"],
+  ["noido", "Nội đô Sài Gòn"],
+  ["dinh", "Dinh Độc Lập"],
+  ["tsn", "Sân bay Tân Sơn Nhất"],
+  ["bttm", "Bộ Tổng tham mưu"],
+  ["bkthudo", "Biệt khu Thủ đô"],
+  ["tongnha", "Tổng nha Cảnh sát"]
+ ],
+ "roles": [],
+ "sides": [
+  {
+   "id": "qgp",
+   "name": "Quân Giải phóng (QĐND Việt Nam)",
+   "flag": "props/co-mtdtgp.png",
+   "note": "Cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam (nửa trên đỏ, nửa dưới xanh, sao vàng) — cờ cắm trên nóc Dinh 11h30 ngày 30/4/1975 (sources: S12, S13)"
+  },
+  {
+   "id": "vnch",
+   "name": "Quân lực Việt Nam Cộng hòa",
+   "flag": "props/co-vnch.png"
+  }
+ ],
+ "units": {},
+ "placement": "placement.json",
+ "story": "story.json",
+ "audio": {
+  "dir": "audio/"
+ },
+ "budget": {
+  "firstLoadMB": 15
+ },
+ "sources": "sources.json",
+ "taiSau": [
+  "units/*.nvz",
+  "units/*.glb"
+ ]
+}

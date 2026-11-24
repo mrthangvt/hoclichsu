@@ -1,0 +1,23 @@
+{
+ "note": "Kịch bản NHÁP V0 (Giai đoạn 1) — chờ anh Thắng duyệt. Chưa có lời bình, phụ đề, góc máy; thời lượng là ước tính. Mỗi cảnh ghi nguồn (sources.json) và tầng địa hình. Chỗ nguồn ghi khác nhau xem docs/HCM_1975_TU_LIEU.md.",
+ "draft": true,
+ "duration": 0,
+ "scenes": [
+  {"id": "C01", "title": "Cánh cửa phía Đông", "date": "9 – 21/4/1975", "place": "Xuân Lộc – Long Khánh", "tang": "chien-dich", "duKien": 60, "nguon": ["S21"], "subs": []},
+  {"id": "C02", "title": "Thế bao vây năm hướng", "date": "trước 26/4/1975", "place": "Sài Gòn – Gia Định và vùng ven", "tang": "chien-dich", "duKien": 75, "nguon": ["S3", "S4", "S6"], "subs": []},
+  {"id": "C03", "title": "Nổ súng mở màn", "date": "17h 26/4/1975", "place": "hướng Đông, Đông Nam (Nước Trong, Long Thành)", "tang": "chien-dich", "duKien": 60, "nguon": ["S2", "S26"], "subs": []},
+  {"id": "C04", "title": "Phi đội Quyết Thắng", "date": "chiều 28/4/1975", "place": "sân bay Tân Sơn Nhất", "tang": "noi-do", "duKien": 60, "nguon": ["S14", "S15", "S16", "S17"], "subs": []},
+  {"id": "C05", "title": "Phá tuyến ngoài", "date": "29/4/1975", "place": "Đồng Dù, hướng Bắc, cầu Rạch Chiếc", "tang": "chien-dich", "duKien": 75, "nguon": ["S5", "S20"], "subs": []},
+  {"id": "C06", "title": "Tổng công kích vào nội đô", "date": "rạng sáng 30/4/1975", "place": "5 mũi vào nội đô", "tang": "noi-do", "duKien": 60, "nguon": ["S1"], "subs": []},
+  {"id": "C07", "title": "Sân bay Tân Sơn Nhất", "date": "30/4/1975, 5h30 – 11h30", "place": "Tân Sơn Nhất", "tang": "noi-do", "duKien": 75, "nguon": ["S1", "S27"], "subs": []},
+  {"id": "C08", "title": "Bộ Tổng tham mưu", "date": "30/4/1975, đến 11h30", "place": "Bộ Tổng tham mưu", "tang": "noi-do", "duKien": 60, "nguon": ["S1", "S5"], "subs": []},
+  {"id": "C09", "title": "Hướng Tây – Tây Nam", "date": "30/4/1975", "place": "Biệt khu Thủ đô, Tổng nha Cảnh sát", "tang": "noi-do", "duKien": 75, "nguon": ["S1", "S4"], "subs": []},
+  {"id": "C10", "title": "Mũi thọc sâu phía Đông", "date": "sáng 30/4/1975", "place": "cầu Sài Gòn, Hàng Xanh, cầu Thị Nghè", "tang": "noi-do", "duKien": 75, "nguon": ["S18", "S26"], "subs": []},
+  {"id": "C11", "title": "Cổng Dinh Độc Lập", "date": "trưa 30/4/1975", "place": "Dinh Độc Lập", "tang": "can-canh", "duKien": 90, "nguon": ["S7", "S8", "S9", "S10", "S12", "S13", "S18"], "subs": []},
+  {"id": "C12", "title": "Trưa 30 tháng 4", "date": "trưa – chiều 30/4/1975", "place": "Dinh Độc Lập, Đài phát thanh Sài Gòn", "tang": "noi-do", "duKien": 45, "nguon": ["S18", "S22", "S23", "S24", "S25"], "subs": []}
+ ],
+ "arrows": {},
+ "states": {"none": []},
+ "legend": {},
+ "refs": []
+}
