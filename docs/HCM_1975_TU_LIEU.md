@@ -339,3 +339,12 @@ Làm theo hai ảnh anh gửi: ảnh một góc phố chụp từ trên cao và 
 - **Bản đồ toàn cảnh bị nháy:** các ô nhà bật tắt theo khoảng cách nay có độ trễ, không bật tắt liên tục khi máy quay ở sát ngưỡng.
 - **Bộ binh nhìn gần bị thủng:** tăng lưới lính ta lên 4.668 tam giác (trước 2.168), lính đối phương lên 4.708; bớt khung hình để tệp không tăng nhiều.
 - **Nhà:** giảm tiếp một nửa (nhà xa giữ khoảng 38 %, nhà lõi khối phố khoảng 30 %), bỏ hết nhà ở bán đảo Thủ Thiêm.
+
+## 24. Sửa V1.4 (24/11 tối, góp ý 21:13)
+- **Hồi 10 đứng hình — đã tìm ra lỗi** (anh Thắng chụp được thông báo: "cannot read properties of undefined (reading '5')", app.js:627). Ở trận cầu Sài Gòn, chỉ số chọn chỗ nổ bị âm trong nửa giây trước khi trận bắt đầu, nên lấy phải phần tử không có. Lỗi làm dừng vòng vẽ: voice vẫn chạy nhưng hình đứng.
+  - Đã sửa công thức chỉ số.
+  - Phòng xa: khung sau được hẹn trước khi vẽ khung này, mỗi hàm vẽ đám đông có bắt lỗi riêng, nên một lỗi không còn làm đứng cả phim.
+- **Bản đồ nhìn từ trên cao bị nháy:**
+  - Mặt nước khi nhìn từ xa (trên 0,5–2,5 km) bỏ dần gợn sóng, lấp lánh và bọt. Các chấm sáng nhỏ hơn điểm ảnh làm sông nháy.
+  - Mỗi dải màu đường tiến quân có thứ tự vẽ và độ cao riêng. Các dải xanh lam, xanh lục, cam chồng nhau gần Sài Gòn trước đây tranh nhau nên nhấp nháy.
+- **0:17 không thấy đoàn xe, chỉ thấy ghim:** máy quay bay sát đoàn xe hơn (cao 30 m, sau đầu đoàn 150–300 m). Ghim tên khí tài chỉ hiện khi máy ở gần (dưới 900 m).

@@ -269,16 +269,16 @@ const waterMat = fogShader({
     float wav(vec2 q){ return noise(q*0.07+vec2(uTime*0.22,uTime*0.15))*0.6+noise(q*0.29-vec2(uTime*0.37,-uTime*0.28))*0.3+noise(q*1.2+uTime*0.8)*0.1; }`,
   fbody: `vec2 uv=(vW.xz+uHalf)/(2.*uHalf); float hb=texture2D(uH,uv).r; float depth=uLevel-hb;
     if(depth<-0.03) discard;
-    vec2 p=vW.xz; float dist=length(cameraPosition-vW); float amp=1.6/(1.+dist*0.0015);
+    vec2 p=vW.xz; float dist=length(cameraPosition-vW); float xa=smoothstep(500.,2500.,dist); float amp=1.6/(1.+dist*0.0015)*(1.-0.9*xa);
     float hx=wav(p+vec2(.6,0.))-wav(p-vec2(.6,0.)); float hz=wav(p+vec2(0.,.6))-wav(p-vec2(0.,.6));
     vec3 N=normalize(vec3(-hx*amp,1.,-hz*amp)); vec3 V=normalize(cameraPosition-vW);
     if(cameraPosition.y<uLevel) N=-N;
     float fres=0.02+0.98*pow(1.-max(dot(N,V),0.),5.);
     vec3 Rf=reflect(-V,N); vec3 skyc=mix(uHor,uTop,clamp(Rf.y*1.6,0.,1.));
-    float spec=pow(max(dot(Rf,uSunDir),0.),260.)*3.5;
+    float spec=pow(max(dot(Rf,uSunDir),0.),260.)*3.5*(1.-xa);   // 2.2: nhìn từ xa bỏ gợn sóng, lấp lánh, bọt (chống nháy khi nhìn bản đồ từ trên cao)
     float dfac=1.-exp(-max(depth,0.)*0.3);
     vec3 base=mix(uShallow,uDeep,dfac);
-    float foam=smoothstep(0.5,0.0,depth)*(0.5+0.5*noise(p*0.5+uTime*0.6));
+    float foam=smoothstep(0.5,0.0,depth)*(0.5+0.5*noise(p*0.5+uTime*0.6))*(1.-xa);
     vec3 col=mix(base,skyc,fres*0.8)+uSunCol*spec;
     col=mix(col,vec3(0.86,0.85,0.8),foam*0.5);
     float a=mix(0.3,0.93,1.-exp(-max(depth,0.)*0.5)); a=max(a,fres*0.85); a=max(a,foam*0.65);
