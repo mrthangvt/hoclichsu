@@ -485,6 +485,28 @@ function dashTube(points, color, radius) {
     fragmentShader: 'uniform float uT,uP; uniform vec3 uC; varying vec2 vUv; void main(){ if(vUv.x>uP) discard; float d=fract(vUv.x*24.-uT*0.8); float a=smoothstep(0.,.15,d)*smoothstep(1.,.6,d); float head=smoothstep(uP-0.04,uP,vUv.x); gl_FragColor=vec4(uC*(1.+head*1.5),0.35+0.6*a);\n#include <colorspace_fragment>\n}' });
   const m = new THREE.Mesh(new THREE.TubeGeometry(curve, 300, radius, 8), mat); m.visible = false; m.frustumCulled = false; scene.add(m); return m;
 }
+// 2.2: mũi tên hướng tiến có ĐẦU NHỌN — ống gạch đứt như dashTube + đầu mũi tam giác dẹt nằm ngang (kiểu bản đồ tác chiến),
+// chạy theo tiến độ vẽ, chỉ theo hướng đi; viền sẫm để nổi trên nền
+const _mtT = new THREE.Vector3();
+function tamGiac(W, L, h) {
+  const sh = new THREE.Shape(); sh.moveTo(0, 0); sh.lineTo(-W, -L); sh.lineTo(0, -L * 0.72); sh.lineTo(W, -L); sh.closePath();
+  return new THREE.ExtrudeGeometry(sh, { depth: h, bevelEnabled: false }).rotateX(-Math.PI / 2);   // đỉnh tại gốc, chỉ về −Z
+}
+function muiTen(points, color, radius) {
+  const m = dashTube(points, color, radius), curve = new THREE.CatmullRomCurve3(points);
+  const W = radius * 4.2, L = radius * 10, dau = new THREE.Group();
+  const vien = new THREE.Mesh(tamGiac(W, L, radius * 0.5).translate(0, 0, -L * 0.6).scale(1.16, 1, 1.16).translate(0, -radius * 0.3, L * 0.6), new THREE.MeshBasicMaterial({ color: 0x3a1208, transparent: true, opacity: 0.85, depthWrite: false, side: THREE.DoubleSide }));
+  const than = new THREE.Mesh(tamGiac(W, L, radius * 0.8), new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(1.2), transparent: true, opacity: 0.97, depthWrite: false, side: THREE.DoubleSide }));
+  vien.renderOrder = 3; than.renderOrder = 4; dau.add(vien, than);
+  dau.visible = false; dau.traverse((o) => { o.frustumCulled = false; }); scene.add(dau);
+  m.userData.curve = curve; m.userData.dau = dau; return m;
+}
+function muiTenDat(m, on, p = 1) {          // bật/tắt + tiến độ 0..1 (đầu mũi đi theo chỗ đang vẽ tới)
+  m.visible = on; const d = m.userData.dau; if (!d) return; d.visible = on && p > 0.02; if (!on) return;
+  if (m.material.uniforms) m.material.uniforms.uP.value = p;
+  const c = m.userData.curve, u = Math.min(1, Math.max(0.001, p));
+  c.getPointAt(u, d.position); c.getTangentAt(u, _mtT); d.rotation.set(0, Math.atan2(-_mtT.x, -_mtT.z), 0);
+}
 /*@@RIENG:s29@@*/
 // ------------------------------------------------------------------ SkyDirector
 /*@@RIENG:s30@@*/

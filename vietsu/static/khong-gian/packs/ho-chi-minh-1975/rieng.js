@@ -110,8 +110,8 @@ const HUONG = TANG === 'chien-dich' ? [
   ['Hướng Đông Nam · Quân đoàn 2', [[10.76, 107.00], [10.78, 106.86], [10.80, 106.75], [10.78, 106.70]]],
   ['Hướng Tây – Tây Nam · Đoàn 232', [[10.66, 106.43], [10.72, 106.55], [10.77, 106.63], [10.775, 106.685]]],
 ] : [];
-const MUITEN = HUONG.map(([ten, pts], k) => ({ ten, m: dashTube(pts.map(([la, lo]) => LL(la, lo, 900)), 0xd2442b, 420), k }));
-for (const M of MUITEN) M.m.visible = false;
+const MUITEN = HUONG.map(([ten, pts], k) => ({ ten, m: muiTen(pts.map(([la, lo]) => LL(la, lo, 900)), 0xd2442b, 420), k }));   // có đầu nhọn chỉ hướng đến
+for (const M of MUITEN) muiTenDat(M.m, false);
 //@@ s30
 const FOGK = 3180 / R;          // sương theo cỡ sa bàn (bảng màu trời gốc làm cho vòng 3,18 km)
 const SKY = {
@@ -340,7 +340,7 @@ function update(dt) {
   xeCapNhat(t); nvxCapNhat(t, dt);
   const xeOn = $('ly-nv').checked; for (const m of LAYER.xe) m.visible = m.visible && xeOn; for (const N of NVX) N.obj.visible = N.obj.visible && xeOn;
   const arrOn = $('ly-arr').checked && $('ly-muiten').checked, ex = appMode === 'explore';
-  for (const M of MUITEN) { const t0 = 8 + M.k * 5; const on = arrOn && (ex || t >= t0); M.m.visible = on; if (on) M.m.material.uniforms.uP.value = ex ? 1 : sstep(t0, t0 + 8, t); }
+  for (const M of MUITEN) { const t0 = 8 + M.k * 5; const on = arrOn && (ex || t >= t0); muiTenDat(M.m, on, ex ? 1 : sstep(t0, t0 + 8, t)); }
   // máy quay
   if (appMode === 'film' && !userCam) {
     const fn = SHOTS[shot.id], u = clamp((t - shot.t0) / (shot.t1 - shot.t0), 0, 1);
