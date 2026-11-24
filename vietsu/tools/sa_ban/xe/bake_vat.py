@@ -26,7 +26,7 @@ m = o.modifiers.new('g', 'DECIMATE'); m.ratio = min(1, ntri / t0); m.use_collaps
 bpy.ops.object.modifier_apply(modifier='g')
 t1 = sum(len(p.vertices) - 2 for p in o.data.polygons)
 d = os.path.dirname(fbx); fbm = [x for x in os.listdir(d) if x.endswith('.fbm')][0]
-img = np.array(Image.open(os.path.join(d, fbm, 'Color.png')).convert('RGB'))
+img = np.array(Image.open(os.path.join(d, fbm, 'Color.png') if os.path.exists(os.path.join(d, fbm, 'Color.png')) else os.path.join(d, fbm, 'Color.jpg')).convert('RGB'))   # Tripo xuất png hoặc jpg
 if os.environ.get('XOA_TRANG') == '1':
     hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
     mask = ((hsv[..., 2] > 170) & (hsv[..., 1] < 50)).astype(np.uint8) * 255

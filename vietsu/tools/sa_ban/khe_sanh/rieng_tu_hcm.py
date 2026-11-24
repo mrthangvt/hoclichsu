@@ -93,3 +93,15 @@ const NGAY_HOI = { H01: ['', '1968', 'Thung lũng Khe Sanh, phía Tây Quảng T
 const MOC_NGAY = { L: STORY.scenes.filter((c) => NGAY_HOI[c.id]).map((c) => { const [g, d, x] = NGAY_HOI[c.id]; return [c.t0 + 5.5, (g ? g + ' · ' : '') + d, x]; }),
 """ + s[b:]
 p.write_text(s); print('ngay ok')
+# GĐ4: biên đạo Khe Sanh (tools/sa_ban/khe_sanh/bien_dao_gd4.js) chèn trước chỗ đặt ghim GHIM_SAU; gọi KS.cap mỗi khung
+s = p.read_text()
+s = s.replace("const HCM = false;", "const HCM = false;\nconst KS = {};       // biên đạo Khe Sanh (GĐ4) — khai báo sớm, tránh TDZ giữa các đoạn", 1)
+bd = Path(__file__).resolve().parent.joinpath('bien_dao_gd4.js')
+if not bd.exists(): bd = Path('/home/claude/vietsu/vietsu/tools/sa_ban/khe_sanh/bien_dao_gd4.js')
+a = "if (XEX.ghimND) XEX.ghimND(); for (const f of GHIM_SAU) f();"
+assert a in s
+s = s.replace(a, bd.read_text().rstrip() + "\n" + a, 1)
+a = "if (C05.cap) C05.cap(t);"
+assert a in s
+s = s.replace(a, "if (KS.cap) KS.cap(t, dt); " + a, 1)
+p.write_text(s); print('bien dao ok')

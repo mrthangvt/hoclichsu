@@ -379,6 +379,14 @@
    "used_for": "lưới XD: căn cứ 841-419, điểm cao 861 803-443, 861A 806-445, 558 820-451 → vị trí tương đối; khớp với mô tả trong Shore 1969 (861 cách đường băng ~5 km về tây bắc) và Ringed by Fire (558 cách căn cứ 4 km bắc tây bắc)"
   },
   {
+   "id": "M31",
+   "title": "Boeing B-52D Stratofortress — fact sheet",
+   "type": "bảo tàng (National Museum of the U.S. Air Force)",
+   "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/195815/boeing-b-52d-stratofortress/",
+   "license": "tư liệu công (chính phủ Mỹ)",
+   "used_for": "kích thước mẫu B-52D: sải cánh 185 ft (56,39 m), dài 156 ft 6 in (47,70 m); B-52 tham chiến Đông Nam Á từ 6/1965"
+  },
+  {
    "id": "OSM",
    "title": "OpenStreetMap",
    "type": "OSM",

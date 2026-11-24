@@ -1,7 +1,7 @@
 # Sa bàn Chiến dịch Đường 9 – Khe Sanh 1968 — tư liệu, kịch bản nháp, tài sản
 
 Gói: `vietsu/static/khong-gian/packs/khe-sanh-1968/` · bộ máy 2.2.0 · nhánh `claude/sa-ban-khe-sanh-1968`.
-Trạng thái (25/11/2026, 1h10): **GĐ0, GĐ1 xong** (anh duyệt) · kịch bản 11 hồi, cờ, PT-76 số 555, lính Mỹ thêm áo giáp (chờ gắn xương) · **GĐ2 xong, GĐ3 khung xong** (mục 9) · PR #55 · artifact xem trước https://claude.ai/artifact/DpNoFM5hMMrQPfE4quu1gA.
+Trạng thái (25/11/2026, 6h): **GĐ0, GĐ1 xong** (anh duyệt) · kịch bản 11 hồi, cờ, PT-76 số 555, lính Mỹ thêm áo giáp (chờ gắn xương) · **GĐ2 xong, GĐ3 khung xong** (mục 9) · **GĐ4 bản đầu** (mục 9b) · B-52D (anh làm, em sơn lại rằn ri 1968) · PR #55 · artifact xem trước https://claude.ai/artifact/DpNoFM5hMMrQPfE4quu1gA.
 **Anh Thắng chốt (25/11/2026, 0h29):** 11 hồi (phương án B, ~13,5 phút) · sửa lời dẫn theo mục 3 · cờ Quân Giải phóng là **cờ đỏ sao vàng** (`props/co-qgp.png`), cờ Mỹ 50 sao (`props/co-my.png`) · em sửa mẫu lính Mỹ, PT-76 trong Blender; **anh tự làm B-52D** · em được chạy lệnh trên máy anh để lấy OSM, độ cao. Địa hình anh chưa chọn → làm theo đề xuất hai tầng (mục 5). Kịch bản 11 hồi: `story.json`, dựng bằng `vietsu/tools/sa_ban/voice/nhap_story_khe_sanh.py` (thời lượng ước theo số chữ, 824 s).
 Nhãn bắt buộc: "Tái dựng mô phỏng". Mã nguồn `S…` (Việt Nam), `M…` (Mỹ) ở `sources.json`. Không đưa con số nào không có nguồn.
 
@@ -144,7 +144,7 @@ Anh đã có mẫu thô Tripo trong `_KHO-CHUNG` cho ba thứ đầu (em đã xe
 |---|---|---|---|---|---|
 | **Lính thủy đánh bộ Mỹ** | Mỹ | M1, M5, M20 | **Đã sửa (25/11):** `nhan-vat/_moi/linh-my-ao-giap.fbx` — thêm áo giáp chống mảnh kiểu M1955 (phồng thân ~2 cm, tô ô liu sẫm, gân ngang ở vai, khoá kéo; MINH HOẠ) bằng `tools/sa_ban/nhan_vat_lai/them_ao_giap.py`. Mẫu 3D Tripo không có điếu thuốc, vòng tay (chỉ ảnh xem trước có). Súng M16 dính liền thân (đeo chéo) → động tác bắn cần súng rời ở tay như lính VNCH. **Còn:** gắn xương Mixamo (anh tải lên Mixamo, hoặc cho em dùng Chrome), nướng `.nvz` + bản cận | ảnh USMC trong M5, M6 (công khai) | 1 |
 | **Xe tăng PT-76** | QGP | S2, S8, M12 | **Xong (25/11):** `props/xe/xe-tang-pt76.glb` 0,45 MB, 30 nghìn tam giác, số 555 hai bên tháp pháo (S9). Tỉ lệ theo bề rộng 3,15 m, cao ra 2,30 m (công bố 3,14–3,15 m; 2,255–2,325 m — M26). Mẫu Tripo có vài khe hở trên nắp thân (giữ nguyên) | xe 268 tượng đài Làng Vây (S10), xe 555 (S9) | 1 |
-| **B-52** | Mỹ | M1, M9, M18 | **Anh Thắng tự làm B-52D (25/11).** Bản cũ `vat-dung/_moi/MayBay-B52.zip` (+ .webp): **giống B-52H xám hiện đại**. Năm 1968 là **B-52D "Big Belly"**, mặt trên rằn ri Đông Nam Á, bụng đen bóng; B-52H không bay Arc Light (M18, M19). Cần sơn lại (và động cơ J57 thon hơn TF33 nếu làm kỹ) | ảnh NMUSAF (M19), M18 | 2 |
+| **B-52** | Mỹ | M1, M9, M18 | **Anh Thắng tự làm B-52D (25/11).** Bản cũ `vat-dung/_moi/MayBay-B52.zip` (+ .webp): **giống B-52H xám hiện đại**. Năm 1968 là **B-52D "Big Belly"**, mặt trên rằn ri Đông Nam Á, bụng đen bóng; B-52H không bay Arc Light (M18, M19). Cần sơn lại (và động cơ J57 thon hơn TF33 nếu làm kỹ) | ảnh NMUSAF (M19), M18 | 2 · **Xong 25/11:** em sơn lại mẫu của anh bằng `tools/sa_ban/xe/son_b52d.py` (mặt trên rằn ri ba màu, bụng đen; xoá số đuôi), kích thước theo M31 (sải 56,39 m, dài 47,70 m) → `props/may-bay/b-52d.glb` 355 KB |
 | Căn cứ Tà Cơn: đường băng tấm nhôm ~1.190 m, tháp điều khiển, hầm bao cát, lô cốt, hàng rào, kho đạn | Mỹ | M11, M20, S15 | Dựng bằng mã (dải đường băng, `uNap` bao cát) + vài GLB mới; ghép 7.2 | ảnh chụp từ trên cao trong M6 và Shore 1969 (UPI); C-130 và đường băng tái dựng tại di tích Tà Cơn | 1 |
 | Các điểm cao | — | M5 | Từ DEM, không cần mẫu; ghim tên | — | 1 |
 | Trực thăng vận tải CH-46 (TQLC, "Super Gaggle"), CH-47 (Kỵ binh bay, Pegasus) | Mỹ | M2, M6 | Làm mới | ảnh USMC / US Army | 2 |
@@ -178,6 +178,23 @@ Mọi mẫu mới dựng trong Blender trên máy anh (MCP for Blender), không 
 - **Kiểm tra:** `quet_phim.py khe-sanh-1968 chien-dich` 702 mốc, `ta-con` 946 mốc: `out = []`, `slow = []`. `kiem_tra_goi.py`: tải lần đầu 2,9 MB, tải sau 14,6 MB.
 - **Artifact xem trước (mới, không ghi đè HCM):** https://claude.ai/artifact/DpNoFM5hMMrQPfE4quu1gA (slug `67cb0de1-0c9a-4892-b8dd-0c5a2ac1af7f`). Đóng gói: `python3 vietsu/tools/sa_ban/dong_goi_artifact_2.py khe-sanh-1968 <thư mục>` rồi `publish_files` vào slug đó.
 - **Còn hạn chế:** đường, làng là OSM hôm nay (Đường 9 năm 1968 cần đối chiếu ảnh 1968, bản đồ 1:50 000); ảnh màu tầng chiến dịch mờ khi máy xuống thấp (2.048 điểm ảnh cho 68 km); chưa có căn cứ, đường băng, quân, xe (GĐ4).
+
+## 9b. GĐ4 dàn cảnh — bản đầu (25/11/2026)
+Mã biên đạo: `vietsu/tools/sa_ban/khe_sanh/bien_dao_gd4.js`, chèn vào `rieng.js` bằng `rieng_tu_hcm.py` (gọi `KS.cap` mỗi khung). Mọi vị trí, số lượng dưới đây là **MINH HOẠ** trừ chỗ ghi nguồn.
+| Hồi | Dựng | Nguồn / ghi chú |
+|---|---|---|
+| Căn cứ Tà Cơn (mọi hồi) | đường băng tấm nhôm ~1.190 m, hướng ~100° (Đông – Tây); vòng chiến hào, hàng rào dây thép gai ~2,0 × 0,9 km; ~260 hầm bao cát, 46 lều, tháp điều khiển, kho đạn đầu đông, 3 M48 | M11, M20 (chiều dài, tấm nhôm), S15 (cỡ căn cứ); **hướng đường băng chưa đối chiếu ảnh 1968** |
+| H04 | pháo kích vào căn cứ, kho đạn nổ cháy (21/1); 4 pháo 130 mm bắn từ Co Roc | S7, M7, M12, M16; vị trí Co Roc ước lượng |
+| H06 | Làng Vây: vòng hào, hàng rào, 14 hầm; 3 PT-76 theo Đường 9 từ phía tây, 2 từ phía nam; bộ binh bám xe; quân giữ đồn ngã dần; cờ đỏ sao vàng khi làm chủ | S2, S8, M12 (hai hướng tiến); số xe trên cảnh là MINH HOẠ |
+| H07 | 5 chiến hào răng cưa mọc dần từ nam, tây nam, tây về hàng rào; bộ đội trong hào | S1, S5, M21 |
+| H08 | 3 B-52D bay qua, thảm bom phía tây bắc ngoài căn cứ; C-130 hạ cánh từ phía đông; thả dù tiếp tế; UH-1 | M1, M9, M10, M31 |
+| H09 (chiến dịch) | mũi tên xanh Pegasus theo Đường 9 (Cà Lu → Tà Cơn, đường OSM), đoàn xe tải + M48, 6 UH-1 | M2, M3; chỉ hiện ở cảnh đại toàn để không che đoàn xe |
+| H03, H11 (chiến dịch) | mũi tên đỏ áp sát từ phía bắc và từ Lào theo Đường 9 | hướng MINH HOẠ |
+| H05 | thẻ chữ Tết Mậu Thân | S16 |
+| H10 | công sự căn cứ thưa dần (Mỹ rút) | M4, M5 |
+Máy quay riêng: H04 (xoay quanh căn cứ), H06 (bám PT-76 dẫn đầu), H08 (bám C-130), H09 (bám đoàn xe); các hồi khác vẫn máy quay tạm GĐ3.
+Kiểm tra: `quet_phim.py` hai tầng sạch (`out = []`, `slow = []`; đã sửa một khung đứng 65 s ở 9:19 do xe M48 tải sau bước "dựng sẵn" — nay mẫu nạp lên GPU ngay khi tải xong). `kiem_tra_goi.py`: tải lần đầu 2,9 MB, tải sau 14,9 MB.
+Còn lại: lính TQLC Mỹ (chờ gắn xương) nên trong căn cứ chưa có người; giao tranh trên các điểm cao 881 Nam, 861 chưa dựng; máy quay hồi 1, 2, 3, 5, 7, 10, 11 còn tạm; lời dẫn, âm thanh chưa khớp (GĐ5).
 
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
