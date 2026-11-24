@@ -13,3 +13,11 @@ body.theme-light .vs59-doc section{border-color:#d6c4a6}
 .hcm-board .hcm-event.vs59-the,.hcm-board.v18 .hcm-event.vs59-the{box-sizing:border-box!important;width:172px!important;min-height:0!important;height:72px!important;overflow:hidden;padding:7px 10px!important}
 .hcm-board.v18 .hcm-event.vs59-the b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
 .hcm-board.v18 .hcm-event.vs59-the span{display:none}
+/* V5.9.1: bài viết theo chặng Hồ Chí Minh */
+.vs59-bai p{line-height:1.75;margin:8px 0}
+.vs59-bai .vs59-moc{margin-top:12px;border-top:1px solid #506264;padding-top:10px}
+.vs59-bai .vs59-moc b{display:block;margin-bottom:8px;color:#dcb875;font-size:14px}
+.vs59-bai .vs59-nut .secondary{min-height:36px;font-size:13px;text-align:left}
+.vs59-bai .vs59-dang{border-color:#dcb875!important;color:#f1d7a0}
+body.theme-light .vs59-bai .vs59-moc{border-color:#d6c4a6}
+body.theme-light .vs59-bai .vs59-moc b{color:#7a4f22}

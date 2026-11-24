@@ -49,7 +49,7 @@ function hoSoHCM(){
 function capNhatHCM(){
  if(typeof hcmEvents==='undefined'||!Array.isArray(hcmEvents)||!D.hcm)return;
  D.hcm.forEach(m=>{
-  const detail=m.doan.map(esc).join('</p><p>')+'</p><p class="vs59-nguon">Nguồn: '+esc(D.hcm_nguon)+(m.bo_sung?' (mốc bổ sung theo tiểu sử chính thức, chờ thẩm định)':'')+'.';
+  const detail=m.doan.map(esc).join('</p><p>')+'</p><p class="vs59-nguon">Nguồn: '+esc(D.hcm_nguon)+(m.trang?', tr. '+esc(m.trang):'')+(m.bo_sung?' (mốc bổ sung theo tiểu sử chính thức, chờ thẩm định)':'')+'. Viết lại bằng lời mới, chờ thẩm định.';
   const e=hcmEvents.find(x=>x.year===m.nam);
   if(e){e.date=m.ngay;e.title=m.ten;e.detail=detail;}
   else hcmEvents.push({year:m.nam,date:m.ngay,title:m.ten,detail});
@@ -65,6 +65,23 @@ function capNhatHCM(){
   const cu=buildHCM;buildHCM=function(){const r=cu.apply(this,arguments);xepThe();return r};window.__vs59Build=true;
  }
  try{if(typeof buildHCM==='function')buildHCM();}catch(err){console.warn('V5.9 HCM',err)}
+}
+/* Bài viết theo chặng (thay "Đề cương bài viết cùng chặng") */
+function baiChang(){
+ const BV=D.hcm_bai_viet||[];if(!BV.length||typeof v2HcmExtra!=='function'||window.__vs59Bai)return;
+ v2HcmExtra=function(year){
+  const bv=BV.filter(b=>b.chang<=year).sort((a,b)=>b.chang-a.chang)[0]||BV[0];
+  const i=BV.indexOf(bv),sau=BV[i+1],ket=sau?sau.chang:9999;
+  const moc=typeof hcmEvents!=='undefined'?hcmEvents.filter(e=>e.year>=bv.chang&&e.year<ket):[];
+  let h='<div class="panel vs59-bai"><span class="chip">BÀI VIẾT THEO CHẶNG · '+(i+1)+'/'+BV.length+'</span><h3>'+esc(bv.ten)+'</h3>';
+  h+=bv.doan.map(t=>'<p>'+esc(t)+'</p>').join('');
+  if(moc.length)h+='<div class="vs59-moc"><b>Các mốc trong chặng</b><div class="vs59-nut">'+moc.map(e=>'<button type="button" class="secondary'+(e.year===year?' vs59-dang':'')+'" onclick="openHCM('+e.year+')">'+esc(e.date)+' · '+esc(e.title)+'</button>').join('')+'</div></div>';
+  h+='<p class="vs59-nguon">Nguồn: '+esc(D.hcm_nguon)+', tr. '+esc(bv.trang)+'. Tóm lược bằng lời mới, chờ thẩm định.</p></div>';
+  try{if(typeof V2_SOURCES!=='undefined'&&V2_SOURCES.hcm)h=h.replace(/<\/div>$/,'<p><a style="color:#f1d7a0" href="'+esc(V2_SOURCES.hcm)+'" target="_blank" rel="noopener">Tư liệu tiểu sử của Bảo tàng Hồ Chí Minh ↗</a></p></div>');}catch(err){}
+  let canh='';try{if(year<=1901&&typeof v2SceneHtml==='function'&&typeof V2_EXPERIENCES!=='undefined')canh=v2SceneHtml(V2_EXPERIENCES[0]);}catch(err){}
+  return h+canh;
+ };
+ window.__vs59Bai=true;
 }
 /* Xếp thẻ mốc vào 3 hàng, đẩy sang phải khi chật để không chồng nhau */
 function xepThe(){
@@ -140,7 +157,7 @@ function caiModal(){
 }
 
 function chay(){
- const n=themNhanVat();hoSoHCM();caiModal();const m=themSuKien();capNhatHCM();
+ const n=themNhanVat();hoSoHCM();caiModal();baiChang();const m=themSuKien();capNhatHCM();
  try{if(typeof v25RenderCharacters==='function')v25RenderCharacters();}catch(err){}
  document.documentElement.dataset.vs59=n+'/'+m;
 }

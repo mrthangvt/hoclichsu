@@ -36,8 +36,13 @@ def du_lieu():
     for m in hcm["moc"]:
         for k in ("nam","ngay","ten","doan"):
             if k not in m: raise AssertionError(f"Mốc HCM {m.get('nam')}: thiếu {k}")
-    out={"phien_ban":"5.9","nhan_vat":nv["nhan_vat"],"su_kien":sk["su_kien"],"hcm":hcm["moc"],
-         "hcm_nguon":hcm["nguon"],"hcm_ho_so":hcm["ho_so"]}
+    chang=[b["chang"] for b in hcm.get("bai_viet",[])]
+    assert len(chang)==len(set(chang)), "Bài viết chặng Hồ Chí Minh trùng"
+    for b in hcm.get("bai_viet",[]):
+        for k in ("chang","ten","trang","doan"):
+            if not b.get(k): raise AssertionError(f"Bài viết chặng {b.get('chang')}: thiếu {k}")
+    out={"phien_ban":"5.9.1","nhan_vat":nv["nhan_vat"],"su_kien":sk["su_kien"],"hcm":hcm["moc"],
+         "hcm_nguon":hcm["nguon"],"hcm_ho_so":hcm["ho_so"],"hcm_bai_viet":hcm.get("bai_viet",[])}
     js=json.dumps(out,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
     (STATIC/"v59-data.js").write_text("/* Việt Sử V5.9 — nhân vật, sự kiện, dòng thời gian Hồ Chí Minh (sinh bởi tools/build_v59.py, đừng sửa tay) */\nwindow.VS59_DATA="+js+";\n",encoding="utf-8")
     return len(nv["nhan_vat"]),len(sk["su_kien"]),len(hcm["moc"])
@@ -58,7 +63,7 @@ def build():
     result=source.replace("</head>",css+"</head>",1).replace("</body>",js+"</body>",1)
     assert result.replace(css,"",1).replace(js,"",1)==source, "Không được thay nội dung V5.8"
     (STATIC/"Viet_Su_Timeline_V5.9_Offline.html").write_text(result,encoding="utf-8")
-    print(f"V5.9: giữ nguyên nội dung V5.8; thêm v59.css, v59-data.js ({n[0]} nhân vật, {n[1]} sự kiện, {n[2]} mốc Hồ Chí Minh), v59.js")
+    print(f"V5.9: giữ nguyên nội dung V5.8; thêm v59.css, v59-data.js ({n[0]} nhân vật, {n[1]} sự kiện, {n[2]} mốc Hồ Chí Minh, bài viết 7 chặng), v59.js")
 
 if __name__=="__main__":
     build()
