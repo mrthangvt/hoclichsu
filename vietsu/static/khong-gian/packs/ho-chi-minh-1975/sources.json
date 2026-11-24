@@ -185,7 +185,7 @@
    "type": "báo chí (Luật sư Việt Nam)",
    "url": "https://lsvn.vn/chuyen-chua-ke-ve-chuong-trinh-phat-thanh-dac-biet-ngay-30-4-1975-a39466.html",
    "license": "trích dẫn",
-   "used_for": "Đài Sài Gòn phát lời tuyên bố khoảng 14h — KHÁC S24, S25"
+   "used_for": "Đài Sài Gòn phát lời tuyên bố khoảng 14h — KHÁC S24, S25 (không dùng làm mốc; ghi để đối chiếu)"
   },
   {
    "id": "S24",
@@ -193,7 +193,7 @@
    "type": "báo chí (Nhân Dân, hồi ức Bùi Văn Tùng)",
    "url": "https://nhandan.vn/vi-sao-toi-thao-loi-dau-hang-cho-tong-thong-nguy-sai-gon-post466145.html",
    "license": "trích dẫn",
-   "used_for": "đưa Dương Văn Minh ra đài lúc 12h"
+   "used_for": "đưa Dương Văn Minh ra đài lúc 12h (không dùng làm mốc; ghi để đối chiếu)"
   },
   {
    "id": "S25",
@@ -201,7 +201,7 @@
    "type": "báo chí (Nhân Dân, chuyên đề)",
    "url": "https://special.nhandan.vn/vangmaibaicachienthang/index.html",
    "license": "trích dẫn",
-   "used_for": "ghi 11h30 Đài Sài Gòn phát lời tuyên bố"
+   "used_for": "11h30 Đài Sài Gòn phát lời tuyên bố — mốc được chọn cho sa bàn"
   },
   {
    "id": "S26",

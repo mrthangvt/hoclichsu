@@ -33,7 +33,7 @@ Nguồn hiện là báo chí chính thống (Nhân Dân, SGGP, VnExpress, TTXVN�
 | đến 11h30 30/4 | Trung đoàn 28 có xe tăng dẫn đầu vào cổng chính, làm chủ Bộ Tổng tham mưu; Sư đoàn 10 đánh cổng số 1, Trung đoàn 48 cổng số 2 | Quân đoàn 3, Quân đoàn 1 (Sư đoàn 320B) | S1, S5 | Hai quân đoàn cùng đánh; **Trung đoàn 48 thuộc sư đoàn nào — cần xác minh** |
 | ~11h 30/4 | Xe 843 (T-54B) húc cổng phụ bên trái, chết máy; xe 390 (T-59) húc đổ cổng chính | Đại đội 4, Lữ đoàn 203, Quân đoàn 2 | S7, S8, S18 | **Tiểu đoàn lệch: Tiểu đoàn 1 (S10, hồ sơ Cục Di sản) / Tiểu đoàn 2 (S11)** → dùng Tiểu đoàn 1 |
 | 11h30 30/4 | Bùi Quang Thận cắm cờ Mặt trận Dân tộc Giải phóng miền Nam trên nóc Dinh | trưởng xe 843 | S12, S13 | |
-| trưa – chiều 30/4 | Dương Văn Minh đọc lời tuyên bố đầu hàng, Đài Sài Gòn phát | — | S22, S23, S24, S25 | **Giờ lệch: 11h30 (S25), 12h (S24), khoảng 14h (S23)** → lời bình không nêu giờ cụ thể |
+| 11h30 30/4 | Dương Văn Minh đọc lời tuyên bố đầu hàng, Đài Sài Gòn phát | — | S25 (S22, S23, S24) | **Chốt 11h30 (anh Thắng, 24/11)** theo S25 và cách các phim tư liệu nhà nước vẫn dùng. Nguồn khác ghi 12h (S24), khoảng 14h (S23); ghi trong sources.json, không nêu trong lời bình |
 
 Kíp xe 390 (S7): trưởng xe, Chính trị viên Vũ Đăng Toàn; pháo thủ số 1 Ngô Sĩ Nguyên; Đại đội phó kỹ thuật Lê Văn Phượng (thay pháo thủ số 2 bị thương); lái xe Nguyễn Văn Tập.
 
@@ -51,7 +51,7 @@ Kíp xe 390 (S7): trưởng xe, Chính trị viên Vũ Đăng Toàn; pháo thủ
 | C09 | Hướng Tây – Tây Nam: Biệt khu Thủ đô, Tổng nha Cảnh sát | nội đô | S1, S4 |
 | C10 | Mũi thọc sâu: cầu Sài Gòn, Hàng Xanh, cầu Thị Nghè | nội đô | S18, S26 |
 | C11 | **Cảnh cuối:** 843 kẹt cổng phụ, 390 húc đổ cổng chính, 11h30 cắm cờ | cận cảnh Dinh | S7–S13, S18 |
-| C12 | Trưa 30/4: tuyên bố trên đài, người dân ra phố | nội đô | S18, S22–S25 |
+| C12 | 11h30 trưa 30/4: tuyên bố trên đài, người dân ra phố | nội đô | S25 (S18, S22–S24) |
 
 Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), không dùng từ ngữ miệt thị cho bên nào; chỗ các nguồn ghi khác nhau thì nói "theo các nguồn, khoảng…".
 
