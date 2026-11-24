@@ -8,19 +8,49 @@
   "label": "Tái dựng mô phỏng",
   "period": "vndcch",
   "year": 1968,
-  "storyLabel": "Kịch bản nháp V0 (13 hồi)",
+  "storyLabel": "Kịch bản 11 hồi",
   "script": "rieng.js",
   "coords": {
     "system": "blender",
     "note": "GĐ2 chưa làm. Đề xuất hai tầng (docs/KHE_SANH_1968_TU_LIEU.md mục 5): tầng chiến dịch (Đường 9 từ Đông Hà tới Bản Huội San, bán kính ~33 km) và tầng Tà Cơn (căn cứ, các điểm cao, Làng Vây, bán kính ~9 km). Chờ anh Thắng chọn một hay hai tầng."
   },
   "ui": {
-    "layers": [["nv", "Quân, xe, máy bay", true], ["muiten", "Mũi tên (phác thảo)", true], ["nhac", "Nhạc nền", true]],
+    "layers": [
+      [
+        "nv",
+        "Quân, xe, máy bay",
+        true
+      ],
+      [
+        "muiten",
+        "Mũi tên (phác thảo)",
+        true
+      ],
+      [
+        "nhac",
+        "Nhạc nền",
+        true
+      ]
+    ],
     "legend": [
-      ["r", "Mũi đỏ: hướng tiến công của Quân Giải phóng", "width:22px;height:8px;border-radius:3px"],
-      ["b", "Mũi xanh: hướng hành quân của quân Mỹ, quân đội Sài Gòn (Pegasus, rút quân)", "width:22px;height:8px;border-radius:3px"],
-      ["g", "Mốc vàng: căn cứ, điểm cao, làng (bấm để đọc)"],
-      ["p", "Mốc đỏ: ghi chú review của nhóm"]
+      [
+        "r",
+        "Mũi đỏ: hướng tiến công của Quân Giải phóng",
+        "width:22px;height:8px;border-radius:3px"
+      ],
+      [
+        "b",
+        "Mũi xanh: hướng hành quân của quân Mỹ, quân đội Sài Gòn (Pegasus, rút quân)",
+        "width:22px;height:8px;border-radius:3px"
+      ],
+      [
+        "g",
+        "Mốc vàng: căn cứ, điểm cao, làng (bấm để đọc)"
+      ],
+      [
+        "p",
+        "Mốc đỏ: ghi chú review của nhóm"
+      ]
     ],
     "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ. Mốc ngày giờ, đơn vị ghi theo nguồn trong sources.json; chỗ các nguồn ghi khác nhau được nêu rõ.",
     "gauge": false,
@@ -29,15 +59,51 @@
   "views": [],
   "roles": [],
   "sides": [
-    {"id": "qgp", "name": "Quân Giải phóng (Quân đội nhân dân Việt Nam)", "flag": null, "note": "CHƯA CHỐT cờ — chưa tìm thấy nguồn ảnh cho lá cờ dùng ở Khe Sanh 1968 (S14 chỉ ghi 'lá cờ chiến thắng'). Hỏi anh Thắng (tư liệu mục 6)."},
-    {"id": "my", "name": "Quân đội Hoa Kỳ (Thủy quân lục chiến, Lục quân, Không quân)", "flag": null, "note": "CHƯA CHỐT: cờ Mỹ 50 sao (1960) — chờ anh duyệt trước khi vẽ"},
-    {"id": "vnch", "name": "Quân lực Việt Nam Cộng hòa", "flag": "props/co-vnch.png", "note": "Tiểu đoàn 37 Biệt động quân trong căn cứ (M1); Chiến đoàn 3 Dù trong Pegasus (M2). Dùng lại cờ gói HCM 1975."}
+    {
+      "id": "qgp",
+      "name": "Quân Giải phóng (Quân đội nhân dân Việt Nam)",
+      "flag": "props/co-qgp.png",
+      "note": "Cờ đỏ sao vàng — anh Thắng chốt 25/11/2026. Vẽ theo quy cách: rộng bằng 2/3 dài, bán kính sao bằng 1/5 chiều dài."
+    },
+    {
+      "id": "my",
+      "name": "Quân đội Hoa Kỳ (Thủy quân lục chiến, Lục quân, Không quân)",
+      "flag": "props/co-my.png",
+      "note": "Cờ Mỹ 50 sao (từ 4/7/1960), tỉ lệ 10:19 — vẽ lại, anh đồng ý 25/11/2026."
+    },
+    {
+      "id": "vnch",
+      "name": "Quân lực Việt Nam Cộng hòa",
+      "flag": "props/co-vnch.png",
+      "note": "Tiểu đoàn 37 Biệt động quân trong căn cứ (M1); Chiến đoàn 3 Dù trong Pegasus (M2). Dùng lại cờ gói HCM 1975."
+    }
   ],
   "units": {
-    "linh-qgp-a": {"file": "units/linh-qgp-a.nvz", "image": "units/linh-qgp-a.jpg", "glb": "units/linh-qgp-a-gan.glb", "side": 0, "note": "tái dùng HCM 1975 (mũ tai bèo); lưới thưa units/linh-qgp-a-x.nvz"},
-    "linh-qgp-b": {"file": "units/linh-qgp-b.nvz", "image": "units/linh-qgp-b.jpg", "glb": "units/linh-qgp-b-gan.glb", "side": 0, "note": "tái dùng HCM 1975 (đầu trần); lưới thưa units/linh-qgp-b-x.nvz"},
-    "linh-tang": {"glb": "units/linh-tang.glb", "side": 0, "note": "kíp xe PT-76 (Tiểu đoàn 198) — tái dùng lính lái tăng HCM 1975, MINH HOẠ"},
-    "linh-vnch": {"file": "units/linh-vnch.nvz", "image": "units/linh-vnch.jpg", "side": 2, "note": "Biệt động quân, Dù — tái dùng HCM 1975, quân phục MINH HOẠ"}
+    "linh-qgp-a": {
+      "file": "units/linh-qgp-a.nvz",
+      "image": "units/linh-qgp-a.jpg",
+      "glb": "units/linh-qgp-a-gan.glb",
+      "side": 0,
+      "note": "tái dùng HCM 1975 (mũ tai bèo); lưới thưa units/linh-qgp-a-x.nvz"
+    },
+    "linh-qgp-b": {
+      "file": "units/linh-qgp-b.nvz",
+      "image": "units/linh-qgp-b.jpg",
+      "glb": "units/linh-qgp-b-gan.glb",
+      "side": 0,
+      "note": "tái dùng HCM 1975 (đầu trần); lưới thưa units/linh-qgp-b-x.nvz"
+    },
+    "linh-tang": {
+      "glb": "units/linh-tang.glb",
+      "side": 0,
+      "note": "kíp xe PT-76 (Tiểu đoàn 198) — tái dùng lính lái tăng HCM 1975, MINH HOẠ"
+    },
+    "linh-vnch": {
+      "file": "units/linh-vnch.nvz",
+      "image": "units/linh-vnch.jpg",
+      "side": 2,
+      "note": "Biệt động quân, Dù — tái dùng HCM 1975, quân phục MINH HOẠ"
+    }
   },
   "placement": "placement.json",
   "story": "story.json",
@@ -47,16 +113,37 @@
     "music": "audio/nhac/",
     "credits": "Lời dẫn: chưa thu (GĐ5). Hiệu ứng dùng lại của gói HCM 1975: tiengdong.com (xe tăng, súng AK, tiếng nổ), Epidemic Sound (Fire Burst, Whoosh, Wind Drone); tiếng pháo của gói Ngọc Hồi – Đống Đa."
   },
-  "budget": {"firstLoadMB": 15},
+  "budget": {
+    "firstLoadMB": 15
+  },
   "sources": "sources.json",
-  "taiSau": ["props/xe/*.glb", "props/phao/*.glb", "props/may-bay/*.glb", "props/can-cu/*.glb", "units/*.glb", "units/*.nvz", "units/*.jpg", "terrain/ta-con/*"],
+  "taiSau": [
+    "props/xe/*.glb",
+    "props/phao/*.glb",
+    "props/may-bay/*.glb",
+    "props/can-cu/*.glb",
+    "units/*.glb",
+    "units/*.nvz",
+    "units/*.jpg",
+    "terrain/ta-con/*"
+  ],
   "terrain": {
     "data": "terrain/meta.json",
     "height": "terrain/height.png",
     "image": "terrain/color.jpg",
     "tang": {
-      "chien-dich": {"data": "terrain/meta.json", "height": "terrain/height.png", "image": "terrain/color.jpg", "phongDai": 2},
-      "ta-con": {"data": "terrain/ta-con/meta.json", "height": "terrain/ta-con/height.png", "image": "terrain/ta-con/color.jpg", "phongDai": 1}
+      "chien-dich": {
+        "data": "terrain/meta.json",
+        "height": "terrain/height.png",
+        "image": "terrain/color.jpg",
+        "phongDai": 2
+      },
+      "ta-con": {
+        "data": "terrain/ta-con/meta.json",
+        "height": "terrain/ta-con/height.png",
+        "image": "terrain/ta-con/color.jpg",
+        "phongDai": 1
+      }
     },
     "note": "GĐ2 chưa làm: các tệp địa hình chưa có. phongDai là đề xuất (vùng núi đã cao, không cần ×6 như đồng bằng Sài Gòn)."
   }

@@ -2,6 +2,7 @@
 
 Gói: `vietsu/static/khong-gian/packs/khe-sanh-1968/` · bộ máy 2.2.0 · nhánh `claude/sa-ban-khe-sanh-1968`.
 Trạng thái (25/11/2026): **GĐ0 xong** (khung gói, tài sản tái dùng đã chép, `kiem_tra_goi.py` đạt) · **GĐ1 chờ anh duyệt**: bảng mốc (mục 2), đối chiếu kịch bản camera của anh (mục 3), đề xuất chia hồi (mục 4), tầng địa hình (mục 5), câu hỏi cần chốt (mục 8).
+**Anh Thắng chốt (25/11/2026, 0h29):** 11 hồi (phương án B, ~13,5 phút) · sửa lời dẫn theo mục 3 · cờ Quân Giải phóng là **cờ đỏ sao vàng** (`props/co-qgp.png`), cờ Mỹ 50 sao (`props/co-my.png`) · em sửa mẫu lính Mỹ, PT-76 trong Blender; **anh tự làm B-52D** · em được chạy lệnh trên máy anh để lấy OSM, độ cao. Địa hình anh chưa chọn → làm theo đề xuất hai tầng (mục 5). Kịch bản 11 hồi: `story.json`, dựng bằng `vietsu/tools/sa_ban/voice/nhap_story_khe_sanh.py` (thời lượng ước theo số chữ, 824 s).
 Nhãn bắt buộc: "Tái dựng mô phỏng". Mã nguồn `S…` (Việt Nam), `M…` (Mỹ) ở `sources.json`. Không đưa con số nào không có nguồn.
 
 Kịch bản gốc của anh: `docs/du-lieu/khe-sanh-1968_camera_timeline_v1.json` (13 cảnh, 81 cú máy, 930 s, lời dẫn từng cảnh). `story.json` V0 chuyển nguyên từ tệp này, giữ thứ tự của anh; mọi đề xuất sửa nằm ở mục 3–4, chưa sửa vào lời dẫn.
