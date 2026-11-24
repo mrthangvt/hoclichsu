@@ -234,6 +234,22 @@
    "url": "https://www.vtcnews.vn/chuyen-chua-ke-ve-cuoc-nem-bom-pha-tan-am-muu-nhuom-mau-sai-gon-cua-my-ar254179.html",
    "license": "trích dẫn",
    "used_for": "16h15 ngày 28/4 năm A-37 xuất kích từ Phan Rang — mốc được chọn cho sa bàn"
+  },
+  {
+   "id": "S30",
+   "title": "Cận cảnh chiếc xe tăng 390 huyền thoại húc đổ cổng Dinh Độc Lập",
+   "type": "báo chí (Báo Mới tổng hợp)",
+   "url": "https://baomoi.com/can-canh-chiec-xe-tang-390-huyen-thoai-huc-do-cong-dinh-Doc-lap-c55043830.epi",
+   "license": "trích dẫn",
+   "used_for": "T-59 dài thân xe 6,04 m → tỉ lệ mô hình xe tăng 390, 843"
+  },
+  {
+   "id": "M1",
+   "title": "Mô hình xe tăng 390, 843, xe tải, lính lái tăng (Tripo, kho _KHO-CHUNG của anh Thắng)",
+   "type": "mô hình 3D",
+   "url": "",
+   "license": "nội bộ dự án",
+   "used_for": "props/xe/*.glb, units/linh-tang.glb; số hiệu dán lại bằng chữ thật (ảnh máy sinh ghi sai 834); xe tải: bỏ chữ vô nghĩa trên cửa, lốp viền trắng; chiều dài xe tải 6,7 m là ước lượng, chưa rõ loại xe"
   }
  ]
 }

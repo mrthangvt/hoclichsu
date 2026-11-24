@@ -2,7 +2,7 @@
 
 Gói: `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` · bộ máy 2.1.0 · nhánh `claude/sa-ban-hcm-1975`.
 Trạng thái: **Giai đoạn 0 xong, Giai đoạn 1 bản nháp — chờ anh Thắng duyệt** (24/11/2026).
-Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S29` ở `sources.json`.
+Nhãn bắt buộc: "Tái dựng mô phỏng · cần đối chiếu tư liệu". Không đưa con số nào không có nguồn; mã nguồn `S1…S30`, `M1` ở `sources.json`.
 Nguồn hiện là báo chí chính thống (Nhân Dân, SGGP, VnExpress, TTXVN…) dẫn lại tư liệu bảo tàng, nhân chứng. Nên bổ sung sách chuyên khảo (ví dụ *Lịch sử Kháng chiến chống Mỹ cứu nước*, Viện Lịch sử quân sự; *Đại thắng mùa xuân* của Văn Tiến Dũng) nếu anh có bản trong thư mục "Tài liệu sử".
 
 ## 1. Năm hướng và mục tiêu (bản đồ Quyết tâm)
@@ -64,11 +64,11 @@ Lời bình viết trung lập ("Quân Giải phóng", "Quân lực VNCH"), khô
 | Súng AK, M16 | trong GLB, thế cầm IK `ik2` | Tái dùng |
 | A-37 | `static.glb` `MayBay_CuongKich_1/2` | Tái dùng cho C04 |
 | Xe tăng M41 (VNCH) | `static.glb` `XeTang_VNCH_0..3` | Tách thành mẫu riêng |
-| Xe tăng 390 (T-59) | `_KHO-CHUNG/vat-dung/_moi/XeTang-Huc-Dinh-Doc-Lap.zip` (Tripo, số 390) | Giảm lưới, ảnh 1024, meshopt; soát phù hiệu theo ảnh tư liệu |
-| Xe tăng 843 (T-54B) | `vat-dung/_moi/Xetang834.zip` (Tripo; tên tệp ghi 834 nhưng mô hình mang số 843) | Như trên |
-| Lính lái tăng QĐVN | `nhan-vat/_moi/LinhTangQDVN.zip` (Tripo, mũ tăng, súng ngắn) + `Driving.fbx` (Mixamo, có lưới đã gắn xương), `Pistol Aim.fbx` (chỉ động tác) | Gắn xương theo quy trình nhân vật lai; động tác lái (trong tháp pháo), nhảy xuống, chạy, cầm súng ngắn, cầm cờ (Bùi Quang Thận) |
+| Xe tăng 390 (T-59) | `_KHO-CHUNG/vat-dung/_moi/XeTang-Huc-Dinh-Doc-Lap.zip` (Tripo, số 390) | **Xong (24/11):** `props/xe/xe-tang-390.glb` 0,40 MB, 16k tam giác, thân dài 6,04 m (S30), mũi xe −Y; xoá số máy sinh, dán lại "390" bám mặt tháp pháo hai bên. Còn: soát phù hiệu tròn theo ảnh tư liệu |
+| Xe tăng 843 (T-54B) | `vat-dung/_moi/Xetang834.zip` (Tripo) | **Xong:** `props/xe/xe-tang-843.glb` 0,40 MB; ảnh máy sinh ghi một bên "834" → đã xoá, dán lại "843" hai bên |
+| Lính lái tăng QĐVN | `nhan-vat/_moi/LinhTangQDVN.zip` + `Driving.fbx` (lưới đã gắn xương), `Pistol Aim.fbx` | **Xong (có xương):** `units/linh-tang.glb`, 7 000 tam giác, cao 1,68 m, 12 động tác: dung, thu, di, chay, chaynhanh, lai (ngồi lái), ngam (súng ngắn), keo (kéo cờ), leo, trung, nga, chet (`tools/sa_ban/nhan_vat_lai/linh-tang.json`). Còn: bản `.nvz` cho đám đông nếu cần |
 | Xe bọc thép K-63 | `vat-dung/_moi/Xebocthep_K63.webp` — **mới có ảnh, chưa có tệp mô hình** | Chờ anh gửi zip; soát phù hiệu ngôi sao theo ảnh tư liệu |
-| Xe tải | `Xetai-QDVN.zip` (Tripo) | Xoá chữ máy sinh trên cửa, sửa lốp viền trắng; tra đúng loại xe |
+| Xe tải | `Xetai-QDVN.zip` (Tripo) | **Xong:** `props/xe/xe-tai.glb` 0,32 MB; đã xoá chữ vô nghĩa trên cửa và lốp viền trắng; dài 6,7 m là ước lượng — chưa rõ loại xe |
 | M113/M48 (VNCH), Dinh Độc Lập + cổng, đường phố 1975 | — | Làm mới |
 | Cờ | `props/co-mtdtgp.png`, `props/co-vnch.png` | Đã có (vẽ lại) |
 
