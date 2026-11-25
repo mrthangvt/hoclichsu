@@ -18,7 +18,10 @@ function doiTang(ten, t, phat) {
   // pack.json › ui.theChuong = false: không phủ màn tối "Tiếp theo" và không hiện thẻ chương trên màn tải — chuyển thẳng (anh Thắng 25/11: màn tối rồi lại màn tải là thừa). Mặc định giữ như cũ cho gói đã phát hành.
   const theChuong = !(PACK.ui && PACK.ui.theChuong === false);
   if (sc && phat && theChuong) q.set('chuong', sc.title); else q.delete('chuong');
-  if (!theChuong) { if (window.parent !== window && window.parent.__doiTang) window.parent.__doiTang(q.toString()); else location.search = q.toString(); return; }   // bản Artifact: khung ngoài đổi tầng
+  // bản Artifact: khung ngoài đổi tầng. V1.6 Khe Sanh (anh Thắng: bỏ đoạn đen mờ khi chuyển hồi): chụp khung hình cuối gửi kèm — khung ngoài giữ ảnh này trên màn
+  // trong lúc tầng mới tải (không còn màn tải tối), tầng mới vẽ xong thì ảnh mờ dần. Chỉ một sa bàn WebGL chạy tại một lúc (không nạp sẵn hai khung — lỗi đơ hình V1.5).
+  if (!theChuong) { let anh = null; try { renderer.render(scene, camera); anh = renderer.domElement.toDataURL('image/jpeg', 0.82); } catch (e) { anh = null; }
+    if (window.parent !== window && window.parent.__doiTang) window.parent.__doiTang(q.toString(), anh); else location.search = q.toString(); return; }
   const ov = document.createElement('div'); ov.id = 'chuong-ov'; ov.innerHTML = '<div><small>Tiếp theo</small><b></b></div>'; ov.querySelector('b').textContent = sc ? sc.title : '';
   document.body.append(ov); requestAnimationFrame(() => ov.classList.add('on'));
   setTimeout(() => { location.search = q.toString(); }, sc && phat ? 900 : 0);

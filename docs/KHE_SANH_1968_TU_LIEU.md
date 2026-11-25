@@ -262,6 +262,15 @@ Kiểm tra: `quet_phim.py` hai tầng sạch; thử bản đóng gói: kéo từ
 
 Kiểm tra: `quet_phim.py` hai tầng (thêm phần Kết), `kiem_tra_goi.py`, thử bấm ghim, thử nút đi bộ, thử bản đóng gói đổi tầng H04 → H05.
 
+## 9g. Bản V1.6 — sửa theo góp ý V1.6 của anh Thắng (25/11/2026, 20h)
+| Góp ý | Đã làm |
+|---|---|
+| Bỏ đoạn đen mờ khi chuyển hồi, sa bàn không bị tải lại | Hai tầng địa hình (chiến dịch 66 km, Tà Cơn 21 km) là hai trang sa bàn riêng, nên đổi tầng vẫn phải dựng trang mới; nạp sẵn trong khung ẩn thì treo máy (V1.5). Cách mới (bộ máy 2.2.0 `doiTang` + `dong_goi_artifact_2.py`): lúc đổi tầng chụp khung hình cuối của tầng cũ, khung ngoài phủ ảnh đó lên màn (phóng nhẹ dần, chữ nhỏ "Đang chuyển cảnh…"), dựng tầng mới phía sau, xong thì ảnh mờ dần — không còn màn tải tối, lúc nào cũng chỉ một sa bàn WebGL. Thử bản đóng gói H04 → H05: ảnh phủ ~8 s trên máy không card đồ hoạ, rồi phim chạy tiếp ở 4:45 |
+| Quân phục lính Mỹ màu ô liu như ảnh anh gửi | công cụ mới `nhan_vat_lai/doi_mau_quan_phuc.py`: dồn sắc vải xanh về ô liu (sắc 30/180, S × 0,85, V × 1,12; đo từ ảnh: áo ~RGB 82, 83, 65), giữ vân vải, da, giày, mũ |
+| Khám phá bảo tàng: nhân vật chạy đi lại | lỗi có từ bản nền HCM: thiếu bộ nghe phím W A S D / mũi tên và cần ảo ở chế độ đi bộ (đã chép lại từ gói Như Nguyệt vào cả gói HCM). Đo: đi 14 m trong 15 s, giữ Shift chạy. Thêm chặn bục: đi tới mép bục trưng bày bị đẩy ra, không xuyên qua; đi dưới cánh máy bay được |
+| Lính Mỹ chạy vào công sự phải nhảy qua tường bao cát | nướng thêm động tác "jump forward" (Mixamo) cho lính TQLC (`nhay`); tính chỗ đường chạy cắt vòng bao cát (bán kính 3,2 m), đoạn ±1,4 m quanh đó dùng động tác nhảy, nhấc người lên tối đa 0,55 m qua tường cao ~0,7 m. Đường chạy ngắn lại để cú nhảy nằm trong cú máy C04-06 |
+| Trực thăng: cánh quạt quay; để trực thăng ở đường băng Tà Cơn | mẫu UH-1 có cánh quạt đúc liền thân nằm dọc thân máy → bỏ các tam giác cánh quạt, gắn cụm cánh quạt dựng bằng mã (hai lá dài 14,6 m theo M40, vệt mờ, đĩa mờ khi quay; hiển thị ~1,3 vòng/s). Áp cho mọi UH-1 (hồi 8, Pegasus, bảo tàng — ở bảo tàng đứng yên). Hai chiếc đỗ ở sân đỗ đầu tây đường băng, cánh quạt quay, có ghim "Trực thăng UH-1 (Mỹ) · sân đỗ" — số chiếc, chỗ đỗ MINH HOẠ |
+
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.

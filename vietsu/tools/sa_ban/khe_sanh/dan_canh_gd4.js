@@ -88,6 +88,34 @@
   DAM.push((t) => { for (const [o, a, b] of DUNG) o.visible = t >= a && t < b; });
   const MAY = (id, fn) => { if (SCN.some((c) => c.shots.some((s) => s.id === id))) C[id] = fn; };
 
+  // V1.6 (anh Thắng: trực thăng có hiệu ứng cánh quạt quay; để trực thăng trên đường băng Tà Cơn để nhận diện)
+  // Mẫu UH-1 (Tripo) có cánh quạt chính đúc liền thân, nằm dọc thân máy: bỏ các tam giác cánh quạt (cao sát nóc, xa trục > 0,55 m) — làm một lần trên hình khối dùng chung —
+  // rồi gắn cụm cánh quạt dựng bằng mã: hai lá dài 14,6 m (đường kính cánh quạt UH-1H, M40) + đĩa mờ khi quay. Tốc độ quay hiển thị ~1,3 vòng/s (thật ~5 vòng/s sẽ nhấp nháy).
+  const QUAT = [], laMat = new THREE.MeshLambertMaterial({ color: 0x2f302b }), boMat = new THREE.MeshBasicMaterial({ color: 0x2a2a24, transparent: true, opacity: 0.16, depthWrite: false, side: THREE.DoubleSide });
+  const bongMat = new THREE.MeshBasicMaterial({ color: 0x2f302b, transparent: true, opacity: 0.25, depthWrite: false });
+  const canhQuat = (o, sp = 1) => { if (!o || o.userData.quat) return; o.updateMatrixWorld(true); const inv = o.matrixWorld.clone().invert(), v = new THREE.Vector3(); let me = null; o.traverse((m) => { if (m.isMesh && !me) me = m; }); if (!me) return;
+    const M = inv.clone().multiply(me.matrixWorld), g = me.geometry, P = g.attributes.position, n = P.count, Y = new Float32Array(n), X = new Float32Array(n), Z = new Float32Array(n); let ym = -1e9;
+    for (let i = 0; i < n; i++) { v.fromBufferAttribute(P, i).applyMatrix4(M); X[i] = v.x; Y[i] = v.y; Z[i] = v.z; if (v.y > ym) ym = v.y; }
+    const zs = []; for (let i = 0; i < n; i++) if (Y[i] > ym - 0.3 && Math.abs(X[i]) < 0.45) zs.push(Z[i]); zs.sort((a, b) => a - b); const hz = zs.length ? zs[zs.length >> 1] : 0;
+    if (!g.userData.boQuat) { g.userData.boQuat = 1; const I = g.index ? g.index.array : Array.from({ length: n }, (_, i) => i), giu = [];
+      for (let t = 0; t < I.length; t += 3) { const a = I[t], b = I[t + 1], c = I[t + 2], cy = (Y[a] + Y[b] + Y[c]) / 3, cx = (X[a] + X[b] + X[c]) / 3, cz = (Z[a] + Z[b] + Z[c]) / 3;
+        if (cy > ym - 0.45 && Math.hypot(cx, cz - hz) > 0.55) continue; giu.push(a, b, c); }
+      g.setIndex(giu); }
+    const q = new THREE.Group(); q.position.set(0, ym - 0.12, hz); const s = 1 / (o.scale.x || 1);
+    const la = new THREE.Mesh(new THREE.BoxGeometry(14.6, 0.06, 0.36), laMat); q.add(la);
+    for (const k of [-1, 1]) { const b = new THREE.Mesh(new THREE.BoxGeometry(14.6, 0.04, 0.36), bongMat); b.rotation.y = k * 0.22; q.add(b); }   /* vệt mờ theo chiều quay */
+    const dia = new THREE.Mesh(new THREE.CircleGeometry(7.3, 40).rotateX(-Math.PI / 2), boMat); q.add(dia);
+    const tru = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 0.5, 8), laMat); tru.position.y = -0.2; q.add(tru);
+    o.add(q); o.userData.quat = { q, sp, bong: q.children.slice(1, 4) }; QUAT.push(o); };
+  KS.canhQuat = canhQuat;
+  let tq = performance.now(); const quay = () => { const now = performance.now(), dt = Math.min(0.1, (now - tq) / 1000); tq = now;
+    if (KS.MB && KS.MB.uh1) for (const o of KS.MB.uh1) canhQuat(o, 1); for (const o of KS.UH || []) canhQuat(o, 1); if (KS.BT && KS.BT.K) for (const k of KS.BT.K) if (k.o && /UH-1/.test(k.ten)) canhQuat(k.o, 0);
+    for (const o of QUAT) { const Q = o.userData.quat; if (!o.visible) continue; const on = Q.sp > 0; for (const b of Q.bong) b.visible = on; Q.q.rotation.y += dt * Q.sp * Math.PI * 2 * 1.3; }
+    requestAnimationFrame(quay); };
+  requestAnimationFrame(quay);
+  // trực thăng đỗ ở sân đỗ đầu tây đường băng Tà Cơn, cánh quạt quay — để nhận diện (số chiếc, chỗ đỗ: MINH HOẠ)
+  if (TANG === 'ta-con') glbLoad('data/may-bay/uh-1.glb').then((g) => { [[384, 133, 0.15], [398, 150, -0.1]].forEach(([px, py, dy], k) => { const [x, z] = mp(px, py), o = g.scene.clone(true);
+      o.position.set(x, hG(x, z) + 0.05, z); o.rotation.y = KS.RW_HUONG + Math.PI / 2 + dy; scene.add(o); KS.napSan(o); canhQuat(o, 1); DUNG.push([o, 0, H('H12').t0 - 1]); }); });
   if (TANG === 'ta-con') {
     // ---------------------------------------------------------------- ụ gác cận cảnh ở tuyến hàng rào phía bắc (Blue Sector, sơ đồ M32)
     const [gx, gz] = mp(470, 96), GAC = G(gx, gz), yawBac = KS.RW_HUONG - Math.PI / 2;                          /* mặt ụ nhìn ra phía bắc, ngoài hàng rào */
@@ -118,9 +146,16 @@
         if (ganMay(GAC.x, GAC.z, 600)) toNguoi('my', GAC, yawBac, on10 && t > H('H10').t0 + (H('H10').t1 - H('H10').t0) * 0.3 ? [] : [[-0.8, 0.6, 'nup'], [0.9, 0.4, 'ngam'], [0, -1.2, 'dung']], t); }
       if (on2 || trong(t, 'H01')) for (const [k, v] of DOI.entries()) if (ganMay(v.x, v.z, 900)) toNguoi('my', v, k, [[-1.2, 0.5, 'ngam'], [1.4, 0.2, 'dung'], [0, -2, 'nup', 1]], t); });
     // H04: lính Mỹ chạy vào công sự khi bị pháo kích, kho đạn cháy
-    const CHAY4 = Array.from({ length: 12 }, (_, i) => { const a = G(HAM.x + 40 + (i % 4) * 6, HAM.z - 30 + Math.floor(i / 4) * 7), b = G(HAM.x + (i % 3 - 1) * 1.4, HAM.z + (Math.floor(i / 3) % 2) * 1.2); return diTheo([a, b], 2.7, H('H04').t0 + 52 + i * 0.4); });                 /* 2,7 m/s: nhịp bước Rifle Run */
+    // V1.6 (anh Thắng: lính Mỹ chạy vào công sự không được đi xuyên bức tường bao cát — nhảy qua): tính chỗ đường chạy cắt vòng bao cát (bán kính 3,2 m)
+    const VUOT4 = Array.from({ length: 12 }, (_, i) => { const a = G(HAM.x + 20 + (i % 4) * 4, HAM.z - 15 + Math.floor(i / 4) * 5), b = G(HAM.x + (i % 3 - 1) * 1.4, HAM.z + (Math.floor(i / 3) % 2) * 1.2);
+      const L = Math.hypot(b.x - a.x, b.z - a.z); let dc = L; for (let k = 0; k <= 400; k++) { const q = k / 400, x = a.x + (b.x - a.x) * q, z = a.z + (b.z - a.z) * q; if (Math.hypot(x - HAM.x, z - HAM.z) < 3.35) { dc = q * L; break; } }
+      return { dc, t0: H('H04').t0 + 52 + i * 0.4 }; });
+    const CHAY4 = Array.from({ length: 12 }, (_, i) => { const a = G(HAM.x + 20 + (i % 4) * 4, HAM.z - 15 + Math.floor(i / 4) * 5), b = G(HAM.x + (i % 3 - 1) * 1.4, HAM.z + (Math.floor(i / 3) % 2) * 1.2); return diTheo([a, b], 2.7, H('H04').t0 + 52 + i * 0.4); });                 /* 2,7 m/s: nhịp bước Rifle Run */
     DAM.push((t) => { if (!trong(t, 'H04') || !ganMay(HAM.x, HAM.z, 600)) return;
-      CHAY4.forEach((f, i) => { const o = f(t); dongDat('my', o.het ? (i % 3 ? 'quy' : 'nap') : 'chay', t, i * 0.31 % 1, o.p.x, o.p.y, o.p.z, o.het ? Math.PI + i : o.yaw, 1, i); }); });
+      CHAY4.forEach((f, i) => { const o = f(t), v = VUOT4[i], d = (t - v.t0) * 2.7, u = (d - v.dc + 1.5) / 2.7;
+        if (!o.het && u > 0 && u < 1) { const C = DONG.my && DONG.my.clips.nhay;   /* tới bờ ụ bao cát: nhảy qua (động tác "jump forward"), nhấc người qua bức tường cao ~0,7 m */
+          if (C) { dongDat('my', 'nhay', u * 0.999 * C.frames.length / C.fps, 0, o.p.x, o.p.y + Math.sin(Math.PI * u) * 0.55, o.p.z, o.yaw, 1, i); return; } }
+        dongDat('my', o.het ? (i % 3 ? 'quy' : 'nap') : 'chay', t, i * 0.31 % 1, o.p.x, o.p.y, o.p.z, o.het ? Math.PI + i : o.yaw, 1, i); }); });
     // H06 thêm mũi bộ binh từ phía bắc (cBB2 trên sơ đồ trận Làng Vây, S18)
     const LV = KS.LV, BB = diTheo([G(LV.x + 20, LV.z - 230), G(LV.x + 10, LV.z - 140), G(LV.x, LV.z - 60)], 2.7, H('H06').t0 + (H('H06').t1 - H('H06').t0) * 0.3);
     DAM.push((t) => { if (!trong(t, 'H06') || !ganMay(LV.x, LV.z, 1500)) return; const o = BB(t); toNguoi('qgp', o.p, o.yaw, hang(10, 3, 3).map(([a, b], i) => [a, b, o.het ? (i % 3 ? 'ban' : 'quy') : 'chay']), t); });

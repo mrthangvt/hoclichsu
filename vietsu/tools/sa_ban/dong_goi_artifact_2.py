@@ -90,13 +90,21 @@ vjs = f"""const a = new Audio(); a.preload = "auto"; window.__voxA = a;
 fetch("packs/{goi}/{voice}").then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => {{ a.src = URL.createObjectURL(b); a.load(); }}).catch(() => {{ a.src = "packs/{goi}/{voice}"; a.load(); }});""" if voice else ""
 (RA / "index.html").write_text(f"""<!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sa bàn {P['title']}</title>
-<style>html,body{{margin:0;height:100%;background:#17130f;overflow:hidden}}iframe{{position:fixed;inset:0;width:100%;height:100%;border:0;display:block}}</style></head>
+<style>html,body{{margin:0;height:100%;background:#17130f;overflow:hidden}}iframe{{position:fixed;inset:0;width:100%;height:100%;border:0;display:block}}#cau{{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden;transition:opacity .8s}}#cau img{{width:100%;height:100%;object-fit:cover;display:block;animation:cauZ 14s ease-out forwards}}#cau span{{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:rgba(20,15,10,.55);color:#f1e2b8;font:600 13px system-ui,sans-serif;padding:6px 14px;border-radius:99px}}@keyframes cauZ{{from{{transform:scale(1)}}to{{transform:scale(1.07)}}}}</style></head>
 <body><script>
 {vjs}
 let khung = null, cho = null, choTang = "";
 const boKhung = (f) => {{ try {{ f.contentWindow.__dong && f.contentWindow.__dong(); }} catch (e) {{}} f.remove(); }};
 // đổi tầng: nếu tầng mới đã được nạp sẵn trong khung chờ (ẩn) thì chỉ việc hiện khung đó và chạy tiếp — không còn màn tải
-window.__doiTang = (q) => {{ const p = new URLSearchParams(q), tg = p.get("tang") || "";
+// V1.6 (anh Thắng: bỏ đoạn đen mờ khi chuyển hồi): "cầu" — ảnh khung hình cuối của tầng cũ phủ lên màn, từ từ phóng nhẹ, trong lúc tầng mới tải phía sau;
+// tầng mới tải xong (màn tải của nó đã gỡ) thì ảnh mờ dần. Không bao giờ có hai sa bàn WebGL cùng chạy.
+let cau = null;
+const boCau = () => {{ if (!cau) return; const c = cau; cau = null; c.style.opacity = "0"; setTimeout(() => c.remove(), 900); }};
+const choXong = (f) => {{ const t0 = Date.now(), lap = setInterval(() => {{ let xong = false; try {{ const d = f.contentDocument, l = d && d.getElementById("load");
+  xong = !!(d && d.body && d.body.classList.contains("ready") && (!l || l.classList.contains("done"))); }} catch (e) {{}}
+  if (xong || Date.now() - t0 > 30000 || !f.isConnected) {{ clearInterval(lap); setTimeout(boCau, xong ? 350 : 0); }} }}, 250); }};
+window.__doiTang = (q, anh) => {{ const p = new URLSearchParams(q), tg = p.get("tang") || "";
+  if (anh) {{ if (cau) cau.remove(); cau = document.createElement("div"); cau.id = "cau"; const im = new Image(); im.src = anh; const s = document.createElement("span"); s.textContent = "Đang chuyển cảnh…"; cau.append(im, s); document.body.append(cau); }}
   if (cho && choTang === tg) {{ let w = null; try {{ w = cho.contentWindow; }} catch (e) {{}}
     if (w && w.__sanSang && w.__tiep) {{ const f = cho; cho = null; choTang = ""; f.style.opacity = "1"; f.style.pointerEvents = "auto"; f.style.zIndex = "2";
       w.__tiep(parseFloat(p.get("t")), p.get("phat") === "1"); try {{ w.focus(); }} catch (e) {{}} if (khung) boKhung(khung); khung = f; return; }}
@@ -107,6 +115,7 @@ window.__doiTang = (q) => {{ const p = new URLSearchParams(q), tg = p.get("tang"
   if (khung) {{ boKhung(khung); khung = null; }}   // V1.5 (Khe Sanh, anh Thắng: hồi 5 đơ hình, chỉ còn tiếng): trả ngữ cảnh WebGL của khung cũ TRƯỚC khi tạo khung mới — không lúc nào có hai sa bàn cùng chạy
   const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn"; f.style.zIndex = "2";
   f.src = "app.html#" + q; document.body.append(f); f.addEventListener("load", () => {{ try {{ f.contentWindow.focus(); }} catch (e) {{}} }});
+  if (cau) choXong(f);
   if (khung) boKhung(khung); khung = f; }};
 window.__chuanBi = (q) => {{ const tg = new URLSearchParams(q).get("tang") || ""; if (cho && choTang === tg) return; if (cho) boKhung(cho);
   const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn (nạp sẵn)"; f.style.cssText = "opacity:0;pointer-events:none;z-index:0";

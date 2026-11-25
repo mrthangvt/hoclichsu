@@ -236,5 +236,8 @@ Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa h�
 39. **Hướng mẫu khí tài:** đo trục đầu nòng / mũi xe của mẫu trước khi xoay (mẫu nướng bằng `bake_vat.py` / `bake_xe.py` nhìn +Z trong three.js) — pháo của bên tiến công chĩa nòng về mục tiêu, kíp pháo đứng sau càng pháo.
 40. **Đoàn quân đi trên đường, trận địa trên nền đất:** tuyến hành quân, vận tải có dải đường đất bám mặt đất (kéo dài quá hai đầu đội hình); trận địa pháo, nơi họp có nền đất. Lưới phủ mặt đất vẽ **hai mặt** (lưới quay mặt xuống thì vô hình khi nhìn từ trên). Nền chỉ nhô vài cm (đất tới gối là lỗi), dùng ảnh đất + cỏ lốm đốm; cây trang trí phải tránh đường máy quay.
 41. **Không gian trưng bày khí tài ở cuối phim:** sân phẳng đặt xa vùng chiến sự, chỉ hiện ở phần kết và khi khám phá; mỗi khí tài có ghim, bấm ra thẻ thông số có nguồn; có nút xuống đi bộ tham quan. Mẫu: `tools/sa_ban/khe_sanh/bao_tang_gd4.js`.
+42. **Đổi tầng trong bản Artifact:** khung ngoài giữ ảnh khung hình cuối của tầng cũ trong lúc tầng mới dựng (bộ máy 2.2.0 `doiTang` gửi ảnh, `dong_goi_artifact_2.py` phủ ảnh) — không màn tối, không hai sa bàn cùng chạy.
+43. **Chế độ đi bộ cần bộ nghe phím W A S D / mũi tên và cần ảo trong `rieng.js`** (bản nền HCM từng thiếu — nhân vật đứng im). Thử: vào đi bộ, giữ W, máy quay phải dời.
+44. **Người chạy vào công sự** không đi xuyên tường bao cát: dùng động tác nhảy qua ở đoạn cắt tường. Trực thăng có cánh quạt quay (bỏ cánh đúc liền của mẫu, gắn cụm cánh quạt dựng bằng mã).
 
 Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.
