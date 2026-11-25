@@ -88,8 +88,14 @@ DOI_TEN=[(_re.compile(r'VIỆT SỬ · 越史'),'HỌC LỊCH SỬ'),
          (_re.compile(r'vietsu\.com\.vn'),'hoclichsu.com'),
          (_re.compile(r'越史'),'學史')]
 
+TIEU_DE="Học Lịch Sử – Dòng thời gian lịch sử Việt Nam và thế giới"
+
 def doi_ten(html):
     for p,r in DOI_TEN: html=p.sub(r,html)
+    # Tiêu đề tab (25/11/2026): chữ thường, đủ ý; tên in hoa vẫn dùng cho chữ thương hiệu trong trang.
+    cu1="<title>HỌC LỊCH SỬ · Bản đồ thời gian</title>"; cu2="document.title=config.name+' – Dòng thời gian lịch sử'"
+    assert cu1 in html and cu2 in html, "Không thấy tiêu đề tab cần đổi"
+    html=html.replace(cu1,"<title>"+TIEU_DE+"</title>",1).replace(cu2,"document.title="+repr(TIEU_DE),1)
     return html
 
 def xuat_ban(html):
