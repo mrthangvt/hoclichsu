@@ -57,3 +57,19 @@ Theo yêu cầu chủ dự án: bỏ các nhãn “chờ thẩm định” trên
   - Hồ sơ nhân vật `/nhan-vat/…`: tất cả đều công khai, được đánh chỉ mục và có trong sitemap; bỏ câu “Dữ liệu còn chờ thẩm định”.
   - Giao diện `/admin`: đổi “Lưu nháp” thành “Lưu & xuất bản”, cập nhật các ghi chú.
 - Kiểm tra: quét chữ hiển thị trên trang chính, các hồ sơ, triều đại, sự kiện, Hồ Chí Minh, Không gian, SGK → không còn nhãn kiểm duyệt; thử API bằng TestClient (tạo/sửa bài → published, trang `/bai-viet/…` 200; nhập hàng loạt; lưu bài SGK → live_state published).
+
+## V5.9.3 (25/11/2026, nhánh `claude/duong-dan`) — Đường dẫn rõ ràng và ảnh chia sẻ
+Theo yêu cầu chủ dự án: mỗi menu, hồ sơ, bài học, sự kiện có địa chỉ riêng (như breadcrumb) để chia sẻ đúng mục; khi chia sẻ có ảnh thu nhỏ của website, vào bài thì có ảnh riêng của bài.
+- **Đường dẫn** (sau này đổi gốc thành `https://hoclichsu.com/`):
+  - `/dong-thoi-gian-su-viet/` · triều đại: `/dong-thoi-gian-su-viet/nha-tran/`
+  - `/chu-tich-ho-chi-minh/` · mốc: `/chu-tich-ho-chi-minh/1942-bi-bat-o-quang-tay-nhat-ki-trong-tu/`
+  - `/nhan-vat-lich-su/` · hồ sơ: `/nhan-vat-lich-su/tran-hung-dao/`
+  - `/khong-gian-lich-su/` · cảnh: `/khong-gian-lich-su/<mã cảnh>/`
+  - `/sach-giao-khoa-lich-su/` · lớp: `/sach-giao-khoa-lich-su/lop-6/` · bài: `/sach-giao-khoa-lich-su/lop-9/bai-15-…/` (chủ đề: `chu-de-1-…`)
+  - `/su-kien/khoi-nghia-yen-bai/` (trận đánh, sự kiện) · `/bo-de-on-su/`
+  - Tổng 642 đường dẫn, không trùng.
+- **Cách chạy:** `static/v59-duong-dan.js` đổi địa chỉ khi bấm menu/mở bài (`history.pushState`), nút Quay lại của trình duyệt hoạt động; mở thẳng một địa chỉ thì mở đúng mục. Thẻ `<base>` đặt theo thư mục gốc (đoạn script đầu `<head>` do build_v59.py chèn) để ảnh, CSS, JS vẫn đúng ở mọi đường dẫn. Liên kết cũ dạng `#ho-so=…` vẫn mở được. Nút “↗ Chia sẻ” sao chép địa chỉ rõ ràng (điện thoại mở bảng chia sẻ của máy), bỏ câu nhắc bản offline. Bản offline (mở file trực tiếp) giữ nguyên như cũ.
+- **Ảnh chia sẻ:** `tools/build_duong_dan.py` (chạy trong pages.yml) tạo cho mỗi đường dẫn một trang nhỏ có tiêu đề, mô tả, thẻ Open Graph/Twitter và ảnh 1200×630 riêng (nhóm, tên bài, năm/vai trò, logo Học Lịch Sử; mốc Hồ Chí Minh có ảnh chặng), rồi chuyển ngay vào trang. Trang chủ có ảnh chia sẻ mặc định (logo). Có `404.html` (địa chỉ chưa có trang chia sẻ vẫn mở được) và `sitemap.xml`. Font Be Vietnam Pro (OFL) trong `tools/fonts/`.
+- **Danh sách đường dẫn** `vietsu/data/duong_dan.json` tạo bằng `python3 vietsu/tools/xuat_duong_dan.py` (Playwright). **Chạy lại sau khi thêm/sửa nhân vật, sự kiện, bài học** rồi commit, để mục mới có ảnh chia sẻ riêng.
+- **Tên miền riêng:** khi có hoclichsu.com, đặt biến Actions `SITE_URL=https://hoclichsu.com` (Settings → Secrets and variables → Actions → Variables) và khai báo Custom domain trong Settings → Pages.
+- Kiểm tra (Chromium 1440 px và 390 px, giả lập đường dẫn con `/hoclichsu/`): bấm menu/mở hồ sơ/bài học/sự kiện/mốc HCM/bộ đề → địa chỉ đổi đúng; Quay lại đóng bài và về menu; mở thẳng 4 loại địa chỉ → đúng mục, đúng breadcrumb; nút Chia sẻ sao chép đúng địa chỉ; không lỗi JavaScript.
