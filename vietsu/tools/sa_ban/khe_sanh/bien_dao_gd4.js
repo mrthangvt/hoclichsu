@@ -154,9 +154,11 @@
     DAM.push((t) => { if (t < t0 || t > t1 + 3 || !(ganMay(LV.x, LV.z, 1400) || LVX.xe.some((X) => X.obj.visible && ganMay(X.obj.position.x, X.obj.position.z, 900)))) return; const u = (t - t0) / d;
       for (let i = 0; i < 26; i++) { const X = LVX.xe[i % Math.max(1, LVX.xe.length)]; if (!X || !X.obj.visible) continue;             /* bộ binh bám sau xe tăng */
         const p = X.obj.position, y = X.obj.rotation.y, b = 12 + (i % 5) * 5, l = ((i * 7) % 9 - 4) * 3, x = p.x - Math.sin(y) * b + Math.cos(y) * l, z = p.z - Math.cos(y) * b - Math.sin(y) * l;
-        dongDat('qgp', u > 0.62 ? (i % 3 ? 'ban' : 'quy') : 'chay', t, (i * 0.37) % 1, x, hG(x, z), z, y, 1, i); }
-      const nga = u > 0.55; for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2, x = LV.x + Math.cos(a) * 70, z = LV.z + Math.sin(a) * 55;     /* quân phòng thủ cứ điểm (mẫu lính VNCH, MINH HOẠ) */
-        if (u > 0.8 && i > 3) continue; dongDat('vnch', nga && i % 2 ? 'nam' : (i % 3 ? 'ban' : 'quy'), t, (i * 0.29) % 1, x, hG(x, z) + (nga && i % 2 ? 0.2 : 0), z, Math.atan2(Math.cos(a), Math.sin(a)), 1, i); } });
+        dongDat('qgp', u > 0.62 ? ['ban', 'quy', 'ngam', 'nap'][i % 4] : 'chay', t, (i * 0.37) % 1, x, hG(x, z), z, y, 1, i); }
+      for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2, x = LV.x + Math.cos(a) * 70, z = LV.z + Math.sin(a) * 55, yaw = Math.atan2(Math.cos(a), Math.sin(a));   /* quân phòng thủ cứ điểm (mẫu lính VNCH, MINH HOẠ) */
+        if (u > 0.8 && i > 3 && i % 2 === 0) continue; const tNga = t0 + d * (0.5 + (i % 6) * 0.04), chet = i % 2 === 1;      /* nửa số người trúng đạn: động tác ngã (3,4 s) rồi nằm */
+        if (chet && t >= tNga) { const s_ = t - tNga; dongDat('vnch', s_ < 3.3 ? 'nga' : 'nam', s_ < 3.3 ? s_ : t, 0, x, hG(x, z), z, yaw, 1, i); }
+        else dongDat('vnch', ['ban', 'quy', 'ngam', 'nap'][i % 4], t, (i * 0.29) % 1, x, hG(x, z), z, yaw, 1, i); } });
   }
   // ---------------------------------------------------------------- vây lấn Tà Cơn 10/2 – 31/3 (S1, S5, M21): chiến hào hình răng cưa tiến dần về hàng rào
   const HAO = []; KS.HAO_P = []; KS.HAO = HAO;
@@ -171,7 +173,7 @@
     const t0 = H('H07').t0, t1 = H('H07').t1;
     DAM.push((t) => { if (t < t0 || t > t1 + 3) return; const u = clamp((t - t0) / (t1 - t0) * 1.3, 0, 1);
       HAO.forEach((m, k) => { const pos = m.geometry.attributes.position.array, n = m.userData.n, j = Math.max(1, Math.floor((n - 1) * u)) * 2 * 3;
-        for (let i = 0; i < 4; i++) { const x = pos[j] + (i - 1.5) * 4, z = pos[j + 2] + (i % 2) * 3; if (!ganMay(x, z, 900)) continue; dongDat('qgp', i % 2 ? 'quy' : 'di', t, (k * 0.3 + i * 0.21) % 1, x, hG(x, z), z, Math.atan2(TC.x - x, TC.z - z), 1, k * 4 + i); } }); });
+        for (let i = 0; i < 4; i++) { const x = pos[j] + (i - 1.5) * 4, z = pos[j + 2] + (i % 2) * 3; if (!ganMay(x, z, 900)) continue; dongDat('qgp', i % 2 ? 'quy' : 'nup', t, (k * 0.3 + i * 0.21) % 1, x, hG(x, z), z, Math.atan2(TC.x - x, TC.z - z), 1, k * 4 + i); } }); });
   }
   // ---------------------------------------------------------------- mũi tên (tầng chiến dịch): Quân Giải phóng áp sát (H03, H11), Pegasus theo Đường 9 (H09 — M2, M3), chốt Làng Khoai (S13)
   const MT = [];

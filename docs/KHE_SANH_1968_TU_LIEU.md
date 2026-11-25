@@ -209,6 +209,14 @@ Còn lại: lính TQLC Mỹ (chờ gắn xương) nên trong căn cứ chưa có
 - **Kiểm tra:** `quet_phim.py` hai tầng sạch (`out = []`, `slow = []`; đã sửa ba chỗ đứng hình 40–100 s do xe, cờ tải muộn — nay nạp lên GPU ngay khi tải). `kiem_tra_goi.py` hợp lệ: tải lần đầu 2,9 MB, tải sau 16,5 MB, âm thanh 7,2 MB (thêm nhạc nền dùng lại của gói HCM).
 - **Còn hạn chế:** ảnh màu tầng chiến dịch mờ ở cú trung, cận (2.048 điểm ảnh cho 68 km); hồi 5 (Tết) chỉ có thẻ chữ, chưa có bản đồ miền Nam; mẫu lính Mỹ dùng cho cả kỵ binh bay Lục quân ở hồi 9 (MINH HOẠ).
 
+## 9d. Động tác Mixamo cho bộ binh cả hai bên (25/11/2026, 17h)
+- **Nguồn:** anh Thắng gửi mẫu TQLC mới `linh-my-2` (áo giáp, đã gắn xương — dùng bản có xương trong `Shooter Pack`) và ~45 động tác Mixamo trong `_KHO-CHUNG/dong-tac/_nguon_fbx`.
+- **Công cụ mới** `tools/sa_ban/nhan_vat_lai/chuyen_dong_tac.py`: chuyển động tác Mixamo sang mọi bộ xương `mixamorig` (Tripo FBX đứng chữ A, mẫu .glb Thành cổ đứng chữ T): đưa hai bộ xương về cùng hướng mặt và cùng tư thế chữ T, rồi áp độ xoay thế giới của từng xương; động tác có dời gốc (chạy, đi, trườn) chuyển thành tại chỗ. **Súng canh tự động**: báng ở tay phải, nòng (trục dài nhất của lưới súng) hướng về tay trái ở tư thế "Idle Aiming"; súng lấy từ mẫu gốc (M16 của mẫu VNCH, AK của mẫu QĐND Thành cổ), vẫn xoay quanh nòng theo `SUNG_XOAY` như cũ.
+- **Bộ động tác chung** (cả bộ đội mũ tai bèo / đầu trần, lính TQLC Mỹ mẫu mới, lính VNCH): `dung` Rifle Idle · `ngam` Idle Aiming · `ban` firing rifle · `quy` Crouch Rapid Fire · `chay`, `xung` rifle run (2,7 m/s) · `di` Rifle Walk (0,97 m/s) · `khom` Crouched Walking · `nup` Rifle Crouch Turn · `namban` Prone Firing Rifle · `truon` Prone Forward · `nap` Reloading · `nga` Death From The Front (3,4 s) · `nam` (khung cuối của `nga`); bộ đội giữ thêm `quansat`, `nem`, `ngoi` của mẫu QĐND. Gần máy 3.000 tam giác, xa 1.200.
+- **Chọn động tác theo cảnh:** tuần tra đi đúng nhịp bước; người đứng yên chỉ dùng động tác tại chỗ (ngắm, núp, quỳ bắn, thay đạn, quan sát — không dùng động tác đi khi không di chuyển để khỏi trượt chân); lính Mỹ chạy vào hầm (H04) rồi quỳ bắn / thay đạn; bộ binh Làng Vây chạy theo xe rồi bắn, ngắm, thay đạn; quân giữ Làng Vây trúng đạn ngã (động tác ngã thật, không còn nằm ngay); đầu chiến hào quỳ, núp, nằm bắn, ném lựu đạn, thay đạn; lúc B-52 ném bom nằm sát hoặc núp; bãi đổ quân (H09) lính nhảy khỏi trực thăng chạy ra vòng ngoài rồi quỳ bắn.
+- **Kiểm tra:** `quet_phim.py` hai tầng sạch; `kiem_tra_goi.py` hợp lệ (tải sau 20,9 MB do đám đông nhiều động tác hơn).
+- **Còn:** động tác `khom` (Crouched Walking) không cầm súng hai tay; các động tác Mixamo dáng chung, chưa có động tác riêng như đào hào, khiêng hàng, băng bó.
+
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.

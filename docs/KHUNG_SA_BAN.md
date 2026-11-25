@@ -224,5 +224,6 @@ Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa h�
 27. **Mọi vật tải sau bước "dựng sẵn" phải nạp lên GPU ngay khi tải xong** (mẫu GLB, xe `xeTao`, cờ có ảnh, đạo cụ dựng bằng mã): vẽ thử cả cảnh vào khung 1×1 với vật đó hiện tạm (`napSan`). Nếu không, khung đầu tiên vật lọt vào máy quay sẽ đứng hình (đo được 40–100 s trên SwiftShader).
 28. **Tư liệu sơ đồ của anh gửi** (sơ đồ căn cứ, trận đánh, bản đồ chiến dịch): ghi vào `sources.json`, không đưa ảnh sách lên repo; dò toạ độ theo thước của sơ đồ và ghi rõ chỗ lệch với số liệu của nguồn chữ.
 29. **Màn tải phải có nút "▶ Xem phim"** (`pack.json › ui.loaderHtml` với `ldgo`, `bstart`, `bexplore` — xem gói HCM). Thiếu thì mã dừng ngay khi tải xong, artifact không chạy. Trước khi đăng, chạy thử bản đóng gói (`dong_goi_artifact_2.py`) bằng máy chủ tĩnh cục bộ, bấm Xem phim và thử một lần đổi tầng.
+30. **Động tác bộ binh:** dùng động tác Mixamo cầm súng (Idle Aiming, Rifle Walk, Crouch Rapid Fire, Prone Firing…) qua `nhan_vat_lai/chuyen_dong_tac.py` (đổi động tác giữa các bộ xương mixamorig, canh súng tự động), rồi `nuong_nvz.py`. Người đứng yên chỉ dùng động tác tại chỗ; người di chuyển đi đúng nhịp bước in ra khi nướng.
 
 Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.
