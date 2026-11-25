@@ -15,7 +15,10 @@ const EXH = (TT && TT.phongDai) || (PACK.terrain && PACK.terrain.phongDai) || 1;
 function doiTang(ten, t, phat) {
   const q = new URLSearchParams(location.search); q.set('tang', ten); if (t != null) q.set('t', (+t).toFixed(2)); if (phat) q.set('phat', '1'); else q.delete('phat');
   let sc = null; try { sc = STORY.scenes.find((c) => t >= c.t0 && t < c.t1); } catch (e) { /* STORY chưa có */ }
-  if (sc && phat) q.set('chuong', sc.title); else q.delete('chuong');
+  // pack.json › ui.theChuong = false: không phủ màn tối "Tiếp theo" và không hiện thẻ chương trên màn tải — chuyển thẳng (anh Thắng 25/11: màn tối rồi lại màn tải là thừa). Mặc định giữ như cũ cho gói đã phát hành.
+  const theChuong = !(PACK.ui && PACK.ui.theChuong === false);
+  if (sc && phat && theChuong) q.set('chuong', sc.title); else q.delete('chuong');
+  if (!theChuong) { if (window.parent !== window && window.parent.__doiTang) window.parent.__doiTang(q.toString()); else location.search = q.toString(); return; }   // bản Artifact: khung ngoài đổi tầng
   const ov = document.createElement('div'); ov.id = 'chuong-ov'; ov.innerHTML = '<div><small>Tiếp theo</small><b></b></div>'; ov.querySelector('b').textContent = sc ? sc.title : '';
   document.body.append(ov); requestAnimationFrame(() => ov.classList.add('on'));
   setTimeout(() => { location.search = q.toString(); }, sc && phat ? 900 : 0);

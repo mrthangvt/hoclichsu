@@ -105,3 +105,37 @@ a = "if (C05.cap) C05.cap(t);"
 assert a in s
 s = s.replace(a, "if (KS.cap) KS.cap(t, dt); " + a, 1)
 p.write_text(s); print('bien dao ok')
+# âm thanh: bỏ tiếng reo hò, vỗ tay của bản HCM (không có tệp trong gói); nhạc nền theo hồi Khe Sanh (nhạc dùng lại của gói HCM)
+s = p.read_text()
+a = "const HCM_BED = ['xetang', 'gio', 'reoho', 'ak47', 'maybay', 'oto'], HCM_ONE = ['no', 'daibac', 'lua', 'vut', 'coi', 'votay', 'dang'];"
+assert a in s
+s = s.replace(a, "const HCM_BED = ['xetang', 'gio', 'ak47'], HCM_ONE = ['no', 'daibac', 'lua', 'vut', 'coi', 'dang'];   // Khe Sanh: chỉ các tệp có trong gói", 1)
+a = "const nhacCua = (i) => NHAC[SC[i].id] || ['thuc-day', 0, 0.3];"
+assert a in s
+s = s.replace(a, """const NHAC_KS = { H01: ['thuc-day', 0, 0.34], H02: ['hiep-si', 50, 0.4], H03: ['giua-tran', 0, 0.34], H04: ['quyet-chien', 0, 0.34], H05: ['ke-thu', 0, 0.32], H06: ['quyet-chien', 20, 0.36],
+  H07: ['giua-tran', 40, 0.34], H08: ['ke-thu', 50, 0.32], H09: ['hiep-si', 100, 0.38], H10: ['tro-ve', 0, 0.36], H11: ['vi-thanh', 0, 0.44] };   // nhạc theo hồi Khe Sanh (MINH HOẠ, anh duyệt lại)
+const nhacCua = (i) => (HCM ? NHAC : NHAC_KS)[SC[i].id] || ['thuc-day', 0, 0.3];""", 1)
+p.write_text(s); print('am thanh ok')
+# chữ báo đổi tầng theo tên tầng Khe Sanh
+s = p.read_text()
+a = "(scn.tang === 'noi-do' ? 'nội đô Sài Gòn' : 'toàn chiến dịch')"
+assert a in s
+s = s.replace(a, "(HCM ? (scn.tang === 'noi-do' ? 'nội đô Sài Gòn' : 'toàn chiến dịch') : (scn.tang === 'ta-con' ? 'căn cứ Tà Cơn' : 'toàn chiến dịch'))", 1)
+p.write_text(s); print('doi tang ok')
+# lính thủy đánh bộ Mỹ (mẫu Tripo anh Thắng gắn xương 25/11, nướng bằng tools/sa_ban/nhan_vat_lai/lam_linh_my.py + nuong_nvz.py): đám đông 'my', hai mức chi tiết
+s = p.read_text()
+a = "dongNap('vnchx', 'linh-vnch-x', 'linh-vnch', 400);"
+assert a in s
+s = s.replace(a, a + " dongNap('my', 'linh-my', 'linh-my', 300); dongNap('myx', 'linh-my-x', 'linh-my', 600);", 1)
+a = "if (n === 'qgpA' || n === 'qgpB' || n === 'vnch') {"
+assert a in s
+s = s.replace(a, "if (n === 'qgpA' || n === 'qgpB' || n === 'vnch' || n === 'my') {", 1)
+p.write_text(s); print('linh my ok')
+# GĐ4b: dàn cảnh, máy quay từng cú (tools/sa_ban/khe_sanh/dan_canh_gd4.js) — chạy sau biên đạo, trước chỗ đặt ghim
+s = p.read_text()
+dc = Path(__file__).resolve().parent.joinpath('dan_canh_gd4.js')
+if not dc.exists(): dc = Path('/home/claude/vietsu/vietsu/tools/sa_ban/khe_sanh/dan_canh_gd4.js')
+a = "if (XEX.ghimND) XEX.ghimND(); for (const f of GHIM_SAU) f();"
+assert a in s
+s = s.replace(a, dc.read_text().rstrip() + "\n" + a, 1)
+p.write_text(s); print('dan canh ok')

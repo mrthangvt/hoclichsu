@@ -401,6 +401,54 @@
    "url": "https://registry.opendata.aws/terrain-tiles/",
    "license": "xem trang nguồn",
    "used_for": "độ cao cao nguyên Khe Sanh, các điểm cao (GĐ2)"
+  },
+  {
+   "id": "S18",
+   "title": "Sơ đồ \"Trận Làng Vây (6-7.2.1968)\" — ta tiến công, địch phòng ngự",
+   "type": "sơ đồ in trong sách (anh Thắng gửi 25/11/2026; chưa rõ tên sách)",
+   "url": "",
+   "license": "chỉ dùng tham khảo, không đưa ảnh lên repo",
+   "used_for": "hướng tiến công vào Làng Vây: xe tăng từ phía tây theo Đường 9 và từ phía nam (dBB3 + 1 đại đội tăng), bộ binh từ phía bắc (cBB2); giờ 17.00 / 23.15 / 23.50 / 01.05 (khớp S2)"
+  },
+  {
+   "id": "S19",
+   "title": "Bản đồ \"Chiến dịch Đường 9 – Khe Sanh (20.1 – 15.7.1968)\" — 4 đợt",
+   "type": "bản đồ in trong sách (anh Thắng gửi 25/11/2026; chưa rõ tên sách)",
+   "url": "",
+   "license": "chỉ dùng tham khảo, không đưa ảnh lên repo",
+   "used_for": "hướng mũi tên hồi 3, 11 (F.325 từ tây bắc, E.246 từ tây, F.304 từ Lào qua Làng Vây – Hướng Hoá), chốt Làng Khoai (hồi 9); mốc 4 đợt 20.1–7.2, 10.2–31.3, 1–30.4, 8.5–15.7 (khớp bảng mốc). Bản đồ vẽ sơ lược nên điểm đầu mũi tên là ước lượng"
+  },
+  {
+   "id": "S20",
+   "title": "Ảnh sa bàn chiến dịch tại di tích (báo Sức khỏe & Đời sống)",
+   "type": "ảnh báo chí (anh Thắng gửi 25/11/2026)",
+   "url": "",
+   "license": "chỉ dùng tham khảo",
+   "used_for": "đối chiếu vị trí các điểm cao, Đông Tri, Làng Khoai, Làng Cát, Húc Nghì, trận địa pháo phía nam sông Sê Pôn"
+  },
+  {
+   "id": "M32",
+   "title": "Sơ đồ căn cứ chiến đấu Khe Sanh (Red / Blue / Gray Sector, kho đạn số 1, 2; thước 600 m)",
+   "type": "sơ đồ của phía Mỹ (anh Thắng gửi 25/11/2026; theo danh mục tài liệu anh gửi, có thể từ Pearson 1975 — M33 — chưa xác nhận trang)",
+   "url": "",
+   "license": "chỉ dùng tham khảo, không đưa ảnh lên repo",
+   "used_for": "bố trí căn cứ Tà Cơn: đường băng ~99° ở phía bắc căn cứ, hàng rào, chiến hào, kho đạn số 1 (đông nam đường băng), số 2, Tiểu đoàn 3 xe tăng (tây bắc), Tiểu đoàn 37 Biệt động quân (đông nam), FOB-3"
+  },
+  {
+   "id": "M33",
+   "title": "Willard Pearson, The War in the Northern Provinces 1966–1968 (Vietnam Studies, Department of the Army, 1975; CMH Pub 90-24)",
+   "type": "sách (Lục quân Mỹ)",
+   "url": "https://catalog.hathitrust.org/Record/102032247",
+   "license": "tư liệu công (chính phủ Mỹ)",
+   "used_for": "tài liệu tham khảo anh Thắng gửi 25/11/2026; có sơ đồ trận Làng Vây 7/2/1968 và cuộc giải toả Pegasus (để đối chiếu)"
+  },
+  {
+   "id": "T1",
+   "title": "Tài liệu tham khảo anh Thắng gửi 25/11/2026 (chưa dùng cho con số cụ thể)",
+   "type": "danh mục",
+   "url": "",
+   "license": "",
+   "used_for": "Phạm Văn Sơn, \"Trận chiến Tết Mậu Thân 1968\" (trang History of the Viet Nam War); Nguyễn Đức Phương, \"Chiến tranh Việt Nam toàn tập\" (Làng Văn, 2001); Trương Dưởng, \"Một cánh hoa dù\" (tác giả xb, 1998); phỏng vấn cựu binh Sư đoàn Nhảy dù; Phạm Cường Lể, \"Khe Sanh 77 ngày trong năm 1968\" (trang History of the VN War). Các nguồn này viết từ phía quân lực VNCH — khi dùng số liệu sẽ ghi rõ và đối chiếu với S, M"
   }
  ]
 }

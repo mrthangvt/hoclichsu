@@ -217,4 +217,11 @@ Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa h�
 22. Khi có báo đứng hình: đo số hình khối (`renderer.info.memory.geometries`) và số chương trình đồ hoạ trước, sau từng bước. Chỗ nào tăng vọt là chỗ nạp giữa phim.
 23. Voice là đồng hồ chính. Không thêm khoảng nghỉ đầu hồi, vì nó cắt tiếng và hình.
 
+**Bổ sung từ Khe Sanh 1968 (anh Thắng, 25/11/2026):**
+24. **Không phủ màn tối khi chuyển hồi / đổi tầng.** Lớp "Tiếp theo" phủ tối rồi lại hiện màn tải là thừa. Gói mới đặt `pack.json › ui.theChuong: false` (gói mẫu `_mau` đã đặt sẵn); bộ máy 2.2.0 khi đó đổi tầng thẳng, không hiện thẻ chương. Gói cũ (HCM) giữ mặc định.
+25. **Mũi tên chiến dịch:** một khối liền (thân và đầu chung một lưới, không ghép đoạn), không hiệu ứng, trong suốt 70 % (`opacity 0.3`), đặt ở một độ cao duy nhất cao hơn đỉnh địa hình dọc đường đi (≥ 250 m) để không xuyên núi. Mẫu: `muiTenPhang` trong `tools/sa_ban/khe_sanh/bien_dao_gd4.js`.
+26. **Mỗi cú máy phải có chủ thể và đúng cỡ cảnh.** Không dùng một máy quay xoay quanh mốc chính cho cả hồi. Lập bảng cú máy (đại toàn / toàn / trung / cận theo `story.json`), mỗi cú gắn một tổ người hoặc khí tài đã xếp sẵn (tuần tra, kíp pháo, đầu chiến hào, bãi đổ quân, đoàn xe…), máy bám vật đang chạy khi cần. Mẫu: `tools/sa_ban/khe_sanh/dan_canh_gd4.js` (hàm `MAY(id, …)`, `theo`, `dolly`, `quanh`, `toNguoi`).
+27. **Mọi vật tải sau bước "dựng sẵn" phải nạp lên GPU ngay khi tải xong** (mẫu GLB, xe `xeTao`, cờ có ảnh, đạo cụ dựng bằng mã): vẽ thử cả cảnh vào khung 1×1 với vật đó hiện tạm (`napSan`). Nếu không, khung đầu tiên vật lọt vào máy quay sẽ đứng hình (đo được 40–100 s trên SwiftShader).
+28. **Tư liệu sơ đồ của anh gửi** (sơ đồ căn cứ, trận đánh, bản đồ chiến dịch): ghi vào `sources.json`, không đưa ảnh sách lên repo; dò toạ độ theo thước của sơ đồ và ghi rõ chỗ lệch với số liệu của nguồn chữ.
+
 Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.
