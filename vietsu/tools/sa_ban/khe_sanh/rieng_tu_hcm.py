@@ -139,3 +139,37 @@ a = "if (XEX.ghimND) XEX.ghimND(); for (const f of GHIM_SAU) f();"
 assert a in s
 s = s.replace(a, dc.read_text().rstrip() + "\n" + a, 1)
 p.write_text(s); print('dan canh ok')
+# V1.4 (anh Thắng: kéo timeline lùi bị treo hình): đang kéo thanh thời gian thì không đổi tầng (trước đây đổi ngay giữa lúc kéo → tải lại trang dưới tay người xem);
+# thả tay mới đổi. Thêm pointerup/touchend phòng khi trình duyệt không bắn sự kiện 'change'.
+s = p.read_text()
+a = "if (appMode === 'film' && scn.tang && scn.tang !== TANG && !update.doi) {"
+assert a in s
+s = s.replace(a, "if (appMode === 'film' && scn.tang && scn.tang !== TANG && !update.doi && seeking) { $('sub').hidden = false; $('sub').textContent = 'Thả thanh thời gian để chuyển sang ' + (scn.tang === 'ta-con' ? 'căn cứ Tà Cơn' : 'toàn chiến dịch') + '…'; }\n  else if (appMode === 'film' && scn.tang && scn.tang !== TANG && !update.doi) {", 1)
+a = "voxInit();"
+assert a in s
+s = s.replace(a, a + "\nfor (const ev of ['pointerup', 'touchend', 'mouseup']) $('seek').addEventListener(ev, () => { seeking = false; });", 1)
+p.write_text(s); print('tua ok')
+# V1.4 âm thanh Khe Sanh: nền + tiếng nổ theo sự kiện nổ trên hình (KS.amPlan/amThem/amMoc/amLap ở bien_dao_gd4.js), tiếng trực thăng tổng hợp
+s = p.read_text()
+a = "const HCM_BED = ['xetang', 'gio', 'ak47'], HCM_ONE = ['no', 'daibac', 'lua', 'vut', 'coi', 'dang'];"
+assert a in s
+s = s.replace(a, "const HCM_BED = ['xetang', 'gio', 'ak47', 'maybay', 'oto', 'trucan', 'lua'], HCM_ONE = ['no', 'daibac', 'lua', 'vut', 'coi', 'dang'];", 1)
+a = "  switch (id) {\n    case 'C01': return { gio: 0.32 };"
+assert a in s
+s = s.replace(a, "  if (!HCM && KS.amPlan) return KS.amPlan(id, t, u);\n" + a, 1)
+a = "const AM_LAP = () => ["
+assert a in s
+s = s.replace(a, "const AM_LAP = () => !HCM ? (KS.amLap ? KS.amLap() : []) : [", 1)
+a = "const AM_MOC = () => ["
+assert a in s
+s = s.replace(a, "const AM_MOC = () => !HCM ? (KS.amMoc ? (AM_MOC.c && AM_MOC.ct === Math.round(T / 2) ? AM_MOC.c : (AM_MOC.ct = Math.round(T / 2), AM_MOC.c = KS.amMoc())) : []) : [", 1)
+a = "  xe = clamp(xe, 0, 1); p.oto = Math.max(p.oto || 0, 0.85 * xe); p.xetang = Math.max(p.xetang || 0, 0.7 * xe); return p; };"
+assert a in s
+s = s.replace(a, "  xe = clamp(xe, 0, 1); p.oto = Math.max(p.oto || 0, 0.85 * xe); p.xetang = Math.max(p.xetang || 0, 0.7 * xe); if (!HCM && KS.amThem) p = KS.amThem(p, cp); return p; };", 1)
+a = "  oto: (ctx) => {"
+assert a in s
+s = s.replace(a, """  trucan: (ctx) => { const sr = ctx.sampleRate, n = sr * 2, b = ctx.createBuffer(1, n, sr), d = b.getChannelData(0); let l1 = 0;   /* trực thăng: nhiễu trầm đập theo nhịp cánh quạt ~5,5 lần/giây */
+    for (let i = 0; i < n; i++) { const t = i / sr, w = Math.random() * 2 - 1; l1 += 0.05 * (w - l1); const nh = Math.pow(0.5 + 0.5 * Math.cos(2 * Math.PI * 5.5 * t), 6); d[i] = (l1 * 3.2 * (0.25 + nh) + Math.sin(2 * Math.PI * 55 * t) * 0.08) * 0.9; }
+    return b; },
+""" + a, 1)
+p.write_text(s); print('am thanh ks ok')

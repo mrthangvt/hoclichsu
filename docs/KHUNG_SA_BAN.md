@@ -225,5 +225,12 @@ Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa h�
 28. **Tư liệu sơ đồ của anh gửi** (sơ đồ căn cứ, trận đánh, bản đồ chiến dịch): ghi vào `sources.json`, không đưa ảnh sách lên repo; dò toạ độ theo thước của sơ đồ và ghi rõ chỗ lệch với số liệu của nguồn chữ.
 29. **Màn tải phải có nút "▶ Xem phim"** (`pack.json › ui.loaderHtml` với `ldgo`, `bstart`, `bexplore` — xem gói HCM). Thiếu thì mã dừng ngay khi tải xong, artifact không chạy. Trước khi đăng, chạy thử bản đóng gói (`dong_goi_artifact_2.py`) bằng máy chủ tĩnh cục bộ, bấm Xem phim và thử một lần đổi tầng.
 30. **Động tác bộ binh:** dùng động tác Mixamo cầm súng (Idle Aiming, Rifle Walk, Crouch Rapid Fire, Prone Firing…) qua `nhan_vat_lai/chuyen_dong_tac.py` (đổi động tác giữa các bộ xương mixamorig, canh súng tự động), rồi `nuong_nvz.py`. Người đứng yên chỉ dùng động tác tại chỗ; người di chuyển đi đúng nhịp bước in ra khi nướng.
+31. **Tên thương hiệu:** "Không gian lịch sử · Học Lịch Sử" (anh Thắng 25/11/2026: không dùng "Việt Sử" nữa).
+32. **Giảm lưới nhân vật:** hàn đỉnh trùng (đường nối UV) trước khi giảm lưới, nếu không người thủng lỗ (`nuong_nvz.py` đã làm sẵn).
+33. **Súng cầm tay:** tay phải ở tay cầm có cò, tay trái ở ốp lót, băng đạn quay xuống đất; súng đúng chiều dài thật theo chiều cao người.
+34. **Không đổi tầng khi người xem đang kéo thanh thời gian** — chỉ đổi khi thả tay.
+35. **Máy quay bay theo đường thật (OSM):** làm trơn đường và giữ một độ cao cố định trên đỉnh núi; không kẹp độ cao theo mặt đất từng khung (giật).
+36. **Âm thanh:** mỗi tiếng nổ trên hình có tiếng nổ tương ứng (nhỏ dần theo khoảng cách), để lại hố đất; có tiếng máy bay, trực thăng, xe khi chúng gần máy quay.
+37. **Cờ:** căn cứ, khí tài, đoàn quân mỗi bên mang cờ của bên đó; cờ bay phấp phới.
 
 Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.

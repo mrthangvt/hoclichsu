@@ -217,6 +217,24 @@ Còn lại: lính TQLC Mỹ (chờ gắn xương) nên trong căn cứ chưa có
 - **Kiểm tra:** `quet_phim.py` hai tầng sạch; `kiem_tra_goi.py` hợp lệ (tải sau 20,9 MB do đám đông nhiều động tác hơn).
 - **Còn:** động tác `khom` (Crouched Walking) không cầm súng hai tay; các động tác Mixamo dáng chung, chưa có động tác riêng như đào hào, khiêng hàng, băng bó.
 
+## 9e. Bản V1.4 — sửa theo góp ý V1.3 của anh Thắng (25/11/2026, 17h–18h)
+| Góp ý | Đã làm |
+|---|---|
+| Tên sa bàn | "Không gian lịch sử · Học Lịch Sử" thay "Việt Sử" ở mọi bộ máy sa bàn (1.0.0, 1.1.0, 2.1.0, 2.2.0: chữ đầu trang, tên thẻ trình duyệt). Các trang khác của website vẫn còn chữ "Việt Sử" — chưa đổi |
+| 0:24–0:35 máy quay giật | cú C01-03 bay ở một độ cao cố định trên đỉnh núi dọc Đường 9, đường đi và hướng nhìn làm trơn (Đường 9 trên OSM gấp khúc), chậm lại; máy bám người, xe cũng lấy hướng trung bình ±6 m |
+| Đường băng trong vòng rào | vòng rào phía đông nới ra bao trọn đầu đông đường băng (sơ đồ M32 vẽ đầu đông vượt rào) — MINH HOẠ |
+| 1:33–1:44 dải hào cao tới đầu gối | mọi dải phủ (hào, rào, đường băng, sân đỗ) hạ sát mặt đất 6–12 cm, chia đoạn ≤ 6 m để bám địa hình; hào màu đất nhạt hơn |
+| Lính thủng lỗ | công cụ nướng hàn đỉnh trùng ở đường nối UV trước khi giảm lưới (`nuong_nvz.py`) — số cạnh hở sau giảm lưới từ ~3.600 xuống 0 |
+| Cầm súng | canh súng theo hình học của súng: tay phải ở tay cầm có cò, tay trái ở ốp lót, băng đạn quay xuống đất, súng đúng chiều dài thật (M16 0,99 m, AK 0,88 m) — `chuyen_dong_tac.py` |
+| Lính trong ụ quay đi quay lại | động tác `nup` đổi sang quỳ chờ (đoạn cuối "Rifle Crouch Walk To Kneel", chạy đi rồi về) — chỉ cử động nhẹ |
+| Bàn họp | năm người đứng quanh bàn, cùng động tác đứng cầm súng lắc lư nhẹ |
+| Màu địa hình | `tools/sa_ban/dia_hinh/mau_dat_ks.py`: đất đỏ quanh căn cứ (+450 m, nhạt dần tới ~2,6 km), đỉnh 881 Nam, 861, 861A, 558, 950, Làng Vây, Cu Bốc, dải thảm bom phía tây bắc; cỏ thưa lấm tấm, ~2.700 hố bom vẽ trên nền — theo ảnh căn cứ 1968 anh gửi (T2); MINH HOẠ |
+| Cờ | cờ Mỹ ở khu chỉ huy Trung đoàn 26 (hạ khi rút), ụ gác, các điểm cao có TQLC, xe M48 dẫn đầu Pegasus; cờ đỏ sao vàng trên PT-76, xe vận tải, trận địa pháo Co Roc, người cầm cờ đi đầu đội hình (hồi 3, hồi 6), Làng Vây, Tà Cơn 9/7; cờ bay phấp phới |
+| Ghim tên khí tài | M48 (căn cứ, Pegasus, rút quân, công binh), xe vận tải Quân Giải phóng, UH-1, pháo 130 mm M-46, cùng PT-76, B-52D, C-130 đã có. Phía Mỹ không còn dùng mẫu xe tải (mẫu xe tải của gói là xe Quân Giải phóng) |
+| Âm thanh, hố đạn | tiếng nổ đúng từng tiếng nổ trên hình (nhỏ dần theo khoảng cách, trễ theo tốc độ âm), kho đạn nổ, pháo bắn đi, PT-76 bắn, súng nhỏ, lửa cháy, xe tăng, máy bay (B-52, C-130), trực thăng (tổng hợp bằng nhiễu lọc); mỗi tiếng nổ để lại hố đất viền đất cày, một phần chỗ nổ cháy lửa ~26 s |
+| Kéo timeline lùi bị treo | đổi tầng chỉ khi thả tay khỏi thanh thời gian (trước đây đổi ngay giữa lúc kéo → tải lại trang dưới tay người xem); thêm pointerup/touchend |
+Kiểm tra: `quet_phim.py` hai tầng sạch; thử bản đóng gói: kéo từ hồi 4 về hồi 1 (khác tầng) — giữ nguyên khi đang kéo, thả tay mới chuyển, phim chạy tiếp.
+
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.

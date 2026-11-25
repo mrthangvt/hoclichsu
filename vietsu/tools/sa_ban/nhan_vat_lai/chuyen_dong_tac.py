@@ -1,12 +1,14 @@
 """Chuyển động tác Mixamo (FBX "without skin") sang một nhân vật có xương mixamorig (FBX Tripo/Mixamo hoặc .glb Thành cổ), canh lại súng cầm tay,
 xuất một .glb có lưới + xương + súng + các động tác đã đổi tên — rồi nướng bằng nuong_nvz.py như cũ.
 
-python3 chuyen_dong_tac.py <nhân vật .fbx|.glb> <ra.glb> <thư mục FBX động tác> ten=Tệp.fbx[:tc] ... [--sung <mẫu có súng .glb> <động tác ngắm gốc> <tên lưới súng>] [--ngam ten]
+python3 chuyen_dong_tac.py <nhân vật .fbx|.glb> <ra.glb> <thư mục FBX động tác> ten=Tệp.fbx[:tc][@a-b][:pp] ... [--sung <mẫu có súng .glb> <tên lưới súng> <dài thật m> <cao người thật m>] [--ngam ten]
   ten=Tệp.fbx      động tác sẽ mang tên `ten` trong .glb ra
   :tc              "tại chỗ": bỏ dịch chuyển ngang của hông (động tác chạy, đi có dời gốc của Mixamo)
-  --sung           lấy súng (vd. Sung_M16_V2 của vnch.glb) gắn vào bàn tay phải; khi nhân vật đã có súng gắn xương thì chỉ canh lại
-  --ngam ten       động tác dùng để canh súng (mặc định 'ngam'): súng đặt sao cho tay phải ở báng, nòng hướng về tay trái giống hệt
-                   tư thế ngắm gốc của mẫu có súng (đo trên <động tác ngắm gốc>), độ xoay quanh nòng giữ theo hướng lên trời.
+  @a-b             chỉ lấy khung a..b của tệp; :pp chạy đi rồi chạy lại (lặp không giật) — dùng cho động tác "đứng yên, lắc lư nhẹ"
+  --sung           lấy súng (vd. Sung_M16_V2 của vnch.glb) gắn vào bàn tay phải (súng cũ của nhân vật bỏ đi), co đúng chiều dài thật
+                   (M16 0,99 m, AK 0,88 m) theo chiều cao người
+  --ngam ten       động tác dùng để canh súng (mặc định 'ngam'). V1.4 (anh Thắng): báng súng (tay cầm có cò) nằm trong lòng bàn tay phải,
+                   ốp lót tay ở tay trái, băng đạn quay xuống đất — đo báng, băng đạn, đầu nòng ngay trên hình học của súng.
 
 Cách đổi (không phụ thuộc trục xương của từng phần mềm):
   - đưa hai bộ xương về cùng hướng mặt (xoay quanh trục đứng) và cùng "tư thế chữ T" (mỗi xương của nhân vật xoay tối thiểu cho trùng hướng
@@ -21,9 +23,10 @@ CLIP, SUNG, NGAM = [], None, 'ngam'
 i = 3
 while i < len(argv):
     a = argv[i]
-    if a == '--sung': SUNG = argv[i + 1:i + 4]; i += 4; continue
+    if a == '--sung': SUNG = argv[i + 1:i + 5]; i += 5; continue
     if a == '--ngam': NGAM = argv[i + 1]; i += 2; continue
-    ten, _, r = a.partition('='); p = r.split(':'); CLIP.append((ten, p[0], 'tc' in p[1:])); i += 1
+    ten, _, r = a.partition('='); p = r.split(':'); tep, _, kh = p[0].partition('@')
+    CLIP.append((ten, tep, 'tc' in p[1:], tuple(int(x) for x in kh.split('-')) if kh else None, 'pp' in p[1:])); i += 1
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 def nhap(f):
@@ -63,32 +66,38 @@ REST = {b.name: b.matrix_local.copy() for b in ARM.data.bones}                 #
 fT = mat_truoc(ARM); hipT = REST['mixamorig:Hips'].translation.z
 print('nhân vật', ARM.name, len(TEN), 'xương · mặt', tuple(round(x, 2) for x in fT), '· hông cao', round(hipT, 3))
 
-# súng: luôn chép từ mẫu có súng (súng cũ của nhân vật, nếu có, bỏ đi) — điểm báng, hướng nòng đo trên lưới súng của mẫu
+# súng: chép từ mẫu (súng cũ của nhân vật, nếu có, bỏ đi). Đo trên lưới súng: trục nòng, đầu nòng / báng, hướng băng đạn, chỗ tay cầm có cò
+import numpy as np
 sung, G_SUNG = None, None
+def do_sung(ob):
+    V = np.array([v.co[:] for v in ob.data.vertices]); c = V.mean(0); ax = np.linalg.svd(V - c)[2][0]; s_ = (V - c) @ ax
+    L = s_.max() - s_.min(); Q = (V - c) - np.outer(s_, ax)                                      # phần vuông góc với trục
+    def be(m): return np.linalg.norm(Q[m], axis=1).max() if m.any() else 0
+    if be(s_ > s_.max() - 0.06 * L) > be(s_ < s_.min() + 0.06 * L): ax, s_ = -ax, -s_            # báng (đầu dày) ở phía s nhỏ, đầu nòng (mảnh) ở phía s lớn
+    k = np.argmax(np.linalg.norm(Q, axis=1)); dn = Q[k] / np.linalg.norm(Q[k])                    # băng đạn: chỗ nhô xa trục nhất → hướng "xuống"
+    dn = dn - ax * (dn @ ax); dn /= np.linalg.norm(dn); h = Q @ dn
+    thap = h > 0.45 * h.max()                                                                     # phần nhô xuống: băng đạn + tay cầm
+    sv = np.sort(s_[thap]); gap = np.diff(sv); j = int(np.argmax(gap))                            # hai cụm theo dọc súng: tay cầm (sau) | băng đạn (trước)
+    sau = thap & (s_ <= sv[j]); tc = s_[sau].mean() if sau.any() else s_.min() + 0.3 * L
+    if sau.any() and sau.sum() > 0.7 * thap.sum(): tc = s_.min() + 0.33 * L                       # không tách được hai cụm: lấy 1/3 từ báng
+    g = c + ax * tc + dn * (0.35 * h.max())                                                       # điểm lòng bàn tay phải (trên tay cầm, sát thân súng)
+    tay_trai = s_.max() - 0.40 * L                                                                # ốp lót tay (tay trái đỡ) cách đầu nòng 40 % chiều dài
+    return dict(g=Vector(g.tolist()), ax=Vector(ax.tolist()), dn=Vector(dn.tolist()), L=float(L), lech=float(tay_trai - tc), hg=float(0.35 * h.max()))
 if SUNG:
-    mau, act_goc, ten_sung = SUNG
-    mm = nhap(mau); armM = next(o for o in mm if o.type == 'ARMATURE'); sM = next(o for o in mm if o.name.startswith(ten_sung))
-    nghi(armM); hipM = (armM.matrix_world @ armM.data.bones['mixamorig:Hips'].head_local).z
-    A = bpy.data.actions.get(act_goc); armM.animation_data_create(); armM.animation_data.action = A
-    try: armM.animation_data.action_slot = A.slots[0]
-    except Exception: pass
-    bpy.context.scene.frame_set(int(sum(A.frame_range) / 2)); bpy.context.view_layer.update()
-    W = sM.matrix_world.copy(); Wi = W.inverted()
-    rh = armM.matrix_world @ armM.pose.bones['mixamorig:RightHand'].head; lh = armM.matrix_world @ armM.pose.bones['mixamorig:LeftHand'].head
-    import numpy as np
-    V = np.array([v.co[:] for v in sM.data.vertices]); c_ = V.mean(0); ax = np.linalg.svd(V - c_)[2][0]            # trục nòng = trục dài nhất của lưới súng
-    g_ = np.array((Wi @ rh)[:]); pr = (V - g_) @ ax; ax = ax if pr.max() > -pr.min() else -ax                      # chiều về đầu nòng: phía xa báng hơn
-    dl_ = Vector(ax.tolist()); print('súng: hướng tay trái lệch trục nòng', round(math.degrees(dl_.angle((Wi.to_3x3() @ (lh - rh)).normalized())), 1), '°')
-    G_SUNG = (Wi @ rh, dl_, (Wi.to_3x3() @ Vector((0, 0, 1))).normalized())
-    s0 = W.to_scale()[0]; kS = hipT / max(1e-6, hipM)
+    mau, ten_sung, dai_that, cao_that = SUNG[0], SUNG[1], float(SUNG[2]), float(SUNG[3])
+    mm = nhap(mau); sM = next(o for o in mm if o.name.startswith(ten_sung))
     for o in [o for o in bpy.data.objects if o.type == 'MESH' and o.parent == ARM and o.parent_type == 'BONE']: bpy.data.objects.remove(o, do_unlink=True)
-    sung = bpy.data.objects.new('Sung', sM.data.copy()); bpy.context.collection.objects.link(sung); sung.matrix_world = W
+    sung = bpy.data.objects.new('Sung', sM.data.copy()); bpy.context.collection.objects.link(sung)
     for o in mm: bpy.data.objects.remove(o, do_unlink=True)
     for a in list(bpy.data.actions): bpy.data.actions.remove(a)
-    print('súng chép từ', os.path.basename(mau), ten_sung, '· tỉ lệ người', round(kS, 3))
+    G_SUNG = do_sung(sung)
+    me_ = max([o for o in bpy.data.objects if o.type == 'MESH' and o != sung], key=lambda o: len(o.data.vertices))
+    zz = [(me_.matrix_world @ v.co).z for v in me_.data.vertices]; caoT = max(zz) - min(zz)
+    kS = dai_that * (caoT / cao_that) / G_SUNG['L']
+    print('súng', ten_sung, '· dài lưới', round(G_SUNG['L'], 3), '→', round(dai_that * caoT / cao_that, 3), '(người cao', round(caoT, 3), ') · báng→ốp lót', round(G_SUNG['lech'] * kS, 3))
 
 # ---------------------------------------------------------------- đổi từng động tác
-def doi(ten, tep, taiCho):
+def doi(ten, tep, taiCho, kh=None, pp=False):
     src = nhap(os.path.join(THU_MUC, tep)); S = next(o for o in src if o.type == 'ARMATURE')
     A = S.animation_data.action if S.animation_data else None
     if not A: print('không có động tác', tep); return None
@@ -112,7 +121,9 @@ def doi(ten, tep, taiCho):
     act = bpy.data.actions.new(ten); act.use_fake_user = True
     ARM.animation_data_create(); ARM.animation_data.action = act
     f0, f1 = int(A.frame_range[0]), int(A.frame_range[1]); sc = bpy.context.scene; p0 = None
-    for f in range(f0, f1 + 1):
+    if kh: f0, f1 = max(f0, kh[0]), min(f1, kh[1])
+    ds = list(range(f0, f1 + 1)); ds = ds + ds[-2:0:-1] if pp else ds                                # đi rồi về: lặp không giật
+    for j, f in enumerate(ds):
         sc.frame_set(f); bpy.context.view_layer.update()
         WS = {pb.name: (Q @ Ms @ pb.matrix) for pb in S.pose.bones}
         hp = WS['mixamorig:Hips'].translation
@@ -133,14 +144,14 @@ def doi(ten, tep, taiCho):
             loc = (REST[b.parent.name].inverted() @ REST[n]) if b.parent else REST[n]
             pa = MW[b.parent.name] if b.parent else Matrix()
             pb.matrix_basis = loc.inverted() @ pa.inverted() @ MW[n]
-            pb.keyframe_insert('location', frame=f - f0 + 1); pb.keyframe_insert('rotation_quaternion', frame=f - f0 + 1)
+            pb.keyframe_insert('location', frame=j + 1); pb.keyframe_insert('rotation_quaternion', frame=j + 1)
     for o in src: bpy.data.objects.remove(o, do_unlink=True)
-    print('động tác', ten, '←', tep, f1 - f0 + 1, 'khung', '(tại chỗ)' if taiCho else '')
+    print('động tác', ten, '←', tep, kh or '', len(ds), 'khung', '(tại chỗ)' if taiCho else '', '(đi-về)' if pp else '')
     return act
 for pb in ARM.pose.bones: pb.rotation_mode = 'QUATERNION'
 ACTS = {}
-for ten, tep, tc in CLIP:
-    a = doi(ten, tep, tc)
+for ten, tep, tc, kh, pp in CLIP:
+    a = doi(ten, tep, tc, kh, pp)
     if a: ACTS[ten] = a
 for a in list(bpy.data.actions):                                                # bỏ động tác nguồn còn sót
     if a.name not in ACTS: bpy.data.actions.remove(a)
@@ -148,18 +159,22 @@ for a in list(bpy.data.actions):                                                
 # ---------------------------------------------------------------- canh súng theo tư thế ngắm mới
 if sung is not None and G_SUNG and NGAM in ACTS:
     A = ACTS[NGAM]; ARM.animation_data.action = A; bpy.context.scene.frame_set(int(sum(A.frame_range) / 2)); bpy.context.view_layer.update()
-    rh = ARM.pose.bones['mixamorig:RightHand'].head.copy(); lh = ARM.pose.bones['mixamorig:LeftHand'].head.copy()
-    g, dl, ul = G_SUNG
-    dw = (lh - rh).normalized(); uw = Vector((0, 0, 1)); uw = (uw - dw * uw.dot(dw)).normalized()
-    ul2 = (ul - dl * ul.dot(dl)).normalized()
-    Bl = Matrix((dl, ul2, dl.cross(ul2))).transposed(); Bw = Matrix((dw, uw, dw.cross(uw))).transposed()
-    R = Bw @ Bl.inverted()                                                       # hệ súng → thế giới
-    M = Matrix.Translation(rh) @ R.to_4x4() @ Matrix.Scale(s0 * kS, 4) @ Matrix.Translation(-g)
-    Rel = ARM.pose.bones['mixamorig:RightHand'].matrix.inverted() @ M              # súng so với xương bàn tay ở tư thế ngắm
+    def long_tay(n): pb = ARM.pose.bones[n]; return (pb.head + pb.tail) / 2                     # giữa bàn tay (lòng bàn tay)
+    pR, pL = long_tay('mixamorig:RightHand'), long_tay('mixamorig:LeftHand'); G = G_SUNG
+    xuong = Vector((0, 0, -1)); b_ = (pL - pR).normalized()
+    for _ in range(6):                                                                         # nòng b, băng đạn n: tay trái ở ốp lót (sát thân súng), tay phải ở tay cầm thấp hơn trục hg
+        n_ = (xuong - b_ * xuong.dot(b_)).normalized(); b_ = ((pL - pR) + n_ * (G['hg'] * kS)).normalized()
+    n_ = (xuong - b_ * xuong.dot(b_)).normalized()
+    Bl = Matrix((G['ax'], G['dn'], G['ax'].cross(G['dn']))).transposed(); Bw = Matrix((b_, n_, b_.cross(n_))).transposed()
+    R = Bw @ Bl.inverted()
+    e_ = G['lech'] * kS - (pL - pR).dot(b_)                                                     # động tác Mixamo để hai tay gần nhau hơn khoảng báng→ốp lót: chia đôi sai lệch
+    M = Matrix.Translation(pR - b_ * (e_ / 2)) @ R.to_4x4() @ Matrix.Scale(kS, 4) @ Matrix.Translation(-G['g'])
+    Rel = ARM.pose.bones['mixamorig:RightHand'].matrix.inverted() @ M
+    print('hai tay cách', round((pL - pR).length, 3), 'm · báng→ốp lót trên súng', round(G['lech'] * kS, 3), 'm')
     nghi(ARM)
     sung.parent = None; sung.matrix_world = REST['mixamorig:RightHand'] @ Rel; bpy.context.view_layer.update()
     Mw = sung.matrix_world.copy(); sung.parent = ARM; sung.parent_type = 'BONE'; sung.parent_bone = 'mixamorig:RightHand'; sung.matrix_world = Mw
-    print('canh súng theo', NGAM, '· tỉ lệ', round(kS, 3))
+    print('canh súng theo', NGAM)
 nghi(ARM)
 for o in list(bpy.data.objects):
     if o.type == 'MESH' and o.name.startswith('Icosphere'): bpy.data.objects.remove(o, do_unlink=True)

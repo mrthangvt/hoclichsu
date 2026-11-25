@@ -39,6 +39,11 @@ for o in bpy.data.objects:                                                     #
         PHU.append(o); mes.append(o)
 print('phụ', [o.name for o in PHU])
 tri0 = sum(len(p.vertices) - 2 for p in me_o.data.polygons)                    # giảm lưới THÂN trước khi ghép súng (súng ít tam giác, giảm chung thì mất hình súng)
+wm = me_o.modifiers.new('han', 'WELD'); wm.merge_threshold = 1e-5                     # V1.4 (anh Thắng: lính thủng lỗ): hàn đỉnh trùng ở đường nối UV trước khi giảm lưới — không hàn thì giảm lưới xé toang đường nối
+with bpy.context.temp_override(object=me_o, active_object=me_o):
+    while me_o.modifiers[0].name != 'han': bpy.ops.object.modifier_move_up(modifier='han')
+    bpy.ops.object.modifier_apply(modifier='han')
+tri0 = sum(len(p.vertices) - 2 for p in me_o.data.polygons)
 dm = me_o.modifiers.new('giam', 'DECIMATE'); dm.ratio = min(1.0, TRI / max(tri0, 1))
 with bpy.context.temp_override(object=me_o, active_object=me_o):
     while me_o.modifiers[0].name != 'giam': bpy.ops.object.modifier_move_up(modifier='giam')
