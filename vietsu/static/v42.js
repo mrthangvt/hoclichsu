@@ -1,4 +1,4 @@
-/* VIỆT SỬ V4.2: lớp giao diện không thay dữ liệu V4.1 */
+/* HỌC LỊCH SỬ V4.2: lớp giao diện không thay dữ liệu V4.1 */
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);

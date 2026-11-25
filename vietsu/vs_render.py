@@ -1,4 +1,4 @@
-"""Việt Sử V3.8 — render HTML phía máy chủ (an toàn XSS) cho trang bài viết / bài học SEO."""
+"""Học Lịch Sử V3.8 — render HTML phía máy chủ (an toàn XSS) cho trang bài viết / bài học SEO."""
 from __future__ import annotations
 
 import html
@@ -182,5 +182,5 @@ def page_shell(*, title: str, description: str, canonical: str, body: str, ads_h
             "<link rel=\"preload\" href=\"/static/fonts/be-vietnam-pro-vietnamese-400-normal.woff2\" as=\"font\" type=\"font/woff2\" crossorigin>"
             "<link rel=\"stylesheet\" href=\"/static/fonts/be-vietnam-pro.css\">"
             f"<style>{PAGE_CSS}</style>{json_ld(schema) if schema else ''}{ads_head}</head><body>"
-            "<div class=\"top\"><a href=\"/\">VIỆT SỬ · 越史</a></div>"
+            "<div class=\"top\"><a href=\"/\">HỌC LỊCH SỬ</a></div>"
             f"<main class=\"wrap\">{body}</main></body></html>")

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Bộ chạy thử Việt Sử V4.9 trên Mac. Không kết nối hay thay đổi VPS.
+# Bộ chạy thử Học Lịch Sử V4.9 trên Mac. Không kết nối hay thay đổi VPS.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -50,7 +50,7 @@ if [ ! -f .venv/.vietsu_dependencies_ready ]; then
   touch .venv/.vietsu_dependencies_ready
 fi
 
-echo "Tạo giao diện Việt Sử V4.9 (giữ nguyên V4.1 và dữ liệu CMS)..."
+echo "Tạo giao diện Học Lịch Sử V4.9 (giữ nguyên V4.1 và dữ liệu CMS)..."
 .venv/bin/python tools/build_v49.py
 
 PORT="${PORT:-8000}"

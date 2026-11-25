@@ -1,4 +1,4 @@
-// Bộ máy sa bàn Việt Sử 1.1.0 — docs/KHUNG_SA_BAN.md. Bản 1.0.0 (tách từ Ngọc Hồi – Đống Đa V10) + phần sông nước của Rạch Gầm – Xoài Mút V2.0
+// Bộ máy sa bàn Học Lịch Sử 1.1.0 — docs/KHUNG_SA_BAN.md. Bản 1.0.0 (tách từ Ngọc Hồi – Đống Đa V10) + phần sông nước của Rạch Gầm – Xoài Mút V2.0
 // (thuyền, nước theo độ sâu, ánh sáng theo cảnh, lời bình đồng bộ, nhạc nền, đi thuyền). Phần biên đạo riêng của trận: pack.json › script.
 // Mọi thứ riêng của một trận nằm trong gói: packs/<id>/pack.json, story.json, placement.json, terrain/, units/, props/, audio/.
 import * as THREE from "./vendor/three/three.module.min.js";

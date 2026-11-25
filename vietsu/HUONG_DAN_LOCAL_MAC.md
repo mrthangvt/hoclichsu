@@ -1,4 +1,4 @@
-# VIỆT SỬ V4.1 – CHẠY WEBSITE ĐẦY ĐỦ TRÊN MAC (LOCALHOST)
+# HỌC LỊCH SỬ V4.1 – CHẠY WEBSITE ĐẦY ĐỦ TRÊN MAC (LOCALHOST)
 
 Đây là gói chạy thử nội bộ, dựa trên nguyên bộ backend V4.1, **không phải chỉ là HTML offline**.
 

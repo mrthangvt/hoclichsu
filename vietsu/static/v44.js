@@ -1,4 +1,4 @@
-/* VIỆT SỬ V4.4 — Hoán đổi avatar giai đoạn Hồ Chí Minh 4 và 5.
+/* HỌC LỊCH SỬ V4.4 — Hoán đổi avatar giai đoạn Hồ Chí Minh 4 và 5.
  * 4: 1941–1945 (Tổng khởi nghĩa Tháng Tám).
  * 5: 1945–1954 (Kháng chiến chống Pháp).
  * Không thay đổi năm, lời dẫn hoặc các giai đoạn khác.

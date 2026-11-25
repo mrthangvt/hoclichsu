@@ -1,4 +1,4 @@
-/* Việt Sử V5.6 — theo yêu cầu chủ dự án (23/11/2026):
+/* Học Lịch Sử V5.6 — theo yêu cầu chủ dự án (23/11/2026):
    1) Sơ đồ triều đại có đủ các đời vua (trước đây nhánh Hoàng đế của nhà Trần chỉ có 3 vua).
    2) Hồ sơ cho các vua và tướng lĩnh, danh nhân; hiện trong tab Nhân vật.
    3) Sự kiện văn hóa theo triều đại (tab Văn hóa – xã hội).

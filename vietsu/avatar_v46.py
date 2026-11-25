@@ -1,4 +1,4 @@
-"""Việt Sử V4.6: quản lý ảnh đại diện riêng, không sửa dữ liệu lịch sử gốc."""
+"""Học Lịch Sử V4.6: quản lý ảnh đại diện riêng, không sửa dữ liệu lịch sử gốc."""
 from __future__ import annotations
 
 import re

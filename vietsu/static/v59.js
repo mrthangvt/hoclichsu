@@ -1,4 +1,4 @@
-/* Việt Sử V5.9 — theo yêu cầu chủ dự án (24/11/2026): tổng hợp các sách mới trong "Tài liệu sử".
+/* Học Lịch Sử V5.9 — theo yêu cầu chủ dự án (24/11/2026): tổng hợp các sách mới trong "Tài liệu sử".
    1) Nhân vật mới: Từ điển nhân vật lịch sử Việt Nam, Những tấm gương anh hùng liệt sĩ của tuổi trẻ Việt Nam.
    2) Dòng thời gian Chủ tịch Hồ Chí Minh: nội dung từng mốc theo Tiểu sử Chủ tịch Hồ Chí Minh, thêm mốc mới.
    3) Dòng thời gian chung: thêm sự kiện theo Việt sử toàn thư (Phạm Văn Sơn).
@@ -140,7 +140,7 @@ function hoSoDayDu(){
  const bio=document.getElementById('v24-bio');
  if(bio)bio.innerHTML='<h3>Tiểu sử và thời đại</h3>'+p.bioParagraphs.map((t,i,a)=>'<p'+(i===a.length-1?' class="vs59-nguon"':'')+'>'+esc(t)+'</p>').join('');
  const head=document.querySelector('.v24-article-header .panel > p');if(head)head.textContent=p.bioParagraphs[0];
- document.querySelectorAll('.v24-article-facts dt').forEach(dt=>{if(/Nguồn/.test(dt.textContent)&&dt.nextElementSibling)dt.nextElementSibling.textContent=p.sourceBook||'Ban biên tập Việt Sử';});
+ document.querySelectorAll('.v24-article-facts dt').forEach(dt=>{if(/Nguồn/.test(dt.textContent)&&dt.nextElementSibling)dt.nextElementSibling.textContent=p.sourceBook||'Ban biên tập Học Lịch Sử';});
 }
 function caiModal(){
  if(typeof renderModal!=='function'||window.__vs59Modal)return;

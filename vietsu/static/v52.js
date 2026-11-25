@@ -1,4 +1,4 @@
-/* Việt Sử V5.2 — mở rộng giao diện chuẩn V4.11, không thay icon/tài nguyên gốc. */
+/* Học Lịch Sử V5.2 — mở rộng giao diện chuẩn V4.11, không thay icon/tài nguyên gốc. */
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
@@ -10,13 +10,13 @@ function openExam(){
  exam.hidden=false;
  const iframe=$('vs52ExamFrame');if(iframe&&!iframe.getAttribute('src'))iframe.src=new URL('on-thi/index.html',document.baseURI).href;
  document.querySelectorAll('.nav,.mobile-sections button').forEach(el=>{const yes=el.hasAttribute('data-vs-exam-new');el.classList.toggle('active',yes);if(yes)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
- const crumb=document.querySelector('.crumb');if(crumb)crumb.textContent='VIỆT SỬ / Bộ đề ôn Sử';
+ const crumb=document.querySelector('.crumb');if(crumb)crumb.textContent='HỌC LỊCH SỬ / Bộ đề ôn Sử';
  window.scrollTo({top:0,behavior:'smooth'});
 }
 function prepareExam(){
  const host=$('schoolHistory');if(!host||$('vs52ExamView'))return;
  exam=document.createElement('section');exam.id='vs52ExamView';exam.hidden=true;
- exam.innerHTML='<div class="vs52-exam-head"><div class="eyebrow">HỌC TẬP · ÔN LUYỆN</div><h1>BỘ ĐỀ ÔN SỬ</h1><p>Lựa chọn lớp 10, 11 hoặc 12 và làm bài ngay trong không gian Việt Sử.</p></div><div class="vs52-exam-shell"><iframe id="vs52ExamFrame" title="Bộ đề ôn Sử lớp 10, 11, 12" loading="lazy"></iframe></div>';
+ exam.innerHTML='<div class="vs52-exam-head"><div class="eyebrow">HỌC TẬP · ÔN LUYỆN</div><h1>BỘ ĐỀ ÔN SỬ</h1><p>Lựa chọn lớp 10, 11 hoặc 12 và làm bài ngay trong không gian Học Lịch Sử.</p></div><div class="vs52-exam-shell"><iframe id="vs52ExamFrame" title="Bộ đề ôn Sử lớp 10, 11, 12" loading="lazy"></iframe></div>';
  host.insertAdjacentElement('afterend',exam);
  document.addEventListener('click',e=>{if(!e.target.closest('[data-vs-exam-new]'))return;e.preventDefault();e.stopImmediatePropagation();openExam();},true);
  document.addEventListener('keydown',e=>{if(!e.target.closest('[data-vs-exam-new]')||!['Enter',' '].includes(e.key))return;e.preventDefault();e.stopImmediatePropagation();openExam();},true);

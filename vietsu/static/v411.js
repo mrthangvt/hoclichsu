@@ -1,4 +1,4 @@
-/* Việt Sử V4.11 — chỉ chèn MỘT mục điều hướng trên "Sách giáo khoa". Giao diện V4.6 giữ nguyên. */
+/* Học Lịch Sử V4.11 — chỉ chèn MỘT mục điều hướng trên "Sách giáo khoa". Giao diện V4.6 giữ nguyên. */
 (function(){
 'use strict';
 const MARK='data-vs-exam-linked';

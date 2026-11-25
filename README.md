@@ -1,9 +1,9 @@
-# Học lịch sử — Việt Sử V4.1 + sa bàn 3D Thành cổ Quảng Trị 1972
+# Học lịch sử — Học Lịch Sử V4.1 + sa bàn 3D Thành cổ Quảng Trị 1972
 
-Website học lịch sử **Việt Sử** (dòng thời gian Việt Nam – Trung Quốc – Phương Tây, hồ sơ nhân vật, Sách giáo khoa Lịch sử lớp 6–12, Không gian lịch sử) cùng các **sa bàn 3D** trong mục Không gian lịch sử. Nội dung tái dựng mô phỏng, cần đối chiếu tư liệu.
+Website học lịch sử **Học Lịch Sử** (dòng thời gian Việt Nam – Trung Quốc – Phương Tây, hồ sơ nhân vật, Sách giáo khoa Lịch sử lớp 6–12, Không gian lịch sử) cùng các **sa bàn 3D** trong mục Không gian lịch sử. Nội dung tái dựng mô phỏng, cần đối chiếu tư liệu.
 
 ```
-vietsu/                                   website Việt Sử V4.1 (Python FastAPI + SQLite, CMS /admin)
+vietsu/                                   website Học Lịch Sử V4.1 (Python FastAPI + SQLite, CMS /admin)
 vietsu/static/khong-gian/thanh-co-quang-tri/   sa bàn 3D Thành cổ Quảng Trị (three.js) → /khong-gian/thanh-co-quang-tri/
 blender/                                  script xuất mô hình 3D từ Blender
 tools/                                    công cụ đóng gói (artifact Claude)
