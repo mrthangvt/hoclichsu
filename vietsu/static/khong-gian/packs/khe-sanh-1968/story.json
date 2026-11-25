@@ -487,7 +487,7 @@
      "id": "C03-03",
      "t0": 146.34,
      "t1": 155.77,
-     "size": "Trung",
+     "size": "Toàn",
      "desc": "Pháo binh",
      "may": "Góc ba phần tư từ phía sau khẩu pháo",
      "canh": "Binh sĩ triển khai, ngụy trang"
@@ -708,8 +708,8 @@
      "id": "C04-02",
      "t0": 198.77,
      "t1": 207.75,
-     "size": "Cận",
-     "desc": "Pháo thủ",
+     "size": "Trung",
+     "desc": "Kíp pháo bên khẩu pháo",
      "may": "Cận thao tác chuẩn bị",
      "canh": "Không gán chi tiết kỹ thuật thiếu nguồn"
     },
@@ -753,8 +753,8 @@
      "id": "C04-07",
      "t0": 241.68,
      "t1": 250.26,
-     "size": "Cận",
-     "desc": "Bao cát và vật tư",
+     "size": "Toàn",
+     "desc": "Ụ bao cát, lối vào và lính nấp quanh",
      "may": "Dolly ngắn",
      "canh": "Khói, đất đá, không đặc tả thương tích"
     }
@@ -1181,8 +1181,8 @@
      "id": "C05-03",
      "t0": 332.46,
      "t1": 342.89,
-     "size": "Trung",
-     "desc": "Xe tăng PT-76",
+     "size": "Toàn",
+     "desc": "Xe tăng PT-76 và bộ binh tiếp cận",
      "may": "Camera thấp chếch sườn",
      "canh": "Đoàn xe tiếp cận cùng bộ binh"
     },
@@ -1190,8 +1190,8 @@
      "id": "C05-04",
      "t0": 342.89,
      "t1": 351.8,
-     "size": "Cận",
-     "desc": "Bánh xích và vỏ PT-76",
+     "size": "Toàn",
+     "desc": "Đội hình PT-76 tiến vào cứ điểm",
      "may": "Góc sát xích theo chuyển động",
      "canh": "Chuyển động xích và bụi bùn"
     },
@@ -1199,7 +1199,7 @@
      "id": "C05-05",
      "t0": 351.8,
      "t1": 360.25,
-     "size": "Trung",
+     "size": "Toàn",
      "desc": "Lính tăng và bộ binh",
      "may": "Theo bộ binh phía sau thân xe",
      "canh": "Tiến theo đội hình, tránh xuyên vật thể"
@@ -1440,7 +1440,7 @@
      "id": "C06-03",
      "t0": 409.28,
      "t1": 417.89,
-     "size": "Trung",
+     "size": "Toàn",
      "desc": "Lính trong chiến hào",
      "may": "Tracking ngang hào",
      "canh": "Đào công sự, vận chuyển vật tư"
@@ -1449,8 +1449,8 @@
      "id": "C06-04",
      "t0": 417.89,
      "t1": 426.18,
-     "size": "Cận",
-     "desc": "Bàn tay bùn đất",
+     "size": "Toàn",
+     "desc": "Tổ đào hào",
      "may": "Cận công cụ, bao cát",
      "canh": "Chi tiết môi trường"
     },
@@ -1467,7 +1467,7 @@
      "id": "C09-02",
      "t0": 435.76,
      "t1": 443.31,
-     "size": "Trung",
+     "size": "Toàn",
      "desc": "Binh sĩ trong hào",
      "may": "Góc ngang người",
      "canh": "Vận chuyển quân nhu, quan sát"
@@ -1476,8 +1476,8 @@
      "id": "C09-03",
      "t0": 443.31,
      "t1": 449.94,
-     "size": "Cận",
-     "desc": "Băng cứu thương",
+     "size": "Toàn",
+     "desc": "Tổ cứu thương trong hào",
      "may": "Cận tay băng bó",
      "canh": "Không máu me quá mức"
     },
@@ -1701,7 +1701,7 @@
      "id": "C07-03",
      "t0": 480.08,
      "t1": 488.36,
-     "size": "Trung",
+     "size": "Toàn",
      "desc": "Bộ binh bên ngoài căn cứ",
      "may": "Camera sát công sự",
      "canh": "Tìm nơi trú ẩn và di chuyển"
@@ -1719,7 +1719,7 @@
      "id": "C07-05",
      "t0": 499.98,
      "t1": 508.12,
-     "size": "Cận",
+     "size": "Toàn",
      "desc": "Kiện hàng và dù",
      "may": "Bám kiện hàng rời máy bay",
      "canh": "Hoạt cảnh dù đúng tỷ lệ"
@@ -1962,8 +1962,8 @@
      "id": "C10-05",
      "t0": 568.22,
      "t1": 576.8,
-     "size": "Cận",
-     "desc": "Rotor / giày lính",
+     "size": "Toàn",
+     "desc": "Bãi đáp trực thăng",
      "may": "Đặc tả ngắn",
      "canh": "Không xuyên hình học"
     },
@@ -2180,7 +2180,7 @@
      "id": "C12-02",
      "t0": 609.25,
      "t1": 616.92,
-     "size": "Trung",
+     "size": "Toàn",
      "desc": "Xe vận tải / người rút",
      "may": "Tracking chậm theo tuyến rút",
      "canh": "Di chuyển vật tư"
@@ -2225,8 +2225,8 @@
      "id": "C11-04",
      "t0": 650.02,
      "t1": 659.76,
-     "size": "Cận",
-     "desc": "Binh sĩ / khí tài",
+     "size": "Toàn",
+     "desc": "Xe tăng M48 rút khỏi căn cứ",
      "may": "Đặc tả sức nặng chiến tranh",
      "canh": "Nếu không có rig tốt đổi sang cận vật thể"
     },

@@ -305,6 +305,11 @@ Kiểm tra: `quet_phim.py` hai tầng (thêm phần Kết), `kiem_tra_goi.py`, t
 - Nhận dạng (`tools/sa_ban/voice/asr_khe_sanh1968.json`) khớp 95,4 % số từ. Chỗ lệch chính: "Pê-ga-xớt" (nhận ra "pest"), "Khe Sanh" (nhận ra "khe xanh"), "vây lấn Tà Cơn đến" ở Hồi 11 (nhận dạng sót, mốc nội suy) — phụ đề vẫn theo câu chữ story.
 - Mốc số liệu, tên đơn vị không đổi so với story (phụ đề lấy câu chữ đã soát nguồn ở mục 3).
 
+## 9k. Bản V2.0 (26/11/2026, 0h)
+
+- Tia đạn (Làng Vây, chiến hào vây lấn) và tổ lính Mỹ giữ hàng rào trước đầu hào là MINH HOẠ hướng bắn, không phải số liệu.
+- Ụ bao cát ở khu trung tâm Tà Cơn: số người vào ụ / nấp ngoài là MINH HOẠ.
+
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.

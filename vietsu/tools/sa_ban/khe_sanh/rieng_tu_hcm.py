@@ -191,3 +191,16 @@ a = "H11: ['vi-thanh', 0, 0.44] };"
 assert a in s
 s = s.replace(a, "H11: ['vi-thanh', 0, 0.44], H12: ['hiep-si', 0, 0.3] };", 1)
 p.write_text(s); print('bao tang ok')
+
+# V2.0 (anh Thắng: tiếng nổ, bắn, máy bay át tiếng voice): khi đang có lời đọc, nén hiệu ứng và nhạc mạnh hơn bản HCM
+s = p.read_text()
+a = "duck = voxNoi() ? 0.75 : 1;"
+assert a in s
+s = s.replace(a, "duck = voxNoi() ? (HCM ? 0.75 : 0.45) : (HCM ? 1 : 0.8);", 1)
+a = "(voxNoi() ? 0.72 : 1)"
+assert a in s
+s = s.replace(a, "(voxNoi() ? (HCM ? 0.72 : 0.5) : 1)", 1)
+a = "  AM.prevT = T;\n}"
+assert s.count(a) == 1
+s = s.replace(a, "  if (!HCM && AM.sfx) AM.sfx.gain.setTargetAtTime(voxNoi() ? 0.42 : 0.75, AM.ctx.currentTime, 0.3);   /* V2.0: tiếng nổ / bắn từng phát nhỏ lại khi voice đang đọc */\n  AM.prevT = T;\n}", 1)
+p.write_text(s); print('am luong ok')

@@ -51,13 +51,21 @@ if GOC != '-':
     seg = [0.0] + CAT + [A['dai']]
     f = ''.join(f'[0]atrim={a}:{b},asetpts=PTS-STARTPTS[s{i}];' for i, (a, b) in enumerate(zip(seg, seg[1:])))
     f += f'anullsrc=r=24000:cl=mono,atrim=0:{DAU}[l0];' + ''.join(f'anullsrc=r=24000:cl=mono,atrim=0:{LANG}[l{i + 1}];' for i in range(len(CAT)))
-    f += '[l0]' + ''.join(f'[s{i}][l{i + 1}]' for i in range(len(CAT))) + f'[s{len(CAT)}]concat=n={2 * len(CAT) + 2}:v=0:a=1,aresample=32000[o]'
+    f += '[l0]' + ''.join(f'[s{i}][l{i + 1}]' for i in range(len(CAT))) + f'[s{len(CAT)}]concat=n={2 * len(CAT) + 2}:v=0:a=1,volume=5dB,alimiter=limit=0.8:attack=0.5:release=40:level=disabled,aresample=32000[o]'
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', GOC, '-filter_complex', f, '-map', '[o]', '-ac', '1', '-b:a', '48k', str(mp3)], check=True)
 DAI = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(mp3)], capture_output=True, text=True).stdout)
 # ---- cảnh: hồi bắt đầu trong khoảng lặng chèn, 0,5 s trước tên hồi; Kết kéo thêm 4 s sau câu cuối
 T0 = [0.0] + [round(TG[i][0] - 0.5, 2) for i in dau_ten[1:]]; T1 = T0[1:] + [round(TG[-1][1] + 4.0, 2)]
 # ---- story vo ↔ lời đọc từng hồi (số "1968" ↔ "một nghìn chín trăm sáu mươi tám"): mỗi từ vo lấy mốc các từ lời đọc tương ứng
 ST = json.loads(json.dumps(CU)); SUB_ALL = []
+# V2.0 (anh Thắng 25/11 23h30): bỏ cú cận xe tăng, máy bay, pháo; đoạn đào hào và bộ binh chạy cùng xe tăng lấy toàn (máy quay ở dan_canh_gd4.js)
+CO = {'C04-02': ('Trung', 'Kíp pháo bên khẩu pháo'), 'C04-07': ('Toàn', 'Ụ bao cát, lối vào và lính nấp quanh'), 'C03-03': ('Toàn', None),
+      'C05-03': ('Toàn', 'Xe tăng PT-76 và bộ binh tiếp cận'), 'C05-04': ('Toàn', 'Đội hình PT-76 tiến vào cứ điểm'), 'C05-05': ('Toàn', None),
+      'C06-03': ('Toàn', None), 'C06-04': ('Toàn', 'Tổ đào hào'), 'C09-02': ('Toàn', None), 'C09-03': ('Toàn', 'Tổ cứu thương trong hào'), 'C07-03': ('Toàn', None),
+      'C07-05': ('Toàn', None), 'C10-05': ('Toàn', 'Bãi đáp trực thăng'), 'C11-04': ('Toàn', 'Xe tăng M48 rút khỏi căn cứ'), 'C12-02': ('Toàn', None)}
+for sc_ in ST['scenes']:
+    for sh_ in sc_['shots']:
+        if sh_['id'] in CO: sh_['size'] = CO[sh_['id']][0]; sh_['desc'] = CO[sh_['id']][1] or sh_['desc']
 NOI = {'Khe Sanh...': None}
 for k, sc in enumerate(ST['scenes']):
     idx = [i for i, v in enumerate(VT) if v == (k, 'loi')]; sw = [SW[i] for i in idx]
