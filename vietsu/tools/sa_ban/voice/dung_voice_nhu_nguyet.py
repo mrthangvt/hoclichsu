@@ -80,6 +80,8 @@ def mep_cuoi(t):                                      # tiến tới chỗ hết
     while i < len(E) - 1 and (E[i] > NGUONG or i - t * 100 < 15) and i - t * 100 < 90: i += 1
     return min(len(x) / SR, i / 100 + 0.06)
 
+# ---- cụm bỏ khỏi lời đọc (bản thu còn giữ). 26/11/2026: không có cảnh quân Lý xếp hai hàng cho quân Tống đi giữa (anh Thắng)
+BO = ['đi giữa hai hàng quân Đại Việt,', 'xếp hàng']
 # ---- mỗi câu: các khúc [đầu, cuối] trong bản gốc, nghỉ chèn sau mỗi khúc
 NGHI = {',': 0.22, ';': 0.3, ':': 0.38}
 khuc_cau = []
@@ -96,7 +98,20 @@ for k, (sid, tx, a0) in enumerate(cau):
     pieces, a = [], t0
     for c, ng in cat:
         if c > a + 0.25: pieces.append((a, c, ng)); a = c
-    pieces.append((a, t1, 0.0)); khuc_cau.append(pieces)
+    pieces.append((a, t1, 0.0))
+    for cum in BO:                                    # cắt hẳn một cụm khỏi câu đọc (lời và tiếng), ghép hai phần còn lại có nghỉ dấu phẩy
+        if cum not in tx: continue
+        ct = chuan(cum); ti = [i for i in idx]; pos = next((q for q in range(len(ti) - len(ct) + 1) if toks[ti[q]:ti[q] + len(ct)] == ct), None)
+        if pos is None or ti[pos] not in M or ti[pos + len(ct) - 1] not in M: print('KHÔNG CẮT ĐƯỢC:', cum); continue
+        m0, m1 = M[ti[pos]], M[ti[pos + len(ct) - 1]]
+        c1 = lang_nhat(W[m0 - 1][1] + 0.12, W[m0][1] + 0.04); c2 = lang_nhat(W[m1][1] + 0.12, W[m1 + 1][1] + 0.04)
+        moi = []
+        for pa, pb, ng in pieces:
+            if pb <= c1 or pa >= c2: moi.append((pa, pb, ng)); continue
+            if pa < c1: moi.append((pa, c1, NGHI[','] if cum.endswith(',') else 0.03))
+            if pb > c2: moi.append((c2, pb, ng))
+        pieces = moi; cau[k][1] = tx = tx.replace(cum + ' ', '').replace(' ' + cum, '').replace(cum, ''); print('đã cắt:', cum, round(c2 - c1, 2), 's')
+    khuc_cau.append(pieces)
 
 # ---- đặt câu theo mốc; nghỉ tối thiểu giữa hai câu, dài hơn sau câu ngắn kết đoạn
 POEM_MOC = [766.0, 769.5, 773.0, 776.5]; YTHO = 779.6

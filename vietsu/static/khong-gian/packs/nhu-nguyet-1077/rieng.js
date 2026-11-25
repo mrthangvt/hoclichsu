@@ -595,13 +595,12 @@ const tmHead = (t) => tmLen - 150 + (t - 425) * TM_V;          // đầu đoàn 
 const EXIT_G = [CAMP.x, CAMP.z - CAMP.d / 2 - 12];
 const EXITP = [[CAMP.x, CAMP.z + 150], [CAMP.x, CAMP.z - CAMP.d / 2 - 20], [CAMP.x + 60, CAMP.z - CAMP.d / 2 - 100], [900, -1000], [1350, -1250], [1900, -1700], [2160, -2190]];
 const exLen = polyLen(EXITP), EX_GATE = Math.abs(EXITP[1][1] - EXITP[0][1]);
-const exitHead = (t) => EX_GATE - 30 + Math.max(0, t - 925) * 2.0;
-const EXIT_LINE = [];
-// Lý Thường Kiệt và 4 tướng cưỡi ngựa đứng sau 3 hàng quân phía Đông, quay mặt vào đường quân Tống đi qua
-const VIEW13 = (() => { const d0 = EX_GATE + 30, p = polyAt(EXITP, d0), p2 = polyAt(EXITP, d0 + 3), yw = Math.atan2(p2[0] - p[0], p2[1] - p[1]), out = [];
-  for (let k = 0; k < 5; k++) { const along = (k - 2) * 5.5, off = 22 + (k === 0 ? 0 : 3); out.push([p[0] + Math.sin(yw) * along + Math.cos(yw) * off, p[1] + Math.cos(yw) * along - Math.sin(yw) * off, Math.atan2(-Math.cos(yw), Math.sin(yw))]); }
+const exitHead = (t) => EX_GATE - 30 + Math.max(0, t - 925) * 1.45;              // đi chậm, lê bước
+// 26/11/2026 (anh Thắng): không có cảnh quân Lý xếp hai hàng cho quân Tống đi giữa. Lý Thường Kiệt mở một con đường cho Quách Quỳ rút quân;
+// Lý Thường Kiệt và 4 tướng cưỡi ngựa đứng xa trên gò phía Đông nhìn đoàn quân Tống lủi thủi kéo về
+const VIEW13 = (() => { const d0 = EX_GATE + 75, p = polyAt(EXITP, d0), p2 = polyAt(EXITP, d0 + 3), yw = Math.atan2(p2[0] - p[0], p2[1] - p[1]), out = [];
+  for (let k = 0; k < 5; k++) { const along = (k - 2) * 6, off = 58 + (k === 0 ? 0 : 3.5); out.push([p[0] + Math.sin(yw) * along + Math.cos(yw) * off, p[1] + Math.cos(yw) * along - Math.sin(yw) * off, Math.atan2(-Math.cos(yw), Math.sin(yw))]); }
   [out[0], out[2]] = [out[2], out[0]]; return out; })();
-for (let d = EX_GATE + 6; d < EX_GATE + 230; d += 3.0) for (const s of [-1, 1]) for (const off of [7.5, 10.3, 13.1]) { const p = polyAt(EXITP, d + (off > 8 ? 1.5 : 0)), p2 = polyAt(EXITP, d + 3); const yw = Math.atan2(p2[0] - p[0], p2[1] - p[1]); EXIT_LINE.push([p[0] + Math.cos(yw) * s * off, p[1] - Math.sin(yw) * s * off, Math.atan2(-s * Math.cos(yw), s * Math.sin(yw))]); }      // V1.5: mỗi bên 3 hàng quân
 // quân Tống trong trại
 const CAMPS = [];
 for (let i = 0; i < 230; i++) { const tt = CAMP_T[(i * 7) % CAMP_T.length]; const a = rnd(i, 70) * 6.28; CAMPS.push([tt.x + Math.cos(a) * 6, tt.z + Math.sin(a) * 6, rnd(i, 71) * 6.28]); }
@@ -851,16 +850,15 @@ function updateLand(t) {
       _np.set(x, hG(x, z), z); nvPut('linh-tong', clip, t, rnd(j, 87), _np, yaw, farScale(x, _np.y, z), wpn, tSeg, j);
     });
   }
-  // ---- C13: quân Tống xếp hàng ra cổng Bắc của trại về nước, quân Lý đứng hai bên đường
+  // ---- C13: tàn quân Tống lủi thủi theo con đường Lý Thường Kiệt mở sẵn, ra cổng Bắc về nước — đi chậm, rời rạc, không cờ, ít người còn cầm vũ khí, có người tụt lại
   if (t >= 920 && t < 990) {
     for (let i = 0; i < 240; i++) {
-      const row = Math.floor(i / 4), d = exitHead(t) - 8 - row * 3.0;
-      const col = (i % 4) - 1.5, dd = clamp(d, 0, exLen - 1), p = polyAt(EXITP, dd), p2 = polyAt(EXITP, Math.min(exLen, dd + 4)); const yaw = Math.atan2(p2[0] - p[0], p2[1] - p[1]);
-      const x = p[0] + Math.cos(yaw) * col * 1.9, z = p[1] - Math.sin(yaw) * col * 1.9; _np.set(x, hG(x, z), z);
-      const moving = t >= 925 && d > 0;
-      nvPut('linh-tong', moving ? 'di' : 'thu', t * 0.9, rnd(i, 59), _np, yaw, farScale(x, _np.y, z), i % 6 === 1 ? 'giao' : null, 0, i);
+      const lag = i * 0.95 + rnd(i, 61) * 7 + (i % 17 === 0 ? 22 + rnd(i, 62) * 20 : 0), d = exitHead(t) - 8 - lag;
+      const dd = clamp(d, 0, exLen - 1), p = polyAt(EXITP, dd), p2 = polyAt(EXITP, Math.min(exLen, dd + 4)); const yw = Math.atan2(p2[0] - p[0], p2[1] - p[1]);
+      const lat = (rnd(i, 63) - 0.5) * 8 + Math.sin(t * 0.35 + i) * 0.5, x = p[0] + Math.cos(yw) * lat, z = p[1] - Math.sin(yw) * lat; _np.set(x, hG(x, z), z);
+      const moving = t >= 925 && d > 0, cham = 0.55 + rnd(i, 64) * 0.25;
+      nvPut('linh-tong', moving ? 'di' : 'dung', t * cham, rnd(i, 59), _np, yw + (rnd(i, 65) - 0.5) * 0.3, farScale(x, _np.y, z), i % 7 === 1 ? 'giao' : i % 11 === 2 ? 'dao' : null, 0, i);
     }
-    EXIT_LINE.forEach(([x, z, yaw], i) => { _np.set(x, hG(x, z), z); nvPut('quan-ly', 'dung', t, rnd(i, 60), _np, yaw, farScale(x, _np.y, z), i % 23 === 3 ? 'co' : 'giao', 0, i + 7); });      // đứng thẳng, giáo dựng
   }
   // ---- tướng Tống
   MOUNT.clear();
@@ -879,7 +877,7 @@ function updateLand(t) {
   if (!(t >= 920 && t < 990)) generals.forEach((g, i) => drawP(g, 'quan-ly', t >= 868 && t < 920 ? (t < 900 ? 'chay' : 'chem') : 'dung', 0.2 + i * 0.3, t >= 868 && t < 920 ? 'dao' : i === 0 ? 'co' : null, 0, 20 + i, false));
   if (LHT.visible) { if (MOUNT.has(LHT)) drawMounted(LHT, 'quach-quy', t, t >= 925 || t < 500, 0);
     else { const cl = chihuy(868, 900) ? 'chay' : chihuy(540, 548) ? 'chihuy' : chihuy(680, 820) ? 'buon' : 'dung'; nvPut('quach-quy', cl, t, 0.3, LHT.position, LHT.rotation.y, EXAG, null, t - 540, 0); } }
-  tgen.forEach((g, k) => { if (!g.visible) return; if (MOUNT.has(g)) drawMounted(g, 'quach-quy', t, t >= 925 || t < 500, k + 1, k ? 'co' : null); else nvPut('quach-quy', t >= 680 && t < 820 ? 'buon' : 'dung', t, 0.5 + k, g.position, g.rotation.y, EXAG, null, 0, k + 1); });
+  tgen.forEach((g, k) => { if (!g.visible) return; if (MOUNT.has(g)) drawMounted(g, 'quach-quy', t, t >= 925 || t < 500, k + 1, k && t < 920 ? 'co' : null); /* rút quân (C13): cuốn cờ */ else nvPut('quach-quy', t >= 680 && t < 820 ? 'buon' : 'dung', t, 0.5 + k, g.position, g.rotation.y, EXAG, null, 0, k + 1); });
   tongHero.forEach((h, i) => drawP(h, 'linh-tong', t >= 925 && t < 990 ? 'di' : 'dung', 0.21 * i, i ? 'co' : 'giao', 0, 60 + i, false));
 }
 function updateCamp(t) {
@@ -1197,7 +1195,7 @@ const SHOTS = {
   'C12-F': orbit(V3(CAMP.x, CAMPV.y, CAMP.z + 40), 240, 75, 0.15, 1.55, 42),      // V1.5: bay vòng tròn quanh trại địch
   'C12-G': orbit(V3(CAMP.x, CAMPV.y, CAMP.z), 380, 170, 1.55, 2.6, 44),
   'C13-A': orbit(V3(EXIT_G[0], CAMPV.y, EXIT_G[1]), 320, 120, 3.6, 4.2, 42),
-  'C13-B': (u, t) => { const d = Math.max(EX_GATE + 40, exitHead(t) + 60), p = polyAt(EXITP, d), q = polyAt(EXITP, d - 40), p2 = polyAt(EXITP, d + 4), yw = Math.atan2(p2[0] - p[0], p2[1] - p[1]); return [V3(p[0] + Math.cos(yw) * 3, G(p[0], p[1]) + 5.5, p[1] - Math.sin(yw) * 3), V3(q[0], G(q[0], q[1]) + 3.5, q[1]), 40]; },      // máy lùi trước mặt đoàn: Quách Quỳ cưỡi ngựa đi giữa hai hàng quân Lý
+  'C13-B': (u, t) => { const d = Math.max(EX_GATE + 40, exitHead(t) + 60), p = polyAt(EXITP, d), q = polyAt(EXITP, d - 40), p2 = polyAt(EXITP, d + 4), yw = Math.atan2(p2[0] - p[0], p2[1] - p[1]); return [V3(p[0] + Math.cos(yw) * 3, G(p[0], p[1]) + 5.5, p[1] - Math.sin(yw) * 3), V3(q[0], G(q[0], q[1]) + 3.5, q[1]), 40]; },      // máy lùi trước mặt đoàn: Quách Quỳ cưỡi ngựa dẫn tàn quân lủi thủi về nước
   'C13-C': (u) => { const p = NQ.position, y = NQ.rotation.y; return [V3(p.x - Math.sin(y) * 9 + Math.cos(y) * 5, p.y + 6.5, p.z - Math.cos(y) * 9 - Math.sin(y) * 5), V3(p.x + Math.sin(y) * 30, p.y + 2.5, p.z + Math.cos(y) * 30), 42]; },
   'C13-D': fly(V3(2600, 1800, 1600), V3(3400, 3200, 2200), V3(1500, 0, -1300), MARK.bien.p.clone().setY(0), 45),
   'C14-A': arcLuy(320, 0, 210, 55, 1.0, -0.6, 42),
