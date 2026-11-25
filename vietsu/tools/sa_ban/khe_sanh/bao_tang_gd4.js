@@ -19,10 +19,13 @@
       be.position.set(BT.x, HF - day / 2, BT.z + V0 + D / 2); G.add(be);
       const loi = new THREE.Mesh(new THREE.PlaneGeometry(RG - 30, 7).rotateX(-Math.PI / 2), mat(0x8f6b4e)); loi.position.copy(P(0, -8, 0.02)); G.add(loi); }   /* lối đi giữa (gạch nung) */
     // biển chữ (canvas) — chữ tự vẽ, không dùng ảnh ngoài
+    // V1.8 (anh Thắng: biển mất chữ hai bên; biển hai mặt đều đọc được): cỡ chữ tự thu cho vừa 88 % bề ngang; hai tấm quay lưng vào nhau, mỗi tấm chỉ vẽ mặt trước
+    const veChu = (g, t, co, w) => { let c = co; do { g.font = `700 ${c}px system-ui, sans-serif`; c -= 2; } while (g.measureText(t).width > w && c > 10); };
     const bien = (dong, rong, cao, nen = '#2a2118', chu = '#f1e2b8') => { const cv = document.createElement('canvas'); cv.width = 1024; cv.height = Math.round(1024 * cao / rong); const g = cv.getContext('2d');
       g.fillStyle = nen; g.fillRect(0, 0, cv.width, cv.height); g.strokeStyle = chu; g.lineWidth = 6; g.strokeRect(10, 10, cv.width - 20, cv.height - 20); g.fillStyle = chu; g.textAlign = 'center'; g.textBaseline = 'middle';
-      dong.forEach(([t, co], i) => { g.font = `700 ${co}px system-ui, sans-serif`; g.fillText(t, cv.width / 2, cv.height * (i + 0.5) / dong.length); });
-      const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; return new THREE.Mesh(new THREE.PlaneGeometry(rong, cao), new THREE.MeshBasicMaterial({ map: tx, side: THREE.DoubleSide })); };
+      dong.forEach(([t, co], i) => { veChu(g, t, co, cv.width * 0.88); g.fillText(t, cv.width / 2, cv.height * (i + 0.5) / dong.length); });
+      const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; const m = new THREE.MeshBasicMaterial({ map: tx }), gr = new THREE.Group();
+      const a = new THREE.Mesh(new THREE.PlaneGeometry(rong, cao), m), b = new THREE.Mesh(new THREE.PlaneGeometry(rong, cao), m); b.rotation.y = Math.PI; b.position.z = -0.02; gr.add(a, b); return gr; };
     { const c = bien([['KHÔNG GIAN TRƯNG BÀY KHÍ TÀI', 74], ['CHIẾN DỊCH ĐƯỜNG 9 – KHE SANH 1968', 52], ['Tái dựng mô phỏng · Học Lịch Sử', 36]], 24, 6.5); c.position.copy(P(-RG / 2 + 6, -8, 7.2)); c.rotation.y = -Math.PI / 2; G.add(c);
       for (const s of [-1, 1]) { const tru = new THREE.Mesh(new THREE.BoxGeometry(0.8, 10.5, 0.8), mat(0x6f5a43)); tru.position.copy(P(-RG / 2 + 6, -8 + s * 12.4, 5.25)); G.add(tru); } }
     { const a = bien([['QUÂN GIẢI PHÓNG', 80], ['Quân đội nhân dân Việt Nam', 50]], 16, 4, '#5c1410', '#ffe9a8'); a.position.copy(P(-RG / 2 + 16, -30, 3)); a.rotation.y = -Math.PI / 2; G.add(a);
@@ -69,10 +72,24 @@
         ks: 'Chiến dịch Niagara: B-52 bay 2.548 lượt, ném 59.542 tấn bom quanh Khe Sanh; toàn chiến dịch không quân ném 98.721 tấn bom.', ng: ['M31', 'M19', 'M9', 'M10'] },
     ];
     const BUC = mat(0xddd6c8), VIEN = mat(0x8c8476);
+    // V1.8 (anh Thắng: cạnh khí tài có bảng thông tin như ở bảo tàng, lại gần bấm vào xem): bảng nghiêng trên chân, quay ra lối đi
+    const BANG = [], chanMat = mat(0x3b342b);
+    const bangTT = (k, i) => { const cv = document.createElement('canvas'); cv.width = 640; cv.height = 440; const g = cv.getContext('2d'), qgp = k.ben === 'qgp';
+      g.fillStyle = '#f3ecdc'; g.fillRect(0, 0, 640, 440); g.fillStyle = qgp ? '#8e1c14' : '#1c3468'; g.fillRect(0, 0, 640, 70);
+      g.fillStyle = '#fff'; g.textAlign = 'left'; g.textBaseline = 'middle'; veChu(g, k.ten, 34, 600); g.fillText(k.ten, 20, 36);
+      g.fillStyle = '#3a2f22'; g.font = '600 22px system-ui, sans-serif'; g.fillText({ qgp: 'Quân Giải phóng (QĐND Việt Nam)', my: 'Quân đội Mỹ', vnch: 'Quân lực VNCH' }[k.ben], 20, 98);
+      k.tt.slice(0, 4).forEach(([a, v], r) => { g.font = '600 21px system-ui, sans-serif'; g.fillStyle = '#6b5a40'; veChu(g, a, 21, 250); g.fillText(a, 20, 150 + r * 54); g.fillStyle = '#1e1810'; veChu(g, v, 23, 340); g.fillText(v, 280, 150 + r * 54); });
+      g.fillStyle = '#8a6d3b'; g.font = 'italic 600 20px system-ui, sans-serif'; g.fillText('Bấm vào bảng hoặc khí tài để xem đầy đủ, có nguồn', 20, 412);
+      const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 4;
+      const gr = new THREE.Group(), bang = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.03, 0.04), [chanMat, chanMat, chanMat, chanMat, new THREE.MeshBasicMaterial({ map: tx }), chanMat]);
+      bang.position.y = 1.15; bang.rotation.x = -0.5; gr.add(bang); const chan = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.0, 0.08), chanMat); chan.position.y = 0.5; gr.add(chan);
+      const huongLoi = k.v < -8 ? 1 : -1, xa = k.buc ? k.buc[1] / 2 + 1.6 : 30, lech = k.buc ? k.buc[0] / 2 - 0.6 : 0;
+      gr.position.copy(P(k.u + lech, k.v + huongLoi * xa, 0)); gr.rotation.y = huongLoi > 0 ? 0 : Math.PI; gr.userData.btK = i; G.add(gr); BANG.push(gr); };
+    K.forEach((k, i) => bangTT(k, i));
     for (const k of K) {
-      if (k.buc) { const [a, b] = k.buc, m = new THREE.Mesh(new THREE.BoxGeometry(a, 0.5, b), [VIEN, VIEN, BUC, VIEN, VIEN, VIEN]); m.position.copy(P(k.u, k.v, 0.25)); G.add(m); k.dy = 0.5; }
+      if (k.buc) { const [a, b] = k.buc, m = new THREE.Mesh(new THREE.BoxGeometry(a, 0.5, b), [VIEN, VIEN, BUC, VIEN, VIEN, VIEN]); m.position.copy(P(k.u, k.v, 0.25)); m.userData.btK = K.indexOf(k); G.add(m); k.dy = 0.5; }
       else { const m = new THREE.Mesh(new THREE.RingGeometry(26, 27.2, 48).rotateX(-Math.PI / 2), mat(0xf0e6c8)); m.position.copy(P(k.u, k.v, 0.03)); G.add(m); k.dy = 0; }   /* máy bay lớn: vòng kẻ trên sàn */
-      if (k.mau) glbLoad(k.mau).then((g) => { const o = g.scene.clone(true); o.position.copy(P(k.u, k.v, k.dy)); o.rotation.y = k.y; G.add(o); k.o = o;
+      if (k.mau) glbLoad(k.mau).then((g) => { const o = g.scene.clone(true); o.position.copy(P(k.u, k.v, k.dy)); o.rotation.y = k.y; o.userData.btK = K.indexOf(k); G.add(o); k.o = o;
         if (k.co) { const c = KS.taoCo(k.co, 1.1, 2.6, o); c.position.set(-0.6, 2.0, -1.6); }
         if (G.visible) KS.napSan(o); });
     }
@@ -92,6 +109,13 @@
       const n = document.createElement('div'); n.className = 'src'; n.textContent = 'Nguồn: ' + k.ng.map((id) => NG[id] ? `${id} · ${NG[id].title}` : id).join('; '); the.append(n);
       the.hidden = false; };
     KS.BT.moThe = moThe; KS.BT.K = K;
+    { const rc = new THREE.Raycaster(), nd = new THREE.Vector2(); let p0 = null;
+      const ngoai = (e) => e.target.closest && e.target.closest('button, input, select, a, .card, #btThe, .lbl b, #joy, #runbtn');   /* bấm vào giao diện thì bỏ qua */
+      addEventListener('pointerdown', (e) => { p0 = ngoai(e) ? null : [e.clientX, e.clientY]; }, true);
+      addEventListener('pointerup', (e) => { if (!p0 || ngoai(e) || !G.visible || Math.hypot(e.clientX - p0[0], e.clientY - p0[1]) > 6) return;
+        const r = renderer.domElement.getBoundingClientRect(); nd.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1); rc.setFromCamera(nd, camera);
+        for (const h of rc.intersectObject(G, true)) { if (h.distance > 260) break; let o = h.object; while (o && o.userData.btK == null && o !== G) o = o.parent; if (o && o.userData.btK != null) { moThe(K[o.userData.btK]); e.stopPropagation(); return; } } });
+      addEventListener('keydown', (e) => { if (e.key === 'Escape') the.hidden = true; }); }   /* V1.8: bấm khí tài, bục, bảng thông tin đều mở thẻ */
     GHIM_SAU.push(() => { for (const k of K) addLabel(k.ten, BT.x + k.u, BT.z + k.v, 'hero ' + (k.ben === 'qgp' ? 'ly' : 'btmy'), { grp: 'hero', maxDist: 300, yFn: () => HF + k.dy + k.h + 0.8,
       show: () => G.visible, onClick: () => moThe(k) }); });
     // hiện / ẩn: chỉ hiện ở hồi cuối và khi tự khám phá — trong phim các hồi trận đánh không thấy
@@ -108,11 +132,10 @@
     // nút vào đi bộ tham quan (cuối phim và khi khám phá)
     // V1.7 (anh Thắng): hết phim hiện nút "Vào Bảo tàng" (phải) và nút trở về trang Không gian lịch sử (trái). Địa chỉ trang: pack.json › ui.trangChu (mặc định "/").
     const ve = document.createElement('button'); ve.id = 'btVe'; ve.hidden = true; ve.textContent = '← Về trang Không gian lịch sử'; document.body.appendChild(ve);
-    ve.onclick = () => { const u = (PACK.ui && PACK.ui.trangChu) || '/', ngoai = window.parent !== window && window.parent.__doiTang;
-      if (ngoai) { if (/^https?:/.test(u)) window.open(u, '_blank', 'noopener'); else window.parent.__doiTang(''); } else location.href = u; };   /* bản Artifact không mở được trang ngoài trong khung: có địa chỉ đầy đủ thì mở thẻ mới, không thì về màn mở đầu */
+    ve.onclick = () => KS.veTrang();
     const nut = document.createElement('button'); nut.id = 'btVao'; nut.hidden = true; nut.textContent = '🏛 Vào Bảo tàng khí tài (đi bộ) →'; document.body.appendChild(nut);
     requestAnimationFrame(lapBT);
-    KS.BT.vao = () => nut.onclick();
+    KS.BT.vao = () => nut.onclick(); KS.BT.G = G;
     if (QS.get('baotang') === '1') { const cho = setInterval(() => { if (!document.getElementById('load')) { clearInterval(cho); setTimeout(() => KS.BT.vao(), 400); } }, 300); }   /* mở từ nút "Bảo tàng" ở tầng chiến dịch */
     nut.onclick = () => { setPlaying(false); setAppMode('explore'); flyA = null;
       controls.target.copy(P(-RG / 2 + 22, -8, 1.6)); camera.position.copy(controls.target).add(V3(-9, 3, 0)); setWalk(true); };
@@ -125,10 +148,18 @@
       'C14-05': dolly(P(-RG / 2 - 60, -8, 30), P(-RG / 2 - 16, -8, 16), P(0, -6, 0), P(10, -6, 0), 50) };   /* V1.7: dừng trên cao sau biển cổng — không để biển che kín khung khi hiện hai nút cuối phim */
     for (const [id, fn] of Object.entries(C14)) SHOTS[id] = fn;
   }
-  // V1.7 (anh Thắng: có nút Bảo tàng trưng bày ở cùng bộ nút phía trên để vào trải nghiệm lúc nào cũng được) — cả hai tầng
-  { const tl = document.querySelector('.hud.top .right .tools'), b = document.createElement('button'); b.className = 'chip'; b.id = 'bBT'; b.textContent = '🏛 Bảo tàng'; b.title = 'Không gian trưng bày khí tài hai bên — đi bộ tham quan';
-    if (tl) tl.insertBefore(b, $('bdocs') || null);
+  // V1.8 (anh Thắng): nút "Bảo tàng" đặt trong nhóm chế độ: Phim tự động · Bảo tàng · Khám phá · Góc nhìn nhân vật — bấm để chuyển qua lại; cả hai tầng
+  { const md = $('modes'), b = document.createElement('button'); b.id = 'bBT'; b.setAttribute('role', 'tab'); b.textContent = '🏛 Bảo tàng'; b.title = 'Không gian trưng bày khí tài hai bên — đi bộ tham quan';
+    const phim = md && md.querySelector('button[data-m="film"]'); if (md) md.insertBefore(b, phim ? phim.nextSibling : null);
     b.onclick = () => { if (TANG === 'ta-con' && KS.BT && KS.BT.vao) { KS.BT.vao(); return; }
       const h = STORY.scenes.find((c) => c.id === 'H12'), q = new URLSearchParams(location.search); q.set('tang', 'ta-con'); q.set('t', ((h ? h.t0 : 824) + 3).toFixed(2)); q.set('phat', '1'); q.set('baotang', '1'); q.delete('chuong'); q.delete('tiep');
       let anh = null; try { renderer.render(scene, camera); anh = renderer.domElement.toDataURL('image/jpeg', 0.82); } catch (e) {}
-      if (window.parent !== window && window.parent.__doiTang) window.parent.__doiTang(q.toString(), anh); else location.search = q.toString(); }; }
+      if (window.parent !== window && window.parent.__doiTang) window.parent.__doiTang(q.toString(), anh); else location.search = q.toString(); };
+    md && md.addEventListener('click', (e) => { const x = e.target.closest('button[data-m]'); if (x && x.dataset.m === 'explore' && W.on && KS.BT && KS.BT.G && KS.BT.G.visible && Math.hypot(W.pos.x - KS.BT.BT.x, W.pos.z - KS.BT.BT.z) < 400) setWalk(false); });   /* rời bảo tàng khi bấm Khám phá */
+    const capNut = () => { const o = KS.BT && KS.BT.G && W.on && Math.hypot(W.pos.x - KS.BT.BT.x, W.pos.z - KS.BT.BT.z) < 400;
+      b.classList.toggle('on', !!o); b.setAttribute('aria-selected', !!o); if (o) md.querySelectorAll('button[data-m]').forEach((x) => { x.classList.remove('on'); x.setAttribute('aria-selected', false); });
+      requestAnimationFrame(capNut); }; requestAnimationFrame(capNut); }
+  // V1.8 (anh Thắng: thẻ "Không gian lịch sử" ở trên có nút quay lại trang Không gian lịch sử)
+  KS.veTrang = () => { const u = (PACK.ui && PACK.ui.trangChu) || '/', ngoai = window.parent !== window && window.parent.__doiTang;
+    if (ngoai) { if (/^https?:/.test(u)) window.open(u, '_blank', 'noopener'); else window.parent.__doiTang(''); } else location.href = u; };
+  { const tt = document.querySelector('.card.title .eyebrow'); if (tt) { const b = document.createElement('button'); b.id = 'btLui'; b.title = 'Về trang Không gian lịch sử'; b.setAttribute('aria-label', 'Về trang Không gian lịch sử'); b.textContent = '←'; b.onclick = () => KS.veTrang(); tt.prepend(b); } }

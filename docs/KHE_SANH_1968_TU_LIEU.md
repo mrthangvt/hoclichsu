@@ -283,6 +283,22 @@ Kiểm tra: `quet_phim.py` hai tầng (thêm phần Kết), `kiem_tra_goi.py`, t
 | Nút Bảo tàng ở bộ nút phía trên | nút "🏛 Bảo tàng" cạnh "Tư liệu", có ở cả hai tầng: ở tầng Tà Cơn vào đi bộ ngay; ở tầng chiến dịch chuyển sang Tà Cơn rồi tự vào đi bộ |
 | Hết phim: "Vào Bảo tàng" (phải), về trang Không gian lịch sử (trái) | đã có. Địa chỉ trang Không gian lịch sử: `pack.json › ui.trangChu` (đang để "/"). Trong bản Artifact không mở được trang ngoài trong khung: có địa chỉ đầy đủ (https://…) thì mở thẻ mới, chưa có thì về màn mở đầu sa bàn — **chờ anh gửi địa chỉ** |
 
+## 9i. Bản V1.8 — sửa theo góp ý V1.8 của anh Thắng (25/11/2026, 22h)
+| Góp ý | Đã làm |
+|---|---|
+| Đi bộ: máy quay nhanh hơn nhân vật, trôi ra trước | lỗi bộ máy 2.2.0: `placeAvatarAt()` đã dời máy theo nhân vật, `walkTick()` dời thêm lần nữa → máy đi gấp đôi. Bỏ lần dời thứ hai (đo: khoảng cách máy – nhân vật giữ 8,7 m khi đi) — sửa chung cho các gói 2.2.0 |
+| Bấm vào khí tài mở thẻ, thẻ ở giữa màn hình | bấm vào khí tài, bục hoặc bảng thông tin đều mở thẻ; thẻ ở giữa màn hình, nền tối mờ quanh thẻ; Esc hoặc × để đóng |
+| Biển cổng mất chữ hai bên | cỡ chữ tự thu cho vừa 88 % bề ngang biển |
+| Biển hai mặt đều đọc xuôi | mỗi biển là hai tấm quay lưng vào nhau, mỗi tấm vẽ chữ xuôi |
+| Bảng thông tin cạnh khí tài như ở bảo tàng | bảng nghiêng trên chân, đặt ở mép bục phía lối đi (máy bay: trước vòng kẻ), ghi tên, bên, 4 thông số chính, "Bấm vào bảng hoặc khí tài để xem đầy đủ, có nguồn" |
+| Nút Bảo tàng trong nhóm chế độ | thứ tự: Phim tự động · Bảo tàng · Khám phá · Góc nhìn nhân vật; đang ở bảo tàng thì nút sáng; bấm Khám phá thì rời bảo tàng; ở tầng chiến dịch bấm Bảo tàng thì chuyển sang Tà Cơn rồi vào thẳng |
+| Nút quay về trên thẻ "Không gian lịch sử" | nút "←" đầu dòng "Không gian lịch sử · Học Lịch Sử" — cùng địa chỉ `ui.trangChu` với nút cuối phim (chờ anh gửi địa chỉ) |
+| Đoạn dừng "Đang chuyển cảnh" | xem ghi chú dưới bảng |
+| Bàn họp có bản đồ trận Khe Sanh | mặt bàn vẽ bằng mã trên nền ảnh địa hình của sa bàn (tông giấy cũ): Tà Cơn, các điểm cao 881 Nam/Bắc, 861, 558, 950, Làng Vây, Hướng Hóa, Co Roc, Đường 9, ba mũi tiến công đỏ (theo mũi tên trên sa bàn), tiêu đề "Phương án tiến công Đường 9 – Khe Sanh (minh hoạ)" — không chép bản đồ trong sách |
+| Hành quân có chướng ngại, bộ đội nhảy qua | cây đổ ngang đường (cả hai hàng nhảy qua) và tảng đá (hàng trái nhảy qua) trên đường mòn hồi 3; nướng thêm động tác "jump forward" cho mẫu bộ đội; mỗi người đi theo đường mòn ở khoảng cách riêng (trước cả khối người dịch theo đầu đội hình). Chỗ đặt chướng ngại để các hàng nhảy qua đúng trong cú máy C03-02 — MINH HOẠ |
+
+**Về đoạn dừng khi đổi tầng.** Điện Biên Phủ chỉ có một tầng địa hình nên không bao giờ đổi trang. Khe Sanh có hai tầng: toàn chiến dịch (66 km, phóng đại độ cao ×2) và Tà Cơn (21 km, độ cao thật) — mỗi tầng là một trang sa bàn riêng, đổi tầng là dựng trang mới (8 lần trong phim). Hai trang cùng chạy để nối liền thì treo máy (lỗi V1.5). Bản này: khoảng chờ hiện ảnh khung cuối kèm tên hồi kế tiếp (như màn mở chương), không còn chữ "Đang chuyển cảnh" to. **Liền mạch hẳn** cần gộp hai tầng vào một trang: đặt địa hình Tà Cơn chi tiết như một miếng vá giữa địa hình chiến dịch, chuyển mọi bố trí của tầng Tà Cơn sang hệ toạ độ và tỉ lệ độ cao của tầng chiến dịch — việc lớn của bộ máy (đề xuất bản 2.0). Với phim xuất bằng công cụ `xuat_phim` (đồng hồ ảo, dựng từng khung), khoảng chờ tải không vào phim nếu dựng từng tầng rồi nối — cần thêm bước nối đoạn.
+
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.

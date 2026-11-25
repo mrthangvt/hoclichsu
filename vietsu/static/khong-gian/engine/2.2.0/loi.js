@@ -21,6 +21,7 @@ function doiTang(ten, t, phat) {
   // bản Artifact: khung ngoài đổi tầng. V1.6 Khe Sanh (anh Thắng: bỏ đoạn đen mờ khi chuyển hồi): chụp khung hình cuối gửi kèm — khung ngoài giữ ảnh này trên màn
   // trong lúc tầng mới tải (không còn màn tải tối), tầng mới vẽ xong thì ảnh mờ dần. Chỉ một sa bàn WebGL chạy tại một lúc (không nạp sẵn hai khung — lỗi đơ hình V1.5).
   if (!theChuong) { let anh = null; try { renderer.render(scene, camera); anh = renderer.domElement.toDataURL('image/jpeg', 0.82); } catch (e) { anh = null; }
+    if (sc && sc.hoi) q.set('tieude', (sc.hoi || '') + '|' + (sc.ten || '')); else q.delete('tieude');   // V1.8: khung ngoài hiện tên hồi trên ảnh nối — khoảng chờ thành màn mở chương
     if (window.parent !== window && window.parent.__doiTang) window.parent.__doiTang(q.toString(), anh); else location.search = q.toString(); return; }
   const ov = document.createElement('div'); ov.id = 'chuong-ov'; ov.innerHTML = '<div><small>Tiếp theo</small><b></b></div>'; ov.querySelector('b').textContent = sc ? sc.title : '';
   document.body.append(ov); requestAnimationFrame(() => ov.classList.add('on'));
@@ -822,7 +823,9 @@ function walkTick(dt) {
     }
   }
   else W.pos.y = groundW(W.pos.x, W.pos.z);
-  const d = W.pos.clone().sub(old); camera.position.add(d); controls.target.add(d);
+  // V1.8 Khe Sanh (anh Thắng: đi bộ thì máy quay chạy nhanh hơn nhân vật, trôi ra trước): placeAvatarAt() đã dời máy quay theo nhân vật khi W.on —
+  // trước đây dời thêm lần nữa ở đây → máy đi gấp đôi. Chỉ bù phần độ cao khi đứng yên.
+  if (!W.moving) { const d = W.pos.clone().sub(old); camera.position.add(d); controls.target.add(d); }
   controls.target.y += (W.pos.y + (W.fp ? 2.55 : 2.4) - controls.target.y) * Math.min(1, dt * 8);
 }
 const _avQ = new THREE.Quaternion(), _hideM = new THREE.Matrix4().makeScale(0, 0, 0);

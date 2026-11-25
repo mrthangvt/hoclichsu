@@ -243,5 +243,8 @@ Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa h�
 46. **Không gắn người đứng yên vào một mốc đang chạy nhanh** (đầu hào dài ra, mũi tên tiến) — người, máy cận phải neo vào điểm cố định; phần "dài ra" chỉ để xem ở góc rộng.
 47. **Điện thoại:** độ phân giải ≤ 1,25, không MSAA; khung ngoài ghi chỗ đang xem để mở lại đúng phút nếu trình duyệt bỏ trang; giữ màn hình sáng khi phát phim (Wake Lock + video câm dự phòng).
 48. **Mẫu máy bay:** đo mũi trước khi xoay (đuôi đứng ở phía nào) — B-52, UH-1 nướng bằng `bake_vat.py` nhìn +Z.
+49. **Chế độ đi bộ (bộ máy 2.2.0):** máy quay chỉ dời một lần theo nhân vật (`placeAvatarAt`); thử: đi 10 s, khoảng cách máy – nhân vật không đổi.
+50. **Sa bàn nhiều tầng địa hình không liền mạch được** (mỗi tầng một trang). Sa bàn mới nên dùng một tầng; nếu cần cả toàn cảnh lẫn chi tiết thì làm một trang có miếng vá địa hình chi tiết.
+51. **Không gian trưng bày:** biển hai mặt, chữ tự vừa; bảng thông tin cạnh khí tài; bấm khí tài, bục, bảng đều mở thẻ ở giữa màn hình; nút Bảo tàng nằm trong nhóm chế độ.
 
 Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.
