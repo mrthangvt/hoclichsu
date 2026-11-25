@@ -112,14 +112,20 @@ def ground():
     hp.matrix = tw.inverted() @ M
     bpy.context.view_layer.update()
 
-def key(act_name, frames, from_own=None, src_rig=None):
+def key(act_name, frames, from_own=None, src_rig=None, ride=False):
     act = bpy.data.actions.new(act_name)
     ad = arm.animation_data or arm.animation_data_create(); ad.action = act
     for i, f in enumerate(frames):
         if from_own is not None:
             retarget(f, src_rig or own_src); ground()
         else:
-            retarget(f); ground()
+            retarget(f)
+            if ride:                                     # dáng ngồi ngựa (như bake_nn.py): đùi đưa ngang ra trước, dạng chân, gập gối
+                for side, sg in (('Left', 1), ('Right', -1)):
+                    pb = arm.pose.bones['mixamorig:' + side + 'UpLeg']; pb.rotation_quaternion = pb.rotation_quaternion @ Quaternion((1, 0, 0), 1.4) @ Quaternion((0, 0, 1), sg * 0.45)
+                    pb = arm.pose.bones['mixamorig:' + side + 'Leg']; pb.rotation_quaternion = pb.rotation_quaternion @ Quaternion((1, 0, 0), -1.0)
+                bpy.context.view_layer.update()
+            ground()
         for n in KEY:
             pb = arm.pose.bones[n]
             pb.keyframe_insert('rotation_quaternion', frame=i + 1)
@@ -168,7 +174,7 @@ for nm, nguon, f0, f1, kieu in C['clip']:
         sa = bpy.data.actions[nguon]; sad.action = sa
         try: sad.action_slot = sa.slots[0]
         except Exception: pass
-        a = key(nm, frames)
+        a = key(nm, frames, ride=(kieu == 'cuoi'))
     a['kieu'] = kieu; a.use_fake_user = True; acts.append(a)
     print('clip', nm, nguon, len(frames), 'khung')
 # ---- dọn: bỏ rig nguồn, action kho; đẩy mỗi action thành một rãnh NLA để xuất đủ
@@ -193,6 +199,66 @@ co = do(); k2 = C['cao'] / (co[:, 2].max() - co[:, 2].min())
 arm.scale = [s * k2 for s in arm.scale]; bpy.context.view_layer.update(); co = do()
 arm.location.x -= (co[:, 0].max() + co[:, 0].min()) / 2; arm.location.y -= (co[:, 1].max() + co[:, 1].min()) / 2; arm.location.z -= co[:, 2].min()
 co = do(); print('dáng đứng: cao %.2f, x %.2f..%.2f, y %.2f..%.2f, z %.2f' % (np.ptp(co[:, 2]), co[:, 0].min(), co[:, 0].max(), co[:, 1].min(), co[:, 1].max(), co[:, 2].min()))
+# ---- (tuỳ chọn) bản nướng sẵn .nvz cho đám đông, từ CHÍNH các động tác vừa chuyển — cùng dáng với bản có xương ở cận cảnh.
+# Cấu hình "nvz": {"tam_giac", "ra", "jpg", "clip": [[tên trong .nvz, tên động tác ở trên, số khung/giây], ...]}; động tác kiểu "mot" lấy thêm khung cuối,
+# kiểu "cuoi" ghi "hip" (độ cao hông) cho người ngồi ngựa. Kèm ma trận bàn tay phải (mg) và hướng tay phải→trái (mt) mỗi khung để gắn binh khí.
+NV = C.get('nvz')
+if NV:
+    import base64
+    B2T = lambda v: (v[0], v[2], -v[1])
+    du = me.copy(); du.data = me.data.copy(); du.name = 'nvz'; sc.collection.objects.link(du)
+    ntri = sum(len(p.vertices) - 2 for p in du.data.polygons)
+    dm = du.modifiers.new('giam', 'DECIMATE'); dm.ratio = min(1.0, NV['tam_giac'] / ntri)
+    with bpy.context.temp_override(object=du, active_object=du):
+        while du.modifiers[0].name != 'giam': bpy.ops.object.modifier_move_up(modifier='giam')
+        bpy.ops.object.modifier_apply(modifier='giam')
+    md = du.data; md.calc_loop_triangles(); uvl = md.uv_layers.active.data
+    key2i, vmap, uvs, tris = {}, [], [], []
+    for lt in md.loop_triangles:
+        tri = []
+        for li in lt.loops:
+            vi = md.loops[li].vertex_index; uv = uvl[li].uv; kk = (vi, round(uv[0], 5), round(uv[1], 5))
+            if kk not in key2i: key2i[kk] = len(vmap); vmap.append(vi); uvs.append((uv[0], uv[1]))
+            tri.append(key2i[kk])
+        tris.append(tri)
+    vmap = np.array(vmap); print('nvz: tam giác', len(tris), 'đỉnh', len(vmap))
+    rh, lh, hp = arm.pose.bones['mixamorig:RightHand'], arm.pose.bones['mixamorig:LeftHand'], arm.pose.bones['mixamorig:Hips']
+    def khung(f):
+        sc.frame_set(int(f), subframe=f - int(f)); bpy.context.view_layer.update()
+        dg = bpy.context.evaluated_depsgraph_get(); ev = du.evaluated_get(dg); m = ev.to_mesh()
+        co = np.empty(len(m.vertices) * 3, np.float32); m.vertices.foreach_get('co', co); no = np.empty(len(m.vertices) * 3, np.float32); m.vertices.foreach_get('normal', no)
+        ev.to_mesh_clear(); M = np.array(du.matrix_world); co = co.reshape(-1, 3) @ M[:3, :3].T + M[:3, 3]; no = no.reshape(-1, 3) @ M[:3, :3].T
+        no /= np.linalg.norm(no, axis=1, keepdims=True) + 1e-9
+        P = np.stack([co[:, 0], co[:, 2], -co[:, 1]], 1)[vmap]; N = np.stack([no[:, 0], no[:, 2], -no[:, 1]], 1)[vmap]
+        def xg(pb):
+            Mb = arm.matrix_world @ pb.matrix; y = (Mb.to_3x3() @ Vector((0, 1, 0))).normalized(); z = (Mb.to_3x3() @ Vector((0, 0, 1))).normalized()
+            return np.array(B2T(y)), np.array(B2T(z)), np.array(B2T(Mb.translation))
+        ry, rz, rp = xg(rh); _, _, lp = xg(lh); dv = lp - rp; dv /= np.linalg.norm(dv) + 1e-9
+        return P, N, [*ry, *rz, *rp], [*dv, *rz, *rp], (arm.matrix_world @ hp.head).z
+    byname = {a.name: a for a in acts}; out = {}; q = 0.001
+    for ten, an, fps in NV['clip']:
+        A = byname[an]; ad.action = A
+        try: ad.action_slot = A.slots[0]
+        except Exception: pass
+        f0, f1 = A.frame_range; mot = A.get('kieu') == 'mot'; dur = (f1 - f0) * C.get('buoc', 2) / sc.render.fps
+        n = max(2, int(round(dur * fps))); fr = [f0 + (f1 - f0) * i / (n - 1 if mot else n) for i in range(n)]
+        Ps, Ns, MG, MT = [], [], [], []
+        for f in fr:
+            P, N, g, t_, hz = khung(f); Ps.append(base64.b64encode(np.round(P / q).astype(np.int16).tobytes()).decode())
+            Ns.append(base64.b64encode(np.clip(np.round(N * 127), -127, 127).astype(np.int8).tobytes()).decode()); MG += g; MT += t_
+        c = {'fps': fps, 'pos': Ps, 'nor': Ns, 'mg': [round(float(v), 4) for v in MG], 'mt': [round(float(v), 4) for v in MT]}
+        if mot: c['once'] = 1
+        if A.get('kieu') == 'cuoi': c['hip'] = round(float(hz), 3)
+        out[ten] = c; print('nvz clip', ten, '←', an, n, 'khung')
+    J = {'q': q, 'idx': base64.b64encode(np.array(tris, np.uint16).ravel().tobytes()).decode(), 'uv': base64.b64encode(np.array(uvs, np.float32).ravel().tobytes()).decode(),
+         'clips': out, 'h': C['cao']}
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    import nv_sang_nvz
+    bz, err = nv_sang_nvz.convert(J, q); open(NV['ra'], 'wb').write(bz); print('xong nvz', NV['ra'], round(len(bz) / 1e6, 2), 'MB')
+    from PIL import Image
+    w_, h_ = im.size; A_ = np.array(im.pixels[:], np.float32).reshape(h_, w_, 4)[::-1, :, :3]
+    Image.fromarray((np.clip(A_, 0, 1) * 255).astype(np.uint8)).save(NV['jpg'], quality=86)
+    bpy.data.objects.remove(du, do_unlink=True)
 ad.action = None
 for tr in ad.nla_tracks: tr.mute = False
 bpy.ops.export_scene.gltf(filepath=C['ra'], export_format='GLB', export_animations=True, export_animation_mode='NLA_TRACKS',
