@@ -1,5 +1,6 @@
 # Tự đăng bản xem thử lên GitHub Pages mỗi khi có thay đổi trên nhánh main:
-#   /                                  → giao diện Việt Sử V5.7 (kế thừa V5.6 … V5.2, V4.11) (bản tĩnh, không có CMS/API)
+#   /                                  → giao diện Học Lịch Sử V5.9 (bản tĩnh, không có CMS/API)
+#   /nhan-vat-lich-su/…, /chu-tich-ho-chi-minh/…, /sach-giao-khoa-lich-su/lop-6/… → trang chia sẻ từng mục (build_duong_dan.py)
 #   /khong-gian/thanh-co-quang-tri/    → sa bàn 3D Thành cổ Quảng Trị
 #   /khong-gian/dien-bien-phu/         → sa bàn 3D Điện Biên Phủ 1954
 #   /khong-gian/ngoc-hoi-dong-da/      → sa bàn 3D Ngọc Hồi – Đống Đa 1789
@@ -10,7 +11,7 @@ name: Deploy bản xem thử lên GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['vietsu/static/**', 'vietsu/tools/build_v42.py', 'vietsu/tools/build_v43.py', 'vietsu/tools/build_v44.py', 'vietsu/tools/build_v45.py', 'vietsu/tools/build_v46.py', 'vietsu/tools/build_v47.py', 'vietsu/tools/build_v48.py', 'vietsu/tools/build_v49.py', 'vietsu/tools/build_v411.py', 'vietsu/tools/check_v411_exam.py', 'vietsu/tools/check_v48_assets.py', 'vietsu/tools/build_v52.py', 'vietsu/static/v52.js', 'vietsu/static/v52.css', 'vietsu/tools/build_v53.py', 'vietsu/tools/build_v54.py', 'vietsu/tools/build_v55.py', 'vietsu/tools/build_v56.py', 'vietsu/tools/build_v57.py', 'vietsu/tools/build_v58.py', 'vietsu/tools/build_v59.py', 'vietsu/data/sgk_kntt_lop*.json', 'vietsu/data/v59_*.json', '.github/workflows/pages.yml']
+    paths: ['vietsu/static/**', 'vietsu/tools/build_v42.py', 'vietsu/tools/build_v43.py', 'vietsu/tools/build_v44.py', 'vietsu/tools/build_v45.py', 'vietsu/tools/build_v46.py', 'vietsu/tools/build_v47.py', 'vietsu/tools/build_v48.py', 'vietsu/tools/build_v49.py', 'vietsu/tools/build_v411.py', 'vietsu/tools/check_v411_exam.py', 'vietsu/tools/check_v48_assets.py', 'vietsu/tools/build_v52.py', 'vietsu/static/v52.js', 'vietsu/static/v52.css', 'vietsu/tools/build_v53.py', 'vietsu/tools/build_v54.py', 'vietsu/tools/build_v55.py', 'vietsu/tools/build_v56.py', 'vietsu/tools/build_v57.py', 'vietsu/tools/build_v58.py', 'vietsu/tools/build_v59.py', 'vietsu/data/sgk_kntt_lop*.json', 'vietsu/data/v59_*.json', 'vietsu/data/duong_dan.json', 'vietsu/tools/build_duong_dan.py', 'vietsu/tools/fonts/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -27,12 +28,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Gom file tĩnh
         run: |
           python3 vietsu/tools/build_v59.py
           mkdir -p _site/static
           cp vietsu/static/Viet_Su_Timeline_V5.9_Offline.html _site/index.html
-          cp vietsu/static/v42.css vietsu/static/v42.js vietsu/static/v43.css vietsu/static/v43.js vietsu/static/v44.js vietsu/static/v45.css vietsu/static/v45.js vietsu/static/v46.css vietsu/static/v46.js vietsu/static/v49-data.js vietsu/static/v49.js vietsu/static/v411.js vietsu/static/v52.css vietsu/static/v52.js vietsu/static/v53.css vietsu/static/v53.js vietsu/static/v54.css vietsu/static/v54.js vietsu/static/v55.css vietsu/static/v55.js vietsu/static/v56.css vietsu/static/v56-data.js vietsu/static/v56.js vietsu/static/v57.css vietsu/static/v57.js vietsu/static/v58.css vietsu/static/v58-sgk.js vietsu/static/v58.js vietsu/static/v59.css vietsu/static/v59-data.js vietsu/static/v59.js _site/static/
+          cp vietsu/static/v42.css vietsu/static/v42.js vietsu/static/v43.css vietsu/static/v43.js vietsu/static/v44.js vietsu/static/v45.css vietsu/static/v45.js vietsu/static/v46.css vietsu/static/v46.js vietsu/static/v49-data.js vietsu/static/v49.js vietsu/static/v411.js vietsu/static/v52.css vietsu/static/v52.js vietsu/static/v53.css vietsu/static/v53.js vietsu/static/v54.css vietsu/static/v54.js vietsu/static/v55.css vietsu/static/v55.js vietsu/static/v56.css vietsu/static/v56-data.js vietsu/static/v56.js vietsu/static/v57.css vietsu/static/v57.js vietsu/static/v58.css vietsu/static/v58-sgk.js vietsu/static/v58.js vietsu/static/v59.css vietsu/static/v59-data.js vietsu/static/v59.js vietsu/static/v59-duong-dan.js _site/static/
           cp -r vietsu/static/avatar-v45 _site/static/avatar-v45
           cp -r vietsu/static/v43 _site/static/v43
           cp -r vietsu/static/v49 _site/static/v49
@@ -44,6 +48,13 @@ jobs:
           cp -r vietsu/static/assets _site/assets
           cp -r vietsu/static/khong-gian _site/khong-gian
           touch _site/.nojekyll
+      - name: Trang chia sẻ cho từng đường dẫn (ảnh 1200×630, Open Graph)
+        # Khi có tên miền riêng: Settings → Secrets and variables → Actions → Variables → SITE_URL = https://hoclichsu.com
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://mrthangvt.github.io/hoclichsu' }}
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 vietsu/tools/build_duong_dan.py _site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

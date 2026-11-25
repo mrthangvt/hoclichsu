@@ -109,17 +109,25 @@ def build():
     n=du_lieu()
     source=(STATIC/"Viet_Su_Timeline_V5.8_Offline.html").read_text(encoding="utf-8")
     css='<link rel="stylesheet" href="static/v59.css">'
-    js='<script defer src="static/v59-data.js"></script><script defer src="static/v59.js"></script>'
+    js='<script defer src="static/v59-data.js"></script><script defer src="static/v59.js"></script><script defer src="static/v59-duong-dan.js"></script>'
     if source.count("</head>")!=1 or source.count("</body>")!=1:
         raise AssertionError("Không đúng cấu trúc V5.8")
     if "static/v59" in source:
         raise AssertionError("V5.8 không được chứa mã V5.9")
-    for f in ["v59.css","v59.js","v59-data.js"]:
+    for f in ["v59.css","v59.js","v59-data.js","v59-duong-dan.js"]:
         if not (STATIC/f).is_file():
             raise AssertionError("Thiếu tệp "+f)
     result=source.replace("</head>",css+"</head>",1).replace("</body>",js+"</body>",1)
     assert result.replace(css,"",1).replace(js,"",1)==source, "Không được thay nội dung V5.8"
     result=doi_ten(xuat_ban(result))
+    # Đường dẫn rõ ràng (25/11/2026): đặt <base> theo thư mục gốc của trang để tài nguyên tương đối
+    # vẫn đúng khi địa chỉ đổi thành /nhan-vat-lich-su/... (xem static/v59-duong-dan.js).
+    goc=('<script>(function(){var p=location.pathname,m=p.match(/^(.*?\\/)(?:dong-thoi-gian-su-viet|chu-tich-ho-chi-minh|'
+         'nhan-vat-lich-su|khong-gian-lich-su|sach-giao-khoa-lich-su|bo-de-on-su|su-kien)(?:\\/|$)/);'
+         'var b=m?m[1]:p.replace(/[^\\/]*$/,"");window.HLS_GOC=b;'
+         'if(/^https?:$/.test(location.protocol))document.write(\'<base href="\'+b+\'">\');})();</script>')
+    assert result.find('<head><meta charset="utf-8">')>=0
+    result=result.replace('<head><meta charset="utf-8">','<head><meta charset="utf-8">'+goc,1)
     # Favicon Học Lịch Sử (25/11/2026): chữ "Sử" vàng trên nền xanh đen, tệp trong static/favicon/.
     fav=('<link rel="icon" href="static/favicon/favicon.ico" sizes="any">'
          '<link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32.png">'
