@@ -40,7 +40,7 @@
    "type": "báo chí (Quân đội nhân dân)",
    "url": "https://www.qdnd.vn/ho-so-su-kien/70-nam-quan-doi-nhan-dan-viet-nam-anh-hung/chien-dich-tien-cong-duong-9-khe-sanh-tap-trung-luc-luong-vay-ham-van-dung-cac-hinh-thuc-tac-chien-linh-hoat-261556",
    "license": "trích dẫn",
-   "used_for": "4 đợt; Làng Vây: lần đầu dùng nhiều binh chủng kỹ thuật, xe tăng bí mật, bất ngờ"
+   "used_for": "4 đợt; Làng Vây: lần đầu dùng nhiều binh chủng kỹ thuật, xe tăng bí mật, bất ngờ; bảng thống kê V2.1: lực lượng Mỹ trên địa bàn (45.000, 28.000 Mỹ, 9 tiểu đoàn pháo…), kết quả 11.900 / 197 / 80 tàu / 78 xe / 46 pháo, gần 10.000 dân"
   },
   {
    "id": "S6",
@@ -48,7 +48,7 @@
    "type": "tạp chí (Hậu cần quân đội, qdnd.vn)",
    "url": "https://www.qdnd.vn/tap-chi-hau-can-quan-doi/lich-su-hau-can/bao-dam-hau-can-chien-dich-duong-9-khe-sanh-tet-mau-than-1968-464873",
    "license": "trích dẫn",
-   "used_for": "đợt 3 (1 - 30/4): Làng Khoai, Cu Bốc, điểm cao 689, 622"
+   "used_for": "đợt 3 (1 - 30/4): Làng Khoai, Cu Bốc, điểm cao 689, 622; bảng thống kê V2.1: 57.500 quân, 130 pháo mặt đất, 150 pháo cao xạ, 187 xe tăng xe xích, 821 ô tô, hậu cần, thương vong 20.435"
   },
   {
    "id": "S7",
@@ -100,11 +100,11 @@
   },
   {
    "id": "S13",
-   "title": "Vây lấn Tà Cơn - sự vận dụng sáng tạo nghệ thuật tác chiến (Báo QĐND)",
-   "type": "báo chí (QĐND qua Báo Mới)",
-   "url": "https://baomoi.com/vay-lan-ta-con-su-van-dung-sang-tao-nghe-thuat-tac-chien-c55596949.epi",
+   "title": "Vây lấn Tà Cơn - sự vận dụng sáng tạo nghệ thuật tác chiến (Thiếu tướng Nguyễn Đức Huy, Báo QĐND, 12/7/2026)",
+   "type": "báo chí (Quân đội nhân dân)",
+   "url": "https://www.qdnd.vn/quoc-phong-an-ninh/nghe-thuat-quan-su-vn/vay-lan-ta-con-su-van-dung-sang-tao-nghe-thuat-tac-chien-1048767",
    "license": "trích dẫn",
-   "used_for": "chốt Làng Khoai dựng 1 - 2/4/1968 chặn Đường 9; 4 ngày chiến đấu với hai tiểu đoàn kỵ binh không vận Mỹ"
+   "used_for": "chốt Làng Khoai dựng 1 - 2/4/1968 chặn Đường 9; 4 ngày chiến đấu với hai tiểu đoàn kỵ binh không vận Mỹ; chốt Làng Khoai loại khỏi vòng chiến đấu hơn 400 quân (bảng thống kê V2.1)"
   },
   {
    "id": "S14",
@@ -521,6 +521,38 @@
    "url": "",
    "license": "nội bộ dự án",
    "used_for": "props/phao/m2a1-105mm.glb (nướng bằng tools/sa_ban/xe/bake_vat.py, đo theo bề rộng 2,21 m)"
+  },
+  {
+   "id": "S21",
+   "title": "Thắng lợi của đòn nghi binh chiến lược (Báo QĐND, 16/6/2018)",
+   "type": "báo chí (Quân đội nhân dân)",
+   "url": "https://www.qdnd.vn/quan-su-the-gioi/nghe-thuat-quan-su-the-gioi/thang-loi-cua-don-nghi-binh-chien-luoc-541594",
+   "license": "trích dẫn",
+   "used_for": "cuối 1/1968 Mỹ tập trung ở Khe Sanh 40 % số tiểu đoàn bộ binh và thiết giáp TQLC; giam chân 17 / hơn 33 lữ đoàn Mỹ (bảng thống kê V2.1)"
+  },
+  {
+   "id": "S22",
+   "title": "Giương đông, kích tây (Báo QĐND, 13/3/2016)",
+   "type": "báo chí (Quân đội nhân dân)",
+   "url": "https://www.qdnd.vn/quoc-phong-an-ninh/giuong-dong-kich-tay-469069",
+   "license": "trích dẫn",
+   "used_for": "kết quả 11.900 quân, 197 máy bay, 80 tàu; Mỹ điều gần 3 sư đoàn ứng cứu, giải tỏa (bảng thống kê V2.1)"
+  },
+  {
+   "id": "S23",
+   "title": "Trận Làng Vây, trận đầu hiệp đồng binh chủng có xe tăng (Báo QĐND, 4/1/2015)",
+   "type": "báo chí (Quân đội nhân dân)",
+   "url": "https://www.qdnd.vn/quoc-phong-an-ninh/xay-dung-quan-doi/tran-lang-vay-tran-dau-hiep-dong-binh-chung-co-xe-tang-257633",
+   "license": "trích dẫn",
+   "used_for": "Làng Vây: 4 đại đội biệt kích, thám báo giữ; diệt 400, bắt 253, thu toàn bộ vũ khí, trang bị (bảng thống kê V2.1)"
+  },
+  {
+   "id": "S24",
+   "title": "55 năm Chiến thắng Khe Sanh: Mở đường cho những thắng lợi to lớn hơn (VietnamPlus)",
+   "type": "báo chí (TTXVN)",
+   "url": "https://www.vietnamplus.vn/55-nam-chien-thang-khe-sanh-mo-duong-cho-nhung-thang-loi-to-lon-hon-post873839.vnp",
+   "license": "trích dẫn",
+   "used_for": "số liệu khác qdnd.vn: 17.000 quân, 480 máy bay, 120 xe, 65 đại bác và cối, 55 kho, thu hàng nghìn súng (ghi chú nguồn lệch, bảng thống kê V2.1)"
   }
  ]
 }

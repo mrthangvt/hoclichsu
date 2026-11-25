@@ -1961,15 +1961,77 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
       const n = document.createElement('div'); n.className = 'src'; n.textContent = 'Nguồn: ' + k.ng.map((id) => NG[id] ? `${id} · ${NG[id].title}` : id).join('; '); the.append(n);
       the.hidden = false; };
     KS.BT.moThe = moThe; KS.BT.K = K;
+    // V2.1 (anh Thắng 26/11: cuối bảo tàng làm một bảng thống kê lớn, bấm vào mở thẻ số liệu lịch sử của trận Khe Sanh; nguồn uy tín ở qdnd.vn).
+    // Số liệu theo Báo Quân đội nhân dân (qdnd.vn); chỗ qdnd.vn không nêu (quân số, pháo riêng ở Tà Cơn) ghi rõ nguồn khác. Nguồn lệch nhau thì ghi cả hai.
+    const TK = {
+      ten: 'Số liệu Chiến dịch Đường 9 – Khe Sanh (20/1 – 15/7/1968)',
+      phu: 'Theo Báo Quân đội nhân dân (qdnd.vn) và tư liệu được dẫn ở từng dòng',
+      muc: [
+        ['Quân Mỹ và Quân lực VNCH ở cụm cứ điểm Tà Cơn', [
+          ['Đơn vị giữ Tà Cơn', 'Trung đoàn 26 Thủy quân lục chiến Mỹ, Tiểu đoàn 37 Biệt động quân VNCH', 'S1'],
+          ['Tăng cường', '3 tiểu đoàn Trung đoàn 26 và Tiểu đoàn 1, Trung đoàn 9 Thủy quân lục chiến Mỹ', 'S17'],
+          ['Quân số Mỹ ở Khe Sanh', '5.880 người (Học viện Quốc phòng); tài liệu phía Mỹ ghi khoảng 6.000', 'S7, M25'],
+          ['Pháo, xe tăng trong cụm Tà Cơn', '24 khẩu pháo, 2 trung đội xe tăng', 'S1, S17'],
+          ['Toàn khu vực Đường 9 – Khe Sanh', 'khoảng 45.000 quân, trong đó 28.000 quân Mỹ', 'S5, S6'],
+          ['Cuối tháng 1/1968', 'Mỹ tập trung ở Khe Sanh tới 40 % số tiểu đoàn bộ binh và thiết giáp của Thủy quân lục chiến', 'S21']]],
+        ['Khí tài, lực lượng được đưa tới', [
+          ['Phía Mỹ trên địa bàn chiến dịch', '3 trung đoàn tăng cường thuộc Sư đoàn Thủy quân lục chiến 3; 9 tiểu đoàn pháo binh; 3 tiểu đoàn và 1 đại đội cơ giới', 'S5'],
+          ['Từ tháng 4/1968', 'thêm Sư đoàn Kỵ binh không vận số 1 Mỹ; Mỹ phải điều gần 3 sư đoàn ứng cứu, giải tỏa', 'S5, S22'],
+          ['Quân Giải phóng – quân số', 'khoảng 57.500 người (4 sư đoàn bộ binh, 5 trung đoàn pháo binh, 3 trung đoàn pháo phòng không, 1 tiểu đoàn xe tăng…)', 'S6'],
+          ['Quân Giải phóng – khí tài', '130 khẩu pháo mặt đất từ 100 mm trở lên, 150 khẩu pháo cao xạ từ 37 mm trở lên, 187 xe tăng, xe xích, 821 ô tô', 'S6'],
+          ['Hậu cần Quân Giải phóng', 'nhu cầu khoảng 26.700 tấn vật chất; đến cuối 6/1968 dự trữ 22.253 tấn, đã dùng 15.923 tấn', 'S6']]],
+        ['Kết quả chiến dịch (theo phía Việt Nam)', [
+          ['Quân Mỹ – VNCH bị loại khỏi vòng chiến đấu', '11.900 (có nhiều quân Mỹ)', 'S5, S6, S22'],
+          ['Máy bay bị bắn rơi', '197 chiếc', 'S5, S6'],
+          ['Tàu vận tải bị đánh chìm, hỏng', '80 chiếc', 'S5, S6'],
+          ['Xe quân sự bị phá hủy', '78 xe (có 8 xe tăng)', 'S5, S6'],
+          ['Pháo, cối bị phá hủy', '46 khẩu', 'S5, S6'],
+          ['Lực lượng bị giam chân', '17 trong tổng số hơn 33 lữ đoàn quân Mỹ', 'S21'],
+          ['Vùng giải phóng', 'Đường 9 và huyện Hướng Hóa, gần 10.000 dân', 'S5']]],
+        ['Tù binh, vũ khí thu được', [
+          ['Trận Làng Vây (6 – 7/2/1968)', 'diệt 400, bắt 253 tù binh, thu toàn bộ vũ khí, trang bị', 'S23'],
+          ['Chốt Làng Khoai (4 – 7/4/1968)', 'loại khỏi vòng chiến đấu hơn 400 quân Kỵ binh không vận Mỹ', 'S13'],
+          ['Toàn chiến dịch', 'qdnd.vn không nêu con số; một số báo khác ghi "thu hàng nghìn súng các loại"', 'S11, S24']]],
+        ['Tổn thất của Quân Giải phóng', [
+          ['Thương vong', '20.435 người (35,3 % quân số), trong đó 11.683 thương binh', 'S6']]]],
+      lech: 'Nguồn lệch nhau: qdnd.vn (S5, S6, S22) ghi 11.900 quân bị loại và 197 máy bay; một số báo khác (VietnamPlus của TTXVN, Báo Quân khu 4 — S11, S24) ghi 17.000 quân và 480 máy bay. Tài liệu phía Mỹ (M5, M6) công bố con số khác. Bảng dùng số của qdnd.vn.' };
+    const moTK = () => { the.replaceChildren(); the.classList.add('tk'); const x = document.createElement('button'); x.className = 'dong'; x.textContent = '×'; x.onclick = () => { the.hidden = true; };
+      const h = document.createElement('h3'); h.textContent = TK.ten; const p0 = document.createElement('div'); p0.className = 'phu'; p0.textContent = TK.phu; the.append(x, h, p0);
+      const dung = new Set();
+      for (const [tieu, dong] of TK.muc) { const h4 = document.createElement('h4'); h4.textContent = tieu; const tb = document.createElement('table');
+        for (const [a, v, ng] of dong) { const r = tb.insertRow(); r.insertCell().textContent = a; const c = r.insertCell(); c.textContent = v; const sp = document.createElement('span'); sp.className = 'ng'; sp.textContent = ' [' + ng + ']'; c.append(sp); ng.split(', ').forEach((i) => dung.add(i)); }
+        the.append(h4, tb); }
+      const l = document.createElement('p'); l.className = 'mh'; l.textContent = TK.lech; the.append(l);
+      const n = document.createElement('div'); n.className = 'src'; n.textContent = 'Nguồn: ' + [...dung].sort().map((id) => NG[id] ? `${id} · ${NG[id].title}` : id).join('; '); the.append(n);
+      the.hidden = false; };
+    KS.BT.moTK = moTK;
+    { const old = moThe; KS.BT.moThe = (k) => { the.classList.remove('tk'); old(k); }; }
+    // bảng: 16 × 8 m, hai mặt, đứng ở đầu đông sân (cuối lối tham quan), quay về phía cổng
+    const TKV = { u: 122, v: -34 };
+    { const cv = document.createElement('canvas'); cv.width = 2048; cv.height = 1024; const g = cv.getContext('2d');
+      g.fillStyle = '#231b13'; g.fillRect(0, 0, 2048, 1024); g.strokeStyle = '#c9a24a'; g.lineWidth = 10; g.strokeRect(14, 14, 2020, 996);
+      g.fillStyle = '#ffe9a8'; g.textAlign = 'center'; g.textBaseline = 'middle'; veChu(g, 'SỐ LIỆU CHIẾN DỊCH ĐƯỜNG 9 – KHE SANH 1968', 96, 1850); g.fillText('SỐ LIỆU CHIẾN DỊCH ĐƯỜNG 9 – KHE SANH 1968', 1024, 110);
+      g.fillStyle = '#c9b88f'; veChu(g, '20/1 – 15/7/1968 · theo Báo Quân đội nhân dân (qdnd.vn)', 46, 1700); g.fillText('20/1 – 15/7/1968 · theo Báo Quân đội nhân dân (qdnd.vn)', 1024, 200);
+      const o = [['45.000', 'quân Mỹ – VNCH trên khu vực', '(28.000 quân Mỹ)'], ['11.900', 'quân Mỹ – VNCH bị loại', 'khỏi vòng chiến đấu'], ['197', 'máy bay', 'bị bắn rơi'], ['78', 'xe quân sự bị phá hủy', '(8 xe tăng)']];
+      o.forEach(([so, a, b], i) => { const x = 60 + i * 482, y = 290; g.fillStyle = 'rgba(255,233,168,.08)'; g.fillRect(x, y, 446, 520); g.strokeStyle = 'rgba(201,162,74,.6)'; g.lineWidth = 4; g.strokeRect(x, y, 446, 520);
+        g.fillStyle = '#f0c040'; veChu(g, so, 150, 400); g.fillText(so, x + 223, y + 170); g.fillStyle = '#f1e8d6'; veChu(g, a, 40, 410); g.fillText(a, x + 223, y + 330); veChu(g, b, 40, 410); g.fillText(b, x + 223, y + 390); });
+      g.fillStyle = '#e9b44c'; veChu(g, 'Bấm vào bảng để xem đầy đủ số liệu hai bên và nguồn', 48, 1800); g.fillText('Bấm vào bảng để xem đầy đủ số liệu hai bên và nguồn', 1024, 900);
+      const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 4; const m = new THREE.MeshBasicMaterial({ map: tx }), gr = new THREE.Group();
+      const a = new THREE.Mesh(new THREE.PlaneGeometry(16, 8), m), b = a.clone(); b.rotation.y = Math.PI; b.position.z = -0.03; gr.add(a, b);
+      const khung = new THREE.Mesh(new THREE.BoxGeometry(16.6, 8.6, 0.02), mat(0x6f5a43)); khung.position.z = -0.015; gr.add(khung);
+      gr.position.copy(P(TKV.u, TKV.v, 6.2)); gr.rotation.y = -Math.PI / 2; gr.userData.btK = 'tk'; G.add(gr);
+      for (const s_ of [-1, 1]) { const tru = new THREE.Mesh(new THREE.BoxGeometry(0.7, 10.6, 0.7), mat(0x6f5a43)); tru.position.copy(P(TKV.u, TKV.v + s_ * 8.6, 5.3)); tru.userData.btK = 'tk'; G.add(tru); }
+      const be = new THREE.Mesh(new THREE.BoxGeometry(3, 0.5, 19), [VIEN, VIEN, BUC, VIEN, VIEN, VIEN]); be.position.copy(P(TKV.u, TKV.v, 0.25)); be.userData.btK = 'tk'; G.add(be); }
+    GHIM_SAU.push(() => addLabel('Bảng thống kê số liệu chiến dịch', BT.x + TKV.u, BT.z + TKV.v, 'hero ly', { grp: 'hero', maxDist: 300, yFn: () => HF + 11.6, show: () => G.visible, onClick: () => moTK() }));
     { const rc = new THREE.Raycaster(), nd = new THREE.Vector2(); let p0 = null;
       const ngoai = (e) => e.target.closest && e.target.closest('button, input, select, a, .card, #btThe, .lbl b, #joy, #runbtn');   /* bấm vào giao diện thì bỏ qua */
       addEventListener('pointerdown', (e) => { p0 = ngoai(e) ? null : [e.clientX, e.clientY]; }, true);
       addEventListener('pointerup', (e) => { if (!p0 || ngoai(e) || !G.visible || Math.hypot(e.clientX - p0[0], e.clientY - p0[1]) > 6) return;
         const r = renderer.domElement.getBoundingClientRect(); nd.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1); rc.setFromCamera(nd, camera);
-        for (const h of rc.intersectObject(G, true)) { if (h.distance > 260) break; let o = h.object; while (o && o.userData.btK == null && o !== G) o = o.parent; if (o && o.userData.btK != null) { moThe(K[o.userData.btK]); e.stopPropagation(); return; } } });
+        for (const h of rc.intersectObject(G, true)) { if (h.distance > 260) break; let o = h.object; while (o && o.userData.btK == null && o !== G) o = o.parent; if (o && o.userData.btK != null) { if (o.userData.btK === 'tk') moTK(); else KS.BT.moThe(K[o.userData.btK]); e.stopPropagation(); return; } } });
       addEventListener('keydown', (e) => { if (e.key === 'Escape') the.hidden = true; }); }   /* V1.8: bấm khí tài, bục, bảng thông tin đều mở thẻ */
     GHIM_SAU.push(() => { for (const k of K) addLabel(k.ten, BT.x + k.u, BT.z + k.v, 'hero ' + (k.ben === 'qgp' ? 'ly' : 'btmy'), { grp: 'hero', maxDist: 300, yFn: () => HF + k.dy + k.h + 0.8,
-      show: () => G.visible, onClick: () => moThe(k) }); });
+      show: () => G.visible, onClick: () => KS.BT.moThe(k) }); });
     // hiện / ẩn: chỉ hiện ở hồi cuối và khi tự khám phá — trong phim các hồi trận đánh không thấy
     let napXong = false;
     // chạy theo khung hình của trình duyệt (cả khi phim dừng, khi khám phá, khi đi bộ — KS.cap chỉ chạy trong phim)
@@ -1979,7 +2041,8 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
       nut.hidden = !(on && !W.on && !document.getElementById('load') && (appMode === 'film' ? t >= H12.t0 + 2 : true)); nut.classList.toggle('nho', appMode !== 'film'); };   /* khám phá: nút nhỏ ở góc, bấm là tới sân trưng bày */
     // V1.6: đi bộ không xuyên qua bục trưng bày — chạm mép bục thì bị đẩy ra theo phía gần nhất (máy bay lớn không có bục: đi dưới cánh được)
     const chanBuc = () => { if (!W.on || !G.visible) return; for (const k of K) { if (!k.buc) continue; const dx = W.pos.x - (BT.x + k.u), dz = W.pos.z - (BT.z + k.v), hx = k.buc[0] / 2 + 0.45, hz = k.buc[1] / 2 + 0.45;
-      if (Math.abs(dx) < hx && Math.abs(dz) < hz) { if (hx - Math.abs(dx) < hz - Math.abs(dz)) placeAvatarAt(BT.x + k.u + Math.sign(dx || 1) * hx, W.pos.z); else placeAvatarAt(W.pos.x, BT.z + k.v + Math.sign(dz || 1) * hz); } } };
+      if (Math.abs(dx) < hx && Math.abs(dz) < hz) { if (hx - Math.abs(dx) < hz - Math.abs(dz)) placeAvatarAt(BT.x + k.u + Math.sign(dx || 1) * hx, W.pos.z); else placeAvatarAt(W.pos.x, BT.z + k.v + Math.sign(dz || 1) * hz); } }
+      { const dx = W.pos.x - (BT.x + TKV.u), dz = W.pos.z - (BT.z + TKV.v); if (Math.abs(dx) < 1.95 && Math.abs(dz) < 9.95) placeAvatarAt(BT.x + TKV.u + Math.sign(dx || -1) * 1.95, W.pos.z); } };   /* V2.1: bệ bảng thống kê */
     const lapBT = () => { try { capBT(); chanBuc(); } catch (e) {} requestAnimationFrame(lapBT); };
     // nút vào đi bộ tham quan (cuối phim và khi khám phá)
     // V1.7 (anh Thắng): hết phim hiện nút "Vào Bảo tàng" (phải) và nút trở về trang Không gian lịch sử (trái). Địa chỉ trang: pack.json › ui.trangChu (mặc định "/").

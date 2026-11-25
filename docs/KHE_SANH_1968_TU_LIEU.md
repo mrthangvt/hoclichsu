@@ -310,6 +310,13 @@ Kiểm tra: `quet_phim.py` hai tầng (thêm phần Kết), `kiem_tra_goi.py`, t
 - Tia đạn (Làng Vây, chiến hào vây lấn) và tổ lính Mỹ giữ hàng rào trước đầu hào là MINH HOẠ hướng bắn, không phải số liệu.
 - Ụ bao cát ở khu trung tâm Tà Cơn: số người vào ụ / nấp ngoài là MINH HOẠ.
 
+## 9l. Bảng thống kê số liệu (V2.1, 26/11/2026) — đối chiếu nguồn
+
+- **qdnd.vn** (S5 2014, S6 Tạp chí Hậu cần 2016, S22 2016, S4 2024): loại khỏi vòng chiến đấu **11.900** (S4 ghi "gần 12.000"; S13 ghi "hơn 11.000"), **197** máy bay, 80 tàu vận tải, 78 xe (8 xe tăng), 46 pháo cối; khu vực Đường 9 – Khe Sanh khoảng 45.000 quân (28.000 Mỹ); phía Quân Giải phóng khoảng 57.500 người, thương vong 20.435 (S6).
+- **Nguồn khác** (VietnamPlus S24, Báo Quân khu 4 S11, TTXVN): **17.000** quân, **480** máy bay, 120 xe, 65 đại bác và cối, 55 kho, thu hàng nghìn súng. Bảng dùng số qdnd.vn, ghi chú số lệch.
+- **Quân số riêng Tà Cơn**: qdnd.vn không nêu. Dùng S1 (Trung đoàn 26 TQLC, Tiểu đoàn 37 BĐQ, 24 pháo, 2 trung đội xe tăng), S7 (5.880 lính Mỹ), M25 (~6.000).
+- **Vũ khí thu**: qdnd.vn chỉ nêu theo trận (Làng Vây: thu toàn bộ vũ khí, trang bị — S23), không có con số cả chiến dịch.
+
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.
