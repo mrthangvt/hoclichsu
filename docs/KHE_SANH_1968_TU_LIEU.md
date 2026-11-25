@@ -235,6 +235,33 @@ Còn lại: lính TQLC Mỹ (chờ gắn xương) nên trong căn cứ chưa có
 | Kéo timeline lùi bị treo | đổi tầng chỉ khi thả tay khỏi thanh thời gian (trước đây đổi ngay giữa lúc kéo → tải lại trang dưới tay người xem); thêm pointerup/touchend |
 Kiểm tra: `quet_phim.py` hai tầng sạch; thử bản đóng gói: kéo từ hồi 4 về hồi 1 (khác tầng) — giữ nguyên khi đang kéo, thả tay mới chuyển, phim chạy tiếp.
 
+## 9f. Bản V1.5 — sửa theo góp ý V1.5 của anh Thắng (25/11/2026, 18h–20h)
+| Góp ý | Đã làm |
+|---|---|
+| Pháo để ngược | mẫu M-46 có đầu nòng theo trục +Z; bỏ phần xoay thêm 180° → 4 khẩu ở Co Roc (tầng Tà Cơn) và 3 khẩu hồi 3 (tầng chiến dịch) chĩa nòng về căn cứ (đo: lệch 0 rad). Kíp pháo đứng sau càng pháo; hai cú máy C04-02, C04-03 và C03-03 đổi góc theo |
+| Hồi 5 đơ hình, chỉ còn tiếng | nguyên nhân: từ bản Hồ Chí Minh (V1.6) bản artifact **nạp sẵn tầng kế tiếp trong một khung ẩn** khi máy ≥ 8 GB — hai sa bàn WebGL chạy cùng lúc, card đồ hoạ quá tải, khung mới hiện ra đứng hình (H04 Tà Cơn → H05 chiến dịch là lần đổi tầng đầu tiên có nạp sẵn). Sửa dứt điểm: bỏ nạp sẵn (`MAY_MANH = false`) ở cả gói Khe Sanh và gói Hồ Chí Minh; trang khung ngoài (`dong_goi_artifact_2.py`) trả ngữ cảnh WebGL của khung cũ **trước** khi tạo khung mới — không lúc nào có hai sa bàn cùng chạy. Đổi lại: lúc đổi tầng hiện màn tải vài giây rồi phim tự chạy tiếp |
+| 0:24–0:35 máy quay | C01-03 bay vòng tròn cao (bán kính 5,2 km, cao hơn đỉnh núi cao nhất trên vòng bay 2,6 km), quay đều quanh đoạn Đường 9 giữa Cà Lu và Khe Sanh |
+| Mũi tên trắng, opacity 90 % | mọi mũi tên một màu trắng, độ đục 0,9 (một hằng số trong `muiTenPhang`, đổi được); chú giải đổi theo. Mũi tên Pegasus (trước xanh) cũng trắng |
+| Pháo M2A1 105 mm anh gửi | nướng thành `props/phao/m2a1-105mm.glb` (9.000 tam giác, 269 KB; đo theo bề rộng 2,21 m — M35; nòng theo +Z như M-46). Đặt 6 khẩu trong hai cụm ụ bao cát tròn trong căn cứ, nòng hướng điểm cao 881 Nam — **MINH HOẠ** (M5 chỉ ghi các khẩu đội của Tiểu đoàn 1, Trung đoàn pháo 13 TQLC trong căn cứ, 3 khẩu 105 mm trên 881 Nam; chưa có sơ đồ trận địa pháo) |
+| Đường đất cho đoàn hành quân; nền đất ở trận địa pháo, nơi họp | hồi 3: đường mòn đất đỏ rộng 5 m dọc tuyến hành quân (kéo dài về sau đầu đội hình để cả hàng quân đứng trên đường), đường đất 6 m dọc tuyến vận tải; nền đất tròn ở từng khẩu pháo (Co Roc hai tầng), quanh cả trận địa và nơi họp bàn. Vị trí, độ rộng là MINH HOẠ. **18h40 anh Thắng: đất tới gối, tới đùi** → nền đất chỉ nhô 6 cm, giảm độ lệch chiều sâu; nay chỉ che đế giày |
+| Đất + cỏ lốm đốm, thêm cây cho cảnh hành quân (18h43) | nền đất dùng ảnh màu tự vẽ (đất đỏ nhiều sắc, vạt cỏ, túm cỏ, sỏi; lặp mỗi 14 m), mép mờ dần. Cây thấp và bụi tre (mẫu cây của bộ máy) hai bên 1,1 km đầu tuyến hành quân và 1,2 km đầu tuyến vận tải, vòng cây quanh nơi họp và trận địa Co Roc; cây nào đứng gần máy quay hoặc chắn giữa máy và chủ thể của bất kỳ cú máy nào thì tự bỏ — MINH HOẠ |
+| Cận cảnh pháo thủ C04-02 bị chói trắng | chớp lửa bắn đặt ở đầu nòng (trước ở giữa thân pháo, rộng 30 m); máy đứng sau-trái kíp pháo nhìn theo nòng về căn cứ |
+| Không gian trưng bày khí tài cuối phim | thêm phần **Kết (H12, 824–874 s, tầng Tà Cơn)**: sân trưng bày 290 × 165 m đặt ở khoảng đất bằng nhất cách mọi mốc chiến sự ≥ 3,5 km (phía bắc tầng Tà Cơn), chỉ hiện ở phần Kết và khi tự khám phá. Dãy bắc: Quân Giải phóng (chiến sĩ bộ binh, PT-76, pháo 130 mm M-46, pháo cao xạ 37 mm, xe vận tải, cờ đỏ sao vàng); dãy nam: Mỹ và VNCH (lính TQLC, Biệt động quân, M48A3, pháo 105 mm, UH-1, C-130A, B-52D, cờ Mỹ, cờ VNCH). Mỗi khí tài có ghim tên (đỏ: Quân Giải phóng, xanh: Mỹ/VNCH); bấm ghim mở thẻ thông số + "Ở Khe Sanh" + nguồn. Nút "🚶 Vào tham quan khí tài (đi bộ)" ở cuối phim và ở góc phải khi khám phá → xuống đi bộ ngay cổng sân, chạy (Shift / đẩy hết cần) |
+
+**Thông số trong thẻ và nguồn** (sources.json, thêm M34–M41, T3):
+- PT-76: ~14 tấn, kíp 3, pháo 76 mm D-56, 44 km/h đường bộ, 10 km/h dưới nước, tầm 260 km — M26 (inetres). Trận Làng Vây — S8, S2; Huội San — M13, M12.
+- M-46: tầm bắn 27.150 m, kíp 8, dài 38,6 ft, nặng 9,2 tấn Mỹ (~8,3 tấn) — M36 (tài liệu nhận dạng của CMH, Lục quân Mỹ). Co Roc — M12, M14.
+- Cao xạ 37 mm: S3 chỉ ghi "3 trung đoàn cao xạ", M6 ghi phòng không quanh căn cứ nhất là 12,7 mm → **cỡ 37 mm là MINH HOẠ**, thẻ ghi rõ.
+- Xe vận tải: kiểu xe MINH HOẠ (mẫu chung của dự án), S6.
+- M48A3: 48,5 tấn, kíp 4, pháo 90 mm M41, dài cả nòng 8,68 m, 48 km/h, tầm 480 km — M41; khu Tiểu đoàn 3 xe tăng — M32; 10 xe Ontos — M20.
+- M101A1 (M2A1): 2.258 kg, tầm 11.270 m, 10 phát/phút tối đa, 3 duy trì, kíp 8 — M34. **Lệch nguồn:** dài khi hành quân 5,991 m (M34) / 5,94 m (M35); bề rộng 2,159 m (M34) / 2,21 m (M35, dùng để đặt tỉ lệ mẫu).
+- UH-1H: cánh quạt 14,63 m, dài 17,4 m, 217 km/h, tầm 507 km — M40 (mẫu 3D là UH-1 chung). Pegasus — M2, M3.
+- C-130A: sải cánh 132 ft 7 in, dài 97 ft 9 in, 379 dặm/giờ, 92 lính / 64 lính dù — M38; 165 tấn/ngày — M9; lệnh cấm C-130 hạ cánh — M39.
+- B-52D: thông số theo M31 (bảo tàng Không quân Mỹ), "Big Belly" 84 bom 500 lb — M19; 2.548 lượt, 59.542 tấn — M9; tổng 98.721 tấn — M10.
+- Lính TQLC: ~6.000 quân Mỹ — M25; Trung đoàn 26 — M1; mũ sắt, áo giáp bắt buộc — M20. Biệt động quân: Tiểu đoàn 37 — M1, M32; 21/2 — M17.
+
+Kiểm tra: `quet_phim.py` hai tầng (thêm phần Kết), `kiem_tra_goi.py`, thử bấm ghim, thử nút đi bộ, thử bản đóng gói đổi tầng H04 → H05.
+
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.

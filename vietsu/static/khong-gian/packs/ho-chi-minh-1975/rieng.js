@@ -1262,7 +1262,7 @@ const HCM_BED = ['xetang', 'gio', 'reoho', 'ak47', 'maybay', 'oto'], HCM_ONE = [
 const KHUNG = (() => { try { return window.parent !== window && window.parent.__voxA ? window.parent : null; } catch (e) { return null; } })();
 // bản Artifact: tầng địa hình kế tiếp được nạp sẵn trong một khung ẩn (#cho=1) ~35 s trước khi đổi tầng → đổi tầng không còn màn tải (anh Thắng 24/11)
 const CHO = { on: QS.get('cho') === '1' };
-const MAY_MANH = (navigator.deviceMemory || 4) >= 8 && !matchMedia('(pointer: coarse)').matches;   // V1.5: chỉ máy ≥ 8 GB mới nạp sẵn tầng kế tiếp (hai sa bàn cùng lúc dễ tràn bộ nhớ đồ hoạ)
+const MAY_MANH = false;   // V1.5 (sửa dứt điểm lỗi đơ hình khi đổi tầng, anh Thắng 25/11 qua Khe Sanh): bỏ nạp sẵn tầng kế tiếp trong khung ẩn — hai ngữ cảnh WebGL cùng lúc làm card đồ hoạ quá tải, khung hiện ra đứng hình. Cũ:   // V1.5: chỉ máy ≥ 8 GB mới nạp sẵn tầng kế tiếp (hai sa bàn cùng lúc dễ tràn bộ nhớ đồ hoạ)
 window.__amChung = () => { if (!KHUNG) return null;
   if (!KHUNG.__AMS) { const ctx = new (KHUNG.AudioContext || KHUNG.webkitAudioContext)(), out = ctx.createGain(), sfx = ctx.createGain(); out.gain.value = 0.9; out.connect(ctx.destination); sfx.connect(out);
     KHUNG.__AMS = { K: KHUNG, ctx, out, sfx, buf: {}, beds: {}, ready: false, deck: null, cur: 0 }; }

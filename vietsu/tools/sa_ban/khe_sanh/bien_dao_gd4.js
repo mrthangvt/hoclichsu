@@ -77,10 +77,19 @@
       { const [x0, z0] = mp(372, 128), [x1, z1] = mp(402, 158); for (let z = z0; z <= z1; z += 12) dai([[x0, z], [x1, z]], 12, 0x7f847f, 0.1); }   /* sân đỗ đầu tây */
       { const Q = [[462, 128], [546, 128], [546, 206], [462, 206], [462, 128]].map(([a, b]) => mp(a, b)); dai(Q, 16, 0x7f847f, 0.1); }                   /* vòng lăn giữa đường băng (sơ đồ M32: viền ô gạch chéo) */
       const bao = new THREE.InstancedMesh(new THREE.BoxGeometry(7, 2.2, 4), mat(0x9c8660), 300), lieu = new THREE.InstancedMesh(new THREE.BoxGeometry(14, 3.4, 6), mat(0x4f5a3c), 46);
+      // V1.5 trận địa pháo 105 mm phía Mỹ (M5: các khẩu đội của Tiểu đoàn 1, Trung đoàn 13 TQLC đặt trong căn cứ; mẫu M2A1 anh Thắng gửi 25/11).
+      // Số khẩu, vị trí hai cụm, hướng bắn về các điểm cao phía tây bắc là MINH HOẠ (chưa có sơ đồ trận địa pháo). Mỗi khẩu trong một ụ bao cát tròn (ảnh T2).
+      const PIT = []; for (const [px, py] of [[352, 212], [626, 232]]) for (let k = 0; k < 3; k++) { const [x, z] = mp(px + (k - 1) * 16, py + (k % 2) * 9); PIT.push([x, z]); }
+      KS.PIT = PIT;
+      { const u = new THREE.InstancedMesh(new THREE.TorusGeometry(4.6, 0.75, 6, 20).rotateX(Math.PI / 2), mat(0x9c8660), PIT.length), m = new THREE.Matrix4();
+        PIT.forEach(([x, z], i) => { m.makeScale(1, 1.2, 1).setPosition(x, hG(x, z) + 0.55, z); u.setMatrixAt(i, m); }); scene.add(u); KS.uPhao = u;
+        const ng = PM('h881s');
+        veGlb('data/phao/m2a1-105mm.glb').then((o) => { KS.p105 = PIT.map(([x, z], i) => { const c = i ? o.clone(true) : o; c.position.set(x, hG(x, z), z);
+          c.rotation.y = Math.atan2(ng.x - x, ng.z - z) + (i % 3 - 1) * 0.06; c.visible = true; if (i) scene.add(c); return c; }); }); }   /* mẫu M2A1: nòng theo +Z */
       let nb = 0, nl = 0; const [bx0, bz0] = mp(20, 0), [bx1, bz1] = mp(830, 440);
       for (let i = 0; i < 3000 && (nb < 300 || nl < 46); i++) {
         const x = bx0 + r(i, 1) * (bx1 - bx0), z = bz0 + r(i, 2) * (bz1 - bz0);
-        if (!trongDa(x, z, coGiao(RAO, 0.92)) || denRW(x, z) < 45) continue;               /* trong vòng hào, chừa đường băng */
+        if (!trongDa(x, z, coGiao(RAO, 0.92)) || denRW(x, z) < 45 || PIT.some(([px, pz]) => Math.hypot(x - px, z - pz) < 14)) continue;               /* trong vòng hào, chừa đường băng */
         const y = hG(x, z); q.setFromAxisAngle(up, RW_HUONG + (r(i, 3) - 0.5) * 0.6);
         if (r(i, 4) < 0.84 && nb < 300) { m4.compose(new THREE.Vector3(x, y + 1.0, z), q, s1); bao.setMatrixAt(nb++, m4); CC.bunker.push([x, y, z]); }
         else if (nl < 46) { m4.compose(new THREE.Vector3(x, y + 1.6, z), q, s1); lieu.setMatrixAt(nl++, m4); }
@@ -94,7 +103,7 @@
       const [tx_, tz_] = mp(565, 160); const thap = new THREE.Mesh(new THREE.BoxGeometry(5, 14, 5).translate(0, 7, 0), mat(0x7a6f5a)); thap.position.set(tx_, hG(tx_, tz_), tz_); scene.add(thap);
       // ba xe tăng M48 ở khu Tiểu đoàn 3 xe tăng (sơ đồ M32: tây bắc căn cứ)
       veGlb('data/xe/xe-tang-m48.glb').then((o) => { KS.m48 = [0, 1, 2].map((k) => { const c = k ? o.clone(true) : o; const [x, z] = mp(252 + k * 12, 140 + (k % 2) * 10); c.position.set(x, hG(x, z), z); c.rotation.y = RW_HUONG + Math.PI * 0.75; c.visible = true; scene.add(c); return c; }); });
-      KS.ghimCC = [['Kho đạn số 1', mp(700, 250)], ['Tiểu đoàn 3 xe tăng (Mỹ)', mp(262, 145)], ['Tiểu đoàn 37 Biệt động quân', mp(760, 345)], ['Tháp điều khiển', mp(565, 160)]];
+      KS.ghimCC = [['Kho đạn số 1', mp(700, 250)], ['Pháo 105 mm M101A1 (M2A1) của TQLC Mỹ', mp(352, 212)], ['Tiểu đoàn 3 xe tăng (Mỹ)', mp(262, 145)], ['Tiểu đoàn 37 Biệt động quân', mp(760, 345)], ['Tháp điều khiển', mp(565, 160)]];
     }
   }
   // ---------------------------------------------------------------- nổ trong căn cứ (pháo kích), kho đạn nổ 21/1 (S7, M7)
@@ -112,14 +121,14 @@
       F.s.visible = on && u < 0.75; F.k.visible = on; if (!on) continue;
       F.s.position.set(P.x + Math.sin(F.i * 2.3) * 25, P.y + 15 + ph * 90, P.z + Math.cos(F.i * 1.7) * 25); F.s.scale.setScalar(60 + ph * 140 + (1 - u) * 90); F.s.material.opacity = (1 - ph) * (1 - u);
       F.k.position.set(P.x + Math.sin(F.i) * 40, P.y + 60 + ph * 420 + F.i * 20, P.z + Math.cos(F.i) * 40); F.k.scale.setScalar(160 + ph * 380); F.k.material.opacity = 0.5 * (1 - ph * 0.6); } };
-  // ---------------------------------------------------------------- trận địa pháo Co Roc (pháo 130, 152 mm bắn từ Lào — M12, M16; vị trí ước lượng)
+  // ---------------------------------------------------------------- trận địa pháo Co Roc (V1.5 anh Thắng: nòng phải chĩa về đồn — mẫu M-46 có đầu nòng theo trục +Z, không xoay thêm 180°) (pháo 130, 152 mm bắn từ Lào — M12, M16; vị trí ước lượng)
   const CR = PM('coroc'), coCR = trong(CR, 0.99);
   const PHAO = [];
   if (coCR) veGlb('data/phao/m-46-130mm.glb', SC).then((o) => { for (let k = 0; k < 4; k++) { const c = k ? o.clone(true) : o, x = CR.x + (k - 1.5) * 40 * SC, z = CR.z + (k % 2) * 25 * SC;
-    c.position.set(x, hG(x, z), z); c.rotation.y = Math.atan2(TC.x - x, TC.z - z) + Math.PI; scene.add(c); PHAO.push({ o: c, loe: spr(0xffd08a), dan: spr(0xffe0a0) }); } });
+    c.position.set(x, hG(x, z), z); c.rotation.y = Math.atan2(TC.x - x, TC.z - z); scene.add(c); PHAO.push({ o: c, loe: spr(0xffd08a), dan: spr(0xffe0a0) }); } });
   const phaoBan = (t, on) => { for (const [k, P] of PHAO.entries()) { P.o.visible = true; const ph = ((t * 0.35 + k * 0.27) % 1 + 1) % 1, ban = on && ph < 0.55;
       P.loe.visible = ban && ph < 0.05; P.dan.visible = ban;
-      if (P.loe.visible) { P.loe.position.copy(P.o.position).y += 4 * SC; P.loe.scale.setScalar(30 * SC); }
+      if (P.loe.visible) { const y = P.o.rotation.y; P.loe.position.copy(P.o.position).add(V3(Math.sin(y) * 7.6 * SC, 4.6 * SC, Math.cos(y) * 7.6 * SC)); P.loe.scale.setScalar(9 * SC); }   /* V1.5: chớp lửa ở đầu nòng (trước: giữa thân pháo, 30 m — máy cận cảnh bị chói kín) */
       if (P.dan.visible) { const u = ph / 0.55, d = V3(TC.x + Math.sin(k * 3.1 + Math.floor(t * 0.35)) * 500, TC.y, TC.z + Math.cos(k * 1.7 + Math.floor(t * 0.35)) * 250);
         P.dan.position.lerpVectors(P.o.position, d, u).y += Math.sin(Math.PI * u) * (TANG === 'ta-con' ? 2200 : 4000); P.dan.scale.setScalar(25 * SC); } } };
   // ---------------------------------------------------------------- máy bay: C-130 hạ cánh, B-52 rải bom, UH-1 (M1, M9, M10)
@@ -213,7 +222,7 @@
   // ---------------------------------------------------------------- mũi tên (tầng chiến dịch): Quân Giải phóng áp sát (H03, H11), Pegasus theo Đường 9 (H09 — M2, M3), chốt Làng Khoai (S13)
   const MT = [];
   if (TANG === 'chien-dich') {
-    // mũi tên phẳng một khối (thân + đầu chung một lưới), không hiệu ứng, trong suốt 70 %, đặt ở MỘT độ cao: cao hơn đỉnh địa hình dọc đường 250 m → không xuyên núi (anh Thắng 25/11)
+    // mũi tên phẳng một khối (thân + đầu chung một lưới), không hiệu ứng, màu trắng (V1.5), đặt ở MỘT độ cao: cao hơn đỉnh địa hình dọc đường 250 m → không xuyên núi (anh Thắng 25/11)
     const muiTenPhang = (P, mau, rong) => {
       const c = new THREE.CatmullRomCurve3(P.map((v) => V3(v.x, 0, v.z))), L = c.getLength(), n = Math.max(8, Math.ceil(L / 150)), dau = Math.min(rong * 3.2, L * 0.35);
       let yMax = -1e9; for (let i = 0; i <= 60; i++) { const q = c.getPointAt(i / 60); for (const [ox, oz] of [[0, 0], [rong, 0], [-rong, 0], [0, rong], [0, -rong]]) yMax = Math.max(yMax, hG(q.x + ox, q.z + oz)); }
@@ -223,7 +232,7 @@
       const q0 = c.getPointAt(uThan), q1 = c.getPointAt(1); c.getTangentAt(uThan, T); const nx = -T.z, nz = T.x, k = pos.length / 3;
       pos.push(q0.x + nx * rong * 1.25, y, q0.z + nz * rong * 1.25, q0.x - nx * rong * 1.25, y, q0.z - nz * rong * 1.25, q1.x, y, q1.z); idx.push(k, k + 1, k + 2);
       const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx);
-      const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: mau, transparent: true, opacity: 0.3, depthWrite: false, side: THREE.DoubleSide }));
+      const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9, depthWrite: false, side: THREE.DoubleSide }));   /* V1.5 (anh Thắng): mũi tên trắng, opacity 90 % — như mũi tên mica trên sa bàn ở di tích */
       m.renderOrder = 6; m.visible = false; m.frustumCulled = false; scene.add(m); return m; };
     const L3 = (a) => a.map(([la, lo]) => LL(la, lo, 0));
     // hướng theo bản đồ "Chiến dịch Đường 9 – Khe Sanh (20.1 – 15.7.1968)" (S19): F.325 từ tây bắc vào các điểm cao 852, 845, 861; E.246 từ phía tây; F.304 từ Lào theo Đường 9 qua Làng Vây về Hướng Hoá

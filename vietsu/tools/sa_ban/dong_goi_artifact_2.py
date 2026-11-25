@@ -104,6 +104,7 @@ window.__doiTang = (q) => {{ const p = new URLSearchParams(q), tg = p.get("tang"
   // V1.6 (bấm chuyển hồi bị treo): khung chờ không dùng tới và khung cũ phải trả bộ nhớ đồ hoạ NGAY (trước đây chỉ gỡ khỏi trang, ngữ cảnh WebGL còn giữ tới khi
   // trình duyệt dọn rác → hai, ba sa bàn cùng chiếm card đồ hoạ, máy treo)
   if (cho) {{ boKhung(cho); cho = null; choTang = ""; }}
+  if (khung) {{ boKhung(khung); khung = null; }}   // V1.5 (Khe Sanh, anh Thắng: hồi 5 đơ hình, chỉ còn tiếng): trả ngữ cảnh WebGL của khung cũ TRƯỚC khi tạo khung mới — không lúc nào có hai sa bàn cùng chạy
   const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn"; f.style.zIndex = "2";
   f.src = "app.html#" + q; document.body.append(f); f.addEventListener("load", () => {{ try {{ f.contentWindow.focus(); }} catch (e) {{}} }});
   if (khung) boKhung(khung); khung = f; }};

@@ -1,6 +1,6 @@
 {
  "id": "khe-sanh-1968",
- "version": "0.4.0",
+ "version": "0.5.0",
  "engine": "^2.2",
  "kind": "battle",
  "title": "Chiến dịch Đường 9 – Khe Sanh 1968",
@@ -34,14 +34,9 @@
   ],
   "legend": [
    [
-    "r",
-    "Mũi đỏ: hướng tiến công của Quân Giải phóng",
-    "width:22px;height:8px;border-radius:3px"
-   ],
-   [
-    "b",
-    "Mũi xanh: hướng hành quân của quân Mỹ, quân đội Sài Gòn (Pegasus, rút quân)",
-    "width:22px;height:8px;border-radius:3px"
+    "w",
+    "Mũi tên trắng: hướng tiến quân theo từng hồi (hướng theo bản đồ chiến dịch; quy ước đồ hoạ)",
+    "width:22px;height:8px;border-radius:3px;background:#fff"
    ],
    [
     "g",
@@ -55,8 +50,8 @@
   "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ. Mốc ngày giờ, đơn vị ghi theo nguồn trong sources.json; chỗ các nguồn ghi khác nhau được nêu rõ.",
   "gauge": false,
   "notePlaceholder": "VD: Dời chốt Làng Khoai sang phía đông Đường 9",
-  "loaderHtml": "\n  <div id=\"ldgo\" hidden><button id=\"bstart\" class=\"go\" aria-label=\"Phát phim\">▶ Xem phim</button><button id=\"bexplore\" class=\"go2\">🧭 Khám phá sa bàn</button><small>11 hồi · khoảng 14 phút · lời dẫn đang làm (GĐ5) · Tái dựng mô phỏng</small></div>",
-  "css": "body:not(.ready) #splay { visibility: hidden; } #views .tang { font-weight: 700; }",
+  "loaderHtml": "\n  <div id=\"ldgo\" hidden><button id=\"bstart\" class=\"go\" aria-label=\"Phát phim\">▶ Xem phim</button><button id=\"bexplore\" class=\"go2\">🧭 Khám phá sa bàn</button><small>11 hồi và không gian trưng bày khí tài · khoảng 14,5 phút · lời dẫn đang làm (GĐ5) · Tái dựng mô phỏng</small></div>",
+  "css": "body:not(.ready) #splay { visibility: hidden; } #views .tang { font-weight: 700; }\n/* V1.5 không gian trưng bày khí tài: ghim phía Mỹ / VNCH nền xanh, thẻ thông tin, nút vào đi bộ */\n.lbl.hero.btmy b { border-color: #9db8e8; background: rgba(28, 52, 104, .9); color: #eef3ff; cursor: pointer; }\n.lbl.hero.ly b { cursor: pointer; }\n#btThe { position: fixed; right: 16px; top: 72px; width: min(380px, calc(100vw - 32px)); max-height: calc(100vh - 140px); overflow: auto; z-index: 40; background: rgba(22, 17, 12, .95); color: #f1e8d6; border: 1px solid #c9a24a; border-radius: 12px; padding: 14px 16px; font-size: 13.5px; line-height: 1.45; box-shadow: 0 8px 30px rgba(0,0,0,.5); }\n#btThe h3 { margin: 0 28px 4px 0; font-size: 17px; color: #ffe9a8; }\n#btThe .ben { font-size: 12px; margin-bottom: 8px; padding: 2px 8px; border-radius: 99px; display: inline-block; }\n#btThe .ben.qgp { background: #8e1c14; color: #ffe9a8; } #btThe .ben.my, #btThe .ben.vnch { background: #1c3468; color: #eef3ff; }\n#btThe table { width: 100%; border-collapse: collapse; margin: 6px 0; } #btThe td { padding: 4px 6px; border-bottom: 1px solid rgba(255,255,255,.1); vertical-align: top; } #btThe td:first-child { color: #c9b88f; width: 42%; }\n#btThe .mh { color: #f0c040; font-size: 12.5px; } #btThe .src { color: #a99d86; font-size: 11.5px; margin-top: 8px; }\n#btThe .dong { position: absolute; right: 10px; top: 8px; background: none; border: 0; color: #f1e8d6; font-size: 22px; cursor: pointer; }\n#btVao { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%); z-index: 35; background: #b8862a; color: #1a130b; border: 0; border-radius: 99px; padding: 12px 22px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,.45); }\n#btVao.nho { left: auto; right: 16px; bottom: auto; top: 128px; transform: none; padding: 8px 14px; font-size: 13px; }\n",
   "theChuong": false
  },
  "views": [],

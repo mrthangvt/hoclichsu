@@ -1,6 +1,6 @@
 {
  "note": "KỊCH BẢN 11 HỒI (anh Thắng duyệt 25/11/2026: phương án B, đưa Tết lên hồi 5, gộp cảnh \"lòng đất\" vào hồi 7, \"chưa yên tiếng súng\" vào hồi 10; sửa lời theo docs/KHE_SANH_1968_TU_LIEU.md mục 3). Nguồn: docs/du-lieu/khe-sanh-1968_camera_timeline_v1.json. Chưa có voice: t0/t1 ước theo số chữ (tốc độ đọc của kịch bản gốc); khi có bản thu sẽ dựng lại theo voice. Trường goc: mã cảnh trong kịch bản camera; nguon: mã trong sources.json.",
- "duration": 824.0,
+ "duration": 874.0,
  "scenes": [
   {
    "id": "H01",
@@ -1077,6 +1077,77 @@
     "Một chiến trường khốc liệt. Một dấu ấn không thể quên trong lịch sử chiến tranh Việt Nam."
    ],
    "subs": []
+  },
+  {
+   "id": "H12",
+   "goc": 1,
+   "hoi": "Kết",
+   "ten": "Không gian trưng bày khí tài",
+   "title": "Kết · Không gian trưng bày khí tài",
+   "tang": "ta-con",
+   "place": "Sân trưng bày (quy ước, đặt xa vùng chiến sự)",
+   "date": "Tái dựng mô phỏng",
+   "t0": 824.0,
+   "t1": 874.0,
+   "nguon": [
+    "S3",
+    "M31",
+    "M26",
+    "M34"
+   ],
+   "shots": [
+    {
+     "id": "C14-01",
+     "t0": 824.0,
+     "t1": 834.0,
+     "size": "Đại toàn",
+     "desc": "Không gian trưng bày nhìn từ trên cao",
+     "may": "Lượn vòng hạ dần xuống sân",
+     "canh": "Sân trưng bày cách xa vùng chiến sự"
+    },
+    {
+     "id": "C14-02",
+     "t0": 834.0,
+     "t1": 844.0,
+     "size": "Toàn",
+     "desc": "Dãy khí tài Quân Giải phóng",
+     "may": "Dolly dọc dãy",
+     "canh": "PT-76, pháo 130 mm, cao xạ, xe vận tải, chiến sĩ"
+    },
+    {
+     "id": "C14-03",
+     "t0": 844.0,
+     "t1": 854.0,
+     "size": "Toàn",
+     "desc": "Dãy khí tài phía Mỹ và VNCH",
+     "may": "Dolly dọc dãy",
+     "canh": "M48, pháo 105 mm, UH-1, lính TQLC, Biệt động quân"
+    },
+    {
+     "id": "C14-04",
+     "t0": 854.0,
+     "t1": 864.0,
+     "size": "Toàn",
+     "desc": "Máy bay B-52D và C-130A",
+     "may": "Lượn quanh",
+     "canh": "So sánh tầm vóc khí tài không quân"
+    },
+    {
+     "id": "C14-05",
+     "t0": 864.0,
+     "t1": 874.0,
+     "size": "Toàn",
+     "desc": "Cổng vào — mời người xem đi bộ tham quan",
+     "may": "Dolly tới cổng",
+     "canh": "Nút \"Vào tham quan\" hiện trên màn hình"
+    }
+   ],
+   "vo": [
+    "Khí tài của hai bên trong chiến dịch Đường 9 – Khe Sanh được bày lại trong một không gian trưng bày.",
+    "Bấm vào ghim tên của từng khí tài để xem thông số và nguồn tư liệu.",
+    "Bạn có thể xuống đi bộ, tự mình đi qua từng dãy trưng bày."
+   ],
+   "subs": []
   }
  ],
  "arrows": {},
@@ -1157,6 +1228,12 @@
    766.0,
    "HỒI 11",
    "KHE SANH – DẤU ẤN MỘT CHIẾN DỊCH"
+  ],
+  [
+   824.0,
+   829.0,
+   "KẾT",
+   "KHÔNG GIAN TRƯNG BÀY KHÍ TÀI"
   ]
  ]
 }

@@ -232,5 +232,9 @@ Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa h�
 35. **Máy quay bay theo đường thật (OSM):** làm trơn đường và giữ một độ cao cố định trên đỉnh núi; không kẹp độ cao theo mặt đất từng khung (giật).
 36. **Âm thanh:** mỗi tiếng nổ trên hình có tiếng nổ tương ứng (nhỏ dần theo khoảng cách), để lại hố đất; có tiếng máy bay, trực thăng, xe khi chúng gần máy quay.
 37. **Cờ:** căn cứ, khí tài, đoàn quân mỗi bên mang cờ của bên đó; cờ bay phấp phới.
+38. **Không nạp sẵn tầng kế tiếp trong khung ẩn** (bỏ từ Khe Sanh V1.5): hai sa bàn WebGL chạy cùng lúc làm khung mới đứng hình, chỉ còn tiếng (lỗi "hồi 5 đơ hình"). Khung ngoài phải trả ngữ cảnh WebGL của khung cũ trước khi tạo khung mới.
+39. **Hướng mẫu khí tài:** đo trục đầu nòng / mũi xe của mẫu trước khi xoay (mẫu nướng bằng `bake_vat.py` / `bake_xe.py` nhìn +Z trong three.js) — pháo của bên tiến công chĩa nòng về mục tiêu, kíp pháo đứng sau càng pháo.
+40. **Đoàn quân đi trên đường, trận địa trên nền đất:** tuyến hành quân, vận tải có dải đường đất bám mặt đất (kéo dài quá hai đầu đội hình); trận địa pháo, nơi họp có nền đất. Lưới phủ mặt đất vẽ **hai mặt** (lưới quay mặt xuống thì vô hình khi nhìn từ trên). Nền chỉ nhô vài cm (đất tới gối là lỗi), dùng ảnh đất + cỏ lốm đốm; cây trang trí phải tránh đường máy quay.
+41. **Không gian trưng bày khí tài ở cuối phim:** sân phẳng đặt xa vùng chiến sự, chỉ hiện ở phần kết và khi khám phá; mỗi khí tài có ghim, bấm ra thẻ thông số có nguồn; có nút xuống đi bộ tham quan. Mẫu: `tools/sa_ban/khe_sanh/bao_tang_gd4.js`.
 
 Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.

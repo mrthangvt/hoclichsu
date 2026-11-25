@@ -173,3 +173,21 @@ s = s.replace(a, """  trucan: (ctx) => { const sr = ctx.sampleRate, n = sr * 2, 
     return b; },
 """ + a, 1)
 p.write_text(s); print('am thanh ks ok')
+# V1.5 (anh Thắng: tới hồi 5 đơ hình, chỉ còn tiếng — lỗi có từ bản HCM): bỏ nạp sẵn tầng kế tiếp trong khung ẩn (hai sa bàn WebGL cùng chạy)
+s = p.read_text()
+a = "const MAY_MANH = (navigator.deviceMemory || 4) >= 8 && !matchMedia('(pointer: coarse)').matches;"
+assert a in s
+s = s.replace(a, "const MAY_MANH = false;   // V1.5: không nạp sẵn tầng kế tiếp (đơ hình khi đổi tầng). Cũ:", 1)
+p.write_text(s); print('bo nap san ok')
+
+# V1.5 (anh Thắng): không gian trưng bày khí tài cuối phim (tools/sa_ban/khe_sanh/bao_tang_gd4.js) — chèn sau dàn cảnh, trước chỗ đặt ghim; nhạc hồi kết
+s = p.read_text()
+bt = Path(__file__).resolve().parent.joinpath('bao_tang_gd4.js')
+if not bt.exists(): bt = Path('/home/claude/vietsu/vietsu/tools/sa_ban/khe_sanh/bao_tang_gd4.js')
+a = "if (XEX.ghimND) XEX.ghimND(); for (const f of GHIM_SAU) f();"
+assert a in s
+s = s.replace(a, "{\n" + bt.read_text().rstrip() + "\n}\n" + a, 1)
+a = "H11: ['vi-thanh', 0, 0.44] };"
+assert a in s
+s = s.replace(a, "H11: ['vi-thanh', 0, 0.44], H12: ['hiep-si', 0, 0.3] };", 1)
+p.write_text(s); print('bao tang ok')
