@@ -271,6 +271,18 @@ Kiểm tra: `quet_phim.py` hai tầng (thêm phần Kết), `kiem_tra_goi.py`, t
 | Lính Mỹ chạy vào công sự phải nhảy qua tường bao cát | nướng thêm động tác "jump forward" (Mixamo) cho lính TQLC (`nhay`); tính chỗ đường chạy cắt vòng bao cát (bán kính 3,2 m), đoạn ±1,4 m quanh đó dùng động tác nhảy, nhấc người lên tối đa 0,55 m qua tường cao ~0,7 m. Đường chạy ngắn lại để cú nhảy nằm trong cú máy C04-06 |
 | Trực thăng: cánh quạt quay; để trực thăng ở đường băng Tà Cơn | mẫu UH-1 có cánh quạt đúc liền thân nằm dọc thân máy → bỏ các tam giác cánh quạt, gắn cụm cánh quạt dựng bằng mã (hai lá dài 14,6 m theo M40, vệt mờ, đĩa mờ khi quay; hiển thị ~1,3 vòng/s). Áp cho mọi UH-1 (hồi 8, Pegasus, bảo tàng — ở bảo tàng đứng yên). Hai chiếc đỗ ở sân đỗ đầu tây đường băng, cánh quạt quay, có ghim "Trực thăng UH-1 (Mỹ) · sân đỗ" — số chiếc, chỗ đỗ MINH HOẠ |
 
+## 9h. Bản V1.7 — sửa theo góp ý V1.7 của anh Thắng (25/11/2026, 21h)
+| Góp ý | Đã làm |
+|---|---|
+| B-52 bay ngược | đo mẫu: đuôi đứng ở z = −17,5 m → mũi theo +Z; bỏ phần xoay thêm 180°. Cùng lỗi ở UH-1 bay (hồi 8, Pegasus) — đã sửa; C-130 đúng sẵn. Cú máy C07-01, C10-03 chỉnh theo |
+| Chạy khi đánh: người cúi khom, người chạy thẳng | xung phong Làng Vây, bộ binh bám xe tăng: 1/3 số người cúi khom chạy (động tác đi khom phát nhanh 1,85 lần cho khớp bước), còn lại chạy thẳng; lính Mỹ chạy vào ụ (hồi 4) và ra khỏi trực thăng (Pegasus) cũng trộn khom/thẳng |
+| Cảnh giao tranh: bộ đội ngồi mà cả đường hào lẫn người trượt | nguyên nhân: tổ đào hào bám theo đầu hào đang dài ra (~20–30 m/s vì nén nhiều tuần vào 87 s), máy cận cũng bám đầu hào. Nay mỗi hào có 6 điểm đóng quân cố định, đầu hào tới đâu tổ ở đó hiện ra và ở yên; máy cận (C06-02/03/04, C09-02/03) nhìn vào điểm cố định đã có tổ khi cú máy bắt đầu |
+| Có cảnh bộ đội hy sinh và lính Mỹ bị tiêu diệt | Làng Vây: một chiến sĩ trúng đạn giữa đường xung phong, nằm lại. Hồi 7: một chiến sĩ trong hào trúng đạn, tổ cứu thương tới bên cạnh (cú C09-03 "Băng cứu thương"). Phía Mỹ: một lính trúng pháo ngã trước khi tới ụ (hồi 4), một lính đứng ngoài ụ trúng đạn (hồi 7); quân phòng thủ Làng Vây như cũ. Số người, thời điểm: MINH HOẠ; không cận cảnh vết thương |
+| Điện thoại gần các chương cuối bị tải lại từ đầu | (1) máy cảm ứng dùng độ phân giải 1,25 và bỏ khử răng cưa nhiều mẫu (bộ đệm đồ hoạ nhỏ đi nhiều lần) — giảm khả năng trình duyệt bỏ trang vì thiếu bộ nhớ; (2) khung ngoài ghi chỗ đang xem mỗi 3 s; nếu trang bị tải lại thì mở lại đúng tầng, đúng phút (giữ 6 giờ; xem hết phim thì xoá) |
+| Màn hình nghỉ khi không chạm | giữ màn hình sáng khi đang phát phim hoặc đang đi bộ: Screen Wake Lock nếu trình duyệt cho (khung sa bàn được cấp quyền `screen-wake-lock`), dự phòng một đoạn video câm 2 s, 16×16 điểm ảnh, lặp (cách NoSleep cho iOS) |
+| Nút Bảo tàng ở bộ nút phía trên | nút "🏛 Bảo tàng" cạnh "Tư liệu", có ở cả hai tầng: ở tầng Tà Cơn vào đi bộ ngay; ở tầng chiến dịch chuyển sang Tà Cơn rồi tự vào đi bộ |
+| Hết phim: "Vào Bảo tàng" (phải), về trang Không gian lịch sử (trái) | đã có. Địa chỉ trang Không gian lịch sử: `pack.json › ui.trangChu` (đang để "/"). Trong bản Artifact không mở được trang ngoài trong khung: có địa chỉ đầy đủ (https://…) thì mở thẻ mới, chưa có thì về màn mở đầu sa bàn — **chờ anh gửi địa chỉ** |
+
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.

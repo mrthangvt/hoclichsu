@@ -1249,7 +1249,7 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
     DAM.push((t) => { if (t < t0 || t > t1 + 3 || !(ganMay(LV.x, LV.z, 1400) || LVX.xe.some((X) => X.obj.visible && ganMay(X.obj.position.x, X.obj.position.z, 900)))) return; const u = (t - t0) / d;
       for (let i = 0; i < 26; i++) { const X = LVX.xe[i % Math.max(1, LVX.xe.length)]; if (!X || !X.obj.visible) continue;             /* bộ binh bám sau xe tăng */
         const p = X.obj.position, y = X.obj.rotation.y, b = 12 + (i % 5) * 5, l = ((i * 7) % 9 - 4) * 3, x = p.x - Math.sin(y) * b + Math.cos(y) * l, z = p.z - Math.cos(y) * b - Math.sin(y) * l;
-        dongDat('qgp', u > 0.62 ? ['ban', 'quy', 'ngam', 'nap'][i % 4] : 'chay', t, (i * 0.37) % 1, x, hG(x, z), z, y, 1, i); }
+        const kh = u <= 0.62 && i % 3 === 1; dongDat('qgp', u > 0.62 ? ['ban', 'quy', 'ngam', 'nap'][i % 4] : (kh ? 'khom' : 'chay'), kh ? t * 1.85 : t, (i * 0.37) % 1, x, hG(x, z), z, y, 1, i); }   /* V1.7: một phần ba cúi khom chạy (động tác đi khom phát nhanh 1,85 lần cho khớp bước), còn lại chạy thẳng */
       for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2, x = LV.x + Math.cos(a) * 70, z = LV.z + Math.sin(a) * 55, yaw = Math.atan2(Math.cos(a), Math.sin(a));   /* quân phòng thủ cứ điểm (mẫu lính VNCH, MINH HOẠ) */
         if (u > 0.8 && i > 3 && i % 2 === 0) continue; const tNga = t0 + d * (0.5 + (i % 6) * 0.04), chet = i % 2 === 1;      /* nửa số người trúng đạn: động tác ngã (3,4 s) rồi nằm */
         if (chet && t >= tNga) { const s_ = t - tNga; dongDat('vnch', s_ < 3.3 ? 'nga' : 'nam', s_ < 3.3 ? s_ : t, 0, x, hG(x, z), z, yaw, 1, i); }
@@ -1340,10 +1340,10 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
       if (u > 0.15 && u < 0.75) datMB(MB.c130, V3(x, hG(x, z) + h + 3 * SC, z), RW_HUONG + Math.PI, dUong > 500 ? -0.05 : 0); } }
     if (MB.b52) { const on = hz('H08') || hz('H07'), id = hz('H08') ? 'H08' : 'H07', u = on ? (t - H(id).t0) / (H(id).t1 - H(id).t0) : 0, u0 = id === 'H08' ? 0 : 0.2;
       MB.b52.forEach((b, k) => { b.visible = on && u > u0 && u < u0 + 0.5; if (!b.visible) return; const v = (u - u0) / 0.5, cao = TANG === 'ta-con' ? 2600 : 5200;
-        const A = V3(TC.x - R * 0.9, cao, TC.z - R * 0.2 + k * 260 * SC), B = V3(TC.x + R * 0.9, cao, TC.z - R * 0.45 + k * 260 * SC); b.position.lerpVectors(A, B, v); b.rotation.set(0, Math.atan2(B.x - A.x, B.z - A.z) + Math.PI, 0); });
+        const A = V3(TC.x - R * 0.9, cao, TC.z - R * 0.2 + k * 260 * SC), B = V3(TC.x + R * 0.9, cao, TC.z - R * 0.45 + k * 260 * SC); b.position.lerpVectors(A, B, v); b.rotation.set(0, Math.atan2(B.x - A.x, B.z - A.z), 0); });   /* V1.7 (anh Thắng: B-52 bay ngược): mẫu có mũi theo +Z (đo: đuôi đứng ở z = −17,5 m) */
       if (on) thamBom(t, H(id).t0 + (H(id).t1 - H(id).t0) * (u0 + 0.1), H(id).t0 + (H(id).t1 - H(id).t0) * (u0 + 0.5)); else thamBom(t, -10, -5); }
     if (MB.uh1) MB.uh1.forEach((o, k) => { o.visible = false;
-      if (hz('H08') && k < 2) { const a = t * 0.12 + k * Math.PI; datMB(o, V3(TC.x + Math.sin(a) * 600, TC.y + 120 + k * 30, TC.z + Math.cos(a) * 300), a + Math.PI / 2 + Math.PI); }
+      if (hz('H08') && k < 2) { const a = t * 0.12 + k * Math.PI; datMB(o, V3(TC.x + Math.sin(a) * 600, TC.y + 120 + k * 30, TC.z + Math.cos(a) * 300), Math.atan2(Math.cos(a) * 600, -Math.sin(a) * 300)); }   /* V1.7: mũi UH-1 theo +Z, hướng theo tiếp tuyến vòng bay */
  });
     thaDu(t, H('H08').t0 + 40, H('H08').t1);
     // Làng Vây: cờ
@@ -1481,7 +1481,7 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
   const vongCay = (c, r0, r1, n, seed) => { const r = rndS(seed); return Array.from({ length: n }, (_, i) => { const a = (i + r() * 0.6) / n * Math.PI * 2, rr = r0 + r() * (r1 - r0); return [c.x + Math.sin(a) * rr, c.z + Math.cos(a) * rr, r()]; }); };
   // tổ người: danh sách [dx, dz (m, theo hướng yaw của tổ), động tác, quay thêm] quanh tâm
   const toNguoi = (ten, tam, yaw, ds, t, sc = 1) => { const c = Math.cos(yaw), s = Math.sin(yaw);
-    ds.forEach(([a, b, clip, q = 0], i) => { const x = tam.x + a * c + b * s, z = tam.z - a * s + b * c; dongDat(ten, clip, t, (i * 0.37) % 1, x, hG(x, z), z, yaw + q, sc, i); }); };
+    ds.forEach(([a, b, clip, q = 0], i) => { const x = tam.x + a * c + b * s, z = tam.z - a * s + b * c, kn = clip === 'khomNhanh'; dongDat(ten, kn ? 'khom' : clip, kn ? t * 1.85 : t, (i * 0.37) % 1, x, hG(x, z), z, yaw + q, sc, i); }); };   /* 'khomNhanh': cúi khom chạy theo đội (V1.7) */
   const hang = (n, cot, gian = 2.2) => Array.from({ length: n }, (_, i) => [(i % cot - (cot - 1) / 2) * gian + ((i * 7) % 3 - 1) * 0.3, -Math.floor(i / cot) * gian]);   /* đội hình hàng dọc */
   const DUNG = [];                                                                                                // đạo cụ chỉ hiện trong một khoảng thời gian: [vật, t0, t1]
   DAM.push((t) => { for (const [o, a, b] of DUNG) o.visible = t >= a && t < b; });
@@ -1552,25 +1552,39 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
     const CHAY4 = Array.from({ length: 12 }, (_, i) => { const a = G(HAM.x + 20 + (i % 4) * 4, HAM.z - 15 + Math.floor(i / 4) * 5), b = G(HAM.x + (i % 3 - 1) * 1.4, HAM.z + (Math.floor(i / 3) % 2) * 1.2); return diTheo([a, b], 2.7, H('H04').t0 + 52 + i * 0.4); });                 /* 2,7 m/s: nhịp bước Rifle Run */
     DAM.push((t) => { if (!trong(t, 'H04') || !ganMay(HAM.x, HAM.z, 600)) return;
       CHAY4.forEach((f, i) => { const o = f(t), v = VUOT4[i], d = (t - v.t0) * 2.7, u = (d - v.dc + 1.5) / 2.7;
-        if (!o.het && u > 0 && u < 1) { const C = DONG.my && DONG.my.clips.nhay;   /* tới bờ ụ bao cát: nhảy qua (động tác "jump forward"), nhấc người qua bức tường cao ~0,7 m */
+        if (!o.het && u > 0 && u < 1 && i !== 7) { const C = DONG.my && DONG.my.clips.nhay;   /* tới bờ ụ bao cát: nhảy qua (động tác "jump forward"), nhấc người qua bức tường cao ~0,7 m */
           if (C) { dongDat('my', 'nhay', u * 0.999 * C.frames.length / C.fps, 0, o.p.x, o.p.y + Math.sin(Math.PI * u) * 0.55, o.p.z, o.yaw, 1, i); return; } }
-        dongDat('my', o.het ? (i % 3 ? 'quy' : 'nap') : 'chay', t, i * 0.31 % 1, o.p.x, o.p.y, o.p.z, o.het ? Math.PI + i : o.yaw, 1, i); }); });
+        if (i === 7) { const tn = v.t0 + 4.5; if (t >= tn) { const q = f(tn), s_ = t - tn; dongDat('my', s_ < 3.3 ? 'nga' : 'nam', s_ < 3.3 ? s_ : t, 0, q.p.x, q.p.y, q.p.z, q.yaw, 1, i); return; } }   /* V1.7: một lính Mỹ trúng pháo, ngã trước khi tới ụ */
+        const kh = !o.het && i % 4 === 1; dongDat('my', o.het ? (i % 3 ? 'quy' : 'nap') : (kh ? 'khom' : 'chay'), kh ? t * 2.1 : t, i * 0.31 % 1, o.p.x, o.p.y, o.p.z, o.het ? Math.PI + i : o.yaw, 1, i); }); });
     // H06 thêm mũi bộ binh từ phía bắc (cBB2 trên sơ đồ trận Làng Vây, S18)
     const LV = KS.LV, BB = diTheo([G(LV.x + 20, LV.z - 230), G(LV.x + 10, LV.z - 140), G(LV.x, LV.z - 60)], 2.7, H('H06').t0 + (H('H06').t1 - H('H06').t0) * 0.3);
-    DAM.push((t) => { if (!trong(t, 'H06') || !ganMay(LV.x, LV.z, 1500)) return; const o = BB(t); toNguoi('qgp', o.p, o.yaw, hang(10, 3, 3).map(([a, b], i) => [a, b, o.het ? (i % 3 ? 'ban' : 'quy') : 'chay']), t); });
+    const tNgaBB = H('H06').t0 + (H('H06').t1 - H('H06').t0) * 0.5, oNga = BB(tNgaBB), dNga = hang(10, 3, 3)[4];   /* V1.7 (anh Thắng: có cảnh bộ đội hy sinh): chiến sĩ thứ 5 trúng đạn giữa đường xung phong, nằm lại */
+    DAM.push((t) => { if (!trong(t, 'H06') || !ganMay(LV.x, LV.z, 1500)) return; const o = BB(t);
+      toNguoi('qgp', o.p, o.yaw, hang(10, 3, 3).map(([a, b], i) => [a, b, o.het ? (i % 3 ? 'ban' : 'quy') : (i % 3 === 1 ? 'khomNhanh' : 'chay')]).filter((_, i) => !(i === 4 && t >= tNgaBB)), t);
+      if (t >= tNgaBB) { const s_ = t - tNgaBB, c = Math.cos(oNga.yaw), sn = Math.sin(oNga.yaw), x = oNga.p.x + dNga[0] * c + dNga[1] * sn, z = oNga.p.z - dNga[0] * sn + dNga[1] * c; dongDat('qgp', s_ < 3.3 ? 'nga' : 'nam', s_ < 3.3 ? s_ : t, 0, x, hG(x, z), z, oNga.yaw, 1, 4); } });
     { const c = KS.taoCo('co-qgp', 1.0, 2.6); c.visible = false; DAM.push((t) => { c.visible = trong(t, 'H06'); if (!c.visible) return; const o = BB(t); c.position.set(o.p.x + Math.cos(o.yaw) * 0.6, o.p.y + 0.2, o.p.z - Math.sin(o.yaw) * 0.6); c.rotation.y = o.yaw - Math.PI / 2; }); }   /* cờ đi đầu mũi bộ binh */
     // H07: bộ đội dọc chiến hào vây lấn (đào, chuyển đạn, quan sát), một tổ cứu thương; lính Mỹ trong ụ
     const HP = (KS.HAO_P || []).map((P) => P.map(([x, z]) => G(x, z)));
     const HL = HP.map((P) => { let L = 0; for (let i = 1; i < P.length; i++) L += P[i].distanceTo(P[i - 1]); return L; });
     const tienHao = (t) => (trong(t, 'H07') ? clamp((t - H('H07').t0) / (H('H07').t1 - H('H07').t0) * 1.3, 0, 1) : t >= H('H07').t1 ? 1 : 0);
     const diemHao = (k, u) => { const P = HP[k]; if (!P) return null; const f = Math.min(P.length - 1.001, u * (P.length - 1)), i = Math.floor(f), a = P[i], b = P[i + 1]; const p = a.clone().lerp(b, f - i); p.y = hG(p.x, p.z); return { p, yaw: huong(a, b) }; };
-    DAM.push((t) => { if (!(trong(t, 'H07') || trong(t, 'H08'))) return; const u = tienHao(t);
+    // V1.7 (anh Thắng: cảnh giao tranh — bộ đội ngồi mà cả đường hào lẫn người trượt trên cảnh): trước đây tổ đào hào bám theo đầu hào đang dài ra
+    // (đầu hào chạy ~20–30 m/s vì nén nhiều tuần vào 87 s) → người quỳ, ngồi mà trôi. Nay mỗi hào có 6 điểm đóng quân cố định; đầu hào tới điểm nào thì tổ ở đó
+    // hiện ra và ở yên tại chỗ (đào, chuyển đạn, quan sát). Máy quay cận cũng nhìn vào một điểm cố định, không bám đầu hào.
+    const MOCH = [0.12, 0.27, 0.42, 0.57, 0.72, 0.87], VIEC = ['quy', 'nup', 'nap', 'quansat', 'namban', 'nem', 'ngam', 'quy'];
+    const mocHao = (k, a) => diemHao(k, a);
+    const tNgaHao = H('H07').t0 + (H('H07').t1 - H('H07').t0) * 0.62;   /* một chiến sĩ ở tổ thứ tư của hào 1 trúng đạn; tổ cứu thương tới bên cạnh (MINH HOẠ) */
+    DAM.push((t) => { if (!(trong(t, 'H07') || trong(t, 'H08'))) return; const u = tienHao(t), bom = trong(t, 'H08');
       HP.forEach((P, k) => { const L = HL[k] || 2000;
-        for (let j = 0; j < 12; j++) { const lui = j < 8 ? 3 + j * 3.5 : 60 + (j - 8) * 90, o = diemHao(k, Math.max(0.02, u - lui / L)); if (!o || !ganMay(o.p.x, o.p.z, 700)) continue;   /* 8 người dồn ở đầu hào (đang đào), 4 người rải phía sau */
-          const bom = trong(t, 'H08'), clip = bom ? (j % 2 ? 'namban' : 'nup') : ['quy', 'nup', 'nap', 'quansat', 'quy', 'namban', 'nem', 'ngam', 'nup', 'quansat', 'quy', 'nap'][j];   /* tư thế tại chỗ (không dùng động tác đi khi đứng yên — trượt chân) */
-          const nghieng = (j % 2 ? 1 : -1) * 0.7; dongDat('qgp', clip, t, (k * 0.3 + j * 0.17) % 1, o.p.x + Math.cos(o.yaw) * nghieng, o.p.y - 0.3, o.p.z - Math.sin(o.yaw) * nghieng, o.yaw + (j % 3 - 1) * 0.5, 1, k * 12 + j); } });
-      const yt = diemHao(1, Math.max(0.02, u - 45 / (HL[1] || 2000))); if (yt && trong(t, 'H07')) toNguoi('qgp', yt.p, yt.yaw, [[0.9, 0, 'nam'], [-0.4, 0.2, 'quy', -1.5]], t);    /* tổ cứu thương */
-      if (trong(t, 'H07') && ganMay(HAM.x, HAM.z, 500)) toNguoi('my', HAM, 0.3, [[-1, 0.8, 'nup'], [1.1, 0.5, 'ngam'], [0.2, -1.4, 'nup', 0.6], [9.5, 3.5, 'nup'], [8.2, 2.2, 'dung']], t);   /* V1.4: trong ụ chỉ cử động nhẹ (quỳ chờ, ngắm) */ });
+        MOCH.forEach((a, m) => { if (u < a + 0.004) return; const o = mocHao(k, a); if (!o || !ganMay(o.p.x, o.p.z, 700)) return;
+          for (let j = 0; j < 5; j++) { const doc = (j - 2) * 3.2 / L, q = diemHao(k, clamp(a + doc, 0.01, 0.999)) || o, nghieng = (j % 2 ? 1 : -1) * 0.7, x = q.p.x + Math.cos(q.yaw) * nghieng, z = q.p.z - Math.sin(q.yaw) * nghieng;
+            const id = k * 40 + m * 5 + j;
+            if (!bom && k === 1 && m === 3 && j === 2 && t >= tNgaHao) { const s_ = t - tNgaHao; dongDat('qgp', s_ < 3.3 ? 'nga' : 'nam', s_ < 3.3 ? s_ : t, 0, x, q.p.y - 0.3, z, q.yaw, 1, id); continue; }
+            const clip = bom ? (j % 2 ? 'namban' : 'nup') : VIEC[(m + j * 3) % VIEC.length];
+            dongDat('qgp', clip, t, (k * 0.3 + j * 0.17 + m * 0.11) % 1, x, q.p.y - 0.3, z, q.yaw + (j % 3 - 1) * 0.5, 1, id); } }); });
+      const yt = t >= tNgaHao + 4 ? diemHao(1, 0.57 + 2 / (HL[1] || 2000)) : null; if (yt && trong(t, 'H07') && ganMay(yt.p.x, yt.p.z, 700)) toNguoi('qgp', yt.p, yt.yaw, [[0.9, 0, 'nam'], [-0.4, 0.2, 'quy', -1.5]], t);    /* tổ cứu thương */
+      if (trong(t, 'H07') && ganMay(HAM.x, HAM.z, 500)) { toNguoi('my', HAM, 0.3, [[-1, 0.8, 'nup'], [1.1, 0.5, 'ngam'], [0.2, -1.4, 'nup', 0.6], [9.5, 3.5, 'nup']], t); const tn = H('H07').t0 + (H('H07').t1 - H('H07').t0) * 0.45, c = Math.cos(0.3), sn = Math.sin(0.3), x = HAM.x + 8.2 * c + 2.2 * sn, z = HAM.z - 8.2 * sn + 2.2 * c;
+        if (t < tn) dongDat('my', 'dung', t, 0.5, x, hG(x, z), z, 0.3, 1, 4); else { const s_ = t - tn; dongDat('my', s_ < 3.3 ? 'nga' : 'nam', s_ < 3.3 ? s_ : t, 0, x, hG(x, z), z, 0.3, 1, 4); } }   /* V1.7: lính Mỹ đứng ngoài ụ trúng đạn */   /* V1.4: trong ụ chỉ cử động nhẹ (quỳ chờ, ngắm) */ });
     // H08: khu nhận hàng thả dù — lính Mỹ tập kết, chuyển hàng; xe tải
     const [dx, dz] = KS.dd(-700, 160), DZ = G(dx + 60, dz + 40);
     DAM.push((t) => { if (!trong(t, 'H08') || !ganMay(DZ.x, DZ.z, 800)) return; toNguoi('my', DZ, 1.2, [[0, 0, 'dung'], [3, 1, 'ngam', 1.2], [-3, 2, 'nup'], [5, -2, 'quy'], [-5, -1, 'dung', -0.8], [1, 5, 'nap'], [-2, -5, 'nup', 2], [6, 4, 'dung', 2.6]], t); });
@@ -1613,18 +1627,20 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
     MAY('C05-07', (u, t) => { const o = BB(t); return [tren(o.p.clone().add(V3(Math.sin(o.yaw) * 4.2 + 1.2, 1.7, Math.cos(o.yaw) * 4.2))), o.p.clone().add(V3(0, 1.4, 0)), 38]; });
     MAY('C05-08', (u) => [tren(LV.clone().add(V3(-300 - u * 400, 160 + u * 900, 350 + u * 500))), LV.clone(), 44]);
     // H07 Những chiến hào siết chặt Tà Cơn
-    const dau = (k, lui = 0) => (u, t) => diemHao(k, Math.max(0.03, tienHao(t) - lui * 120 / (HL[k] || 2000)));
+    const CU = {}; for (const sc of STORY.scenes) for (const sh of sc.shots) CU[sh.id] = sh;
+    const mocCu = (k, id) => { const sh = CU[id], ud = sh ? tienHao(sh.t0 + (sh.t1 - sh.t0) * 0.15) : 0.5; let a = MOCH[0]; for (const m of MOCH) if (m + 0.004 <= ud) a = m; return () => diemHao(k, a); };   /* V1.7: mốc đã có tổ khi cú máy bắt đầu */
+    const dau = (k, lui = 0, id) => (id ? ((f) => () => f())(mocCu(k, id)) : (u, t) => diemHao(k, Math.max(0.03, tienHao(t) - lui * 120 / (HL[k] || 2000))));
     MAY('C06-01', (u) => [tren(V3(TC.x - 600, TC.y + 6200 - u * 3600, TC.z + 3800 - u * 1400)), V3(TC.x - 600, TC.y, TC.z + 600), 46]);
-    MAY('C06-02', (u, t) => { const o = dau(0, 0.06)(u, t); if (!o) return null; return theo(() => o, 30, 22, 6, 46, 40)(u, t); });
-    MAY('C06-03', (u, t) => { const o = dau(2, 0.05)(u, t); if (!o) return null; const r = V3(Math.cos(o.yaw), 0, -Math.sin(o.yaw)); return [tren(o.p.clone().addScaledVector(r, 13).add(V3(0, 3.5, 0))), o.p.clone().add(V3(0, 0.6, 0)), 42]; });
-    MAY('C06-04', (u, t) => { const o = dau(2, 0.05)(u, t); if (!o) return null; const f = V3(Math.sin(o.yaw), 0, Math.cos(o.yaw)); return [tren(o.p.clone().addScaledVector(f, -3.2).add(V3(1.6, 1.4, 0)), 0.8), o.p.clone().add(V3(0, 0.3, 0)), 40]; });
+    MAY('C06-02', (u, t) => { const o = dau(0, 0, 'C06-02')(); if (!o) return null; const a = o.yaw + 2.2 + u * 0.5, r = 34 - u * 8; return [tren(o.p.clone().add(V3(Math.sin(a) * r, 16 - u * 5, Math.cos(a) * r))), o.p.clone().add(V3(0, 0.5, 0)), 44]; });   /* V1.7: lượn chậm quanh tổ đóng quân, không bám đầu hào */
+    MAY('C06-03', (u, t) => { const o = dau(2, 0, 'C06-03')(); if (!o) return null; const r = V3(Math.cos(o.yaw), 0, -Math.sin(o.yaw)); return [tren(o.p.clone().addScaledVector(r, 13).add(V3(0, 3.5, 0))), o.p.clone().add(V3(0, 0.6, 0)), 42]; });
+    MAY('C06-04', (u, t) => { const o = dau(2, 0, 'C06-04')(); if (!o) return null; const f = V3(Math.sin(o.yaw), 0, Math.cos(o.yaw)); return [tren(o.p.clone().addScaledVector(f, -3.2).add(V3(1.6, 1.4, 0)), 0.8), o.p.clone().add(V3(0, 0.3, 0)), 40]; });
     MAY('C06-05', dolly(HAM.clone().add(V3(-9, 3.2, 8)), HAM.clone().add(V3(-6, 2.6, 5)), HAM.clone().add(V3(0.5, 0.6, 0)), undefined, 42));
-    MAY('C09-02', (u, t) => { const o = dau(3, 0.07)(u, t); if (!o) return null; const r = V3(Math.cos(o.yaw), 0, -Math.sin(o.yaw)); return [tren(o.p.clone().addScaledVector(r, -11).add(V3(0, 2.8, 0))), o.p.clone().add(V3(0, 0.5, 0)), 42]; });
-    MAY('C09-03', (u, t) => { const o = diemHao(1, Math.max(0.02, tienHao(t) - 45 / (HL[1] || 2000))); if (!o) return null; return [tren(o.p.clone().add(V3(2.2, 2.8, 1.8))), o.p.clone().add(V3(0.4, 0.1, 0)), 40]; });
+    MAY('C09-02', (u, t) => { const o = dau(3, 0, 'C09-02')(); if (!o) return null; const r = V3(Math.cos(o.yaw), 0, -Math.sin(o.yaw)); return [tren(o.p.clone().addScaledVector(r, -11).add(V3(0, 2.8, 0))), o.p.clone().add(V3(0, 0.5, 0)), 42]; });
+    MAY('C09-03', (u, t) => { const o = diemHao(1, 0.57); if (!o) return null; const r = V3(Math.cos(o.yaw), 0, -Math.sin(o.yaw)), f = V3(Math.sin(o.yaw), 0, Math.cos(o.yaw)); return [tren(o.p.clone().addScaledVector(r, -6.5 + u * 1.2).addScaledVector(f, 3).add(V3(0, 3.4, 0))), o.p.clone().addScaledVector(f, 1).add(V3(0, 0.2, 0)), 42]; });   /* V1.7: nhìn ngang hào: chiến sĩ hy sinh, tổ cứu thương bên cạnh */
     MAY('C06-06', (u, t) => { const o = diemHao(0, tienHao(t)) || { p: TC }; const a = o.p.clone().add(V3(0, 40, 0)), b = V3((o.p.x + TC.x) / 2 - 900, TC.y + 1800, (o.p.z + TC.z) / 2 + 1400); return [tren(a.lerp(b, ease(u))), o.p.clone().lerp(TC, ease(u)), 46]; });
     // H08 Bầu trời Khe Sanh
     const b52 = () => (KS.MB.b52 && KS.MB.b52[1].visible ? KS.MB.b52[1] : null), c130 = () => (KS.MB.c130 && KS.MB.c130.visible ? KS.MB.c130 : null);
-    MAY('C07-01', (u, t) => { const o = b52(); if (!o) return [V3(TC.x - 6000, TC.y + 3200, TC.z + 1500), TC, 46]; const y = o.rotation.y + NB; return [o.position.clone().add(V3(-Math.sin(y) * 260 + 60, 70, -Math.cos(y) * 260 + 40)), o.position.clone().add(V3(Math.sin(y) * 200, -60, Math.cos(y) * 200)), 46]; });
+    MAY('C07-01', (u, t) => { const o = b52(); if (!o) return [V3(TC.x - 6000, TC.y + 3200, TC.z + 1500), TC, 46]; const y = o.rotation.y; return [o.position.clone().add(V3(-Math.sin(y) * 260 + 60, 70, -Math.cos(y) * 260 + 40)), o.position.clone().add(V3(Math.sin(y) * 200, -60, Math.cos(y) * 200)), 46]; });
     MAY('C07-02', (u) => { const A = KS.PM('h881n'); return [tren(V3(A.x + 2600, A.y + 1700, A.z + 2600 - u * 600)), V3(A.x + 900, A.y, A.z + 900), 46]; });
     MAY('C07-03', (u, t) => { const o = diemHao(1, 1 - 12 / (HL[1] || 2000)); if (!o) return null; const r = V3(Math.cos(o.yaw), 0, -Math.sin(o.yaw)); return [tren(o.p.clone().addScaledVector(r, 9).add(V3(0, 2.4, 0))), o.p.clone().add(V3(0, 0.4, 0)), 44]; });
     MAY('C07-04', (u, t) => { const o = c130(); if (!o) return [V3(TC.x + 2600, TC.y + 600, TC.z + 300), TC, 46]; const y = o.rotation.y + NB; return [o.position.clone().add(V3(-Math.sin(y) * 140, 55, -Math.cos(y) * 140)), o.position.clone().add(V3(Math.sin(y) * 120, -10, Math.cos(y) * 120)), 46]; });
@@ -1673,8 +1689,8 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
     DAM.push((t) => { if (!trong(t, 'H09')) { for (const o of UH) o.visible = false; return; } const d = H('H09').t1 - H('H09').t0, u = (t - H('H09').t0) / d;
       UH.forEach((o, k) => { o.visible = true; if (k < 3) { const x = LZ.x + (k - 1) * 24, z = LZ.z + (k % 2) * 16; o.position.set(x, hG(x, z) + 0.2, z); o.rotation.y = 0.9; return; }   /* ba chiếc đã đáp */
         const j = k - 3, A = V3(LZ.x + 9000, 0, LZ.z - 2500), q = A.clone().lerp(LZ, clamp(u * 1.25, 0, 1)); q.x += (j % 3 - 1) * 45; q.z += Math.floor(j / 3) * 55; q.y = Math.max(hG(q.x, q.z) + 240, LZ.y + 260);
-        o.position.copy(q); o.rotation.set(0, huong(A, LZ) + Math.PI, 0); });
-      if (ganMay(LZ.x, LZ.z, 700)) RA_LZ.forEach((f, i) => { const o = f(t); dongDat('my', o.het ? (i % 3 ? 'quy' : 'ngam') : 'chay', t, i * 0.29 % 1, o.p.x, o.p.y, o.p.z, o.het ? o.yaw : o.yaw, 1, i); });   /* lính nhảy khỏi trực thăng, chạy ra vòng ngoài rồi quỳ bắn */
+        o.position.copy(q); o.rotation.set(0, huong(A, LZ), 0); })   /* V1.7: mũi UH-1 theo +Z */;
+      if (ganMay(LZ.x, LZ.z, 700)) RA_LZ.forEach((f, i) => { const o = f(t); dongDat('my', o.het ? (i % 3 ? 'quy' : 'ngam') : (i % 3 === 2 ? 'khom' : 'chay'), !o.het && i % 3 === 2 ? t * 2.1 : t, i * 0.29 % 1, o.p.x, o.p.y, o.p.z, o.het ? o.yaw : o.yaw, 1, i); });   /* lính nhảy khỏi trực thăng, chạy ra vòng ngoài rồi quỳ bắn */
       if (ganMay(DAU.x, DAU.z, 900)) toNguoi('my', DAU, 0, [[4, 0, 'dung'], [6, 3, 'quy'], [-4, 2, 'ngam', 0.8], [-6, -2, 'dung', -1], [3, -5, 'nup'], [-2, 6, 'quy', 2]], t); });
     { const ten = 'Công binh'; KS.xeTaoN('data/xe/xe-tang-m48.glb', { duong: DP, lich: [[H('H09').t0, 30 * 0], [H('H09').t1, 900]], hien: (t) => trong(t, 'H09'), ten }); }
     // H11: cờ chiến thắng trên sân bay Tà Cơn (9/7/1968 — S14, S15)
@@ -1708,7 +1724,7 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
     // H09
     MAY('C10-01', (u) => [V3(TC.x + 9000, TC.y + 22000, TC.z + 5000), V3(TC.x + 9000, TC.y, TC.z - 1500), 48]);
     MAY('C10-02', quanh(DAU, 70, 26, 2.2, 2.7, 42));
-    MAY('C10-03', (u) => { const o = UH[4]; if (!o) return null; const y = o.rotation.y + Math.PI; return [o.position.clone().add(V3(-Math.sin(y) * 160 + 70, 40, -Math.cos(y) * 160 + 50)), o.position.clone().add(V3(Math.sin(y) * 100, -20, Math.cos(y) * 100)), 46]; });
+    MAY('C10-03', (u) => { const o = UH[4]; if (!o) return null; const y = o.rotation.y; return [o.position.clone().add(V3(-Math.sin(y) * 160 + 70, 40, -Math.cos(y) * 160 + 50)), o.position.clone().add(V3(Math.sin(y) * 100, -20, Math.cos(y) * 100)), 46]; });
     MAY('C10-04', quanh(LZ, 62, 18, 4.0, 4.5, 42));
     MAY('C10-05', (u) => { const o = UH[1]; if (!o) return null; const p = o.position; return [tren(p.clone().add(V3(9 + u * 2, 2.2, 7)), 1), p.clone().add(V3(0, 1.5, 0)), 42]; });
     const xePeg = () => { const X = XE.find((x) => x.ten === 'Pegasus' && x.obj.visible); return X ? { p: X.obj.position, yaw: X.obj.rotation.y } : null; };
@@ -1838,14 +1854,21 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
     // chạy theo khung hình của trình duyệt (cả khi phim dừng, khi khám phá, khi đi bộ — KS.cap chỉ chạy trong phim)
     const capBT = () => { const t = T, on = appMode !== 'film' || t >= H12.t0 - 1.5;
       if (on !== G.visible) { G.visible = on; if (on && !napXong) { napXong = true; KS.napSan(G); } if (!on) the.hidden = true; }
+      const het = appMode === 'film' && !playing && t >= DUR - 0.3; nut.classList.toggle('cuoi', het); ve.hidden = !(het && !W.on && !document.getElementById('load'));
       nut.hidden = !(on && !W.on && !document.getElementById('load') && (appMode === 'film' ? t >= H12.t0 + 2 : true)); nut.classList.toggle('nho', appMode !== 'film'); };   /* khám phá: nút nhỏ ở góc, bấm là tới sân trưng bày */
     // V1.6: đi bộ không xuyên qua bục trưng bày — chạm mép bục thì bị đẩy ra theo phía gần nhất (máy bay lớn không có bục: đi dưới cánh được)
     const chanBuc = () => { if (!W.on || !G.visible) return; for (const k of K) { if (!k.buc) continue; const dx = W.pos.x - (BT.x + k.u), dz = W.pos.z - (BT.z + k.v), hx = k.buc[0] / 2 + 0.45, hz = k.buc[1] / 2 + 0.45;
       if (Math.abs(dx) < hx && Math.abs(dz) < hz) { if (hx - Math.abs(dx) < hz - Math.abs(dz)) placeAvatarAt(BT.x + k.u + Math.sign(dx || 1) * hx, W.pos.z); else placeAvatarAt(W.pos.x, BT.z + k.v + Math.sign(dz || 1) * hz); } } };
     const lapBT = () => { try { capBT(); chanBuc(); } catch (e) {} requestAnimationFrame(lapBT); };
     // nút vào đi bộ tham quan (cuối phim và khi khám phá)
-    const nut = document.createElement('button'); nut.id = 'btVao'; nut.hidden = true; nut.textContent = '🚶 Vào tham quan khí tài (đi bộ)'; document.body.appendChild(nut);
+    // V1.7 (anh Thắng): hết phim hiện nút "Vào Bảo tàng" (phải) và nút trở về trang Không gian lịch sử (trái). Địa chỉ trang: pack.json › ui.trangChu (mặc định "/").
+    const ve = document.createElement('button'); ve.id = 'btVe'; ve.hidden = true; ve.textContent = '← Về trang Không gian lịch sử'; document.body.appendChild(ve);
+    ve.onclick = () => { const u = (PACK.ui && PACK.ui.trangChu) || '/', ngoai = window.parent !== window && window.parent.__doiTang;
+      if (ngoai) { if (/^https?:/.test(u)) window.open(u, '_blank', 'noopener'); else window.parent.__doiTang(''); } else location.href = u; };   /* bản Artifact không mở được trang ngoài trong khung: có địa chỉ đầy đủ thì mở thẻ mới, không thì về màn mở đầu */
+    const nut = document.createElement('button'); nut.id = 'btVao'; nut.hidden = true; nut.textContent = '🏛 Vào Bảo tàng khí tài (đi bộ) →'; document.body.appendChild(nut);
     requestAnimationFrame(lapBT);
+    KS.BT.vao = () => nut.onclick();
+    if (QS.get('baotang') === '1') { const cho = setInterval(() => { if (!document.getElementById('load')) { clearInterval(cho); setTimeout(() => KS.BT.vao(), 400); } }, 300); }   /* mở từ nút "Bảo tàng" ở tầng chiến dịch */
     nut.onclick = () => { setPlaying(false); setAppMode('explore'); flyA = null;
       controls.target.copy(P(-RG / 2 + 22, -8, 1.6)); camera.position.copy(controls.target).add(V3(-9, 3, 0)); setWalk(true); };
     // máy quay hồi kết (H12): bay xuống sân, lia dọc hai dãy, quanh máy bay, dừng ở cổng
@@ -1854,9 +1877,16 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
       'C14-02': dolly(P(-135, -14, 9), P(45, -14, 7), P(-100, -40, 2), P(40, -40, 2), 44),
       'C14-03': dolly(P(-135, 6, 8), P(20, 4, 6), P(-100, 30, 1.5), P(10, 34, 2), 44),
       'C14-04': (u) => { const a = -1.2 + ease(u) * 1.6, c = P(75, 50, 3); return [c.clone().add(V3(Math.sin(a) * 95, 22 - u * 6, Math.cos(a) * 95)), c, 44]; },
-      'C14-05': dolly(P(-RG / 2 - 30, -8, 14), P(-RG / 2 - 4, -8, 5), P(0, -6, 2), P(0, -6, 2), 50) };
+      'C14-05': dolly(P(-RG / 2 - 60, -8, 30), P(-RG / 2 - 16, -8, 16), P(0, -6, 0), P(10, -6, 0), 50) };   /* V1.7: dừng trên cao sau biển cổng — không để biển che kín khung khi hiện hai nút cuối phim */
     for (const [id, fn] of Object.entries(C14)) SHOTS[id] = fn;
   }
+  // V1.7 (anh Thắng: có nút Bảo tàng trưng bày ở cùng bộ nút phía trên để vào trải nghiệm lúc nào cũng được) — cả hai tầng
+  { const tl = document.querySelector('.hud.top .right .tools'), b = document.createElement('button'); b.className = 'chip'; b.id = 'bBT'; b.textContent = '🏛 Bảo tàng'; b.title = 'Không gian trưng bày khí tài hai bên — đi bộ tham quan';
+    if (tl) tl.insertBefore(b, $('bdocs') || null);
+    b.onclick = () => { if (TANG === 'ta-con' && KS.BT && KS.BT.vao) { KS.BT.vao(); return; }
+      const h = STORY.scenes.find((c) => c.id === 'H12'), q = new URLSearchParams(location.search); q.set('tang', 'ta-con'); q.set('t', ((h ? h.t0 : 824) + 3).toFixed(2)); q.set('phat', '1'); q.set('baotang', '1'); q.delete('chuong'); q.delete('tiep');
+      let anh = null; try { renderer.render(scene, camera); anh = renderer.domElement.toDataURL('image/jpeg', 0.82); } catch (e) {}
+      if (window.parent !== window && window.parent.__doiTang) window.parent.__doiTang(q.toString(), anh); else location.search = q.toString(); }; }
 }
 if (XEX.ghimND) XEX.ghimND(); for (const f of GHIM_SAU) f();
 for (const [text, get, dy] of HERO_PINS) { const L = addLabel(text, 0, 0, 'hero ly', { grp: 'hero', maxDist: 1200 }); L.dyn = get; L.dy = dy || 3.4; }
@@ -2345,7 +2375,7 @@ const STILL = location.hash === '#still';
 window.__kiem = () => { const c = camera.position, out = []; if (c.y < Math.max(hG(c.x, c.z), hAt(c.x, c.z)) + 0.5) out.push('máy dưới đất'); if (camera.near > camera.position.distanceTo(camLook) * 0.5 || Math.abs(camera.projectionMatrix.elements[14] + 2 * camera.far * camera.near / (camera.far - camera.near)) > 1e-3 * Math.abs(camera.projectionMatrix.elements[14])) out.push('mặt cắt gần sai');   // V1.6   // V1.5: kiểm tra tự động (tools: quét cả phim)
   let ng = 0; for (const X of XE) if (X.obj.visible && Math.hypot(X.obj.position.x, X.obj.position.z) > R - 50) ng++; for (const C of KT.cot || []) for (const X of C.X) if (X.o.visible && Math.hypot(X.o.position.x, X.o.position.z) > R - 50) ng++;
   if (ng) out.push(ng + ' xe ngoài sa bàn'); if (Math.hypot(c.x, c.z) > R * 1.02 && c.y < 3000) out.push('máy ngoài sa bàn, thấp'); return out; };
-window.__sa = { DAM, get dongDat() { return dongDat; }, renderer, scene, THREE, KT, C89, C07, C04, DAN, DONG, get NHA() { return XEX.nhaTong; }, get VOX() { return VOX; }, XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
+window.__sa = { DAM, get dongDat() { return dongDat; }, renderer, scene, THREE, KT, C89, C07, C04, DAN, DONG, get NHA() { return XEX.nhaTong; }, get VOX() { return VOX; }, XE, NVX, XEX, TANG, camera, controls, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, get DUR() { return DUR; }, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0), buoc: (dt) => { update(dt); renderer.render(scene, camera); } };
 // V1.5: card đồ hoạ mất ngữ cảnh (máy yếu, tràn bộ nhớ) → tự dựng lại sa bàn ở đúng giây đang xem, thay vì để màn hình đen
 renderer.domElement.addEventListener('webglcontextlost', (e) => { e.preventDefault(); if (update.mat) return; update.mat = 1; console.warn('mất ngữ cảnh WebGL — dựng lại');
   if (CHO.on) { window.__sanSang = false; return; }   // V1.6: khung nạp sẵn mất ngữ cảnh → bỏ, khi tới hồi đó sẽ tải bình thường

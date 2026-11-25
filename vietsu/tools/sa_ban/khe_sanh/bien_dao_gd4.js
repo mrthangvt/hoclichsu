@@ -198,7 +198,7 @@
     DAM.push((t) => { if (t < t0 || t > t1 + 3 || !(ganMay(LV.x, LV.z, 1400) || LVX.xe.some((X) => X.obj.visible && ganMay(X.obj.position.x, X.obj.position.z, 900)))) return; const u = (t - t0) / d;
       for (let i = 0; i < 26; i++) { const X = LVX.xe[i % Math.max(1, LVX.xe.length)]; if (!X || !X.obj.visible) continue;             /* bộ binh bám sau xe tăng */
         const p = X.obj.position, y = X.obj.rotation.y, b = 12 + (i % 5) * 5, l = ((i * 7) % 9 - 4) * 3, x = p.x - Math.sin(y) * b + Math.cos(y) * l, z = p.z - Math.cos(y) * b - Math.sin(y) * l;
-        dongDat('qgp', u > 0.62 ? ['ban', 'quy', 'ngam', 'nap'][i % 4] : 'chay', t, (i * 0.37) % 1, x, hG(x, z), z, y, 1, i); }
+        const kh = u <= 0.62 && i % 3 === 1; dongDat('qgp', u > 0.62 ? ['ban', 'quy', 'ngam', 'nap'][i % 4] : (kh ? 'khom' : 'chay'), kh ? t * 1.85 : t, (i * 0.37) % 1, x, hG(x, z), z, y, 1, i); }   /* V1.7: một phần ba cúi khom chạy (động tác đi khom phát nhanh 1,85 lần cho khớp bước), còn lại chạy thẳng */
       for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2, x = LV.x + Math.cos(a) * 70, z = LV.z + Math.sin(a) * 55, yaw = Math.atan2(Math.cos(a), Math.sin(a));   /* quân phòng thủ cứ điểm (mẫu lính VNCH, MINH HOẠ) */
         if (u > 0.8 && i > 3 && i % 2 === 0) continue; const tNga = t0 + d * (0.5 + (i % 6) * 0.04), chet = i % 2 === 1;      /* nửa số người trúng đạn: động tác ngã (3,4 s) rồi nằm */
         if (chet && t >= tNga) { const s_ = t - tNga; dongDat('vnch', s_ < 3.3 ? 'nga' : 'nam', s_ < 3.3 ? s_ : t, 0, x, hG(x, z), z, yaw, 1, i); }
@@ -289,10 +289,10 @@
       if (u > 0.15 && u < 0.75) datMB(MB.c130, V3(x, hG(x, z) + h + 3 * SC, z), RW_HUONG + Math.PI, dUong > 500 ? -0.05 : 0); } }
     if (MB.b52) { const on = hz('H08') || hz('H07'), id = hz('H08') ? 'H08' : 'H07', u = on ? (t - H(id).t0) / (H(id).t1 - H(id).t0) : 0, u0 = id === 'H08' ? 0 : 0.2;
       MB.b52.forEach((b, k) => { b.visible = on && u > u0 && u < u0 + 0.5; if (!b.visible) return; const v = (u - u0) / 0.5, cao = TANG === 'ta-con' ? 2600 : 5200;
-        const A = V3(TC.x - R * 0.9, cao, TC.z - R * 0.2 + k * 260 * SC), B = V3(TC.x + R * 0.9, cao, TC.z - R * 0.45 + k * 260 * SC); b.position.lerpVectors(A, B, v); b.rotation.set(0, Math.atan2(B.x - A.x, B.z - A.z) + Math.PI, 0); });
+        const A = V3(TC.x - R * 0.9, cao, TC.z - R * 0.2 + k * 260 * SC), B = V3(TC.x + R * 0.9, cao, TC.z - R * 0.45 + k * 260 * SC); b.position.lerpVectors(A, B, v); b.rotation.set(0, Math.atan2(B.x - A.x, B.z - A.z), 0); });   /* V1.7 (anh Thắng: B-52 bay ngược): mẫu có mũi theo +Z (đo: đuôi đứng ở z = −17,5 m) */
       if (on) thamBom(t, H(id).t0 + (H(id).t1 - H(id).t0) * (u0 + 0.1), H(id).t0 + (H(id).t1 - H(id).t0) * (u0 + 0.5)); else thamBom(t, -10, -5); }
     if (MB.uh1) MB.uh1.forEach((o, k) => { o.visible = false;
-      if (hz('H08') && k < 2) { const a = t * 0.12 + k * Math.PI; datMB(o, V3(TC.x + Math.sin(a) * 600, TC.y + 120 + k * 30, TC.z + Math.cos(a) * 300), a + Math.PI / 2 + Math.PI); }
+      if (hz('H08') && k < 2) { const a = t * 0.12 + k * Math.PI; datMB(o, V3(TC.x + Math.sin(a) * 600, TC.y + 120 + k * 30, TC.z + Math.cos(a) * 300), Math.atan2(Math.cos(a) * 600, -Math.sin(a) * 300)); }   /* V1.7: mũi UH-1 theo +Z, hướng theo tiếp tuyến vòng bay */
  });
     thaDu(t, H('H08').t0 + 40, H('H08').t1);
     // Làng Vây: cờ

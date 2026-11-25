@@ -99,14 +99,21 @@
     // chạy theo khung hình của trình duyệt (cả khi phim dừng, khi khám phá, khi đi bộ — KS.cap chỉ chạy trong phim)
     const capBT = () => { const t = T, on = appMode !== 'film' || t >= H12.t0 - 1.5;
       if (on !== G.visible) { G.visible = on; if (on && !napXong) { napXong = true; KS.napSan(G); } if (!on) the.hidden = true; }
+      const het = appMode === 'film' && !playing && t >= DUR - 0.3; nut.classList.toggle('cuoi', het); ve.hidden = !(het && !W.on && !document.getElementById('load'));
       nut.hidden = !(on && !W.on && !document.getElementById('load') && (appMode === 'film' ? t >= H12.t0 + 2 : true)); nut.classList.toggle('nho', appMode !== 'film'); };   /* khám phá: nút nhỏ ở góc, bấm là tới sân trưng bày */
     // V1.6: đi bộ không xuyên qua bục trưng bày — chạm mép bục thì bị đẩy ra theo phía gần nhất (máy bay lớn không có bục: đi dưới cánh được)
     const chanBuc = () => { if (!W.on || !G.visible) return; for (const k of K) { if (!k.buc) continue; const dx = W.pos.x - (BT.x + k.u), dz = W.pos.z - (BT.z + k.v), hx = k.buc[0] / 2 + 0.45, hz = k.buc[1] / 2 + 0.45;
       if (Math.abs(dx) < hx && Math.abs(dz) < hz) { if (hx - Math.abs(dx) < hz - Math.abs(dz)) placeAvatarAt(BT.x + k.u + Math.sign(dx || 1) * hx, W.pos.z); else placeAvatarAt(W.pos.x, BT.z + k.v + Math.sign(dz || 1) * hz); } } };
     const lapBT = () => { try { capBT(); chanBuc(); } catch (e) {} requestAnimationFrame(lapBT); };
     // nút vào đi bộ tham quan (cuối phim và khi khám phá)
-    const nut = document.createElement('button'); nut.id = 'btVao'; nut.hidden = true; nut.textContent = '🚶 Vào tham quan khí tài (đi bộ)'; document.body.appendChild(nut);
+    // V1.7 (anh Thắng): hết phim hiện nút "Vào Bảo tàng" (phải) và nút trở về trang Không gian lịch sử (trái). Địa chỉ trang: pack.json › ui.trangChu (mặc định "/").
+    const ve = document.createElement('button'); ve.id = 'btVe'; ve.hidden = true; ve.textContent = '← Về trang Không gian lịch sử'; document.body.appendChild(ve);
+    ve.onclick = () => { const u = (PACK.ui && PACK.ui.trangChu) || '/', ngoai = window.parent !== window && window.parent.__doiTang;
+      if (ngoai) { if (/^https?:/.test(u)) window.open(u, '_blank', 'noopener'); else window.parent.__doiTang(''); } else location.href = u; };   /* bản Artifact không mở được trang ngoài trong khung: có địa chỉ đầy đủ thì mở thẻ mới, không thì về màn mở đầu */
+    const nut = document.createElement('button'); nut.id = 'btVao'; nut.hidden = true; nut.textContent = '🏛 Vào Bảo tàng khí tài (đi bộ) →'; document.body.appendChild(nut);
     requestAnimationFrame(lapBT);
+    KS.BT.vao = () => nut.onclick();
+    if (QS.get('baotang') === '1') { const cho = setInterval(() => { if (!document.getElementById('load')) { clearInterval(cho); setTimeout(() => KS.BT.vao(), 400); } }, 300); }   /* mở từ nút "Bảo tàng" ở tầng chiến dịch */
     nut.onclick = () => { setPlaying(false); setAppMode('explore'); flyA = null;
       controls.target.copy(P(-RG / 2 + 22, -8, 1.6)); camera.position.copy(controls.target).add(V3(-9, 3, 0)); setWalk(true); };
     // máy quay hồi kết (H12): bay xuống sân, lia dọc hai dãy, quanh máy bay, dừng ở cổng
@@ -115,6 +122,13 @@
       'C14-02': dolly(P(-135, -14, 9), P(45, -14, 7), P(-100, -40, 2), P(40, -40, 2), 44),
       'C14-03': dolly(P(-135, 6, 8), P(20, 4, 6), P(-100, 30, 1.5), P(10, 34, 2), 44),
       'C14-04': (u) => { const a = -1.2 + ease(u) * 1.6, c = P(75, 50, 3); return [c.clone().add(V3(Math.sin(a) * 95, 22 - u * 6, Math.cos(a) * 95)), c, 44]; },
-      'C14-05': dolly(P(-RG / 2 - 30, -8, 14), P(-RG / 2 - 4, -8, 5), P(0, -6, 2), P(0, -6, 2), 50) };
+      'C14-05': dolly(P(-RG / 2 - 60, -8, 30), P(-RG / 2 - 16, -8, 16), P(0, -6, 0), P(10, -6, 0), 50) };   /* V1.7: dừng trên cao sau biển cổng — không để biển che kín khung khi hiện hai nút cuối phim */
     for (const [id, fn] of Object.entries(C14)) SHOTS[id] = fn;
   }
+  // V1.7 (anh Thắng: có nút Bảo tàng trưng bày ở cùng bộ nút phía trên để vào trải nghiệm lúc nào cũng được) — cả hai tầng
+  { const tl = document.querySelector('.hud.top .right .tools'), b = document.createElement('button'); b.className = 'chip'; b.id = 'bBT'; b.textContent = '🏛 Bảo tàng'; b.title = 'Không gian trưng bày khí tài hai bên — đi bộ tham quan';
+    if (tl) tl.insertBefore(b, $('bdocs') || null);
+    b.onclick = () => { if (TANG === 'ta-con' && KS.BT && KS.BT.vao) { KS.BT.vao(); return; }
+      const h = STORY.scenes.find((c) => c.id === 'H12'), q = new URLSearchParams(location.search); q.set('tang', 'ta-con'); q.set('t', ((h ? h.t0 : 824) + 3).toFixed(2)); q.set('phat', '1'); q.set('baotang', '1'); q.delete('chuong'); q.delete('tiep');
+      let anh = null; try { renderer.render(scene, camera); anh = renderer.domElement.toDataURL('image/jpeg', 0.82); } catch (e) {}
+      if (window.parent !== window && window.parent.__doiTang) window.parent.__doiTang(q.toString(), anh); else location.search = q.toString(); }; }

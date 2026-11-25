@@ -113,14 +113,20 @@ window.__doiTang = (q, anh) => {{ const p = new URLSearchParams(q), tg = p.get("
   // trình duyệt dọn rác → hai, ba sa bàn cùng chiếm card đồ hoạ, máy treo)
   if (cho) {{ boKhung(cho); cho = null; choTang = ""; }}
   if (khung) {{ boKhung(khung); khung = null; }}   // V1.5 (Khe Sanh, anh Thắng: hồi 5 đơ hình, chỉ còn tiếng): trả ngữ cảnh WebGL của khung cũ TRƯỚC khi tạo khung mới — không lúc nào có hai sa bàn cùng chạy
-  const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn"; f.style.zIndex = "2";
+  const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen; screen-wake-lock"; f.title = "Sa bàn"; f.style.zIndex = "2";
   f.src = "app.html#" + q; document.body.append(f); f.addEventListener("load", () => {{ try {{ f.contentWindow.focus(); }} catch (e) {{}} }});
   if (cau) choXong(f);
   if (khung) boKhung(khung); khung = f; }};
 window.__chuanBi = (q) => {{ const tg = new URLSearchParams(q).get("tang") || ""; if (cho && choTang === tg) return; if (cho) boKhung(cho);
-  const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen"; f.title = "Sa bàn (nạp sẵn)"; f.style.cssText = "opacity:0;pointer-events:none;z-index:0";
+  const f = document.createElement("iframe"); f.allow = "autoplay; fullscreen; screen-wake-lock"; f.title = "Sa bàn (nạp sẵn)"; f.style.cssText = "opacity:0;pointer-events:none;z-index:0";
   f.src = "app.html#" + q + "&cho=1"; document.body.prepend(f); cho = f; choTang = tg; }};
-window.__doiTang(location.hash === "#chan-doan" ? "chan-doan=1" : "");
+// V1.7 (anh Thắng: điện thoại gần các chương cuối bị tải lại từ đầu): ghi chỗ đang xem mỗi 3 s; trang bị trình duyệt tải lại thì mở lại đúng tầng, đúng phút
+const KHOA = "sa-ban-tiep:{goi}";
+setInterval(() => {{ try {{ const s = khung && khung.contentWindow && khung.contentWindow.__sa; if (!s || cau) return; const t = s.T;
+  if (t > 5 && t < s.DUR - 3) localStorage.setItem(KHOA, JSON.stringify({{ tang: s.TANG, t: +t.toFixed(1), luc: Date.now() }})); else if (t >= s.DUR - 3) localStorage.removeItem(KHOA); }} catch (e) {{}} }}, 3000);
+let dau = location.hash === "#chan-doan" ? "chan-doan=1" : "";
+try {{ const g = JSON.parse(localStorage.getItem(KHOA) || "null"); if (!dau && g && Date.now() - g.luc < 6 * 3600e3 && g.t > 5) dau = "tang=" + encodeURIComponent(g.tang) + "&t=" + g.t + "&tiep=1"; }} catch (e) {{}}
+window.__doiTang(dau);
 </script></body></html>
 """, encoding="utf-8")
 tep = [p for p in RA.rglob("*") if p.is_file()]

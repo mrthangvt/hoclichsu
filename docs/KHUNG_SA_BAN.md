@@ -239,5 +239,9 @@ Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa h�
 42. **Đổi tầng trong bản Artifact:** khung ngoài giữ ảnh khung hình cuối của tầng cũ trong lúc tầng mới dựng (bộ máy 2.2.0 `doiTang` gửi ảnh, `dong_goi_artifact_2.py` phủ ảnh) — không màn tối, không hai sa bàn cùng chạy.
 43. **Chế độ đi bộ cần bộ nghe phím W A S D / mũi tên và cần ảo trong `rieng.js`** (bản nền HCM từng thiếu — nhân vật đứng im). Thử: vào đi bộ, giữ W, máy quay phải dời.
 44. **Người chạy vào công sự** không đi xuyên tường bao cát: dùng động tác nhảy qua ở đoạn cắt tường. Trực thăng có cánh quạt quay (bỏ cánh đúc liền của mẫu, gắn cụm cánh quạt dựng bằng mã).
+45. **Đội hình chạy khi đánh:** trộn người cúi khom và người chạy thẳng; có thương vong của cả hai bên (ít, không cận vết thương).
+46. **Không gắn người đứng yên vào một mốc đang chạy nhanh** (đầu hào dài ra, mũi tên tiến) — người, máy cận phải neo vào điểm cố định; phần "dài ra" chỉ để xem ở góc rộng.
+47. **Điện thoại:** độ phân giải ≤ 1,25, không MSAA; khung ngoài ghi chỗ đang xem để mở lại đúng phút nếu trình duyệt bỏ trang; giữ màn hình sáng khi phát phim (Wake Lock + video câm dự phòng).
+48. **Mẫu máy bay:** đo mũi trước khi xoay (đuôi đứng ở phía nào) — B-52, UH-1 nướng bằng `bake_vat.py` nhìn +Z.
 
 Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.
