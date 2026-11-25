@@ -14,7 +14,10 @@ goi = sys.argv[1]
 RA = Path(sys.argv[2] if len(sys.argv) > 2 else f"dist_{goi}").resolve()
 D = KG / "packs" / goi
 P = json.loads((D / "pack.json").read_text(encoding="utf-8"))
-E = sorted((KG / "engine").glob("2.*"))[-1]
+# bộ máy đúng bản gói khai báo (^2.1 → 2.1.x mới nhất): loi.js mỗi bản có chỗ cắm khác nhau, ghép rieng.js của 2.1 vào loi.js 2.2 là hỏng
+_v = re.match(r"\^?(\d+)\.(\d+)", str(P.get("engine", "2")))
+_ds = sorted((KG / "engine").glob(f"{_v.group(1)}.{_v.group(2)}.*" if _v else "2.*"), key=lambda d: [int(x) for x in d.name.split(".")])
+E = _ds[-1] if _ds else sorted((KG / "engine").glob("2.*"))[-1]
 if RA.exists(): shutil.rmtree(RA)
 (RA / "packs").mkdir(parents=True)
 

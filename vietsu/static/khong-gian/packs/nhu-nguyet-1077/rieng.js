@@ -1489,7 +1489,7 @@ const MU = {
     if (!this.g) return;
     if (Object.keys(MUS.g).length) {                       // V1.4: phát nhạc nền thu sẵn, đổi bản theo chương (chuyển mượt 2,5 s)
       const C = AM.ctx, now = C.currentTime, live = AM.on && $('ly-nhac').checked && ((appMode === 'film' && playing) || appMode === 'explore');
-      MUS.out.gain.setTargetAtTime(live ? (W.on ? 0.22 : 0.34) : 0, now, live ? 1.2 : 0.5);
+      MUS.out.gain.setTargetAtTime(live ? (W.on ? 0.22 : 0.34) * (VOX.noi && VOX.el && !VOX.el.paused ? 0.55 : 1) : 0, now, live ? (VOX.noi ? 0.4 : 1.2) : 0.5);      // hạ nhạc khi đang đọc lời dẫn
       const want = NHAC_CH[sceneIdx(T)] || 'binh';
       for (const n in MUS.g) MUS.g[n].gain.setTargetAtTime(n === want ? 1 : 0, now, 2.5);
       this.g.gain.setTargetAtTime(0, now, 0.5); return;
@@ -1509,10 +1509,33 @@ const MU = {
   },
 };
 //@@ s51
+// ---- lời dẫn thu âm (25/11/2026): audio/voice.mp3 đã đặt sẵn từng câu đúng giây phim (tools/sa_ban/voice/dung_voice_nhu_nguyet.py).
+// Khi đang phát phim, giọng đọc là đồng hồ: giây phim lấy theo currentTime. Không có tệp / bị chặn / tắt "Lời bình" thì phim tự đếm giờ
+// như cũ. Tải bằng fetch → blob (artifact chỉ phát media từ blob:). Có giọng thu thì không dùng giọng máy.
+const VOX = { el: null, ok: false, cau: (STORY.voice && STORY.voice.cau) || [], noi: false,
+  async load() {
+    if (!STORY.voice || !STORY.voice.file) return;
+    try { const r = await fetch(STORY.voice.file); if (!r.ok) return; const u = URL.createObjectURL(await r.blob());
+      const el = new Audio(); el.preload = 'auto'; el.src = u; el.volume = 1; this.el = el; this.ok = true; voStop(); } catch (e) { console.warn('lời dẫn', e); }
+  },
+  // gọi đầu mỗi khung: trả về true nếu giây phim đã lấy theo giọng đọc
+  sync() {
+    const el = this.el; if (!el) return false;
+    const want = this.ok && VO.on && appMode === 'film' && playing && !seeking && speed <= 2 && T < el.duration - 0.05;
+    let i = 0; while (i < this.cau.length && this.cau[i][1] < T) i++;
+    this.noi = i < this.cau.length && this.cau[i][0] <= T;
+    if (!want) { if (!el.paused) el.pause(); this.lastT = undefined; return false; }
+    el.playbackRate = speed;
+    if (el.paused) { if (Math.abs(el.currentTime - T) > 0.05) el.currentTime = T; const p = el.play(); if (p) p.catch(() => { this.ok = false; }); this.lastT = T; return false; }
+    if (this.lastT !== undefined && Math.abs(T - this.lastT) > 0.3) { el.currentTime = T; this.lastT = T; return false; }      // người xem tua, đổi chương: đưa giọng tới đúng chỗ
+    T = el.currentTime; this.lastT = T; return true;                                     // còn lại giọng đọc dẫn nhịp (máy chậm cũng không giật lùi)
+  },
+};
+VOX.load();
 function updSub(force) {
   const el = $('sub'), sc = SC[sceneIdx(T)]; let txt = '', key = '';
   if (appMode === 'film') sc.subs.forEach((s, k) => { if (T >= s[0] && T < s[1]) { txt = s[2]; key = sc.id + ':' + k; } });
-  if (key && key !== lastLine) { lastLine = key; speak(txt); }
+  if (key && key !== lastLine) { lastLine = key; if (!VOX.ok) speak(txt); }
   const on = appMode === 'film' && $('ly-sub').checked && $('poem').hidden;      // khi bài thơ hiện giữa màn hình thì ẩn phụ đề để không chồng chữ
   if (!on) { el.hidden = true; return; }
   if (el.textContent !== txt || force) el.textContent = txt; el.hidden = !txt;
@@ -1523,7 +1546,7 @@ const ROUTES = [routeLy1, routeLy2, routeTong, routeTongS, routeQQ, routeNavy];
 function routeOn(m, on, p) { m.visible = on; if (on) m.material.uniforms.uP.value = p; }
 const BIG_ROUTES = new Set([routeLy1, routeLy2, routeTong, routeTongS, routeQQ, routeNavy]);
 function update(dt) {
-  if (appMode === 'film' && playing) { T += dt * speed; if (T >= DUR) { T = DUR - 0.01; setPlaying(false); } }
+  if (appMode === 'film' && playing) { if (!VOX.sync()) T += dt * speed; if (T >= DUR) { T = DUR - 0.01; setPlaying(false); } } else VOX.sync();
   if (appMode === 'explore') { const sc = SC[exploreI]; T += dt; if (T >= sc.t1 || T < sc.t0) T = sc.t0 + 0.01; }
   const t = T;
   U.time.value += dt;
@@ -1634,7 +1657,7 @@ T = 0; update(0); renderer.render(scene, camera);
 renderList(); connectStore();
 const NV_XONG = nvNen().then(() => XL.load());   // nhân vật nướng sẵn (theo thứ tự xuất hiện), rồi nhân vật có xương cho cận cảnh — đều tải sau khi sa bàn đã hiện, không tính vào tải lần đầu
 const STILL = location.hash === '#still';
-window.__sa = { XL, WP, NV_XONG, NQ, LHT, camera, controls, BOAT_S, AM, MU, NVK, LUY, GAR, RAFT, CAMP, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, boats, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0) };
+window.__sa = { XL, WP, NV_XONG, VOX, NQ, LHT, camera, controls, BOAT_S, AM, MU, NVK, LUY, GAR, RAFT, CAMP, seek: (t) => { T = clamp(t, 0, DUR - 0.01); }, setPlaying, setAppMode, goView, get T() { return T; }, boats, render: () => { update(0); renderer.render(scene, camera); }, ve: () => renderer.render(scene, camera), tinh: () => update(0) };
 function closeLoad() { $('load').classList.add('done'); setTimeout(() => $('load').remove(), 700); }
 if (STILL) { document.body.classList.add('ready'); closeLoad(); }
 else {
