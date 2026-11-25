@@ -5,6 +5,10 @@
 {
   const HOI = {}; for (const c of STORY.scenes) HOI[c.id] = c;
   const H = (id) => HOI[id] || { t0: 1e9, t1: 1e9 };
+  /* GĐ5 voice: giây n trong hồi ở bản cũ (ước theo số chữ) → giây voice, nội suy theo scene.ban_do (tools/sa_ban/voice/dung_story_khe_sanh.py) */
+  const tv = (id, d) => { const L = H(id).ban_do; if (!L) return H(id).t0 + d; if (d <= L[0][0]) return L[0][1] + d - L[0][0];
+    for (let i = 1; i < L.length; i++) if (d <= L[i][0]) { const [a, x] = L[i - 1], [b, y] = L[i]; return x + (y - x) * (d - a) / (b - a); } const [a, x] = L[L.length - 1]; return x + d - a; };
+  const mv = (k, id, d) => (MV[k] !== undefined ? MV[k] : tv(id, d));                  /* mốc theo câu đọc (story.moc), thiếu thì theo bản cũ */
   const PM = (k) => { const v = LL(MOC[k][0], MOC[k][1], 0); v.y = hG(v.x, v.z); return v; };
   const trong = (v, m = 0.96) => Math.hypot(v.x, v.z) < R * m;
   const SC = TANG === 'chien-dich' ? 4 : 1;                                  /* tầng chiến dịch rộng 66 km: phóng to xe, máy bay để còn nhìn thấy */
@@ -269,9 +273,9 @@
     gx('C-130 (Mỹ) · tiếp tế', () => (MB.c130 && MB.c130.visible ? MB.c130.position : null), 12 * SC, 12000);
     if (KS.LANG_KHOAI) { const L = addLabel('Chốt Làng Khoai (vị trí ước lượng)', KS.LANG_KHOAI.x, KS.LANG_KHOAI.z, 'ly', { grp: 'hero', maxDist: 40000 }); L.dy = 60; }
     for (const [ten, [x, z]] of KS.ghimCC || []) { const L = addLabel(ten, x, z, 'ly', { grp: 'hero', maxDist: 3500 }); L.dy = 25; }
-    if (KS.kho) gx('Kho đạn số 1 nổ (21/1/1968)', () => (T >= H('H04').t0 + 8 && T < H('H04').t1 ? KS.kho : null), 120, 9000); });
+    if (KS.kho) gx('Kho đạn số 1 nổ (21/1/1968)', () => (T >= mv('h04_kho', 'H04', 10) && T < H('H04').t1 ? KS.kho : null), 120, 9000); });
   // ---------------------------------------------------------------- mỗi khung
-  lichNo(H('H04').t0 + 6, H('H04').t1, 16, 700); lichNo(H('H07').t0, H('H07').t1, 8, 800); lichNo(H('H08').t0, H('H08').t1, 6, 800);
+  lichNo(mv('h04_phao', 'H04', 6), H('H04').t1, 16, 700); lichNo(H('H07').t0, H('H07').t1, 8, 800); lichNo(H('H08').t0, H('H08').t1, 6, 800);
   lichBom(H('H07').t0 + (H('H07').t1 - H('H07').t0) * 0.3, H('H07').t0 + (H('H07').t1 - H('H07').t0) * 0.7); lichBom(H('H08').t0 + (H('H08').t1 - H('H08').t0) * 0.1, H('H08').t0 + (H('H08').t1 - H('H08').t0) * 0.5);
   KS.lapHo();
   KS.cap = (t, dt) => { try {
@@ -279,8 +283,8 @@
     coBay(t);
     const hz = (id) => t >= H(id).t0 && t < H(id).t1;
     // căn cứ: pháo kích hồi 4, 7, 8; kho đạn nổ hồi 4; rút quân hồi 10 (công sự thưa dần)
-    noTai(t, H('H04').t0 + 6, H('H04').t1, 16, 700); noTai(t, H('H07').t0, H('H07').t1, 8, 800); noTai(t, H('H08').t0, H('H08').t1, 6, 800);
-    khoNo(t, H('H04').t0 + 10, H('H04').t1 - 2);
+    noTai(t, mv('h04_phao', 'H04', 6), H('H04').t1, 16, 700); noTai(t, H('H07').t0, H('H07').t1, 8, 800); noTai(t, H('H08').t0, H('H08').t1, 6, 800);
+    khoNo(t, mv('h04_kho', 'H04', 10), H('H04').t1 - 2);
     phaoBan(t, hz('H04') || hz('H07'));
     if (KS.bao) { const u = hz('H10') ? clamp((t - H('H10').t0) / (H('H10').t1 - H('H10').t0) * 1.4, 0, 1) : (t >= H('H10').t1 ? 1 : 0); KS.bao.count = Math.round(CC.bunker.length * (1 - u * 0.85)); if (KS.lieu) KS.lieu.visible = u < 0.6; }
     // máy bay
@@ -294,7 +298,7 @@
     if (MB.uh1) MB.uh1.forEach((o, k) => { o.visible = false;
       if (hz('H08') && k < 2) { const a = t * 0.12 + k * Math.PI; datMB(o, V3(TC.x + Math.sin(a) * 600, TC.y + 120 + k * 30, TC.z + Math.cos(a) * 300), Math.atan2(Math.cos(a) * 600, -Math.sin(a) * 300)); }   /* V1.7: mũi UH-1 theo +Z, hướng theo tiếp tuyến vòng bay */
  });
-    thaDu(t, H('H08').t0 + 40, H('H08').t1);
+    thaDu(t, tv('H08', 40), H('H08').t1);
     // Làng Vây: cờ
     if (LVX.ok && LVX.co) LVX.co.visible = t >= LVX.t0 + (LVX.t1 - LVX.t0) * 0.78 && t < H('H11').t1;
     // chiến hào vây lấn mọc dần
@@ -303,9 +307,9 @@
     const arrOn = $('ly-arr').checked && $('ly-muiten').checked;
     const shNow = (id) => (H(id).shots || []).find((x) => t >= x.t0 && t < x.t1);
     for (const M of MT) { const id = M.hoi.find((h) => hz(h)), sh = id && shNow(id); const on = arrOn && !!id && (appMode !== 'film' || !sh || sh.size === 'Đại toàn' || sh.id === 'C13-03');   /* mũi tên chỉ hiện ở cảnh đại toàn, không che đoàn xe khi quay gần */ M.m.visible = on; }
-    TET.style.opacity = hz('H05') && t > H('H05').t0 + 6 && appMode === 'film' ? 1 : 0;
+    TET.style.opacity = hz('H05') && t > mv('h05_tet', 'H05', 6) && appMode === 'film' ? 1 : 0;
   } catch (e) { console.warn('KS.cap', e); } };
-  Object.assign(KS, { xeTaoN, H, PM, mp, trongDa, LV, LVX, MB, PHAO, CR, MT, dai, veGlb, napSan, RW_HUONG, CC });   /* dùng ở phần dàn cảnh từng cú máy (dan_canh_gd4.js) */
+  Object.assign(KS, { xeTaoN, H, tv, mv, PM, mp, trongDa, LV, LVX, MB, PHAO, CR, MT, dai, veGlb, napSan, RW_HUONG, CC });   /* dùng ở phần dàn cảnh từng cú máy (dan_canh_gd4.js) */
   window.__ks = { KS, LVX, MB, PHAO, MT, XE };                              /* để kiểm tra tự động (quet_phim, chụp) */
   // ---------------------------------------------------------------- ÂM THANH (V1.4, anh Thắng: thiếu tiếng nổ, súng, pháo, lửa, máy bay, xe tăng)
   // Nền (vòng lặp): gió, súng nhỏ, xe tăng, lửa; tiếng máy bay phản lực / B-52, trực thăng tổng hợp bằng nhiễu lọc. Tiếng nổ đúng lúc từng tiếng nổ trên hình (SU_KIEN).
@@ -313,7 +317,7 @@
     if (hz('H01') || hz('H11')) return { gio: 0.3 };
     if (hz('H02')) return { gio: 0.26 };
     if (hz('H03')) return { gio: 0.2 };
-    if (hz('H04')) return { gio: 0.1, ak47: t > H('H04').t0 + 8 ? 0.22 : 0, lua: t > H('H04').t0 + 10 ? 0.45 : 0 };
+    if (hz('H04')) return { gio: 0.1, ak47: t > mv('h04_phao', 'H04', 6) + 2 ? 0.22 : 0, lua: t > mv('h04_kho', 'H04', 10) ? 0.45 : 0 };
     if (hz('H05')) return { gio: 0.15 };
     if (hz('H06')) return { gio: 0.08, ak47: u > 0.3 ? 0.5 : 0.08, lua: u > 0.6 ? 0.25 : 0 };
     if (hz('H07')) return { gio: 0.12, ak47: 0.18 };
@@ -329,10 +333,10 @@
     p.maybay = Math.max(p.maybay || 0, 0.7 * mb); p.trucan = Math.max(p.trucan || 0, 0.7 * tc); p.xetang = Math.max(p.xetang || 0, 0.75 * xt); p.oto = Math.max(p.oto || 0, 0.7 * ot); return p; };
   KS.amMoc = () => { const L = [], cp = camera.position;                                 /* tiếng nổ theo từng sự kiện nổ, nhỏ dần theo khoảng cách tới máy quay */
     for (const e of SU_KIEN) { const d = Math.hypot(e.x - cp.x, e.z - cp.z), v = clamp(1.1 - d / (e.r > 5 ? 12000 : 5000), 0, 1); if (v > 0.05) L.push([e.t + Math.min(2.5, d / 340), 'no', 0.85 * v]); }
-    const k = H('H04').t0 + 10; L.push([k, 'no', 1], [k + 0.4, 'no', 0.9], [k + 0.9, 'lua', 0.7], [k + 1.6, 'no', 0.8], [k + 2.8, 'no', 0.7]);   /* kho đạn nổ 21/1 */
+    const k = mv('h04_kho', 'H04', 10); L.push([k, 'no', 1], [k + 0.4, 'no', 0.9], [k + 0.9, 'lua', 0.7], [k + 1.6, 'no', 0.8], [k + 2.8, 'no', 0.7]);   /* kho đạn nổ 21/1 */
     for (let i = 0; i < 14; i++) L.push([H('H06').t0 + (H('H06').t1 - H('H06').t0) * (0.3 + i * 0.022), 'daibac', 0.55]);   /* PT-76 bắn */
     return L; };
-  KS.amLap = () => [[H('H04').t0 + 4, H('H04').t1, 'daibac', 0.5, 2.4, 2.0], [H('H07').t0, H('H07').t1, 'daibac', 0.35, 3.5, 3.0], [H('H06').t0 + 6, H('H06').t0 + 30, 'daibac', 0.4, 2.2, 2.0]];   /* pháo bắn đi (Co Roc, pháo chiến dịch) */
+  KS.amLap = () => [[mv('h04_phao', 'H04', 6) - 1, H('H04').t1, 'daibac', 0.5, 2.4, 2.0], [H('H07').t0, H('H07').t1, 'daibac', 0.35, 3.5, 3.0], [tv('H06', 6), tv('H06', 30), 'daibac', 0.4, 2.2, 2.0]];   /* pháo bắn đi (Co Roc, pháo chiến dịch) */
   // ---------------------------------------------------------------- máy quay riêng cho vài hồi (đè máy quay tạm GĐ3)
   const theoXe = (lay, sau, cao, fov = 44) => (u, t) => { const X = lay(); if (!X || !X.obj.visible) return null; const p = X.obj.position, y = X.obj.rotation.y, f = V3(Math.sin(y), 0, Math.cos(y)), r = V3(f.z, 0, -f.x);
     return [p.clone().addScaledVector(f, -sau).addScaledVector(r, sau * 0.6).add(V3(0, cao, 0)), p.clone().addScaledVector(f, 20).add(V3(0, 2, 0)), fov]; };

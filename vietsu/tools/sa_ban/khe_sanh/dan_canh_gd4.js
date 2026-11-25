@@ -2,7 +2,7 @@
 // Anh Thắng 25/11: "camera cứ quay mãi vào đường băng" → mỗi cú máy trong story.json có chủ thể riêng (người, khí tài) và góc đúng cỡ cảnh
 // (đại toàn / toàn / trung / cận). Vị trí tổ quân, số người, đường đi là TÁI DỰNG MINH HOẠ; mốc, đơn vị theo docs/KHE_SANH_1968_TU_LIEU.md.
 {
-  const { H, mp } = KS, TC = KS.TC, SCN = STORY.scenes.filter((c) => (c.tang || 'chien-dich') === TANG);
+  const { H, mp, tv } = KS, TC = KS.TC, SCN = STORY.scenes.filter((c) => (c.tang || 'chien-dich') === TANG);
   const G = (x, z, dy = 0) => V3(x, hG(x, z) + dy, z);
   const ll = (la, lo, dy = 0) => { const v = LL(la, lo, 0); v.y = hG(v.x, v.z) + dy; return v; };
   const tren = (p, k = 3) => { const g = hG(p.x, p.z) + k; if (p.y < g) p.y = g; return p; };                     /* máy quay không chui xuống đất */
@@ -130,8 +130,8 @@
     if (KS.CR) { const c = KS.taoCo('co-qgp', 1.4, 4); c.position.set(KS.CR.x + 8, hG(KS.CR.x + 8, KS.CR.z - 30), KS.CR.z - 30); }
     // đường tuần tra trong hào phía bắc
     const TUAN = [mp(330, 102), mp(400, 92), mp(450, 90), mp(530, 112), mp(600, 133)].map(([x, z]) => G(x, z));
-    const tuan = diTheo(TUAN, 0.97, H('H02').t0 + 20);                                /* 0,97 m/s: nhịp bước của động tác Rifle Walk (Mixamo) */
-    const tuan10 = diTheo(TUAN.slice().reverse(), 0.97, H('H10').t0 + 40);
+    const tuan = diTheo(TUAN, 0.97, tv('H02', 20));                                /* 0,97 m/s: nhịp bước của động tác Rifle Walk (Mixamo) */
+    const tuan10 = diTheo(TUAN.slice().reverse(), 0.97, tv('H10', 40));
     // các điểm cao có quân Mỹ (M5, M25): ụ bao cát và vài người trên đỉnh
     const DOI = ['h881s', 'h861', 'h861a', 'h558', 'h950'].filter((k) => MOC[k]).map((k) => { const v = KS.PM(k); uBaoCat(v.x, v.z, 4, 0, 0.6); uBaoCat(v.x + 12, v.z - 6, 3, 2, 0.6); return v; });
     for (const v of DOI) { const c = KS.taoCo('co-my', 1.2, 4); c.position.set(v.x + 3, hG(v.x + 3, v.z + 2), v.z + 2); }   /* cờ Mỹ trên các điểm cao có TQLC đóng (M5) */
@@ -149,8 +149,8 @@
     // V1.6 (anh Thắng: lính Mỹ chạy vào công sự không được đi xuyên bức tường bao cát — nhảy qua): tính chỗ đường chạy cắt vòng bao cát (bán kính 3,2 m)
     const VUOT4 = Array.from({ length: 12 }, (_, i) => { const a = G(HAM.x + 20 + (i % 4) * 4, HAM.z - 15 + Math.floor(i / 4) * 5), b = G(HAM.x + (i % 3 - 1) * 1.4, HAM.z + (Math.floor(i / 3) % 2) * 1.2);
       const L = Math.hypot(b.x - a.x, b.z - a.z); let dc = L; for (let k = 0; k <= 400; k++) { const q = k / 400, x = a.x + (b.x - a.x) * q, z = a.z + (b.z - a.z) * q; if (Math.hypot(x - HAM.x, z - HAM.z) < 3.35) { dc = q * L; break; } }
-      return { dc, t0: H('H04').t0 + 52 + i * 0.4 }; });
-    const CHAY4 = Array.from({ length: 12 }, (_, i) => { const a = G(HAM.x + 20 + (i % 4) * 4, HAM.z - 15 + Math.floor(i / 4) * 5), b = G(HAM.x + (i % 3 - 1) * 1.4, HAM.z + (Math.floor(i / 3) % 2) * 1.2); return diTheo([a, b], 2.7, H('H04').t0 + 52 + i * 0.4); });                 /* 2,7 m/s: nhịp bước Rifle Run */
+      return { dc, t0: tv('H04', 52) + i * 0.4 }; });
+    const CHAY4 = Array.from({ length: 12 }, (_, i) => { const a = G(HAM.x + 20 + (i % 4) * 4, HAM.z - 15 + Math.floor(i / 4) * 5), b = G(HAM.x + (i % 3 - 1) * 1.4, HAM.z + (Math.floor(i / 3) % 2) * 1.2); return diTheo([a, b], 2.7, tv('H04', 52) + i * 0.4); });                 /* 2,7 m/s: nhịp bước Rifle Run */
     DAM.push((t) => { if (!trong(t, 'H04') || !ganMay(HAM.x, HAM.z, 600)) return;
       CHAY4.forEach((f, i) => { const o = f(t), v = VUOT4[i], d = (t - v.t0) * 2.7, u = (d - v.dc + 1.5) / 2.7;
         if (!o.het && u > 0 && u < 1 && i !== 7) { const C = DONG.my && DONG.my.clips.nhay;   /* tới bờ ụ bao cát: nhảy qua (động tác "jump forward"), nhấc người qua bức tường cao ~0,7 m */
@@ -191,7 +191,7 @@
     DAM.push((t) => { if (!trong(t, 'H08') || !ganMay(DZ.x, DZ.z, 800)) return; toNguoi('my', DZ, 1.2, [[0, 0, 'dung'], [3, 1, 'ngam', 1.2], [-3, 2, 'nup'], [5, -2, 'quy'], [-5, -1, 'dung', -0.8], [1, 5, 'nap'], [-2, -5, 'nup', 2], [6, 4, 'dung', 2.6]], t); });
     // H10: xe tải chở vật tư rút theo đường băng về phía đông (M8), lính đi bộ theo; cờ trên sân bay Tà Cơn ngày 9/7 (S14, S15)
     { const d = H('H10').t1 - H('H10').t0, A = KS.dd(-450, 55), B = KS.dd(560, 55), E = mp(840, 245), duong = [[A[0], -A[1]], [B[0], -B[1]], [E[0], -E[1]]];
-      for (let k = 0; k < 2; k++) KS.xeTaoN('data/xe/xe-tang-m48.glb', { duong,   /* V1.4: phía Mỹ dùng M48 (mẫu xe tải là xe Quân Giải phóng) */ lich: [[H('H10').t0 + 6, -k * 18], [H('H10').t0 + d * 0.45, 900 - k * 18], [H('H10').t1, 1500 - k * 18]], hien: (t) => trong(t, 'H10'), ten: 'Rút quân' });
+      for (let k = 0; k < 2; k++) KS.xeTaoN('data/xe/xe-tang-m48.glb', { duong,   /* V1.4: phía Mỹ dùng M48 (mẫu xe tải là xe Quân Giải phóng) */ lich: [[tv('H10', 6), -k * 18], [H('H10').t0 + d * 0.45, 900 - k * 18], [H('H10').t1, 1500 - k * 18]], hien: (t) => trong(t, 'H10'), ten: 'Rút quân' });
       const [cx, cz] = KS.dd(-150, -35), co = KS.taoCo('co-qgp', 2.4, 6);
       co.position.set(cx, hG(cx, cz), cz); KS.coTC = co; const tCo = H('H10').t0 + d * 0.86; DUNG.push([co, tCo, H('H10').t1 + 1]);
       DAM.push((t) => { if (t < tCo || t > H('H10').t1 + 1 || !ganMay(cx, cz, 900)) return; toNguoi('qgp', co.position, KS.RW_HUONG, [[-2, 2, 'dung'], [2.5, 1.5, 'dung'], [-4, -1, 'quansat'], [4, -1.5, 'dung'], [0, 4, 'dung'], [-1, 6, 'di']], t); }); }
@@ -325,7 +325,7 @@
     const DP = (INST.duong && INST.duong.cd_pegasus) || [], DAU = DP.length ? G(DP[30][0], -DP[30][1]) : TC;
     const LZ = ll(16.672, 106.800), UH = []; KS.UH = UH;
     const RA_LZ = Array.from({ length: 14 }, (_, i) => { const k = i % 3, hx = LZ.x + (k - 1) * 24, hz = LZ.z + (k % 2) * 16, a = 0.9 + (i / 14) * Math.PI * 2;   /* từ ba chiếc trực thăng đã đáp chạy ra vòng ngoài */
-      return diTheo([G(hx + Math.sin(a) * 3, hz + Math.cos(a) * 3), G(LZ.x + Math.sin(a) * 34, LZ.z + Math.cos(a) * 30)], 2.7, H('H09').t0 + 33 + (i % 5) * 0.7); });
+      return diTheo([G(hx + Math.sin(a) * 3, hz + Math.cos(a) * 3), G(LZ.x + Math.sin(a) * 34, LZ.z + Math.cos(a) * 30)], 2.7, tv('H09', 33) + (i % 5) * 0.7); });
     glbLoad('data/may-bay/uh-1.glb').then((g) => { for (let k = 0; k < 9; k++) { const o = KS.napSan(g.scene.clone(true)); o.visible = false; scene.add(o); UH.push(o); } });
     DAM.push((t) => { if (!trong(t, 'H09')) { for (const o of UH) o.visible = false; return; } const d = H('H09').t1 - H('H09').t0, u = (t - H('H09').t0) / d;
       UH.forEach((o, k) => { o.visible = true; if (k < 3) { const x = LZ.x + (k - 1) * 24, z = LZ.z + (k % 2) * 16; o.position.set(x, hG(x, z) + 0.2, z); o.rotation.y = 0.9; return; }   /* ba chiếc đã đáp */

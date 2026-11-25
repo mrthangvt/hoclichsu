@@ -1,6 +1,6 @@
 {
- "note": "KỊCH BẢN 11 HỒI (anh Thắng duyệt 25/11/2026: phương án B, đưa Tết lên hồi 5, gộp cảnh \"lòng đất\" vào hồi 7, \"chưa yên tiếng súng\" vào hồi 10; sửa lời theo docs/KHE_SANH_1968_TU_LIEU.md mục 3). Nguồn: docs/du-lieu/khe-sanh-1968_camera_timeline_v1.json. Chưa có voice: t0/t1 ước theo số chữ (tốc độ đọc của kịch bản gốc); khi có bản thu sẽ dựng lại theo voice. Trường goc: mã cảnh trong kịch bản camera; nguon: mã trong sources.json.",
- "duration": 874.0,
+ "note": "KỊCH BẢN 11 HỒI + KẾT theo VOICE (giây voice). Dựng bằng tools/sa_ban/voice/dung_story_khe_sanh.py từ khe_sanh_story_truoc_voice.json (bản ước theo số chữ, nhap_story_khe_sanh.py). Phụ đề: câu chữ story (vo), mốc theo voice. scene.ban_do: giây cũ trong hồi → giây voice. Trường goc: mã cảnh trong kịch bản camera; nguon: mã trong sources.json.",
+ "duration": 765.27,
  "scenes": [
   {
    "id": "H01",
@@ -14,7 +14,7 @@
    "place": "Đường 9, thung lũng Khe Sanh, Tà Cơn",
    "date": "1968",
    "t0": 0.0,
-   "t1": 70.0,
+   "t1": 61.74,
    "nguon": [
     "M6",
     "M11"
@@ -23,7 +23,7 @@
     {
      "id": "C01-01",
      "t0": 0.0,
-     "t1": 11.85,
+     "t1": 14.66,
      "size": "Đại toàn",
      "desc": "Toàn vùng phía Tây Quảng Trị",
      "may": "Bay từ cao dọc Đường 9 về Khe Sanh",
@@ -31,8 +31,8 @@
     },
     {
      "id": "C01-02",
-     "t0": 11.85,
-     "t1": 23.69,
+     "t0": 14.66,
+     "t1": 23.17,
      "size": "Toàn",
      "desc": "Thung lũng Khe Sanh",
      "may": "Hạ thấp và quét ngang thung lũng",
@@ -40,8 +40,8 @@
     },
     {
      "id": "C01-03",
-     "t0": 23.69,
-     "t1": 34.46,
+     "t0": 23.17,
+     "t1": 30.59,
      "size": "Trung",
      "desc": "Đường 9 qua núi",
      "may": "Travelling theo trục đường",
@@ -49,8 +49,8 @@
     },
     {
      "id": "C01-04",
-     "t0": 34.46,
-     "t1": 46.31,
+     "t0": 30.59,
+     "t1": 39.48,
      "size": "Toàn",
      "desc": "Căn cứ Tà Cơn",
      "may": "Orbit 45° quanh căn cứ",
@@ -58,8 +58,8 @@
     },
     {
      "id": "C01-05",
-     "t0": 46.31,
-     "t1": 58.15,
+     "t0": 39.48,
+     "t1": 50.87,
      "size": "Cận",
      "desc": "Người lính tại vọng gác",
      "may": "Tiến máy chậm đến ống nhòm",
@@ -67,8 +67,8 @@
     },
     {
      "id": "C01-06",
-     "t0": 58.15,
-     "t1": 70.0,
+     "t0": 50.87,
+     "t1": 61.74,
      "size": "Đại toàn",
      "desc": "Tà Cơn và các cao điểm",
      "may": "Nâng máy lên để lộ tổng thể chiến trường",
@@ -88,7 +88,140 @@
     "Khe Sanh.",
     "Một trong những chiến trường khốc liệt và gây nhiều chú ý nhất của cuộc chiến tranh Việt Nam."
    ],
-   "subs": []
+   "subs": [
+    [
+     3.67,
+     5.97,
+     "Năm 1968."
+    ],
+    [
+     5.92,
+     8.74,
+     "Giữa những dãy núi trùng điệp phía Tây tỉnh Quảng Trị,"
+    ],
+    [
+     8.69,
+     11.11,
+     "có một vùng đất mang tên Khe Sanh."
+    ],
+    [
+     11.06,
+     13.48,
+     "Nơi đây, Đường 9 xuyên qua núi rừng,"
+    ],
+    [
+     13.43,
+     16.37,
+     "nối đồng bằng ven biển Đông Hà với biên giới Việt – Lào."
+    ],
+    [
+     16.32,
+     18.66,
+     "Những thung lũng nhỏ nằm giữa các cao điểm,"
+    ],
+    [
+     18.61,
+     21.19,
+     "quanh năm chìm trong sương mù và mưa lạnh."
+    ],
+    [
+     21.14,
+     23.04,
+     "Một vùng đất tưởng như xa xôi,"
+    ],
+    [
+     22.99,
+     26.41,
+     "nhưng lại giữ vị trí vô cùng quan trọng trên bản đồ quân sự."
+    ],
+    [
+     26.36,
+     29.3,
+     "Bởi đi qua Khe Sanh là Đường 9 – tuyến giao thông"
+    ],
+    [
+     29.25,
+     31.59,
+     "chiến lược từ Đông Hà về phía biên giới."
+    ],
+    [
+     31.54,
+     36.54,
+     "Và cũng chính tại đây, quân đội Mỹ xây dựng một căn cứ chiến đấu lớn, với sân bay,"
+    ],
+    [
+     36.49,
+     40.6,
+     "pháo binh, bộ binh và nhiều cứ điểm trên những ngọn đồi xung quanh."
+    ],
+    [
+     40.55,
+     46.67,
+     "Nhưng đầu năm 1968, vùng núi rừng ấy sắp bước vào một cuộc đối đầu dữ dội."
+    ],
+    [
+     46.62,
+     50.05,
+     "Một cuộc chiến mà tiếng pháo sẽ vang suốt nhiều tháng."
+    ],
+    [
+     50.0,
+     54.27,
+     "Mà bầu trời sẽ liên tiếp chứng kiến những trận không kích quy mô lớn."
+    ],
+    [
+     54.22,
+     57.33,
+     "Khe Sanh. Một trong những chiến trường khốc liệt và"
+    ],
+    [
+     57.28,
+     60.48,
+     "gây nhiều chú ý nhất của cuộc chiến tranh Việt Nam."
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     11.85,
+     14.66
+    ],
+    [
+     17.5,
+     18.29
+    ],
+    [
+     23.69,
+     23.17
+    ],
+    [
+     34.46,
+     30.59
+    ],
+    [
+     35.0,
+     31.02
+    ],
+    [
+     46.31,
+     39.48
+    ],
+    [
+     52.5,
+     45.96
+    ],
+    [
+     58.15,
+     50.87
+    ],
+    [
+     70.0,
+     61.74
+    ]
+   ]
   },
   {
    "id": "H02",
@@ -101,8 +234,8 @@
    "tang": "ta-con",
    "place": "Tà Cơn, đồi 861, 881 Bắc, 881 Nam, 558, Làng Vây",
    "date": "cuối 1967 – đầu 1968",
-   "t0": 70.0,
-   "t1": 140.0,
+   "t0": 61.74,
+   "t1": 123.09,
    "nguon": [
     "M5",
     "M25",
@@ -111,8 +244,8 @@
    "shots": [
     {
      "id": "C02-01",
-     "t0": 70.0,
-     "t1": 82.0,
+     "t0": 61.74,
+     "t1": 72.09,
      "size": "Đại toàn",
      "desc": "Mạng lưới cứ điểm",
      "may": "Camera top-down trên sa bàn",
@@ -120,8 +253,8 @@
     },
     {
      "id": "C02-02",
-     "t0": 82.0,
-     "t1": 93.0,
+     "t0": 72.09,
+     "t1": 80.66,
      "size": "Toàn",
      "desc": "Sân bay Tà Cơn",
      "may": "Bay thấp dọc đường băng",
@@ -129,8 +262,8 @@
     },
     {
      "id": "C02-03",
-     "t0": 93.0,
-     "t1": 105.0,
+     "t0": 80.66,
+     "t1": 89.9,
      "size": "Trung",
      "desc": "Lính thủy đánh bộ Mỹ",
      "may": "Camera ngang người theo tuyến tuần tra",
@@ -138,8 +271,8 @@
     },
     {
      "id": "C02-04",
-     "t0": 105.0,
-     "t1": 117.0,
+     "t0": 89.9,
+     "t1": 104.36,
      "size": "Cận",
      "desc": "Dây thép gai và bao cát",
      "may": "Dolly vào lớp vật cản",
@@ -147,8 +280,8 @@
     },
     {
      "id": "C02-05",
-     "t0": 117.0,
-     "t1": 128.0,
+     "t0": 104.36,
+     "t1": 112.77,
      "size": "Toàn",
      "desc": "Các cao điểm",
      "may": "Bay theo tuyến đồi, nhãn theo lời đọc",
@@ -156,8 +289,8 @@
     },
     {
      "id": "C02-06",
-     "t0": 128.0,
-     "t1": 140.0,
+     "t0": 112.77,
+     "t1": 123.09,
      "size": "Đại toàn",
      "desc": "Căn cứ và đường tiếp tế",
      "may": "Pull-back về sơ đồ phòng thủ",
@@ -178,7 +311,141 @@
     "Nhưng một hệ thống phòng thủ, dù được trang bị mạnh đến đâu, cũng phải phụ thuộc vào những tuyến đường tiếp tế.",
     "Và giữa núi rừng Khe Sanh, chính những tuyến đường ấy có thể trở thành điểm yếu chết người."
    ],
-   "subs": []
+   "subs": [
+    [
+     64.07,
+     68.37,
+     "Để kiểm soát khu vực biên giới và bảo vệ hệ thống căn cứ phía Tây Quảng Trị,"
+    ],
+    [
+     68.32,
+     72.79,
+     "quân đội Mỹ tổ chức một mạng lưới phòng thủ trên địa bàn Đường 9 – Khe Sanh."
+    ],
+    [
+     72.74,
+     76.08,
+     "Trung tâm của hệ thống ấy là căn cứ chiến đấu Khe Sanh,"
+    ],
+    [
+     76.03,
+     77.97,
+     "thường gắn với tên gọi Tà Cơn."
+    ],
+    [
+     77.92,
+     82.39,
+     "Tại đây có đường băng phục vụ vận chuyển bằng máy bay, trận địa pháo,"
+    ],
+    [
+     82.34,
+     86.24,
+     "công sự, kho tiếp tế và các đơn vị lính thủy đánh bộ Mỹ."
+    ],
+    [
+     86.19,
+     89.33,
+     "Bao quanh căn cứ là những cao điểm có ý nghĩa quan trọng"
+    ],
+    [
+     89.28,
+     92.06,
+     "trong việc quan sát và khống chế địa hình."
+    ],
+    [
+     92.01,
+     93.91,
+     "Đồi 881 Nam."
+    ],
+    [
+     93.86,
+     95.6,
+     "Đồi 861."
+    ],
+    [
+     95.55,
+     97.49,
+     "Đồi 861A."
+    ],
+    [
+     97.44,
+     99.26,
+     "Đồi 558."
+    ],
+    [
+     99.21,
+     102.43,
+     "Cùng nhiều vị trí đóng quân và chốt phòng thủ khác."
+    ],
+    [
+     102.38,
+     105.33,
+     "Xa hơn về phía Tây Nam là cứ điểm Làng Vây,"
+    ],
+    [
+     105.28,
+     110.35,
+     "nơi lực lượng đặc biệt do Mỹ cố vấn và quân đội Sài Gòn hỗ trợ tổ chức phòng ngự."
+    ],
+    [
+     110.3,
+     114.12,
+     "Nhưng một hệ thống phòng thủ, dù được trang bị mạnh đến đâu,"
+    ],
+    [
+     114.07,
+     116.93,
+     "cũng phải phụ thuộc vào những tuyến đường tiếp tế."
+    ],
+    [
+     116.88,
+     118.69,
+     "Và giữa núi rừng Khe Sanh,"
+    ],
+    [
+     118.64,
+     122.47,
+     "chính những tuyến đường ấy có thể trở thành điểm yếu chết người."
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     61.74
+    ],
+    [
+     12.0,
+     72.09
+    ],
+    [
+     17.5,
+     76.45
+    ],
+    [
+     23.0,
+     80.66
+    ],
+    [
+     35.0,
+     89.9
+    ],
+    [
+     47.0,
+     104.36
+    ],
+    [
+     52.5,
+     108.35
+    ],
+    [
+     58.0,
+     112.77
+    ],
+    [
+     70.0,
+     123.09
+    ]
+   ]
   },
   {
    "id": "H03",
@@ -191,8 +458,8 @@
    "tang": "chien-dich",
    "place": "Đường 9 – Khe Sanh và tuyến hành quân trong rừng",
    "date": "cuối 1967",
-   "t0": 140.0,
-   "t1": 211.0,
+   "t0": 123.09,
+   "t1": 184.06,
    "nguon": [
     "S3",
     "S4"
@@ -200,8 +467,8 @@
    "shots": [
     {
      "id": "C03-01",
-     "t0": 140.0,
-     "t1": 152.17,
+     "t0": 123.09,
+     "t1": 137.46,
      "size": "Đại toàn",
      "desc": "Bản đồ phía Tây Quảng Trị",
      "may": "Top-down từ hướng rừng ra Đường 9",
@@ -209,8 +476,8 @@
     },
     {
      "id": "C03-02",
-     "t0": 152.17,
-     "t1": 163.33,
+     "t0": 137.46,
+     "t1": 146.34,
      "size": "Toàn",
      "desc": "Đội hình bộ binh",
      "may": "Tracking dọc đội hình trong rừng",
@@ -218,8 +485,8 @@
     },
     {
      "id": "C03-03",
-     "t0": 163.33,
-     "t1": 175.5,
+     "t0": 146.34,
+     "t1": 155.77,
      "size": "Trung",
      "desc": "Pháo binh",
      "may": "Góc ba phần tư từ phía sau khẩu pháo",
@@ -227,8 +494,8 @@
     },
     {
      "id": "C03-04",
-     "t0": 175.5,
-     "t1": 187.67,
+     "t0": 155.77,
+     "t1": 165.2,
      "size": "Cận",
      "desc": "Bàn tay bên bản đồ",
      "may": "Dolly cận bàn chỉ hướng",
@@ -236,8 +503,8 @@
     },
     {
      "id": "C03-05",
-     "t0": 187.67,
-     "t1": 198.83,
+     "t0": 165.2,
+     "t1": 173.31,
      "size": "Trung",
      "desc": "Đoàn vận tải hậu cần",
      "may": "Travelling theo đường rừng",
@@ -245,8 +512,8 @@
     },
     {
      "id": "C03-06",
-     "t0": 198.83,
-     "t1": 211.0,
+     "t0": 173.31,
+     "t1": 184.06,
      "size": "Đại toàn",
      "desc": "Thế trận hai bên",
      "may": "Camera nâng cao",
@@ -268,7 +535,146 @@
     "Phía ngoài, các lực lượng tiến công từng bước áp sát.",
     "Tất cả đang chờ đợi thời khắc nổ súng!"
    ],
-   "subs": []
+   "subs": [
+    [
+     125.94,
+     128.56,
+     "Cuối năm 1967."
+    ],
+    [
+     128.51,
+     130.36,
+     "Trên khắp chiến trường miền Nam,"
+    ],
+    [
+     130.31,
+     133.25,
+     "một kế hoạch tiến công chiến lược đang được chuẩn bị."
+    ],
+    [
+     133.2,
+     136.71,
+     "Trong kế hoạch ấy, Đường 9 – Khe Sanh được xác định"
+    ],
+    [
+     136.66,
+     139.36,
+     "là một hướng chiến trường đặc biệt quan trọng."
+    ],
+    [
+     139.31,
+     143.07,
+     "Quân Giải phóng tập trung lực lượng chủ lực, pháo binh, công binh,"
+    ],
+    [
+     143.02,
+     147.25,
+     "phòng không và các đơn vị bảo đảm hậu cần về khu vực phía Tây Quảng Trị."
+    ],
+    [
+     147.2,
+     149.9,
+     "Những đoàn quân hành quân qua núi rừng."
+    ],
+    [
+     149.85,
+     151.99,
+     "Những khẩu pháo được đưa vào trận địa."
+    ],
+    [
+     151.94,
+     154.12,
+     "Những con đường vận tải được mở rộng,"
+    ],
+    [
+     154.07,
+     157.25,
+     "củng cố để đưa lương thực và đạn dược tới tuyến trước."
+    ],
+    [
+     157.2,
+     160.22,
+     "Từng đơn vị tiến vào những vị trí đã lựa chọn."
+    ],
+    [
+     160.17,
+     163.15,
+     "Không chỉ nhằm tiến công các cứ điểm của đối phương,"
+    ],
+    [
+     163.1,
+     167.85,
+     "hoạt động tại Khe Sanh còn có mục tiêu thu hút và phân tán lực lượng quân Mỹ,"
+    ],
+    [
+     167.8,
+     170.02,
+     "tạo điều kiện phối hợp với các chiến trường"
+    ],
+    [
+     169.97,
+     172.43,
+     "khác trong cuộc Tổng tiến công Tết Mậu Thân."
+    ],
+    [
+     172.38,
+     174.92,
+     "Một cuộc đối đầu lớn đang hình thành."
+    ],
+    [
+     174.87,
+     177.93,
+     "Phía trong căn cứ, quân Mỹ tăng cường phòng ngự."
+    ],
+    [
+     177.88,
+     181.02,
+     "Phía ngoài, các lực lượng tiến công từng bước áp sát."
+    ],
+    [
+     180.97,
+     184.01,
+     "Tất cả đang chờ đợi thời khắc nổ súng!"
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     123.09
+    ],
+    [
+     12.17,
+     137.46
+    ],
+    [
+     17.75,
+     142.01
+    ],
+    [
+     23.33,
+     146.34
+    ],
+    [
+     35.5,
+     155.77
+    ],
+    [
+     47.67,
+     165.2
+    ],
+    [
+     53.25,
+     169.16
+    ],
+    [
+     58.83,
+     173.31
+    ],
+    [
+     71.0,
+     184.06
+    ]
+   ]
   },
   {
    "id": "H04",
@@ -281,8 +687,8 @@
    "tang": "ta-con",
    "place": "Căn cứ Khe Sanh – Tà Cơn",
    "date": "đêm 20 – rạng sáng 21/1/1968",
-   "t0": 211.0,
-   "t1": 285.0,
+   "t0": 184.06,
+   "t1": 250.26,
    "nguon": [
     "S7",
     "S3",
@@ -291,8 +697,8 @@
    "shots": [
     {
      "id": "C04-01",
-     "t0": 211.0,
-     "t1": 221.18,
+     "t0": 184.06,
+     "t1": 198.77,
      "size": "Đại toàn",
      "desc": "Căn cứ Tà Cơn trước trận",
      "may": "Bay xuyên sương sớm",
@@ -300,8 +706,8 @@
     },
     {
      "id": "C04-02",
-     "t0": 221.18,
-     "t1": 232.28,
+     "t0": 198.77,
+     "t1": 207.75,
      "size": "Cận",
      "desc": "Pháo thủ",
      "may": "Cận thao tác chuẩn bị",
@@ -309,8 +715,8 @@
     },
     {
      "id": "C04-03",
-     "t0": 232.28,
-     "t1": 242.45,
+     "t0": 207.75,
+     "t1": 215.75,
      "size": "Trung",
      "desc": "Trận địa pháo",
      "may": "Góc 3/4 phía sau",
@@ -318,8 +724,8 @@
     },
     {
      "id": "C04-04",
-     "t0": 242.45,
-     "t1": 253.55,
+     "t0": 215.75,
+     "t1": 224.69,
      "size": "Đại toàn",
      "desc": "Toàn căn cứ",
      "may": "Giữ một nhịp yên rồi cắt mạnh",
@@ -327,8 +733,8 @@
     },
     {
      "id": "C04-05",
-     "t0": 253.55,
-     "t1": 263.73,
+     "t0": 224.69,
+     "t1": 233.05,
      "size": "Toàn",
      "desc": "Kho đạn",
      "may": "Camera ngang sân kho từ xa",
@@ -336,8 +742,8 @@
     },
     {
      "id": "C04-06",
-     "t0": 263.73,
-     "t1": 274.83,
+     "t0": 233.05,
+     "t1": 241.68,
      "size": "Trung",
      "desc": "Lính Mỹ di chuyển",
      "may": "Handheld mô phỏng đi sau nhân vật",
@@ -345,8 +751,8 @@
     },
     {
      "id": "C04-07",
-     "t0": 274.83,
-     "t1": 285.0,
+     "t0": 241.68,
+     "t1": 250.26,
      "size": "Cận",
      "desc": "Bao cát và vật tư",
      "may": "Dolly ngắn",
@@ -371,7 +777,144 @@
     "Từ thời khắc ấy, vùng căn cứ này trở thành tâm điểm của những trận đánh, những cuộc pháo kích và các hoạt động quân sự kéo dài nhiều tháng.",
     "Một mùa Xuân rực lửa bắt đầu trên núi rừng phía Tây Quảng Trị!"
    ],
-   "subs": []
+   "subs": [
+    [
+     188.36,
+     193.52,
+     "Đêm 20, rạng sáng ngày 21 tháng 1 năm 1968."
+    ],
+    [
+     193.47,
+     198.02,
+     "Trên những ngọn núi bao quanh Khe Sanh, các trận địa pháo đã vào vị trí."
+    ],
+    [
+     197.97,
+     199.91,
+     "Sương núi vẫn phủ kín những thung lũng."
+    ],
+    [
+     199.86,
+     204.73,
+     "Bên trong căn cứ Tà Cơn, những người lính Mỹ chuẩn bị bước vào một ngày mới."
+    ],
+    [
+     204.68,
+     208.06,
+     "Nhưng rồi... Tiếng pháo bất ngờ xé toang màn đêm!"
+    ],
+    [
+     208.01,
+     210.67,
+     "Những loạt đạn dồn dập trút xuống căn cứ."
+    ],
+    [
+     210.62,
+     212.12,
+     "Mặt đất rung chuyển."
+    ],
+    [
+     212.07,
+     214.45,
+     "Khói lửa bốc lên từ các khu vực trúng đạn."
+    ],
+    [
+     214.4,
+     216.5,
+     "Kho đạn trong căn cứ bị đánh trúng,"
+    ],
+    [
+     216.45,
+     221.93,
+     "những vụ nổ dữ dội làm tình hình phòng thủ và tiếp tế trở nên vô cùng khó khăn."
+    ],
+    [
+     221.88,
+     224.94,
+     "Quân Mỹ nhanh chóng triển khai lực lượng ứng phó,"
+    ],
+    [
+     224.89,
+     228.27,
+     "tổ chức cứu thương, dập lửa và củng cố công sự."
+    ],
+    [
+     228.22,
+     231.49,
+     "Cùng đêm ấy, quân Giải phóng tiến công quận lỵ Hướng Hóa."
+    ],
+    [
+     231.44,
+     235.55,
+     "Trên những ngọn đồi, giao tranh bùng lên tại các vị trí tiền tiêu."
+    ],
+    [
+     235.5,
+     237.52,
+     "Khe Sanh đã bước vào cuộc chiến."
+    ],
+    [
+     237.47,
+     241.83,
+     "Từ thời khắc ấy, vùng căn cứ này trở thành tâm điểm của những trận đánh,"
+    ],
+    [
+     241.78,
+     245.49,
+     "những cuộc pháo kích và các hoạt động quân sự kéo dài nhiều tháng."
+    ],
+    [
+     245.44,
+     249.72,
+     "Một mùa Xuân rực lửa bắt đầu trên núi rừng phía Tây Quảng Trị!"
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     184.06
+    ],
+    [
+     10.18,
+     198.77
+    ],
+    [
+     18.5,
+     205.22
+    ],
+    [
+     21.28,
+     207.75
+    ],
+    [
+     31.45,
+     215.75
+    ],
+    [
+     37.0,
+     220.03
+    ],
+    [
+     42.55,
+     224.69
+    ],
+    [
+     52.73,
+     233.05
+    ],
+    [
+     55.5,
+     235.01
+    ],
+    [
+     63.83,
+     241.68
+    ],
+    [
+     74.0,
+     250.26
+    ]
+   ]
   },
   {
    "id": "H05",
@@ -384,16 +927,16 @@
    "tang": "chien-dich",
    "place": "Khe Sanh và bản đồ miền Nam, cuối tháng 1/1968",
    "date": "đêm 29/1 – 31/1/1968",
-   "t0": 285.0,
-   "t1": 352.0,
+   "t0": 250.26,
+   "t1": 310.08,
    "nguon": [
     "S16"
    ],
    "shots": [
     {
      "id": "C08-01",
-     "t0": 285.0,
-     "t1": 296.49,
+     "t0": 250.26,
+     "t1": 266.27,
      "size": "Đại toàn",
      "desc": "Bản đồ chiến trường miền Nam",
      "may": "Bay thẳng lên từ Khe Sanh",
@@ -401,8 +944,8 @@
     },
     {
      "id": "C08-02",
-     "t0": 296.49,
-     "t1": 307.01,
+     "t0": 266.27,
+     "t1": 275.63,
      "size": "Toàn",
      "desc": "Huế trên bản đồ",
      "may": "Dolly vào mốc địa danh",
@@ -410,8 +953,8 @@
     },
     {
      "id": "C08-03",
-     "t0": 307.01,
-     "t1": 318.5,
+     "t0": 275.63,
+     "t1": 283.88,
      "size": "Toàn",
      "desc": "Đà Nẵng trên bản đồ",
      "may": "Chuyển trên bản đồ",
@@ -419,8 +962,8 @@
     },
     {
      "id": "C08-04",
-     "t0": 318.5,
-     "t1": 329.99,
+     "t0": 283.88,
+     "t1": 292.75,
      "size": "Toàn",
      "desc": "Sài Gòn trên bản đồ",
      "may": "Chuyển trên bản đồ",
@@ -428,8 +971,8 @@
     },
     {
      "id": "C08-05",
-     "t0": 329.99,
-     "t1": 340.51,
+     "t0": 292.75,
+     "t1": 300.83,
      "size": "Trung",
      "desc": "Biểu tượng lực lượng hai bên",
      "may": "Di chuyển nhẹ camera trên bản đồ 3D",
@@ -437,8 +980,8 @@
     },
     {
      "id": "C08-06",
-     "t0": 340.51,
-     "t1": 352.0,
+     "t0": 300.83,
+     "t1": 310.08,
      "size": "Đại toàn",
      "desc": "Bản đồ trở về Khe Sanh",
      "may": "Zoom-out rồi zoom-in",
@@ -461,7 +1004,141 @@
     "Một bên là những đô thị miền Nam, nơi cuộc Tổng tiến công đang tạo ra những tác động quân sự và chính trị rộng lớn.",
     "Từ miền núi đến đô thị, chiến tranh bước vào một giai đoạn mới."
    ],
-   "subs": []
+   "subs": [
+    [
+     254.85,
+     257.79,
+     "Trong khi chiến sự Khe Sanh diễn ra căng thẳng,"
+    ],
+    [
+     257.74,
+     261.01,
+     "những chuyển động lớn đang xuất hiện trên khắp miền Nam."
+    ],
+    [
+     260.96,
+     264.14,
+     "Cuối tháng 1 năm 1968."
+    ],
+    [
+     264.09,
+     266.35,
+     "Cuộc Tổng tiến công và nổi dậy"
+    ],
+    [
+     266.3,
+     270.17,
+     "Tết Mậu Thân bùng nổ tại nhiều đô thị và căn cứ quân sự."
+    ],
+    [
+     270.12,
+     271.82,
+     "Huế. Đà Nẵng."
+    ],
+    [
+     271.77,
+     274.15,
+     "Sài Gòn. Và nhiều địa bàn khác."
+    ],
+    [
+     274.1,
+     276.32,
+     "Những trận đánh đồng loạt đã tạo nên một bước"
+    ],
+    [
+     276.27,
+     278.41,
+     "ngoặt quan trọng trong diễn biến chiến tranh."
+    ],
+    [
+     278.36,
+     281.14,
+     "Khe Sanh không phải là một chiến trường tách biệt."
+    ],
+    [
+     281.09,
+     284.47,
+     "Hoạt động quân sự tại đây góp phần thu hút sự chú ý"
+    ],
+    [
+     284.42,
+     286.48,
+     "và lực lượng cơ động của đối phương,"
+    ],
+    [
+     286.43,
+     290.22,
+     "trong khi các đòn tiến công được triển khai tại nhiều nơi khác."
+    ],
+    [
+     290.17,
+     293.19,
+     "Trên bản đồ chiến lược, hai không gian cùng hiện ra."
+    ],
+    [
+     293.14,
+     296.36,
+     "Một bên là vùng núi rừng Đường 9 – Khe Sanh,"
+    ],
+    [
+     296.31,
+     298.81,
+     "nơi các đơn vị chủ lực tiếp tục chiến đấu."
+    ],
+    [
+     298.76,
+     301.02,
+     "Một bên là những đô thị miền Nam,"
+    ],
+    [
+     300.97,
+     305.88,
+     "nơi cuộc Tổng tiến công đang tạo ra những tác động quân sự và chính trị rộng lớn."
+    ],
+    [
+     305.83,
+     309.78,
+     "Từ miền núi đến đô thị, chiến tranh bước vào một giai đoạn mới."
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     250.26
+    ],
+    [
+     11.49,
+     266.27
+    ],
+    [
+     16.75,
+     270.25
+    ],
+    [
+     22.01,
+     275.63
+    ],
+    [
+     33.5,
+     283.88
+    ],
+    [
+     44.99,
+     292.75
+    ],
+    [
+     50.25,
+     296.94
+    ],
+    [
+     55.51,
+     300.83
+    ],
+    [
+     67.0,
+     310.08
+    ]
+   ]
   },
   {
    "id": "H06",
@@ -474,8 +1151,8 @@
    "tang": "ta-con",
    "place": "Cứ điểm Làng Vây, đêm 6 – sáng 7/2/1968",
    "date": "đêm 6 – sáng 7/2/1968",
-   "t0": 352.0,
-   "t1": 439.0,
+   "t0": 310.08,
+   "t1": 386.97,
    "nguon": [
     "S2",
     "S8",
@@ -484,8 +1161,8 @@
    "shots": [
     {
      "id": "C05-01",
-     "t0": 352.0,
-     "t1": 362.44,
+     "t0": 310.08,
+     "t1": 323.37,
      "size": "Đại toàn",
      "desc": "Làng Vây và Tà Cơn",
      "may": "Camera từ trên cao nối hai điểm",
@@ -493,8 +1170,8 @@
     },
     {
      "id": "C05-02",
-     "t0": 362.44,
-     "t1": 373.75,
+     "t0": 323.37,
+     "t1": 332.46,
      "size": "Toàn",
      "desc": "Cứ điểm Làng Vây về đêm",
      "may": "Orbit rộng quanh phòng tuyến",
@@ -502,8 +1179,8 @@
     },
     {
      "id": "C05-03",
-     "t0": 373.75,
-     "t1": 385.06,
+     "t0": 332.46,
+     "t1": 342.89,
      "size": "Trung",
      "desc": "Xe tăng PT-76",
      "may": "Camera thấp chếch sườn",
@@ -511,8 +1188,8 @@
     },
     {
      "id": "C05-04",
-     "t0": 385.06,
-     "t1": 395.5,
+     "t0": 342.89,
+     "t1": 351.8,
      "size": "Cận",
      "desc": "Bánh xích và vỏ PT-76",
      "may": "Góc sát xích theo chuyển động",
@@ -520,8 +1197,8 @@
     },
     {
      "id": "C05-05",
-     "t0": 395.5,
-     "t1": 405.94,
+     "t0": 351.8,
+     "t1": 360.25,
      "size": "Trung",
      "desc": "Lính tăng và bộ binh",
      "may": "Theo bộ binh phía sau thân xe",
@@ -529,8 +1206,8 @@
     },
     {
      "id": "C05-06",
-     "t0": 405.94,
-     "t1": 417.25,
+     "t0": 360.25,
+     "t1": 369.85,
      "size": "Toàn",
      "desc": "Đột phá cứ điểm",
      "may": "Camera cao 3/4",
@@ -538,8 +1215,8 @@
     },
     {
      "id": "C05-07",
-     "t0": 417.25,
-     "t1": 428.56,
+     "t0": 369.85,
+     "t1": 378.26,
      "size": "Cận",
      "desc": "Gương mặt chiến sĩ",
      "may": "Máy đứng cận ngắn",
@@ -547,8 +1224,8 @@
     },
     {
      "id": "C05-08",
-     "t0": 428.56,
-     "t1": 439.0,
+     "t0": 378.26,
+     "t1": 386.97,
      "size": "Đại toàn",
      "desc": "Làng Vây sau trận",
      "may": "Crane-up",
@@ -575,7 +1252,151 @@
     "Đồng thời, nó làm thay đổi tình hình quân sự ở khu vực phía Tây Khe Sanh.",
     "Từ những cánh rừng, xe tăng Việt Nam đã bước vào lịch sử chiến đấu!"
    ],
-   "subs": []
+   "subs": [
+    [
+     313.86,
+     316.93,
+     "Đầu tháng 2 năm 1968."
+    ],
+    [
+     316.88,
+     319.62,
+     "Khi chiến sự Khe Sanh đang diễn ra quyết liệt,"
+    ],
+    [
+     319.57,
+     324.13,
+     "một mục tiêu quan trọng được lựa chọn ở phía Tây Nam căn cứ Tà Cơn."
+    ],
+    [
+     324.12,
+     327.06,
+     "Làng Vây! Đây là cứ điểm nằm gần Đường 9,"
+    ],
+    [
+     327.01,
+     331.27,
+     "có vị trí quan trọng trong hệ thống phòng thủ khu vực biên giới Việt – Lào."
+    ],
+    [
+     331.22,
+     336.08,
+     "Đêm ngày 6, rạng sáng ngày 7 tháng 2 năm 1968."
+    ],
+    [
+     336.03,
+     338.89,
+     "Quân Giải phóng mở cuộc tiến công vào cứ điểm."
+    ],
+    [
+     338.84,
+     342.42,
+     "Và trận đánh này sẽ trở thành trận đầu đánh thắng của"
+    ],
+    [
+     342.37,
+     344.95,
+     "bộ đội Tăng – Thiết giáp Quân đội nhân dân Việt Nam."
+    ],
+    [
+     344.9,
+     347.32,
+     "Xe tăng PT-76!"
+    ],
+    [
+     347.27,
+     349.86,
+     "Giữa màn đêm, những chiếc xe tăng lội nước"
+    ],
+    [
+     349.81,
+     352.71,
+     "phối hợp với bộ binh tiến về hệ thống công sự."
+    ],
+    [
+     352.66,
+     356.61,
+     "Tiếng động cơ vang lên. Những hàng rào phòng ngự bị đột phá."
+    ],
+    [
+     356.56,
+     360.03,
+     "Các mũi tiến công từ nhiều hướng tạo sức ép lên cứ điểm."
+    ],
+    [
+     359.98,
+     363.36,
+     "Cuộc chiến diễn ra quyết liệt trong đêm và sáng hôm sau."
+    ],
+    [
+     363.31,
+     367.9,
+     "Rạng sáng ngày 7 tháng 2, quân Giải phóng cơ bản làm chủ cứ điểm."
+    ],
+    [
+     367.85,
+     370.75,
+     "Đến 10 giờ, Làng Vây hoàn toàn bị đánh chiếm."
+    ],
+    [
+     370.7,
+     374.08,
+     "Chiến thắng này đánh dấu một bước phát triển trong việc sử"
+    ],
+    [
+     374.03,
+     377.17,
+     "dụng xe tăng phối hợp với bộ binh của quân đội Việt Nam."
+    ],
+    [
+     377.12,
+     381.91,
+     "Đồng thời, nó làm thay đổi tình hình quân sự ở khu vực phía Tây Khe Sanh."
+    ],
+    [
+     381.86,
+     386.34,
+     "Từ những cánh rừng, xe tăng Việt Nam đã bước vào lịch sử chiến đấu!"
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     310.08
+    ],
+    [
+     10.44,
+     323.37
+    ],
+    [
+     21.75,
+     332.46
+    ],
+    [
+     33.06,
+     342.89
+    ],
+    [
+     43.5,
+     351.8
+    ],
+    [
+     53.94,
+     360.25
+    ],
+    [
+     65.25,
+     369.85
+    ],
+    [
+     76.56,
+     378.26
+    ],
+    [
+     87.0,
+     386.97
+    ]
+   ]
   },
   {
    "id": "H07",
@@ -589,8 +1410,8 @@
    "tang": "ta-con",
    "place": "Chiến hào vây lấn quanh Tà Cơn",
    "date": "10/2 – 31/3/1968",
-   "t0": 439.0,
-   "t1": 526.0,
+   "t0": 386.97,
+   "t1": 458.16,
    "nguon": [
     "S1",
     "S5",
@@ -599,8 +1420,8 @@
    "shots": [
     {
      "id": "C06-01",
-     "t0": 439.0,
-     "t1": 450.2,
+     "t0": 386.97,
+     "t1": 399.09,
      "size": "Đại toàn",
      "desc": "Vòng vây quanh Tà Cơn",
      "may": "Top-down rồi hạ thấp",
@@ -608,8 +1429,8 @@
     },
     {
      "id": "C06-02",
-     "t0": 450.2,
-     "t1": 462.26,
+     "t0": 399.09,
+     "t1": 409.28,
      "size": "Toàn",
      "desc": "Chiến hào bên ngoài",
      "may": "Flythrough theo hào",
@@ -617,8 +1438,8 @@
     },
     {
      "id": "C06-03",
-     "t0": 462.26,
-     "t1": 473.46,
+     "t0": 409.28,
+     "t1": 417.89,
      "size": "Trung",
      "desc": "Lính trong chiến hào",
      "may": "Tracking ngang hào",
@@ -626,8 +1447,8 @@
     },
     {
      "id": "C06-04",
-     "t0": 473.46,
-     "t1": 484.65,
+     "t0": 417.89,
+     "t1": 426.18,
      "size": "Cận",
      "desc": "Bàn tay bùn đất",
      "may": "Cận công cụ, bao cát",
@@ -635,8 +1456,8 @@
     },
     {
      "id": "C06-05",
-     "t0": 484.65,
-     "t1": 496.71,
+     "t0": 426.18,
+     "t1": 435.76,
      "size": "Trung",
      "desc": "Lính Mỹ trong hầm",
      "may": "Pan trong hầm trú ẩn",
@@ -644,8 +1465,8 @@
     },
     {
      "id": "C09-02",
-     "t0": 496.71,
-     "t1": 506.19,
+     "t0": 435.76,
+     "t1": 443.31,
      "size": "Trung",
      "desc": "Binh sĩ trong hào",
      "may": "Góc ngang người",
@@ -653,8 +1474,8 @@
     },
     {
      "id": "C09-03",
-     "t0": 506.19,
-     "t1": 514.8,
+     "t0": 443.31,
+     "t1": 449.94,
      "size": "Cận",
      "desc": "Băng cứu thương",
      "may": "Cận tay băng bó",
@@ -662,8 +1483,8 @@
     },
     {
      "id": "C06-06",
-     "t0": 514.8,
-     "t1": 526.0,
+     "t0": 449.94,
+     "t1": 458.16,
      "size": "Đại toàn",
      "desc": "Hai lớp công sự",
      "may": "Nâng cao từ hào ra căn cứ",
@@ -686,7 +1507,158 @@
     "Đằng sau mỗi vị trí chiến đấu là những con người đang phải chịu đựng hiểm nguy, mất mát và những tháng ngày xa gia đình.",
     "Cuộc chiến tại Khe Sanh đã trở thành cuộc đọ sức dai dẳng về sức chịu đựng, hỏa lực và hậu cần của cả hai phía."
    ],
-   "subs": []
+   "subs": [
+    [
+     390.34,
+     394.37,
+     "Sau trận Làng Vây, sức ép lên căn cứ Khe Sanh tiếp tục gia tăng."
+    ],
+    [
+     394.32,
+     397.31,
+     "Trên những sườn đồi và vùng đất quanh Tà Cơn,"
+    ],
+    [
+     397.26,
+     401.85,
+     "các đơn vị Quân Giải phóng tiến hành vây lấn suốt khoảng 50 ngày đêm."
+    ],
+    [
+     401.8,
+     403.5,
+     "Chiến hào được đào sâu."
+    ],
+    [
+     403.45,
+     404.91,
+     "Công sự được củng cố."
+    ],
+    [
+     404.86,
+     409.53,
+     "Các trận địa pháo và hỏa lực được tổ chức để gây sức ép lên căn cứ."
+    ],
+    [
+     409.48,
+     413.58,
+     "Những người lính phải sống và chiến đấu trong điều kiện vô cùng gian khổ."
+    ],
+    [
+     413.53,
+     417.28,
+     "Đất đá, bùn lầy, mưa lạnh và những đợt không kích liên tục"
+    ],
+    [
+     417.23,
+     420.13,
+     "khiến từng bước di chuyển đều có thể phải trả giá."
+    ],
+    [
+     420.08,
+     423.02,
+     "Bên trong căn cứ, lính thủy đánh bộ Mỹ cũng phải"
+    ],
+    [
+     422.97,
+     426.39,
+     "bám trụ trong hệ thống hầm trú ẩn và công sự bao cát."
+    ],
+    [
+     426.34,
+     430.33,
+     "Một bên tìm cách tăng sức ép, làm suy yếu hệ thống phòng thủ."
+    ],
+    [
+     430.28,
+     434.86,
+     "Một bên dựa vào công sự, pháo binh và không quân để bảo vệ căn cứ."
+    ],
+    [
+     434.81,
+     438.36,
+     "Trong những đoạn hào chật hẹp, họ phải quan sát, di chuyển,"
+    ],
+    [
+     438.31,
+     441.41,
+     "vận chuyển đạn dược và chăm sóc đồng đội bị thương."
+    ],
+    [
+     441.36,
+     444.47,
+     "Khe Sanh không chỉ là những mũi tên trên bản đồ."
+    ],
+    [
+     444.42,
+     447.76,
+     "Đằng sau mỗi vị trí chiến đấu là những con người đang phải"
+    ],
+    [
+     447.71,
+     451.54,
+     "chịu đựng hiểm nguy, mất mát và những tháng ngày xa gia đình."
+    ],
+    [
+     451.49,
+     455.4,
+     "Cuộc chiến tại Khe Sanh đã trở thành cuộc đọ sức dai dẳng về sức chịu đựng,"
+    ],
+    [
+     455.35,
+     458.11,
+     "hỏa lực và hậu cần của cả hai phía."
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     386.97
+    ],
+    [
+     11.2,
+     399.09
+    ],
+    [
+     21.75,
+     408.11
+    ],
+    [
+     23.26,
+     409.28
+    ],
+    [
+     34.46,
+     417.89
+    ],
+    [
+     43.5,
+     424.59
+    ],
+    [
+     45.65,
+     426.18
+    ],
+    [
+     57.71,
+     435.76
+    ],
+    [
+     65.25,
+     442.0
+    ],
+    [
+     67.19,
+     443.31
+    ],
+    [
+     75.8,
+     449.94
+    ],
+    [
+     87.0,
+     458.16
+    ]
+   ]
   },
   {
    "id": "H08",
@@ -699,8 +1671,8 @@
    "tang": "ta-con",
    "place": "Không phận Khe Sanh, Tà Cơn",
    "date": "21/1 – 8/4/1968",
-   "t0": 526.0,
-   "t1": 603.0,
+   "t0": 458.16,
+   "t1": 526.26,
    "nguon": [
     "M1",
     "M9",
@@ -709,8 +1681,8 @@
    "shots": [
     {
      "id": "C07-01",
-     "t0": 526.0,
-     "t1": 536.87,
+     "t0": 458.16,
+     "t1": 470.83,
      "size": "Đại toàn",
      "desc": "Bầu trời Khe Sanh",
      "may": "Theo B-52 ở độ cao thích hợp",
@@ -718,8 +1690,8 @@
     },
     {
      "id": "C07-02",
-     "t0": 536.87,
-     "t1": 547.74,
+     "t0": 470.83,
+     "t1": 480.08,
      "size": "Toàn",
      "desc": "Khu vực ném bom ngoài căn cứ",
      "may": "Góc cao nghiêng",
@@ -727,8 +1699,8 @@
     },
     {
      "id": "C07-03",
-     "t0": 547.74,
-     "t1": 558.61,
+     "t0": 480.08,
+     "t1": 488.36,
      "size": "Trung",
      "desc": "Bộ binh bên ngoài căn cứ",
      "may": "Camera sát công sự",
@@ -736,8 +1708,8 @@
     },
     {
      "id": "C07-04",
-     "t0": 558.61,
-     "t1": 570.39,
+     "t0": 488.36,
+     "t1": 499.98,
      "size": "Đại toàn",
      "desc": "C-130 tiếp tế",
      "may": "Bám từ sau-trên",
@@ -745,8 +1717,8 @@
     },
     {
      "id": "C07-05",
-     "t0": 570.39,
-     "t1": 581.26,
+     "t0": 499.98,
+     "t1": 508.12,
      "size": "Cận",
      "desc": "Kiện hàng và dù",
      "may": "Bám kiện hàng rời máy bay",
@@ -754,8 +1726,8 @@
     },
     {
      "id": "C07-06",
-     "t0": 581.26,
-     "t1": 592.13,
+     "t0": 508.12,
+     "t1": 516.23,
      "size": "Toàn",
      "desc": "Khu vực tiếp nhận",
      "may": "Góc cao 3/4",
@@ -763,8 +1735,8 @@
     },
     {
      "id": "C07-07",
-     "t0": 592.13,
-     "t1": 603.0,
+     "t0": 516.23,
+     "t1": 526.26,
      "size": "Đại toàn",
      "desc": "Tà Cơn và máy bay",
      "may": "Pull-back rộng",
@@ -786,7 +1758,149 @@
     "Bầu trời Khe Sanh rực lửa.",
     "Dưới mặt đất, cuộc chiến vẫn chưa có dấu hiệu chấm dứt!"
    ],
-   "subs": []
+   "subs": [
+    [
+     462.82,
+     464.32,
+     "Trên bầu trời Khe Sanh,"
+    ],
+    [
+     464.27,
+     468.26,
+     "không quân Mỹ triển khai một trong những nỗ lực yểm trợ hỏa lực và"
+    ],
+    [
+     468.21,
+     471.32,
+     "tiếp tế đáng chú ý nhất của cuộc chiến tranh Việt Nam."
+    ],
+    [
+     471.27,
+     473.21,
+     "Máy bay chiến đấu liên tục xuất hiện."
+    ],
+    [
+     473.16,
+     476.38,
+     "Những chiếc B-52 ném bom vào các khu vực"
+    ],
+    [
+     476.33,
+     479.55,
+     "tập trung lực lượng và trận địa bên ngoài căn cứ."
+    ],
+    [
+     479.5,
+     482.97,
+     "Các đợt không kích tạo nên những hố bom lớn giữa núi rừng."
+    ],
+    [
+     482.92,
+     486.3,
+     "Dưới mặt đất, các đơn vị Quân Giải phóng tìm cách cơ động,"
+    ],
+    [
+     486.25,
+     489.71,
+     "ngụy trang, củng cố công sự và duy trì sức chiến đấu."
+    ],
+    [
+     489.66,
+     492.8,
+     "Trong khi đó, đường bộ tới căn cứ bị đe dọa,"
+    ],
+    [
+     492.75,
+     496.54,
+     "khiến việc tiếp tế bằng đường không trở nên đặc biệt quan trọng."
+    ],
+    [
+     496.49,
+     502.28,
+     "Những chiếc C-130, C-123 và trực thăng được huy động để đưa lương thực,"
+    ],
+    [
+     502.23,
+     504.41,
+     "đạn dược và vật tư vào Khe Sanh."
+    ],
+    [
+     504.36,
+     507.51,
+     "Có những kiện hàng được thả bằng dù xuống căn cứ."
+    ],
+    [
+     507.46,
+     510.92,
+     "Có những chuyến bay phải thực hiện trong điều kiện nguy hiểm."
+    ],
+    [
+     510.87,
+     514.54,
+     "Đó là một cuộc đối đầu không chỉ giữa các đơn vị trên mặt đất."
+    ],
+    [
+     514.49,
+     519.93,
+     "Mà còn giữa hệ thống hỏa lực, tuyến vận tải và khả năng duy trì lực lượng chiến đấu."
+    ],
+    [
+     519.88,
+     522.26,
+     "Bầu trời Khe Sanh rực lửa."
+    ],
+    [
+     522.21,
+     525.76,
+     "Dưới mặt đất, cuộc chiến vẫn chưa có dấu hiệu chấm dứt!"
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     458.16
+    ],
+    [
+     10.87,
+     470.83
+    ],
+    [
+     19.25,
+     477.97
+    ],
+    [
+     21.74,
+     480.08
+    ],
+    [
+     32.61,
+     488.36
+    ],
+    [
+     38.5,
+     492.97
+    ],
+    [
+     44.39,
+     499.98
+    ],
+    [
+     55.26,
+     508.12
+    ],
+    [
+     57.75,
+     510.06
+    ],
+    [
+     66.13,
+     516.23
+    ],
+    [
+     77.0,
+     526.26
+    ]
+   ]
   },
   {
    "id": "H09",
@@ -799,8 +1913,8 @@
    "tang": "chien-dich",
    "place": "Đường 9 – Khe Sanh, đầu tháng 4/1968",
    "date": "1 – 15/4/1968",
-   "t0": 603.0,
-   "t1": 683.0,
+   "t0": 526.26,
+   "t1": 595.81,
    "nguon": [
     "M2",
     "M3",
@@ -810,8 +1924,8 @@
    "shots": [
     {
      "id": "C10-01",
-     "t0": 603.0,
-     "t1": 614.0,
+     "t0": 526.26,
+     "t1": 539.27,
      "size": "Đại toàn",
      "desc": "Đường 9 đầu tháng 4",
      "may": "Top-down mũi tiến công Pegasus",
@@ -819,8 +1933,8 @@
     },
     {
      "id": "C10-02",
-     "t0": 614.0,
-     "t1": 626.0,
+     "t0": 539.27,
+     "t1": 549.59,
      "size": "Toàn",
      "desc": "Công binh mở đường",
      "may": "Theo bên cạnh đội hình",
@@ -828,8 +1942,8 @@
     },
     {
      "id": "C10-03",
-     "t0": 626.0,
-     "t1": 637.0,
+     "t0": 549.59,
+     "t1": 558.51,
      "size": "Đại toàn",
      "desc": "Đội hình trực thăng",
      "may": "Bay theo từ xa",
@@ -837,8 +1951,8 @@
     },
     {
      "id": "C10-04",
-     "t0": 637.0,
-     "t1": 649.0,
+     "t0": 558.51,
+     "t1": 568.22,
      "size": "Trung",
      "desc": "Đổ quân trực thăng",
      "may": "Góc ba phần tư, camera giữ an toàn",
@@ -846,8 +1960,8 @@
     },
     {
      "id": "C10-05",
-     "t0": 649.0,
-     "t1": 660.0,
+     "t0": 568.22,
+     "t1": 576.8,
      "size": "Cận",
      "desc": "Rotor / giày lính",
      "may": "Đặc tả ngắn",
@@ -855,8 +1969,8 @@
     },
     {
      "id": "C10-06",
-     "t0": 660.0,
-     "t1": 672.0,
+     "t0": 576.8,
+     "t1": 586.39,
      "size": "Toàn",
      "desc": "Đoàn xe cơ giới",
      "may": "Bám đường 9",
@@ -864,8 +1978,8 @@
     },
     {
      "id": "C10-07",
-     "t0": 672.0,
-     "t1": 683.0,
+     "t0": 586.39,
+     "t1": 595.81,
      "size": "Đại toàn",
      "desc": "Khe Sanh nhìn từ trên cao",
      "may": "Orbit qua căn cứ",
@@ -888,7 +2002,149 @@
     "Cuộc vây hãm nổi tiếng kéo dài 77 ngày, theo cách tính phổ biến trong sử liệu Mỹ, đi đến hồi kết.",
     "Nhưng những trận đánh tại Đường 9 – Khe Sanh vẫn chưa chấm dứt."
    ],
-   "subs": []
+   "subs": [
+    [
+     529.76,
+     532.9,
+     "Bước sang tháng 4 năm 1968."
+    ],
+    [
+     532.85,
+     537.48,
+     "Sau nhiều tuần căn cứ Khe Sanh bị vây hãm và chịu sức ép quân sự nặng nề,"
+    ],
+    [
+     537.43,
+     540.41,
+     "bộ chỉ huy Mỹ quyết định tổ chức chiến dịch giải tỏa."
+    ],
+    [
+     540.36,
+     542.1,
+     "Chiến dịch Pegasus!"
+    ],
+    [
+     542.05,
+     546.11,
+     "Từ ngày 1 tháng 4, các lực lượng Mỹ và quân đội Sài Gòn"
+    ],
+    [
+     546.06,
+     549.4,
+     "triển khai một cuộc hành quân phối hợp lớn trên Đường 9."
+    ],
+    [
+     549.35,
+     552.34,
+     "Các đơn vị công binh tìm cách mở lại tuyến đường bộ."
+    ],
+    [
+     552.29,
+     556.19,
+     "Bộ binh và lực lượng cơ giới tiến về hướng Khe Sanh."
+    ],
+    [
+     556.14,
+     560.73,
+     "Trên bầu trời, những chiếc trực thăng liên tiếp đưa quân tới các vị trí chiến thuật."
+    ],
+    [
+     560.68,
+     564.6,
+     "Không quân và pháo binh được huy động để yểm trợ đội hình hành quân."
+    ],
+    [
+     564.55,
+     568.5,
+     "Quân Giải phóng lập chốt Làng Khoai ngay trên Đường 9,"
+    ],
+    [
+     568.45,
+     570.95,
+     "chặn đánh đội hình giải tỏa suốt bốn ngày."
+    ],
+    [
+     570.9,
+     575.46,
+     "Các đơn vị khác tiếp tục gây sức ép lên các vị trí và tuyến cơ động."
+    ],
+    [
+     575.41,
+     578.67,
+     "Giao tranh diễn ra tại nhiều khu vực dọc Đường 9"
+    ],
+    [
+     578.62,
+     581.01,
+     "và những cao điểm xung quanh căn cứ."
+    ],
+    [
+     580.96,
+     584.95,
+     "Ngày 8 tháng 4, các lực lượng giải tỏa tới được căn cứ Khe Sanh."
+    ],
+    [
+     584.9,
+     588.2,
+     "Cuộc vây hãm nổi tiếng kéo dài 77 ngày,"
+    ],
+    [
+     588.15,
+     591.65,
+     "theo cách tính phổ biến trong sử liệu Mỹ, đi đến hồi kết."
+    ],
+    [
+     591.6,
+     595.51,
+     "Nhưng những trận đánh tại Đường 9 – Khe Sanh vẫn chưa chấm dứt."
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     526.26
+    ],
+    [
+     11.0,
+     539.27
+    ],
+    [
+     20.0,
+     547.13
+    ],
+    [
+     23.0,
+     549.59
+    ],
+    [
+     34.0,
+     558.51
+    ],
+    [
+     40.0,
+     562.92
+    ],
+    [
+     46.0,
+     568.22
+    ],
+    [
+     57.0,
+     576.8
+    ],
+    [
+     60.0,
+     579.29
+    ],
+    [
+     69.0,
+     586.39
+    ],
+    [
+     80.0,
+     595.81
+    ]
+   ]
   },
   {
    "id": "H10",
@@ -902,8 +2158,8 @@
    "tang": "ta-con",
    "place": "Căn cứ Khe Sanh, cuối 6 – đầu 7/1968",
    "date": "5 – 15/7/1968",
-   "t0": 683.0,
-   "t1": 761.0,
+   "t0": 595.81,
+   "t1": 667.51,
    "nguon": [
     "S17",
     "M8",
@@ -913,8 +2169,8 @@
    "shots": [
     {
      "id": "C12-01",
-     "t0": 683.0,
-     "t1": 692.64,
+     "t0": 595.81,
+     "t1": 609.25,
      "size": "Đại toàn",
      "desc": "Tà Cơn trong mùa hè 1968",
      "may": "Cùng góc C02 để so sánh",
@@ -922,8 +2178,8 @@
     },
     {
      "id": "C12-02",
-     "t0": 692.64,
-     "t1": 702.28,
+     "t0": 609.25,
+     "t1": 616.92,
      "size": "Trung",
      "desc": "Xe vận tải / người rút",
      "may": "Tracking chậm theo tuyến rút",
@@ -931,8 +2187,8 @@
     },
     {
      "id": "C12-03",
-     "t0": 702.28,
-     "t1": 711.04,
+     "t0": 616.92,
+     "t1": 625.33,
      "size": "Toàn",
      "desc": "Công trình bị tháo dỡ",
      "may": "Pan qua khu vực cơ sở",
@@ -940,8 +2196,8 @@
     },
     {
      "id": "C12-04",
-     "t0": 711.04,
-     "t1": 720.69,
+     "t0": 625.33,
+     "t1": 632.58,
      "size": "Cận",
      "desc": "Hàng rào, bao cát",
      "may": "Dolly chậm",
@@ -949,8 +2205,8 @@
     },
     {
      "id": "C12-05",
-     "t0": 720.69,
-     "t1": 730.33,
+     "t0": 632.58,
+     "t1": 640.41,
      "size": "Toàn",
      "desc": "Đường băng Tà Cơn",
      "may": "Bay thấp dọc đường băng",
@@ -958,8 +2214,8 @@
     },
     {
      "id": "C11-02",
-     "t0": 730.33,
-     "t1": 740.84,
+     "t0": 640.41,
+     "t1": 650.02,
      "size": "Trung",
      "desc": "Bộ binh tuần tra",
      "may": "Theo người di chuyển",
@@ -967,8 +2223,8 @@
     },
     {
      "id": "C11-04",
-     "t0": 740.84,
-     "t1": 751.36,
+     "t0": 650.02,
+     "t1": 659.76,
      "size": "Cận",
      "desc": "Binh sĩ / khí tài",
      "may": "Đặc tả sức nặng chiến tranh",
@@ -976,8 +2232,8 @@
     },
     {
      "id": "C12-06",
-     "t0": 751.36,
-     "t1": 761.0,
+     "t0": 659.76,
+     "t1": 667.51,
      "size": "Đại toàn",
      "desc": "Khe Sanh từ cao",
      "may": "Pull-back",
@@ -999,7 +2255,148 @@
     "Sau những tháng ngày bom đạn, vùng núi rừng Khe Sanh bước sang một giai đoạn mới.",
     "Một căn cứ từng được Mỹ quyết tâm phòng giữ đã không còn được duy trì như trước."
    ],
-   "subs": []
+   "subs": [
+    [
+     600.78,
+     604.2,
+     "Chiến dịch Pegasus kết thúc giai đoạn vây hãm căn cứ,"
+    ],
+    [
+     604.15,
+     607.37,
+     "nhưng chiến trường Khe Sanh vẫn chưa trở lại yên bình."
+    ],
+    [
+     607.32,
+     612.79,
+     "Từ tháng 5, Quân Giải phóng mở đợt tiến công mới, khôi phục thế vây lấn Tà Cơn."
+    ],
+    [
+     612.74,
+     615.6,
+     "Khe Sanh giờ đây không chỉ là một căn cứ."
+    ],
+    [
+     615.55,
+     619.42,
+     "Mà đã trở thành một vấn đề chiến lược đối với bộ chỉ huy Mỹ."
+    ],
+    [
+     619.37,
+     622.31,
+     "Mùa hè năm 1968."
+    ],
+    [
+     622.26,
+     623.76,
+     "Sau nhiều tháng chiến đấu,"
+    ],
+    [
+     623.71,
+     627.13,
+     "quân đội Mỹ quyết định rút khỏi căn cứ chiến đấu Khe Sanh."
+    ],
+    [
+     627.08,
+     630.75,
+     "Những công trình quân sự từng được xây dựng để duy trì một vị"
+    ],
+    [
+     630.7,
+     634.92,
+     "trí phòng thủ quan trọng nay bắt đầu được tháo dỡ hoặc phá hủy."
+    ],
+    [
+     634.87,
+     637.78,
+     "Sân bay, kho tàng và công sự từng là tâm điểm"
+    ],
+    [
+     637.73,
+     640.79,
+     "của cuộc vây hãm dần mất đi vai trò ban đầu."
+    ],
+    [
+     640.74,
+     644.49,
+     "Từ ngày 27 tháng 6, quân Mỹ rút khỏi căn cứ."
+    ],
+    [
+     644.44,
+     647.7,
+     "Đến ngày 5 tháng 7, căn cứ được giải thể."
+    ],
+    [
+     647.65,
+     651.96,
+     "Ngày 9 tháng 7, lá cờ chiến thắng tung bay trên sân bay Tà Cơn."
+    ],
+    [
+     651.91,
+     657.59,
+     "Ngày 15 tháng 7 năm 1968, Chiến dịch Đường 9 – Khe Sanh kết thúc."
+    ],
+    [
+     657.54,
+     662.17,
+     "Sau những tháng ngày bom đạn, vùng núi rừng Khe Sanh bước sang một giai đoạn mới."
+    ],
+    [
+     662.12,
+     667.09,
+     "Một căn cứ từng được Mỹ quyết tâm phòng giữ đã không còn được duy trì như trước."
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     595.81
+    ],
+    [
+     9.64,
+     609.25
+    ],
+    [
+     19.28,
+     616.92
+    ],
+    [
+     19.5,
+     617.05
+    ],
+    [
+     28.04,
+     625.33
+    ],
+    [
+     37.69,
+     632.58
+    ],
+    [
+     39.0,
+     633.53
+    ],
+    [
+     47.33,
+     640.41
+    ],
+    [
+     57.84,
+     650.02
+    ],
+    [
+     58.5,
+     650.5
+    ],
+    [
+     68.36,
+     659.76
+    ],
+    [
+     78.0,
+     667.51
+    ]
+   ]
   },
   {
    "id": "H11",
@@ -1012,16 +2409,16 @@
    "tang": "chien-dich",
    "place": "Khe Sanh, hồi tưởng lịch sử",
    "date": "20/1 – 15/7/1968",
-   "t0": 761.0,
-   "t1": 824.0,
+   "t0": 667.51,
+   "t1": 725.73,
    "nguon": [
     "S4"
    ],
    "shots": [
     {
      "id": "C13-01",
-     "t0": 761.0,
-     "t1": 773.6,
+     "t0": 667.51,
+     "t1": 681.95,
      "size": "Đại toàn",
      "desc": "Khe Sanh trong bình minh",
      "may": "Bay thấp rồi nâng cao",
@@ -1029,8 +2426,8 @@
     },
     {
      "id": "C13-02",
-     "t0": 773.6,
-     "t1": 786.2,
+     "t0": 681.95,
+     "t1": 692.27,
      "size": "Trung",
      "desc": "Các kỷ vật / con người",
      "may": "Dolly chậm",
@@ -1038,8 +2435,8 @@
     },
     {
      "id": "C13-03",
-     "t0": 786.2,
-     "t1": 798.8,
+     "t0": 692.27,
+     "t1": 703.48,
      "size": "Toàn",
      "desc": "Lược đồ chiến dịch",
      "may": "Camera quét qua các mốc",
@@ -1047,8 +2444,8 @@
     },
     {
      "id": "C13-04",
-     "t0": 798.8,
-     "t1": 811.4,
+     "t0": 703.48,
+     "t1": 712.75,
      "size": "Đại toàn",
      "desc": "Toàn thung lũng",
      "may": "Nâng máy rồi lùi ra",
@@ -1056,8 +2453,8 @@
     },
     {
      "id": "C13-05",
-     "t0": 811.4,
-     "t1": 824.0,
+     "t0": 712.75,
+     "t1": 725.73,
      "size": "Cận",
      "desc": "Tựa đề KHE SANH 1968",
      "may": "Cắt sang chữ trên nền sa bàn",
@@ -1076,7 +2473,126 @@
     "Khe Sanh 1968.",
     "Một chiến trường khốc liệt. Một dấu ấn không thể quên trong lịch sử chiến tranh Việt Nam."
    ],
-   "subs": []
+   "subs": [
+    [
+     670.48,
+     674.31,
+     "Từ tháng Giêng đến tháng Bảy năm 1968."
+    ],
+    [
+     674.26,
+     678.48,
+     "Đường 9 – Khe Sanh đã trải qua những tháng ngày chiến tranh dữ dội."
+    ],
+    [
+     678.43,
+     680.25,
+     "Từ trận pháo kích mở màn..."
+    ],
+    [
+     680.2,
+     684.26,
+     "Đến cuộc tiến công Làng Vây với những chiếc xe tăng PT-76."
+    ],
+    [
+     684.21,
+     688.16,
+     "Từ các hoạt động vây lấn Tà Cơn, những trận không kích quy mô lớn,"
+    ],
+    [
+     688.11,
+     692.65,
+     "cho đến chiến dịch giải tỏa và quyết định rút khỏi căn cứ của quân đội Mỹ."
+    ],
+    [
+     692.6,
+     698.92,
+     "Tất cả đã tạo nên một trong những chiến trường đáng chú ý nhất của năm 1968."
+    ],
+    [
+     698.87,
+     700.84,
+     "Trong lịch sử quân sự Việt Nam,"
+    ],
+    [
+     700.79,
+     704.06,
+     "chiến dịch được ghi nhận là một hướng tiến công quan trọng,"
+    ],
+    [
+     704.01,
+     707.19,
+     "góp phần phối hợp với cuộc Tổng tiến công Tết Mậu Thân."
+    ],
+    [
+     707.14,
+     711.05,
+     "Nhưng sau những thắng lợi, những cuộc giao tranh và các quyết định chiến lược,"
+    ],
+    [
+     711.0,
+     715.34,
+     "điều còn lại trên mảnh đất này là ký ức về những con người đã sống,"
+    ],
+    [
+     715.29,
+     717.15,
+     "chiến đấu và hy sinh."
+    ],
+    [
+     717.1,
+     719.96,
+     "Khe Sanh 1968."
+    ],
+    [
+     719.91,
+     721.37,
+     "Một chiến trường khốc liệt."
+    ],
+    [
+     721.32,
+     725.19,
+     "Một dấu ấn không thể quên trong lịch sử chiến tranh Việt Nam."
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     667.51
+    ],
+    [
+     12.6,
+     681.95
+    ],
+    [
+     15.75,
+     685.1
+    ],
+    [
+     25.2,
+     692.27
+    ],
+    [
+     31.5,
+     696.8
+    ],
+    [
+     37.8,
+     703.48
+    ],
+    [
+     47.25,
+     710.45
+    ],
+    [
+     50.4,
+     712.75
+    ],
+    [
+     63.0,
+     725.73
+    ]
+   ]
   },
   {
    "id": "H12",
@@ -1087,8 +2603,8 @@
    "tang": "ta-con",
    "place": "Sân trưng bày (quy ước, đặt xa vùng chiến sự)",
    "date": "Tái dựng mô phỏng",
-   "t0": 824.0,
-   "t1": 874.0,
+   "t0": 725.73,
+   "t1": 765.27,
    "nguon": [
     "S3",
     "M31",
@@ -1098,8 +2614,8 @@
    "shots": [
     {
      "id": "C14-01",
-     "t0": 824.0,
-     "t1": 834.0,
+     "t0": 725.73,
+     "t1": 733.69,
      "size": "Đại toàn",
      "desc": "Không gian trưng bày nhìn từ trên cao",
      "may": "Lượn vòng hạ dần xuống sân",
@@ -1107,8 +2623,8 @@
     },
     {
      "id": "C14-02",
-     "t0": 834.0,
-     "t1": 844.0,
+     "t0": 733.69,
+     "t1": 740.54,
      "size": "Toàn",
      "desc": "Dãy khí tài Quân Giải phóng",
      "may": "Dolly dọc dãy",
@@ -1116,8 +2632,8 @@
     },
     {
      "id": "C14-03",
-     "t0": 844.0,
-     "t1": 854.0,
+     "t0": 740.54,
+     "t1": 747.51,
      "size": "Toàn",
      "desc": "Dãy khí tài phía Mỹ và VNCH",
      "may": "Dolly dọc dãy",
@@ -1125,8 +2641,8 @@
     },
     {
      "id": "C14-04",
-     "t0": 854.0,
-     "t1": 864.0,
+     "t0": 747.51,
+     "t1": 755.47,
      "size": "Toàn",
      "desc": "Máy bay B-52D và C-130A",
      "may": "Lượn quanh",
@@ -1134,8 +2650,8 @@
     },
     {
      "id": "C14-05",
-     "t0": 864.0,
-     "t1": 874.0,
+     "t0": 755.47,
+     "t1": 765.27,
      "size": "Toàn",
      "desc": "Cổng vào — mời người xem đi bộ tham quan",
      "may": "Dolly tới cổng",
@@ -1148,7 +2664,86 @@
     "Một bên là quân đội Mỹ và quân đội Sài Gòn: xe tăng, pháo binh, trực thăng, máy bay vận tải C-130 và máy bay ném bom chiến lược B-52.",
     "Mỗi khí tài có bảng thông tin và nguồn tư liệu để bạn tìm hiểu thêm. Bạn có thể tự mình đi qua từng dãy trưng bày."
    ],
-   "subs": []
+   "subs": [
+    [
+     728.06,
+     731.31,
+     "Khép lại hành trình, xin mời bạn bước vào không gian trưng bày"
+    ],
+    [
+     731.26,
+     734.8,
+     "khí tài của hai bên trong chiến dịch Đường 9 – Khe Sanh."
+    ],
+    [
+     734.75,
+     739.82,
+     "Một bên là Quân Giải phóng: những chiến sĩ bộ binh, xe tăng lội nước PT-76,"
+    ],
+    [
+     739.77,
+     744.11,
+     "pháo nòng dài 130 mm, pháo cao xạ và xe vận tải."
+    ],
+    [
+     744.06,
+     748.29,
+     "Một bên là quân đội Mỹ và quân đội Sài Gòn: xe tăng, pháo binh,"
+    ],
+    [
+     748.24,
+     754.11,
+     "trực thăng, máy bay vận tải C-130 và máy bay ném bom chiến lược B-52."
+    ],
+    [
+     754.06,
+     758.33,
+     "Mỗi khí tài có bảng thông tin và nguồn tư liệu để bạn tìm hiểu thêm."
+    ],
+    [
+     758.28,
+     761.87,
+     "Bạn có thể tự mình đi qua từng dãy trưng bày."
+    ]
+   ],
+   "ban_do": [
+    [
+     0.0,
+     725.73
+    ],
+    [
+     10.0,
+     733.69
+    ],
+    [
+     12.5,
+     735.33
+    ],
+    [
+     20.0,
+     740.54
+    ],
+    [
+     25.0,
+     744.58
+    ],
+    [
+     30.0,
+     747.51
+    ],
+    [
+     37.5,
+     753.38
+    ],
+    [
+     40.0,
+     755.47
+    ],
+    [
+     50.0,
+     765.27
+    ]
+   ]
   }
  ],
  "arrows": {},
@@ -1158,81 +2753,86 @@
  "legend": {},
  "refs": [],
  "danY": [],
- "moc": {},
+ "moc": {
+  "h04_phao": 205.58,
+  "h04_kho": 214.5,
+  "h04_ungpho": 221.98,
+  "h05_tet": 264.19
+ },
  "voice": {
-  "file": null,
-  "nguon": "chưa thu"
+  "file": "audio/voice.mp3",
+  "nguon": "Bản voice anh Thắng làm, 25/11/2026 (voice-khesanh-1.mp3 + voice-khe-sanh2.mp3, 748 s; chèn 1.2 s lặng trước tên mỗi hồi); mốc từng từ nhận dạng bằng tools/sa_ban/voice/asr_onnx.py, khớp 95.4 % số từ lời đọc"
  },
  "the": [
   [
-   0.0,
-   5.0,
+   0.65,
+   6.33,
    "HỒI 1",
    "THUNG LŨNG KHE SANH – VÙNG ĐẤT CHIẾN LƯỢC"
   ],
   [
-   70.0,
-   75.0,
+   62.09,
+   66.65,
    "HỒI 2",
    "NHỮNG PHÁO ĐÀI TRÊN ĐƯỜNG 9"
   ],
   [
-   140.0,
-   145.0,
+   123.44,
+   128.64,
    "HỒI 3",
    "THẾ TRẬN TRƯỚC GIỜ NỔ SÚNG"
   ],
   [
-   211.0,
-   216.0,
+   184.41,
+   190.9,
    "HỒI 4",
    "NGÀY 21 THÁNG 1 – KHE SANH BÙNG CHÁY"
   ],
   [
-   285.0,
-   290.0,
+   250.61,
+   257.26,
    "HỒI 5",
    "TẾT MẬU THÂN – HAI CHIẾN TRƯỜNG, MỘT THỜI KHẮC"
   ],
   [
-   352.0,
-   357.0,
+   310.43,
+   316.6,
    "HỒI 6",
    "LÀNG VÂY – XE TĂNG VIỆT NAM XUẤT TRẬN"
   ],
   [
-   439.0,
-   444.0,
+   387.32,
+   393.04,
    "HỒI 7",
    "NHỮNG CHIẾN HÀO SIẾT CHẶT TÀ CƠN"
   ],
   [
-   526.0,
-   531.0,
+   458.51,
+   465.44,
    "HỒI 8",
    "BẦU TRỜI KHE SANH – MƯA BOM VÀ TIẾP TẾ"
   ],
   [
-   603.0,
-   608.0,
+   526.61,
+   532.42,
    "HỒI 9",
    "PEGASUS – CHIẾN DỊCH GIẢI TỎA KHE SANH"
   ],
   [
-   683.0,
-   688.0,
+   596.16,
+   603.28,
    "HỒI 10",
    "MÙA HÈ 1968 – QUÂN MỸ RỜI TÀ CƠN"
   ],
   [
-   761.0,
-   766.0,
+   667.86,
+   673.18,
    "HỒI 11",
    "KHE SANH – DẤU ẤN MỘT CHIẾN DỊCH"
   ],
   [
-   824.0,
-   829.0,
+   726.08,
+   730.67,
    "KẾT",
    "KHÔNG GIAN TRƯNG BÀY KHÍ TÀI"
   ]

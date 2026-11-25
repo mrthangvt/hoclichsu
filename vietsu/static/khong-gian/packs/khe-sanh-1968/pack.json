@@ -1,6 +1,6 @@
 {
  "id": "khe-sanh-1968",
- "version": "0.8.0",
+ "version": "0.9.0",
  "engine": "^2.2",
  "kind": "battle",
  "title": "Chiến dịch Đường 9 – Khe Sanh 1968",
@@ -116,7 +116,7 @@
   "dir": "audio/",
   "voice": "audio/voice.mp3",
   "music": "audio/nhac/",
-  "credits": "Lời dẫn: chưa thu (GĐ5). Nhạc nền (Epidemic Sound, dùng lại của gói HCM 1975 / Bạch Đằng): It Has Awoken, I Will Be Your Knight, The Thick of It, Final Battle, Arbitrary Enemy, Hero Epilogue, Trở về. Hiệu ứng dùng lại của gói HCM 1975: tiengdong.com (xe tăng, súng AK, tiếng nổ), Epidemic Sound (Fire Burst, Whoosh, Wind Drone); tiếng pháo của gói Ngọc Hồi – Đống Đa."
+  "credits": "Lời dẫn: bản voice anh Thắng làm (25/11/2026), kịch bản lời đọc docs/du-lieu/khe-sanh-1968_loi_doc_voice.md. Nhạc nền (Epidemic Sound, dùng lại của gói HCM 1975 / Bạch Đằng): It Has Awoken, I Will Be Your Knight, The Thick of It, Final Battle, Arbitrary Enemy, Hero Epilogue, Trở về. Hiệu ứng dùng lại của gói HCM 1975: tiengdong.com (xe tăng, súng AK, tiếng nổ), Epidemic Sound (Fire Burst, Whoosh, Wind Drone); tiếng pháo của gói Ngọc Hồi – Đống Đa."
  },
  "budget": {
   "firstLoadMB": 15

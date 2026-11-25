@@ -299,6 +299,12 @@ Kiểm tra: `quet_phim.py` hai tầng (thêm phần Kết), `kiem_tra_goi.py`, t
 
 **Về đoạn dừng khi đổi tầng.** Điện Biên Phủ chỉ có một tầng địa hình nên không bao giờ đổi trang. Khe Sanh có hai tầng: toàn chiến dịch (66 km, phóng đại độ cao ×2) và Tà Cơn (21 km, độ cao thật) — mỗi tầng là một trang sa bàn riêng, đổi tầng là dựng trang mới (8 lần trong phim). Hai trang cùng chạy để nối liền thì treo máy (lỗi V1.5). Bản này: khoảng chờ hiện ảnh khung cuối kèm tên hồi kế tiếp (như màn mở chương), không còn chữ "Đang chuyển cảnh" to. **Liền mạch hẳn** cần gộp hai tầng vào một trang: đặt địa hình Tà Cơn chi tiết như một miếng vá giữa địa hình chiến dịch, chuyển mọi bố trí của tầng Tà Cơn sang hệ toạ độ và tỉ lệ độ cao của tầng chiến dịch — việc lớn của bộ máy (đề xuất bản 2.0). Với phim xuất bằng công cụ `xuat_phim` (đồng hồ ảo, dựng từng khung), khoảng chờ tải không vào phim nếu dựng từng tầng rồi nối — cần thêm bước nối đoạn.
 
+## 9j. GĐ5 — gắn voice, phụ đề (25/11/2026, 23h)
+
+- Voice: bản anh Thắng làm bằng phần mềm voice theo tài liệu "Kịch bản voice" (`docs/du-lieu/khe-sanh-1968_loi_doc_voice.md`), đọc cả tên hồi. Voice là đồng hồ chính của phim.
+- Nhận dạng (`tools/sa_ban/voice/asr_khe_sanh1968.json`) khớp 95,4 % số từ. Chỗ lệch chính: "Pê-ga-xớt" (nhận ra "pest"), "Khe Sanh" (nhận ra "khe xanh"), "vây lấn Tà Cơn đến" ở Hồi 11 (nhận dạng sót, mốc nội suy) — phụ đề vẫn theo câu chữ story.
+- Mốc số liệu, tên đơn vị không đổi so với story (phụ đề lấy câu chữ đã soát nguồn ở mục 3).
+
 ## 10. Kiểm tra GĐ0 (25/11/2026)
 - `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
 - `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.
