@@ -1,6 +1,6 @@
 # Hướng dẫn cho AI (ChatGPT / Codex và các agent khác)
 
-Dự án: website học lịch sử **Việt Sử V4.1** (`vietsu/`, Python FastAPI) và các sa bàn 3D trong mục "Không gian lịch sử", trước hết là **Thành cổ Quảng Trị 1972** (`vietsu/static/khong-gian/thanh-co-quang-tri/`, three.js).
+Dự án: website học lịch sử **Học Lịch Sử V4.1** (`vietsu/`, Python FastAPI) và các sa bàn 3D trong mục "Không gian lịch sử", trước hết là **Thành cổ Quảng Trị 1972** (`vietsu/static/khong-gian/thanh-co-quang-tri/`, three.js).
 Làm việc chung với Claude qua repo này.
 
 **Đọc trước khi làm:**
@@ -8,7 +8,7 @@ Làm việc chung với Claude qua repo này.
 2. `docs/QUY_TRINH.md` — quy trình nhánh / Pull Request, chia việc.
 3. `docs/KHUNG_SA_BAN.md` — **bắt buộc khi làm sa bàn hoặc di tích 3D mới**: bộ máy chung + gói dữ liệu (`pack.json`, `story.json`), ngân sách dung lượng, quy trình 6 bước, nguồn dữ liệu.
 
-**KHÓA GIAO DIỆN VIỆT SỬ — CHỈ CHỦ DỰ ÁN ĐƯỢC YÊU CẦU MỞ KHÓA (17/11/2026)**
+**KHÓA GIAO DIỆN HỌC LỊCH SỬ — CHỈ CHỦ DỰ ÁN ĐƯỢC YÊU CẦU MỞ KHÓA (17/11/2026)**
 - Giao diện V4.6 là **chuẩn cố định**: KHÔNG tự đổi bố cục/trật tự khối, menu, tab, Timeline, Popup, font, màu, responsive, icon, ảnh hay hiệu ứng. Không tạo demo mới có giao diện khác rồi trình bày như bản nâng cấp.
 - Với V4.7, V4.8 và các phiên bản tiếp theo, thay đổi dữ liệu/API/CMS là được; thay đổi UI phải có **yêu cầu cụ thể của chủ dự án**. Nếu một chức năng mới chưa có vị trí hiển thị được duyệt, giữ ở backend và báo rõ, tuyệt đối không tự chèn panel/tab.
 - `vietsu/tools/build_v47.py` phải sao chép HTML V4.6 **byte-for-byte** và kiểm tra SHA-256; CI kiểm tra quy tắc. Bản offline độc lập khác layout V4.6 đã bị gỡ.
@@ -27,4 +27,4 @@ Làm việc chung với Claude qua repo này.
 
 **Bảo mật:** không commit `vietsu/.env`, `vietsu/data/*.sqlite3`, `vietsu/static/uploads/`. Không đưa khoá API, mã quản trị vào code hay tài liệu.
 
-**Giao diện Việt Sử:** V4.1 là nền dữ liệu lịch sử, các bản V4.2–V4.6 là các lớp giao diện kế thừa. Từ 17/11/2026, **V4.6 là mốc khóa giao diện**. Không chỉnh file HTML/CSS/JS hiển thị nếu anh chưa yêu cầu.
+**Giao diện Học Lịch Sử:** V4.1 là nền dữ liệu lịch sử, các bản V4.2–V4.6 là các lớp giao diện kế thừa. Từ 17/11/2026, **V4.6 là mốc khóa giao diện**. Không chỉnh file HTML/CSS/JS hiển thị nếu anh chưa yêu cầu.

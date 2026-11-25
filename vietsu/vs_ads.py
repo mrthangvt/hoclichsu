@@ -1,4 +1,4 @@
-"""Việt Sử V3.8 — cấu hình Google AdSense (bật/tắt từ trang quản trị, không cần sửa mã)."""
+"""Học Lịch Sử V3.8 — cấu hình Google AdSense (bật/tắt từ trang quản trị, không cần sửa mã)."""
 from __future__ import annotations
 
 import html

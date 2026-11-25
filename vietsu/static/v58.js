@@ -1,6 +1,6 @@
-/* Việt Sử V5.8 — theo yêu cầu chủ dự án (23/11/2026):
+/* Học Lịch Sử V5.8 — theo yêu cầu chủ dự án (23/11/2026):
    1) Sách giáo khoa Lịch sử lớp 6–12: mục lục đúng theo SGK bộ Kết nối tri thức với cuộc sống (Lịch sử và Địa lí 6–9,
-      Lịch sử 10–12); lớp 6, 7 có nội dung từng bài do Việt Sử biên soạn lại bằng lời văn riêng; lớp 8–12 có tóm tắt,
+      Lịch sử 10–12); lớp 6, 7 có nội dung từng bài do Học Lịch Sử biên soạn lại bằng lời văn riêng; lớp 8–12 có tóm tắt,
       nội dung chi tiết đang biên soạn. Dữ liệu trong v58-sgk.js (nguồn vietsu/data/sgk_kntt_lop*.json).
    2) Cửa sổ bài học có nút Bài trước / Bài tiếp theo.
    3) Giữ icon Chủ tịch Hồ Chí Minh trên menu khi chọn mục đó.
@@ -70,7 +70,7 @@ function moBai(id){
   h+='<section class="vs58-nho"><h3>Ghi nhớ</h3><ul>'+b.nho.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></section>';
   h+='<section class="vs58-hoi"><h3>Câu hỏi ôn tập</h3><ol>'+b.hoi.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ol></section>';
  }else{
-  h+='<section class="vs58-cho"><h3>Nội dung chi tiết đang biên soạn</h3><p>Việt Sử đang biên soạn phần nội dung, ghi nhớ và câu hỏi ôn tập cho bài này. Trong lúc chờ, em hãy học theo SGK, trang '+esc(b.trang.join('–'))+'.</p></section>';
+  h+='<section class="vs58-cho"><h3>Nội dung chi tiết đang biên soạn</h3><p>Học Lịch Sử đang biên soạn phần nội dung, ghi nhớ và câu hỏi ôn tập cho bài này. Trong lúc chờ, em hãy học theo SGK, trang '+esc(b.trang.join('–'))+'.</p></section>';
  }
  let nut='';
  if(b.nam!==null&&b.nam!==undefined)nut+='<button type="button" class="secondary" data-vs58-nam="'+esc(b.nam)+'">Đến năm '+esc(namChu(b.nam))+' trên timeline ↗</button>';

@@ -1,4 +1,4 @@
-/* Việt Sử V4.11 — ôn tập/thi thử, không gửi dữ liệu cá nhân lên máy chủ. */
+/* Học Lịch Sử V4.11 — ôn tập/thi thử, không gửi dữ liệu cá nhân lên máy chủ. */
 (function () {
   'use strict';
   const META = {

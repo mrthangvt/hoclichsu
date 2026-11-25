@@ -20,7 +20,7 @@ export function khungHTML(P) {
 
 <div class="hud top">
   <div class="card title">
-    <div class="eyebrow">Không gian lịch sử · Việt Sử</div>
+    <div class="eyebrow">Không gian lịch sử · Học Lịch Sử</div>
     <h1>${e(P.title)}</h1>
     <p id="sdate">${e(P.subtitle || "")}</p>
     <span class="tag">${e((P.label || "Tái dựng mô phỏng").toUpperCase())}</span>

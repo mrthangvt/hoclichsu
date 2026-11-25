@@ -1,4 +1,4 @@
-/* VIỆT SỬ V4.3 — asset paths must be copied from patch ZIP */
+/* HỌC LỊCH SỬ V4.3 — asset paths must be copied from patch ZIP */
 (function(){
 'use strict';
 const DIR='static/v43/';

@@ -44,7 +44,7 @@ def du_lieu():
     out={"phien_ban":"5.9.2","nhan_vat":nv["nhan_vat"],"su_kien":sk["su_kien"],"hcm":hcm["moc"],
          "hcm_nguon":hcm["nguon"],"hcm_ho_so":hcm["ho_so"],"hcm_bai_viet":hcm.get("bai_viet",[])}
     js=json.dumps(out,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
-    (STATIC/"v59-data.js").write_text("/* Việt Sử V5.9 — nhân vật, sự kiện, dòng thời gian Hồ Chí Minh (sinh bởi tools/build_v59.py, đừng sửa tay) */\nwindow.VS59_DATA="+js+";\n",encoding="utf-8")
+    (STATIC/"v59-data.js").write_text("/* Học Lịch Sử V5.9 — nhân vật, sự kiện, dòng thời gian Hồ Chí Minh (sinh bởi tools/build_v59.py, đừng sửa tay) */\nwindow.VS59_DATA="+js+";\n",encoding="utf-8")
     return len(nv["nhan_vat"]),len(sk["su_kien"]),len(hcm["moc"])
 
 # V5.9.2 — theo yêu cầu chủ dự án (24/11/2026): bỏ các nhãn kiểm duyệt ("chờ thẩm định", "nội dung mẫu",
@@ -67,10 +67,10 @@ XUAT_BAN=[
  ('"status":"chờ biên tập"','"status":"đề mục"'),
  ('"curriculum":"Đề cương minh họa; cần đối chiếu với chương trình đang học"','"curriculum":"Đối chiếu với chương trình đang học"'),
  ("Đọc đề cương ↗","Đọc bài ↗"),
- ("<p>Đây là bản tóm tắt do đội biên tập tạo, cần thẩm định sử liệu trước khi sử dụng như học liệu chính thức.</p>","<p>Bản tóm tắt do Ban biên tập Việt Sử biên soạn.</p>"),
- ("<dd>Bài biên soạn mẫu · chờ thẩm định</dd>","<dd>Ban biên tập Việt Sử</dd>"),
+ ("<p>Đây là bản tóm tắt do đội biên tập tạo, cần thẩm định sử liệu trước khi sử dụng như học liệu chính thức.</p>","<p>Bản tóm tắt do Ban biên tập Học Lịch Sử biên soạn.</p>"),
+ ("<dd>Bài biên soạn mẫu · chờ thẩm định</dd>","<dd>Ban biên tập Học Lịch Sử</dd>"),
  ("<h3>Ghi chú biên tập</h3><p>Dữ liệu hồ sơ đang được chuẩn hóa. Những thông tin cần kiểm chứng sẽ được đánh dấu trước khi công bố dưới dạng học liệu chính thức.</p>",
-  "<h3>Ghi chú biên tập</h3><p>Hồ sơ do Ban biên tập Việt Sử biên soạn từ các nguồn ghi trong bài.</p>"),
+  "<h3>Ghi chú biên tập</h3><p>Hồ sơ do Ban biên tập Học Lịch Sử biên soạn từ các nguồn ghi trong bài.</p>"),
  ("'Ảnh có thể đổi trong CMS; đây là bản biên tập chờ thẩm định.</p>'","'</p>'"),
  (" Nội dung cần được chuyển ngữ và thẩm định trước khi đưa vào học liệu chính thức.",""),
  ("Minh họa AI; cần thẩm định độ xác thực phục trang trước khi xuất bản","Minh họa AI, không phải hình tư liệu"),
@@ -79,6 +79,18 @@ XUAT_BAN=[
  ('"tag":"cần thẩm định"','"tag":"niên đại còn tranh luận"'),
  ("<h3>Đề cương bài viết cùng chặng</h3><p>Nội dung mẫu theo mục lục giai đoạn, chưa thay cho bài thẩm định chính thức.</p>","<h3>Bài viết cùng chặng</h3>"),
 ]
+
+# Đổi tên website/app thành "Học Lịch Sử" (25/11/2026). Giữ tên sách "Đại Việt sử ký (toàn thư)".
+import re as _re
+DOI_TEN=[(_re.compile(r'VIỆT SỬ · 越史'),'HỌC LỊCH SỬ'),
+         (_re.compile(r'(?<!Đại )Việt Sử(?! [Kk][ýí])'),'Học Lịch Sử'),
+         (_re.compile(r'VIỆT SỬ'),'HỌC LỊCH SỬ'),
+         (_re.compile(r'vietsu\.com\.vn'),'hoclichsu.com'),
+         (_re.compile(r'越史'),'學史')]
+
+def doi_ten(html):
+    for p,r in DOI_TEN: html=p.sub(r,html)
+    return html
 
 def xuat_ban(html):
     for cu,moi in XUAT_BAN:
@@ -101,8 +113,8 @@ def build():
             raise AssertionError("Thiếu tệp "+f)
     result=source.replace("</head>",css+"</head>",1).replace("</body>",js+"</body>",1)
     assert result.replace(css,"",1).replace(js,"",1)==source, "Không được thay nội dung V5.8"
-    result=xuat_ban(result)
-    # Favicon Việt Sử (25/11/2026): chữ "Sử" vàng trên nền xanh đen, tệp trong static/favicon/.
+    result=doi_ten(xuat_ban(result))
+    # Favicon Học Lịch Sử (25/11/2026): chữ "Sử" vàng trên nền xanh đen, tệp trong static/favicon/.
     fav=('<link rel="icon" href="static/favicon/favicon.ico" sizes="any">'
          '<link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32.png">'
          '<link rel="apple-touch-icon" href="static/favicon/apple-touch-icon.png">'

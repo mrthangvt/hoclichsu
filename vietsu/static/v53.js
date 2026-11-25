@@ -1,6 +1,6 @@
-/* Việt Sử V5.3 — theo yêu cầu chủ dự án (22/11/2026):
+/* Học Lịch Sử V5.3 — theo yêu cầu chủ dự án (22/11/2026):
    1) Gom các mục "Sách lịch sử lớp 6–12" vào trong "Sách giáo khoa Lịch sử" (chọn lớp ở phần nội dung).
-   2) Thay logo Việt Sử (bản tối / bản sáng).
+   2) Thay logo Học Lịch Sử (bản tối / bản sáng).
    3) Popup chiến trận trên dòng thời gian: mục "Sa bàn tương tác" có nút vào sa bàn 3D nếu trận đó đã có sa bàn. */
 (function(){
 'use strict';
@@ -22,7 +22,7 @@ function logoImgs(kind){
   const img=document.createElement('img');
   img.className='vs53-logo-'+theme;
   img.src='static/v53/'+(kind==='chu'?'logo-chu-':'logo-')+theme+'.webp';
-  img.alt=theme==='toi'?'Việt Sử — Dân ta phải biết sử ta':'';
+  img.alt=theme==='toi'?'Học Lịch Sử — Dân ta phải biết sử ta':'';
   if(theme==='sang')img.setAttribute('aria-hidden','true');
   img.decoding='async';
   wrap.append(img);
@@ -44,7 +44,7 @@ function setLogo(){
  }
  const mob=document.querySelector('.v31-mobile-brand');
  if(mob&&!mob.querySelector('.vs53-logo')){
-  mob.classList.add('vs53-mobile-brand');mob.append(logoImgs('chu'));mob.setAttribute('aria-label','Việt Sử');
+  mob.classList.add('vs53-mobile-brand');mob.append(logoImgs('chu'));mob.setAttribute('aria-label','Học Lịch Sử');
  }
 }
 

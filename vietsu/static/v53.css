@@ -1,11 +1,11 @@
-/* Việt Sử V5.3 — logo mới, gom menu Sách giáo khoa, nút sa bàn 3D trong popup chiến trận. */
+/* Học Lịch Sử V5.3 — logo mới, gom menu Sách giáo khoa, nút sa bàn 3D trong popup chiến trận. */
 
 /* Logo thanh bên (desktop) */
 aside .seal.vs53-seal{display:flex;justify-content:center;cursor:pointer;padding:2px 0 6px}
 aside .seal.vs53-seal>:not(.vs53-logo){display:none!important}
 .vs53-logo{display:block;line-height:0}
 .vs53-logo img{display:block;width:100%;height:auto}
-.vs53-logo-day-du{width:min(168px,100%)}
+.vs53-logo-day-du{width:min(196px,100%)}
 .vs53-logo .vs53-logo-sang{display:none}
 body.theme-light .vs53-logo .vs53-logo-toi{display:none}
 body.theme-light .vs53-logo .vs53-logo-sang{display:block}

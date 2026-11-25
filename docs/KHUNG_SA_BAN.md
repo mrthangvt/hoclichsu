@@ -1,6 +1,6 @@
 # Khung sa bàn dùng chung — quy chuẩn bắt buộc cho mọi sa bàn, di tích 3D mới
 
-Phiên bản quy chuẩn: 1.3 (23/11/2026, cập nhật trong Giai đoạn 2). Bản trình bày đầy đủ cho chủ dự án: tài liệu "Khung sa bàn dùng chung — Việt Sử" (https://claude.ai/artifact/LSEoZWGe3ucnQGQGWtM7hM). File này là bản chính cho người và AI làm việc trong repo.
+Phiên bản quy chuẩn: 1.3 (23/11/2026, cập nhật trong Giai đoạn 2). Bản trình bày đầy đủ cho chủ dự án: tài liệu "Khung sa bàn dùng chung — Học Lịch Sử" (https://claude.ai/artifact/LSEoZWGe3ucnQGQGWtM7hM). File này là bản chính cho người và AI làm việc trong repo.
 
 > **Trạng thái hiện tại:** **bộ máy `engine/1.0.0` đã có** (Giai đoạn 1 xong, chờ chủ dự án duyệt). Gói mẫu `packs/ngoc-hoi-dong-da/` chạy tại `khong-gian/engine/1.0.0/sa-ban.html?goi=ngoc-hoi-dong-da`, song song với bản cũ `khong-gian/ngoc-hoi-dong-da/`. Gói để sao chép khi làm trận mới: `packs/_mau/`. Việc tiếp theo: Giai đoạn 2 (mục 9). Từ nay không tạo sa bàn mới theo kiểu riêng lẻ.
 
@@ -40,7 +40,7 @@ vietsu/static/khong-gian/
 Gói tham chiếu đầy đủ: `packs/ngoc-hoi-dong-da/pack.json`. Gói trống để sao chép: `packs/_mau/`.
 
 `pack.json` — các nhóm trường (bộ máy 1.0):
-- **Định danh:** `id`, `version` (semver), `engine` (dải phiên bản, `^1.0`), `kind` (`battle` | `site`), `title`, `subtitle`, `period` (mã triều đại trong Việt Sử), `year`, `label` ("Tái dựng mô phỏng…"), `storyLabel`, `coords`.
+- **Định danh:** `id`, `version` (semver), `engine` (dải phiên bản, `^1.0`), `kind` (`battle` | `site`), `title`, `subtitle`, `period` (mã triều đại trong Học Lịch Sử), `year`, `label` ("Tái dựng mô phỏng…"), `storyLabel`, `coords`.
 - **Địa hình:** `terrain` (`data`, `height`, `image`, mảnh chi tiết `patchHeight`/`patchImage`, `riverExtend` sông kéo ra ngoài khung, `farMountains` núi xa làm phông).
 - **Vật thể:** `props` (`instances` = nhà, cây, lều… đặt hàng loạt từ `dia-hinh.json › inst` bằng mẫu dựng sẵn của bộ máy; `outerCamps` trại ngoài khung; `pontoonBridge` cầu phao; `campFlags` cờ doanh trại theo cảnh; `crossMarks` dấu X đồn đã mất; `raiseCannons`), `frames` (khung toạ độ cục bộ của một đồn: `c0`, `eu`, `ev`).
 - **Nhãn, góc nhìn, giao diện:** `labels` (tên mốc, mốc lớn, tên sông), `views` (góc nhìn có tên: `label`, `target` hoặc `X`/`Y`, `dist`, `az`, `el`, `off`), `ui` (tên lớp, chú giải, mốc so sánh mặc định, độ cao mũi tên).
@@ -146,7 +146,7 @@ Lưu ý đã gặp: Overpass từng trả 406 khi gọi từ trình duyệt (xem
 
 ## 8. Lưu trữ, phiên bản, tích hợp
 - Git: bộ máy, `pack.json`, `story.json`, `placement.json`, `sources.json`. File nặng (GLB, KTX2, MP3): Cloudflare R2 + CDN (hoặc VPS sau Cloudflare), tên file kèm mã nội dung. File `.blend`, ảnh quét gốc: ổ xMABUx, không lên repo.
-- Website Việt Sử, app, PWA đọc `catalog.json`; không thêm bảng sa bàn viết tay mới (như `SCENES` trong `v46.js`, `SA_BAN_3D` trong `v53.js`) — khi có catalog, các bảng này đọc từ catalog.
+- Website Học Lịch Sử, app, PWA đọc `catalog.json`; không thêm bảng sa bàn viết tay mới (như `SCENES` trong `v46.js`, `SA_BAN_3D` trong `v53.js`) — khi có catalog, các bảng này đọc từ catalog.
 - App: chỉ chứa bộ máy + catalog; từng gói tải về để xem offline.
 
 ## 9. Lộ trình
@@ -160,7 +160,7 @@ Quyết định của chủ dự án (23/11/2026): Ngọc Hồi – Đống Đa 
 1. **Giai đoạn 1 — xong (23/11/2026), chờ duyệt.** Bộ máy 1.0.0 tách từ Ngọc Hồi V10; gói `ngoc-hoi-dong-da`; `packs/_mau/`; công cụ `tools/sa_ban/` (`nv_sang_nvz.py`, `chuyen_ngoc_hoi.py`, `tach_bo_may.py`, `kiem_tra_goi.py`). Kết quả đo: hình ảnh từng cảnh trùng bản cũ (so ảnh chụp C09, C10, C13: lệch trung bình < 1,5 %, chỉ khác khói, pha động tác); **tải lần đầu 11,9 MB** (bản cũ ~29 MB); toàn gói 16,7 MB + âm thanh 9,4 MB. Nhân vật dùng `.nvz` thay vì GLB vì là hoạt hình nướng sẵn theo khung (GLB chỉ hợp với nhân vật có xương). **Chưa đo được fps trên Android thật** — cần anh mở trên điện thoại và đọc số fps góc dưới trái. Điện thoại tự dùng mức `thap` (lưới địa hình thưa gấp đôi, cây – tre – sậy một nửa, quân vẽ trong 3,5 km, không nhân bản lớp quân): cảnh đông nhất C13 giảm từ 9,6 xuống 4,8 triệu tam giác — vẫn trên mức 400 nghìn của bảng ngân sách. Nếu điện thoại thật dưới 30 fps, bản 1.1 thêm mức chi tiết theo khoảng cách cho quân và chia ô vật thể để bỏ phần ngoài khung nhìn.
 2. **Giai đoạn 2 — đang làm.** (a) Bộ máy 1.1.0 + gói **Rạch Gầm – Xoài Mút** (`rach-gam-xoai-mut`) — đã có. (b) Bộ máy 2.0 + gói **Bạch Đằng 938** (`bach-dang-938`) — đã có: tải lần đầu 11,7 MB (bản artifact 16,5 MB), ảnh chụp ở phút 2, 10, 14:40 trùng bản artifact (lệch trung bình dưới 2 %). (c) Bộ máy **2.1.0** + gói **Như Nguyệt 1077** (`nhu-nguyet-1077`) — đã có: Bạch Đằng chuyển sang 2.1.0 (gỡ 2.0.0); ảnh chụp 9 thời điểm Như Nguyệt lệch dưới 0,5 % điểm ảnh so với bản artifact V1.6, Bạch Đằng dưới 2 %. Tải lần đầu Như Nguyệt **22,5 MB** (bản artifact 36,3 MB, cùng cách đo) — **vượt ngân sách 15 MB** vì bộ máy 2.x tải mọi nhân vật khi mở; việc tiếp theo là tải nhân vật theo cảnh như 1.x. **Đã làm (24/11/2026, nhánh `claude/nhan-vat-lai`): tải lần đầu 3,3 MB**, kèm bản thử nhân vật lai (mục 3). Ảnh `data/kinh-thanh.jpg` (cảnh Thăng Long) vốn thiếu trong bản artifact, sa bàn tự bỏ qua.
 3. **Giai đoạn 3** — Quảng Trị, Điện Biên Phủ.
-4. **Giai đoạn 4** — `catalog.json`, R2 + CDN, website đọc catalog. (`kiem_tra_goi.py` đã có từ Giai đoạn 1.) (Có thể làm `catalog.json` sớm cùng Giai đoạn 2 để Bạch Đằng, Như Nguyệt hiện trên Việt Sử ngay.)
+4. **Giai đoạn 4** — `catalog.json`, R2 + CDN, website đọc catalog. (`kiem_tra_goi.py` đã có từ Giai đoạn 1.) (Có thể làm `catalog.json` sớm cùng Giai đoạn 2 để Bạch Đằng, Như Nguyệt hiện trên Học Lịch Sử ngay.)
 5. Sau đó mỗi trận mới là một gói theo quy trình mục 6.
 
 Các sa bàn cũ chạy song song tới khi bản theo khung được duyệt.

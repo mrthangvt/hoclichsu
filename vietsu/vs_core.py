@@ -1,4 +1,4 @@
-"""Việt Sử V3.8 — cấu hình, cơ sở dữ liệu, xác thực và tiện ích dùng chung."""
+"""Học Lịch Sử V3.8 — cấu hình, cơ sở dữ liệu, xác thực và tiện ích dùng chung."""
 from __future__ import annotations
 
 import hmac

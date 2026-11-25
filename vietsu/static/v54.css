@@ -1,4 +1,4 @@
-/* Việt Sử V5.4 — mobile: thẻ Trang phục / Tóc & Mũ gọn, thanh menu dưới một hàng. */
+/* Học Lịch Sử V5.4 — mobile: thẻ Trang phục / Tóc & Mũ gọn, thanh menu dưới một hàng. */
 @media(max-width:700px){
  /* Hai thẻ nằm cạnh nhau, ảnh ở trên, chữ ở dưới (trước đây chữ bị ép thành cột một ký tự) */
  body #timeline .era-cell .v41-icons,body #timeline .era-cell.left .v41-icons,#timeline .v41-icons{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
@@ -27,7 +27,7 @@
  body.theme-light #mainHistory .year-navigator{background:rgba(247,240,226,.96)!important}
 }
 
-/* V5.4.2 — mobile: chữ ô nhập 16px để iPhone không tự phóng to trang khi bấm vào Trợ lý Việt Sử / ô tìm kiếm; khung chat gọn trên màn hình */
+/* V5.4.2 — mobile: chữ ô nhập 16px để iPhone không tự phóng to trang khi bấm vào Trợ lý Học Lịch Sử / ô tìm kiếm; khung chat gọn trên màn hình */
 @media(max-width:700px){
  #aiQuestion,#v31SearchInput,.mobile-search input,input[type="search"],input[type="text"],textarea{font-size:16px!important}
 }

@@ -1,4 +1,4 @@
-/* VIỆT SỬ V4.6 — trải nghiệm 3D trong Popup; avatar HCM và ảnh mặc định Trung Quốc. */
+/* HỌC LỊCH SỬ V4.6 — trải nghiệm 3D trong Popup; avatar HCM và ảnh mặc định Trung Quốc. */
 (function () {
   'use strict';
 

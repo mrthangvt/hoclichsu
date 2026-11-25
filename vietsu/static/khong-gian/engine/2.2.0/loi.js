@@ -1,4 +1,4 @@
-// Bộ máy sa bàn Việt Sử 2.2.0 (họ Bạch Đằng; 2.1.0 + nhiều tầng địa hình, phóng đại độ cao, thuyền tuỳ chọn, xe và nhân vật GLB có xương) — docs/KHUNG_SA_BAN.md. Tách bằng tools/sa_ban/tach_bo_may_2.py từ
+// Bộ máy sa bàn Học Lịch Sử 2.2.0 (họ Bạch Đằng; 2.1.0 + nhiều tầng địa hình, phóng đại độ cao, thuyền tuỳ chọn, xe và nhân vật GLB có xương) — docs/KHUNG_SA_BAN.md. Tách bằng tools/sa_ban/tach_bo_may_2.py từ
 // Bạch Đằng 938 V1.2 và Như Nguyệt 1077 V1.6: ở đây là các khối mã giống hệt nhau ở hai trận; phần riêng của từng trận
 // ở packs/<id>/rieng.js, cắm vào các chỗ /*@@RIENG:sN@@*/.
 import * as THREE from '@@ENGINE@@vendor/three/three.module.min.js';

@@ -1,4 +1,4 @@
-/* Việt Sử V5.5 — theo yêu cầu chủ dự án (23/11/2026):
+/* Học Lịch Sử V5.5 — theo yêu cầu chủ dự án (23/11/2026):
    Sơ đồ triều đại có thêm "Các đời vua": mỗi triều bao nhiêu vị vua, tên, năm trị vì,
    và một dải "Toàn cảnh các triều đại" để chuyển nhanh giữa các triều.
    Nguồn: Đại Việt sử ký toàn thư (đến 1656), Việt Nam sử lược (Tây Sơn, Nguyễn).

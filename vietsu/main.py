@@ -1,4 +1,4 @@
-"""VIỆT SỬ V3.9 — backend FastAPI + SQLite.
+"""HỌC LỊCH SỬ V3.9 — backend FastAPI + SQLite.
 
 Thay đổi chính so với V3.7:
   * Bảo mật: so sánh mã bằng hằng thời gian, chặn dò mã, giới hạn tần suất, header bảo mật (CSP, HSTS…),
@@ -33,7 +33,7 @@ from vs_core import (ALLOWED_HOSTS, BASE, DATA, ENABLE_DOCS, MAX_BODY_BYTES, SIT
                      is_safe_url, now, read_json, require_role, site_is_public, slugify, write_json)
 from vs_render import ad_slot_html, esc, markdown_safe, page_shell, plain_text
 
-app = FastAPI(title="Việt Sử CMS", version=VERSION,
+app = FastAPI(title="Học Lịch Sử CMS", version=VERSION,
               docs_url="/docs" if ENABLE_DOCS else None, redoc_url=None,
               openapi_url="/openapi.json" if ENABLE_DOCS else None)
 
@@ -281,7 +281,7 @@ def as_article(r):
 # ============================================================ articles API
 @app.get("/api/health")
 def health():
-    return {"ok": True, "app": "Việt Sử", "version": VERSION, "ai_connected": bool(os.getenv("OPENAI_API_KEY"))}
+    return {"ok": True, "app": "Học Lịch Sử", "version": VERSION, "ai_connected": bool(os.getenv("OPENAI_API_KEY"))}
 
 
 @app.get("/api/articles")
@@ -537,7 +537,7 @@ def article_page(slug: str):
                       for u in a["source_urls"] if u.startswith("https://"))
     year = a["timeline_year"]
     chips = [a["category"]] + ([f"{abs(year)} TCN" if year < 0 else str(year)] if year is not None else [])
-    body = ('<div class="crumb"><a href="/">Việt Sử</a> / Bài viết</div>'
+    body = ('<div class="crumb"><a href="/">Học Lịch Sử</a> / Bài viết</div>'
             f'<h1>{esc(a["title"])}</h1><div class="meta">' + "".join(f'<span class="chip">{esc(c)}</span>' for c in chips)
             + f'</div><p class="lede">{esc(a["intro"])}</p>' + ad_slot_html(ads, "article_top")
             + "<article>" + markdown_safe(a["body"], 3, ad_slot_html(ads, "article_inline")) + "</article>"
@@ -599,11 +599,11 @@ def _home_base() -> str:
         return _home_cache["page"]
     page = src.read_text(encoding="utf-8")
     page_url = SITE_URL + "/"
-    title = "Việt Sử – Dòng thời gian lịch sử Việt Nam và thế giới"
+    title = "Học Lịch Sử – Dòng thời gian lịch sử Việt Nam và thế giới"
     description = ("Khám phá lịch sử Việt Nam, đối chiếu Trung Quốc và phương Tây qua dòng thời gian, "
                    "hồ sơ nhân vật, sách giáo khoa lịch sử lớp 6–12 và không gian lịch sử.")
     data = {"@context": "https://schema.org", "@graph": [
-        {"@type": "WebSite", "@id": SITE_URL + "/#website", "url": page_url, "name": "Việt Sử", "inLanguage": "vi"},
+        {"@type": "WebSite", "@id": SITE_URL + "/#website", "url": page_url, "name": "Học Lịch Sử", "inLanguage": "vi"},
         {"@type": "WebPage", "@id": page_url + "#webpage", "url": page_url, "name": title, "description": description,
          "inLanguage": "vi", "isPartOf": {"@id": SITE_URL + "/#website"}}]}
     robot = "index, follow, max-image-preview:large" if site_is_public() else "noindex, nofollow"
@@ -702,7 +702,7 @@ def textbooks_related(entity_id: str):
 
 # ============================================================ V2.3 site config
 SITE_CONFIG_FILE = DATA / "site_config.json"
-SITE_CONFIG_DEFAULT = {"name": "VIỆT SỬ", "slogan": "BẢN ĐỒ THỜI GIAN", "tagline": "BẢN ĐỒ THỜI GIAN", "han": "越史",
+SITE_CONFIG_DEFAULT = {"name": "HỌC LỊCH SỬ", "slogan": "BẢN ĐỒ THỜI GIAN", "tagline": "BẢN ĐỒ THỜI GIAN", "han": "學史",
                        "font_family": "\"Be Vietnam Pro\", system-ui, sans-serif", "logo_url": ""}
 SECTION_DEFAULT = {
     "main": {"title": "KHÁM PHÁ DÒNG LỊCH SỬ", "description": "Khám phá các thời kỳ Việt Nam, Trung Quốc và phương Tây trên cùng một trục thời gian."},
@@ -856,7 +856,7 @@ def character_detail_page(slug: str):
     bio = "".join("<p>" + esc(p) + "</p>" for p in paras if p)
     ads = _ads()
     indexable = True  # V5.9.2: không còn trạng thái chờ duyệt
-    body = ('<div class="crumb"><a href="/">Việt Sử</a> / Nhân vật lịch sử</div>'
+    body = ('<div class="crumb"><a href="/">Học Lịch Sử</a> / Nhân vật lịch sử</div>'
             f'<h1>{esc(person["name"])}</h1><div class="meta"><span class="chip">{esc(person.get("period"))}</span>'
             f'<span class="chip">{esc(person.get("role"))}</span></div>'
             f'<figure style="float:right;max-width:min(220px,40%);margin:0 0 12px 18px"><img src="{esc(media)}" '
@@ -865,10 +865,10 @@ def character_detail_page(slug: str):
             + f'<p style="clear:both;font-size:13px;color:var(--muted)">Tham khảo: {esc(person.get("source_book", "Đại Việt Sử Ký Toàn Thư"))}.</p>'
             + ad_slot_html(ads, "article_bottom")
             + f'<p><a href="/#ho-so={esc(person.get("entity_id", ""))}">↗ Khám phá nhân vật trong dòng thời gian</a></p>'
-            '<p class="back"><a href="/">← Dòng thời gian Việt Sử</a></p>')
+            '<p class="back"><a href="/">← Dòng thời gian Học Lịch Sử</a></p>')
     schema = {"@context": "https://schema.org", "@type": "Person", "name": person["name"],
               "description": person.get("summary", ""), "url": url}
-    return HTMLResponse(page_shell(title=f"{person['name']} – Nhân vật lịch sử | Việt Sử",
+    return HTMLResponse(page_shell(title=f"{person['name']} – Nhân vật lịch sử | Học Lịch Sử",
                                    description=plain_text(person.get("summary", ""), 160), canonical=url, body=body,
                                    ads_head=_ads_head(), indexable=indexable, og_type="profile", schema=schema,
                                    image=media))

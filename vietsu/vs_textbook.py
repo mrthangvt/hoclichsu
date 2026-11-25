@@ -1,4 +1,4 @@
-"""Việt Sử V3.8 — CMS cho menu "Sách giáo khoa lịch sử" (lớp 6–12).
+"""Học Lịch Sử V3.8 — CMS cho menu "Sách giáo khoa lịch sử" (lớp 6–12).
 
 Mỗi bài học có 2 bản:
   * draft : bản đang biên tập trong /admin (lưu nháp không ảnh hưởng website)
@@ -481,10 +481,10 @@ def render_index(ads: dict, ads_head: str) -> str:
         counts = {g: sum(1 for d, s in _grade_lessons(con, g) if s == "published" and has_content(d)) for g in GRADES}
     items = "".join(f'<li><a href="/sach-giao-khoa/lop-{g}"><b>Lịch sử lớp {g}</b></a><br>'
                     f'<small>{counts[g]} bài học đã biên tập</small></li>' for g in GRADES)
-    body = ('<div class="crumb"><a href="/">Việt Sử</a> / Sách giáo khoa</div><h1>Sách giáo khoa Lịch sử lớp 6–12</h1>'
+    body = ('<div class="crumb"><a href="/">Học Lịch Sử</a> / Sách giáo khoa</div><h1>Sách giáo khoa Lịch sử lớp 6–12</h1>'
             '<p class="lede">Bài học tóm tắt theo chương trình, gắn với dòng thời gian Việt Nam – Trung Quốc – Phương Tây.</p>'
             + ad_slot_html(ads, "article_top") + f'<ul class="lessons">{items}</ul>' + ad_slot_html(ads, "article_bottom"))
-    return page_shell(title="Sách giáo khoa Lịch sử lớp 6–12 | Việt Sử",
+    return page_shell(title="Sách giáo khoa Lịch sử lớp 6–12 | Học Lịch Sử",
                       description="Tổng hợp bài học Lịch sử lớp 6 đến 12: tóm tắt, ý chính, câu hỏi ôn tập và liên kết dòng thời gian.",
                       canonical=SITE_URL + "/sach-giao-khoa", body=body, ads_head=ads_head, og_type="website")
 
@@ -507,10 +507,10 @@ def render_grade(grade: int, ads: dict, ads_head: str) -> str:
             else:
                 lis += f'<li><b>{esc(d.get("toc_title") or d["title"])}</b><br><small>Đang biên tập</small></li>'
         html_groups += f"<h2>{esc(key)}</h2><ul class=\"lessons\">{lis}</ul>"
-    body = (f'<div class="crumb"><a href="/">Việt Sử</a> / <a href="/sach-giao-khoa">Sách giáo khoa</a> / Lớp {grade}</div>'
+    body = (f'<div class="crumb"><a href="/">Học Lịch Sử</a> / <a href="/sach-giao-khoa">Sách giáo khoa</a> / Lớp {grade}</div>'
             f'<h1>Lịch sử lớp {grade}</h1><p class="lede">Danh sách bài học theo chương. Bài có liên kết là bài đã được biên tập đầy đủ.</p>'
             + ad_slot_html(ads, "article_top") + html_groups + ad_slot_html(ads, "article_bottom"))
-    return page_shell(title=f"Lịch sử lớp {grade} – danh sách bài học | Việt Sử",
+    return page_shell(title=f"Lịch sử lớp {grade} – danh sách bài học | Học Lịch Sử",
                       description=f"Mục lục và bài học tóm tắt môn Lịch sử lớp {grade}, kèm câu hỏi ôn tập và liên kết dòng thời gian.",
                       canonical=f"{SITE_URL}/sach-giao-khoa/lop-{grade}", body=body, ads_head=ads_head, og_type="website")
 
@@ -546,24 +546,24 @@ def render_lesson(grade: int, slug: str, ads: dict, ads_head: str) -> str | None
         timeline = f'<p><a href="/#bai-hoc={esc(d["id"])}">↗ Xem bài học trên dòng thời gian</a></p>'
     content = markdown_safe(d["content"], inline_ad_after=3, ad_html=ad_slot_html(ads, "article_inline"))
     desc = d.get("meta_description") or plain_text(d.get("summary") or d["content"], 160)
-    body = (f'<div class="crumb"><a href="/">Việt Sử</a> / <a href="/sach-giao-khoa">Sách giáo khoa</a> / '
+    body = (f'<div class="crumb"><a href="/">Học Lịch Sử</a> / <a href="/sach-giao-khoa">Sách giáo khoa</a> / '
             f'<a href="/sach-giao-khoa/lop-{grade}">Lớp {grade}</a></div>'
             f'<h1>{esc(d["title"])}</h1><div class="meta">' + "".join(f'<span class="chip">{esc(c)}</span>' for c in chips) + "</div>"
             f'<p class="lede">{esc(d.get("summary"))}</p>' + cover + ad_slot_html(ads, "article_top") + keys
             + f"<article>{content}</article>" + review + ad_slot_html(ads, "article_bottom")
             + (f'<div class="panel"><h2 style="margin-top:0">Nguồn tư liệu</h2><ul>{srcs}</ul>'
-               '<p style="font-size:13px;color:var(--muted)">Nội dung tóm tắt do nhóm biên tập Việt Sử thực hiện, không thay thế sách giáo khoa chính thức.</p></div>')
+               '<p style="font-size:13px;color:var(--muted)">Nội dung tóm tắt do nhóm biên tập Học Lịch Sử thực hiện, không thay thế sách giáo khoa chính thức.</p></div>')
             + timeline + f'<p class="back"><a href="/sach-giao-khoa/lop-{grade}">← Các bài lịch sử lớp {grade}</a></p>')
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "LearningResource", "name": d["title"], "description": desc, "url": url, "inLanguage": "vi",
          "educationalLevel": f"Lớp {grade}", "learningResourceType": "Bài học",
-         "author": {"@type": "Organization", "name": "Việt Sử"}},
+         "author": {"@type": "Organization", "name": "Học Lịch Sử"}},
         {"@type": "BreadcrumbList", "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Việt Sử", "item": SITE_URL + "/"},
+            {"@type": "ListItem", "position": 1, "name": "Học Lịch Sử", "item": SITE_URL + "/"},
             {"@type": "ListItem", "position": 2, "name": "Sách giáo khoa", "item": SITE_URL + "/sach-giao-khoa"},
             {"@type": "ListItem", "position": 3, "name": f"Lớp {grade}", "item": f"{SITE_URL}/sach-giao-khoa/lop-{grade}"},
             {"@type": "ListItem", "position": 4, "name": d["title"], "item": url}]}]}
-    return page_shell(title=(d.get("seo_title") or d["title"]) + f" – Lịch sử {grade} | Việt Sử", description=desc,
+    return page_shell(title=(d.get("seo_title") or d["title"]) + f" – Lịch sử {grade} | Học Lịch Sử", description=desc,
                       canonical=url, body=body, ads_head=ads_head, schema=schema, image=d.get("cover_image") or "")
 
 
