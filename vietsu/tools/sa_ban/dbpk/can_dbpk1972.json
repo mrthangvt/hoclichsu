@@ -1,0 +1,1236 @@
+{
+ "khop": 0.985,
+ "dai": 865.37,
+ "canh": [
+  {
+   "id": "C01",
+   "ten": "Hà Nội trước cơn bão lửa",
+   "cau": [
+    [
+     0.0,
+     2.61,
+     "Tháng Mười Hai năm 1972.",
+     1.0
+    ],
+    [
+     2.98,
+     6.88,
+     "Hà Nội bước vào những ngày cuối năm, giữa cái rét của mùa đông miền Bắc.",
+     1.0
+    ],
+    [
+     7.32,
+     9.61,
+     "Trên những con phố, cuộc sống vẫn tiếp diễn.",
+     1.0
+    ],
+    [
+     9.9,
+     11.34,
+     "Những chiếc xe đạp lăn bánh.",
+     1.0
+    ],
+    [
+     11.79,
+     13.92,
+     "Những chuyến tàu điện đi qua thành phố.",
+     1.0
+    ],
+    [
+     14.16,
+     16.65,
+     "Trong các nhà máy, công nhân vẫn bám máy.",
+     1.0
+    ],
+    [
+     17.05,
+     20.39,
+     "Ngoài trận địa, những người lính phòng không ngày đêm canh giữ bầu trời.",
+     1.0
+    ],
+    [
+     20.75,
+     23.73,
+     "Nhưng lúc ấy, chiến tranh đang đứng trước một bước ngoặt mới.",
+     1.0
+    ],
+    [
+     24.13,
+     30.72,
+     "Sau nhiều vòng đàm phán về việc chấm dứt chiến tranh tại Việt Nam, bất đồng giữa các bên vẫn chưa được giải quyết.",
+     1.0
+    ],
+    [
+     30.88,
+     36.83,
+     "Ngày 18 tháng 12, Mỹ bắt đầu một cuộc tập kích đường không chiến lược quy mô lớn vào miền Bắc Việt Nam.",
+     1.0
+    ],
+    [
+     37.19,
+     39.64,
+     "Mục tiêu trọng điểm là Hà Nội và Hải Phòng.",
+     1.0
+    ],
+    [
+     40.04,
+     47.44,
+     "Trong những ngày tiếp theo, hàng trăm lượt máy bay ném bom chiến lược B-52 cùng lực lượng không quân chiến thuật được huy động.",
+     1.0
+    ],
+    [
+     47.56,
+     51.09,
+     "Một trận chiến chưa từng có trên bầu trời Thủ đô sắp bắt đầu.",
+     1.0
+    ],
+    [
+     51.41,
+     56.59,
+     "Và giữa mùa đông năm ấy, Hà Nội sẽ phải đối mặt với một thử thách khốc liệt của lịch sử.",
+     1.0
+    ]
+   ],
+   "hinh": "Đại toàn Hà Nội 1972, cầu Long Biên, phố cổ; trung cảnh sinh hoạt, sơ tán; toàn bản đồ xác định hai mục tiêu chính.",
+   "dia": "Hà Nội; Hải Phòng; miền Bắc"
+  },
+  {
+   "id": "C02",
+   "ten": "B-52 – Những pháo đài bay",
+   "cau": [
+    [
+     56.96,
+     62.98,
+     "Từ những căn cứ không quân cách xa hàng nghìn cây số, những chiếc B-52 khổng lồ lần lượt cất cánh.",
+     1.0
+    ],
+    [
+     63.18,
+     72.37,
+     "Với tám động cơ phản lực, sải cánh rộng và khả năng mang lượng bom lớn, B-52 là một trong những vũ khí ném bom chiến lược quan trọng nhất của không quân Mỹ.",
+     0.97
+    ],
+    [
+     72.81,
+     79.64,
+     "Trong chiến dịch Linebacker II, những máy bay này được tổ chức thành các đội hình tập kích vào nhiều mục tiêu tại miền Bắc.",
+     0.92
+    ],
+    [
+     79.8,
+     86.15,
+     "Đi cùng chúng là máy bay tiêm kích hộ tống, máy bay chế áp phòng không và các phương tiện gây nhiễu điện tử.",
+     0.96
+    ],
+    [
+     86.47,
+     93.1,
+     "Những màn nhiễu dày đặc được tạo ra nhằm gây khó khăn cho hệ thống ra-đa phát hiện, bám sát mục tiêu và dẫn bắn tên lửa.",
+     0.93
+    ],
+    [
+     93.46,
+     96.68,
+     "Trên bầu trời, các đội hình máy bay tiến vào từ nhiều hướng.",
+     1.0
+    ],
+    [
+     96.88,
+     104.19,
+     "Dưới mặt đất, những trận địa phòng không Việt Nam phải đối mặt với một đối thủ được trang bị công nghệ hiện đại và hỏa lực khổng lồ.",
+     1.0
+    ],
+    [
+     104.64,
+     108.33,
+     "Nhưng sức mạnh của một vũ khí không đồng nghĩa với sự bất khả chiến bại.",
+     1.0
+    ],
+    [
+     108.69,
+     114.48,
+     "Bởi trên bầu trời Hà Nội, những pháo đài bay ấy sẽ gặp một hệ thống phòng thủ đã được chuẩn bị từ trước.",
+     1.0
+    ]
+   ],
+   "hinh": "Đại toàn căn cứ B-52; trung cảnh cất cánh, đội hình bay; cận động cơ và khoang bom; bản đồ các tuyến tiếp cận được xác minh.",
+   "dia": "Guam; U-Tapao; vùng trời miền Bắc"
+  },
+  {
+   "id": "C03",
+   "ten": "Thế trận phòng không bảo vệ miền Bắc",
+   "cau": [
+    [
+     114.6,
+     121.22,
+     "Đối diện với những đợt tập kích đường không của Mỹ là một thế trận phòng không được tổ chức trên nhiều tầng, nhiều hướng.",
+     1.0
+    ],
+    [
+     121.66,
+     126.56,
+     "Từ những đài ra-đa cảnh giới, tín hiệu mục tiêu được phát hiện và truyền về các sở chỉ huy.",
+     0.9
+    ],
+    [
+     126.84,
+     131.82,
+     "Các đơn vị tên lửa phòng không triển khai khí tài, sẵn sàng đánh máy bay địch từ xa.",
+     1.0
+    ],
+    [
+     132.02,
+     138.2,
+     "Những khẩu pháo cao xạ bảo vệ các mục tiêu trọng yếu, các tuyến giao thông, nhà máy và khu dân cư.",
+     1.0
+    ],
+    [
+     138.68,
+     145.11,
+     "Trên những sân bay dã chiến và sân bay quân sự, phi công tiêm kích MiG-21 chuẩn bị xuất kích.",
+     0.91
+    ],
+    [
+     145.43,
+     154.05,
+     "Bên cạnh các đơn vị chủ lực còn có lực lượng phòng không địa phương, dân quân tự vệ, các đội cứu thương và những người dân tham gia bảo vệ thành phố.",
+     1.0
+    ],
+    [
+     154.54,
+     157.18,
+     "Đây không chỉ là cuộc chiến của riêng một binh chủng.",
+     1.0
+    ],
+    [
+     157.54,
+     161.68,
+     "Mà là sự phối hợp của nhiều lực lượng trong một hệ thống phòng thủ thống nhất.",
+     1.0
+    ],
+    [
+     162.16,
+     170.38,
+     "Suốt nhiều năm chiến đấu, các đơn vị phòng không đã tích lũy kinh nghiệm nhận dạng mục tiêu, chống gây nhiễu và tổ chức đánh máy bay ở nhiều độ cao.",
+     1.0
+    ],
+    [
+     170.62,
+     177.21,
+     "Vũ khí có thể hiện đại, nhưng trận đánh còn được quyết định bởi trí tuệ, bản lĩnh và khả năng phối hợp của con người.",
+     1.0
+    ],
+    [
+     177.61,
+     181.02,
+     "Hà Nội đã sẵn sàng bước vào cuộc chiến đấu bảo vệ bầu trời.",
+     1.0
+    ]
+   ],
+   "hinh": "Toàn bản đồ ra-đa–tên lửa–pháo cao xạ–không quân; trung cảnh trắc thủ; cận màn hình, bộ điều khiển; toàn bệ phóng S-75.",
+   "dia": "Hà Nội và mạng lưới phòng không"
+  },
+  {
+   "id": "C04",
+   "ten": "Đêm 18 tháng 12 – Trận đánh đầu tiên",
+   "cau": [
+    [
+     181.26,
+     185.2,
+     "Tối ngày 18 tháng 12 năm 1972.",
+     1.0
+    ],
+    [
+     185.4,
+     191.92,
+     "Tại những đài ra-đa phòng không, các trắc thủ phát hiện những dấu hiệu nhiễu đặc biệt từ phía các đội hình máy bay Mỹ.",
+     0.92
+    ],
+    [
+     192.44,
+     194.25,
+     "Thông tin được báo về sở chỉ huy.",
+     1.0
+    ],
+    [
+     194.53,
+     196.66,
+     "Các đơn vị chuyển vào trạng thái chiến đấu.",
+     1.0
+    ],
+    [
+     197.07,
+     199.28,
+     "B-52 đang tiến về Hà Nội!",
+     1.0
+    ],
+    [
+     199.4,
+     201.13,
+     "Tiếng còi báo động vang lên.",
+     1.0
+    ],
+    [
+     201.57,
+     202.49,
+     "Đèn đường tắt dần.",
+     1.0
+    ],
+    [
+     202.85,
+     204.66,
+     "Người dân xuống hầm trú ẩn.",
+     0.83
+    ],
+    [
+     204.66,
+     208.6,
+     "Trên các trận địa, bộ đội tên lửa và pháo cao xạ đã vào vị trí.",
+     1.0
+    ],
+    [
+     209.12,
+     210.65,
+     "Rồi bầu trời đêm bừng sáng.",
+     1.0
+    ],
+    [
+     210.97,
+     213.58,
+     "Những loạt bom đầu tiên trút xuống khu vực Hà Nội.",
+     0.91
+    ],
+    [
+     213.7,
+     216.15,
+     "Các trận địa phòng không đồng loạt đánh trả.",
+     1.0
+    ],
+    [
+     216.63,
+     222.37,
+     "Từ mặt đất, những quả tên lửa lao vút lên bầu trời, để lại những vệt sáng dài xuyên qua màn đêm.",
+     0.95
+    ],
+    [
+     222.85,
+     233.32,
+     "Theo biên niên chiến đấu của phía Việt Nam, vào khoảng 20 giờ 18 phút, Tiểu đoàn tên lửa 59 thuộc Trung đoàn 261 lập chiến công bắn rơi một chiếc B-52.",
+     0.95
+    ],
+    [
+     233.52,
+     236.41,
+     "Chiếc máy bay rơi tại khu vực Phủ Lỗ, Đông Anh.",
+     1.0
+    ],
+    [
+     237.01,
+     240.87,
+     "Pháo đài bay B-52 đã bị đánh trúng và rơi xuống đất!",
+     1.0
+    ],
+    [
+     241.31,
+     243.28,
+     "Chiến công đầu tiên có ý nghĩa đặc biệt.",
+     1.0
+    ],
+    [
+     243.6,
+     248.82,
+     "Nó khẳng định rằng B-52 có thể bị đánh bại ngay trong cuộc tập kích vào miền Bắc.",
+     1.0
+    ],
+    [
+     248.98,
+     252.2,
+     "Và 12 ngày đêm lịch sử đã thực sự bắt đầu.",
+     1.0
+    ]
+   ],
+   "hinh": "Toàn Hà Nội đêm; cận kíp ra-đa; trung cảnh phóng tên lửa S-75; đại toàn đội hình B-52 và hiệu ứng đánh trúng, không gán vị trí chưa xác minh.",
+   "dia": "Hà Nội; Phủ Lỗ, Đông Anh"
+  },
+  {
+   "id": "C05",
+   "ten": "Đêm 20 tháng 12 – Bẻ gãy những đợt tập kích",
+   "cau": [
+    [
+     252.48,
+     255.41,
+     "Những đêm tiếp theo, cuộc tập kích không hề giảm bớt.",
+     1.0
+    ],
+    [
+     255.89,
+     259.47,
+     "Máy bay B-52 tiếp tục xuất hiện trên bầu trời miền Bắc.",
+     1.0
+    ],
+    [
+     259.75,
+     264.94,
+     "Các trận địa tên lửa phải cơ động, sửa chữa khí tài và chuẩn bị đạn giữa những đợt đánh phá.",
+     1.0
+    ],
+    [
+     265.18,
+     270.81,
+     "Càng chiến đấu, các kíp trắc thủ càng tích lũy kinh nghiệm nhận dạng mục tiêu trong màn nhiễu điện tử.",
+     1.0
+    ],
+    [
+     271.25,
+     274.38,
+     "Đêm 20, rạng sáng ngày 21 tháng 12!",
+     1.0
+    ],
+    [
+     274.75,
+     278.4,
+     "Một trong những trận đánh phòng không quyết liệt nhất của chiến dịch diễn ra.",
+     1.0
+    ],
+    [
+     278.85,
+     281.54,
+     "Các tốp B-52 liên tiếp tiếp cận Hà Nội.",
+     0.92
+    ],
+    [
+     281.66,
+     284.87,
+     "Từ các trận địa, tên lửa phòng không xuất kích đánh trả.",
+     1.0
+    ],
+    [
+     285.31,
+     301.28,
+     "Đặc biệt, trong khoảng thời gian từ 5 giờ 2 phút đến 5 giờ 11 phút sáng ngày 21 tháng 12, các Tiểu đoàn 57, 77 và 79 được phía Việt Nam ghi nhận đã bắn rơi bốn máy bay B-52, trong đó có ba chiếc rơi tại chỗ.",
+     0.98
+    ],
+    [
+     301.48,
+     302.48,
+     "Chỉ trong chín phút!",
+     1.0
+    ],
+    [
+     302.85,
+     308.91,
+     "Một loạt chiến công làm rung chuyển niềm tin vào khả năng bất khả xâm phạm của những máy bay ném bom chiến lược.",
+     1.0
+    ],
+    [
+     309.31,
+     313.21,
+     "Nhưng đằng sau mỗi lần phóng tên lửa là công sức của cả một tập thể.",
+     1.0
+    ],
+    [
+     313.53,
+     314.53,
+     "Những người trắc thủ.",
+     1.0
+    ],
+    [
+     314.97,
+     316.02,
+     "Những kíp điều khiển.",
+     1.0
+    ],
+    [
+     316.34,
+     317.79,
+     "Những chiến sĩ vận chuyển đạn.",
+     1.0
+    ],
+    [
+     318.11,
+     321.28,
+     "Và những đơn vị bảo đảm cho trận địa tiếp tục chiến đấu.",
+     1.0
+    ],
+    [
+     321.64,
+     325.62,
+     "Trên bầu trời Hà Nội, cuộc đối đầu đang bước vào những giờ phút khốc liệt nhất.",
+     1.0
+    ]
+   ],
+   "hinh": "Toàn trận địa nối tiếp; trung cảnh kíp phóng; cận đồng hồ 05:02–05:11, thao tác trắc thủ; đại toàn vùng trời, không xếp cả bốn vụ rơi cùng địa điểm.",
+   "dia": "Các trận địa tên lửa quanh Hà Nội"
+  },
+  {
+   "id": "C06",
+   "ten": "Cuộc đấu trí trong màn nhiễu điện tử",
+   "cau": [
+    [
+     325.98,
+     330.6,
+     "Trên chiến trường hiện đại, không phải lúc nào người lính cũng nhìn thấy kẻ thù bằng mắt thường.",
+     1.0
+    ],
+    [
+     330.84,
+     335.62,
+     "Đặc biệt là trong cuộc chiến phòng không tháng Mười Hai năm 1972.",
+     0.95
+    ],
+    [
+     335.98,
+     343.94,
+     "Từ các máy bay Mỹ, những thiết bị gây nhiễu điện tử liên tục phát tín hiệu nhằm che giấu đội hình và gây khó khăn cho hệ thống ra-đa Việt Nam.",
+     0.94
+    ],
+    [
+     344.3,
+     349.28,
+     "Trên màn hình điều khiển, tín hiệu mục tiêu có thể bị che lấp giữa những dải nhiễu dày đặc.",
+     1.0
+    ],
+    [
+     349.44,
+     353.62,
+     "Một sai lầm trong nhận dạng có thể khiến quả tên lửa bay vào khoảng không.",
+     1.0
+    ],
+    [
+     354.02,
+     357.36,
+     "Một giây chậm trễ có thể làm mất thời cơ đánh mục tiêu.",
+     1.0
+    ],
+    [
+     357.81,
+     362.35,
+     "Trong các xe điều khiển tên lửa, những người lính phải giữ sự tập trung cao độ.",
+     1.0
+    ],
+    [
+     362.71,
+     363.96,
+     "Họ phân tích tín hiệu.",
+     1.0
+    ],
+    [
+     364.16,
+     365.28,
+     "Đối chiếu đường bay.",
+     1.0
+    ],
+    [
+     365.77,
+     368.9,
+     "Phán đoán hướng tiếp cận và lựa chọn thời điểm đánh thích hợp.",
+     1.0
+    ],
+    [
+     369.18,
+     372.95,
+     "Những kinh nghiệm tích lũy qua nhiều năm được vận dụng trong từng tình huống.",
+     1.0
+    ],
+    [
+     373.36,
+     379.74,
+     "Ở phía ngoài trận địa, bộ đội hậu cần tiếp tục chuyển đạn, bảo dưỡng thiết bị và khôi phục những khí tài bị hư hại.",
+     1.0
+    ],
+    [
+     379.9,
+     382.67,
+     "Cuộc chiến không chỉ diễn ra giữa bom và tên lửa.",
+     1.0
+    ],
+    [
+     383.04,
+     389.19,
+     "Đó còn là cuộc đấu trí giữa công nghệ gây nhiễu và khả năng làm chủ khí tài của những người lính phòng không Việt Nam.",
+     1.0
+    ],
+    [
+     389.55,
+     395.26,
+     "Và mỗi đêm trôi qua, những kinh nghiệm ấy lại được trả giá, đúc kết và hoàn thiện giữa chiến trường.",
+     1.0
+    ]
+   ],
+   "hinh": "Cận màn ra-đa nhiễu mô phỏng; trung cảnh kíp điều khiển; toàn cơ động khí tài; cận giao tiếp và thao tác, không biểu diễn thông số kỹ thuật giả.",
+   "dia": "Xe điều khiển và trận địa ra-đa"
+  },
+  {
+   "id": "C07",
+   "ten": "Hà Nội trong bom đạn",
+   "cau": [
+    [
+     395.54,
+     402.61,
+     "Nhưng đằng sau những trận đánh trên bầu trời là một cuộc chiến khác, diễn ra ngay giữa những con phố và mái nhà Hà Nội.",
+     0.96
+    ],
+    [
+     402.93,
+     407.59,
+     "Trong những ngày cuối tháng Mười Hai, nhiều khu vực của Thủ đô liên tiếp phải hứng chịu bom đạn.",
+     1.0
+    ],
+    [
+     407.99,
+     409.11,
+     "Những ngôi nhà đổ sập.",
+     1.0
+    ],
+    [
+     409.39,
+     410.96,
+     "Những con đường đầy gạch đá.",
+     1.0
+    ],
+    [
+     411.2,
+     414.66,
+     "Bệnh viện, trường học và những công trình dân sự bị tàn phá.",
+     1.0
+    ],
+    [
+     415.06,
+     421.57,
+     "Đặc biệt, đêm 26 tháng 12 năm 1972, bom B-52 trút xuống khu phố Khâm Thiên.",
+     1.0
+    ],
+    [
+     421.97,
+     424.3,
+     "Một khu dân cư đông đúc chìm trong khói lửa.",
+     1.0
+    ],
+    [
+     424.67,
+     433.43,
+     "Theo số liệu được lưu giữ tại khu tưởng niệm Khâm Thiên, trận ném bom đã cướp đi sinh mạng của 287 người và khiến hàng trăm người khác bị thương.",
+     0.94
+    ],
+    [
+     433.87,
+     438.57,
+     "Đó là một trong những mất mát đau thương nhất của Hà Nội trong cuộc tập kích tháng Mười Hai.",
+     1.0
+    ],
+    [
+     439.05,
+     444.32,
+     "Giữa đổ nát, người dân và các lực lượng cứu hộ khẩn trương tìm kiếm những người còn mắc kẹt.",
+     1.0
+    ],
+    [
+     444.52,
+     450.3,
+     "Những chiến sĩ dân quân, nhân viên y tế và người dân không quản hiểm nguy để cứu giúp đồng bào.",
+     0.95
+    ],
+    [
+     450.79,
+     454.24,
+     "Mỗi ngôi nhà bị phá hủy là một phần cuộc sống bị mất đi.",
+     1.0
+    ],
+    [
+     454.64,
+     457.37,
+     "Mỗi sinh mạng là một nỗi đau không gì bù đắp được.",
+     1.0
+    ],
+    [
+     457.77,
+     464.28,
+     "Bởi phía sau chiến thắng của một trận đánh, luôn có những con người đã phải trả một cái giá vô cùng lớn cho hòa bình.",
+     1.0
+    ]
+   ],
+   "hinh": "Toàn đường phố sau bom; trung cảnh cứu hộ; cận vật dụng gia đình, tay cứu hộ; tiết chế không mô phỏng thương vong giật gân.",
+   "dia": "Khâm Thiên; Bạch Mai; Hà Nội"
+  },
+  {
+   "id": "C08",
+   "ten": "Đêm 26 tháng 12 – Trận đánh quyết liệt",
+   "cau": [
+    [
+     464.52,
+     473.83,
+     "Sau khoảng ngừng tập kích B-52 vào ngày Giáng sinh, đêm 26 tháng 12 năm 1972, không quân Mỹ mở một đợt tiến công quy mô lớn.",
+     1.0
+    ],
+    [
+     474.32,
+     480.46,
+     "Nhiều tốp B-52 cùng máy bay chiến thuật đồng loạt tiến về Hà Nội, Hải Phòng và các khu vực lân cận.",
+     1.0
+    ],
+    [
+     480.7,
+     486.37,
+     "Các hướng tập kích được tổ chức dồn dập, đặt hệ thống phòng không Việt Nam trước áp lực rất lớn.",
+     1.0
+    ],
+    [
+     486.85,
+     490.55,
+     "Đêm ấy, bầu trời miền Bắc lại bừng sáng bởi những đợt đánh trả.",
+     1.0
+    ],
+    [
+     490.92,
+     495.22,
+     "Tại các trận địa tên lửa, những kíp chiến đấu theo dõi sát từng đội hình máy bay.",
+     1.0
+    ],
+    [
+     495.38,
+     496.78,
+     "Từng mệnh lệnh được truyền đi.",
+     1.0
+    ],
+    [
+     497.23,
+     499.63,
+     "Từng quả tên lửa lao lên giữa bầu trời đêm.",
+     1.0
+    ],
+    [
+     500.04,
+     505.17,
+     "Trong cuộc giao tranh ác liệt, các lực lượng phòng không Việt Nam liên tiếp đánh trúng máy bay đối phương.",
+     1.0
+    ],
+    [
+     505.53,
+     512.56,
+     "Theo tổng kết chiến dịch của phía Việt Nam, riêng đêm 26 tháng 12, có tám máy bay B-52 bị bắn rơi.",
+     1.0
+    ],
+    [
+     512.8,
+     514.57,
+     "Tám pháo đài bay trong một đêm!",
+     1.0
+    ],
+    [
+     514.97,
+     518.9,
+     "Đó là một trong những kết quả chiến đấu nổi bật nhất của toàn chiến dịch.",
+     1.0
+    ],
+    [
+     519.27,
+     523.04,
+     "Nhưng Hà Nội cũng phải hứng chịu những đợt ném bom gây thiệt hại nặng nề.",
+     1.0
+    ],
+    [
+     523.48,
+     527.94,
+     "Giữa tiếng nổ, tiếng còi báo động và những đám cháy, cuộc chiến đấu vẫn tiếp tục.",
+     1.0
+    ],
+    [
+     528.06,
+     535.01,
+     "Bầu trời Hà Nội đang chứng kiến một cuộc đọ sức khốc liệt giữa sức mạnh quân sự hiện đại và ý chí bảo vệ đất nước.",
+     0.96
+    ]
+   ],
+   "hinh": "Đại toàn các hướng tập kích; trung cảnh đội hình tên lửa; cận trắc thủ và kíp phóng; toàn hậu quả chiến sự; ghi nguồn thống kê.",
+   "dia": "Hà Nội; Hải Phòng; vùng lân cận"
+  },
+  {
+   "id": "C09",
+   "ten": "Những cánh én bạc – MiG-21 xuất kích",
+   "cau": [
+    [
+     535.37,
+     542.12,
+     "Không chỉ từ những trận địa tên lửa, cuộc chiến bảo vệ bầu trời miền Bắc còn được tiến hành bởi những phi công tiêm kích.",
+     0.96
+    ],
+    [
+     542.28,
+     549.52,
+     "Trong đội hình phòng thủ ấy, MiG-21 là một lực lượng có khả năng tiếp cận các đội hình máy bay địch từ trên không.",
+     0.96
+    ],
+    [
+     549.92,
+     554.42,
+     "Nhưng để tiến gần B-52, phi công Việt Nam phải vượt qua nhiều khó khăn.",
+     1.0
+    ],
+    [
+     554.87,
+     555.51,
+     "Khoảng cách lớn.",
+     1.0
+    ],
+    [
+     556.03,
+     557.24,
+     "Thời gian tiếp cận ngắn.",
+     1.0
+    ],
+    [
+     557.48,
+     559.16,
+     "Các máy bay tiêm kích hộ tống.",
+     0.86
+    ],
+    [
+     559.49,
+     562.01,
+     "Và những điều kiện chiến đấu vô cùng nguy hiểm.",
+     1.0
+    ],
+    [
+     562.41,
+     565.86,
+     "Đêm 27 tháng 12 năm 1972!",
+     1.0
+    ],
+    [
+     566.22,
+     570.88,
+     "Phi công Phạm Tuân điều khiển MiG-21 cất cánh từ sân bay Yên Bái.",
+     0.88
+    ],
+    [
+     571.28,
+     579.22,
+     "Được dẫn đường từ mặt đất, anh tiếp cận đội hình B-52, vượt qua sự bảo vệ của máy bay hộ tống và phóng tên lửa vào mục tiêu.",
+     1.0
+    ],
+    [
+     579.46,
+     585.69,
+     "Theo lịch sử không quân Việt Nam, Phạm Tuân đã bắn rơi một máy bay B-52 và trở về an toàn.",
+     0.96
+    ],
+    [
+     586.21,
+     586.86,
+     "Đêm hôm sau!",
+     1.0
+    ],
+    [
+     587.18,
+     588.87,
+     "Ngày 28 tháng 12!",
+     1.0
+    ],
+    [
+     589.27,
+     594.82,
+     "Phi công Vũ Xuân Thiều tiếp tục xuất kích, tiến về đội hình B-52 trên vùng trời Tây Bắc.",
+     1.0
+    ],
+    [
+     594.94,
+     601.34,
+     "Theo ghi nhận của phía Việt Nam, anh đã đánh trúng một chiếc B-52 trong trận không chiến cuối cùng của mình.",
+     1.0
+    ],
+    [
+     601.7,
+     603.59,
+     "Nhưng Vũ Xuân Thiều đã không trở về.",
+     1.0
+    ],
+    [
+     603.87,
+     606.04,
+     "Anh hy sinh khi tuổi đời còn rất trẻ.",
+     1.0
+    ],
+    [
+     606.44,
+     607.13,
+     "Hai phi công.",
+     1.0
+    ],
+    [
+     607.61,
+     609.02,
+     "Hai trận đánh giữa màn đêm.",
+     1.0
+    ],
+    [
+     609.22,
+     613.85,
+     "Hai hành trình thể hiện lòng dũng cảm và bản lĩnh của Không quân nhân dân Việt Nam.",
+     1.0
+    ],
+    [
+     614.17,
+     619.24,
+     "Trên bầu trời Tổ quốc, có những cánh bay đã trở thành bất tử trong ký ức của nhiều thế hệ.",
+     1.0
+    ]
+   ],
+   "hinh": "Đại toàn sân bay đêm; trung/cận phi công, MiG-21; toàn không chiến và B-52; tránh mô tả va chạm cụ thể chưa được kiểm chứng.",
+   "dia": "Sân bay Yên Bái; vùng trời Tây Bắc"
+  },
+  {
+   "id": "C10",
+   "ten": "Đêm cuối cùng trên bầu trời miền Bắc",
+   "cau": [
+    [
+     619.52,
+     623.02,
+     "Ngày 29 tháng 12 năm 1972.",
+     1.0
+    ],
+    [
+     623.22,
+     626.87,
+     "Cuộc tập kích đường không chiến lược đã bước sang ngày thứ mười hai.",
+     1.0
+    ],
+    [
+     627.28,
+     634.43,
+     "Những ngày trước đó, Hà Nội, Hải Phòng và nhiều địa phương miền Bắc đã liên tục phải chiến đấu trong điều kiện vô cùng căng thẳng.",
+     1.0
+    ],
+    [
+     634.87,
+     642.78,
+     "Đến lúc này, cường độ hoạt động của các đội hình B-52 trên khu vực trọng điểm Hà Nội đã giảm so với những đợt đánh lớn trước đó.",
+     1.0
+    ],
+    [
+     642.94,
+     645.31,
+     "Tuy nhiên, chiến sự vẫn chưa chấm dứt.",
+     1.0
+    ],
+    [
+     645.55,
+     648.28,
+     "Các lực lượng phòng không Việt Nam tiếp tục trực chiến.",
+     1.0
+    ],
+    [
+     648.76,
+     650.69,
+     "Ra-đa tiếp tục theo dõi bầu trời.",
+     0.88
+    ],
+    [
+     651.21,
+     653.78,
+     "Tên lửa và pháo cao xạ luôn sẵn sàng đánh trả.",
+     1.0
+    ],
+    [
+     654.18,
+     658.52,
+     "Đêm 29 tháng 12, những trận đánh cuối cùng của chiến dịch diễn ra.",
+     1.0
+    ],
+    [
+     658.72,
+     666.87,
+     "Theo biên niên chiến đấu của phía Việt Nam, Tiểu đoàn tên lửa 79 tiếp tục lập công bắn rơi một máy bay B-52 trong đêm cuối.",
+     0.97
+    ],
+    [
+     667.31,
+     676.7,
+     "Ngày 30 tháng 12, phía Mỹ tuyên bố chấm dứt đợt tập kích đường không chiến lược vào khu vực miền Bắc từ vĩ tuyến 20 trở ra và đề nghị nối lại đàm phán.",
+     1.0
+    ],
+    [
+     676.98,
+     682.04,
+     "Sau mười hai ngày đêm lịch sử, những đợt tập kích B-52 vào Hà Nội đã kết thúc.",
+     1.0
+    ],
+    [
+     682.44,
+     684.69,
+     "Bầu trời Thủ đô dần trở lại yên tĩnh.",
+     1.0
+    ],
+    [
+     685.17,
+     692.2,
+     "Nhưng dấu tích của chiến tranh vẫn còn đó, trên mặt đất, trong những ngôi nhà đổ nát và trong ký ức của biết bao gia đình.",
+     1.0
+    ]
+   ],
+   "hinh": "Toàn bầu trời đêm cuối; cận kíp ra-đa; trung trực chiến; đại toàn bình minh Hà Nội 30/12, vẫn còn dấu tích bom đạn.",
+   "dia": "Trận địa tên lửa; Hà Nội sáng 30/12"
+  },
+  {
+   "id": "C11",
+   "ten": "Chiến thắng và những mất mát",
+   "cau": [
+    [
+     692.4,
+     700.48,
+     "Mười hai ngày đêm cuối tháng Mười Hai năm 1972 đã để lại một dấu mốc đặc biệt trong lịch sử chiến tranh Việt Nam.",
+     1.0
+    ],
+    [
+     700.76,
+     710.2,
+     "Theo tổng kết của Bộ Quốc phòng Việt Nam, quân và dân miền Bắc đã bắn rơi 81 máy bay Mỹ, trong đó có 34 máy bay ném bom chiến lược B-52.",
+     1.0
+    ],
+    [
+     710.4,
+     714.14,
+     "Đó là kết quả chiến đấu được phía Việt Nam ghi nhận trong toàn chiến dịch.",
+     1.0
+    ],
+    [
+     714.46,
+     722.14,
+     "Phía Mỹ công bố số tổn thất thấp hơn, trong đó xác nhận 15 máy bay B-52 bị mất trong chiến dịch Linebacker II.",
+     0.93
+    ],
+    [
+     722.38,
+     726.56,
+     "Nhưng vượt lên trên những khác biệt về thống kê là một sự thật không thể phủ nhận.",
+     0.94
+    ],
+    [
+     726.72,
+     731.26,
+     "Cuộc tập kích đã gặp phải sự kháng cự quyết liệt của hệ thống phòng không Việt Nam.",
+     1.0
+    ],
+    [
+     731.66,
+     738.37,
+     "Những chiếc máy bay từng được xem là biểu tượng sức mạnh không quân chiến lược đã phải chịu tổn thất trong cuộc chiến.",
+     1.0
+    ],
+    [
+     738.37,
+     741.26,
+     "Chiến thắng ấy được tạo nên bởi nhiều lực lượng.",
+     0.9
+    ],
+    [
+     741.38,
+     742.22,
+     "Bộ đội tên lửa.",
+     1.0
+    ],
+    [
+     742.67,
+     743.55,
+     "Bộ đội ra-đa.",
+     0.5
+    ],
+    [
+     743.99,
+     744.91,
+     "Bộ đội không quân.",
+     1.0
+    ],
+    [
+     745.48,
+     746.16,
+     "Pháo cao xạ.",
+     1.0
+    ],
+    [
+     746.52,
+     747.44,
+     "Dân quân tự vệ.",
+     1.0
+    ],
+    [
+     747.77,
+     753.71,
+     "Và hàng vạn con người ngày đêm bảo đảm hậu cần, cứu thương, sơ tán, khắc phục hậu quả bom đạn.",
+     0.95
+    ],
+    [
+     754.07,
+     756.32,
+     "Nhưng chiến thắng không làm mất đi những đau thương.",
+     1.0
+    ],
+    [
+     756.56,
+     758.45,
+     "Nhiều người dân vô tội đã thiệt mạng.",
+     1.0
+    ],
+    [
+     758.69,
+     760.09,
+     "Những gia đình mất người thân.",
+     1.0
+    ],
+    [
+     760.49,
+     763.58,
+     "Những con phố, bệnh viện và công trình bị tàn phá.",
+     1.0
+    ],
+    [
+     764.03,
+     774.02,
+     "Bởi vậy, nhắc đến Điện Biên Phủ trên không không chỉ là nhắc đến chiến công, mà còn là tưởng nhớ những con người đã hy sinh trong cuộc chiến bảo vệ bầu trời và cuộc sống của nhân dân.",
+     0.97
+    ]
+   ],
+   "hinh": "Toàn tàn tích và xác B-52 hồ Hữu Tiệp; trung cảnh các đơn vị phòng không; cận biểu tượng tưởng niệm; số liệu có chú thích nguồn.",
+   "dia": "Hà Nội sau chiến dịch; hồ Hữu Tiệp"
+  },
+  {
+   "id": "C12",
+   "ten": "Bản hùng ca của bầu trời Việt Nam",
+   "cau": [
+    [
+     774.18,
+     777.59,
+     "Ngày 27 tháng 1 năm 1973.",
+     1.0
+    ],
+    [
+     777.91,
+     782.69,
+     "Hiệp định Paris về chấm dứt chiến tranh, lập lại hòa bình ở Việt Nam được ký kết.",
+     1.0
+    ],
+    [
+     783.01,
+     790.6,
+     "Một chặng đường quan trọng trong tiến trình kết thúc sự can dự quân sự trực tiếp của Mỹ vào chiến tranh Việt Nam đã được xác lập.",
+     0.96
+    ],
+    [
+     790.76,
+     799.91,
+     "Thắng lợi trong cuộc chiến đấu phòng không tháng Mười Hai năm 1972 là một trong những yếu tố quân sự quan trọng tác động đến cục diện cuối năm ấy.",
+     1.0
+    ],
+    [
+     800.39,
+     804.36,
+     "Nhưng giá trị của Điện Biên Phủ trên không còn lớn hơn những con số chiến thắng.",
+     1.0
+    ],
+    [
+     804.68,
+     811.58,
+     "Đó là câu chuyện về những người lính đã đối mặt với sức mạnh không quân hiện đại bằng bản lĩnh, kinh nghiệm và sự sáng tạo.",
+     1.0
+    ],
+    [
+     811.78,
+     814.39,
+     "Là câu chuyện về những phi công xuất kích trong đêm.",
+     1.0
+    ],
+    [
+     814.76,
+     817.05,
+     "Những trắc thủ ra-đa không rời màn hình.",
+     0.78
+    ],
+    [
+     817.33,
+     819.62,
+     "Những kíp tên lửa kiên trì bám trận địa.",
+     1.0
+    ],
+    [
+     820.03,
+     825.54,
+     "Và những người dân Hà Nội, Hải Phòng cùng nhiều địa phương miền Bắc đã cùng nhau vượt qua bom đạn.",
+     1.0
+    ],
+    [
+     825.78,
+     831.37,
+     "Từ những chiến hào dưới mặt đất, những đài ra-đa, những sân bay, cho tới từng mái nhà của Thủ đô...",
+     0.91
+    ],
+    [
+     831.61,
+     834.19,
+     "Tất cả đã góp phần tạo nên một dấu mốc lịch sử.",
+     1.0
+    ],
+    [
+     834.39,
+     835.51,
+     "Mười hai ngày đêm!",
+     1.0
+    ],
+    [
+     835.75,
+     840.46,
+     "Từ ngày 18 đến ngày 29 tháng 12 năm 1972!",
+     1.0
+    ],
+    [
+     840.62,
+     843.87,
+     "Một cuộc chiến đấu được lịch sử Việt Nam ghi nhớ bằng cái tên:",
+     1.0
+    ],
+    [
+     844.19,
+     845.92,
+     "HÀ NỘI – ĐIỆN BIÊN PHỦ TRÊN KHÔNG!",
+     1.0
+    ],
+    [
+     846.24,
+     847.81,
+     "Hơn nửa thế kỷ đã đi qua.",
+     1.0
+    ],
+    [
+     848.09,
+     849.57,
+     "Những tiếng bom đã lùi xa.",
+     1.0
+    ],
+    [
+     849.97,
+     856.48,
+     "Nhưng bài học về ý chí bảo vệ Tổ quốc, về trí tuệ quân sự và về giá trị của hòa bình vẫn còn nguyên ý nghĩa.",
+     1.0
+    ],
+    [
+     856.68,
+     859.62,
+     "Điện Biên Phủ trên không 1972.",
+     1.0
+    ],
+    [
+     859.82,
+     862.07,
+     "Mười hai ngày đêm bầu trời rực lửa!",
+     1.0
+    ],
+    [
+     862.47,
+     865.05,
+     "Một bản hùng ca bất diệt trong lịch sử Việt Nam.",
+     1.0
+    ]
+   ],
+   "hinh": "Toàn Hà Nội 1972 và hiện nay; trung hình ảnh tưởng niệm; đại toàn cờ Tổ quốc; tiêu đề và mốc 18–29/12/1972.",
+   "dia": "Hà Nội 1972 – Hà Nội hiện đại"
+  }
+ ]
+}

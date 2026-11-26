@@ -15,7 +15,14 @@ const EXH = (TT && TT.phongDai) || (PACK.terrain && PACK.terrain.phongDai) || 1;
 function doiTang(ten, t, phat) {
   const q = new URLSearchParams(location.search); q.set('tang', ten); if (t != null) q.set('t', (+t).toFixed(2)); if (phat) q.set('phat', '1'); else q.delete('phat');
   let sc = null; try { sc = STORY.scenes.find((c) => t >= c.t0 && t < c.t1); } catch (e) { /* STORY chưa có */ }
-  if (sc && phat) q.set('chuong', sc.title); else q.delete('chuong');
+  // pack.json › ui.theChuong = false: không phủ màn tối "Tiếp theo" và không hiện thẻ chương trên màn tải — chuyển thẳng (anh Thắng 25/11: màn tối rồi lại màn tải là thừa). Mặc định giữ như cũ cho gói đã phát hành.
+  const theChuong = !(PACK.ui && PACK.ui.theChuong === false);
+  if (sc && phat && theChuong) q.set('chuong', sc.title); else q.delete('chuong');
+  // bản Artifact: khung ngoài đổi tầng. V1.6 Khe Sanh (anh Thắng: bỏ đoạn đen mờ khi chuyển hồi): chụp khung hình cuối gửi kèm — khung ngoài giữ ảnh này trên màn
+  // trong lúc tầng mới tải (không còn màn tải tối), tầng mới vẽ xong thì ảnh mờ dần. Chỉ một sa bàn WebGL chạy tại một lúc (không nạp sẵn hai khung — lỗi đơ hình V1.5).
+  if (!theChuong) { let anh = null; try { renderer.render(scene, camera); anh = renderer.domElement.toDataURL('image/jpeg', 0.82); } catch (e) { anh = null; }
+    if (sc && sc.hoi) q.set('tieude', (sc.hoi || '') + '|' + (sc.ten || '')); else q.delete('tieude');   // V1.8: khung ngoài hiện tên hồi trên ảnh nối — khoảng chờ thành màn mở chương
+    if (window.parent !== window && window.parent.__doiTang) window.parent.__doiTang(q.toString(), anh); else location.search = q.toString(); return; }
   const ov = document.createElement('div'); ov.id = 'chuong-ov'; ov.innerHTML = '<div><small>Tiếp theo</small><b></b></div>'; ov.querySelector('b').textContent = sc ? sc.title : '';
   document.body.append(ov); requestAnimationFrame(() => ov.classList.add('on'));
   setTimeout(() => { location.search = q.toString(); }, sc && phat ? 900 : 0);
@@ -70,8 +77,11 @@ const isWater = (x, z) => WM[Math.min(NG - 1, Math.max(0, Math.floor((z + HALF) 
 
 // ------------------------------------------------------------------ renderer
 const canvas = $('c');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+// V1.7 Khe Sanh (anh Thắng: xem trên điện thoại gần các chương cuối bị tải lại từ đầu — trình duyệt điện thoại thiếu bộ nhớ đồ hoạ thì bỏ trang):
+// máy cảm ứng dùng độ phân giải thấp hơn và bỏ khử răng cưa nhiều mẫu (bộ đệm MSAA tốn bộ nhớ gấp nhiều lần)
+const MAY_CAM_UNG = matchMedia('(pointer: coarse)').matches;
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: !MAY_CAM_UNG, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAY_CAM_UNG ? 1.25 : 1.75));
 renderer.setSize(innerWidth, innerHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -813,7 +823,9 @@ function walkTick(dt) {
     }
   }
   else W.pos.y = groundW(W.pos.x, W.pos.z);
-  const d = W.pos.clone().sub(old); camera.position.add(d); controls.target.add(d);
+  // V1.8 Khe Sanh (anh Thắng: đi bộ thì máy quay chạy nhanh hơn nhân vật, trôi ra trước): placeAvatarAt() đã dời máy quay theo nhân vật khi W.on —
+  // trước đây dời thêm lần nữa ở đây → máy đi gấp đôi. Chỉ bù phần độ cao khi đứng yên.
+  if (!W.moving) { const d = W.pos.clone().sub(old); camera.position.add(d); controls.target.add(d); }
   controls.target.y += (W.pos.y + (W.fp ? 2.55 : 2.4) - controls.target.y) * Math.min(1, dt * 8);
 }
 const _avQ = new THREE.Quaternion(), _hideM = new THREE.Matrix4().makeScale(0, 0, 0);
@@ -859,7 +871,19 @@ $('dslider').addEventListener('input', (e) => { exploreI = +e.target.value; onEx
 $('tide').oninput = () => { tideAuto = false; $('btide').classList.remove('on'); $('btide').setAttribute('aria-pressed', 'false'); };
 $('btide').onclick = () => { tideAuto = !tideAuto; $('btide').classList.toggle('on', tideAuto); $('btide').setAttribute('aria-pressed', tideAuto); };
 skySel.onchange = () => { forcedSky = skySel.value; };
-function setPlaying(b) { if (b && T >= DUR - 0.1) { T = 0; } playing = b; $('splay').textContent = b ? '⏸' : '▶'; $('splay').setAttribute('aria-label', b ? 'Tạm dừng' : 'Phát'); if (!b) voStop(); else lastLine = ''; }
+// V1.7 (anh Thắng: xử lý màn hình nghỉ khi không chạm vào): giữ màn hình sáng khi đang phát phim hoặc đang đi bộ — Screen Wake Lock (nếu trình duyệt cho),
+// dự phòng một đoạn video câm 2 s, 16×16 điểm ảnh, lặp vô hạn (cách NoSleep: iOS không cho màn hình nghỉ khi có video đang chạy)
+const THUC = { v: null, wl: null, muon: false };
+function thuc(on) { THUC.muon = on;
+  if (on) { if ('wakeLock' in navigator && !THUC.wl) navigator.wakeLock.request('screen').then((l) => { THUC.wl = l; l.addEventListener('release', () => { THUC.wl = null; }); }).catch(() => {});
+    if (!THUC.v) { const v = document.createElement('video'); v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.setAttribute('aria-hidden', 'true');
+      v.style.cssText = 'position:fixed;left:0;bottom:0;width:2px;height:2px;opacity:0.01;pointer-events:none;z-index:-1'; v.src = 'data:video/mp4;base64,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'; document.body.append(v); THUC.v = v; }
+    if (THUC.v.paused) THUC.v.play().catch(() => {}); }
+  else { if (THUC.wl) { THUC.wl.release().catch(() => {}); THUC.wl = null; } if (THUC.v && !THUC.v.paused) THUC.v.pause(); } }
+setInterval(() => { try { thuc((appMode === 'film' && playing) || W.on); } catch (e) {} }, 3000);
+addEventListener('pointerdown', () => { if (THUC.muon) thuc(true); }, true);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && THUC.muon) { THUC.wl = null; thuc(true); } });
+function setPlaying(b) { try { thuc(b || W.on); } catch (e) {} if (b && T >= DUR - 0.1) { T = 0; } playing = b; $('splay').textContent = b ? '⏸' : '▶'; $('splay').setAttribute('aria-label', b ? 'Tạm dừng' : 'Phát'); if (!b) voStop(); else lastLine = ''; }
 function goScene(i) { i = clamp(i, 0, NSC - 1); T = SC[i].t0 + 0.01; userCam = false; $('sret').hidden = true; voStop(); lastLine = ''; startBlend(); }
 let blend = null; function startBlend() { blend = { t0: performance.now(), p0: camera.position.clone(), q0: camLook.clone() }; }
 $('splay').onclick = () => { voUnlock(); setPlaying(!playing); };
