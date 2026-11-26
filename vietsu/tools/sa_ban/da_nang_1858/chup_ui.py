@@ -1,0 +1,26 @@
+import asyncio, subprocess, time, sys
+from playwright.async_api import async_playwright
+srv = subprocess.Popen(['python3', '-m', 'http.server', '8765', '-d', 'goi'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL); time.sleep(0.8)
+async def main():
+    async with async_playwright() as p:
+        b = await p.chromium.launch(executable_path='/usr/bin/google-chrome', args=['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required'])
+        pg = await b.new_page(viewport={'width': 1280, 'height': 720})
+        pg.on('pageerror', lambda e: print('PAGEERR', str(e)[:400]))
+        pg.on('console', lambda m: print('CON', m.text[:300]) if m.type in ('error',) else None)
+        await pg.goto('http://localhost:8765/index.html'); await pg.wait_for_function('window.__sa', timeout=300000)
+        await pg.screenshot(path='xem/ui_0.jpg', type='jpeg', quality=80)
+        await pg.click('#go'); await pg.wait_for_timeout(1500)
+        await pg.evaluate("window.__sa.tua(22)"); await pg.wait_for_timeout(2500)
+        await pg.screenshot(path='xem/ui_1.jpg', type='jpeg', quality=80)
+        await pg.click('#sbPick'); await pg.wait_for_timeout(500); await pg.screenshot(path='xem/ui_2.jpg', type='jpeg', quality=80); await pg.click('#sbPick')
+        await pg.click('#sbDocs'); await pg.wait_for_timeout(500); await pg.screenshot(path='xem/ui_3.jpg', type='jpeg', quality=80); await pg.click('#sbDocs')
+        await pg.click('.modes button[data-m=baotang]'); await pg.wait_for_timeout(3000)
+        await pg.screenshot(path='xem/ui_4.jpg', type='jpeg', quality=80)
+        await pg.evaluate("document.querySelectorAll('#btList button')[4].click()"); await pg.wait_for_timeout(2500)
+        await pg.screenshot(path='xem/ui_5.jpg', type='jpeg', quality=80)
+        await pg.evaluate("document.querySelectorAll('#btList button')[5].click()"); await pg.wait_for_timeout(2500)
+        await pg.screenshot(path='xem/ui_6.jpg', type='jpeg', quality=80)
+        await pg.set_viewport_size({'width': 400, 'height': 800}); await pg.click('.modes button[data-m=phim]'); await pg.wait_for_timeout(2500)
+        await pg.screenshot(path='xem/ui_7.jpg', type='jpeg', quality=80)
+        await b.close()
+asyncio.run(main()); srv.terminate()

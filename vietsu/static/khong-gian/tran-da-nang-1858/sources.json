@@ -1,0 +1,132 @@
+{
+ "reconstruction": "Tái dựng mô phỏng V1.3. Vòng sa bàn tâm 16,1169595 B · 108,1969851 Đ, bán kính 9,4 km (anh Thắng chọn). Địa hình theo độ cao hiện nay (Terrarium z14), sông, hào theo OSM. Thành Điện Hải đặt tại 16,076367 B · 108,221737 Đ; vết tường và hào theo OSM; tường gạch, hào nước, màu sông theo mẫu Thành cổ Quảng Trị. Thành An Hải, các pháo đài: vị trí và hình dáng ƯỚC LƯỢNG. Nhân vật có xương (lính Pháp, lính Nguyễn, dân, dân binh, Nguyễn Tri Phương), tàu, súng thần công dựng từ mẫu 3D anh gửi: MINH HOẠ, chưa đối chiếu quân phục, hiện vật.",
+ "sources": [
+  {
+   "id": "S1",
+   "title": "Kịch bản Sử Việt V1.0 – Đà Nẵng 1858, khúc tráng ca cửa biển (12 cảnh / 60 góc máy)",
+   "type": "kịch bản",
+   "url": "TranDaNang-1858/KICH_BAN_CLAUDE_12_CANH_60_SHOT.md",
+   "used_for": "lời dẫn, phân cảnh, cú máy"
+  },
+  {
+   "id": "S2",
+   "title": "Cục Văn thư và Lưu trữ Nhà nước – Châu bản triều Nguyễn về cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha tại Đà Nẵng những ngày đầu",
+   "type": "sử liệu",
+   "url": "https://archives.org.vn/gioi-thieu-tai-lieu-nghiep-vu/chau-ban-trieu-nguyen-ve-cuoc-khang-chien-chong-lien-quan-phap-tay-ban-nha-tai-da-nang-nhung-ngay-dau.htm",
+   "used_for": "12 thuyền buồm và tàu máy ngày 31/8/1858"
+  },
+  {
+   "id": "S3",
+   "title": "Bảo tàng Lịch sử Quốc gia – Liên quân Pháp – Tây Ban Nha nổ súng đánh thành Đà Nẵng (9/1858)",
+   "type": "chuyên khảo",
+   "url": "https://baotanglichsuquocgia.vn/vi/Articles/2002/68063/lien-quan-phap-tay-ban-nha-no-sung-djanh-thanh-dja-nang-mo-djau-cuoc-xam-luoc-viet-nam-lan-thu-nhat-9-1858.html",
+   "used_for": "diễn biến 1–2/9/1858"
+  },
+  {
+   "id": "S4",
+   "title": "Cổng thông tin Đà Nẵng – Cuộc kháng chiến chống xâm lược Pháp đầu tiên của quân và dân ta ở mặt trận Đà Nẵng năm 1858",
+   "type": "chuyên khảo",
+   "url": "https://cttdt.danangportal.gov.vn/vi/w/cuoc-khang-chien-chong-xam-luoc-phap-dau-tien-cua-quan-va-dan-ta-o-mat-tran-da-nang-nam-1858-i",
+   "used_for": "đồn lũy, phòng tuyến"
+  },
+  {
+   "id": "B1",
+   "title": "Sơ đồ Phụ bản 11 (trận 8/5/1859) và Phụ bản 12 (trận 15/9/1859)",
+   "type": "bản đồ",
+   "url": "TranDaNang-1858/bando-1858.jpeg",
+   "used_for": "vị trí ƯỚC LƯỢNG: Định Hải, Chơn Sảng, các đồn Hải Châu, Phước Ninh, Thạc Gián, Liên Trì, Nại Hiên, Hóa Khuê, Mỹ Thị, trại quân Pháp, tiền đồn"
+  },
+  {
+   "id": "B2",
+   "title": "Plan de la baie de Tourane (Cochinchine) – L'Illustration (chú thích tiếng Việt của The Hue of Huế)",
+   "type": "bản đồ",
+   "url": "TranDaNang-1858/ban-do-thanh-da-nang.jpeg",
+   "used_for": "Fort de l'Est / de l'Ouest (An Hải / Điện Hải), lũy 14, pháo đài Sơn Trà"
+  },
+  {
+   "id": "A1",
+   "title": "Ảnh, tranh tư liệu: thành Điện Hải hôm nay, đại bác, binh lính thời Nguyễn, tàu chiến, quân Pháp đổ bộ (thư mục TranDaNang-1858)",
+   "type": "ảnh",
+   "used_for": "tạo hình thành (vết pháo đài 4 góc lăng, hào), đại bác bệ đỏ, tàu buồm – hơi nước; ảnh hiện trạng ở Hồi 12"
+  },
+  {
+   "id": "D2",
+   "title": "OpenStreetMap: đường bờ biển, sông, mặt nước (Overpass 26/11/2026)",
+   "type": "OSM",
+   "license": "© OpenStreetMap contributors (ODbL)",
+   "used_for": "mặt nạ biển, sông"
+  },
+  {
+   "id": "V1",
+   "title": "Voice: trandanang-1858-voice.mp3 (580 s), căn câu bằng nhận dạng zipformer-vi, khớp 90% số từ; chèn 0,8 s đầu và 1,2 s trước mỗi hồi",
+   "type": "âm thanh",
+   "used_for": "đồng hồ phim, phụ đề"
+  },
+  {
+   "id": "V2",
+   "title": "Âm nền dùng lại của sa bàn Rạch Gầm – Xoài Mút (sóng, chim, trống, hành quân, bắn súng, chiến trường, đại bác, nhạc nền)",
+   "type": "âm thanh",
+   "used_for": "âm nền theo hồi"
+  },
+  {
+   "id": "D1",
+   "title": "Độ cao Terrarium (AWS elevation-tiles-prod, mức 14 trong vòng, mức 13 ngoài vòng)",
+   "type": "DEM",
+   "used_for": "địa hình"
+  },
+  {
+   "id": "D3",
+   "title": "OSM: hào thành Điện Hải (water=moat)",
+   "type": "OSM",
+   "license": "© OpenStreetMap contributors (ODbL)",
+   "used_for": "vết tường, hào"
+  },
+  {
+   "id": "M1",
+   "title": "Mẫu 3D: lính triều Nguyễn 1858, tàu hơi nước – buồm của Pháp (anh Thắng, Tripo); dân binh (Bạch Đằng); người dân (Rạch Gầm – Xoài Mút)",
+   "type": "mô hình",
+   "used_for": "nhân vật, hạm đội"
+  },
+  {
+   "id": "V3",
+   "title": "Âm thanh: sóng biển vỗ bờ, sóng vỗ mạn thuyền, còi tàu thủy, đại bác (kho nhạc nền, tiengdong.com)",
+   "type": "âm thanh",
+   "used_for": "âm nền"
+  },
+  {
+   "id": "B3",
+   "title": "Wikipedia – Lefaucheux M1858",
+   "type": "bách khoa",
+   "url": "https://en.wikipedia.org/wiki/Lefaucheux_M1858",
+   "used_for": "bảo tàng: súng ngắn ổ quay"
+  },
+  {
+   "id": "B4",
+   "title": "Wikipedia – Siege of Tourane",
+   "type": "bách khoa",
+   "url": "https://en.wikipedia.org/wiki/Siege_of_Tourane",
+   "used_for": "bảo tàng: hạm đội, quân số đổ bộ"
+  },
+  {
+   "id": "B5",
+   "title": "Drouot – Percussion rifle model 1857 of navy",
+   "type": "hiện vật đấu giá",
+   "url": "https://drouot.com/en/l/18161660-perkussionsgewehr-modell-1857",
+   "used_for": "bảo tàng: kích thước súng trường hạt nổ kiểu 1857"
+  },
+  {
+   "id": "M2",
+   "title": "Mẫu 3D anh Thắng gửi (V1.3): lính Pháp gắn xương Mixamo, lính Nguyễn, súng thần công, Nguyễn Tri Phương",
+   "type": "mẫu dựng",
+   "url": "_KHO-CHUNG/nhan-vat/_moi, _KHO-CHUNG/vat-dung/_moi",
+   "used_for": "nhân vật, đại bác (MINH HOẠ)"
+  },
+  {
+   "id": "M3",
+   "title": "Thành cổ Quảng Trị 1972 V2.3 – vân gạch tường, màu nước sông",
+   "type": "mẫu dựng",
+   "url": "Hoc-lich-su/Thành cổ Quảng Trị",
+   "used_for": "vân gạch thành, màu sông, hào"
+  }
+ ]
+}
