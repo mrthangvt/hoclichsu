@@ -37,12 +37,17 @@ function addCampaign(){
 }
 function islands(){
  const svg=$('v23AtlasSVG');if(!svg||$('vs52ArchipelagoLabels'))return;
- const ns='http://www.w3.org/2000/svg',g=document.createElementNS(ns,'g');g.id='vs52ArchipelagoLabels';g.setAttribute('aria-label','Sơ đồ minh họa quần đảo Hoàng Sa và Trường Sa');
+ const ns='http://www.w3.org/2000/svg',g=document.createElementNS(ns,'g');g.id='vs52ArchipelagoLabels';g.setAttribute('aria-label','Sơ đồ minh họa quần đảo Hoàng Sa, Trường Sa và đảo Phú Quốc');
  for(const item of [{name:'HOÀNG SA',x:605,y:432},{name:'TRƯỜNG SA',x:650,y:672}]){
   const p=document.createElementNS(ns,'g');p.setAttribute('class','vs52-island');p.setAttribute('transform','translate('+item.x+' '+item.y+')');
   const c=document.createElementNS(ns,'circle');c.setAttribute('r','6');p.append(c);
   const t=document.createElementNS(ns,'text');t.setAttribute('y','-16');t.textContent=item.name;p.append(t);g.append(p);
  }
+ // Đảo Phú Quốc (26/11/2026): hình đảo giản lược theo tọa độ thật (cùng tỉ lệ với pin V23_SCENES, tâm 10,23 B · 103,96 Đ ≈ 269,6 · 737,5),
+ // dịch ra biển ~30 đơn vị vì đường bờ véc-tơ của bản đồ minh họa vẽ thô và để khỏi đè nhãn Rạch Gầm – Xoài Mút
+ {const p=document.createElementNS(ns,'g');p.setAttribute('class','vs52-island vs52-phu-quoc');p.setAttribute('transform','translate(262 770)');
+  const sh=document.createElementNS(ns,'path');sh.setAttribute('d','M-6.7 -7.2 L-0.6 -10.3 L3.9 -11.8 L6.1 -9.8 L4.4 -3.6 L5.5 1.5 L3.3 6.7 L2.8 10.8 L1.7 12.8 L0.6 9.2 L-0.6 4.1 L0.0 0.5 L-4.4 -3.6 Z');p.append(sh);
+  const t=document.createElementNS(ns,'text');t.setAttribute('x','-10');t.setAttribute('y','5');t.textContent='ĐẢO PHÚ QUỐC';p.append(t);g.append(p);}
  ($('v23MapPins')?.parentNode||svg).append(g);
  const note=document.querySelector('.v23-map-foot');if(note)note.textContent='Bản đồ véc-tơ minh họa; ký hiệu quần đảo không thể hiện đầy đủ tọa độ, ranh giới địa lý.';
 }

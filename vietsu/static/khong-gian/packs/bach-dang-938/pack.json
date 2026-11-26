@@ -1,14 +1,14 @@
 {
  "id": "bach-dang-938",
- "version": "1.0.0",
- "engine": "^2.1",
+ "version": "1.3.0",
+ "engine": "2.1.1",
  "kind": "battle",
  "title": "Bạch Đằng 938",
  "subtitle": "Cuối năm 938 · cửa sông Bạch Đằng",
  "label": "Tái dựng mô phỏng",
  "period": "ngo",
  "year": 938,
- "storyLabel": "14 cảnh · kịch bản V1",
+ "storyLabel": "14 cảnh · lời dẫn thu âm",
  "script": "rieng.js",
  "coords": {
   "system": "blender",

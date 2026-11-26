@@ -21,3 +21,10 @@ body.theme-light .vs59-doc section{border-color:#d6c4a6}
 .vs59-bai .vs59-dang{border-color:#dcb875!important;color:#f1d7a0}
 body.theme-light .vs59-bai .vs59-moc{border-color:#d6c4a6}
 body.theme-light .vs59-bai .vs59-moc b{color:#7a4f22}
+
+/* 26/11/2026: đảo Phú Quốc trên bản đồ Không gian lịch sử; danh sách Địa điểm khám phá cuộn được */
+.vs52-phu-quoc path{fill:#1f5a63;stroke:#e7c784;stroke-width:1.6;stroke-linejoin:round}
+.vs52-phu-quoc text{text-anchor:end;font-size:12px}
+body.theme-light .vs52-phu-quoc path{fill:#cfe0d6;stroke:#9c7a4c}
+@media (min-width:901px){.v23-map-list{display:flex;flex-direction:column;min-height:0}
+ .v23-map-list #v23SpaceCards{flex:1 1 0;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:#d1a96e55 transparent;align-content:start}}
