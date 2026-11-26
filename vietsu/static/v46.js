@@ -4,6 +4,12 @@
 
   // Chỉ công bố lối vào sa bàn khi có trang 3D thực sự trong repository.
   const SCENES = {
+    'dien-bien-phu-tren-khong-1972': { title: 'Hà Nội – Điện Biên Phủ trên không 1972',
+                   href: 'khong-gian/engine/2.2.0/sa-ban.html?goi=dien-bien-phu-tren-khong-1972',
+                   subtitle: 'Sa bàn tương tác Three.js · phim tự động 14:43 có lời dẫn, khám phá, góc nhìn nhân vật, bảo tàng khí tài · tái dựng mô phỏng' },
+    'khe-sanh-1968': { title: 'Chiến dịch Đường 9 – Khe Sanh 1968',
+                   href: 'khong-gian/engine/2.2.0/sa-ban.html?goi=khe-sanh-1968',
+                   subtitle: 'Sa bàn tương tác Three.js · phim tự động có lời dẫn, khám phá, góc nhìn nhân vật, bảo tàng khí tài · tái dựng mô phỏng' },
     'ho-chi-minh-1975': { title: 'Chiến dịch Hồ Chí Minh 1975',
                    href: 'khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975',
                    subtitle: 'Sa bàn tương tác Three.js · phim tự động 16:02 có lời dẫn, khám phá, góc nhìn nhân vật · tái dựng mô phỏng' },

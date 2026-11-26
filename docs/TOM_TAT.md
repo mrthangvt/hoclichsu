@@ -173,6 +173,14 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - **Tạm bỏ không gian Thành Cổ Loa** (theo yêu cầu chủ dự án 22/11): gỡ `co-loa` khỏi `V2_EXPERIENCES`, `V23_SCENES`, `experiences_seed.json`, `experience_locations.json`. Ảnh thẻ `co-loa` trong `v42.js` ART vẫn giữ để khôi phục sau.
 - Nội dung là tái dựng mô phỏng: số thuyền, số quân là mật độ minh họa; vị trí pháo, phục binh là giả định chiến thuật; cần đối chiếu tư liệu.
 
+
+## Không gian lịch sử — thêm Khe Sanh 1968, Điện Biên Phủ trên không 1972; ảnh thẻ chụp từ sa bàn (26/11/2026, nhánh `claude/khong-gian-lich-su-anh`)
+
+Theo yêu cầu chủ dự án (26/11):
+- **Gỡ Làng Sen – Kim Liên** khỏi Không gian lịch sử: `V2_EXPERIENCES`, `V23_SCENES` (`Viet_Su_Timeline_V4.1_Offline.html`), `experiences_seed.json`, `experience_locations.json`, `duong_dan.json`; bỏ nhãn tương ứng trong `build_v59.py`. Ảnh `v49/scene-lang-sen.svg`, ảnh véc-tơ `v42.js` ART vẫn giữ để khôi phục sau.
+- **Thêm hai sa bàn** (làm giống Chiến dịch Hồ Chí Minh 1975): điểm pin (Khe Sanh: Tà Cơn 16,655 B · 106,730 Đ, chữ bên trái; Điện Biên Phủ trên không: cánh đồng Chuôm, Phù Lỗ 21,206 B · 105,842 Đ, chữ nâng lên trên Ngọc Hồi – Đống Đa), thẻ địa điểm, popup "Vào sa bàn 3D" (`V2_EXPERIENCES`, `V23_SCENES`, `KHONG_GIAN_3D`; `v46.js` SCENES), thẻ "SA BÀN 3D" trên Dòng thời gian ở mốc 1968, 1972 (`v42.js` EXP), `catalog.json`, dữ liệu CMS, đường dẫn `khong-gian-lich-su/khe-sanh-1968/`, `khong-gian-lich-su/dien-bien-phu-tren-khong-1972/` (`xuat_duong_dan.py`).
+- **Ảnh thẻ địa điểm** (thay hình véc-tơ): ảnh chụp từ chính các sa bàn 3D (minh họa tái dựng, không phải ảnh tư liệu), `static/v49/scene-<id>.webp` 760 × 500, khai báo ở `v49-data.js` › scenes. Chụp bằng trình duyệt ẩn (SwiftShader), giấu giao diện, chỉ giữ khung 3D.
+
 ## Sa bàn Chiến dịch Hồ Chí Minh 1975 (nhánh `claude/sa-ban-hcm-1975`, 24/11/2026)
 
 - Gói `vietsu/static/khong-gian/packs/ho-chi-minh-1975/` trên bộ máy 2.1.0 (`engine: ^2.1`). **Giai đoạn 0 xong** (khung gói, cờ hai phe, `rieng.js` 53 đoạn rỗng, `kiem_tra_goi.py` hợp lệ). Chưa mở được trang sa bàn cho tới khi có `terrain/` (Giai đoạn 2).

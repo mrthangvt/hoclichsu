@@ -57,6 +57,26 @@
       "url": "engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975",
       "status": "thu-nghiem",
       "replaces": "artifact 3f0937ee-310c-4b6d-b6ca-02cd9b831993"
+    },
+    {
+      "id": "khe-sanh-1968",
+      "version": "0.11.0",
+      "kind": "battle",
+      "title": "Chiến dịch Đường 9 – Khe Sanh 1968",
+      "period": "vndcch",
+      "year": 1968,
+      "url": "engine/2.2.0/sa-ban.html?goi=khe-sanh-1968",
+      "status": "thu-nghiem"
+    },
+    {
+      "id": "dien-bien-phu-tren-khong-1972",
+      "version": "0.2.0",
+      "kind": "battle",
+      "title": "Hà Nội – Điện Biên Phủ trên không 1972",
+      "period": "vndcch",
+      "year": 1972,
+      "url": "engine/2.2.0/sa-ban.html?goi=dien-bien-phu-tren-khong-1972",
+      "status": "thu-nghiem"
     }
   ]
 }

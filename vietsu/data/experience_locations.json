@@ -1,15 +1,5 @@
 [
   {
-    "id": "lang-sen",
-    "kind": "heritage",
-    "lat": 18.681,
-    "lon": 105.516,
-    "name": "Làng Sen – Kim Liên",
-    "year": 1890,
-    "category": "Di tích – tuổi thơ",
-    "source_note": "Vị trí đại diện cho khu vực Kim Liên, chưa định vị chính xác từng hiện vật."
-  },
-  {
     "id": "quang-tri",
     "kind": "battle",
     "lat": 16.756,
@@ -58,5 +48,25 @@
     "year": 1975,
     "category": "Chiến dịch – sa bàn",
     "source_note": "Vị trí đại diện: Dinh Độc Lập (tâm tầng nội đô của sa bàn, 10,7770 B, 106,6953 Đ), không phải vị trí từng đơn vị."
+  },
+  {
+    "id": "khe-sanh-1968",
+    "kind": "battle",
+    "lat": 16.655,
+    "lon": 106.73,
+    "name": "Khe Sanh",
+    "year": 1968,
+    "category": "Chiến dịch – sa bàn",
+    "source_note": "Vị trí đại diện: cụm cứ điểm Tà Cơn (16,655 B, 106,730 Đ), không phải vị trí từng đơn vị."
+  },
+  {
+    "id": "dien-bien-phu-tren-khong-1972",
+    "kind": "battle",
+    "lat": 21.206,
+    "lon": 105.842,
+    "name": "Điện Biên Phủ trên không",
+    "year": 1972,
+    "category": "Chiến dịch – sa bàn",
+    "source_note": "Vị trí đại diện: cánh đồng Chuôm, xã Phù Lỗ (Đông Anh) — nơi chiếc B-52 đầu tiên rơi tại chỗ đêm 18/12/1972; sa bàn trải khắp Hà Nội và miền Bắc."
   }
 ]
