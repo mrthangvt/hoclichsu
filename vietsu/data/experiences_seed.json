@@ -261,5 +261,42 @@
         "text": "Quân Ngô nhử thủy quân Nam Hán vào khi triều lên, phản công khi triều rút."
       }
     ]
+  },
+  {
+    "id": "tran-da-nang-1858",
+    "title": "Đà Nẵng 1858",
+    "period": "1858 – 1860",
+    "entity_id": "battle1858",
+    "timeline_year": 1858,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/tran-da-nang-1858/",
+    "notes": "Sa bàn 3D độc lập (three.js 0.160, thư mục khong-gian/tran-da-nang-1858/, chưa chuyển sang bộ máy chung) — tái dựng mô phỏng theo lời dẫn thu âm 9 phút 54 giây; vị trí đồn lũy (trừ Điện Hải), số tàu, số người là minh họa; nguồn trong sources.json và thẻ bảo tàng.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "dien-hai",
+        "name": "Thành Điện Hải",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Đồn Điện Hải xây năm 1813, dời vào vị trí hiện nay năm 1823; năm 1835 đổi tên thành Điện Hải."
+      },
+      {
+        "id": "lien-tri",
+        "name": "Đồn lũy Nguyễn Tri Phương",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Hệ thống đồn lũy Liên Trì – Thạc Gián – Nại Hiên chặn bước tiến của liên quân trên bộ."
+      }
+    ]
   }
 ]

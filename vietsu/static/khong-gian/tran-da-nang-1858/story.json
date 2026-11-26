@@ -1,0 +1,2570 @@
+{
+"title": "Đà Nẵng 1858 – Khúc tráng ca cửa biển",
+"dur": 594.06,
+"scenes": [
+{
+"id": "C01",
+"title": "Cửa biển Đà Nẵng trước cơn sóng dữ",
+"date": "Năm 1858",
+"troi": "sang",
+"t0": 0.0,
+"t1": 44.17,
+"subs": [
+[
+0.84,
+2.62,
+"Năm 1858."
+],
+[
+2.84,
+10.9,
+"Giữa thế kỷ XIX, khi những đoàn chiến hạm phương Tây đang mở rộng ảnh hưởng trên các đại dương, nước Đại Nam đứng trước một thử thách chưa từng có."
+],
+[
+11.04,
+18.54,
+"Trên dải đất miền Trung, Đà Nẵng là một cửa biển quan trọng, nơi những dãy núi vươn ra biển lớn, che chở cho vùng vịnh rộng sâu."
+],
+[
+18.86,
+21.0,
+"Phía Bắc là đèo Hải Vân hiểm trở."
+],
+[
+21.26,
+22.9,
+"Phía Đông là bán đảo Sơn Trà."
+],
+[
+23.22,
+28.68,
+"Giữa hai vùng đất ấy là cửa sông Hàn, nơi những pháo đài của triều Nguyễn trấn giữ đường vào nội địa."
+],
+[
+29.02,
+33.4,
+"Một vùng đất thanh bình, với những làng chài và những con thuyền ra vào cửa biển."
+],
+[
+33.66,
+37.48,
+"Nhưng chỉ ít ngày nữa, tiếng đại bác sẽ phá tan sự yên tĩnh ấy."
+],
+[
+37.82,
+44.02,
+"Đà Nẵng – nơi những phát súng mở đầu cuộc chiến tranh xâm lược Đại Nam của liên quân Pháp – Tây Ban Nha sẽ vang lên!"
+]
+],
+"moc": [
+0.84,
+2.84,
+11.04,
+18.86,
+21.26,
+23.22,
+29.02,
+33.66,
+37.82
+],
+"shots": [
+{
+"id": "C01-01",
+"co": "Đại toàn",
+"mo": "Bay từ ngoài Biển Đông vào vịnh Đà Nẵng, hiện địa hình Sơn Trà – Hải Vân.",
+"t0": 0.0,
+"t1": 9.64,
+"a": {
+"T": [
+-500,
+3000,
+0
+],
+"d": 26000,
+"az": 10,
+"el": 14
+},
+"b": {
+"T": [
+-300,
+2500,
+0
+],
+"d": 15000,
+"az": 20,
+"el": 30
+}
+},
+{
+"id": "C01-02",
+"co": "Toàn",
+"mo": "Quét dọc cửa sông Hàn, thấy thành Điện Hải và An Hải ở hai phía.",
+"t0": 9.64,
+"t1": 18.47,
+"a": {
+"T": [
+800,
+300,
+0
+],
+"d": 2600,
+"az": 330,
+"el": 22
+},
+"b": {
+"T": [
+1600,
+-1700,
+0
+],
+"d": 2100,
+"az": 280,
+"el": 20
+}
+},
+{
+"id": "C01-03",
+"co": "Trung",
+"mo": "Dân chài, thuyền buồm, sinh hoạt ven biển.",
+"t0": 18.47,
+"t1": 26.5,
+"a": {
+"T": [
+-230,
+-1766,
+0
+],
+"d": 30,
+"az": 350,
+"el": 12,
+"f": "lang"
+},
+"b": {
+"T": [
+-230,
+-1766,
+0
+],
+"d": 24,
+"az": 20,
+"el": 9,
+"f": "lang"
+}
+},
+{
+"id": "C01-04",
+"co": "Cận",
+"mo": "Đại bác trên bệ thành; lính triều Nguyễn quan sát.",
+"t0": 26.5,
+"t1": 34.53,
+"a": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 9,
+"az": 200,
+"el": 14,
+"f": "phao-dh"
+},
+"b": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 7,
+"az": 240,
+"el": 10,
+"f": "phao-dh"
+}
+},
+{
+"id": "C01-05",
+"co": "Đại toàn",
+"mo": "Camera lùi ra biển, phía chân trời xuất hiện bóng chiến hạm.",
+"t0": 34.53,
+"t1": 44.17,
+"a": {
+"T": [
+-900,
+1500,
+20
+],
+"d": 300,
+"az": 190,
+"el": 3,
+"nhin": [
+-1000,
+9600,
+0
+],
+"fov": 22
+},
+"b": {
+"T": [
+-900,
+1500,
+20
+],
+"d": 340,
+"az": 185,
+"el": 3,
+"nhin": [
+-900,
+9400,
+0
+],
+"fov": 14
+}
+}
+]
+},
+{
+"id": "C02",
+"title": "Vì sao liên quân chọn Đà Nẵng?",
+"date": "Giữa thế kỷ XIX",
+"troi": "sang",
+"t0": 44.17,
+"t1": 95.17,
+"subs": [
+[
+45.52,
+50.54,
+"Giữa thế kỷ XIX, các cường quốc châu Âu đẩy mạnh những cuộc chiến tranh mở rộng thuộc địa."
+],
+[
+50.72,
+54.86,
+"Đối với Pháp, Đại Nam nằm ở một vị trí quan trọng tại Đông Nam Á."
+],
+[
+55.12,
+65.24,
+"Những tranh chấp liên quan đến hoạt động truyền giáo và chính sách của triều đình nhà Nguyễn trở thành một trong những lý do được Pháp và Tây Ban Nha viện dẫn để tiến hành cuộc viễn chinh."
+],
+[
+65.62,
+68.28,
+"Và Đà Nẵng được lựa chọn làm mục tiêu đầu tiên."
+],
+[
+68.54,
+72.64,
+"Bởi đây là một hải cảng rộng, sâu, thuận tiện cho các chiến hạm lớn."
+],
+[
+72.88,
+79.0,
+"Từ Đà Nẵng, liên quân hy vọng đánh chiếm vùng cửa biển, mở đường vượt đèo Hải Vân, uy hiếp kinh đô Huế."
+],
+[
+79.34,
+84.24,
+"Một kế hoạch được xây dựng trên ưu thế về chiến hạm, đại bác và khả năng cơ động đường biển."
+],
+[
+84.62,
+88.88,
+"Đánh nhanh. Chiếm giữ. Rồi buộc triều đình Đại Nam phải khuất phục!"
+],
+[
+89.18,
+95.04,
+"Nhưng những người hoạch định cuộc viễn chinh chưa lường hết sự kháng cự đang chờ đợi họ trên mảnh đất này."
+]
+],
+"moc": [
+45.52,
+50.72,
+55.12,
+65.62,
+68.54,
+72.88,
+79.34,
+84.62,
+89.18
+],
+"shots": [
+{
+"id": "C02-01",
+"co": "Đại toàn",
+"mo": "Bản đồ châu Âu – Đông Nam Á thế kỷ XIX, tuyến hàng hải hướng đến Đà Nẵng.",
+"t0": 44.17,
+"t1": 54.37,
+"a": {
+"T": [
+1900,
+5000,
+0
+],
+"d": 24000,
+"az": 205,
+"el": 49
+},
+"b": {
+"T": [
+1300,
+4400,
+0
+],
+"d": 21000,
+"az": 198,
+"el": 46
+}
+},
+{
+"id": "C02-02",
+"co": "Trung",
+"mo": "Rigault de Genouilly bên bản đồ hành quân trên chiến hạm.",
+"t0": 54.37,
+"t1": 64.57,
+"a": {
+"T": "tau:0",
+"d": 170,
+"az": 140,
+"el": 16,
+"dy": 4
+},
+"b": {
+"T": "tau:0",
+"d": 140,
+"az": 115,
+"el": 13,
+"dy": 4
+}
+},
+{
+"id": "C02-03",
+"co": "Cận",
+"mo": "Hải đồ, la bàn, ống nhòm, bàn tay chỉ cửa biển.",
+"t0": 64.57,
+"t1": 73.07,
+"a": {
+"T": "tau:0",
+"d": 300,
+"az": 200,
+"el": 24,
+"dy": 4
+},
+"b": {
+"T": "tau:0",
+"d": 240,
+"az": 230,
+"el": 20,
+"dy": 4
+}
+},
+{
+"id": "C02-04",
+"co": "Đại toàn",
+"mo": "Bay theo địa hình từ vịnh Đà Nẵng đến đèo Hải Vân và hướng kinh đô Huế.",
+"t0": 73.07,
+"t1": 84.97,
+"a": {
+"T": [
+-1500,
+3000,
+0
+],
+"d": 5000,
+"az": 40,
+"el": 25
+},
+"b": {
+"T": [
+-8492,
+11433,
+286.28
+],
+"d": 4500,
+"az": 120,
+"el": 18
+}
+},
+{
+"id": "C02-05",
+"co": "Trung",
+"mo": "Thủy binh Pháp và Tây Ban Nha chuẩn bị vũ khí, đội hình đổ bộ.",
+"t0": 84.97,
+"t1": 95.17,
+"a": {
+"T": "tau:1",
+"d": 150,
+"az": 250,
+"el": 14,
+"dy": 4
+},
+"b": {
+"T": "tau:1",
+"d": 120,
+"az": 290,
+"el": 11,
+"dy": 4
+}
+}
+]
+},
+{
+"id": "C03",
+"title": "Ngày 31 tháng 8: Những chiến hạm xuất hiện",
+"date": "Chiều 31/8/1858",
+"troi": "chieu",
+"t0": 95.17,
+"t1": 136.99,
+"subs": [
+[
+96.5,
+99.84,
+"Chiều ngày 31 tháng 8 năm 1858."
+],
+[
+100.12,
+105.16,
+"Từ cửa ải Hải Vân, những người lính canh phát hiện một đoàn tàu lạ đang tiến vào vịnh Trà Sơn."
+],
+[
+105.66,
+109.96,
+"Những chiến hạm có buồm, có máy hơi nước, mang theo những khẩu đại bác lớn."
+],
+[
+110.18,
+112.52,
+"Tin cấp báo lập tức được gửi về triều đình."
+],
+[
+112.88,
+119.54,
+"Theo Châu bản triều Nguyễn, người giữ ải báo tin có mười hai chiếc thuyền buồm và tàu chạy máy xuất hiện tại cửa biển."
+],
+[
+119.88,
+123.02,
+"Trên các pháo đài, quân triều Nguyễn tăng cường canh phòng."
+],
+[
+123.52,
+125.1,
+"Những khẩu đại bác được chuẩn bị."
+],
+[
+125.28,
+127.36,
+"Các toán lính vào vị trí chiến đấu."
+],
+[
+127.74,
+130.48,
+"Ngoài khơi, các chiến hạm liên quân dàn đội hình."
+],
+[
+130.78,
+133.32,
+"Một đêm căng thẳng bao trùm cửa biển Đà Nẵng."
+],
+[
+133.54,
+136.88,
+"Khi mặt trời mọc vào ngày hôm sau, cuộc chiến sẽ bắt đầu."
+]
+],
+"moc": [
+96.5,
+100.12,
+105.66,
+110.18,
+112.88,
+119.88,
+123.52,
+125.28,
+127.74,
+130.78,
+133.54
+],
+"shots": [
+{
+"id": "C03-01",
+"co": "Đại toàn",
+"mo": "Từ Hải Vân nhìn xuống vịnh, chiến hạm xuất hiện ở đường chân trời.",
+"t0": 95.17,
+"t1": 104.29,
+"a": {
+"T": [
+-8492,
+11433,
+286.28
+],
+"d": 520,
+"az": 300,
+"el": 72,
+"nhin": [
+-1500,
+9000,
+0
+]
+},
+"b": {
+"T": [
+-8492,
+11433,
+286.28
+],
+"d": 470,
+"az": 310,
+"el": 70,
+"nhin": [
+-1200,
+6000,
+0
+]
+}
+},
+{
+"id": "C03-02",
+"co": "Cận",
+"mo": "Lính gác dùng ống viễn kính quan sát.",
+"t0": 104.29,
+"t1": 111.9,
+"a": {
+"T": [
+-8492,
+11433,
+286.28
+],
+"d": 9,
+"az": 300,
+"el": 10,
+"f": "gac",
+"nhin": [
+-1500,
+9000,
+0
+]
+},
+"b": {
+"T": [
+-8492,
+11433,
+286.28
+],
+"d": 6,
+"az": 280,
+"el": 6,
+"f": "gac"
+}
+},
+{
+"id": "C03-03",
+"co": "Trung",
+"mo": "Người đưa tin phi ngựa cấp báo, cờ báo động trên đồn canh.",
+"t0": 111.9,
+"t1": 120.26,
+"a": {
+"T": [
+-7400,
+9800,
+0
+],
+"d": 22,
+"az": 250,
+"el": 14,
+"f": "ngua"
+},
+"b": {
+"T": [
+-7400,
+9800,
+0
+],
+"d": 16,
+"az": 200,
+"el": 10,
+"f": "ngua"
+}
+},
+{
+"id": "C03-04",
+"co": "Toàn",
+"mo": "Chiến hạm liên quân di chuyển vào đội hình cửa biển.",
+"t0": 120.26,
+"t1": 128.63,
+"a": {
+"T": "ham-doi",
+"d": 3500,
+"az": 300,
+"el": 16
+},
+"b": {
+"T": "ham-doi",
+"d": 2800,
+"az": 260,
+"el": 12
+}
+},
+{
+"id": "C03-05",
+"co": "Cận",
+"mo": "Pháo thủ triều Nguyễn đưa đạn tới khẩu pháo.",
+"t0": 128.63,
+"t1": 136.99,
+"a": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 30,
+"az": 200,
+"el": 14,
+"f": "phao-dh"
+},
+"b": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 22,
+"az": 160,
+"el": 10,
+"f": "phao-dh"
+}
+}
+]
+},
+{
+"id": "C04",
+"title": "Ngày 1 tháng 9: Tiếng đại bác mở đầu cuộc xâm lược",
+"date": "Sáng 1/9/1858",
+"troi": "binhminh",
+"t0": 136.99,
+"t1": 196.1,
+"subs": [
+[
+138.3,
+141.68,
+"Sáng ngày 1 tháng 9 năm 1858."
+],
+[
+141.74,
+150.24,
+"Đô đốc Rigault de Genouilly, tổng chỉ huy liên quân Pháp – Tây Ban Nha, gửi tối hậu thư yêu cầu quân triều Nguyễn giao nộp các vị trí phòng thủ."
+],
+[
+150.58,
+153.88,
+"Nhưng khi chưa có sự đầu hàng, liên quân bắt đầu tiến công."
+],
+[
+154.28,
+156.92,
+"Đại bác từ những chiến hạm đồng loạt khai hỏa!"
+],
+[
+157.26,
+159.64,
+"Những luồng khói trắng phụt ra từ mạn tàu."
+],
+[
+159.98,
+164.48,
+"Đạn pháo lao về phía các đồn lũy trên bán đảo Sơn Trà và khu vực cửa sông Hàn."
+],
+[
+164.9,
+166.08,
+"Mặt đất rung chuyển."
+],
+[
+166.2,
+168.18,
+"Khói bụi phủ kín các trận địa."
+],
+[
+168.44,
+171.18,
+"Từ trong pháo đài, quân triều Nguyễn bắn trả."
+],
+[
+171.68,
+175.46,
+"Những khẩu đại bác trên thành gầm vang giữa tiếng pháo từ ngoài biển."
+],
+[
+175.72,
+179.66,
+"Nhưng sức mạnh hỏa lực của các chiến hạm đã tạo ra sự chênh lệch lớn."
+],
+[
+179.7,
+183.16,
+"Các vị trí phòng thủ phía cửa biển liên tiếp chịu sức ép."
+],
+[
+183.34,
+186.92,
+"Bộ binh liên quân được đưa vào những điểm đổ bộ đã lựa chọn."
+],
+[
+187.06,
+189.84,
+"Cuộc chiến đấu bảo vệ Đà Nẵng chính thức bắt đầu!"
+],
+[
+190.06,
+193.12,
+"Đây không còn là cuộc đối đầu giữa những đoàn tàu ngoài khơi."
+],
+[
+193.38,
+195.84,
+"Mà là cuộc chiến ngay trên lãnh thổ Đại Nam."
+]
+],
+"moc": [
+138.3,
+141.74,
+150.58,
+154.28,
+157.26,
+159.98,
+164.9,
+166.2,
+168.44,
+171.68,
+175.72,
+179.7,
+183.34,
+187.06,
+190.06,
+193.38
+],
+"shots": [
+{
+"id": "C04-01",
+"co": "Đại toàn",
+"mo": "Toàn cảnh hạm đội trước Sơn Trà, đại bác khai hỏa.",
+"t0": 136.99,
+"t1": 148.81,
+"a": {
+"T": [
+-1100,
+2500,
+0
+],
+"d": 900,
+"az": 235,
+"el": 7,
+"nhin": [
+300,
+2700,
+60
+]
+},
+"b": {
+"T": [
+-1100,
+2500,
+0
+],
+"d": 700,
+"az": 220,
+"el": 6,
+"nhin": [
+400,
+2700,
+60
+]
+}
+},
+{
+"id": "C04-02",
+"co": "Cận",
+"mo": "Kíp pháo hạm Pháp nạp đạn và khai hỏa.",
+"t0": 148.81,
+"t1": 158.27,
+"a": {
+"T": "tau:2",
+"d": 130,
+"az": 120,
+"el": 10,
+"dy": 3
+},
+"b": {
+"T": "tau:2",
+"d": 105,
+"az": 80,
+"el": 8,
+"dy": 3
+}
+},
+{
+"id": "C04-03",
+"co": "Toàn",
+"mo": "Từ phía sau thành lũy nhìn ra biển, quân Nguyễn bắn trả và công sự bị pháo kích.",
+"t0": 158.27,
+"t1": 172.46,
+"a": {
+"T": [
+428,
+2783,
+2.91
+],
+"d": 32,
+"az": 40,
+"el": 12,
+"nhin": [
+-900,
+2200,
+0
+]
+},
+"b": {
+"T": [
+428,
+2783,
+2.91
+],
+"d": 26,
+"az": 60,
+"el": 9,
+"nhin": [
+-900,
+2000,
+0
+]
+}
+},
+{
+"id": "C04-04",
+"co": "Trung",
+"mo": "Bộ binh liên quân xuống thuyền nhỏ, tiếp cận bãi đổ bộ.",
+"t0": 172.46,
+"t1": 184.28,
+"a": {
+"T": "do-bo",
+"d": 90,
+"az": 230,
+"el": 14
+},
+"b": {
+"T": "do-bo",
+"d": 65,
+"az": 210,
+"el": 10
+}
+},
+{
+"id": "C04-05",
+"co": "Đại toàn",
+"mo": "Nâng cao trên sa bàn thể hiện hướng tiến công Sơn Trà và cửa sông.",
+"t0": 184.28,
+"t1": 196.1,
+"a": {
+"T": [
+900,
+1500,
+0
+],
+"d": 9000,
+"az": 200,
+"el": 50
+},
+"b": {
+"T": [
+900,
+1200,
+0
+],
+"d": 8000,
+"az": 170,
+"el": 58
+}
+}
+]
+},
+{
+"id": "C05",
+"title": "Thành Điện Hải và An Hải trong khói lửa",
+"date": "1 – 2/9/1858",
+"troi": "sang",
+"t0": 196.1,
+"t1": 241.22,
+"subs": [
+[
+197.56,
+205.42,
+"Tại cửa sông Hàn, hai vị trí phòng thủ quan trọng của triều Nguyễn là thành Điện Hải và thành An Hải trở thành những mục tiêu tiến công trực tiếp."
+],
+[
+205.68,
+208.02,
+"Phía Đông, liên quân nã pháo vào An Hải."
+],
+[
+208.3,
+212.4,
+"Phía Tây, Điện Hải tiếp tục chống trả bằng những khẩu đại bác đặt trên thành."
+],
+[
+212.88,
+218.62,
+"Sáng ngày 2 tháng 9, những chiến hạm lại tiến gần cửa sông, bắn phá dữ dội vào thành Điện Hải."
+],
+[
+218.76,
+221.85,
+"Quân triều Nguyễn chiến đấu trong điều kiện hỏa lực bất lợi."
+],
+[
+221.9,
+223.76,
+"Nhiều công sự bị phá hủy."
+],
+[
+223.98,
+227.28,
+"Các lực lượng phòng thủ buộc phải rút khỏi một số vị trí."
+],
+[
+227.54,
+231.92,
+"Liên quân nhanh chóng chiếm giữ những pháo đài và đồn lũy ở khu vực cửa biển."
+],
+[
+232.26,
+235.6,
+"Nhưng chiếm được pháo đài không có nghĩa là chiếm được cả Đà Nẵng."
+],
+[
+235.6,
+241.02,
+"Phía sau những thành lũy đầu tiên vẫn là một hệ thống phòng thủ trải rộng trên đất Quảng Nam."
+]
+],
+"moc": [
+197.56,
+205.68,
+208.3,
+212.88,
+218.76,
+221.9,
+223.98,
+227.54,
+232.26,
+235.6
+],
+"shots": [
+{
+"id": "C05-01",
+"co": "Đại toàn",
+"mo": "Toàn cửa sông Hàn, đánh dấu thành Điện Hải và An Hải.",
+"t0": 196.1,
+"t1": 205.94,
+"a": {
+"T": [
+1500,
+-900,
+0
+],
+"d": 4200,
+"az": 340,
+"el": 40
+},
+"b": {
+"T": [
+1500,
+-1100,
+0
+],
+"d": 3600,
+"az": 20,
+"el": 45
+}
+},
+{
+"id": "C05-02",
+"co": "Trung",
+"mo": "Pháo thủ tại Điện Hải bắn trả chiến hạm.",
+"t0": 205.94,
+"t1": 214.97,
+"a": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 90,
+"az": 250,
+"el": 16,
+"f": "phao-dh"
+},
+"b": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 70,
+"az": 290,
+"el": 12,
+"f": "phao-dh"
+}
+},
+{
+"id": "C05-03",
+"co": "Cận",
+"mo": "Bánh xe pháo, thuốc súng, đạn pháo; người lính bảo vệ khẩu pháo.",
+"t0": 214.97,
+"t1": 222.35,
+"a": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 7,
+"az": 200,
+"el": 22,
+"f": "phao-dh"
+},
+"b": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 5.5,
+"az": 230,
+"el": 26,
+"f": "phao-dh"
+}
+},
+{
+"id": "C05-04",
+"co": "Toàn",
+"mo": "Công sự trúng pháo, quân phòng thủ rút về tuyến sau.",
+"t0": 222.35,
+"t1": 232.2,
+"a": {
+"T": [
+2139,
+-1614,
+4.01
+],
+"d": 260,
+"az": 200,
+"el": 18
+},
+"b": {
+"T": [
+2139,
+-1614,
+4.01
+],
+"d": 200,
+"az": 240,
+"el": 14
+}
+},
+{
+"id": "C05-05",
+"co": "Đại toàn",
+"mo": "Bản đồ cập nhật những vị trí liên quân đã chiếm.",
+"t0": 232.2,
+"t1": 241.22,
+"a": {
+"T": [
+1200,
+0,
+0
+],
+"d": 9500,
+"az": 180,
+"el": 62
+},
+"b": {
+"T": [
+1200,
+-300,
+0
+],
+"d": 9000,
+"az": 160,
+"el": 66
+}
+}
+]
+},
+{
+"id": "C06",
+"title": "Cuộc phản kích ở Cẩm Lệ",
+"date": "Tháng 9/1858",
+"troi": "sang",
+"t0": 241.22,
+"t1": 281.97,
+"subs": [
+[
+242.62,
+245.38,
+"Tin chiến sự Đà Nẵng truyền về kinh đô Huế."
+],
+[
+245.68,
+248.78,
+"Vua Tự Đức khẩn trương điều thêm lực lượng đến mặt trận."
+],
+[
+249.06,
+255.82,
+"Hữu quân Đô thống Lê Đình Lý được giao chỉ huy quân chi viện, cùng các tướng lĩnh tổ chức chống giữ và phản kích."
+],
+[
+256.08,
+259.1,
+"Nhưng liên quân tiếp tục tiến sâu từ khu vực cửa biển."
+],
+[
+259.44,
+262.1,
+"Tại Cẩm Lệ, một trận đánh lớn diễn ra."
+],
+[
+262.1,
+266.04,
+"Giữa tiếng súng, quân triều Nguyễn cố ngăn đà tiến của đối phương."
+],
+[
+266.28,
+270.12,
+"Lê Đình Lý trực tiếp tham gia chỉ huy trận chiến và bị thương nặng."
+],
+[
+270.34,
+272.68,
+"Phòng tuyến ban đầu chịu nhiều tổn thất."
+],
+[
+272.9,
+279.15,
+"Song những cuộc kháng cự ấy đã cho thấy đối phương không thể dễ dàng tiến vào nội địa chỉ bằng ưu thế của chiến hạm."
+],
+[
+279.2,
+281.86,
+"Một cuộc chiến lâu dài hơn đang bắt đầu."
+]
+],
+"moc": [
+242.62,
+245.68,
+249.06,
+256.08,
+259.44,
+262.1,
+266.28,
+270.34,
+272.9,
+279.2
+],
+"shots": [
+{
+"id": "C06-01",
+"co": "Toàn",
+"mo": "Quân chi viện từ kinh đô Huế về Quảng Nam.",
+"t0": 241.22,
+"t1": 249.37,
+"a": {
+"T": "vien-binh",
+"d": 38,
+"az": 120,
+"el": 10
+},
+"b": {
+"T": "vien-binh",
+"d": 30,
+"az": 90,
+"el": 8
+}
+},
+{
+"id": "C06-02",
+"co": "Trung",
+"mo": "Lê Đình Lý chỉ huy đội hình từ vị trí dã chiến.",
+"t0": 249.37,
+"t1": 257.52,
+"a": {
+"T": "le-dinh-ly",
+"d": 22,
+"az": 200,
+"el": 12
+},
+"b": {
+"T": "le-dinh-ly",
+"d": 16,
+"az": 240,
+"el": 10
+}
+},
+{
+"id": "C06-03",
+"co": "Đại toàn",
+"mo": "Địa hình Cẩm Lệ, đội hình quân Nguyễn ngăn hướng tiến nội địa.",
+"t0": 257.52,
+"t1": 266.41,
+"a": {
+"T": [
+-1070,
+-8683,
+3.46
+],
+"d": 3200,
+"az": 250,
+"el": 32
+},
+"b": {
+"T": [
+-1070,
+-8683,
+3.46
+],
+"d": 2600,
+"az": 220,
+"el": 28
+}
+},
+{
+"id": "C06-04",
+"co": "Trung",
+"mo": "Giao chiến ở địa hình ven làng, nhìn từ sau công sự.",
+"t0": 266.41,
+"t1": 274.56,
+"a": {
+"T": [
+-800,
+-8000,
+0
+],
+"d": 26,
+"az": 200,
+"el": 8,
+"f": "luy-cl",
+"nhin": [
+-350,
+-7550,
+2
+]
+},
+"b": {
+"T": [
+-800,
+-8000,
+0
+],
+"d": 20,
+"az": 230,
+"el": 6,
+"f": "luy-cl",
+"nhin": [
+-350,
+-7550,
+2
+]
+}
+},
+{
+"id": "C06-05",
+"co": "Cận",
+"mo": "Lê Đình Lý bị thương, binh sĩ đưa rời trận địa.",
+"t0": 274.56,
+"t1": 281.97,
+"a": {
+"T": "le-dinh-ly",
+"d": 12,
+"az": 120,
+"el": 16
+},
+"b": {
+"T": "le-dinh-ly",
+"d": 9,
+"az": 90,
+"el": 12
+}
+}
+]
+},
+{
+"id": "C07",
+"title": "Nguyễn Tri Phương nhận trọng trách",
+"date": "Cuối năm 1858",
+"troi": "sang",
+"t0": 281.97,
+"t1": 319.89,
+"subs": [
+[
+283.28,
+289.02,
+"Trước tình hình mặt trận Đà Nẵng diễn biến phức tạp, triều đình Huế quyết định thay đổi tổ chức chỉ huy."
+],
+[
+289.44,
+296.78,
+"Danh tướng Nguyễn Tri Phương được điều ra chiến trường Quảng Nam, phối hợp với Phạm Thế Hiển và các tướng lĩnh tổ chức lại thế phòng thủ."
+],
+[
+297.08,
+305.46,
+"Đứng trước một đối thủ sở hữu chiến hạm và đại bác có ưu thế vượt trội, Nguyễn Tri Phương hiểu rằng đối đầu trực diện sẽ gây tổn thất rất lớn."
+],
+[
+305.88,
+307.6,
+"Ông lựa chọn một con đường khác."
+],
+[
+307.74,
+309.88,
+"Không để địch mở rộng chiếm đóng!"
+],
+[
+310.1,
+312.56,
+"Không cho địch dễ dàng tiếp tế trên bộ!"
+],
+[
+312.78,
+315.96,
+"Buộc đối phương phải sa lầy trong những cuộc giao tranh kéo dài!"
+],
+[
+316.22,
+319.88,
+"Từ đây, thế trận phòng thủ Đà Nẵng bước sang một giai đoạn mới."
+]
+],
+"moc": [
+283.28,
+289.44,
+297.08,
+305.88,
+307.74,
+310.1,
+312.78,
+316.22
+],
+"shots": [
+{
+"id": "C07-01",
+"co": "Toàn",
+"mo": "Triều đình Huế, quan quân dâng báo cáo chiến sự.",
+"t0": 281.97,
+"t1": 289.55,
+"a": {
+"T": [
+-8492,
+11433,
+286.28
+],
+"d": 9000,
+"az": 320,
+"el": 10,
+"nhin": [
+-20000,
+25000,
+0
+]
+},
+"b": {
+"T": [
+-8492,
+11433,
+286.28
+],
+"d": 6000,
+"az": 330,
+"el": 8,
+"nhin": [
+-30000,
+30000,
+0
+]
+},
+"the": "trieu-dinh"
+},
+{
+"id": "C07-02",
+"co": "Cận",
+"mo": "Sắc lệnh và bản đồ quân sự trên bàn.",
+"t0": 289.55,
+"t1": 296.38,
+"a": {
+"T": "ntp",
+"d": 5,
+"az": 15,
+"el": 12,
+"dy": 0.2
+},
+"b": {
+"T": "ntp",
+"d": 3.8,
+"az": 345,
+"el": 9,
+"dy": 0.2
+}
+},
+{
+"id": "C07-03",
+"co": "Trung",
+"mo": "Nguyễn Tri Phương cùng tướng lĩnh khảo sát bản đồ.",
+"t0": 296.38,
+"t1": 303.96,
+"a": {
+"T": "ban-ntp",
+"d": 12,
+"az": 200,
+"el": 18
+},
+"b": {
+"T": "ban-ntp",
+"d": 9,
+"az": 240,
+"el": 14
+}
+},
+{
+"id": "C07-04",
+"co": "Cận",
+"mo": "Bàn tay chỉ tuyến phòng thủ dự kiến.",
+"t0": 303.96,
+"t1": 311.55,
+"a": {
+"T": "ban-ntp",
+"d": 2.4,
+"az": 120,
+"el": 58
+},
+"b": {
+"T": "ban-ntp",
+"d": 2.0,
+"az": 90,
+"el": 62
+}
+},
+{
+"id": "C07-05",
+"co": "Đại toàn",
+"mo": "Tuyến bao vây mới hình thành trên bản đồ.",
+"t0": 311.55,
+"t1": 319.89,
+"a": {
+"T": [
+700,
+-3800,
+0
+],
+"d": 9000,
+"az": 180,
+"el": 64
+},
+"b": {
+"T": [
+700,
+-3800,
+0
+],
+"d": 8000,
+"az": 200,
+"el": 68
+}
+}
+]
+},
+{
+"id": "C08",
+"title": "Phòng tuyến bao vây: Lũy đất và chông tre",
+"date": "Cuối 1858 – đầu 1859",
+"troi": "sang",
+"t0": 319.89,
+"t1": 369.77,
+"subs": [
+[
+321.1,
+327.24,
+"Dưới sự chỉ huy của Nguyễn Tri Phương, quân dân Quảng Nam từng bước xây dựng một hệ thống phòng thủ mới."
+],
+[
+327.54,
+329.44,
+"Những đoạn lũy đất được đắp lên."
+],
+[
+329.8,
+330.8,
+"Hào sâu được đào."
+],
+[
+331.34,
+335.4,
+"Chông tre và các vật cản được bố trí trước những hướng tiến công có thể xảy ra."
+],
+[
+335.76,
+341.76,
+"Các đồn Hải Châu, Phước Ninh, Thạc Gián và Liên Trì trở thành những mắt xích trong hệ thống chống giữ."
+],
+[
+342.02,
+347.08,
+"Phía sau chiến lũy, binh sĩ sẵn sàng phản kích khi đối phương rời khỏi khu vực kiểm soát."
+],
+[
+347.34,
+352.04,
+"Nhân dân địa phương tham gia vận chuyển vật liệu, xây dựng công sự và bảo đảm hậu cần."
+],
+[
+352.1,
+357.38,
+"Quân triều Nguyễn không chủ trương đem toàn bộ lực lượng ra quyết chiến với đại bác trên chiến hạm."
+],
+[
+357.62,
+362.16,
+"Thay vào đó là một mạng lưới phòng thủ khiến liên quân khó tiến sâu vào nội địa."
+],
+[
+362.34,
+363.87,
+"Từng đoạn lũy được dựng lên."
+],
+[
+363.92,
+365.68,
+"Từng con đường bị khống chế."
+],
+[
+365.94,
+369.68,
+"Từng bước tiến của quân xâm lược đều phải đối mặt với sự kháng cự!"
+]
+],
+"moc": [
+321.1,
+327.54,
+329.8,
+331.34,
+335.76,
+342.02,
+347.34,
+352.1,
+357.62,
+362.34,
+363.92,
+365.94
+],
+"shots": [
+{
+"id": "C08-01",
+"co": "Đại toàn",
+"mo": "Trên cao thể hiện từng tuyến lũy xuất hiện theo bản đồ lịch sử.",
+"t0": 319.89,
+"t1": 329.87,
+"a": {
+"T": [
+800,
+-4200,
+0
+],
+"d": 8000,
+"az": 190,
+"el": 58
+},
+"b": {
+"T": [
+800,
+-4200,
+0
+],
+"d": 7000,
+"az": 160,
+"el": 62
+}
+},
+{
+"id": "C08-02",
+"co": "Trung",
+"mo": "Binh sĩ và dân binh đào hào, đắp đất, chuyển tre gỗ.",
+"t0": 329.87,
+"t1": 339.84,
+"a": {
+"T": "dao-luy",
+"d": 70,
+"az": 200,
+"el": 16
+},
+"b": {
+"T": "dao-luy",
+"d": 55,
+"az": 240,
+"el": 12
+}
+},
+{
+"id": "C08-03",
+"co": "Cận",
+"mo": "Bàn tay buộc chông tre, dụng cụ đào đất, vật liệu gia cố.",
+"t0": 339.84,
+"t1": 348.16,
+"a": {
+"T": [
+-889,
+-3451,
+0
+],
+"d": 6.5,
+"az": 190,
+"el": 36,
+"dy": 0.5
+},
+"b": {
+"T": [
+-889,
+-3451,
+0
+],
+"d": 5.2,
+"az": 215,
+"el": 40,
+"dy": 0.5
+}
+},
+{
+"id": "C08-04",
+"co": "Toàn",
+"mo": "Travelling dọc tuyến phòng thủ có đồn lũy và khoảng trống.",
+"t0": 348.16,
+"t1": 359.79,
+"a": {
+"T": [
+-1100,
+-3420,
+0
+],
+"d": 55,
+"az": 200,
+"el": 12
+},
+"b": {
+"T": [
+300,
+-3440,
+0
+],
+"d": 55,
+"az": 190,
+"el": 12
+}
+},
+{
+"id": "C08-05",
+"co": "Đại toàn",
+"mo": "Góc nhìn trên cao giới hạn khu vực chiếm đóng của liên quân.",
+"t0": 359.79,
+"t1": 369.77,
+"a": {
+"T": [
+1200,
+-2000,
+0
+],
+"d": 10000,
+"az": 180,
+"el": 70
+},
+"b": {
+"T": [
+1200,
+-2000,
+0
+],
+"d": 9200,
+"az": 200,
+"el": 74
+}
+}
+]
+},
+{
+"id": "C09",
+"title": "Những trận phục kích trên đất Quảng",
+"date": "1858 – 1859",
+"troi": "sang",
+"t0": 369.77,
+"t1": 420.99,
+"subs": [
+[
+371.06,
+379.36,
+"Không thể tiến sâu vào đất liền, liên quân Pháp – Tây Ban Nha nhiều lần tổ chức các đợt tiến công nhằm phá vỡ những tuyến phòng thủ của quân triều Nguyễn."
+],
+[
+379.86,
+384.98,
+"Nhưng phía sau những lũy đất và rặng tre là những đơn vị đã được bố trí để chống trả."
+],
+[
+385.16,
+391.22,
+"Tại các khu vực Nại Hiên, Hóa Khuê, Thạc Gián và Liên Trì, những cuộc giao tranh liên tiếp diễn ra."
+],
+[
+391.4,
+396.02,
+"Quân triều Nguyễn lợi dụng công sự và địa hình, chặn đánh các đội hình tiến công."
+],
+[
+396.2,
+400.46,
+"Khi đối phương áp sát, súng và đại bác từ các vị trí phòng thủ khai hỏa."
+],
+[
+400.76,
+403.94,
+"Những đơn vị phục kích xuất hiện từ các hướng đã lựa chọn."
+],
+[
+404.34,
+407.46,
+"Có trận quân triều Nguyễn đánh lui được đối phương."
+],
+[
+407.76,
+410.1,
+"Có trận phòng tuyến chịu thiệt hại nặng nề."
+],
+[
+410.5,
+416.35,
+"Nhưng qua từng cuộc giao tranh, kế hoạch đánh nhanh để mở đường tiến vào nội địa vẫn không đạt được mục tiêu."
+],
+[
+416.4,
+420.9,
+"Đà Nẵng trở thành chiến trường của một cuộc đối đầu kéo dài và đầy tổn thất."
+]
+],
+"moc": [
+371.06,
+379.86,
+385.16,
+391.4,
+396.2,
+400.76,
+404.34,
+407.76,
+410.5,
+416.4
+],
+"shots": [
+{
+"id": "C09-01",
+"co": "Đại toàn",
+"mo": "Bản đồ đồn Nại Hiên, Hóa Khuê, Thạc Gián, Liên Trì.",
+"t0": 369.77,
+"t1": 380.01,
+"a": {
+"T": [
+1000,
+-4500,
+0
+],
+"d": 9000,
+"az": 190,
+"el": 60
+},
+"b": {
+"T": [
+1000,
+-4500,
+0
+],
+"d": 8000,
+"az": 170,
+"el": 64
+}
+},
+{
+"id": "C09-02",
+"co": "Trung",
+"mo": "Bộ binh liên quân tiến về lũy đất.",
+"t0": 380.01,
+"t1": 390.26,
+"a": {
+"T": "cong-phap",
+"d": 90,
+"az": 160,
+"el": 12
+},
+"b": {
+"T": "cong-phap",
+"d": 70,
+"az": 200,
+"el": 10
+}
+},
+{
+"id": "C09-03",
+"co": "Cận",
+"mo": "Lính Nguyễn trong công sự chuẩn bị hỏa khí.",
+"t0": 390.26,
+"t1": 399.57,
+"a": {
+"T": [
+-505,
+-3492,
+0
+],
+"d": 7,
+"az": 195,
+"el": 14,
+"dy": 1.4,
+"nhin": [
+-450,
+-3250,
+2
+]
+},
+"b": {
+"T": [
+-505,
+-3492,
+0
+],
+"d": 5,
+"az": 215,
+"el": 10,
+"dy": 1.4,
+"nhin": [
+-430,
+-3230,
+2
+]
+}
+},
+{
+"id": "C09-04",
+"co": "Toàn",
+"mo": "Giao chiến ở tuyến hào và lũy, quân phòng thủ đánh trả.",
+"t0": 399.57,
+"t1": 410.75,
+"a": {
+"T": [
+-400,
+-3420,
+0
+],
+"d": 260,
+"az": 290,
+"el": 16
+},
+"b": {
+"T": [
+-400,
+-3420,
+0
+],
+"d": 200,
+"az": 250,
+"el": 14
+}
+},
+{
+"id": "C09-05",
+"co": "Đại toàn",
+"mo": "Đội hình tiến công rút về vị trí xuất phát trong trận được lựa chọn.",
+"t0": 410.75,
+"t1": 420.99,
+"a": {
+"T": [
+600,
+-2800,
+0
+],
+"d": 2600,
+"az": 200,
+"el": 34
+},
+"b": {
+"T": [
+800,
+-2600,
+0
+],
+"d": 2200,
+"az": 160,
+"el": 32
+}
+}
+]
+},
+{
+"id": "C10",
+"title": "Khi sức mạnh chiến hạm bị cầm chân",
+"date": "1858 – 1859",
+"troi": "mua",
+"t0": 420.99,
+"t1": 468.55,
+"subs": [
+[
+422.28,
+427.26,
+"Suốt nhiều tháng, những chiến hạm Pháp và Tây Ban Nha vẫn hiện diện trên vùng biển Đà Nẵng."
+],
+[
+427.64,
+433.42,
+"Nhưng ưu thế hỏa lực trên biển không đủ để giúp liên quân kiểm soát những vùng đất rộng lớn phía trong."
+],
+[
+433.5,
+437.56,
+"Tuyến phòng thủ của quân triều Nguyễn tiếp tục ngăn cản các cuộc tiến quân."
+],
+[
+437.82,
+440.2,
+"Việc tiếp tế từ đất liền gặp nhiều khó khăn."
+],
+[
+440.54,
+444.92,
+"Điều kiện khí hậu nóng ẩm cùng bệnh tật khiến lực lượng viễn chinh thêm suy yếu."
+],
+[
+445.18,
+452.85,
+"Những người lính từng được đưa đến đây với hy vọng giành chiến thắng nhanh chóng giờ phải đối mặt với một cuộc chiến không có hồi kết trước mắt."
+],
+[
+452.9,
+458.52,
+"Trong khi đó, quân dân Quảng Nam vẫn tiếp tục xây dựng công sự, canh giữ và đánh trả."
+],
+[
+458.74,
+460.8,
+"Những chiến hạm có thể tiến vào vịnh."
+],
+[
+461.1,
+463.64,
+"Những khẩu đại bác có thể phá vỡ một đoạn thành."
+],
+[
+463.94,
+468.6,
+"Nhưng sức mạnh ấy không thể dễ dàng khuất phục được sự kháng cự của cả một vùng đất."
+]
+],
+"moc": [
+422.28,
+427.64,
+433.5,
+437.82,
+440.54,
+445.18,
+452.9,
+458.74,
+461.1,
+463.94
+],
+"shots": [
+{
+"id": "C10-01",
+"co": "Đại toàn",
+"mo": "Hạm đội neo vịnh và khu vực chiếm đóng trên bản đồ.",
+"t0": 420.99,
+"t1": 430.5,
+"a": {
+"T": [
+1000,
+0,
+0
+],
+"d": 9500,
+"az": 200,
+"el": 60
+},
+"b": {
+"T": [
+1000,
+0,
+0
+],
+"d": 8800,
+"az": 230,
+"el": 64
+}
+},
+{
+"id": "C10-02",
+"co": "Trung",
+"mo": "Binh lính liên quân trong doanh trại và đội vận tải.",
+"t0": 430.5,
+"t1": 440.01,
+"a": {
+"T": [
+2032,
+2560,
+10.15
+],
+"d": 120,
+"az": 200,
+"el": 14
+},
+"b": {
+"T": [
+2032,
+2560,
+10.15
+],
+"d": 90,
+"az": 240,
+"el": 10
+}
+},
+{
+"id": "C10-03",
+"co": "Cận",
+"mo": "Bản đồ, thùng lương thực, quân trang và vật tư quân y.",
+"t0": 440.01,
+"t1": 447.94,
+"a": {
+"T": [
+2032,
+2560,
+10.15
+],
+"d": 18,
+"az": 170,
+"el": 32,
+"lech": [
+-10,
+-30
+]
+},
+"b": {
+"T": [
+2032,
+2560,
+10.15
+],
+"d": 14,
+"az": 210,
+"el": 36,
+"lech": [
+-10,
+-30
+]
+}
+},
+{
+"id": "C10-04",
+"co": "Toàn",
+"mo": "Quân Nguyễn củng cố hào lũy dưới trời mưa.",
+"t0": 447.94,
+"t1": 458.25,
+"a": {
+"T": [
+-400,
+-3420,
+0
+],
+"d": 60,
+"az": 200,
+"el": 10
+},
+"b": {
+"T": [
+-600,
+-3420,
+0
+],
+"d": 45,
+"az": 160,
+"el": 8
+}
+},
+{
+"id": "C10-05",
+"co": "Đại toàn",
+"mo": "Tương phản hạm đội ngoài biển và mạng lưới phòng thủ nội địa.",
+"t0": 458.25,
+"t1": 468.55,
+"a": {
+"T": [
+0,
+0,
+0
+],
+"d": 13000,
+"az": 200,
+"el": 30
+},
+"b": {
+"T": [
+0,
+0,
+0
+],
+"d": 12000,
+"az": 170,
+"el": 34
+}
+}
+]
+},
+{
+"id": "C11",
+"title": "Năm 1859: Liên quân chuyển hướng",
+"date": "Đầu năm 1859",
+"troi": "sang",
+"t0": 468.55,
+"t1": 519.07,
+"subs": [
+[
+469.7,
+472.4,
+"Đầu năm 1859."
+],
+[
+472.66,
+480.44,
+"Sau nhiều tháng tiến công mà không đạt được mục tiêu chiến lược ban đầu tại Đà Nẵng, bộ chỉ huy liên quân quyết định mở một hướng tác chiến mới."
+],
+[
+480.74,
+490.38,
+"Ngày 2 tháng 2 năm 1859, Rigault de Genouilly chuyển phần lớn lực lượng vào Nam Kỳ, chỉ để lại một bộ phận tiếp tục chiếm đóng khu vực Đà Nẵng."
+],
+[
+490.64,
+492.18,
+"Mục tiêu mới là Gia Định."
+],
+[
+492.32,
+495.78,
+"Những chiến hạm một lần nữa rời vị trí, hướng về phía Nam."
+],
+[
+496.06,
+504.5,
+"Nhưng khác với cuộc xuất quân cuối tháng Tám năm trước, lần này chúng không thể tuyên bố đã hoàn thành kế hoạch tiến quân từ Đà Nẵng ra kinh đô Huế."
+],
+[
+504.88,
+508.5,
+"Trên đất Quảng Nam, quân triều Nguyễn vẫn tiếp tục chống giữ."
+],
+[
+508.5,
+510.96,
+"Chiến sự tại Đà Nẵng chưa kết thúc."
+],
+[
+510.98,
+515.12,
+"Các cuộc giao tranh còn tiếp diễn trong năm 1859."
+],
+[
+515.34,
+518.92,
+"Mặt trận chuyển hướng, nhưng ngọn lửa kháng chiến vẫn tiếp tục cháy."
+]
+],
+"moc": [
+469.7,
+472.66,
+480.74,
+490.64,
+492.32,
+496.06,
+504.88,
+508.5,
+510.98,
+515.34
+],
+"shots": [
+{
+"id": "C11-01",
+"co": "Trung",
+"mo": "Rigault de Genouilly cùng sĩ quan xem bản đồ hành quân.",
+"t0": 468.55,
+"t1": 478.65,
+"a": {
+"T": "tau:0",
+"d": 170,
+"az": 160,
+"el": 16,
+"dy": 4
+},
+"b": {
+"T": "tau:0",
+"d": 140,
+"az": 130,
+"el": 13,
+"dy": 4
+}
+},
+{
+"id": "C11-02",
+"co": "Cận",
+"mo": "Bàn tay đánh dấu Đà Nẵng – Gia Định trên hải đồ.",
+"t0": 478.65,
+"t1": 486.43,
+"a": {
+"T": "tau:0",
+"d": 300,
+"az": 160,
+"el": 24,
+"dy": 4
+},
+"b": {
+"T": "tau:0",
+"d": 240,
+"az": 200,
+"el": 20,
+"dy": 4
+}
+},
+{
+"id": "C11-03",
+"co": "Toàn",
+"mo": "Một phần hạm đội nhổ neo khỏi Đà Nẵng.",
+"t0": 486.43,
+"t1": 498.08,
+"a": {
+"T": "ham-doi",
+"d": 1400,
+"az": 240,
+"el": 10
+},
+"b": {
+"T": "ham-doi",
+"d": 1700,
+"az": 210,
+"el": 9
+}
+},
+{
+"id": "C11-04",
+"co": "Đại toàn",
+"mo": "Bản đồ thể hiện tuyến hàng hải vào Gia Định.",
+"t0": 498.08,
+"t1": 508.97,
+"a": {
+"T": [
+0,
+0,
+0
+],
+"d": 60000,
+"az": 0,
+"el": 70
+},
+"b": {
+"T": [
+0,
+0,
+0
+],
+"d": 55000,
+"az": 0,
+"el": 75
+},
+"the": "bando-gia-dinh"
+},
+{
+"id": "C11-05",
+"co": "Trung",
+"mo": "Quân Nguyễn vẫn canh lũy; liên quân vẫn giữ một phần cửa biển.",
+"t0": 508.97,
+"t1": 519.07,
+"a": {
+"T": [
+-480,
+-3500,
+0
+],
+"d": 34,
+"az": 200,
+"el": 10
+},
+"b": {
+"T": [
+-480,
+-3500,
+0
+],
+"d": 26,
+"az": 165,
+"el": 8
+}
+}
+]
+},
+{
+"id": "C12",
+"title": "Đà Nẵng: Thành lũy của ý chí giữ nước",
+"date": "1859 – 23/3/1860",
+"troi": "hoanghon",
+"t0": 519.07,
+"t1": 594.06,
+"subs": [
+[
+520.42,
+524.56,
+"Cuộc chiến đấu tại Đà Nẵng tiếp tục trải qua những tháng ngày đầy gian khổ."
+],
+[
+524.6,
+528.82,
+"Các trận đánh diễn ra tại những đồn lũy và khu vực phòng thủ còn lại."
+],
+[
+529.0,
+535.86,
+"Đến ngày 23 tháng 3 năm 1860, liên quân Pháp – Tây Ban Nha rút hết lực lượng khỏi Đà Nẵng."
+],
+[
+536.2,
+544.38,
+"Sau hơn một năm rưỡi hiện diện và giao chiến, kế hoạch sử dụng Đà Nẵng làm bàn đạp để nhanh chóng tiến đánh kinh đô Huế đã không thành công."
+],
+[
+544.68,
+546.38,
+"Nhưng chiến tranh chưa kết thúc."
+],
+[
+546.52,
+550.42,
+"Cuộc xâm lược Đại Nam tiếp tục mở rộng trên những chiến trường khác."
+],
+[
+550.72,
+558.28,
+"Bởi vậy, thắng lợi phòng thủ tại Đà Nẵng không phải là thắng lợi kết thúc cuộc chiến, mà là một dấu mốc quan trọng của cuộc kháng chiến buổi đầu."
+],
+[
+558.66,
+564.48,
+"Nơi đây ghi dấu sự chiến đấu của quan quân triều Nguyễn, những lực lượng dân binh và nhân dân địa phương."
+],
+[
+564.76,
+571.68,
+"Ghi dấu những người chỉ huy đã tổ chức thế trận, những người lính giữ thành và những người dân cùng góp sức bảo vệ quê hương."
+],
+[
+571.98,
+573.16,
+"Thời gian trôi qua."
+],
+[
+573.54,
+575.56,
+"Tiếng đại bác đã lùi vào lịch sử."
+],
+[
+575.86,
+577.96,
+"Nhưng thành Điện Hải vẫn còn đó."
+],
+[
+578.0,
+583.7,
+"Như một chứng tích về buổi đầu đất nước phải đối mặt với cuộc chiến tranh xâm lược của các cường quốc phương Tây."
+],
+[
+584.08,
+586.46,
+"ĐÀ NẴNG, NĂM 1858!"
+],
+[
+586.66,
+588.86,
+"NƠI TIẾNG SÚNG XÂM LƯỢC ĐẦU TIÊN VANG LÊN!"
+],
+[
+589.08,
+593.78,
+"VÀ CŨNG LÀ NƠI Ý CHÍ KHÁNG CHIẾN CỦA QUÂN DÂN ĐẠI NAM ĐƯỢC THỂ HIỆN TỪ NHỮNG NGÀY ĐẦU TIÊN!"
+]
+],
+"moc": [
+520.42,
+524.6,
+529.0,
+536.2,
+544.68,
+546.52,
+550.72,
+558.66,
+564.76,
+571.98,
+573.54,
+575.86,
+578.0,
+584.08,
+586.66,
+589.08
+],
+"shots": [
+{
+"id": "C12-01",
+"co": "Đại toàn",
+"mo": "Sa bàn Đà Nẵng đầu năm 1860, các vị trí cập nhật theo mốc.",
+"t0": 519.07,
+"t1": 534.07,
+"a": {
+"T": [
+1000,
+-1500,
+0
+],
+"d": 11000,
+"az": 190,
+"el": 60
+},
+"b": {
+"T": [
+1000,
+-1500,
+0
+],
+"d": 10000,
+"az": 160,
+"el": 62
+}
+},
+{
+"id": "C12-02",
+"co": "Toàn",
+"mo": "Những chiến hạm cuối cùng rời cửa biển ngày 23/3/1860.",
+"t0": 534.07,
+"t1": 549.07,
+"a": {
+"T": "ham-doi",
+"d": 1200,
+"az": 250,
+"el": 9
+},
+"b": {
+"T": "ham-doi",
+"d": 1600,
+"az": 220,
+"el": 8
+}
+},
+{
+"id": "C12-03",
+"co": "Trung",
+"mo": "Quân Nguyễn và dân binh trong công sự, chuyển nhịp sang yên tĩnh.",
+"t0": 549.07,
+"t1": 564.06,
+"a": {
+"T": [
+-470,
+-3500,
+0
+],
+"d": 24,
+"az": 210,
+"el": 10
+},
+"b": {
+"T": [
+-470,
+-3500,
+0
+],
+"d": 18,
+"az": 240,
+"el": 8
+}
+},
+{
+"id": "C12-04",
+"co": "Cận",
+"mo": "Đại bác cổ, gạch thành, chuyển từ tái dựng sang hiện trạng Điện Hải.",
+"t0": 564.06,
+"t1": 579.06,
+"a": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 10,
+"az": 160,
+"el": 14,
+"f": "phao-dh"
+},
+"b": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 40,
+"az": 160,
+"el": 24,
+"f": "phao-dh"
+}
+},
+{
+"id": "C12-05",
+"co": "Đại toàn",
+"mo": "Nâng khỏi thành Điện Hải nhìn ra vịnh, xuất hiện tiêu đề phim.",
+"t0": 579.06,
+"t1": 594.06,
+"a": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 300,
+"az": 170,
+"el": 25,
+"nhin": [
+-500,
+3000,
+0
+]
+},
+"b": {
+"T": [
+1255,
+-2074,
+10.51
+],
+"d": 3500,
+"az": 180,
+"el": 22,
+"nhin": [
+-500,
+4000,
+0
+]
+},
+"the": "tua-de"
+}
+]
+}
+]
+}

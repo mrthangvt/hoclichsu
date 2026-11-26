@@ -1,0 +1,217 @@
+{
+ "dien-hai": {
+  "x": 1255,
+  "n": -2074,
+  "h": 10.51,
+  "ten": "Thành Điện Hải",
+  "ghi": "16,076367 B · 108,221737 Đ (anh Thắng gửi)",
+  "nuoc": false,
+  "trong": true
+ },
+ "an-hai": {
+  "x": 2139,
+  "n": -1614,
+  "h": 4.01,
+  "ten": "Thành An Hải",
+  "ghi": "ƯỚC LƯỢNG bờ Đông sông Hàn",
+  "nuoc": false,
+  "trong": true
+ },
+ "cua-han": {
+  "x": 1230,
+  "n": 891,
+  "h": -6.5,
+  "ten": "Cửa sông Hàn",
+  "ghi": "",
+  "nuoc": false,
+  "trong": true
+ },
+ "hai-chau": {
+  "x": 1016,
+  "n": -3173,
+  "h": 10.35,
+  "ten": "Đồn Hải Châu",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": true
+ },
+ "phuoc-ninh": {
+  "x": 535,
+  "n": -4008,
+  "h": 9.9,
+  "ten": "Đồn Phước Ninh",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": true
+ },
+ "thac-gian": {
+  "x": -582,
+  "n": -3579,
+  "h": 0.64,
+  "ten": "Đồn Thạc Gián",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": true
+ },
+ "lien-tri": {
+  "x": 428,
+  "n": -5343,
+  "h": 13.55,
+  "ten": "Đồn Liên Trì",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": true
+ },
+ "nai-hien": {
+  "x": 2460,
+  "n": -4008,
+  "h": 7.09,
+  "ten": "Nại Hiên",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": true
+ },
+ "hoa-khue": {
+  "x": 3209,
+  "n": -6123,
+  "h": 10.85,
+  "ten": "Hóa Khuê",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": false
+ },
+ "my-thi": {
+  "x": 3743,
+  "n": -7236,
+  "h": 15.4,
+  "ten": "Mỹ Thị",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": false
+ },
+ "cam-le": {
+  "x": -1070,
+  "n": -8683,
+  "h": 3.46,
+  "ten": "Cẩm Lệ",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": false
+ },
+ "hai-van": {
+  "x": -8492,
+  "n": 11433,
+  "h": 286.28,
+  "ten": "Hải Vân Quan",
+  "ghi": "Vị trí cửa ải hiện nay",
+  "nuoc": false,
+  "trong": false
+ },
+ "chon-sang": {
+  "x": -9313,
+  "n": 4269,
+  "h": 1.87,
+  "ten": "Đồn Chơn Sảng",
+  "ghi": "ƯỚC LƯỢNG theo bản đồ 1859",
+  "nuoc": false,
+  "trong": true
+ },
+ "dinh-hai": {
+  "x": -8358,
+  "n": 2527,
+  "h": 17.71,
+  "ten": "Pháo đài Định Hải",
+  "ghi": "ƯỚC LƯỢNG theo bản đồ 1859",
+  "nuoc": false,
+  "trong": true
+ },
+ "thanh-khe": {
+  "x": -2139,
+  "n": -2560,
+  "h": 8.73,
+  "ten": "Thanh Khê",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": true
+ },
+ "son-tra-tay": {
+  "x": 428,
+  "n": 2783,
+  "h": 2.91,
+  "ten": "Pháo đài Bắc · Đài quan sát",
+  "ghi": "ƯỚC LƯỢNG mũi Tây Sơn Trà",
+  "nuoc": false,
+  "trong": true
+ },
+ "trai-phap": {
+  "x": 2032,
+  "n": 2560,
+  "h": 10.15,
+  "ten": "Trại quân Pháp",
+  "ghi": "ƯỚC LƯỢNG theo bản đồ 1859",
+  "nuoc": false,
+  "trong": true
+ },
+ "nghia-dia": {
+  "x": 1444,
+  "n": 2950,
+  "h": 44.42,
+  "ten": "Nghĩa địa Tây Ban Nha",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": true
+ },
+ "tien-don": {
+  "x": 3453,
+  "n": 557,
+  "h": 0.81,
+  "ten": "Tiền đồn",
+  "ghi": "ƯỚC LƯỢNG",
+  "nuoc": false,
+  "trong": true
+ },
+ "son-tra": {
+  "x": 6417,
+  "n": 3340,
+  "h": 382.75,
+  "ten": "Bán đảo Sơn Trà",
+  "ghi": "",
+  "nuoc": false,
+  "trong": true
+ },
+ "lang-chai": {
+  "x": -230,
+  "n": -1751,
+  "h": 0.67,
+  "ten": "Làng chài ven vịnh",
+  "ghi": "MINH HOẠ",
+  "nuoc": false,
+  "trong": true
+ },
+ "bai-st": {
+  "x": 1380,
+  "n": 2260,
+  "h": 3.54,
+  "ten": "",
+  "ghi": "bãi đổ bộ ƯỚC LƯỢNG",
+  "nuoc": false,
+  "nuoc_xy": [
+   1560,
+   2460
+  ],
+  "trong": true
+ },
+ "bai-han": {
+  "x": 1516,
+  "n": 12,
+  "h": 0.79,
+  "ten": "",
+  "ghi": "bãi đổ bộ ƯỚC LƯỢNG",
+  "nuoc": false,
+  "nuoc_xy": [
+   1350,
+   15
+  ],
+  "trong": true
+ }
+}
