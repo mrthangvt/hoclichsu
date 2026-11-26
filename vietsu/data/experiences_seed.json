@@ -224,5 +224,42 @@
         "text": "Đêm 26/12/1972 bom B-52 làm 287 người chết."
       }
     ]
+  },
+  {
+    "id": "bach-dang-938",
+    "title": "Chiến thắng Bạch Đằng 938",
+    "period": "Cuối năm 938",
+    "entity_id": "",
+    "timeline_year": 938,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/engine/2.1.1/sa-ban.html?goi=bach-dang-938",
+    "notes": "Sa bàn 3D (bộ máy 2.1.1, gói packs/bach-dang-938) — tái dựng mô phỏng theo lời dẫn thu âm; vị trí bãi cọc, số thuyền, số người là minh họa; nguồn trong sources.json.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "bai-coc",
+        "name": "Bãi cọc Bạch Đằng",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Cọc gỗ đầu bịt sắt ẩn dưới nước triều lên; vị trí giả định."
+      },
+      {
+        "id": "cua-song",
+        "name": "Cửa sông Bạch Đằng",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Quân Ngô nhử thủy quân Nam Hán vào khi triều lên, phản công khi triều rút."
+      }
+    ]
   }
 ]

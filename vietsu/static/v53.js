@@ -8,6 +8,7 @@ const $=id=>document.getElementById(id);
 
 /* Chỉ ghi những trận đã có trang sa bàn thật trong vietsu/static/khong-gian/. */
 const SA_BAN_3D={
+ battle938:{title:'Bạch Đằng 938',href:'khong-gian/engine/2.1.1/sa-ban.html?goi=bach-dang-938'},
  battle1785:{title:'Rạch Gầm – Xoài Mút 1785',href:'khong-gian/rach-gam-xoai-mut/'},
  battle1789:{title:'Ngọc Hồi – Đống Đa 1789',href:'khong-gian/ngoc-hoi-dong-da/'},
  war1954:{title:'Điện Biên Phủ 1954',href:'khong-gian/dien-bien-phu/'},

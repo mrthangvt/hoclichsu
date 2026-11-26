@@ -68,5 +68,15 @@
     "year": 1972,
     "category": "Chiến dịch – sa bàn",
     "source_note": "Vị trí đại diện: cánh đồng Chuôm, xã Phù Lỗ (Đông Anh) — nơi chiếc B-52 đầu tiên rơi tại chỗ đêm 18/12/1972; sa bàn trải khắp Hà Nội và miền Bắc."
+  },
+  {
+    "id": "bach-dang-938",
+    "kind": "battle",
+    "lat": 20.94,
+    "lon": 106.79,
+    "name": "Bạch Đằng 938",
+    "year": 938,
+    "category": "Chiến trận – sa bàn",
+    "source_note": "Vị trí đại diện: cửa sông Bạch Đằng, khu bãi cọc Yên Giang – Quảng Yên (20,94 B, 106,79 Đ); địa điểm trận năm 938 còn là giả thuyết nghiên cứu."
   }
 ]
