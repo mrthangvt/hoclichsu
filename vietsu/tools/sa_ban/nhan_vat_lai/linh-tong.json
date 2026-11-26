@@ -32,16 +32,16 @@
   ],
   [
    "chay",
-   "DT_Standing_Run_Forward_2",
+   "DT_Fast_Run",
    1,
-   27,
+   17,
    "lap"
   ],
   [
    "chaynhanh",
-   "DT_Fast_Run",
+   "DT_Slow_Run",
    1,
-   17,
+   23,
    "lap"
   ],
   [
@@ -129,5 +129,53 @@
    "lap"
   ]
  ],
- "ra": "linh-tong.raw.glb"
+ "ra": "linh-tong.raw.glb",
+ "nvz": {
+  "tam_giac": 4200,
+  "ra": "linh-tong.nvz",
+  "jpg": "linh-tong.jpg",
+  "clip": [
+   [
+    "dung",
+    "dung",
+    3
+   ],
+   [
+    "thu",
+    "thu",
+    3
+   ],
+   [
+    "di",
+    "di",
+    12
+   ],
+   [
+    "chay",
+    "chay",
+    16
+   ],
+   [
+    "dam",
+    "dam",
+    10
+   ],
+   [
+    "chem",
+    "chem",
+    10
+   ],
+   [
+    "ngam",
+    "ban",
+    6
+   ],
+   [
+    "nga",
+    "chet",
+    10
+   ]
+  ]
+ },
+ "_ghi_chu": "chay = Fast Run (vung tay như Ngọc Hồi, 25/11/2026; Standing Run Forward (2) trông như bị trói tay); nvz: bản đám đông nướng từ chính các động tác này"
 }

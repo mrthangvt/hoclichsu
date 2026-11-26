@@ -14,7 +14,10 @@ goi = sys.argv[1]
 RA = Path(sys.argv[2] if len(sys.argv) > 2 else f"dist_{goi}").resolve()
 D = KG / "packs" / goi
 P = json.loads((D / "pack.json").read_text(encoding="utf-8"))
-E = sorted((KG / "engine").glob("2.*"))[-1]
+# bộ máy đúng bản gói khai báo (^2.1 → 2.1.x mới nhất): loi.js mỗi bản có chỗ cắm khác nhau, ghép rieng.js của 2.1 vào loi.js 2.2 là hỏng
+_v = re.match(r"\^?(\d+)\.(\d+)", str(P.get("engine", "2")))
+_ds = sorted((KG / "engine").glob(f"{_v.group(1)}.{_v.group(2)}.*" if _v else "2.*"), key=lambda d: [int(x) for x in d.name.split(".")])
+E = _ds[-1] if _ds else sorted((KG / "engine").glob("2.*"))[-1]
 if RA.exists(): shutil.rmtree(RA)
 (RA / "packs").mkdir(parents=True)
 
@@ -86,10 +89,16 @@ html = re.sub(r"<title>.*?</title>", f"<title>Sa bàn {P['title']}</title>", htm
 (RA / "app.html").write_text(html, encoding="utf-8")
 # trang khung ngoài: một iframe app.html; giữ voice (nếu gói có) để lời dẫn chạy liền qua các lần đổi tầng
 voice = (P.get("audio") or {}).get("voice")
+# ảnh bìa: packs/<id>/thumb.webp → thumb.jpg ở gốc artifact (artifact chỉ nhận PNG/JPEG làm ảnh xem trước)
+thumb = ""
+if (D / "thumb.webp").exists():
+    from PIL import Image
+    Image.open(D / "thumb.webp").convert("RGB").save(RA / "thumb.jpg", quality=86)
+    thumb = '<link rel="artifact-thumbnail" href="thumb.jpg">'
 vjs = f"""const a = new Audio(); a.preload = "auto"; window.__voxA = a;
 fetch("packs/{goi}/{voice}").then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => {{ a.src = URL.createObjectURL(b); a.load(); }}).catch(() => {{ a.src = "packs/{goi}/{voice}"; a.load(); }});""" if voice else ""
 (RA / "index.html").write_text(f"""<!DOCTYPE html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sa bàn {P['title']}</title>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sa bàn {P['title']}</title>{thumb}
 <style>html,body{{margin:0;height:100%;background:#17130f;overflow:hidden}}iframe{{position:fixed;inset:0;width:100%;height:100%;border:0;display:block}}#cau{{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden;transition:opacity .8s}}#cau img{{width:100%;height:100%;object-fit:cover;display:block;animation:cauZ 14s ease-out forwards}}#cau span{{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:rgba(20,15,10,.55);color:#f1e2b8;font:600 13px system-ui,sans-serif;padding:6px 14px;border-radius:99px}}#cau .td{{position:absolute;left:0;right:0;top:38%;text-align:center;color:#fff;font:800 clamp(26px,5vw,56px)/1.15 system-ui,sans-serif;text-shadow:0 2px 18px rgba(0,0,0,.75),0 0 3px #000;padding:0 6vw;animation:cauT 1.2s ease-out}}#cau .td small{{display:block;color:#f0c040;font-size:.42em;letter-spacing:.25em;margin-bottom:.4em}}@keyframes cauT{{from{{opacity:0;transform:translateY(12px)}}to{{opacity:1}}}}@keyframes cauZ{{from{{transform:scale(1)}}to{{transform:scale(1.07)}}}}</style></head>
 <body><script>
 {vjs}
