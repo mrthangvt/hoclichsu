@@ -217,4 +217,41 @@ Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa h�
 22. Khi có báo đứng hình: đo số hình khối (`renderer.info.memory.geometries`) và số chương trình đồ hoạ trước, sau từng bước. Chỗ nào tăng vọt là chỗ nạp giữa phim.
 23. Voice là đồng hồ chính. Không thêm khoảng nghỉ đầu hồi, vì nó cắt tiếng và hình.
 
-Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.
+**Bổ sung từ Khe Sanh 1968 (anh Thắng, 25/11/2026):**
+24. **Không phủ màn tối khi chuyển hồi / đổi tầng.** Lớp "Tiếp theo" phủ tối rồi lại hiện màn tải là thừa. Gói mới đặt `pack.json › ui.theChuong: false` (gói mẫu `_mau` đã đặt sẵn); bộ máy 2.2.0 khi đó đổi tầng thẳng, không hiện thẻ chương. Gói cũ (HCM) giữ mặc định.
+25. **Mũi tên chiến dịch:** một khối liền (thân và đầu chung một lưới, không ghép đoạn), không hiệu ứng, trong suốt 70 % (`opacity 0.3`), đặt ở một độ cao duy nhất cao hơn đỉnh địa hình dọc đường đi (≥ 250 m) để không xuyên núi. Mẫu: `muiTenPhang` trong `tools/sa_ban/khe_sanh/bien_dao_gd4.js`.
+26. **Mỗi cú máy phải có chủ thể và đúng cỡ cảnh.** Không dùng một máy quay xoay quanh mốc chính cho cả hồi. Lập bảng cú máy (đại toàn / toàn / trung / cận theo `story.json`), mỗi cú gắn một tổ người hoặc khí tài đã xếp sẵn (tuần tra, kíp pháo, đầu chiến hào, bãi đổ quân, đoàn xe…), máy bám vật đang chạy khi cần. Mẫu: `tools/sa_ban/khe_sanh/dan_canh_gd4.js` (hàm `MAY(id, …)`, `theo`, `dolly`, `quanh`, `toNguoi`).
+27. **Mọi vật tải sau bước "dựng sẵn" phải nạp lên GPU ngay khi tải xong** (mẫu GLB, xe `xeTao`, cờ có ảnh, đạo cụ dựng bằng mã): vẽ thử cả cảnh vào khung 1×1 với vật đó hiện tạm (`napSan`). Nếu không, khung đầu tiên vật lọt vào máy quay sẽ đứng hình (đo được 40–100 s trên SwiftShader).
+28. **Tư liệu sơ đồ của anh gửi** (sơ đồ căn cứ, trận đánh, bản đồ chiến dịch): ghi vào `sources.json`, không đưa ảnh sách lên repo; dò toạ độ theo thước của sơ đồ và ghi rõ chỗ lệch với số liệu của nguồn chữ.
+29. **Màn tải phải có nút "▶ Xem phim"** (`pack.json › ui.loaderHtml` với `ldgo`, `bstart`, `bexplore` — xem gói HCM). Thiếu thì mã dừng ngay khi tải xong, artifact không chạy. Trước khi đăng, chạy thử bản đóng gói (`dong_goi_artifact_2.py`) bằng máy chủ tĩnh cục bộ, bấm Xem phim và thử một lần đổi tầng.
+30. **Động tác bộ binh:** dùng động tác Mixamo cầm súng (Idle Aiming, Rifle Walk, Crouch Rapid Fire, Prone Firing…) qua `nhan_vat_lai/chuyen_dong_tac.py` (đổi động tác giữa các bộ xương mixamorig, canh súng tự động), rồi `nuong_nvz.py`. Người đứng yên chỉ dùng động tác tại chỗ; người di chuyển đi đúng nhịp bước in ra khi nướng.
+31. **Tên thương hiệu:** "Không gian lịch sử · Học Lịch Sử" (anh Thắng 25/11/2026: không dùng "Việt Sử" nữa).
+32. **Giảm lưới nhân vật:** hàn đỉnh trùng (đường nối UV) trước khi giảm lưới, nếu không người thủng lỗ (`nuong_nvz.py` đã làm sẵn).
+33. **Súng cầm tay:** tay phải ở tay cầm có cò, tay trái ở ốp lót, băng đạn quay xuống đất; súng đúng chiều dài thật theo chiều cao người.
+34. **Không đổi tầng khi người xem đang kéo thanh thời gian** — chỉ đổi khi thả tay.
+35. **Máy quay bay theo đường thật (OSM):** làm trơn đường và giữ một độ cao cố định trên đỉnh núi; không kẹp độ cao theo mặt đất từng khung (giật).
+36. **Âm thanh:** mỗi tiếng nổ trên hình có tiếng nổ tương ứng (nhỏ dần theo khoảng cách), để lại hố đất; có tiếng máy bay, trực thăng, xe khi chúng gần máy quay.
+37. **Cờ:** căn cứ, khí tài, đoàn quân mỗi bên mang cờ của bên đó; cờ bay phấp phới.
+38. **Không nạp sẵn tầng kế tiếp trong khung ẩn** (bỏ từ Khe Sanh V1.5): hai sa bàn WebGL chạy cùng lúc làm khung mới đứng hình, chỉ còn tiếng (lỗi "hồi 5 đơ hình"). Khung ngoài phải trả ngữ cảnh WebGL của khung cũ trước khi tạo khung mới.
+39. **Hướng mẫu khí tài:** đo trục đầu nòng / mũi xe của mẫu trước khi xoay (mẫu nướng bằng `bake_vat.py` / `bake_xe.py` nhìn +Z trong three.js) — pháo của bên tiến công chĩa nòng về mục tiêu, kíp pháo đứng sau càng pháo.
+40. **Đoàn quân đi trên đường, trận địa trên nền đất:** tuyến hành quân, vận tải có dải đường đất bám mặt đất (kéo dài quá hai đầu đội hình); trận địa pháo, nơi họp có nền đất. Lưới phủ mặt đất vẽ **hai mặt** (lưới quay mặt xuống thì vô hình khi nhìn từ trên). Nền chỉ nhô vài cm (đất tới gối là lỗi), dùng ảnh đất + cỏ lốm đốm; cây trang trí phải tránh đường máy quay.
+41. **Không gian trưng bày khí tài ở cuối phim:** sân phẳng đặt xa vùng chiến sự, chỉ hiện ở phần kết và khi khám phá; mỗi khí tài có ghim, bấm ra thẻ thông số có nguồn; có nút xuống đi bộ tham quan. Mẫu: `tools/sa_ban/khe_sanh/bao_tang_gd4.js`.
+42. **Đổi tầng trong bản Artifact:** khung ngoài giữ ảnh khung hình cuối của tầng cũ trong lúc tầng mới dựng (bộ máy 2.2.0 `doiTang` gửi ảnh, `dong_goi_artifact_2.py` phủ ảnh) — không màn tối, không hai sa bàn cùng chạy.
+43. **Chế độ đi bộ cần bộ nghe phím W A S D / mũi tên và cần ảo trong `rieng.js`** (bản nền HCM từng thiếu — nhân vật đứng im). Thử: vào đi bộ, giữ W, máy quay phải dời.
+44. **Người chạy vào công sự** không đi xuyên tường bao cát: dùng động tác nhảy qua ở đoạn cắt tường. Trực thăng có cánh quạt quay (bỏ cánh đúc liền của mẫu, gắn cụm cánh quạt dựng bằng mã).
+45. **Đội hình chạy khi đánh:** trộn người cúi khom và người chạy thẳng; có thương vong của cả hai bên (ít, không cận vết thương).
+46. **Không gắn người đứng yên vào một mốc đang chạy nhanh** (đầu hào dài ra, mũi tên tiến) — người, máy cận phải neo vào điểm cố định; phần "dài ra" chỉ để xem ở góc rộng.
+47. **Điện thoại:** độ phân giải ≤ 1,25, không MSAA; khung ngoài ghi chỗ đang xem để mở lại đúng phút nếu trình duyệt bỏ trang; giữ màn hình sáng khi phát phim (Wake Lock + video câm dự phòng).
+48. **Mẫu máy bay:** đo mũi trước khi xoay (đuôi đứng ở phía nào) — B-52, UH-1 nướng bằng `bake_vat.py` nhìn +Z.
+49. **Chế độ đi bộ (bộ máy 2.2.0):** máy quay chỉ dời một lần theo nhân vật (`placeAvatarAt`); thử: đi 10 s, khoảng cách máy – nhân vật không đổi.
+50. **Sa bàn nhiều tầng địa hình không liền mạch được** (mỗi tầng một trang). Sa bàn mới nên dùng một tầng; nếu cần cả toàn cảnh lẫn chi tiết thì làm một trang có miếng vá địa hình chi tiết.
+51. **Không gian trưng bày:** biển hai mặt, chữ tự vừa; bảng thông tin cạnh khí tài; bấm khí tài, bục, bảng đều mở thẻ ở giữa màn hình; nút Bảo tàng nằm trong nhóm chế độ.
+
+52. **XE, MÁY BAY ĐI NGƯỢC (anh Thắng 26/11: "gần đây hay bị nhầm, hãy nhớ lỗi này").** Trước khi dùng mẫu xe, máy bay, tàu, người đạp xe: render ảnh cạnh trong Blender, xác định mũi (mẫu `bake_vat.py` nhìn +Z three = −Y Blender). Khi chạy: `rotation.y = atan2(dx, dz)` theo **hướng đang đi** (tiếp tuyến); lượt về quay đầu 180°, không chạy lùi. Bánh xe quay góc = quãng đường / bán kính quanh trục X cục bộ.
+53. **Máy bay tiêm kích bay đội hình chữ V**, không nối đuôi; máy bay đỗ xếp hàng ngang. MiG bay có lửa đốt sau đỏ ở đuôi, vệt khí.
+54. **Khí tài, người không nằm dưới nước:** vị trí "mốc + độ lệch" dễ rơi xuống sông, hồ → dò ra chỗ đất (`lenDat` trong `tools/sa_ban/dbpk/bien_dao_dbpk.js`); người, xe trên phố dùng mặt phố làm phẳng; Khám phá bắt đầu trên phố.
+55. **Lính kíp khí tài không cầm súng** (`KHONG_SUNG=1 nuong_nvz.py`): mỗi bệ phóng 4 người thao tác + 1 người cầm súng gác; cụm ra-đa có cả hai. Bộ đội ta đi, đứng thẳng — không dáng khom.
+56. **Nhà theo đúng tuyến đường:** dãy nhà ống mặt tiền dọc đường OSM, nóc song song với đường, không đè nhau (`tools/sa_ban/dbpk/dung_placement.py`). Phố bị ném bom quay cận: mẫu nhà thật, đổ vỡ bằng cắt thân nhà lởm chởm (shader) + đống gạch.
+57. **Góc thẻ tên** là nút ⌂ Trang chủ (không ghi "cần đối chiếu tư liệu"); phần lớn của phim gọi là **Hồi**. Thẻ phủ của phim phải tắt khi chuyển sang Khám phá / Bảo tàng.
+
+Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27; `docs/DBPK_1972_TU_LIEU.md`.

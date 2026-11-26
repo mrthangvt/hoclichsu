@@ -1,51 +1,5 @@
 [
   {
-    "id": "lang-sen",
-    "title": "Làng Sen – Kim Liên",
-    "period": "Cuối thế kỷ XIX – đầu thế kỷ XX",
-    "entity_id": "hcm:1890",
-    "timeline_year": 1890,
-    "mode": "tour3d",
-    "reconstruction_level": "concept",
-    "asset_url": "",
-    "notes": "Tour di tích: xác định rõ hiện trạng, hình tái dựng, thuyết minh, quyền hiện vật và ảnh. Giai đoạn đầu chưa có asset 3D.",
-    "source_urls": [
-      "https://baotanghochiminh.vn/khu-di-tich-kim-lien-xa-kim-lien-huyen-nam-dan-tinh-nghe-an.htm"
-    ],
-    "status": "concept",
-    "hotspots": [
-      {
-        "id": "house",
-        "name": "Ngôi nhà quê nội",
-        "position": [
-          0,
-          0,
-          0
-        ],
-        "kind": "heritage",
-        "text": "Không gian cư trú năm 1901–1906 theo giới thiệu của Bảo tàng Hồ Chí Minh.",
-        "reconstruction_level": "concept",
-        "source_urls": [
-          "https://baotanghochiminh.vn/khu-di-tich-kim-lien-xa-kim-lien-huyen-nam-dan-tinh-nghe-an.htm"
-        ]
-      },
-      {
-        "id": "hoang-tru",
-        "name": "Làng Hoàng Trù",
-        "position": [
-          5,
-          0,
-          2
-        ],
-        "kind": "place",
-        "text": "Quê ngoại, nơi sinh Chủ tịch Hồ Chí Minh.",
-        "source_urls": [
-          "https://baotanghochiminh.vn/khu-di-tich-kim-lien-xa-kim-lien-huyen-nam-dan-tinh-nghe-an.htm"
-        ]
-      }
-    ]
-  },
-  {
     "id": "rach-gam",
     "title": "Rạch Gầm – Xoài Mút",
     "period": "Tháng 1 năm 1785",
@@ -194,6 +148,80 @@
         ],
         "kind": "battle",
         "text": "Xe tăng 390, 843 vào Dinh; cắm cờ trên nóc Dinh lúc 11 giờ 30 ngày 30/4/1975."
+      }
+    ]
+  },
+  {
+    "id": "khe-sanh-1968",
+    "title": "Chiến dịch Đường 9 – Khe Sanh 1968",
+    "period": "20/1 – 15/7/1968",
+    "entity_id": "",
+    "timeline_year": 1968,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/engine/2.2.0/sa-ban.html?goi=khe-sanh-1968",
+    "notes": "Sa bàn 3D (bộ máy 2.2.0, gói packs/khe-sanh-1968) — tái dựng mô phỏng theo lời dẫn thu âm; mốc thời gian, đơn vị, số liệu theo nguồn trong sources.json; vị trí chiến hào, số người là minh họa.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "ta-con",
+        "name": "Cụm cứ điểm Tà Cơn",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Căn cứ Trung đoàn 26 Thủy quân lục chiến Mỹ, bị vây lấn."
+      },
+      {
+        "id": "lang-vay",
+        "name": "Làng Vây",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Trận đầu xe tăng Việt Nam xuất trận (6 – 7/2/1968)."
+      }
+    ]
+  },
+  {
+    "id": "dien-bien-phu-tren-khong-1972",
+    "title": "Hà Nội – Điện Biên Phủ trên không 1972",
+    "period": "18 – 29/12/1972",
+    "entity_id": "",
+    "timeline_year": 1972,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/engine/2.2.0/sa-ban.html?goi=dien-bien-phu-tren-khong-1972",
+    "notes": "Sa bàn 3D (bộ máy 2.2.0, gói packs/dien-bien-phu-tren-khong-1972) — tái dựng mô phỏng theo lời dẫn thu âm 14 phút 43 giây; số liệu hai phía ghi nguồn trong sources.json; vị trí trận địa (trừ Tiểu đoàn 77 ở Chèm), đường bay, điểm rơi là minh họa.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "phu-lo",
+        "name": "Cánh đồng Chuôm, xã Phù Lỗ",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Chiếc B-52 đầu tiên rơi tại chỗ đêm 18/12/1972."
+      },
+      {
+        "id": "kham-thien",
+        "name": "Phố Khâm Thiên",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Đêm 26/12/1972 bom B-52 làm 287 người chết."
       }
     ]
   }

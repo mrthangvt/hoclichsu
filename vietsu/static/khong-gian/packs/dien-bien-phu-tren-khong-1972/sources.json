@@ -1,0 +1,291 @@
+{
+ "pack": "dien-bien-phu-tren-khong-1972",
+ "reconstruction": "Tái dựng mô phỏng — cần đối chiếu tư liệu. Lời dẫn theo kịch bản của anh Thắng (KICH_BAN_CLAUDE_12_CANH.md). Khí tài: B-52D (anh Thắng làm, sơn rằn ri), MiG-21, tên lửa S-75 + bệ phóng, xe ra-đa, súng 12,7 mm (mẫu Tripo anh Thắng làm 26/11/2026), cao xạ 37 mm, xe tải (gói HCM 1975), F-4 hình khối (MINH HOẠ). Vị trí trận địa trừ Tiểu đoàn 77 (Chèm, S3), điểm rơi, đường bay, nhà phố là MINH HOẠ. Phù hiệu sao đỏ trên mẫu MiG-21 chưa đúng phù hiệu Không quân nhân dân Việt Nam.",
+ "sources": [
+  {
+   "id": "S1",
+   "title": "Hà Nội – Điện Biên Phủ trên không: 12 ngày đêm oanh liệt (diễn biến chiến dịch)",
+   "type": "báo chí (Nhân Dân, chuyên trang)",
+   "url": "https://special.nhandan.vn/HaNoi_DienBienPhutrenkhong_12ngaydem/index.html",
+   "license": "trích dẫn",
+   "used_for": "19h10 ra-đa phát hiện nhiễu B-52; 19h44 quả đạn đầu tiên (Tiểu đoàn 78); bom 19h25–20h18 vào Nội Bài, Đông Anh, Yên Viên, Gia Lâm; Tiểu đoàn 59 hạ B-52 đầu tiên rơi tại chỗ"
+  },
+  {
+   "id": "S2",
+   "title": "Hà Nội – Điện Biên Phủ trên không 1972: thắng lợi của bản lĩnh Việt Nam",
+   "type": "báo chí (Thanh tra)",
+   "url": "https://thanhtra.com.vn/xa-hoi-C5ACF42DB/ha-noi-dien-bien-phu-tren-khong-1972-thang-loi-cua-ban-linh-viet-nam-B5A5AAD2.html",
+   "license": "trích dẫn",
+   "used_for": "lực lượng tham gia; 20h13 chiếc B-52 đầu tiên rơi ở Phù Lỗ"
+  },
+  {
+   "id": "S3",
+   "title": "Hạ gục \"pháo đài bay\" B-52 (Kỷ niệm 50 năm)",
+   "type": "báo chí (Nhân Dân)",
+   "url": "https://nhandan.vn/ha-guc-phao-dai-bay-b-52-post731274.html",
+   "license": "trích dẫn",
+   "used_for": "Tiểu đoàn 77, Trung đoàn 257 bố trí ở Chèm; mỗi tốp B-52 ít nhất ba chiếc"
+  },
+  {
+   "id": "S4",
+   "title": "December 18, 1972: Three B-52 Stratofortresses downed",
+   "type": "báo chí (QĐND, tiếng Anh)",
+   "url": "https://en.qdnd.vn/military/war-files/december-18-1972-three-b-52-stratofortresses-downed-547753",
+   "license": "trích dẫn",
+   "used_for": "Tiểu đoàn 57, 59, 94 (Trung đoàn 261) đánh tốp B-52 từ hướng Tam Đảo vào kho Đông Anh, Cổ Loa"
+  },
+  {
+   "id": "S5",
+   "title": "Nghệ thuật tác chiến Phòng không – Không quân rút ra từ Chiến dịch phòng không tháng 12-1972",
+   "type": "bài nghiên cứu (vksndtc.gov.vn)",
+   "url": "https://vksndtc.gov.vn/tin-vks/nghe-thuat-tac-chien-phong-khong---khong-quan-rut--d6-t1690.html",
+   "license": "trích dẫn",
+   "used_for": "81 máy bay, 34 B-52 (16 rơi tại chỗ); B-52 đầu tiên rơi ở cánh đồng Chuôm, xã Phù Lỗ"
+  },
+  {
+   "id": "S6",
+   "title": "Khám phá \"kẻ chỉ điểm\" siêu pháo đài bay B-52",
+   "type": "báo chí (Tiền Phong)",
+   "url": "https://tienphong.vn/hanh-trang-nguoi-linh/600753/Kham-pha-ke-chi-diem-sieu-phao-dai-bay-B52-tpol.html",
+   "license": "trích dẫn",
+   "used_for": "Tiểu đoàn 57 bố trí phía bắc sông Hồng, Tiểu đoàn 79 phía nam sông Hồng (18–24/12); khí tài KX"
+  },
+  {
+   "id": "S7",
+   "title": "B-52 liên tiếp... rụng",
+   "type": "báo chí (Tuổi Trẻ)",
+   "url": "https://tuoitre.vn/b-52-lien-tiep-rung-525764.htm",
+   "license": "trích dẫn",
+   "used_for": "rạng sáng 21/12 Tiểu đoàn 57 bắn rơi hai B-52 trong khoảng 10 phút; xe TZM chở đạn"
+  },
+  {
+   "id": "S8",
+   "title": "Story of B-52 hunters, part 4",
+   "type": "báo chí (QĐND, tiếng Anh)",
+   "url": "https://en.qdnd.vn/military/war-files/story-of-b-52-hunters-part-4-secret-of-defeating-enemies-in-the-sky-547790",
+   "license": "trích dẫn",
+   "used_for": "ngày 21/12 hai B-52 rơi ở Ba Vì, Phúc Yên"
+  },
+  {
+   "id": "S9",
+   "title": "\"Mắt thần\" bắt B-52 sớm, tạo điều kiện tên lửa lập công",
+   "type": "báo chí (Tiền Phong)",
+   "url": "https://tienphong.vn/hanh-trang-nguoi-linh/600944/Mat-than-bat-B-52-som-tao-dieu-kien-ten-lua-lap-cong-tpol.html",
+   "license": "trích dẫn",
+   "used_for": "Đại đội ra-đa 45, Trung đoàn 291 phát hiện ba dải nhiễu B-52 hơn 19 giờ 18/12"
+  },
+  {
+   "id": "S10",
+   "title": "The Christmas bombings of Hanoi in retrospect",
+   "type": "báo chí (VOV, tiếng Anh)",
+   "url": "https://english.vov.vn/en/society/the-christmas-bombings-of-hanoi-in-retrospect-20548.vov",
+   "license": "trích dẫn",
+   "used_for": "22h47 ngày 26/12 bom B-52 xuống Khâm Thiên: 287 người chết, 290 bị thương, 2.000 ngôi nhà"
+  },
+  {
+   "id": "S11",
+   "title": "Ngày giỗ chung của 287 người bị bom Mỹ sát hại ở Khâm Thiên",
+   "type": "báo chí (VTC News)",
+   "url": "https://vtcnews.vn/ngay-gio-chung-cua-287-nguoi-bi-bom-my-sat-hai-o-kham-thien-ar371722.html",
+   "license": "trích dẫn",
+   "used_for": "287 người; Đài tưởng niệm Khâm Thiên"
+  },
+  {
+   "id": "S12",
+   "title": "Lễ kỷ niệm 50 năm chiến thắng Điện Biên Phủ trên không tại Bệnh viện Bạch Mai",
+   "type": "báo chí (Nhân Dân)",
+   "url": "https://nhandan.vn/le-ky-niem-50-nam-phao-dai-bay-b52-oanh-tac-benh-vien-bach-mai-post731017.html",
+   "license": "trích dẫn",
+   "used_for": "đêm 21 rạng sáng 22/12 hơn 100 quả bom xuống Bệnh viện Bạch Mai; 28 cán bộ, y, bác sĩ, người bệnh hy sinh"
+  },
+  {
+   "id": "S13",
+   "title": "The plot to \"pull\" our missiles out of Hanoi (part 2)",
+   "type": "báo chí (QĐND, tiếng Anh)",
+   "url": "https://en.qdnd.vn/military/war-files/part-2-flexible-battle-transformation-548098",
+   "license": "trích dẫn",
+   "used_for": "ngày 26/12: 18 máy bay, trong đó 8 B-52 (4 chiếc rơi tại chỗ)"
+  },
+  {
+   "id": "S14",
+   "title": "Từ chiếc bát mang tên pháo đài bay Mỹ",
+   "type": "báo chí (SGGP)",
+   "url": "https://www.sggp.org.vn/tu-chiec-bat-mang-ten-phao-dai-bay-my-post185923.html",
+   "license": "trích dẫn",
+   "used_for": "20h18 đêm 18/12 Tiểu đoàn 59 (Nguyễn Thăng) hạ B-52 ở Phù Lỗ; 22h20 27/12 Phạm Tuân cất cánh từ Yên Bái, bắn cháy B-52 trên Mộc Châu; 21h41 28/12 Vũ Xuân Thiều cất cánh từ Cẩm Thủy"
+  },
+  {
+   "id": "S15",
+   "title": "Hà Nội – Điện Biên Phủ trên không: quật cờ \"siêu pháo đài bay\" Mỹ (ảnh TTXVN)",
+   "type": "báo chí (VietnamPlus)",
+   "url": "https://www.vietnamplus.vn/ha-noi-dien-bien-phu-tren-khong-quat-co-sieu-phao-dai-bay-my-post837934.vnp",
+   "license": "trích dẫn",
+   "used_for": "xác B-52 do Tiểu đoàn 72, Trung đoàn 285 bắn rơi xuống hồ Hữu Tiệp đêm 27/12; 30/12 Đại tướng Võ Nguyên Giáp thăm Tiểu đoàn 79"
+  },
+  {
+   "id": "S16",
+   "title": "Hồi ức: Phi đội bay đánh đêm",
+   "type": "báo chí (Tiền Phong)",
+   "url": "https://tienphong.vn/hanh-trang-nguoi-linh/601494/Hoi-uc-Phi-doi-bay-danh-dem-tpol.html",
+   "license": "trích dẫn",
+   "used_for": "27/12 Phạm Tuân cất cánh từ Yên Bái bay về hướng Tây Nam; 28/12 Vũ Xuân Thiều xuất kích từ sân bay Cẩm Thủy, hướng Mộc Châu, Sơn La"
+  },
+  {
+   "id": "S17",
+   "title": "Part 4: U.S. Air Force's huge loss and a brilliant Dien Bien Phu in the air",
+   "type": "báo chí (QĐND, tiếng Anh)",
+   "url": "https://en.qdnd.vn/military/war-files/part-4-u-s-air-force-s-huge-loss-and-a-brilliant-dien-bien-phu-in-the-air-488339",
+   "license": "trích dẫn",
+   "used_for": "ngày 29/12 bắn rơi một B-52, một F-4 — trận cuối"
+  },
+  {
+   "id": "S18",
+   "title": "Dấu mốc khép lại \"Điện Biên Phủ trên không\"",
+   "type": "báo chí (Báo Văn hóa)",
+   "url": "https://baovanhoa.vn/doi-song/dau-moc-khep-lai-dien-bien-phu-tren-khong-193320.html",
+   "license": "trích dẫn",
+   "used_for": "29/12 trận đánh cuối; Mỹ tuyên bố chấm dứt ném bom từ vĩ tuyến 20 trở ra"
+  },
+  {
+   "id": "M1",
+   "title": "Andersen AFB's Legacy: Operation Linebacker II",
+   "type": "tài liệu Không quân Mỹ (36th Wing)",
+   "url": "https://www.andersen.af.mil/News/Commentaries/Display/Article/416815/andersen-afbs-legacy-operation-linebacker-ii/",
+   "license": "trích dẫn",
+   "used_for": "153 B-52 ở Andersen (55 D, 98 G), 54 B-52D ở U-Tapao; đêm đầu 129 chiếc"
+  },
+  {
+   "id": "M2",
+   "title": "1972 – Operation Linebacker II (fact sheet)",
+   "type": "tài liệu Không quân Mỹ (AFHRA)",
+   "url": "https://www.afhistory.af.mil/FAQs/Fact-Sheets/Article/458991/operation-linebacker-ii",
+   "license": "trích dẫn",
+   "used_for": "Không quân Mỹ mất 15 B-52, 2 F-4, 2 F-111, 1 HH-53"
+  },
+  {
+   "id": "M3",
+   "title": "Linebacker II (Air Force Magazine, 11/1997)",
+   "type": "tạp chí (Air & Space Forces)",
+   "url": "https://www.airandspaceforces.com/article/1197linebacker/",
+   "license": "trích dẫn",
+   "used_for": "đêm 1 mất 3 B-52; đêm 3 mất 6 chiếc; U-Tapao bay 3–4 giờ, Guam ~12 giờ"
+  },
+  {
+   "id": "M4",
+   "title": "B-52s and Linebacker II",
+   "type": "bảo tàng (NMUSAF)",
+   "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/195837/b-52s-and-linebacker-ii/",
+   "license": "trích dẫn",
+   "used_for": "99 B-52G, 53 B-52D ở Guam, 54 B-52D ở U-Tapao; tiếp cận từ nhiều hướng"
+  },
+  {
+   "id": "M5",
+   "title": "Linebacker II — sơ đồ tuyến tiếp cận (Air Force Magazine 11/1997, bản PDF)",
+   "type": "bản đồ (tạp chí)",
+   "url": "https://www.airandspaceforces.com/PDF/MagazineArchive/Documents/1997/November%201997/1197linebacker.pdf",
+   "license": "trích dẫn",
+   "used_for": "hướng chung từ U-Tapao (qua Lào) và từ Guam (qua vịnh Bắc Bộ) — chỉ dùng làm hướng MINH HOẠ"
+  },
+  {
+   "id": "M6",
+   "title": "43rd supports Linebacker II",
+   "type": "tài liệu Không quân Mỹ (Pope AAF)",
+   "url": "https://www.pope.af.mil/News/Pope-News/Article/242894/43rd-supports-linebacker-ii/",
+   "license": "trích dẫn",
+   "used_for": "10 B-52 bị bắn rơi trên miền Bắc trong 741 lượt"
+  },
+  {
+   "id": "D1",
+   "title": "Độ cao: AWS Terrain Tiles (Terrarium)",
+   "type": "DEM",
+   "url": "https://registry.opendata.aws/terrain-tiles/",
+   "license": "mở",
+   "used_for": "địa hình hai tầng (tải 26/11/2026)"
+  },
+  {
+   "id": "D2",
+   "title": "OpenStreetMap",
+   "type": "OSM",
+   "url": "https://www.openstreetmap.org/copyright",
+   "license": "ODbL",
+   "used_for": "sông, hồ, đường, cầu Long Biên, phố Khâm Thiên, Bạch Mai, đường băng — © OpenStreetMap contributors (ODbL), tải 26/11/2026"
+  },
+  {
+   "id": "B1",
+   "title": "SAM-2, khắc tinh của \"siêu pháo đài bay\" B-52",
+   "type": "báo chí (Tiền Phong)",
+   "url": "https://tienphong.vn/hanh-trang-nguoi-linh/598585/SAM-2-khac-tinh-cua-%E2%80%98sieu-phao-dai-bay%E2%80%9D-B-52-tpol.html",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: đạn V-750 hai tầng; tầm bắn gần 40 km, độ cao bắn tới 25 km; đầu nổ gần 200 kg, tốc độ Mach 3"
+  },
+  {
+   "id": "B2",
+   "title": "S-75 Dvina (Wikipedia tiếng Anh)",
+   "type": "bách khoa",
+   "url": "https://en.wikipedia.org/wiki/S-75_Dvina",
+   "license": "CC BY-SA (trích số liệu)",
+   "used_for": "bảo tàng: đạn V-750 dài 10,6 m, nặng 2.300 kg"
+  },
+  {
+   "id": "B3",
+   "title": "SA-2 Surface-to-Air Missile (fact sheet, National Museum of the U.S. Air Force)",
+   "type": "bảo tàng Mỹ",
+   "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196037/",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: bệ phóng xoay 360°, nâng đạn 30–60° khi phóng"
+  },
+  {
+   "id": "B4",
+   "title": "Boeing B-52D Stratofortress (Pima Air & Space Museum)",
+   "type": "bảo tàng Mỹ",
+   "url": "https://pimaair.org/museum-aircraft/boeing-b-52d/",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: sải cánh 185 ft, dài 156 ft, cao 48 ft, 8 động cơ J57-P-19W, kíp 6 người, cải tiến Big Belly mang 108 quả bom thường, tốc độ tối đa 650 dặm/giờ"
+  },
+  {
+   "id": "B5",
+   "title": "37 mm automatic air defense gun M1939 (61-K) (Wikipedia tiếng Anh)",
+   "type": "bách khoa",
+   "url": "https://en.wikipedia.org/wiki/37_mm_automatic_air_defense_gun_M1939_(61-K)",
+   "license": "CC BY-SA (trích số liệu)",
+   "used_for": "bảo tàng: pháo 37 mm 61-K — nòng 2,73 m, sơ tốc 880 m/s, trần bắn tối đa ~5 km"
+  },
+  {
+   "id": "B6",
+   "title": "DShK-1938/46 Heavy Machine Gun (fact sheet, National Museum of the U.S. Air Force)",
+   "type": "bảo tàng Mỹ",
+   "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196038/dshk-193846-heavy-machine-gun/",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: đạn 12,7 × 108 mm"
+  },
+  {
+   "id": "B7",
+   "title": "MiG-21 in Vietnam (Vietnam Conflict Aviation Resource Center)",
+   "type": "tư liệu hàng không",
+   "url": "https://vietnam.warbirdsresourcegroup.org/mig21_history_vietnam.html",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: Trung đoàn 921 bay MiG-21MF tháng 12/1972"
+  },
+  {
+   "id": "B8",
+   "title": "Arsenal: MiG-21, Hanoi's aerial equalizer (HistoryNet)",
+   "type": "tạp chí lịch sử",
+   "url": "https://historynet.com/arsenal-mig-21-hanois-aerial-equalizer/",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: tháng 4/1966 MiG-21 đầu tiên tới miền Bắc, biên chế Trung đoàn 921"
+  },
+  {
+   "id": "B9",
+   "title": "S-75 Dvina (Military Wiki)",
+   "type": "tư liệu tổng hợp",
+   "url": "https://military-history.fandom.com/wiki/SA-2",
+   "license": "CC BY-SA (trích số liệu)",
+   "used_for": "bảo tàng: mỗi tiểu đoàn thường có 6 bệ phóng một ray, cách nhau khoảng 60–100 m"
+  }
+ ],
+ "lech": [
+  "Giờ chiếc B-52 đầu tiên: 20h13 (Nhân Dân, TTXVN, Thanh tra, Sở VHTT Hà Nội) / 20h16 (Tiền Phong) / 20h18 (SGGP; lời dẫn kịch bản). Thẻ chữ ghi 20h13 kèm chú thích.",
+  "Vũ Xuân Thiều: các nguồn ghi cất cánh từ sân bay Cẩm Thủy (Thanh Hóa), không phải Yên Bái; diễn biến cuối (va chạm hay không) khác nhau giữa nguồn — sa bàn không dựng va chạm.",
+  "Số B-52 bị mất: phía Việt Nam 34 (Bộ Quốc phòng); phía Mỹ 15 (AFHRA). Số máy bay: 81 (phía Việt Nam)."
+ ]
+}

@@ -45,9 +45,10 @@ m = o.modifiers.new('g', 'DECIMATE'); m.ratio = min(1, ntri / t0); m.use_collaps
 bpy.ops.object.modifier_apply(modifier='g')
 t1 = sum(len(p.vertices) - 2 for p in o.data.polygons)
 # vật liệu: chỉ ảnh màu 1024 (jpg), nhám 0.8, kim loại 0.3
-src = os.path.join(os.path.dirname(fbx), [d for d in os.listdir(os.path.dirname(fbx)) if d.endswith('.fbm')][0], 'Color.png')
+fbm = os.path.join(os.path.dirname(os.path.abspath(fbx)), [d for d in os.listdir(os.path.dirname(os.path.abspath(fbx))) if d.endswith('.fbm')][0])
+src = os.path.join(fbm, 'Color.png') if os.path.exists(os.path.join(fbm, 'Color.png')) else os.path.join(fbm, 'Color.jpg')   # Tripo xuất png hoặc jpg
 img = np.array(Image.open(src).convert('RGB'))
-decals = []
+decals = []; CHIEU = False           # CHIEU: dán bằng chiếu thẳng theo trục X (mặt cong có tay nắm, móc)
 if XOA:
     hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
     mask = ((hsv[..., 2] > 150) & (hsv[..., 1] < 60)).astype(np.uint8) * 255      # chữ trắng, lốp viền trắng
@@ -76,6 +77,14 @@ if XOA:
                 cr = np.median(np.array(R), 0); dy = 1 if c[1] >= cr[1] else -1
                 c = np.array([c[0], cr[1] + dy * (0.30 + 0.45 + 0.04), cr[2]])
             decals.append((sd, c))
+    if SO and not decals:   # xe máy sinh không có chữ số cũ (vd. PT-76): dán số giữa hai bên tháp pháo
+        V2 = np.array([v.co[:] for v in o.data.vertices]); z0 = V2[:, 2].min()      # toạ độ sau khi đã đổi tỉ lệ
+        T = V2[V2[:, 2] > z0 + 0.78 * (V2[:, 2].max() - z0)]
+        zc = float(np.median(T[:, 2])); band = T[np.abs(T[:, 2] - zc) < 0.12]; yc = float(np.median(band[:, 1]))
+        mid = band[np.abs(band[:, 1] - yc) < 0.25]
+        for sd in (1, -1): decals.append((sd, np.array([mid[:, 0].max() if sd > 0 else mid[:, 0].min(), yc, zc - 0.05])))
+        CHIEU = True
+        print('khong co chu so cu: dan so giua thap phao')
     img = cv2.inpaint(img, mask, 6, cv2.INPAINT_TELEA)
 jpg = out.replace('.glb', '.jpg'); Image.fromarray(img).resize((1024, 1024), Image.LANCZOS).save(jpg, quality=88)
 mat = bpy.data.materials.new(os.path.basename(out).replace('.glb', '')); mat.use_nodes = True
@@ -91,7 +100,7 @@ if SO:
     md = bpy.data.materials.new('so-hieu'); md.use_nodes = True; bd = md.node_tree.nodes['Principled BSDF']
     t2 = md.node_tree.nodes.new('ShaderNodeTexImage'); t2.image = bpy.data.images.load(png)
     md.node_tree.links.new(t2.outputs['Color'], bd.inputs['Base Color']); md.node_tree.links.new(t2.outputs['Alpha'], bd.inputs['Alpha']); bd.inputs['Roughness'].default_value = 0.85
-    w, h, NX, NY = 0.9, 0.45, 18, 9
+    w, h, NX, NY = (0.62, 0.31, 18, 9) if CHIEU else (0.9, 0.45, 18, 9)
     for sd, c in decals:
         n = mathutils.Vector((sd, 0, 0)); r = mathutils.Vector((0, 0, 1)).cross(n); z = mathutils.Vector((0, 0, 1))
         cc = mathutils.Vector(c) + n * 0.25
@@ -106,7 +115,9 @@ if SO:
         for poly in me.polygons:
             for li in poly.loop_indices: me.uv_layers[0].data[li].uv = uvs[me.loops[li].vertex_index]
         me.materials.append(md); ob = bpy.data.objects.new('so-hieu', me); bpy.context.scene.collection.objects.link(ob)
-        sw = ob.modifiers.new('bam', 'SHRINKWRAP'); sw.target = o; sw.wrap_method = 'NEAREST_SURFACEPOINT'; sw.offset = 0.015
+        sw = ob.modifiers.new('bam', 'SHRINKWRAP'); sw.target = o; sw.offset = 0.015
+        if CHIEU: sw.wrap_method = 'PROJECT'; sw.use_project_x = True; sw.use_negative_direction = True; sw.use_positive_direction = True
+        else: sw.wrap_method = 'NEAREST_SURFACEPOINT'
         bpy.context.view_layer.objects.active = ob; bpy.ops.object.modifier_apply(modifier='bam')
     for x in bpy.data.objects: x.select_set(x.type == 'MESH')
     print('so hieu dat tai', [(sd, [round(x, 2) for x in c]) for sd, c in decals])
