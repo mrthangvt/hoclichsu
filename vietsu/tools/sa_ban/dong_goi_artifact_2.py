@@ -89,10 +89,16 @@ html = re.sub(r"<title>.*?</title>", f"<title>Sa bàn {P['title']}</title>", htm
 (RA / "app.html").write_text(html, encoding="utf-8")
 # trang khung ngoài: một iframe app.html; giữ voice (nếu gói có) để lời dẫn chạy liền qua các lần đổi tầng
 voice = (P.get("audio") or {}).get("voice")
+# ảnh bìa: packs/<id>/thumb.webp → thumb.jpg ở gốc artifact (artifact chỉ nhận PNG/JPEG làm ảnh xem trước)
+thumb = ""
+if (D / "thumb.webp").exists():
+    from PIL import Image
+    Image.open(D / "thumb.webp").convert("RGB").save(RA / "thumb.jpg", quality=86)
+    thumb = '<link rel="artifact-thumbnail" href="thumb.jpg">'
 vjs = f"""const a = new Audio(); a.preload = "auto"; window.__voxA = a;
 fetch("packs/{goi}/{voice}").then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => {{ a.src = URL.createObjectURL(b); a.load(); }}).catch(() => {{ a.src = "packs/{goi}/{voice}"; a.load(); }});""" if voice else ""
 (RA / "index.html").write_text(f"""<!DOCTYPE html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sa bàn {P['title']}</title>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sa bàn {P['title']}</title>{thumb}
 <style>html,body{{margin:0;height:100%;background:#17130f;overflow:hidden}}iframe{{position:fixed;inset:0;width:100%;height:100%;border:0;display:block}}</style></head>
 <body><script>
 {vjs}
