@@ -609,37 +609,49 @@ const BRK = LUY[luyNear(BR_B[0] - 10, BR_B[1])];
 const C8_IN = [BR_B[0] - 70, BR_B[1] + 40];                     // chỗ quân Tống tràn vào sau lũy
 const AMBUSH = [[-1220, -380, 0], [-1260, -980, 0], [-980, -260, 0]];
 // C08 (25/11/2026): vị trí lính Tống thứ i ở giây t — dùng chung cho chính nó và cho người quân Lý bám đánh nó
-const C8 = { N: 160, ly: [] };
+// 26/11/2026 (anh Thắng): qua cầu, qua chỗ lũy vỡ thì quân Tống TỎA RA thành hình quạt về phía Tây (mỗi người một điểm), gặp quân Lý ở đâu đánh ở đó
+const C8 = { N: 160, ly: [], stop: [], tb: [], yf: [] };
+const C8_BRK = [BRK.x - BRK.rx * 12, BRK.z - BRK.rz * 12];
+const C8_G = Array.from({ length: 160 }, (_, i) => { const g = -2.3 + rnd(i, 11) * 2.1, r = 25 + Math.sqrt(rnd(i, 12)) * 120; return [C8_IN[0] + Math.sin(g) * r, C8_IN[1] + Math.cos(g) * r]; });
+const C8_LB = polyLen([BR_A, BR_B, C8_BRK]), C8_V = 6.5;
 function c8Tong(i, t) {
-  const tStart = 505 + Math.floor(i / 3) * 0.35, row = (i % 3) - 1; if (t < tStart) return null;
-  const route = [BR_A, BR_B, [BRK.x - BRK.rx * 12, BRK.z - BRK.rz * 12], C8_IN, [C8_IN[0] - 200 + rnd(i, 1) * 60, C8_IN[1] + 80 + (rnd(i, 2) - 0.5) * 160]];
-  const r = travel(route, Math.min(t, 547 + rnd(i, 3) * 2), tStart, 6.0);           /* chạy ào qua cầu, qua chỗ lũy vỡ; bị chặn thì đứng lại đánh */ let x = r.x, z = r.z, yaw = r.yaw, clip = 'chay', wpn = i % 3 === 2 ? 'dao' : 'giao', tSeg = 0;
-  const ofs = row * 1.9; x += Math.cos(yaw) * ofs; z -= Math.sin(yaw) * ofs;
-  let y = hG(x, z); const onBridge = r.d < polyLen(route.slice(0, 2)); if (onBridge) y = Math.max(y, tideNow + 0.55);
-  if (t > 546) {                                       // bị phục kích, giao chiến tại chỗ rồi tháo chạy về cầu
-    const tb = 556 + rnd(i, 4) * 10;
-    if (t < tb) { clip = i % 2 ? 'chem' : 'dam'; }
-    else { const u = t - tb; const p0 = [x, z]; const dx = BR_B[0] - p0[0], dz = BR_B[1] - p0[1], L = Math.hypot(dx, dz) || 1; const k = Math.min(u * 4.2, Math.max(0, L - 4)); x = p0[0] + dx / L * k; z = p0[1] + dz / L * k; yaw = Math.atan2(dx, dz); y = hG(x, z); clip = 'chay'; wpn = null;
+  const tStart = 505 + Math.floor(i / 4) * 0.3, row = (i % 4) - 1.5; if (t < tStart) return null;
+  const route = [BR_A, BR_B, C8_BRK, C8_IN, C8_G[i]], stop = C8.stop[i] ?? Infinity;
+  const r = travel(route, Math.min(t, stop), tStart, C8_V);
+  let x = r.x, z = r.z, yaw = r.yaw, clip = r.done ? 'thu' : 'chay', wpn = i % 3 === 2 ? 'dao' : 'giao', tSeg = 0;
+  const ofs = row * 1.7 * clamp(1 - (r.d - C8_LB) / 25, 0, 1); x += Math.cos(yaw) * ofs; z -= Math.sin(yaw) * ofs;      /* trên cầu đi bốn hàng, qua lũy thì tản */
+  let y = hG(x, z); if (r.d < polyLen(route.slice(0, 2))) y = Math.max(y, tideNow + 0.55);
+  const tDen = Math.min(stop, tStart + r.L / C8_V), tb = C8.tb[i];
+  if (tb != null && t >= tDen) {
+    if (C8.yf[i] != null) yaw = C8.yf[i];
+    if (t < tb) clip = stop < Infinity ? (i % 2 ? 'chem' : 'dam') : 'thu';       // giáp mặt quân Lý thì đánh, chưa có ai thì thủ thế
+    else { const u = t - tb, p0 = [x, z], dx = BR_B[0] - p0[0], dz = BR_B[1] - p0[1], L = Math.hypot(dx, dz) || 1, k = Math.min(u * 4.2, Math.max(0, L - 4));
+      x = p0[0] + dx / L * k; z = p0[1] + dz / L * k; yaw = Math.atan2(dx, dz); y = hG(x, z); clip = 'chay'; wpn = null;
       const tf = tb + 3 + rnd(i, 5) * 10; if (i % 3 !== 1 && t > tf) { clip = 'nga'; tSeg = t - tf; const k2 = Math.min((tf - tb) * 4.2, Math.max(0, L - 4)); x = p0[0] + dx / L * k2; z = p0[1] + dz / L * k2; y = hG(x, z); }
       else if (k >= L - 4.5) { x = BR_B[0] + (rnd(i, 9) - 0.5) * 24; z = BR_B[1] + (rnd(i, 10) - 0.5) * 30; y = hG(x, z); clip = 'thu'; } }
   }
   return { x, y, z, yaw, clip, wpn, tSeg };
 }
-function c8Lap() {                                    // dựng sẵn 138 người quân Lý: xuất phát rải ở ba hướng, mỗi người một đối thủ, giờ gặp tính trước
+function c8Lap() {                                    // 138 người quân Lý: xuất phát rải ở ba hướng, mỗi người một đối thủ; gặp ở đâu thì đối thủ dừng lại đánh ở đó
   for (let k = 0; k < 138; k++) {
     const g = k % 3, A = AMBUSH[g], dx = A[0] - C8_IN[0], dz = A[1] - C8_IN[1], L0 = Math.hypot(dx, dz), ux = dx / L0, uz = dz / L0;
-    const lat = (rnd(k, 61) - 0.5) * 80, dep = 95 + rnd(k, 62) * 40;
-    const S = [C8_IN[0] + ux * dep - uz * lat, C8_IN[1] + uz * dep + ux * lat], j = (k * 37 + 11) % C8.N, t0 = 539 + g * 1.5 + rnd(k, 63) * 3, v = 6.0 + rnd(k, 64) * 1.4;
+    const lat = (rnd(k, 61) - 0.5) * 110, dep = 120 + rnd(k, 62) * 50;
+    const S = [C8_IN[0] + ux * dep - uz * lat, C8_IN[1] + uz * dep + ux * lat], j = (k * 37 + 11) % C8.N, t0 = 536 + g * 1.5 + rnd(k, 63) * 4, v = 6.0 + rnd(k, 64) * 1.4;
     let tm = t0 + 1, T;
     for (; tm < 590; tm += 0.25) { T = c8Tong(j, tm); if (T && Math.hypot(T.x - S[0], T.z - S[1]) <= v * (tm - t0) + 1.7) break; }
     T = c8Tong(j, tm) || { x: C8_IN[0], z: C8_IN[1] };
     const ox = S[0] - T.x, oz = S[1] - T.z, ol = Math.hypot(ox, oz) || 1, rot = (rnd(k, 65) - 0.5) * 1.2;
     const off = [(ox / ol * Math.cos(rot) - oz / ol * Math.sin(rot)) * 1.7, (oz / ol * Math.cos(rot) + ox / ol * Math.sin(rot)) * 1.7];
-    const tb = 556 + rnd(j, 4) * 10, tf = tb + 3 + rnd(j, 5) * 10; let tLuiT = j % 3 !== 1 ? tf : tb + 6; if (tLuiT < tm + 0.5) tLuiT = tm + 0.5;
-    const tDown = rnd(k, 66) < 0.1 && tm + 1.5 < tLuiT ? tm + 1.5 + rnd(k, 67) * Math.min(4, tLuiT - tm - 1.5) : Infinity;
-    const Td = c8Tong(j, Math.min(tDown, tLuiT)) || T, Md = [Td.x + off[0], Td.z + off[1]];
-    C8.ly.push({ S, j, t0, tm, M: [T.x + off[0], T.z + off[1]], off, tLuiT, tDown, Md, yd: Math.atan2(-off[0], -off[1]), wpn: k % 4 === 1 ? 'dao' : k % 9 === 4 ? 'co' : 'giao' });
+    C8.stop[j] = tm; C8.yf[j] = Math.atan2(off[0], off[1]);
+    C8.ly.push({ S, j, t0, tm, M: [T.x + off[0], T.z + off[1]], off, k });
   }
+  for (let i = 0; i < C8.N; i++) { const tS = 505 + Math.floor(i / 4) * 0.3, L = polyLen([BR_A, BR_B, C8_BRK, C8_IN, C8_G[i]]); C8.tb[i] = Math.min(C8.stop[i] ?? Infinity, tS + L / C8_V) + 4 + rnd(i, 4) * 9; }
+  C8.ly.forEach((a) => {
+    const { j, tm, k } = a, tb = C8.tb[j], tf = tb + 3 + rnd(j, 5) * 10; let tLuiT = j % 3 !== 1 ? tf : tb + 6; if (tLuiT < tm + 0.5) tLuiT = tm + 0.5;
+    const tDown = rnd(k, 66) < 0.1 && tm + 1.5 < tLuiT ? tm + 1.5 + rnd(k, 67) * Math.min(4, tLuiT - tm - 1.5) : Infinity;
+    const Td = c8Tong(j, Math.min(tDown, tLuiT)) || { x: a.M[0] - a.off[0], z: a.M[1] - a.off[1] };
+    Object.assign(a, { tLuiT, tDown, Md: [Td.x + a.off[0], Td.z + a.off[1]], yd: Math.atan2(-a.off[0], -a.off[1]), wpn: k % 4 === 1 ? 'dao' : k % 9 === 4 ? 'co' : 'giao' });
+  });
 }
 // quân Lý phản công (C12): đổ bộ bờ Bắc rồi đánh vào trại
 const LAND12 = chan(SB.camp, -1.9);
@@ -652,33 +664,53 @@ const PL12 = PATH12.map(polyLen), GATE12 = polyLen(PATH12[0].slice(0, 3));
 // C12 (25/11/2026, theo góp ý anh Thắng): qua cổng thì bộ binh TẢN RỘNG ra ba khu của trại, mỗi người lao tới một lính Tống riêng →
 // hỗn chiến từng cụm 1 chọi 2 khắp trại (không còn đứng thành hàng chém). Lính Tống giữ trại đứng rải giữa các lều; phần lớn bị hạ,
 // một phần bỏ chạy về phía Bắc, vài người cầm cự tới cuối cảnh; quân ta cũng có người ngã. Hạ xong đối thủ thì tiến tiếp vài chục mét.
+// 26/11/2026 (anh Thắng): vượt sông lên bờ, gặp lính Tống ngoài đồn lũy là ĐÁNH NGAY, không chạy lướt qua mặt. Mỗi người lên bờ ở bến thẳng trước đối thủ của mình,
+// lính Tống ngoài rào đứng theo các dải dọc so le nên đường chạy không cắt qua ai; lối thẳng vào cổng Nam để trống (cung thủ đứng đó).
+// Lính Tống trong trại do đợt sau đánh: đợt này đi theo lối cổng đã dọn sạch, vào trong mới tản ra từng người.
 const C12 = (() => {
   const IN = (sx) => [CAMP.x + sx * 22, CAMP.z + CAMP.d / 2 - 28];                   // điểm ngay trong cổng, ba mũi tách ra
-  const def = [];
-  for (let j = 0; j < INF12 / 2; j++) {
-    const s = (j % 3) - 1, trong = j % 5 === 0;                                         // 1/5 giữ trong trại (sát cổng Nam), 4/5 ra trước rào chặn đánh
-    let x, z;
-    if (trong) { const ci = s < 0 ? -9 + Math.floor(rnd(j, 31) * 7) : s > 0 ? 2 + Math.floor(rnd(j, 31) * 7) : -2 + Math.floor(rnd(j, 31) * 4), cj = 4 + Math.floor(rnd(j, 32) * 3);
-      x = CAMP.x + (ci + 0.5) * 22 + (rnd(j, 33) - 0.5) * 9; z = CAMP.z + (cj + 0.5) * 24 + (rnd(j, 34) - 0.5) * 9; }
-    else { x = CAMP.x + s * 150 + (rnd(j, 33) - 0.5) * 160; z = CAMP.z + CAMP.d / 2 + 18 + rnd(j, 34) * 95; }
+  const RAO = CAMP.z + CAMP.d / 2;                                                     // hàng rào phía Nam
+  const BANK = []; for (let u = -420; u <= 420; u += 4) { const c = chan(SB.camp + u, -1.9); BANK.push([c.x, c.z]); }
+  const segD = (p, a, b) => { const dx = b[0] - a[0], dz = b[1] - a[1], L2 = dx * dx + dz * dz || 1, u = clamp(((p[0] - a[0]) * dx + (p[1] - a[1]) * dz) / L2, 0, 1); return Math.hypot(p[0] - a[0] - dx * u, p[1] - a[1] - dz * u); };
+  // chọn bến: gần đối thủ nhất mà đường chạy thẳng không đi sát (dưới 4 m) một lính Tống nào khác
+  const chonBen = (D, P1, bo) => { const C = BANK.map((q) => [Math.hypot(q[0] - P1[0], q[1] - P1[1]), q]).sort((a, b) => a[0] - b[0]).slice(0, 60); let best = C[0][1], bc = -1;
+    for (const [, q] of C) { let m = 99; for (const E of def) { if (E === D || E.trong) continue; if (bo && Math.hypot(E.x - P1[0], E.z - P1[1]) < 2) continue; m = Math.min(m, segD([E.x, E.z], q, P1)); if (m < bc) break; }
+      if (m >= 4) return q; if (m > bc) { bc = m; best = q; } } return best; };
+  const def = [], NO = 96, NI = 24;
+  for (let j = 0; j < NO; j++) {                                                         // ngoài rào: 96 người, mỗi người một dải dọc rộng ~4 m, chừa lối cổng ±45 m
+    const s = j < NO / 2 ? -1 : 1, q = j % (NO / 2), x = CAMP.x + s * (48 + q * 4.0 + (rnd(j, 33) - 0.5) * 1.2), z = RAO + 16 + rnd(j, 34) * 80;
     const r = rnd(j, 35), fate = r < 0.55 ? 0 : r < 0.8 ? 1 : 2;                       // 0 bị hạ, 1 bỏ chạy, 2 cầm cự
-    def.push({ x, z, s, trong, fate, tF: Infinity });
+    def.push({ x, z, s, trong: false, fate, tF: Infinity, att: [] });
+  }
+  for (let j = 0; j < NI; j++) {                                                         // trong trại sát cổng Nam: 24 người
+    const s = (j % 3) - 1, ci = s < 0 ? -6 + Math.floor(rnd(j, 31) * 4) : s > 0 ? 2 + Math.floor(rnd(j, 31) * 4) : -2 + Math.floor(rnd(j, 31) * 4), cj = 5 + Math.floor(rnd(j, 32) * 2);
+    const x = CAMP.x + (ci + 0.5) * 22 + (rnd(j, 33) - 0.5) * 9, z = CAMP.z + (cj + 0.5) * 24 + (rnd(j, 34) - 0.5) * 9, r = rnd(j + 200, 35);
+    def.push({ x, z, s, trong: true, fate: r < 0.6 ? 0 : r < 0.85 ? 1 : 2, tF: Infinity, att: [] });
   }
   const att = [];
   for (let i = 0; i < INF12; i++) {
-    const j = i % def.length, D = def[j], two = i >= def.length, inn = IN(D.s);
-    const base = Math.atan2(inn[0] - D.x, inn[1] - D.z) + (two ? (rnd(j, 36) < 0.5 ? 0.75 : -0.75) : (rnd(i, 37) - 0.5) * 0.4);
-    const tx = D.x + Math.sin(base) * 1.75, tz = D.z + Math.cos(base) * 1.75;      // đứng cách đối thủ 1,75 m, người thứ hai đánh bọc sườn
-    const b0 = chan(SB.camp - 150 + rnd(i, 43) * 250, -1.9);                            // lên bờ rải theo các bến thuyền
-    const P = D.trong ? [[b0.x, b0.z], [GATE_S[0], GATE_S[1] + 45], GATE_S, inn, [tx, tz]] : [[b0.x, b0.z], [tx, tz]];
-    const L = polyLen(P), t0 = 862 + rnd(i, 89) * 5 + (two ? 1.2 : 0), v = clamp(L / (896 + rnd(i, 88) * 12 - t0), 5.6, 8.2);     // tới nơi khoảng 14:56–15:08
+    const first = i < 2 * NO, j = first ? i % NO : NO + (i - 2 * NO) % NI, D = def[j], two = first ? i >= NO : i - 2 * NO >= NI;
+    let P, base;
+    if (!D.trong) {                                                                      // lên bờ ngay trước mặt đối thủ, chạy thẳng tới đánh
+      const b0 = chonBen(D, [D.x, D.z], false);
+      base = Math.atan2(b0[0] - D.x, b0[1] - D.z) + (two ? (rnd(j, 36) < 0.5 ? 0.8 : -0.8) : (rnd(i, 37) - 0.5) * 0.3);
+      P = [[b0[0], b0[1]], [D.x + Math.sin(base) * 1.75, D.z + Math.cos(base) * 1.75]];
+    } else {                                                                             // đợt sau: theo lối cổng (không có lính Tống đứng) vào trong rồi mới tản ra
+      const inn = IN(D.s), G1 = [GATE_S[0] + (rnd(i, 44) - 0.5) * 30, GATE_S[1] + 45], b0 = chonBen(null, G1, false);
+      base = Math.atan2(inn[0] - D.x, inn[1] - D.z) + (two ? (rnd(j, 36) < 0.5 ? 0.75 : -0.75) : (rnd(i, 37) - 0.5) * 0.4);
+      P = [[b0[0], b0[1]], G1, GATE_S, inn, [D.x + Math.sin(base) * 1.75, D.z + Math.cos(base) * 1.75]];
+    }
+    const L = polyLen(P), t0 = D.trong ? 864 + rnd(i, 89) * 3 + (two ? 1 : 0) : 862 + rnd(i, 89) * 4 + (two ? 1.2 : 0);
+    const v = D.trong ? clamp(L / (902 + rnd(i, 88) * 6 - t0), 6.0, 8.6) : clamp(Math.max(6.0 + rnd(i, 88) * 1.3, L / (897 + rnd(i, 87) * 7 - t0)), 6, 8.4);
+    const tx = P[P.length - 1][0], tz = P[P.length - 1][1];
     const a = { P, L, v, t0, tA: t0 + L / v, j, lat: D.trong ? (rnd(i, 38) - 0.5) * 18 : 0, Lg: D.trong ? polyLen(P.slice(0, 3)) : -99, ga: Math.atan2(D.x - tx, D.z - tz),
       down: rnd(i, 7) < 0.12, wpn: i % 25 === 4 ? 'co' : i % 3 === 2 ? 'dao' : 'giao' };
-    D.tF = Math.min(D.tF, a.tA); att.push(a);
+    if (a.tA < D.tF) { D.tF = a.tA; D.a1 = i; } att.push(a);
   }
   def.forEach((D, j) => { D.tEnd = D.fate === 0 ? D.tF + 2.5 + rnd(j, 39) * 7 : D.fate === 1 ? D.tF + 2 + rnd(j, 40) * 5 : Infinity; });
-  att.forEach((a, i) => { a.tDown = a.down ? def[a.j].tF + 1.5 + rnd(i, 41) * 5 : Infinity; if (a.tDown > def[a.j].tEnd) a.tDown = Infinity;
-    const g = rnd(i, 42) * 0.8 - 0.4; a.adv = [Math.sin(Math.PI + g), Math.cos(Math.PI + g)]; });          // hạ xong đối thủ: tiến tiếp về phía Bắc
+  att.forEach((a, i) => { const D = def[a.j]; a.tDown = a.down ? D.tF + 1.5 + rnd(i, 41) * 5 : Infinity; if (a.tDown > D.tEnd) a.tDown = Infinity;
+    const g = rnd(i, 42) * 0.8 - 0.4; a.adv = [Math.sin(Math.PI + g), Math.cos(Math.PI + g)];                    // hạ xong đối thủ: tiến tiếp về phía Bắc
+    a.zMin = D.trong ? -Infinity : RAO + 5; });                                                                 // ngoài rào thì dừng sát rào
   return { def, att };
 })();
 const tongVis = { march: [352, 500], camp: [380, 900] };
@@ -833,7 +865,7 @@ function updateLand(t) {
         if (t >= a.tDown) { x = tx; z = tz; yaw = a.ga; clip = 'chet'; tSeg = t - a.tDown; wpn = null; }
         else if (t < D.tEnd + 1.2 && t < 912) { x = tx + Math.sin(t * 1.7 + i) * 0.25; z = tz + Math.cos(t * 1.3 + i) * 0.25; yaw = a.ga; clip = a.wpn === 'dao' ? 'chem' : a.wpn === 'co' ? 'thu' : 'dam'; }
         else {                                                                                 // đối thủ đã ngã / bỏ chạy: tiến tiếp ~20 m về phía Bắc rồi thủ thế
-          const u = Math.min(20, Math.max(0, t - D.tEnd - 1.2) * 3.6); x = tx + a.adv[0] * u; z = tz + a.adv[1] * u; yaw = Math.atan2(a.adv[0], a.adv[1]);
+          const u = Math.min(20, Math.max(0, t - D.tEnd - 1.2) * 3.6); x = tx + a.adv[0] * u; z = Math.max(a.zMin, tz + a.adv[1] * u); yaw = Math.atan2(a.adv[0], a.adv[1]);
           clip = u < 20 && t < 912 ? 'chay' : 'thu'; tt = t * 0.75;
         }
       }
@@ -842,8 +874,8 @@ function updateLand(t) {
     });
     // quân Tống giữ trại: đứng rải giữa các lều, quay về phía cổng; khi quân ta áp tới thì đánh trả; phần lớn ngã, một phần bỏ chạy về Bắc
     C12.def.forEach((D, j) => {
-      let x = D.x, z = D.z, clip = 'thu', wpn = j % 2 ? 'dao' : 'giao', tSeg = 0, yaw = Math.atan2(CAMP.x - D.x, CAMP.z + CAMP.d / 2 - D.z);
-      const a1 = C12.att[j]; if (t >= D.tF - 2) yaw = a1.ga + Math.PI;                       // quay mặt về người lao tới
+      let x = D.x, z = D.z, clip = 'thu', wpn = j % 2 ? 'dao' : 'giao', tSeg = 0, yaw = D.trong ? Math.atan2(CAMP.x - D.x, CAMP.z + CAMP.d / 2 - D.z) : 0;   // ngoài rào: nhìn ra sông
+      const a1 = C12.att[D.a1]; if (t >= D.tF - 2) yaw = a1.ga + Math.PI;                     // quay mặt về người lao tới
       if (t >= D.tF - 0.6) clip = j % 2 ? 'chem' : 'dam';
       if (D.fate === 0 && t >= D.tEnd) { clip = 'nga'; tSeg = t - D.tEnd; wpn = null; }
       else if (D.fate === 1 && t >= D.tEnd) { const u = t - D.tEnd; z -= u * 4.4; x += Math.sin(j) * u * 0.8; yaw = Math.PI + Math.sin(j) * 0.18; clip = 'chay'; wpn = null; if (z < CAMP.z - CAMP.d / 2 - 60) return; }
