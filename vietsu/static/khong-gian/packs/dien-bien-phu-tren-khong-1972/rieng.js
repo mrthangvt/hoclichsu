@@ -1428,9 +1428,11 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
         const cv = document.createElement('canvas'); cv.width = cv.height = 128; const x2 = cv.getContext('2d'), O_ = (r, c) => { x2.fillStyle = c; x2.beginPath(); x2.arc(64, 64, r, 0, 7); x2.fill(); };
         O_(63, '#1b1b19'); O_(42, '#5f6457'); O_(15, '#2f312c'); for (let k = 0; k < 6; k++) { const a = k * Math.PI / 3; x2.fillStyle = '#262823'; x2.beginPath(); x2.arc(64 + Math.cos(a) * 27, 64 + Math.sin(a) * 27, 5, 0, 7); x2.fill(); }
         x2.fillStyle = '#b8b29c'; x2.fillRect(60, 2, 8, 18);   /* vạch sáng trên lốp để thấy bánh quay */
-        const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; const bMat = new THREE.MeshLambertMaterial({ map: tx }), bGeo = new THREE.CircleGeometry(0.6, 24);
+        const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; const bMat = new THREE.MeshLambertMaterial({ map: tx }), bGeo = new THREE.CircleGeometry(1, 32);
         for (const k of ['td57', 'td77']) { if (!TD[k]) continue; const c = TD[k].c, o = g.scene.clone(true); o.scale.setScalar(TD[k].s); scene.add(o); const banh = [];
-          for (const z of [3.95, -0.95, -2.6]) for (const sg of [-1, 1]) { const pv = new THREE.Object3D(); pv.position.set(sg * 1.81, 0.63, z); const m = new THREE.Mesh(bGeo, bMat); m.rotation.y = sg * Math.PI / 2; pv.add(m); o.add(pv); banh.push(pv); }
+          /* tâm, bán kính từng bánh đo bằng ảnh cạnh của mẫu (anh Thắng 26/11: nắp phải to bằng bánh, đúng giữa bánh): [z, cao tâm, bán kính, mặt ngoài lốp |x|] */
+          for (const [z, y, r, xm] of [[3.85, 0.81, 0.81, 1.67], [-0.85, 0.78, 0.78, 1.61], [-2.61, 0.77, 0.77, 1.61]]) for (const sg of [-1, 1]) { const pv = new THREE.Object3D(); pv.position.set(sg * (xm + 0.03), y, z); pv.userData.r = r;
+            const m = new THREE.Mesh(bGeo, bMat); m.scale.setScalar(r); m.rotation.y = sg * Math.PI / 2; pv.add(m); o.add(pv); banh.push(pv); }
           KS.xt.push({ o, k, c, banh, R: 118 * TD[k].s, v: 4.2, a0: rr() * 6.28 }); }
         if (KS.xt[0]) napSan(KS.xt[0].o); } catch (e) { console.warn('xe TZM', e); }
       /* nhà phố Khâm Thiên: mẫu nhà phố gói HCM 1975 (NhaC, NhaA, XaNgoi, NhaD — gốc ở chân mặt tiền, mặt nhìn +z), dựng thưa 1/3 so với dãy nhà khác.
@@ -1616,7 +1618,7 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
       }
     if (HN && KS.migV) KS.migV.forEach((o, i) => { const F = KS.bayV.find((F) => t >= F.t0 && t <= F.t1); o.visible = !!F; if (!F) return; const { p, f } = viTriV(F, i, t); datMB(o, p, f, 0); migLua(p, f, 1); });
     if (HN && KS.xt) for (const X of KS.xt) { const a = X.a0 + X.v * t / X.R, x = X.c.x + Math.sin(a) * X.R, z = X.c.z + Math.cos(a) * X.R; X.o.position.set(x, hG(x, z), z); X.o.rotation.y = Math.atan2(Math.cos(a), -Math.sin(a));   /* hướng tiếp tuyến chiều chạy: luôn đi tiến */
-      for (const b of X.banh) b.rotation.x = X.v * t / 0.62; }
+      for (const b of X.banh) b.rotation.x = X.v * t / b.userData.r; }
     for (const [j, o] of RADA.entries()) { const at = o.userData.at; if (at) at.rotation.y = t * 0.9 + j * 1.3; const S = o.userData.song; if (!S) continue; const sc = o.scale.x, gn = ganMay(o.position.x, o.position.z, 2600 * sc);
       S.forEach((m, k) => { m.visible = gn && appMode !== 'pov'; if (!m.visible) return; const a = ((t * 0.55 + k / S.length) % 1), dir = (at || o).getWorldDirection(_f).setY(0).normalize(); dir.y = 0.38; dir.normalize();
         const p0 = (at || o).getWorldPosition(_p); m.position.copy(p0).addScaledVector(dir, (2 + a * 85) * sc).add(V3(0, 1.5 * sc, 0)); m.lookAt(m.position.clone().add(dir)); m.scale.setScalar((1.6 + a * 15) * sc); m.material.opacity = 0.95 * (1 - a) * (a < 0.08 ? a / 0.08 : 1); }); }
