@@ -28,7 +28,7 @@ NGAY = {'C01': 'tháng 12/1972', 'C02': '18 – 29/12/1972', 'C03': 'tháng 12/1
 NGUON = {'C01': ['S1', 'M1'], 'C02': ['M1', 'M2', 'M3'], 'C03': ['S2', 'S5'], 'C04': ['S1', 'S2', 'S3', 'S4'], 'C05': ['S6', 'S7', 'S8'], 'C06': ['S6', 'S9'], 'C07': ['S10', 'S11', 'S12'],
          'C08': ['S13', 'S5'], 'C09': ['S14', 'S15', 'S16'], 'C10': ['S17', 'S18'], 'C11': ['S5', 'M1', 'M3'], 'C12': ['S1']}
 CU = {
- 'C01': [[0, 'Đại toàn', 'Hà Nội mùa đông 1972: sông Hồng, cầu Long Biên, Hồ Tây, phố cổ', 'Bay cao vòng chậm'], [3, 'Trung', 'Phố Đinh Tiên Hoàng: xe đạp, tàu điện', 'Máy ngang mái nhà, lướt theo phố'],
+ 'C01': [[0, 'Đại toàn', 'Hà Nội mùa đông 1972: sông Hồng, cầu Long Biên, Hồ Tây, phố cổ', 'Bay cao vòng chậm'], [3, 'Trung', 'Phố Hàng Bông: tàu điện, xe đạp, người đi bộ', 'Máy ngang mái nhà, lướt theo phố'],
          [5, 'Toàn', 'Nhà máy Xe lửa Gia Lâm, ống khói', 'Vòng nghiêng'], [6, 'Trung', 'Trận địa tên lửa ban ngày, lính trực', 'Qua bệ phóng'], [7, 'Đại toàn', 'Hà Nội nhìn từ trên cao', 'Kéo lên'],
          [9, 'Toàn', 'Bản đồ: Hà Nội và Hải Phòng — hai mục tiêu trọng điểm', 'Thẻ bản đồ'], [12, 'Đại toàn', 'Hà Nội lúc chạng vạng', 'Vòng rộng, trời tối dần']],
  'C02': [[0, 'Toàn', 'Bản đồ: căn cứ Andersen (Guam) và U-Tapao (Thái Lan)', 'Thẻ bản đồ'], [1, 'Cận', 'B-52D: tám động cơ, khoang bom', 'Bám cạnh thân'],
@@ -76,7 +76,7 @@ for k, c in enumerate(CANH):
     t0 = 0.0 if k == 0 else round(doi(c['cau'][0][0]) - 0.5, 2)
     cau = [[doi(a), doi(b), tx] for a, b, tx, _ in c['cau']]
     for j, (a, b, tx) in enumerate(cau): moc[f"{c['id']}.{j}"] = a
-    scenes.append({'id': c['id'], 'hoi': f'Cảnh {k + 1}', 'ten': c['ten'], 'title': f"Cảnh {k + 1} · {c['ten']}", 'tang': TANG.get(c['id'], 'ha-noi'),
+    scenes.append({'id': c['id'], 'hoi': f'Hồi {k + 1}', 'ten': c['ten'], 'title': f"Hồi {k + 1} · {c['ten']}", 'tang': TANG.get(c['id'], 'ha-noi'),
                    'place': NOI[c['id']], 'date': NGAY[c['id']], 't0': t0, 'nguon': NGUON[c['id']], 'hinh': c['hinh'], 'vo': [x[2] for x in cau], '_cau': cau})
 for k, s in enumerate(scenes):
     s['t1'] = scenes[k + 1]['t0'] if k < 11 else round(max(s['_cau'][-1][1] + 4.0, DAI), 2)

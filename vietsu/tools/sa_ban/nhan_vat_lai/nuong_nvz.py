@@ -25,6 +25,9 @@ for pb in arm.pose.bones: pb.matrix_basis = Matrix()
 bpy.context.view_layer.update()
 mes = [o for o in bpy.data.objects if o.type == 'MESH' and any(m.type == 'ARMATURE' for m in o.modifiers)]   # thân có trọng số xương
 mes.sort(key=lambda o: -len(o.data.polygons)); me_o = mes[0]
+if os.environ.get('KHONG_SUNG') == '1':                                        # lính không cầm súng (kíp thao tác tên lửa, ĐBP trên không 26/11): bỏ súng gắn vào xương
+    for o in list(bpy.data.objects):
+        if o.type == 'MESH' and o.parent == arm and o.parent_type == 'BONE': bpy.data.objects.remove(o, do_unlink=True)
 PHU = []
 for o in bpy.data.objects:                                                     # súng… gắn cứng vào một xương: đổi thành nhóm đỉnh của xương đó (trọng số 1)
     if o.type == 'MESH' and o.parent == arm and o.parent_type == 'BONE' and o.parent_bone:

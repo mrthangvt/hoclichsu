@@ -209,6 +209,78 @@
    "url": "https://www.openstreetmap.org/copyright",
    "license": "ODbL",
    "used_for": "sông, hồ, đường, cầu Long Biên, phố Khâm Thiên, Bạch Mai, đường băng — © OpenStreetMap contributors (ODbL), tải 26/11/2026"
+  },
+  {
+   "id": "B1",
+   "title": "SAM-2, khắc tinh của \"siêu pháo đài bay\" B-52",
+   "type": "báo chí (Tiền Phong)",
+   "url": "https://tienphong.vn/hanh-trang-nguoi-linh/598585/SAM-2-khac-tinh-cua-%E2%80%98sieu-phao-dai-bay%E2%80%9D-B-52-tpol.html",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: đạn V-750 hai tầng; tầm bắn gần 40 km, độ cao bắn tới 25 km; đầu nổ gần 200 kg, tốc độ Mach 3"
+  },
+  {
+   "id": "B2",
+   "title": "S-75 Dvina (Wikipedia tiếng Anh)",
+   "type": "bách khoa",
+   "url": "https://en.wikipedia.org/wiki/S-75_Dvina",
+   "license": "CC BY-SA (trích số liệu)",
+   "used_for": "bảo tàng: đạn V-750 dài 10,6 m, nặng 2.300 kg"
+  },
+  {
+   "id": "B3",
+   "title": "SA-2 Surface-to-Air Missile (fact sheet, National Museum of the U.S. Air Force)",
+   "type": "bảo tàng Mỹ",
+   "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196037/",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: bệ phóng xoay 360°, nâng đạn 30–60° khi phóng"
+  },
+  {
+   "id": "B4",
+   "title": "Boeing B-52D Stratofortress (Pima Air & Space Museum)",
+   "type": "bảo tàng Mỹ",
+   "url": "https://pimaair.org/museum-aircraft/boeing-b-52d/",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: sải cánh 185 ft, dài 156 ft, cao 48 ft, 8 động cơ J57-P-19W, kíp 6 người, cải tiến Big Belly mang 108 quả bom thường, tốc độ tối đa 650 dặm/giờ"
+  },
+  {
+   "id": "B5",
+   "title": "37 mm automatic air defense gun M1939 (61-K) (Wikipedia tiếng Anh)",
+   "type": "bách khoa",
+   "url": "https://en.wikipedia.org/wiki/37_mm_automatic_air_defense_gun_M1939_(61-K)",
+   "license": "CC BY-SA (trích số liệu)",
+   "used_for": "bảo tàng: pháo 37 mm 61-K — nòng 2,73 m, sơ tốc 880 m/s, trần bắn tối đa ~5 km"
+  },
+  {
+   "id": "B6",
+   "title": "DShK-1938/46 Heavy Machine Gun (fact sheet, National Museum of the U.S. Air Force)",
+   "type": "bảo tàng Mỹ",
+   "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196038/dshk-193846-heavy-machine-gun/",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: đạn 12,7 × 108 mm"
+  },
+  {
+   "id": "B7",
+   "title": "MiG-21 in Vietnam (Vietnam Conflict Aviation Resource Center)",
+   "type": "tư liệu hàng không",
+   "url": "https://vietnam.warbirdsresourcegroup.org/mig21_history_vietnam.html",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: Trung đoàn 921 bay MiG-21MF tháng 12/1972"
+  },
+  {
+   "id": "B8",
+   "title": "Arsenal: MiG-21, Hanoi's aerial equalizer (HistoryNet)",
+   "type": "tạp chí lịch sử",
+   "url": "https://historynet.com/arsenal-mig-21-hanois-aerial-equalizer/",
+   "license": "trích dẫn",
+   "used_for": "bảo tàng: tháng 4/1966 MiG-21 đầu tiên tới miền Bắc, biên chế Trung đoàn 921"
+  },
+  {
+   "id": "B9",
+   "title": "S-75 Dvina (Military Wiki)",
+   "type": "tư liệu tổng hợp",
+   "url": "https://military-history.fandom.com/wiki/SA-2",
+   "license": "CC BY-SA (trích số liệu)",
+   "used_for": "bảo tàng: mỗi tiểu đoàn thường có 6 bệ phóng một ray, cách nhau khoảng 60–100 m"
   }
  ],
  "lech": [

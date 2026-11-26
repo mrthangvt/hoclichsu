@@ -80,4 +80,15 @@ s = s[:a] + """const NHAC_KS = { C01: ['thuc-day', 0, 0.3], C02: ['ke-thu', 0, 0
 # 7. đám đông: bỏ lính VNCH, lính Mỹ; thêm người dân Hà Nội (dùng tạm mẫu dân đô thị của gói HCM 1975 — MINH HOẠ)
 rep("dongNap('vnch', 'linh-vnch', 'linh-vnch', 200);", "dongNap('danNam1', 'dan-sg-nam', 'dan-sg-nam-trang', 200); dongNap('danNam2', 'dan-sg-nam', 'dan-sg-nam-xanh', 200); dongNap('danNu0', 'dan-sg-nu', 'dan-sg-nu-trang', 200); dongNap('danNu1', 'dan-sg-nu', 'dan-sg-nu-xanh', 200);")
 rep(" dongNap('vnchx', 'linh-vnch-x', 'linh-vnch', 400); dongNap('my', 'linh-my', 'linh-my', 300); dongNap('myx', 'linh-my-x', 'linh-my', 600);", "")
+# 8. V0.2 (anh Thắng 26/11): lính không cầm súng (kíp thao tác tên lửa, trắc thủ ra-đa) — mẫu Thành cổ bỏ súng (nuong_nvz.py KHONG_SUNG=1); thêm màu áo dân (áo dài hồng, tím; sơ mi kem)
+rep("dongNap('danNu1', 'dan-sg-nu', 'dan-sg-nu-xanh', 200);", "dongNap('danNu1', 'dan-sg-nu', 'dan-sg-nu-xanh', 200); dongNap('danNu2', 'dan-sg-nu', 'dan-sg-nu-hong', 200); dongNap('danNu3', 'dan-sg-nu', 'dan-sg-nu-tim', 200); dongNap('danNam3', 'dan-sg-nam', 'dan-sg-nam-kem', 200);\n  dongNap('ktA', 'linh-kt-a', 'linh-kt-a', 300); dongNap('ktB', 'linh-kt-b', 'linh-kt-b', 300);")
+rep("let n = ten === 'qgp' ? (vi % 2 ? 'qgpA' : 'qgpB') : ten;", "let n = ten === 'qgp' ? (vi % 2 ? 'qgpA' : 'qgpB') : ten === 'kt' ? (vi % 2 ? 'ktA' : 'ktB') : ten;")
+# 9. âm thanh mới (kho nhạc nền anh Thắng 26/11): tiếng máy bay ném bom (nền lặp), bom rơi rồi nổ, còi báo động, tiếng nổ ngắn
+rep("const HCM_BED = ['xetang', 'gio', 'ak47', 'maybay', 'oto', 'trucan', 'lua'], HCM_ONE = ['no', 'daibac', 'lua', 'vut', 'coi', 'dang'];",
+    "const HCM_BED = ['xetang', 'gio', 'ak47', 'maybay', 'oto', 'trucan', 'lua', 'maybaynb'], HCM_ONE = ['no', 'daibac', 'lua', 'vut', 'coi', 'dang', 'bomroi', 'coibd', 'nongan'];")
+# 10. "Cảnh" → "Hồi" (anh Thắng 26/11)
+rep("$('sdate').textContent = `Cảnh ${i + 1}/${NSC} · ${scn.title}`", "$('sdate').textContent = `Hồi ${i + 1}/${NSC} · ${scn.ten || scn.title}`")
+# 11. Khám phá: nhân vật bắt đầu trên phố (KS.diBo), không đứng giữa hồ
+rep("if (camera.position.distanceTo(controls.target) > 3000 || Math.hypot(x, z) > R - 30) { if (XEX.DL)",
+    "if (KS.diBo && (camera.position.distanceTo(controls.target) > 3000 || Math.hypot(x, z) > R - 30 || hG(x, z) < tideNow + 0.5)) { [x, z] = KS.diBo; } else if (camera.position.distanceTo(controls.target) > 3000 || Math.hypot(x, z) > R - 30) { if (XEX.DL)")
 dst.write_text(s); print('ok', len(s))

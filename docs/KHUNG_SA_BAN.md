@@ -247,4 +247,11 @@ Sa bàn HCM 1975 lớn hơn các sa bàn cũ nhiều lần: hai tầng địa h�
 50. **Sa bàn nhiều tầng địa hình không liền mạch được** (mỗi tầng một trang). Sa bàn mới nên dùng một tầng; nếu cần cả toàn cảnh lẫn chi tiết thì làm một trang có miếng vá địa hình chi tiết.
 51. **Không gian trưng bày:** biển hai mặt, chữ tự vừa; bảng thông tin cạnh khí tài; bấm khí tài, bục, bảng đều mở thẻ ở giữa màn hình; nút Bảo tàng nằm trong nhóm chế độ.
 
-Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27.
+52. **XE, MÁY BAY ĐI NGƯỢC (anh Thắng 26/11: "gần đây hay bị nhầm, hãy nhớ lỗi này").** Trước khi dùng mẫu xe, máy bay, tàu, người đạp xe: render ảnh cạnh trong Blender, xác định mũi (mẫu `bake_vat.py` nhìn +Z three = −Y Blender). Khi chạy: `rotation.y = atan2(dx, dz)` theo **hướng đang đi** (tiếp tuyến); lượt về quay đầu 180°, không chạy lùi. Bánh xe quay góc = quãng đường / bán kính quanh trục X cục bộ.
+53. **Máy bay tiêm kích bay đội hình chữ V**, không nối đuôi; máy bay đỗ xếp hàng ngang. MiG bay có lửa đốt sau đỏ ở đuôi, vệt khí.
+54. **Khí tài, người không nằm dưới nước:** vị trí "mốc + độ lệch" dễ rơi xuống sông, hồ → dò ra chỗ đất (`lenDat` trong `tools/sa_ban/dbpk/bien_dao_dbpk.js`); người, xe trên phố dùng mặt phố làm phẳng; Khám phá bắt đầu trên phố.
+55. **Lính kíp khí tài không cầm súng** (`KHONG_SUNG=1 nuong_nvz.py`): mỗi bệ phóng 4 người thao tác + 1 người cầm súng gác; cụm ra-đa có cả hai. Bộ đội ta đi, đứng thẳng — không dáng khom.
+56. **Nhà theo đúng tuyến đường:** dãy nhà ống mặt tiền dọc đường OSM, nóc song song với đường, không đè nhau (`tools/sa_ban/dbpk/dung_placement.py`). Phố bị ném bom quay cận: mẫu nhà thật, đổ vỡ bằng cắt thân nhà lởm chởm (shader) + đống gạch.
+57. **Góc thẻ tên** là nút ⌂ Trang chủ (không ghi "cần đối chiếu tư liệu"); phần lớn của phim gọi là **Hồi**. Thẻ phủ của phim phải tắt khi chuyển sang Khám phá / Bảo tàng.
+
+Ghi chép chi tiết từng lỗi, cách tìm ra: `docs/HCM_1975_TU_LIEU.md` §20–§27; `docs/DBPK_1972_TU_LIEU.md`.

@@ -74,3 +74,23 @@ Nhãn bắt buộc: "Tái dựng mô phỏng — cần đối chiếu tư liệu
 
 ## 8. Lưu ý phiên làm việc
 Phiên này chỉ có quyền đọc repo `mrthangvt/vietsu` (không đẩy được nhánh): toàn bộ gói, công cụ, tài liệu được chép về máy anh trong `DienBienPhuTrenKhong1972/vietsu_dbpk1972/` (3 tệp zip: mã + địa hình + khí tài; âm thanh; nhân vật — giải nén thẳng vào gốc repo, đường dẫn giữ nguyên) để anh hoặc phiên sau đưa lên nhánh `claude/dien-bien-phu-tren-khong-1972` (tách từ `claude/sa-ban-khe-sanh-1968`, vì gói dùng `rieng.js` Khe Sanh V2.1 làm nền). Dữ liệu địa hình thô: `~/Downloads/dbpk1972_du-lieu-v2.json`.
+
+## V0.2 (26/11/2026) — 19 góp ý anh Thắng
+
+Artifact cùng địa chỉ (version `1795659866-a6dd`). Kiểm tra: `quet_phim.py` hai tầng bước 1 s sạch; `kiem_tra_goi.py` hợp lệ, tải lần đầu 4,9 MB.
+
+1. "Cảnh" → **Hồi** (story, thẻ đầu hồi, dòng ngày, màn tải). Góc thẻ tên: bỏ "cần đối chiếu tư liệu", đặt nút **⌂ Trang chủ** (`ui.trangChu`).
+2. **Phố Hàng Bông** (Hồi 1): tàu điện (`props/pho/tau-dien.glb`, XOAY=90), người đạp xe (`props/pho/xe-dap.glb`, XOAY=−90, nút `ao` đổi 10 màu, `banh_0/1` quay theo quãng đường — `tools/sa_ban/dbpk/tach_banh_xe.py`), người đi bộ đồ tây / áo dài; mặt phố làm phẳng (trung bình trượt, không thấp hơn mặt nước); đi bên phải.
+3. **Lính:** bỏ dáng khom; mẫu không súng `units/linh-kt-a/b` (`KHONG_SUNG=1 nuong_nvz.py`, động tác NhatDo, ThaXuong, VuonLay); mỗi bệ phóng 4 người thao tác + 1 cầm súng; cụm ra-đa 2 + 2.
+4. **Ra-đa:** ăng-ten tách riêng (`tach_ang_ten.py`), quay tròn; cung sóng phát chếch lên trời theo hướng ăng-ten.
+5. **Xe TZM** (`props/xe/xe-tzm.glb`, mũi −Y Blender đã soi) thay xe tải: chạy vòng quanh trận địa, luôn đi tiến, nắp bánh vẽ bằng mã quay theo tốc độ.
+6. **Thẻ bản đồ Hà Nội – Hải Phòng:** vòng tròn bung toả (SVG animate).
+7. **MiG-21:** đỗ hàng ngang ở Nội Bài; tốp 3 chiếc bay chữ V (Hồi 3 qua Nội Bài, Hồi 12 qua Cột cờ), lửa đốt sau đỏ, vệt khí (cả hai chiếc Hồi 9).
+8. **Phút 13:57:** cụm cao xạ cầu Long Biên nằm dưới sông → `lenDat` dời lên đất (cả 12,7 mm).
+9. **Nhà theo tuyến đường** (`dung_placement.py`): 53.238 nhà ống mặt tiền dọc đường OSM, nóc song song với đường, lưới chiếm chỗ 1,5 m; Khâm Thiên 242 nhà mẫu HCM (`props/nha/nha-pho.glb`), thưa 1/3, đổ vỡ bằng shader cắt thân nhà lởm chởm + đống gạch theo thời điểm bom gần nhất.
+10. **Tháp Rùa** dựng bằng mã theo ảnh anh gửi (21,02796 B · 105,85224 Đ); Hồi 12 mở bằng cú quay quanh tháp.
+11. **Bảo tàng khí tài** (`tools/sa_ban/dbpk/bao_tang_dbpk.js`, theo mẫu Khe Sanh): sân ngoài nội thành (dò chỗ phẳng, khô, xa trận địa ≥ 2,5 km), 9 mục có thẻ nguồn (B1–B9 thêm vào `sources.json`), bảng thống kê hai phía, khách tham quan, nút 🏛 Bảo tàng, nút vào đi bộ cuối phim.
+12. **Khám phá:** nhân vật bắt đầu trên vỉa hè Hàng Bông (`KS.diBo`).
+13. **Âm thanh** (kho nhạc nền anh Thắng, tiengdong.com): `maybaynb.mp3` nền khi tập kích, `bomroi.mp3` khớp loạt bom đầu mỗi vệt, `coibd.mp3` còi báo động (Hồi 4, 7), `nongan.mp3` khi máy bay trúng đạn và khi rơi; tiếng máy bay khi B-52 / MiG gần, tiếng xe khi TZM, tàu điện gần.
+
+Còn để ngỏ: câu "những ngôi nhà đổ sập" (Hồi 7) đọc trước vệt bom Khâm Thiên → máy quay sang Bạch Mai; phù hiệu MiG-21; B-52G; cao xạ 57/100 mm; sơ đồ trận địa thật.
