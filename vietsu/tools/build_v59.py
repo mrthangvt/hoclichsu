@@ -61,7 +61,7 @@ XUAT_BAN=[
  ("<p>Các đề mục này là nội dung mẫu, chưa phải bài nghiên cứu hoàn chỉnh.</p>","<p>Các câu chuyện tiêu biểu gắn với chủ đề này.</p>"),
  ("' · Điểm pin mẫu, chưa định vị địa lý. Sa bàn lịch sử cần thẩm định trước khi công bố.'","' · Vị trí minh họa trên bản đồ.'"),
  ("Nội dung đang ở dạng thử nghiệm · V3.7","Nguồn: Hồ Chí Minh – Tiểu sử (Bảo tàng Hồ Chí Minh)"),
- ("Mô hình thử nghiệm với các điểm dừng và hiện vật, không coi hình tái dựng là tư liệu gốc.","Các điểm dừng và hiện vật; hình tái dựng không phải tư liệu gốc."),
+ # (26/11/2026) bỏ nhãn của Làng Sen – Kim Liên: không gian này đã gỡ khỏi Không gian lịch sử theo yêu cầu chủ dự án
  (" Hiện tại đây là sơ đồ các điểm dừng mẫu và yêu cầu nội dung cần thẩm định.",""),
  ('"status":"tóm tắt biên tập mẫu · cần thẩm định"','"status":"tóm tắt biên tập"'),
  ('"status":"chờ biên tập"','"status":"đề mục"'),
