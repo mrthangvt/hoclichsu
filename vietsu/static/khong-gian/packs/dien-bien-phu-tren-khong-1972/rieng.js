@@ -1715,20 +1715,24 @@ const HERO_PINS = (HCM && TANG === 'noi-do') ? [['Xe tăng 843 · T-54B', () => 
     C['C04-11'] = quanh(pl.clone().setY(pl.y + 10), 420, 90, 0.4, 1.0, 44);
     C['C04-12'] = quanh(tam, 12000, 5200, 2.0, 2.4, 42, 7000);
     // Cảnh 5
-    C['C05-01'] = (u) => { const X = KS.xt && KS.xt[0]; if (!X) return null; const p = X.o.position; return [p.clone().add(V3(-18 + u * 10, 6, 14)), p.clone().add(V3(0, 2, 0)), 46]; };
+    /* anh Thắng 26/11: cú quay xe TZM để máy xa, nhìn thẳng vào hông xe (vuông góc thân xe, ngang tầm bánh) — bánh xe khớp, không lộ nắp bánh ghép;
+       máy đứng phía ngoài vòng chạy, chạy song song theo xe; lech: dời dọc thân xe (m, + về đầu xe) */
+    const hongXe = (j, xa, cao, lech = 0, fov = 40) => (u) => { const X = KS.xt && (KS.xt[j] || KS.xt[0]); if (!X) return null; const p = X.o.position, ra = p.clone().sub(X.c).setY(0).normalize(), f = V3(-ra.z, 0, ra.x);
+      const m = p.clone().addScaledVector(ra, xa).addScaledVector(f, lech); m.y = p.y + cao; return [m, p.clone().addScaledVector(f, lech * 0.9).add(V3(0, cao * 0.85 - 1.6, 0)), fov]; };   /* nhìn hơi thấp hơn thân xe: xe nằm trên dải phụ đề, thấy rõ bánh */
+    C['C05-01'] = hongXe(0, 30, 2.4, 0, 38);
     C['C05-02'] = tdCam('td57', 35, 9, 0.6, 0.9, 46);
     C['C05-03'] = quanh(tam, 20000, 9000, 3.4, 3.8, 42);
     C['C05-04'] = (u) => { const c = (TD.td77 || TD.td59).c; return [V3(c.x - 180, c.y + 20, c.z + 260), V3(c.x + 1200, c.y + 2600, c.z - 2000), 54]; };
     C['C05-05'] = quanh(tam, 26000, 17000, 3.8, 4.0, 42);
     C['C05-06'] = tdCam('td77', 16, 4, 4.2, 4.6, 50);
-    C['C05-07'] = (u) => { const X = KS.xt && (KS.xt[1] || KS.xt[0]); if (!X) return null; const p = X.o.position; return [p.clone().add(V3(10 - u * 8, 3.2, -9)), p.clone().add(V3(0, 1.8, 0)), 48]; };
+    C['C05-07'] = hongXe(1, 24, 2.0, 0, 40);
     C['C05-08'] = quanh(tam, 10000, 3800, 4.0, 4.5, 42, 6000);
     // Cảnh 6
     C['C06-01'] = theoTop((t) => [TOP.find((o) => o.nhieu), 0], 1200, 300, 900, 40);
     C['C06-02'] = theoTop((t) => [TOP.find((o) => o.nhieu), 1], -900, 200, -400, 44);
     C['C06-03'] = tdCam('td79', 30, 8, 0.3, 0.5, 46);
     C['C06-04'] = tdCam('td79', 24, 6, 1.0, 2.0, 48);
-    C['C06-05'] = (u) => { const X = KS.xt && (KS.xt[1] || KS.xt[0]); if (!X) return null; const p = X.o.position; return [p.clone().add(V3(16 - u * 12, 5, 12)), p.clone().add(V3(0, 2, 0)), 46]; };
+    C['C06-05'] = hongXe(1, 34, 2.8, 0, 38);
     C['C06-06'] = tdCam('td79', 900, 420, 2.0, 2.5, 44);
     // Cảnh 7
     const kt = HNX.KT, ktC = kt ? kt[Math.floor(kt.length / 2)] : hk;
