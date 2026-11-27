@@ -14,7 +14,7 @@ on:
     paths: ['vietsu/static/**', 'vietsu/tools/build_v42.py', 'vietsu/tools/build_v43.py', 'vietsu/tools/build_v44.py', 'vietsu/tools/build_v45.py', 'vietsu/tools/build_v46.py', 'vietsu/tools/build_v47.py', 'vietsu/tools/build_v48.py', 'vietsu/tools/build_v49.py', 'vietsu/tools/build_v411.py', 'vietsu/tools/check_v411_exam.py', 'vietsu/tools/check_v48_assets.py', 'vietsu/tools/build_v52.py', 'vietsu/static/v52.js', 'vietsu/static/v52.css', 'vietsu/tools/build_v53.py', 'vietsu/tools/build_v54.py', 'vietsu/tools/build_v55.py', 'vietsu/tools/build_v56.py', 'vietsu/tools/build_v57.py', 'vietsu/tools/build_v58.py', 'vietsu/tools/build_v59.py', 'vietsu/data/sgk_kntt_lop*.json', 'vietsu/data/v59_*.json', 'vietsu/data/duong_dan.json', 'vietsu/tools/build_duong_dan.py', 'vietsu/tools/fonts/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write   # đẩy bản dựng cho VPS lên nhánh ban-may-chu
   pages: write
   id-token: write
 concurrency:
@@ -54,7 +54,17 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL || 'https://mrthangvt.github.io/hoclichsu' }}
         run: |
           python3 -m pip install --quiet pillow
+          cp -r _site _vps
           python3 vietsu/tools/build_duong_dan.py _site
+          SITE_URL=https://hoclichsu.com python3 vietsu/tools/build_duong_dan.py _vps
+      - name: Bản cho VPS hoclichsu.com (nhánh ban-may-chu, aaPanel tự tải về — xem docs/VPS_AAPANEL.md)
+        run: |
+          export GIT_INDEX_FILE="$RUNNER_TEMP/vps-index"
+          git --git-dir="$PWD/.git" --work-tree="$PWD/_vps" -C _vps add -A -f .
+          cay=$(git write-tree)
+          cm=$(git -c user.name="github-actions" -c user.email="github-actions@users.noreply.github.com" commit-tree "$cay" -m "Bản dựng cho hoclichsu.com từ ${GITHUB_SHA::7}")
+          git push -f origin "$cm:refs/heads/ban-may-chu"
+          rm -rf _vps
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
