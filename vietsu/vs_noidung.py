@@ -28,7 +28,7 @@ TRUONG: dict[str, dict[str, str]] = {
     "bai-sgk": {"ten": "s", "chuong": "s", "tom": "t", "nho": "l", "hoi": "l"},
 }
 TEN_LOAI = {"nhan-vat": "Nhân vật", "trieu-dai": "Triều đại", "su-kien": "Sự kiện", "hcm": "Mốc Hồ Chí Minh",
-            "bai-sgk": "Bài SGK", "menu": "Thanh menu"}
+            "bai-sgk": "Bài SGK", "menu": "Thanh menu", "cai-dat": "Cài đặt"}
 MUC_MENU = ("main", "hcm", "characters", "spaces", "exam", "school")
 MA_RE = re.compile(r"^[A-Za-z0-9:._-]{1,80}$")
 
@@ -47,6 +47,21 @@ def init_noi_dung() -> None:
 
 
 def _chuan(loai: str, du_lieu: dict) -> dict:
+    if loai == "cai-dat":
+        # Trợ lý Học Lịch Sử: bật/tắt, tên nút, biểu tượng, lời chào.
+        ra = {"bat": bool(du_lieu.get("bat", True))}
+        for k, toi_da in (("ten", 40), ("loi_chao", 400)):
+            v = str(du_lieu.get(k) or "").strip()
+            if "<" in v or ">" in v or len(v) > toi_da:
+                raise HTTPException(422, f"“{k}” không hợp lệ.")
+            if v:
+                ra[k] = v
+        bt = str(du_lieu.get("bieu_tuong") or "").strip()
+        if bt:
+            if not (bt.startswith("/static/") or bt.startswith("https://")) or '"' in bt or "'" in bt or ")" in bt:
+                raise HTTPException(422, "Biểu tượng phải là ảnh trong thư viện (/static/…) hoặc https://…")
+            ra["bieu_tuong"] = bt[:500]
+        return ra
     if loai == "menu":
         muc = du_lieu.get("muc")
         if not isinstance(muc, list) or len(muc) > len(MUC_MENU):

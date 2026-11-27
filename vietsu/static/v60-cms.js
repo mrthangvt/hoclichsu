@@ -40,6 +40,7 @@ function apDung(nd){
  if(sgk)for(const [ma,va] of Object.entries(L['bai-sgk']||{})){const m=ma.match(/^g(\d+)-sgk-(.+)$/);if(!m||!sgk[m[1]])continue;
   const b=sgk[m[1]].bai.find(x=>String(x.so).toLowerCase().replace('cđ','cd')===m[2]);if(b)tron(b,va);}
  apMenu((L.menu||{}).chinh);
+ apTroLy((L['cai-dat']||{})['tro-ly']);
  try{window.HLS_DUONG_DAN&&window.HLS_DUONG_DAN.boSung();}catch(_){}
  // Vẽ lại các phần đã dựng sẵn lúc tải trang.
  try{if(L.hcm&&typeof buildHCM==='function')buildHCM();}catch(e){console.warn(e);}
@@ -70,6 +71,18 @@ function apMenu(cfg){
   const lop=document.getElementById('v21Grades'),sgk=document.getElementById('navSchool');
   if(lop&&sgk&&lop.parentElement===cha)cha.insertBefore(lop,sgk.nextSibling);
  }
+}
+
+/* ---------- Trợ lý Học Lịch Sử: bật/tắt, tên, biểu tượng, lời chào (CMS → Trợ lý AI) ---------- */
+function apTroLy(c){
+ if(!c)return;
+ let css='';
+ if(c.bat===false)css+='#aiOpen,#historyAI{display:none!important}';
+ if(c.bieu_tuong&&/^(\/static\/|https:\/\/)[^"'()\s]+$/.test(c.bieu_tuong))
+  css+='html body #aiOpen .ai-mascot,html body #historyAI .ai-header-mascot,html body .ai-mascot{animation:none!important;background-image:url("'+c.bieu_tuong+'")!important;background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important}';
+ if(css){const st=document.createElement('style');st.id='hlsTroLy';st.textContent=css;document.head.appendChild(st);}
+ if(c.ten){const t=document.querySelector('#aiOpen .ai-open-text');if(t)t.textContent=c.ten;}
+ if(c.loi_chao){const p=document.querySelector('#aiMessages .ai-bubble p');if(p)p.textContent=c.loi_chao;}
 }
 
 /* ---------- Nút “✎ Sửa” cho người biên tập ---------- */
