@@ -8,9 +8,10 @@ import * as THREE from 'three';
 export function makePark({scene,B,groundAt,ground,MOBILE,walls=[],brickTex=null}){
   const R=(a,b)=>a+Math.random()*(b-a);
   const LEVEL=.9,IN=236,EDGE=12;                      // độ cao bãi cỏ (m), nửa cạnh vùng san phẳng, dải chuyển tiếp
-  const wFlat=(x,y)=>{const m=Math.max(Math.abs(x),Math.abs(y));return m<=IN-EDGE?1:m>=IN?0:(IN-m)/EDGE};
+  const gatePass=(x,y)=>(Math.abs(y)<9&&Math.abs(x)<258)||(Math.abs(x)<9&&Math.abs(y)<258);   // lối qua 4 cổng: phẳng ngang bãi cỏ
+  const wFlat=(x,y)=>{if(gatePass(x,y))return 1;const m=Math.max(Math.abs(x),Math.abs(y));return m<=IN-EDGE?1:m>=IN?0:(IN-m)/EDGE};
   const H=(x,y)=>{const g=groundAt(x,y),w=wFlat(x,y);return g+(LEVEL-g)*w};
-  const G=new THREE.Group();G.name='ThanhCo_HomNay';G.visible=false;scene.add(G);
+  let MON=null;const G=new THREE.Group();G.name='ThanhCo_HomNay';G.visible=false;scene.add(G);
 
   /* ---- san phẳng địa hình trong thành ---- */
   let orig=null,origN=null,flatY=null;
@@ -52,9 +53,9 @@ export function makePark({scene,B,groundAt,ground,MOBILE,walls=[],brickTex=null}
     g.setAttribute('color',new THREE.Float32BufferAttribute(col,3));g.computeVertexNormals();
     const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:1,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));m.receiveShadow=!MOBILE;G.add(m)}   // bãi cỏ xanh trong thành
   // trục Bắc–Nam xuyên thành, đường dạo lát gạch đỏ cổng Tây → quảng trường, lối sang cổng Đông, đường vòng sát chân thành
-  strips([{pts:[[0,-247],[0,-28]],w:6},{pts:[[0,28],[0,247]],w:6},{pts:[[24,0],[247,0]],w:4.5},
+  strips([{pts:[[0,-257],[0,-36]],w:6},{pts:[[0,36],[0,257]],w:6},{pts:[[36,0],[257,0]],w:4.5},
           {pts:[[-222,-222],[222,-222],[222,222],[-222,222],[-222,-222]],w:3,poly:true}],M_PATH);
-  strips([{pts:[[-247,0],[-26,0]],w:15}],M_BRICK);
+  strips([{pts:[[-257,0],[-34,0]],w:15}],M_BRICK);
   // lối đi uốn lượn giữa các bãi cỏ (theo nét chung trong ảnh)
   strips([
     {pts:[[-210,40],[-160,70],[-120,140],[-70,185],[-20,150],[-40,80],[-100,40],[-160,30]],w:2.6,closed:true},
@@ -64,18 +65,51 @@ export function makePark({scene,B,groundAt,ground,MOBILE,walls=[],brickTex=null}
     {pts:[[25,-30],[85,-55],[150,-115],[205,-205]],w:2.6},{pts:[[55,-150],[115,-175],[185,-95],[212,-40]],w:2.6},{pts:[[6,-110],[55,-150]],w:2.4}],M_PATH,.14);
   disc(-75,130,6,8.4,M_PATH,.15,28);   // vòng tròn nhỏ ở góc Tây Bắc
 
-  /* ---- quảng trường tròn + Đài tưởng niệm (vị trí theo OpenStreetMap: giữa thành) ---- */
-  disc(0,0,13,28,M_BRICK,.2,64);disc(0,0,0,13,M_LAWN,.18,40);
-  strips([{pts:[[0,-13],[0,13]],w:3},{pts:[[-13,0],[13,0]],w:3}],M_BRICK,.22);
-  {const g0=H(0,0);const D=new THREE.Group();D.position.copy(B(0,0,g0));
-    const box=(w,h,d,y,M)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),M);m.position.y=y+h/2;m.castShadow=m.receiveShadow=!MOBILE;D.add(m);return m};
-    box(11,.6,11,0,M_STONE);box(8.6,.6,8.6,.6,M_STONE);box(6.4,1.2,6.4,1.2,M_WHITE);
-    const tw=new THREE.Mesh(new THREE.CylinderGeometry(1.5,2.1,9,8),M_WHITE);tw.position.y=2.4+4.5;tw.castShadow=!MOBILE;D.add(tw);
-    for(let k=0;k<3;k++){const r=new THREE.Mesh(new THREE.CylinderGeometry(2.6-k*.35,2.2-k*.35,.45,8),M_WHITE);r.position.y=4.4+k*2.6;D.add(r)}
-    const lotus=new THREE.Mesh(new THREE.SphereGeometry(1.7,10,8,0,Math.PI*2,0,Math.PI*.55),M_WHITE);lotus.position.y=11.4;D.add(lotus);
-    const tip=new THREE.Mesh(new THREE.ConeGeometry(.45,2.2,8),M_GOLD);tip.position.y=13.4;D.add(tip);
-    for(let k=0;k<8;k++){const a=k/8*Math.PI*2;const p=new THREE.Mesh(new THREE.BoxGeometry(.5,1.4,.5),M_WHITE);p.position.set(Math.cos(a)*9.5,.7+.1,Math.sin(a)*9.5);D.add(p)}   // trụ đèn quanh đài
-    G.add(D)}
+  /* ---- quảng trường tròn + Đài tưởng niệm (vị trí theo OpenStreetMap: giữa thành), dựng phỏng theo ảnh:
+     gò cỏ tròn có bậc lên bốn phía, sân đá hồng có lan can; trên sân một bồn tròn (thành đá xám, dải hoa văn vàng, vòng nước xanh);
+     trong bồn: tháp biểu tượng bằng đồng hình nén hương (bầu, đĩa, thân chạm, búp sen đỏ trên đỉnh) và lầu hương mái ngói vàng. Kích thước ước theo người trong ảnh. ---- */
+  disc(0,0,19.5,36,M_BRICK,.2,72);
+  {const g0=H(0,0),HM=4.2;const D=new THREE.Group();D.position.copy(B(0,0,g0));
+    const M_GRASS=mat(0x5f8f34,{roughness:1}),M_PINK=mat(0xc79a8a,{roughness:.7}),M_RAIL=mat(0x8e5a3c,{roughness:.8}),M_GREY=mat(0x9b9890,{roughness:.85}),
+      M_BRONZE=mat(0xa8713c,{roughness:.42,metalness:.55}),M_LOTUS=mat(0x8a2f22,{roughness:.5,metalness:.3}),M_WATER=mat(0x3f9cc8,{roughness:.15,metalness:.1,emissive:0x0b2a3a}),
+      M_YROOF=mat(0xd9a33c,{roughness:.55,flatShading:true}),M_RED=mat(0x9e3a26,{roughness:.6});
+    const add=(geo,M,x,y,z)=>{const m=new THREE.Mesh(geo,M);m.position.set(x,y,z);m.castShadow=m.receiveShadow=!MOBILE;D.add(m);return m};
+    // gò cỏ: mặt trên phẳng r 13,6 cao 4,2 m, sườn thoải tới r 19,5
+    add(new THREE.LatheGeometry([[0,HM],[13.6,HM],[14.2,HM-.25],[17.5,1.4],[19.6,0],[19.6,-.4]].map(([r,y])=>new THREE.Vector2(r,y)),48),M_GRASS,0,0,0);
+    add(new THREE.CylinderGeometry(13.8,13.8,.22,48),M_PINK,0,HM+.11,0);
+    // lan can quanh sân trên (chừa bốn lối bậc)
+    for(let k=0;k<4;k++){const a0=k*Math.PI/2+.17,a1=a0+Math.PI/2-.34;const tor=new THREE.TorusGeometry(13.5,.09,4,24,a1-a0);tor.rotateX(Math.PI/2);tor.rotateY(-a0);const t=add(tor,M_RAIL,0,HM+.95,0);
+      for(let a=a0;a<=a1+1e-3;a+=(a1-a0)/8)add(new THREE.BoxGeometry(.22,.85,.22),M_RAIL,Math.cos(a)*13.5,HM+.55,-Math.sin(a)*13.5)}
+    // bậc lên bốn phía (theo các trục đường)
+    for(let k=0;k<4;k++){const a=k*Math.PI/2;const st=new THREE.Group();st.rotation.y=a;D.add(st);const NS=14;
+      for(let i=0;i<NS;i++){const r0=19.8-i*(5.7/NS),hh=(i+1)*HM/NS;const b=new THREE.Mesh(new THREE.BoxGeometry(5.7/NS+.02,hh,3.6),M_PINK);b.position.set(r0-5.7/NS/2,hh/2,0);b.receiveShadow=!MOBILE;st.add(b)}
+      for(const sd of [-1,1]){const w=new THREE.Mesh(new THREE.BoxGeometry(6.2,.5,.3),M_RAIL);w.position.set(16.9,HM/2+.35,sd*1.95);w.rotation.z=-Math.atan2(HM,5.7);st.add(w)}}
+    // bồn tròn trên sân
+    const BY=HM+.22;add(new THREE.CylinderGeometry(6.6,6.8,1.3,48,1,true),M_GREY,0,BY+.65,0);add(new THREE.CylinderGeometry(6.35,6.35,1.3,48,1,true),M_GREY,0,BY+.65,0).material=M_GREY;
+    add(new THREE.CylinderGeometry(6.62,6.62,.3,48,1,true),M_BRONZE,0,BY+.9,0);   // dải hoa văn vàng
+    add(new THREE.TorusGeometry(6.5,.18,4,48).rotateX(Math.PI/2),M_PINK,0,BY+1.32,0);
+    add(new THREE.RingGeometry(4.2,6.35,48).rotateX(-Math.PI/2),M_WATER,0,BY+.95,0);
+    add(new THREE.CylinderGeometry(4.2,4.2,1.15,40),M_PINK,0,BY+.58,0);
+    // tháp biểu tượng (đồng): bầu, đĩa, thân, búp sen
+    const TX=1.5,TZ=.6,T0=BY+1.15;
+    add(new THREE.CylinderGeometry(1.15,1.3,.5,24),M_BRONZE,TX,T0+.25,TZ);
+    add(new THREE.SphereGeometry(1.05,24,16).scale(1,1.25,1),M_BRONZE,TX,T0+1.55,TZ);
+    add(new THREE.CylinderGeometry(.45,.6,1.4,20),M_BRONZE,TX,T0+3.1,TZ);
+    add(new THREE.CylinderGeometry(2.1,1.2,.32,32),M_BRONZE,TX,T0+3.95,TZ);   // đĩa
+    add(new THREE.CylinderGeometry(.62,.62,.4,20),M_BRONZE,TX,T0+4.3,TZ);
+    const SH=11.5;add(new THREE.CylinderGeometry(.5,.56,SH,20),M_BRONZE,TX,T0+4.5+SH/2,TZ);
+    for(let k=0;k<7;k++)add(new THREE.TorusGeometry(.56,.06,6,20).rotateX(Math.PI/2),M_BRONZE,TX,T0+5+k*1.6,TZ);   // vòng chạm
+    add(new THREE.CylinderGeometry(.7,.55,.5,20),M_BRONZE,TX,T0+4.5+SH+.25,TZ);
+    const bud=add(new THREE.SphereGeometry(.72,20,14).scale(1,1.6,1),M_LOTUS,TX,T0+4.5+SH+1.4,TZ);
+    add(new THREE.ConeGeometry(.3,.7,12),M_LOTUS,TX,T0+4.5+SH+2.7,TZ);
+    // lầu hương: 4 cột đỏ, mái ngói vàng cong, lư hương đồng
+    const PX=-1.7,PZ=-.8,P0=BY+1.15;for(const [dx,dz] of [[-1.15,-1.15],[1.15,-1.15],[-1.15,1.15],[1.15,1.15]])add(new THREE.CylinderGeometry(.14,.16,2.7,10),M_RED,PX+dx,P0+1.35,PZ+dz);
+    add(new THREE.BoxGeometry(2.7,.25,2.7),M_RED,PX,P0+2.75,PZ);
+    const roof=new THREE.ConeGeometry(2.6,1.25,4,1).rotateY(Math.PI/4);{const p=roof.attributes.position;for(let i=0;i<p.count;i++){const y=p.getY(i);if(y<0){p.setY(i,y+.25*Math.max(Math.abs(p.getX(i)),Math.abs(p.getZ(i)))/1.84)}}roof.computeVertexNormals()}   // đầu đao cong lên
+    add(roof,M_YROOF,PX,P0+3.45,PZ);add(new THREE.BoxGeometry(1.6,.22,.22),M_YROOF,PX,P0+4.12,PZ);
+    for(const dx of [-.8,.8])add(new THREE.SphereGeometry(.16,8,6),M_YROOF,PX+dx,P0+4.3,PZ);
+    add(new THREE.CylinderGeometry(.45,.32,.55,16),M_BRONZE,PX,P0+.28,PZ);add(new THREE.CylinderGeometry(.5,.5,.08,16),M_BRONZE,PX,P0+.58,PZ);
+    D.userData={top:g0+HM+.22,basin:6.8,bowl:[PX,PZ]};G.add(D);MON=D}
 
   /* ---- công trình mái ngói đỏ (nhà trưng bày, nhà khách, đền thờ…) — dạng biểu tượng ---- */
   const geoBox=new THREE.BoxGeometry(1,1,1).translate(0,.5,0),geoHip=new THREE.ConeGeometry(.7071,1,4,1).rotateY(Math.PI/4).translate(0,.5,0);
@@ -88,15 +122,17 @@ export function makePark({scene,B,groundAt,ground,MOBILE,walls=[],brickTex=null}
   // sân lát trước các công trình
   strips([{pts:[[-208,-14],[-208,14]],w:6},{pts:[[-60,-104],[-60,-60],[-10,-30]],w:3},{pts:[[78,10],[100,0]],w:3}],M_PATH,.15);
 
-  /* ---- cầu qua hào ở bốn cổng ---- */
-  {const M=mat(0xbdb5a5,{roughness:.9});for(const [ax,ay,bx,by] of [[-250,0,-308,0],[250,0,308,0],[0,250,0,308],[0,-250,0,-308]]){
-    const L=Math.hypot(bx-ax,by-ay),cx=(ax+bx)/2,cy=(ay+by)/2;const y=Math.max(groundAt(ax+(bx-ax)*.06,ay+(by-ay)*.06),groundAt(bx,by),.4)+.15;
-    const deck=new THREE.Mesh(new THREE.BoxGeometry(ax!==bx?L:8,.6,ax!==bx?8:L),M);deck.position.copy(B(cx,cy,y));deck.castShadow=deck.receiveShadow=!MOBILE;G.add(deck);
-    for(const s of [-1,1]){const r=new THREE.Mesh(new THREE.BoxGeometry(ax!==bx?L:.3,.9,ax!==bx?.3:L),M_WHITE);r.position.copy(B(cx+(ax!==bx?0:s*3.9),cy+(ax!==bx?s*3.9:0),y+.75));G.add(r)}
-    for(const t of [.3,.55,.8]){const p=new THREE.Mesh(new THREE.BoxGeometry(1.2,3,1.2),M_STONE);p.position.copy(B(ax+(bx-ax)*t,ay+(by-ay)*t,-2.6));G.add(p)}}}
+  /* ---- cầu qua hào ở bốn cổng: từ mép trong hào (≈256 m, ngang lối cổng) dốc nhẹ xuống bờ ngoài (≈308 m) ---- */
+  {const M=mat(0xbdb5a5,{roughness:.9});for(const [sx,sy] of [[-1,0],[1,0],[0,1],[0,-1]]){
+    const r0=255,r1=309,L=r1-r0,y0=LEVEL+.12,y1=Math.max(groundAt(sx*r1,sy*r1),-.2)+.15;const br=new THREE.Group();const c=B(sx*(r0+r1)/2,sy*(r0+r1)/2,(y0+y1)/2);br.position.copy(c);
+    br.rotation.y=Math.atan2(sx,-sy)-Math.PI/2;const tilt=Math.atan2(y1-y0,L);
+    const deck=new THREE.Mesh(new THREE.BoxGeometry(L+.2,.5,8),M);deck.rotation.z=tilt;deck.castShadow=deck.receiveShadow=!MOBILE;br.add(deck);
+    for(const sd of [-1,1]){const r=new THREE.Mesh(new THREE.BoxGeometry(L,.85,.25),M_WHITE);r.position.set(0,.65,sd*3.9);r.rotation.z=deck.rotation.z;br.add(r)}
+    for(const t of [-.3,0,.3]){const p=new THREE.Mesh(new THREE.BoxGeometry(1.1,3.2,6.5),M_STONE);p.position.set(t*L,-1.8,0);br.add(p)}
+    G.add(br)}}
 
   /* ---- cây: hàng dừa sát chân thành + lùm cây tán tròn ---- */
-  const nearPath=(x,y)=>Math.abs(x)<7||(Math.abs(y)<11&&x<0)||(Math.abs(y)<5&&x>0)||Math.hypot(x,y)<36||Math.abs(Math.abs(x)-222)<4||Math.abs(Math.abs(y)-222)<4||
+  const nearPath=(x,y)=>Math.abs(x)<7||(Math.abs(y)<26&&x<0)||(Math.abs(y)<5&&x>0)||Math.hypot(x,y)<40||Math.abs(Math.abs(x)-222)<4||Math.abs(Math.abs(y)-222)<4||
     BLD.some(([bx,by,w,d])=>Math.abs(x-bx)<w/2+5&&Math.abs(y-by)<d/2+5);
   const palms=[],trees=[];
   const sideRows=[[229,5.5],[220,6],[211,6.5]];   // hai hàng dừa trong chân thành (theo ảnh: dày nhất ở mặt Nam và mặt Bắc)
@@ -133,16 +169,33 @@ export function makePark({scene,B,groundAt,ground,MOBILE,walls=[],brickTex=null}
       const xi=Math.floor((v.x+O)/C),yi=Math.floor((-v.z+O)/C);if(xi>=0&&yi>=0&&xi<N&&yi<N)occ[yi*N+xi]=1}}
     const morph=(src,dil,r)=>{const out=new Uint8Array(N*N);for(let y=0;y<N;y++)for(let x=0;x<N;x++){let hit=!dil;
       for(let dy=-r;dy<=r&&(dil?!hit:hit);dy++)for(let dx=-r;dx<=r;dx++){const X=x+dx,Y=y+dy;const o=X>=0&&Y>=0&&X<N&&Y<N?src[Y*N+X]:0;if(dil&&o){hit=true;break}if(!dil&&!o){hit=false;break}}out[y*N+x]=hit?1:0}return out};
-    let m=morph(morph(occ,true,3),false,3);   // lấp lỗ hổng, chỗ tường bị phá
+    let m=morph(morph(occ,true,5),false,5);   // lấp lỗ hổng, chỗ tường bị phá
     const gate=(x,y)=>(Math.abs(y)<9.5&&Math.abs(Math.abs(x)-250)<9)||(Math.abs(x)<10.5&&Math.abs(Math.abs(y)-250)<9);
     const runs=[];for(let yi=0;yi<N;yi++){let a=-1;for(let xi=0;xi<=N;xi++){const x=xi*C-O+C/2,y=yi*C-O+C/2;const on=xi<N&&m[yi*N+xi]&&!gate(x,y);
       if(on&&a<0)a=xi;if(!on&&a>=0){runs.push([a,xi,yi]);a=-1}}}
-    const TOP=6.2,BOT=-2.2;const bm=new THREE.MeshStandardMaterial({color:brickTex?0xb7907c:0x8c5a46,map:brickTex,roughness:.9}),gm=new THREE.MeshStandardMaterial({color:0x5f8d35,roughness:1});
-    const box=new THREE.BoxGeometry(1,1,1);const IW=new THREE.InstancedMesh(box,bm,runs.length),IG=new THREE.InstancedMesh(box,gm,runs.length);const m4=new THREE.Matrix4(),q=new THREE.Quaternion(),p=new THREE.Vector3(),sc=new THREE.Vector3();
-    runs.forEach(([a,b,yi],i)=>{const x0=a*C-O,x1=b*C-O,y=yi*C-O+C/2;p.copy(B((x0+x1)/2,y,(TOP+BOT)/2));sc.set(x1-x0,TOP-BOT,C);m4.compose(p,q,sc);IW.setMatrixAt(i,m4);
-      p.copy(B((x0+x1)/2,y,TOP+.06));sc.set(x1-x0+.02,.14,C+.02);m4.compose(p,q,sc);IG.setMatrixAt(i,m4)});
-    for(const im of [IW,IG]){im.castShadow=im.receiveShadow=!MOBILE;im.computeBoundingSphere();G.add(im)}}
+    const TOP=6.2,BOT=-2.2;const bm=new THREE.MeshStandardMaterial({color:0xffffff,roughness:.93}),gm=null;
+    /* gạch cũ, rêu xanh bám lốm đốm (nhiều hơn ở mặt trên và chân tường), mạch vữa theo hàng gạch — tô bằng nhiễu theo toạ độ thế giới */
+    bm.onBeforeCompile=sh=>{sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vWP;varying vec3 vWN;')
+      .replace('#include <project_vertex>','#include <project_vertex>\n mat4 wm4=modelMatrix;\n #ifdef USE_INSTANCING\n wm4=modelMatrix*instanceMatrix;\n #endif\n vWP=(wm4*vec4(transformed,1.)).xyz;vWN=normalize(mat3(wm4)*objectNormal);');
+      sh.fragmentShader=sh.fragmentShader.replace('#include <common>',`#include <common>
+varying vec3 vWP;varying vec3 vWN;
+float hh(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float nz(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hh(i),hh(i+vec2(1,0)),f.x),mix(hh(i+vec2(0,1)),hh(i+vec2(1,1)),f.x),f.y);}
+float fb(vec2 p){return nz(p)*.55+nz(p*2.3)*.3+nz(p*5.1)*.15;}`)
+      .replace('#include <color_fragment>',`#include <color_fragment>
+ vec2 q=abs(vWN.y)>.5?vWP.xz:vec2(vWP.x+vWP.z,vWP.y);
+ bool tp=abs(vWN.y)>.5;float rowY=(tp?vWP.z/.3:vWP.y/.28);float row=floor(rowY);float bx=(tp?vWP.x:vWP.x+vWP.z)/.55+row*.5;
+ float mortar=max(step(fract(rowY),.1),step(fract(bx),.06));
+ vec3 brick=mix(vec3(.47,.27,.2),vec3(.58,.36,.27),hh(vec2(floor(bx),row)))*(.85+.15*fb(q*3.))*(tp?.82:1.);
+ brick=mix(brick,vec3(.55,.52,.47),mortar*.8);
+ float n=fb(q*.22+3.7);float top=abs(vWN.y)>.5?1.:0.;float foot=clamp((1.2-vWP.y)/2.5,0.,1.);
+ float moss=smoothstep(.64-top*.05-foot*.08,.76,n)*smoothstep(.35,.7,fb(q*1.9+7.1))*.9;   /* rêu lốm đốm, không phủ kín */
+ vec3 mc=mix(vec3(.24,.33,.13),vec3(.36,.45,.2),fb(q*2.9));
+ diffuseColor.rgb=mix(brick,mc,clamp(moss,0.,1.));`)};
+    const box=new THREE.BoxGeometry(1,1,1);const IW=new THREE.InstancedMesh(box,bm,runs.length);const m4=new THREE.Matrix4(),q=new THREE.Quaternion(),p=new THREE.Vector3(),sc=new THREE.Vector3();
+    runs.forEach(([a,b,yi],i)=>{const x0=a*C-O,x1=b*C-O,y=yi*C-O+C/2;p.copy(B((x0+x1)/2,y,(TOP+BOT)/2));sc.set(x1-x0,TOP-BOT,C);m4.compose(p,q,sc);IW.setMatrixAt(i,m4)});
+    for(const im of [IW]){im.castShadow=im.receiveShadow=!MOBILE;im.computeBoundingSphere();G.add(im)}}
 
   function set(on){G.visible=on;setFlat(on);for(const w of walls)w.visible=!on}
-  return {group:G,set,palms:palms.length,trees:trees.length,H}
+  return {group:G,set,palms:palms.length,trees:trees.length,H,MON,LEVEL}
 }
