@@ -61,7 +61,7 @@ XP.chay=async function(){
   const FONT='"Be Vietnam Pro", system-ui, sans-serif';
   const allTxt=[cfg.nhan,cfg.ket&&cfg.ket.chu,cfg.ket&&cfg.ket.web,...cfg.khoanh_khac.map(m=>m.chu)].filter(Boolean).join(' ');
   for(const w of [600,700,800])await document.fonts.load(`${w} 60px "Be Vietnam Pro"`,allTxt).catch(()=>{});
-  const logo=new Image();logo.src=cfg.logo;await logo.decode().catch(()=>{});
+  const logo=new Image();if(cfg.logo)logo.src=cfg.logo;await logo.decode().catch(()=>{});
   const logoKenh=new Image();if(cfg.logo_kenh){logoKenh.src=cfg.logo_kenh;await logoKenh.decode().catch(()=>{})}   /* logo kênh (vd. Trường Thắng Documentary) góc dưới phải */
   const logoKet=new Image();logoKet.src=cfg.ket&&cfg.ket.logo||cfg.logo;await logoKet.decode().catch(()=>{});
   const cv=document.createElement('canvas');cv.width=W;cv.height=H;const g=cv.getContext('2d');
@@ -117,14 +117,15 @@ XP.chay=async function(){
     if(m.ket){const k=Math.min(1,u/.45);g.fillStyle=`rgba(6,4,3,${.62*k})`;g.fillRect(0,0,W,H);
       if(logoKet.naturalWidth){const w=(m.logo_rong||560)*sc,h=w*logoKet.naturalHeight/logoKet.naturalWidth;g.save();g.globalAlpha=k;g.drawImage(logoKet,(W-w)/2,(m.logo_y||600)*sc-h/2,w,h);g.restore()}
       chuGiua(m.chu,960,78,{alpha:k,maxW:900});
-      chuGiua(m.web||'',1210,50,{weight:700,color:'#f3c969',alpha:k,maxW:980});
+      if(m.web)chuGiua(m.web,1210,50,{weight:700,color:'#f3c969',alpha:k,maxW:980});
     }else if(m.chu&&u>=vao&&u<=dai){
       const hn=!!m.chu_hien_ngay,het=m.chu_het??.3;   /* chu_hien_ngay: chữ nối tiếp từ đoạn trước, không hiện dần */
       const vaoK=hn?1:Math.min(1,(u-vao)/.35);const a=vaoK*(het>0?Math.min(1,Math.max(0,(dai-u)/het)):1);const moc=m.kieu_chu==='moc';
       const cy=m.chu_y||(moc?900:1250),size=m.chu_co||(moc?88:74);
       gr=g.createLinearGradient(0,(cy-260)*sc,0,(cy+260)*sc);gr.addColorStop(0,'rgba(0,0,0,0)');gr.addColorStop(.5,`rgba(0,0,0,${.42*a})`);gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,(cy-260)*sc,W,520*sc);
       chuGiua(m.chu,cy,size,{alpha:a,dy:(1-vaoK)*24,color:moc?'#ffe08a':'#fff',maxW:m.chu_rong||920})}
-    nhan();logoGoc();
+    if(cfg.nhan!==false)nhan();logoGoc();
+    if(logoKenh.naturalWidth&&!m.ket){const w=(cfg.logo_kenh_rong||300)*sc,h=w*logoKenh.naturalHeight/logoKenh.naturalWidth;g.save();g.globalAlpha=cfg.logo_kenh_mo??.9;g.shadowColor='rgba(0,0,0,.7)';g.shadowBlur=10*sc;g.drawImage(logoKenh,W-44*sc-w,(cfg.logo_kenh_y||150)*sc-h/2,w,h);g.restore()}   /* khung dọc: logo kênh góc trên phải */
     if(m.den_vao&&u<m.den_vao){g.fillStyle=`rgba(0,0,0,${1-u/m.den_vao})`;g.fillRect(0,0,W,H)}
     if(m.den_ra&&dai-u<m.den_ra){g.fillStyle=`rgba(0,0,0,${1-(dai-u)/m.den_ra})`;g.fillRect(0,0,W,H)}}
 

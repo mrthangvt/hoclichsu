@@ -139,12 +139,17 @@ def main():
     print('âm thanh:', am, f'({tong:.2f} s)')
     if a.chi_am:
         return
-    subprocess.run(['ffmpeg', '-y', '-v', 'error', '-r', str(fps), '-i', hinh, '-i', am,
-                    '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'copy', '-shortest',
+    # hai bước: H.264 thô -> mp4 chỉ hình (có mốc thời gian), rồi ghép tiếng. Ghép thẳng H.264 thô + tiếng
+    # bằng ffmpeg mới trên macOS có lúc rớt rãnh tiếng.
+    chi_hinh = ra + '.hinh.mp4'
+    subprocess.run(['ffmpeg', '-y', '-v', 'error', '-r', str(fps), '-i', hinh, '-map', '0:v', '-c:v', 'copy', chi_hinh], check=True)
+    subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', chi_hinh, '-i', am,
+                    '-map', '0:v', '-map', '1:a', '-c', 'copy', '-shortest',
                     '-movflags', '+faststart', '-metadata', 'title=' + cfg.get('tieu_de', ten), ra], check=True)
+    os.remove(chi_hinh)
     print('phim:', ra)
     # kiểm tra nhanh: số khung và thời lượng hình phải khớp (ffmpeg mới đọc H.264 thô sai nhịp nếu thiếu -r ở đầu vào)
-    subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=nb_frames,duration', '-of', 'default=nw=1', ra])
+    subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'stream=codec_type,nb_frames,duration', '-of', 'compact', ra])
 
 
 if __name__ == '__main__':
