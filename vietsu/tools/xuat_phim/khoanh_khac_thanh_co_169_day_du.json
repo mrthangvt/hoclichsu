@@ -13,10 +13,8 @@
   "bitrate": 35000000
  },
  "nhan": "TÁI DỰNG MÔ PHỎNG",
- "logo": "/xuat_phim/tai_nguyen/logo-viet-su-chu.png",
+ "logo": "/xuat_phim/tai_nguyen/logo-hoc-lich-su-chu.webp",
  "logo_rong": 170,
- "logo_kenh": "/xuat_phim/tai_nguyen/logo-truong-thang.png",
- "logo_kenh_rong": 230,
  "thu_muc_nhac": "/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG/nhac-nen",
  "nhac_doan": [
   {
@@ -1049,9 +1047,9 @@
    "dao_dien": true,
    "fov": 50
   },
-  "chu": "Khám phá sa bàn 3D tại Việt Sử",
-  "web": "vietsu.com.vn",
-  "logo": "/xuat_phim/tai_nguyen/logo-viet-su-cong.png",
+  "chu": "Khám phá sa bàn 3D tại Học Lịch Sử",
+  "web": "hoclichsu.com",
+  "logo": "/xuat_phim/tai_nguyen/logo-hoc-lich-su.webp",
   "logo_rong": 400,
   "logo_y": 330,
   "cong": "Tái dựng mô phỏng, cần đối chiếu tư liệu · Lời dẫn và nguồn tư liệu trong sa bàn · Nhạc nền: Epidemic Sound · Dữ liệu bản đồ © OpenStreetMap contributors",

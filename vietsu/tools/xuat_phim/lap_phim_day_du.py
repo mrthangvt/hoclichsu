@@ -35,6 +35,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--w', type=int, default=3840); ap.add_argument('--h', type=int, default=2160)
     ap.add_argument('--ra', default='khoanh_khac_thanh_co_169_day_du')
+    ap.add_argument('--don_gian', action='store_true', help='như video thường: chỉ logo kênh Trường Thắng Documentary góc trên phải, không nhãn, thẻ, phụ đề, khung kết')
+    ap.add_argument('--giao_dien', action='store_true', help='quay kèm giao diện app (mở bằng khung.html), logo Học Lịch Sử')
     a = ap.parse_args()
     d = json.load(open(os.path.join(SB, 'data', 'episodes.json'), encoding='utf-8'))
     eps = [e for e in d['episodes'] if e.get('ready') and e.get('cam')]
@@ -83,18 +85,34 @@ def main():
         'ten': 'thanh_co_169_day_du', 'sa_ban': 'thanh-co-quang-tri',
         'khung': {'w': a.w, 'h': a.h, 'fps': 30}, 'hat': 1972, 'tach_tep': True,
         'ma_hoa': {'bitrate': 35000000 if a.w * a.h > 2.2e6 else 16000000},
-        'nhan': 'TÁI DỰNG MÔ PHỎNG', 'logo': '/xuat_phim/tai_nguyen/logo-viet-su-chu.png', 'logo_rong': 170,
-        'logo_kenh': '/xuat_phim/tai_nguyen/logo-truong-thang.png', 'logo_kenh_rong': 230,
+        'nhan': 'TÁI DỰNG MÔ PHỎNG', 'logo': '/xuat_phim/tai_nguyen/logo-hoc-lich-su-chu.webp', 'logo_rong': 170,
         'thu_muc_nhac': '/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG/nhac-nen',
         'nhac_doan': nhac, 'nhac': {'ha_khi_doc': 0.45},
         'giong': {'am_luong': 1.0}, 'hieu_ung': {'tep_no': 'bom-no.mp3', 'no_ghi_lai': 0.22, 'tep_nen': 'sung-nen.mp3', 'nen': 0.32},
         'khoanh_khac': ds,
         'ket': {'chuong': eps[-1]['id'], 'tu': max(0, eps[-1]['duration_sec'] - 9), 'dai': 9, 'chuan_bi': 0,
-                'may': {'dao_dien': True, 'fov': 50}, 'chu': 'Khám phá sa bàn 3D tại Việt Sử', 'web': 'vietsu.com.vn',
-                'logo': '/xuat_phim/tai_nguyen/logo-viet-su-cong.png', 'logo_rong': 400, 'logo_y': 330,
+                'may': {'dao_dien': True, 'fov': 50}, 'chu': 'Khám phá sa bàn 3D tại Học Lịch Sử', 'web': 'hoclichsu.com',
+                'logo': '/xuat_phim/tai_nguyen/logo-hoc-lich-su.webp', 'logo_rong': 400, 'logo_y': 330,
                 'cong': 'Tái dựng mô phỏng, cần đối chiếu tư liệu · Lời dẫn và nguồn tư liệu trong sa bàn · Nhạc nền: Epidemic Sound · Dữ liệu bản đồ © OpenStreetMap contributors',
                 'den_ra': 1.2},
     }
+    if a.don_gian:
+        cfg.update({'ten': 'thanh_co_169_video', 'nhan': False, 'logo_kenh': '/xuat_phim/tai_nguyen/logo-truong-thang.png',
+                    'logo_kenh_rong': 260, 'logo_kenh_tren': True, 'logo_kenh_mo': 0.9})
+        cfg.pop('logo', None); cfg.pop('ket', None)
+        for k in ds:
+            k.pop('the', None); k.pop('phu_de', None)
+        ds[-1]['den_ra'] = 2.5
+        if a.ra == 'khoanh_khac_thanh_co_169_day_du':
+            a.ra = 'khoanh_khac_thanh_co_169_video'
+    if a.giao_dien:   # bản quay kèm nút/thẻ/phụ đề của app: không chèn nhãn, thẻ, phụ đề riêng; logo Học Lịch Sử
+        cfg.update({'ten': 'thanh_co_169_giao_dien', 'giao_dien': True, 'logo': '/xuat_phim/tai_nguyen/logo-hoc-lich-su-chu.webp',
+                    'logo_ui': {'rong': 190, 'x': -28, 'y': -150, 'mo': 0.92}})
+        cfg.pop('logo_kenh', None); cfg.pop('logo_kenh_rong', None)
+        cfg['ket'].update({'chu': 'Khám phá sa bàn 3D tại Học Lịch Sử', 'web': '', 'logo': '/xuat_phim/tai_nguyen/logo-hoc-lich-su.webp',
+                           'logo_rong': 520, 'logo_y': 360, 'chu_y': 720})
+        if a.ra == 'khoanh_khac_thanh_co_169_day_du':
+            a.ra = 'khoanh_khac_thanh_co_169_giao_dien'
     out = os.path.join(GOC, a.ra + '.json')
     json.dump(cfg, open(out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(out, f'{t0 + 9:.0f} s', len(nhac), 'đoạn nhạc')

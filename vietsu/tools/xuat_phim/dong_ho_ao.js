@@ -8,10 +8,15 @@
 (function(){
   'use strict';
   const Q=new URLSearchParams(location.search);
-  const W=+Q.get('w')||1080, H=+Q.get('h')||1920, FPS=+Q.get('fps')||30;
+  const FPS=+Q.get('fps')||30;
+  /* ui=1: quay CẢ giao diện của app (nút, thẻ, phụ đề). Trang được mở trong khung khung.html có kích thước thật
+     (vd. 1920×1080 điểm CSS), nên giữ nguyên innerWidth/innerHeight; khung vẽ = kích thước × dpr (vd. ×2 → 3840×2160). */
+  const UI=Q.get('ui')==='1', DPR=+Q.get('dpr')||2;
+  const W=UI?Math.round(innerWidth*DPR):(+Q.get('w')||1080), H=UI?Math.round(innerHeight*DPR):(+Q.get('h')||1920);
 
   /* ---- kích thước khung vẽ ---- */
-  for(const [k,v] of [['innerWidth',W],['innerHeight',H],['outerWidth',W],['outerHeight',H],['devicePixelRatio',1]])
+  const ghiDe=UI?[['devicePixelRatio',DPR]]:[['innerWidth',W],['innerHeight',H],['outerWidth',W],['outerHeight',H],['devicePixelRatio',1]];
+  for(const [k,v] of ghiDe)
     try{Object.defineProperty(window,k,{get:()=>v,configurable:true})}catch(e){}
 
   /* ---- số ngẫu nhiên có hạt giống (mulberry32) ---- */
@@ -22,7 +27,7 @@
   const nowThuc=performance.now.bind(performance);
   const rafThuc=window.requestAnimationFrame.bind(window);
   const stThuc=window.setTimeout.bind(window), ctThuc=window.clearTimeout.bind(window);
-  const XP={W,H,FPS,mode:'thuc',t:0,buoc:0,nowThuc};
+  const XP={W,H,FPS,UI,DPR,mode:'thuc',t:0,buoc:0,nowThuc};
   let goc=0;                                   // mốc giờ thật lúc chuyển sang đồng hồ ảo
   performance.now=function(){return XP.mode==='ao'?goc+XP.t*1000:nowThuc()};
 
@@ -48,7 +53,8 @@
   window.__XP=XP;
 
   /* ---- giao diện trang quay: ẩn mọi nút, nhãn của sa bàn; khung vẽ hiện vừa cửa sổ đúng tỉ lệ ---- */
-  const css=`body>*:not(#c):not(#load):not(#xp-bang){display:none!important}
+  const css=UI?`#xp-bang{position:fixed;left:8px;bottom:8px;z-index:99;font:13px/1.4 system-ui,sans-serif;color:#fff;background:rgba(0,0,0,.72);padding:8px 10px;border-radius:8px;max-width:46vw;white-space:pre-wrap}
+    #labels{display:none!important}`:`body>*:not(#c):not(#load):not(#xp-bang){display:none!important}
     #c{inset:auto!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%);height:100vh!important;width:auto!important;aspect-ratio:${W}/${H};max-width:100vw}
     html,body{background:#000!important}
     #xp-bang{position:fixed;left:8px;bottom:8px;z-index:99;font:13px/1.4 system-ui,sans-serif;color:#fff;background:rgba(0,0,0,.72);padding:8px 10px;border-radius:8px;max-width:46vw;white-space:pre-wrap}`;
