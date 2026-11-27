@@ -21,7 +21,7 @@ KQ = os.path.expanduser(os.environ.get('KET_QUA', os.path.join(GOC, 'ket_qua')))
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('ds', nargs='?', default='khoanh_khac_thanh_co_916')
-    ap.add_argument('--hinh'); ap.add_argument('--ra'); ap.add_argument('--nhac'); ap.add_argument('--thu_muc_nhac'); ap.add_argument('--chi_am', action='store_true')
+    ap.add_argument('--hinh'); ap.add_argument('--ra'); ap.add_argument('--nhac'); ap.add_argument('--thu_muc_nhac'); ap.add_argument('--chi_am', action='store_true'); ap.add_argument('--dung_am', action='store_true', help='dùng lại <ten>_am.m4a đã dựng, chỉ ghép hình')
     a = ap.parse_args()
     cfg = json.load(open(os.path.join(GOC, a.ds.removesuffix('.json') + '.json'), encoding='utf-8'))
     ten, fps = cfg['ten'], cfg['khung']['fps']
@@ -134,7 +134,8 @@ def main():
 
     am = os.path.join(KQ, ten + '_am.m4a')
     lenh = ['ffmpeg', '-y', '-v', 'error', *vao, '-filter_complex', ';'.join(loc), '-map', '[am]', '-c:a', 'aac', '-b:a', '192k', am]
-    subprocess.run(lenh, check=True)
+    if not (a.dung_am and os.path.isfile(am)):
+        subprocess.run(lenh, check=True)
     print('âm thanh:', am, f'({tong:.2f} s)')
     if a.chi_am:
         return
