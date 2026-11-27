@@ -59,3 +59,25 @@ chuyên mục, thẻ, ảnh đại diện; có SEO) và mục bật/tắt, đổ
 Kiểm tra (Nginx cấu hình như aaPanel, Chromium 1440 px và 390 px): tải ảnh; đổi tên/biểu tượng/lời chào trợ lý → trang chính đổi, tắt → nút ẩn;
 viết bài có định dạng, ảnh, chuyên mục, thẻ, ảnh đại diện, SEO → xuất bản → trang công khai đúng, og:image đúng; chèn `<script>`, `onerror`,
 `javascript:` ở chế độ Mã HTML → bị loại; bản nháp không công khai (404); chưa đăng nhập gọi API → 401; không lỗi JavaScript.
+
+## V6.1 (27/11/2026, nhánh `claude/khong-gian-mobile`) — Không gian lịch sử, menu điện thoại, Đăng ký | Đăng nhập
+Theo yêu cầu chủ dự án (`static/v61.css`, `static/v61.js`, nạp sau v60 trong build_v59.py):
+- **Bản đồ Không gian lịch sử**: điện thoại — một ngón tay cuộn trang (trước đây bản đồ chặn cuộn), hai ngón tay phóng to/thu nhỏ và kéo;
+  máy tính — **Ctrl (⌘) + cuộn** hoặc chụm bàn rê để phóng, cuộn thường thì cuộn trang (có gợi ý), kéo chuột để di chuyển;
+  phóng/di chuyển mượt (gom theo khung hình, chuyển động dần), nút + − ⌖ và “bay tới” khi chọn thẻ cũng mượt; điểm dưới con trỏ đứng yên khi phóng.
+- **Bộ lọc Di tích & văn hóa / Chiến dịch & chiến trận** thành nút nhỏ ngay dưới tiêu đề danh sách.
+- **Danh sách sa bàn trên điện thoại** cuộn được hết (nguyên nhân: khung danh sách dính cao 100vh và ẩn phần thừa).
+- **Menu điện thoại kiểu Map Tour** (tham khảo vietnamchuyenminh.com): biểu tượng 22 px + chữ, cùng kích thước; mục đang chọn đổi màu và có vạch trên,
+  không còn ô nền; biểu tượng Bộ đề vẽ lại cùng kiểu; có bản giao diện sáng.
+- **Biểu tượng Bác Hồ**: bỏ lớp phủ; dùng hình làm mặt nạ nên luôn cùng màu với các biểu tượng khác (xám khi ở trang khác, vàng khi đang chọn).
+- **Breadcrumb viết HOA** (HỌC LỊCH SỬ / KHÔNG GIAN LỊCH SỬ).
+- **Giao diện sáng**: 3 nút Việt Nam · Trung Quốc / Việt Nam · Phương Tây / Cả 3 dòng theo màu sáng.
+- **CMS → Menu & trang chủ → Cột trái**: bật/tắt và sửa câu trích dẫn; bật/tắt khung “Học Lịch Sử trên điện thoại”, sửa tiêu đề, mô tả,
+  nội dung hướng dẫn cài đặt (mỗi dòng một bước). Hướng dẫn mặc định mới cho iPhone/Android; **mã QR thật** tới https://hoclichsu.com (`static/v61/qr-hoclichsu.png`).
+- **Đăng ký | Đăng nhập**: hai liên kết riêng (máy tính và điện thoại); hộp đăng ký (họ tên, email, mật khẩu) / đăng nhập; sau khi vào hiện tên,
+  menu có Trang quản trị (nếu là biên tập), Bài viết, Đăng xuất. API mới `POST /api/v6/dang-ky` (vai trò Thành viên, 5 lần/giờ/IP, ô bẫy chống máy).
+  Chưa gửi email xác nhận (cần máy chủ thư) — làm ở đợt 2 cùng chức năng gửi bài.
+
+Kiểm tra (Chromium 1440 px, điện thoại 390 px có cảm ứng): cuộn thường không phóng bản đồ mà cuộn trang; Ctrl+cuộn phóng; kéo chuột; nút về giữa;
+chụm hai ngón phóng bản đồ, trang không bị phóng; danh sách hiện đủ 9 sa bàn; menu, biểu tượng Bác ở chế độ tối/sáng; đăng ký → đăng xuất → sai mật khẩu
+→ đăng nhập; thành viên gọi API quản trị bị 403; CMS sửa/ẩn câu trích dẫn và khung ứng dụng; không lỗi JavaScript.
