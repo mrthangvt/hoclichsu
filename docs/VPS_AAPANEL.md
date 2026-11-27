@@ -22,11 +22,17 @@ Sau khi merge, khoảng **3–8 phút** là hoclichsu.com có bản mới. Khôn
    - Domain: `hoclichsu.com` và dòng thứ hai `www.hoclichsu.com`
    - PHP version: **Static** (trang tĩnh) · Database: không · FTP: không
    - Thư mục gốc để mặc định `/www/wwwroot/hoclichsu.com`
-3. **Tự cập nhật:** aaPanel → *Cron* → *Add Task*
-   - Type: **Shell Script** · Name: `Cập nhật hoclichsu.com`
-   - Execution cycle: **N Minutes**, `5`
-   - Script content: dán toàn bộ nội dung `tools/vps/cap_nhat_hoclichsu.sh`
-   - Lưu, rồi bấm **Execute** một lần. Lần đầu tải khoảng 320 MB (sa bàn 3D) nên mất vài phút; bấm **Log** để xem, thấy dòng “Đã cập nhật: Bản dựng cho hoclichsu.com…” là xong.
+3. **Tự cập nhật:**
+   - aaPanel → *Terminal*, chạy một lần (tải script về và chạy thử, lần đầu tải ~320 MB, 1–3 phút):
+     ```
+     curl -fsSL https://raw.githubusercontent.com/mrthangvt/hoclichsu/main/tools/vps/cap_nhat_hoclichsu.sh -o /root/cap_nhat_hoclichsu.sh
+     bash /root/cap_nhat_hoclichsu.sh
+     ```
+     Thấy “Đã cập nhật: Bản dựng cho hoclichsu.com…” là xong.
+   - aaPanel → *Cron* → *Add Task*: Type **Shell Script**, Name `Cap nhat hoclichsu`, **N Minutes = 5**, Execute user **root**,
+     Script content đúng một dòng: `bash /root/cap_nhat_hoclichsu.sh`
+     (Không dán cả script vào ô này: thử 27/11/2026 thì aaPanel chạy không ra kết quả.)
+   - Log có dòng `sudo: unable to resolve host …` là cảnh báo vô hại.
 4. **SSL (https):** khi DNS đã trỏ về (thường 5–30 phút), aaPanel → *Website* → `hoclichsu.com` → *SSL* → *Let's Encrypt* → chọn cả hai tên miền → *Apply*; bật **Force HTTPS**.
 5. **Kiểm tra:** mở `https://hoclichsu.com/nhan-vat-lich-su/tran-hung-dao/` → phải mở thẳng hồ sơ Trần Hưng Đạo. Dán link vào Facebook/Zalo → có ảnh riêng của bài.
 
@@ -35,3 +41,6 @@ Sau khi merge, khoảng **3–8 phút** là hoclichsu.com có bản mới. Khôn
 - Địa chỉ lạ: aaPanel mặc định có `error_page 404 /404.html;` trong cấu hình site — `404.html` của Học Lịch Sử chuyển về trang chủ và mở đúng mục nếu có.
 - Muốn quay về bản trước: trên GitHub *Revert* PR rồi merge; 5 phút sau VPS tự về bản cũ.
 - Bản đầy đủ có CMS/`/admin` (máy chủ Python) là giai đoạn sau: chạy bằng Docker trong aaPanel, Nginx chuyển tiếp các đường dẫn `/admin`, `/api/` vào container.
+
+## Trạng thái
+- 27/11/2026: hoclichsu.com chạy trên VPS, có SSL Let's Encrypt; Cron 5 phút hoạt động.
