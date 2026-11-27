@@ -43,6 +43,22 @@ def _load_dotenv() -> None:
 _load_dotenv()
 
 DB_PATH = Path(os.getenv("VIETSU_DB", str(DATA / "vietsucms.sqlite3")))
+# Máy chủ Docker (VPS hoclichsu.com): các file JSON mà CMS sửa được để ở thư mục bền VIETSU_DU_LIEU,
+# không bị ghi đè khi dựng lại container. Lần đầu chép từ data/ của mã nguồn. Không đặt biến → dùng data/ như cũ.
+DU_LIEU = Path(os.environ["VIETSU_DU_LIEU"]) if os.getenv("VIETSU_DU_LIEU") else None
+
+
+def tep_du_lieu(ten: str) -> Path:
+    if DU_LIEU is None:
+        return DATA / ten
+    p = DU_LIEU / ten
+    if not p.exists():
+        p.parent.mkdir(parents=True, exist_ok=True)
+        goc = DATA / ten
+        if goc.is_file():
+            import shutil
+            shutil.copy2(goc, p)
+    return p
 SITE_URL = os.getenv("SITE_URL", "http://127.0.0.1:8000").rstrip("/")
 ADMIN_TOKEN = os.getenv("VIETSU_ADMIN_TOKEN", "")
 REVIEW_TOKEN = os.getenv("VIETSU_REVIEW_TOKEN", "")

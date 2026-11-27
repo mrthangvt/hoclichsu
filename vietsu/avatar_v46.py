@@ -9,10 +9,10 @@ from fastapi import APIRouter, Header, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
 
-from vs_core import DATA, STATIC, decode_image_data, read_json, require_role, write_json
+from vs_core import DATA, STATIC, decode_image_data, read_json, require_role, tep_du_lieu, write_json
 
 router = APIRouter()
-REGISTRY_FILE = DATA / "avatar_overrides_local.json"
+REGISTRY_FILE = tep_du_lieu("avatar_overrides_local.json")
 IMAGE_DIR = STATIC / "uploads" / "avatars"
 ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_-]{0,63}$")
 

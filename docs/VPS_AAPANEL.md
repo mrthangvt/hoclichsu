@@ -44,3 +44,33 @@ Sau khi merge, khoảng **3–8 phút** là hoclichsu.com có bản mới. Khôn
 
 ## Trạng thái
 - 27/11/2026: hoclichsu.com chạy trên VPS, có SSL Let's Encrypt; Cron 5 phút hoạt động.
+
+## CMS /admin (container Docker)
+Trang chính vẫn là file tĩnh do Nginx phục vụ. Phần quản trị chạy trong container **hoclichsu-api** (Python, `127.0.0.1:8010`,
+giới hạn 450 MB RAM, mạng `host` để đọc đúng IP người dùng). Nginx chuyển tiếp vào container các đường dẫn:
+`/admin…`, `/api/…`, `/media/…`, `/bai-viet/…`, `/nhan-vat/…`, `/ads.txt`, và file `/static/…` không có sẵn trong thư mục web
+(ảnh tải lên `/static/uploads/…`, giao diện admin). Trang chính gọi `/api/…` để lấy nội dung sửa trong CMS (logo/slogan, ảnh nhân vật…).
+
+- GitHub Actions đẩy mã máy chủ lên nhánh `ban-may-chu-api` (thư mục `vietsu/` bỏ sa bàn 3D và bản offline, kèm
+  `docker-compose.yml`, `cap_nhat_hoclichsu.sh`). Script Cron tải về `/www/hoclichsu-api`, có thay đổi thì `docker compose up -d --build`,
+  đồng thời tự cập nhật chính nó.
+- **Dữ liệu bền** `/www/hoclichsu-du-lieu/` (không mất khi dựng lại): `.env` (mã quản trị), `vietsucms.sqlite3` (bài viết, bài học SGK),
+  `data/` (logo & slogan, sa bàn, nhân vật, trang phục, ảnh đại diện, quảng cáo — biến `VIETSU_DU_LIEU`), `uploads/`, `trang-phuc/`.
+  Lưu ý: các file trong `data/` chép từ repo **lần đầu**; sau đó sửa trong CMS, sửa file đó trong repo sẽ không còn tác dụng trên VPS.
+- Sao lưu: aaPanel → Cron → *Backup Directory* thư mục `/www/hoclichsu-du-lieu` hằng ngày.
+
+### Cài một lần
+1. aaPanel → **Docker**: nếu chưa cài thì *Install*.
+2. aaPanel → **Terminal**:
+   ```
+   curl -fsSL https://raw.githubusercontent.com/mrthangvt/hoclichsu/main/tools/vps/cai_admin.sh -o /root/cai_admin.sh && bash /root/cai_admin.sh
+   ```
+   Lần đầu dựng container 1–3 phút. Cuối cùng in ra **MÃ QUẢN TRỊ** — lưu lại (cũng nằm trong `/www/hoclichsu-du-lieu/.env`).
+3. aaPanel → **Website** → `hoclichsu.com` → **Config**: dán nội dung `tools/vps/nginx-hoclichsu.conf` ngay **trên** dòng
+   `#ERROR-PAGE-START` → *Save*.
+4. Mở `https://hoclichsu.com/admin`, dán mã quản trị.
+
+Kiểm tra trước khi giao (27/11/2026): chạy máy chủ đúng lệnh và biến môi trường của container + Nginx với cấu hình giống mặc định
+aaPanel: `/admin`, `/admin/avatar`, giao diện admin, `/api/…` 200; Host lạ bị chặn (400); sửa logo/slogan ghi vào `data/` bền,
+không đụng file trong mã nguồn; tải ảnh nhân vật lên → trang chính hiện ảnh mới qua `/static/uploads/…`; trang tĩnh, đường dẫn rõ ràng,
+ảnh chia sẻ không đổi.
