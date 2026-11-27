@@ -129,12 +129,20 @@ const giongNhau=(a,b)=>JSON.stringify(chuanSS(a))===JSON.stringify(chuanSS(b));
 
 /* ---------- điều hướng ---------- */
 const TIEU_DE={'tong-quan':'Tổng quan','menu':'Menu & trang chủ','tai-khoan':'Tài khoản','nhat-ky':'Nhật ký thao tác','cong-cu':'Công cụ khác','doi-mat-khau':'Đổi mật khẩu'};
+// Các trang do mô-đun khác đăng ký (quan-tri-bai-viet.js): QT.trang[ten]=async(vung,phanSau)=>…, QT.tieuDe[ten]='…'
+const QT=window.QT=window.QT||{trang:{},tieuDe:{}};
+Object.assign(QT,{api,bao,esc,$,$$,slug,thoiGian:s=>thoiGian(s),toi:()=>TOI,chanRoi:null});
+let hashTruoc=location.hash;
 async function dieuHuong(){
+  // Trình biên tập đang có thay đổi chưa lưu → hỏi trước khi rời.
+  if(QT.chanRoi&&location.hash!==hashTruoc&&QT.chanRoi()&&!confirm('Bài viết có thay đổi chưa lưu. Rời trang này?')){history.replaceState(null,'',hashTruoc);return;}
+  QT.chanRoi=null;hashTruoc=location.hash;
   $('#thanhBen').classList.remove('mo');
   const h=decodeURIComponent(location.hash.slice(1))||'tong-quan';
   const [trang,...con]=h.split('/');
-  $$('#menuQT a').forEach(a=>a.classList.toggle('dang',a.dataset.m===(trang==='sua'?con[0]:trang)));
-  $('#tieuDe').textContent=TIEU_DE[trang]||(LOAI[trang]&&LOAI[trang].ten)||(trang==='sua'&&LOAI[con[0]]?LOAI[con[0]].ten:'');
+  $('#vung').className=QT.rong&&QT.rong[trang]?'rong':'';
+  $$('#menuQT a').forEach(a=>a.classList.toggle('dang',a.dataset.m===(trang==='sua'?con[0]:trang==='viet-bai'&&con.length?'bai-viet':trang)));
+  $('#tieuDe').textContent=TIEU_DE[trang]||QT.tieuDe[trang]||(LOAI[trang]&&LOAI[trang].ten)||(trang==='sua'&&LOAI[con[0]]?LOAI[con[0]].ten:'');
   const v=$('#vung');v.innerHTML='<p class="dang-tai">Đang tải…</p>';window.scrollTo(0,0);
   try{
     if(trang==='tong-quan')await tongQuan(v);
@@ -144,6 +152,7 @@ async function dieuHuong(){
     else if(trang==='cong-cu')trangCongCu(v);
     else if(trang==='doi-mat-khau')trangDoiMK(v);
     else if(trang==='sua'&&LOAI[con[0]])await trangSua(v,con[0],con.slice(1).join('/'));
+    else if(QT.trang[trang])await QT.trang[trang](v,con.join('/'));
     else if(LOAI[trang])await trangDanhSach(v,trang);
     else v.innerHTML='<p>Không có trang này.</p>';
   }catch(e){v.innerHTML='<div class="the"><b>Có lỗi:</b> '+esc(e.message)+'</div>';}

@@ -28,6 +28,8 @@ import vs_ads
 import vs_textbook
 import vs_taikhoan
 import vs_noidung
+import vs_tep
+import vs_baiviet
 import avatar_v46
 import periods_v47
 from vs_core import (ALLOWED_HOSTS, BASE, DATA, ENABLE_DOCS, MAX_BODY_BYTES, SITE_URL, STATIC, UPLOADS, VERSION,
@@ -206,6 +208,8 @@ def initialize():
     vs_textbook.init_textbook()
     vs_taikhoan.init_tai_khoan()
     vs_noidung.init_noi_dung()
+    vs_tep.init_tep()
+    vs_baiviet.init_bai_viet()
 
 
 initialize()
@@ -213,6 +217,8 @@ app.include_router(vs_textbook.router)
 app.include_router(vs_ads.router)
 app.include_router(vs_taikhoan.router)  # V6: tài khoản, đăng nhập
 app.include_router(vs_noidung.router)   # V6: sửa nội dung các mục Menu
+app.include_router(vs_tep.router)       # V6: thư viện ảnh
+app.include_router(vs_baiviet.router)   # V6: bài viết, chuyên mục, trang công khai
 
 
 # ============================================================ models
@@ -528,6 +534,9 @@ vs_textbook.register_pages(app, _ads, _ads_head)
 
 @app.get("/bai-viet/{slug}", response_class=HTMLResponse)
 def article_page(slug: str):
+    moi = vs_baiviet.tim_bai_cong_khai(slug)   # V6: bài viết từ trình biên tập mới
+    if moi:
+        return vs_baiviet.trang_bai(moi)
     with db() as con:
         r = con.execute("SELECT * FROM articles WHERE slug=? AND status='published'", (slug[:240],)).fetchone()
         if not r:

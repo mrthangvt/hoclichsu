@@ -50,6 +50,7 @@ textarea{min-height:90px;resize:vertical;line-height:1.55}
 .so{font-size:28px;font-weight:700}.so-nhan{color:var(--mo);font-size:13px}
 .cong-cu{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
 .cong-cu input[type=search]{max-width:340px}
+.cong-cu select{width:auto;max-width:260px}
 .bang{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--vien);border-radius:var(--bo);overflow:hidden}
 .bang th,.bang td{padding:10px 12px;border-bottom:1px solid #efebe3;text-align:left;vertical-align:top;font-size:14px}
 .bang th{background:#faf8f3;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mo)}
