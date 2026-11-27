@@ -41,6 +41,7 @@ function apDung(nd){
   const b=sgk[m[1]].bai.find(x=>String(x.so).toLowerCase().replace('cđ','cd')===m[2]);if(b)tron(b,va);}
  apMenu((L.menu||{}).chinh);
  apTroLy((L['cai-dat']||{})['tro-ly']);
+ apTrangChu((L['cai-dat']||{})['trang-chu']);
  try{window.HLS_DUONG_DAN&&window.HLS_DUONG_DAN.boSung();}catch(_){}
  // Vẽ lại các phần đã dựng sẵn lúc tải trang.
  try{if(L.hcm&&typeof buildHCM==='function')buildHCM();}catch(e){console.warn(e);}
@@ -83,6 +84,17 @@ function apTroLy(c){
  if(css){const st=document.createElement('style');st.id='hlsTroLy';st.textContent=css;document.head.appendChild(st);}
  if(c.ten){const t=document.querySelector('#aiOpen .ai-open-text');if(t)t.textContent=c.ten;}
  if(c.loi_chao){const p=document.querySelector('#aiMessages .ai-bubble p');if(p)p.textContent=c.loi_chao;}
+}
+
+/* ---------- Câu trích dẫn cột trái + khung “Học Lịch Sử trên điện thoại” (CMS → Menu & trang chủ) ---------- */
+function apTrangChu(c){
+ if(!c)return;
+ const q=document.querySelector('.sidebar-foot .aside-note');
+ if(q){if(c.quote_bat===false)q.style.display='none';else if(c.quote)q.textContent=c.quote;}
+ const a=document.querySelector('.v25-app-banner');
+ if(a){if(c.app_bat===false)a.style.display='none';
+  else{if(c.app_tieu_de){const t=a.querySelector('.v25-app-copy strong');if(t)t.textContent=c.app_tieu_de;}
+   if(c.app_mo_ta){const t=a.querySelector('.v25-app-copy span');if(t)t.textContent=c.app_mo_ta;}}}
 }
 
 /* ---------- Nút “✎ Sửa” cho người biên tập ---------- */

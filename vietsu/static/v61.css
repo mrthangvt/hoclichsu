@@ -1,0 +1,93 @@
+/* Học Lịch Sử V6.1 — 27/11/2026 (theo yêu cầu chủ dự án)
+   Không gian lịch sử: cử chỉ bản đồ, bộ lọc gọn, danh sách cuộn được trên điện thoại;
+   menu điện thoại kiểu Map Tour; biểu tượng Bác Hồ theo màu chữ; breadcrumb viết hoa;
+   nút so sánh ở giao diện sáng; liên kết Đăng ký | Đăng nhập. */
+
+/* ---------- Breadcrumb viết HOA ---------- */
+.crumb{text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- Bản đồ ---------- */
+/* Một ngón tay: cuộn trang như bình thường. Hai ngón: phóng to/thu nhỏ (do v61.js xử lý). */
+#v23MapViewport,#v23MapViewport svg{touch-action:pan-x pan-y!important}
+#v23MapViewport{cursor:grab}
+#v23MapViewport.dragging{cursor:grabbing}
+.v61-goi-y{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;
+  background:rgba(10,20,26,.82);color:#f6ecd6;padding:10px 16px;border-radius:10px;font-size:14px;font-weight:600;
+  opacity:0;transition:opacity .2s;text-align:center;max-width:80%}
+.v61-goi-y.hien{opacity:1}
+
+/* ---------- Bộ lọc Di tích / Chiến dịch: gọn trên một dòng tiêu đề ---------- */
+.v23-list-heading.v61-dau{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.v23-list-heading.v61-dau #v23MapCount{margin-left:auto;order:1}
+.v23-list-heading .v42-filters.v61-loc{display:flex!important;gap:6px;margin:0!important;padding:0!important;order:2;flex:1 1 100%;
+  grid-template-columns:none!important;min-height:0!important}
+.v23-list-heading .v42-filters.v61-loc button{flex:0 0 auto;min-height:0!important;height:30px!important;padding:0 12px!important;
+  border-radius:999px!important;font-size:12px!important;font-weight:600!important;line-height:28px!important;letter-spacing:0;text-transform:none}
+.v23-list-heading .v42-filters.v61-loc button[aria-pressed="true"]{background:#d9b46e!important;color:#1a2021!important;border-color:#d9b46e!important}
+
+/* Danh sách địa điểm: máy tính — cuộn trong khung; điện thoại — chảy theo trang, cuộn được hết. */
+@media (min-width:1101px){
+  #v23SpaceCards{overscroll-behavior:contain;scrollbar-width:thin}
+}
+@media (max-width:1100px){
+  .v23-map-list{position:static!important;height:auto!important;max-height:none!important;overflow:visible!important}
+  #v23SpaceCards{height:auto!important;max-height:none!important;overflow:visible!important}
+}
+
+/* ---------- Biểu tượng Bác Hồ: dùng làm mặt nạ để luôn cùng màu với các biểu tượng khác ---------- */
+html body .nav-icon.hcm{background-color:currentColor!important;-webkit-mask:url("v49/hcm-menu.webp") center/contain no-repeat!important;
+  mask:url("v49/hcm-menu.webp") center/contain no-repeat!important;border-radius:0!important;box-shadow:none!important;filter:none!important;opacity:1!important}
+html body .nav-icon.hcm img{opacity:0!important;background:none!important;border-radius:0!important;box-shadow:none!important}
+
+/* ---------- Menu điện thoại kiểu Map Tour: biểu tượng + chữ, cùng kích thước, mục đang chọn đổi màu ---------- */
+html body .mobile-sections{padding:6px 2px calc(6px + env(safe-area-inset-bottom))!important;height:auto!important;min-height:64px;
+  align-items:start;border-top:1px solid rgba(217,180,110,.22)!important;box-shadow:0 -6px 20px rgba(0,0,0,.25)}
+html body .mobile-sections.mobile-sections>button{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;
+  gap:4px!important;padding:5px 1px 2px!important;height:auto!important;min-height:52px;background:transparent!important;border:0!important;
+  border-radius:0!important;box-shadow:none!important;color:#8fa4a6!important;position:relative}
+html body .mobile-sections.mobile-sections>button .nav-icon{width:22px!important;height:22px!important;flex:0 0 22px;display:flex!important;align-items:center;justify-content:center;font-size:0!important}
+html body .mobile-sections.mobile-sections>button .nav-icon svg{width:22px!important;height:22px!important}
+html body .mobile-sections.mobile-sections>button>span:not(.nav-icon){display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  font-size:10px!important;line-height:1.2!important;font-weight:600!important;text-align:center;white-space:normal!important;max-width:100%}
+html body .mobile-sections.mobile-sections>button .v21-chevron{display:none!important}
+html body .mobile-sections.mobile-sections>button.active{color:#e6c27c!important;background:transparent!important;border:0!important;box-shadow:none!important}
+html body .mobile-sections.mobile-sections>button.active::before{content:"";position:absolute;top:-6px;left:22%;right:22%;height:3px;border-radius:0 0 3px 3px;background:#e6c27c}
+body.theme-light .mobile-sections{background:rgba(255,250,241,.97)!important;border-top-color:#e3d4bd!important;box-shadow:0 -6px 18px rgba(96,69,42,.12)}
+body.theme-light .mobile-sections.mobile-sections>button{color:#8a7865!important;background:transparent!important;border:0!important;box-shadow:none!important}
+body.theme-light .mobile-sections.mobile-sections>button.active{color:#a0702f!important;background:transparent!important}
+body.theme-light .mobile-sections.mobile-sections>button.active::before{background:#a0702f}
+
+/* ---------- Giao diện sáng: 3 nút so sánh dưới dòng thời gian ---------- */
+body.theme-light .compare-btn{background:#fffaf1!important;color:#5a4630!important;border:1px solid #d6bea0!important;box-shadow:none!important}
+body.theme-light .compare-btn:hover{border-color:#b88a56!important}
+body.theme-light .compare-btn.active,body.theme-light .compare-btn[aria-pressed="true"]{background:#b88a56!important;color:#fff!important;border-color:#b88a56!important}
+
+/* ---------- Đăng ký | Đăng nhập ---------- */
+.v61-tk{display:inline-flex;align-items:center;gap:2px;border:1px solid rgba(217,180,110,.55);border-radius:10px;padding:0 4px;height:36px}
+.v61-tk a,.v61-tk button{color:inherit;text-decoration:none;font:inherit;font-size:13px;font-weight:600;padding:6px 8px;border-radius:7px;background:none;border:0;cursor:pointer}
+.v61-tk a:hover,.v61-tk button:hover{background:rgba(217,180,110,.16)}
+.v61-tk .ngan{opacity:.45}
+.v61-tk-menu{position:absolute;right:0;top:44px;min-width:200px;background:#17232a;border:1px solid rgba(217,180,110,.35);border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);padding:6px;z-index:80;display:grid}
+.v61-tk-menu a,.v61-tk-menu button{display:block;text-align:left;padding:9px 12px;border-radius:7px;color:#f1e6cf;text-decoration:none;background:none;border:0;font:inherit;font-size:14px;cursor:pointer}
+.v61-tk-menu a:hover,.v61-tk-menu button:hover{background:rgba(217,180,110,.14)}
+.v61-tk-menu small{display:block;padding:6px 12px 8px;color:#9fb0b2;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:4px}
+body.theme-light .v61-tk-menu{background:#fffaf1;border-color:#d6bea0}
+body.theme-light .v61-tk-menu a,body.theme-light .v61-tk-menu button{color:#3d3125}
+.v61-hop{position:fixed;inset:0;z-index:120;background:rgba(8,14,18,.6);display:grid;place-items:center;padding:16px}
+.v61-hop form{width:min(400px,100%);background:#fffaf1;color:#2b241c;border-radius:16px;padding:24px;display:grid;gap:12px;box-shadow:0 20px 60px rgba(0,0,0,.4);
+  font-family:"Be Vietnam Pro",system-ui,sans-serif;max-height:92vh;overflow:auto}
+.v61-hop h3{margin:0;font-size:20px}.v61-hop .tab{display:flex;gap:4px;background:#efe5d3;border-radius:10px;padding:4px}
+.v61-hop .tab button{flex:1;border:0;background:none;border-radius:8px;padding:8px;font:inherit;font-weight:600;cursor:pointer;color:#6d5a48}
+.v61-hop .tab button.dang{background:#fff;color:#2b241c;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.v61-hop label{display:grid;gap:4px;font-size:13px;font-weight:600;color:#5a4630}
+.v61-hop input{border:1px solid #d6bea0;border-radius:8px;padding:10px 12px;font:inherit;font-size:15px;background:#fff;color:#2b241c}
+.v61-hop .loi{color:#b3412e;font-size:14px;min-height:1em;margin:0}.v61-hop .phu{font-size:12px;color:#7d6a55;margin:0}
+.v61-hop .gui{background:#1f2930;color:#fff;border:0;border-radius:10px;padding:12px;font:inherit;font-weight:700;cursor:pointer}
+.v61-hop .dong{justify-self:end;border:0;background:none;font-size:20px;cursor:pointer;color:#7d6a55;margin:-10px -8px -6px 0}
+.v61-hop [hidden]{display:none!important}
+.v61-hop .bay{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+/* ---------- Mã QR thật trỏ tới hoclichsu.com ---------- */
+.v25-qr-placeholder.v61-qr{padding:4px!important;background:#fff!important;border:0!important}
+.v25-qr-placeholder.v61-qr img{width:100%;height:auto;display:block;border-radius:4px}

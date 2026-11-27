@@ -46,7 +46,19 @@ def init_noi_dung() -> None:
         """)
 
 
-def _chuan(loai: str, du_lieu: dict) -> dict:
+def _chuan(loai: str, du_lieu: dict, ma: str = "") -> dict:
+    if loai == "cai-dat" and ma == "trang-chu":
+        # Câu trích dẫn ở cột trái và khung "Học Lịch Sử trên điện thoại" (+ hướng dẫn cài đặt).
+        ra = {"quote_bat": bool(du_lieu.get("quote_bat", True)), "app_bat": bool(du_lieu.get("app_bat", True))}
+        for k, toi_da in (("quote", 500), ("app_tieu_de", 80), ("app_mo_ta", 200), ("app_huong_dan", 3000)):
+            v = str(du_lieu.get(k) or "").strip()
+            if "<" in v or ">" in v or len(v) > toi_da:
+                raise HTTPException(422, f"“{k}” không hợp lệ (tối đa {toi_da} ký tự, không dùng < >).")
+            if v:
+                ra[k] = v
+        return ra
+    if loai == "cai-dat" and ma != "tro-ly":
+        raise HTTPException(404, "Không có mục cài đặt này.")
     if loai == "cai-dat":
         # Trợ lý Học Lịch Sử: bật/tắt, tên nút, biểu tượng, lời chào.
         ra = {"bat": bool(du_lieu.get("bat", True))}
@@ -148,7 +160,7 @@ def lich_su(loai: str, ma: str, request: Request):
 def luu(loai: str, ma: str, item: NoiDungIn, request: Request):
     tk = can_vai_tro(request, *VAI_TRO_SUA)
     _kiem(loai, ma)
-    du_lieu = _chuan(loai, item.du_lieu)
+    du_lieu = _chuan(loai, item.du_lieu, ma)
     s = json.dumps(du_lieu, ensure_ascii=False)
     if len(s) > 120_000:
         raise HTTPException(413, "Nội dung quá lớn.")

@@ -263,6 +263,7 @@ const MUC_DAU=[['main','Dòng thời gian'],['hcm','Chủ tịch Hồ Chí Minh'
 async function trangMenu(v){
   await taiVa();
   const cfg=await api('/api/site-config');
+  const tc=((VA['cai-dat']||{})['trang-chu'])||{};
   const luu=((VA.menu||{}).chinh||{}).muc||[];
   let muc=luu.length?luu.map(m=>({...m})):[];
   for(const [id] of MUC_MENU)if(!muc.find(m=>m.id===id))muc.push({id,nhan:'',an:false});
@@ -274,7 +275,18 @@ async function trangMenu(v){
     '<label>Đường dẫn logo riêng (để trống = logo mặc định)<input name="logo_url" value="'+esc(cfg.logo_url||'')+'" placeholder="/static/… hoặc https://…"></label>'+
     MUC_DAU.map(([id,t])=>'<div class="hai-cot"><label>'+esc(t)+' — tiêu đề<input name="t_'+id+'" value="'+esc((cfg.sections[id]||{}).title||'')+'"></label>'+
       '<label>'+esc(t)+' — mô tả<textarea name="d_'+id+'" rows="2">'+esc((cfg.sections[id]||{}).description||'')+'</textarea></label></div>').join('')+
-    '<div class="thanh-luu"><button class="nut chinh" type="submit">Lưu tiêu đề &amp; logo</button></div></form>';
+    '<div class="thanh-luu"><button class="nut chinh" type="submit">Lưu tiêu đề &amp; logo</button></div></form>'+
+    '<form class="the bieu-mau" id="bmCot"><h3>Cột trái: câu trích dẫn &amp; khung “Học Lịch Sử trên điện thoại”</h3>'+
+    '<label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" name="quote_bat" style="width:auto"'+(tc.quote_bat!==false?' checked':'')+'> Hiện câu trích dẫn</label>'+
+    '<label>Câu trích dẫn (để trống = câu mặc định)<textarea name="quote" rows="3" maxlength="500" placeholder="Khám phá dòng chảy lịch sử để thấu hiểu giá trị thiêng liêng của hòa bình, từ đó bồi đắp lòng biết ơn và trách nhiệm gìn giữ non sông cho thế hệ hôm nay.">'+esc(tc.quote||'')+'</textarea></label>'+
+    '<label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" name="app_bat" style="width:auto"'+(tc.app_bat!==false?' checked':'')+'> Hiện khung “Học Lịch Sử trên điện thoại” (có mã QR)</label>'+
+    '<div class="hai-cot"><label>Tiêu đề khung<input name="app_tieu_de" maxlength="80" value="'+esc(tc.app_tieu_de||'')+'" placeholder="Học Lịch Sử trên điện thoại"></label>'+
+    '<label>Mô tả ngắn<input name="app_mo_ta" maxlength="200" value="'+esc(tc.app_mo_ta||'')+'" placeholder="Khám phá dòng thời gian, nhân vật và học liệu mọi lúc"></label></div>'+
+    '<label>Hướng dẫn cài đặt (mỗi dòng một bước; để trống = hướng dẫn mặc định cho iPhone và Android)<textarea name="app_huong_dan" rows="5" maxlength="3000">'+esc(tc.app_huong_dan||'')+'</textarea></label>'+
+    '<div class="thanh-luu"><button class="nut chinh" type="submit">Lưu cột trái</button></div></form>';
+  $('#bmCot').onsubmit=async e=>{e.preventDefault();const f=e.target;
+    const du={quote_bat:f.quote_bat.checked,quote:f.quote.value,app_bat:f.app_bat.checked,app_tieu_de:f.app_tieu_de.value,app_mo_ta:f.app_mo_ta.value,app_huong_dan:f.app_huong_dan.value};
+    try{await api('/api/v6/noi-dung/cai-dat/trang-chu',{method:'PUT',body:{du_lieu:du}});bao('Đã lưu — trang chính áp dụng ngay.');}catch(err){bao(err.message,true);}};
   const ve=()=>{$('#dsMenu').innerHTML=muc.map((m,i)=>{const t=MUC_MENU.find(x=>x[0]===m.id)[1];
     return '<div class="menu-hang"><span class="stt">'+(i+1)+'</span><span class="phu-dong">'+esc(t)+'</span><input data-i="'+i+'" value="'+esc(m.nhan)+'" placeholder="'+esc(t)+'">'+
       '<label style="display:flex;gap:6px;align-items:center;font-weight:500"><input type="checkbox" style="width:auto" data-an="'+i+'"'+(m.an?' checked':'')+'> Ẩn</label>'+

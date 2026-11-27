@@ -20,7 +20,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 import vs_core
-from vs_core import ADMIN_TOKEN, SITE_URL, _token_ok, auth_fail_limiter, client_ip, db, now
+from vs_core import ADMIN_TOKEN, SITE_URL, RateLimiter, _token_ok, auth_fail_limiter, client_ip, db, now
 
 router = APIRouter()
 COOKIE = "hls_phien"
@@ -30,6 +30,7 @@ VAI_TRO = ("quan-tri", "bien-tap", "thanh-vien")
 VAI_TRO_SUA = ("quan-tri", "bien-tap")
 EMAIL_RE = re.compile(r"^[^@\s]{1,64}@[^@\s]{1,190}\.[^@\s]{2,24}$")
 SECURE = SITE_URL.startswith("https://")
+dang_ky_limiter = RateLimiter(5, 3600)   # 5 tài khoản mới / giờ / IP
 
 
 def init_tai_khoan() -> None:
@@ -237,6 +238,41 @@ def khoi_tao(item: KhoiTaoIn, request: Request):
         tk = {"id": cur.lastrowid, "email": email, "ten": item.ten.strip(), "vai_tro": "quan-tri"}
         token = tao_phien(con, tk, request)
         ghi_nhat_ky(con, tk, "khoi-tao", "Tạo tài khoản quản trị đầu tiên", request)
+    resp = JSONResponse({"tai_khoan": tk})
+    _dat_cookie(resp, token, tk)
+    return resp
+
+
+class DangKyIn(BaseModel):
+    ten: str = Field(min_length=2, max_length=80)
+    email: str = Field(max_length=254)
+    mat_khau: str = Field(max_length=200)
+    web: str = Field(default="", max_length=200)   # ô bẫy: người thật để trống
+
+
+@router.post("/api/v6/dang-ky")
+def dang_ky(item: DangKyIn, request: Request):
+    """Thành viên tự đăng ký (vai trò Thành viên). Chưa có máy chủ thư nên chưa gửi email xác nhận."""
+    kiem_csrf(request)
+    if item.web.strip():
+        raise HTTPException(400, "Không đăng ký được.")
+    if not dang_ky_limiter.hit("dk:" + client_ip(request)):
+        raise HTTPException(429, "Đăng ký quá nhiều lần. Thử lại sau một giờ.")
+    email = item.email.strip().lower()
+    ten = re.sub(r"\s+", " ", item.ten).strip()
+    if not EMAIL_RE.match(email):
+        raise HTTPException(422, "Email không hợp lệ.")
+    if "<" in ten or ">" in ten:
+        raise HTTPException(422, "Họ tên không hợp lệ.")
+    kiem_mat_khau(item.mat_khau)
+    with db() as con:
+        if con.execute("SELECT 1 FROM tai_khoan WHERE email=?", (email,)).fetchone():
+            raise HTTPException(409, "Email này đã có tài khoản. Hãy đăng nhập.")
+        cur = con.execute("INSERT INTO tai_khoan (email, ten, mat_khau, vai_tro, tao_luc) VALUES (?,?,?,?,?)",
+                          (email, ten, bam_mat_khau(item.mat_khau), "thanh-vien", now()))
+        tk = {"id": cur.lastrowid, "email": email, "ten": ten, "vai_tro": "thanh-vien"}
+        token = tao_phien(con, tk, request)
+        ghi_nhat_ky(con, tk, "dang-ky", email, request)
     resp = JSONResponse({"tai_khoan": tk})
     _dat_cookie(resp, token, tk)
     return resp
