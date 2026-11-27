@@ -76,6 +76,17 @@ def main():
     bao = os.path.join(KQ, ten + '_xuat.json')
     if hu.get('no_ghi_lai') and os.path.isfile(bao):
         luc_no = json.load(open(bao, encoding='utf-8')).get('no', [])
+        tam = os.path.join(KQ, ten + '_no.wav')
+        try:
+            import numpy  # noqa: F401  (Mac chưa cài numpy: dùng tệp _no.wav dựng sẵn nếu có)
+        except ImportError:
+            luc_no = []
+            if os.path.isfile(tam):
+                k = len(vao) // 2; vao += ['-i', tam]
+                loc.append(f"[{k}:a]aformat=sample_rates=48000:channel_layouts=stereo,volume={hu['no_ghi_lai']}[d{k}]"); dong.append(f'[d{k}]')
+                print('tiếng nổ: dùng tệp dựng sẵn', tam)
+            else:
+                print('Chưa có numpy: bỏ qua tiếng nổ ghi lại (pip3 install numpy để có)')
         if luc_no:
             import numpy as np, random
             random.seed(1972); SR = 48000

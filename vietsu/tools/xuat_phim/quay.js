@@ -49,6 +49,7 @@ XP.chay=async function(){
   const allTxt=[cfg.nhan,cfg.ket&&cfg.ket.chu,cfg.ket&&cfg.ket.web,...cfg.khoanh_khac.map(m=>m.chu)].filter(Boolean).join(' ');
   for(const w of [600,700,800])await document.fonts.load(`${w} 60px "Be Vietnam Pro"`,allTxt).catch(()=>{});
   const logo=new Image();logo.src=cfg.logo;await logo.decode().catch(()=>{});
+  const logoKenh=new Image();if(cfg.logo_kenh){logoKenh.src=cfg.logo_kenh;await logoKenh.decode().catch(()=>{})}   /* logo kênh (vd. Trường Thắng Documentary) góc dưới phải */
   const logoKet=new Image();logoKet.src=cfg.ket&&cfg.ket.logo||cfg.logo;await logoKet.decode().catch(()=>{});
   const cv=document.createElement('canvas');cv.width=W;cv.height=H;const g=cv.getContext('2d');
   function dong(txt,maxW){const words=txt.split(' ');const out=[];let s='';for(const w of words){const t=s?s+' '+w:w;if(g.measureText(t).width>maxW&&s){out.push(s);s=w}else s=t}if(s)out.push(s);return out}
@@ -73,16 +74,17 @@ XP.chay=async function(){
       chuGiua(t.chu,540,76,{alpha:a,maxW:1600,dy:(1-Math.min(1,(u-t.tu)/.6))*18})}
     const pd=(m.phu_de||[]).find(x=>u>=x.tu&&u<x.den);
     if(pd){const a=Math.min(1,(u-pd.tu)/.25)*Math.min(1,Math.max(0,(pd.den-u)/.25));
-      g.save();g.font=`600 ${40*sc}px ${FONT}`;const L=dong(pd.text,1500*sc);g.restore();
-      const cy=1080-60-(L.length*40*1.25)/2;chuGiua(pd.text,cy,40,{weight:600,alpha:a,maxW:1500,lh:1.25})}
+      const pw=cfg.logo_kenh?1260:1500;g.save();g.font=`600 ${40*sc}px ${FONT}`;const L=dong(pd.text,pw*sc);g.restore();
+      const cy=1080-60-(L.length*40*1.25)/2;chuGiua(pd.text,cy,40,{weight:600,alpha:a,maxW:pw,lh:1.25})}
     if(m.ket){const k=Math.min(1,u/.6);g.fillStyle=`rgba(6,4,3,${.66*k})`;g.fillRect(0,0,W,H);
       if(logoKet.naturalWidth){const w=(m.logo_rong||420)*sc,h=w*logoKet.naturalHeight/logoKet.naturalWidth;g.save();g.globalAlpha=k;g.drawImage(logoKet,(W-w)/2,(m.logo_y||380)*sc-h/2,w,h);g.restore()}
       chuGiua(m.chu,700,64,{alpha:k,maxW:1500});chuGiua(m.web||'',800,44,{weight:700,color:'#f3c969',alpha:k,maxW:1500});
-      if(m.cong)chuGiua(m.cong,930,26,{weight:500,alpha:k*.9,maxW:1700,lh:1.35})}
+      if(m.cong)chuGiua(m.cong,930,26,{weight:500,alpha:k*.9,maxW:cfg.logo_kenh?1260:1700,lh:1.35})}
     {const x=40*sc,y=60*sc,txt=cfg.nhan||'TÁI DỰNG MÔ PHỎNG';g.save();g.font=`700 ${22*sc}px ${FONT}`;g.textBaseline='middle';
       const w=g.measureText(txt).width+28*sc,h=44*sc;g.fillStyle='rgba(20,10,6,.62)';g.strokeStyle='rgba(240,170,90,.9)';g.lineWidth=2*sc;
       g.beginPath();g.roundRect(x,y-h/2,w,h,h/2);g.fill();g.stroke();g.fillStyle='#ffd9a8';g.fillText(txt,x+14*sc,y+1*sc);g.restore()}
     if(logo.naturalWidth){const w=(cfg.logo_rong||170)*sc,h=w*logo.naturalHeight/logo.naturalWidth;g.save();g.shadowColor='rgba(0,0,0,.6)';g.shadowBlur=12*sc;g.drawImage(logo,W-40*sc-w,60*sc-h/2,w,h);g.restore()}
+    if(logoKenh.naturalWidth){const w=(cfg.logo_kenh_rong||230)*sc,h=w*logoKenh.naturalHeight/logoKenh.naturalWidth;g.save();g.globalAlpha=cfg.logo_kenh_mo??.85;g.shadowColor='rgba(0,0,0,.7)';g.shadowBlur=10*sc;g.drawImage(logoKenh,W-40*sc-w,H-36*sc-h,w,h);g.restore()}
     if(m.den_vao&&u<m.den_vao){g.fillStyle=`rgba(0,0,0,${1-u/m.den_vao})`;g.fillRect(0,0,W,H)}
     if(m.den_ra&&dai-u<m.den_ra){g.fillStyle=`rgba(0,0,0,${1-(dai-u)/m.den_ra})`;g.fillRect(0,0,W,H)}}
   function veKhung(m,u,dai,glc){if(NGANG)return veNgang(m,u,dai,glc);

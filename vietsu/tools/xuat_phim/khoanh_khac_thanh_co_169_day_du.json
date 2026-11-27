@@ -10,11 +10,13 @@
  "hat": 1972,
  "tach_tep": true,
  "ma_hoa": {
-  "bitrate": 24000000
+  "bitrate": 35000000
  },
  "nhan": "TÁI DỰNG MÔ PHỎNG",
  "logo": "/xuat_phim/tai_nguyen/logo-viet-su-chu.png",
  "logo_rong": 170,
+ "logo_kenh": "/xuat_phim/tai_nguyen/logo-truong-thang.png",
+ "logo_kenh_rong": 230,
  "thu_muc_nhac": "/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG/nhac-nen",
  "nhac_doan": [
   {
