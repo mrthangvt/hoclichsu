@@ -1240,31 +1240,33 @@
     {
      "t": 22,
      "follow": "qWall",
-     "i": 4,
+     "i": 0,
+     "clip": "NamBan",
      "high": true,
      "off": [
-      1.5,
-      0.5,
-      0.35
+      -1.3,
+      1.7,
+      0.4
      ],
      "look": [
-      45,
-      -3
+      0.5,
+      -0.25
      ]
     },
     {
      "t": 42,
      "follow": "qWall",
-     "i": 4,
+     "i": 0,
+     "clip": "NamBan",
      "high": true,
      "off": [
-      2.2,
-      -0.7,
-      0.6
+      -1.1,
+      -1.8,
+      0.5
      ],
      "look": [
-      45,
-      -3
+      0.5,
+      -0.25
      ]
     },
     {
@@ -2081,7 +2083,7 @@
    "duration_sec": 190,
    "plan": "Âm thanh tắt dần, camera lên cao; cần ảnh hiện trạng có quyền sử dụng hoặc mô hình biểu tượng; phân biệt rõ di tích hiện tại và phần tái dựng.",
    "panel": {
-    "seeing": "Hoàng hôn trên sông Thạch Hãn với hoa đăng (biểu tượng); máy quay nâng dần lên toàn cảnh Thành cổ hôm nay: tường thành đã xây lại, trong thành là bãi cỏ, hàng dừa, lối dạo, quảng trường tròn và Đài tưởng niệm ở giữa.",
+    "seeing": "Hoàng hôn trên sông Thạch Hãn: người dân ngồi thuyền thả hoa đăng. Máy quay nâng dần lên toàn cảnh Thành cổ hôm nay: tường thành đã xây lại, bãi cỏ, hàng dừa, lối dạo; khí tài trưng bày hai bên đường dạo đỏ, khách tham quan đi lại; trên gò giữa thành, người dân thắp hương ở tháp biểu tượng và lầu hương.",
     "facts": [
      {
       "text": "Thành cổ Quảng Trị và các địa điểm lưu niệm 81 ngày đêm được xếp hạng Di tích quốc gia đặc biệt ngày 9/12/2013.",
@@ -2129,7 +2131,7 @@
      }
     ],
     "simulated": [
-     "Thành cổ hôm nay được dựng phỏng theo ảnh chụp trên cao hiện nay: tường thành xây lại gọn (mặt trên phủ cỏ), cầu qua hào ở bốn cổng, bãi cỏ, hàng dừa, lối dạo, quảng trường tròn với Đài tưởng niệm ở giữa, vài công trình mái ngói đỏ. Đây là mô hình biểu tượng, không đo đạc: hình đài, số cây, vị trí công trình phụ chỉ mang tính phỏng theo.",
+     "Thành cổ hôm nay được dựng phỏng theo ảnh chụp trên cao và ảnh khu tháp biểu tượng: tường thành xây lại (gạch cũ, rêu lốm đốm), cầu qua hào ở bốn cổng, bãi cỏ, hàng dừa, lối dạo, quảng trường tròn, gò cỏ có tháp biểu tượng bằng đồng và lầu hương mái ngói vàng. Đây là mô hình biểu tượng, không đo đạc. Khí tài đặt dọc đường dạo, người tham quan, thuyền thả hoa đăng là cảnh minh hoạ, không phải sơ đồ trưng bày thật của di tích.",
      "Hoa đăng, ánh hoàng hôn là hình ảnh biểu tượng.",
      "Nhạc nền: “Dòng sông phẳng lặng”, bản phối metal tạo bằng AI (phát từ 0:35), chỉ phát khi bật âm thanh. Tệp nhạc hiện chỉ có ở bản chạy trên máy: bản phối mới vẫn dùng giai điệu, lời của bài hát gốc nên cần xác nhận quyền của tác giả trước khi đưa lên bản công khai."
     ]
@@ -2139,21 +2141,34 @@
     {
      "t": 0,
      "p": [
-      -560,
-      -80,
-      6
+      -588,
+      -6,
+      3.2
      ],
      "l": [
-      -640,
-      40,
-      0
+      -618,
+      13,
+      0.2
      ]
     },
     {
-     "t": 24,
+     "t": 14,
      "p": [
-      -520,
-      -140,
+      -596,
+      2,
+      4.5
+     ],
+     "l": [
+      -628,
+      16,
+      0.2
+     ]
+    },
+    {
+     "t": 26,
+     "p": [
+      -560,
+      -70,
       22
      ],
      "l": [

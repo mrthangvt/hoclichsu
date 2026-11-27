@@ -17,13 +17,13 @@ export async function start(api){
   const UP=new THREE.Vector3(0,1,0),tp=new THREE.Vector3(),tl=new THREE.Vector3();
   const pickCache={};
   // high: chọn người đứng trên đoạn tường còn cao (y>4) để máy quay không chui vào đống đổ nát
-  function follow(kind,i,off,look,high){let a=api.anchor(kind,i);if(!a)return null;
-    if(high){const key=kind+i;if(pickCache[key]==null){pickCache[key]=i;for(let j=i;j<i+a.count;j++){const b=api.anchor(kind,j);if(b.pos.y>4){pickCache[key]=j;break}}}a=api.anchor(kind,pickCache[key])}
+  function follow(kind,i,off,look,high,clip){let a=api.anchor(kind,i);if(!a)return null;
+    if(high||clip){const key=kind+i+(clip||'');if(pickCache[key]==null){pickCache[key]=i;for(let j=i;j<i+a.count;j++){const b=api.anchor(kind,j);const okC=!clip||(b.obj&&b.obj.userData.acts&&Object.keys(b.obj.userData.acts).some(n=>n.startsWith(clip)));if((!high||b.pos.y>4)&&okC){pickCache[key]=j;break}}}a=api.anchor(kind,pickCache[key])}   /* clip: chọn người đang làm động tác đó (vd. nằm bắn) */
     const d=a.dir,s=new THREE.Vector3(-d.z,0,d.x);
     const base=kind==='boat'?a.pos.clone().setY(api.WATER_Y):(a.head&&kind!=='swimmer')?a.head.clone():a.pos.clone();
     return {p:base.clone().addScaledVector(d,-off[0]).addScaledVector(s,off[1]).addScaledVector(UP,off[2]),l:base.clone().addScaledVector(d,look[0]).addScaledVector(UP,look[1])}}   /* look[0]=0: nhìn thẳng vào nhân vật */
   function pose(k){if(k.p)return {p:B(...k.p),l:B(...k.l)};if(k.view){const v=api.VIEWS[k.view];return {p:v[0].clone(),l:v[1].clone()}}
-    if(k.follow)return follow(k.follow,k.i||0,k.off||[6,3,2.4],k.look||[4,.5],k.high);return null}
+    if(k.follow)return follow(k.follow,k.i||0,k.off||[6,3,2.4],k.look||[4,.5],k.high,k.clip);return null}
   const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
   function camAt(e,t){const ks=e.cam;let j=0;while(j<ks.length-1&&ks[j+1].t<=t)j++;const a=pose(ks[j]);if(!a)return null;if(j>=ks.length-1)return a;
     const b=pose(ks[j+1]);if(!b)return a;const k=ease(Math.min(1,Math.max(0,(t-ks[j].t)/(ks[j+1].t-ks[j].t))));
