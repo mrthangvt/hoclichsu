@@ -5,11 +5,11 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Header, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
-from vs_core import DATA, STATIC, read_json, require_role, write_json
+from vs_core import DATA, STATIC, read_json, require_role, tep_du_lieu, write_json
 
 router = APIRouter()
 PUBLIC = STATIC / "v47-periods.json"
-OVERRIDES = DATA / "v47_period_overrides_local.json"
+OVERRIDES = tep_du_lieu("v47_period_overrides_local.json")
 ID = re.compile(r"^[a-z0-9][a-z0-9_-]{0,60}$")
 CATEGORIES = {"overview","context","territory","state","economy","military","foreign","law","culture","religion","education","people","heritage"}
 

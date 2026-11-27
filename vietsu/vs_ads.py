@@ -9,9 +9,9 @@ from fastapi import APIRouter, Header, HTTPException, Request
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
-from vs_core import DATA, read_json, require_role, site_is_public, write_json
+from vs_core import DATA, read_json, require_role, site_is_public, tep_du_lieu, write_json
 
-ADS_FILE = DATA / "ads_config.json"
+ADS_FILE = tep_du_lieu("ads_config.json")
 
 # Vị trí quảng cáo đã chừa sẵn trong giao diện (tên hiển thị cho trang quản trị).
 AD_POSITIONS = {

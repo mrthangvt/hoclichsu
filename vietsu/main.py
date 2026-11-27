@@ -30,7 +30,7 @@ import avatar_v46
 import periods_v47
 from vs_core import (ALLOWED_HOSTS, BASE, DATA, ENABLE_DOCS, MAX_BODY_BYTES, SITE_URL, STATIC, UPLOADS, VERSION,
                      ai_limiter, api_limiter, clean_url_list, client_ip, db, decode_image_data, init_db_pragmas,
-                     is_safe_url, now, read_json, require_role, site_is_public, slugify, write_json)
+                     is_safe_url, now, read_json, require_role, site_is_public, slugify, tep_du_lieu, write_json)
 from vs_render import ad_slot_html, esc, markdown_safe, page_shell, plain_text
 
 app = FastAPI(title="Học Lịch Sử CMS", version=VERSION,
@@ -701,7 +701,7 @@ def textbooks_related(entity_id: str):
 
 
 # ============================================================ V2.3 site config
-SITE_CONFIG_FILE = DATA / "site_config.json"
+SITE_CONFIG_FILE = tep_du_lieu("site_config.json")
 SITE_CONFIG_DEFAULT = {"name": "HỌC LỊCH SỬ", "slogan": "BẢN ĐỒ THỜI GIAN", "tagline": "BẢN ĐỒ THỜI GIAN", "han": "學史",
                        "font_family": "\"Be Vietnam Pro\", system-ui, sans-serif", "logo_url": ""}
 SECTION_DEFAULT = {
@@ -772,7 +772,7 @@ def update_site_config(item: SiteBrandIn, request: Request, x_admin_token: str |
 
 
 # ============================================================ V2.3 locations
-LOCATION_CONFIG_FILE = DATA / "experience_locations.json"
+LOCATION_CONFIG_FILE = tep_du_lieu("experience_locations.json")
 
 
 class HistoricalPlaceIn(BaseModel):
@@ -803,7 +803,7 @@ def update_historical_place(place_id: str, item: HistoricalPlaceIn, request: Req
 
 
 # ============================================================ characters
-CHARACTERS_FILE = DATA / "historical_characters.json"
+CHARACTERS_FILE = tep_du_lieu("historical_characters.json")
 
 
 def historical_characters():
@@ -973,7 +973,7 @@ def v34_illustrative_svg(person_id: str):
 
 # ============================================================ V3.5 costumes
 COSTUME_DIR = STATIC / "assets" / "costumes"
-COSTUME_CONFIG = DATA / "period_costumes.json"
+COSTUME_CONFIG = tep_du_lieu("period_costumes.json")
 
 
 class CostumeEdit(BaseModel):

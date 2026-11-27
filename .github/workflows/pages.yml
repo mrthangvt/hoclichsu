@@ -11,7 +11,7 @@ name: Deploy bản xem thử lên GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['vietsu/static/**', 'vietsu/tools/build_v42.py', 'vietsu/tools/build_v43.py', 'vietsu/tools/build_v44.py', 'vietsu/tools/build_v45.py', 'vietsu/tools/build_v46.py', 'vietsu/tools/build_v47.py', 'vietsu/tools/build_v48.py', 'vietsu/tools/build_v49.py', 'vietsu/tools/build_v411.py', 'vietsu/tools/check_v411_exam.py', 'vietsu/tools/check_v48_assets.py', 'vietsu/tools/build_v52.py', 'vietsu/static/v52.js', 'vietsu/static/v52.css', 'vietsu/tools/build_v53.py', 'vietsu/tools/build_v54.py', 'vietsu/tools/build_v55.py', 'vietsu/tools/build_v56.py', 'vietsu/tools/build_v57.py', 'vietsu/tools/build_v58.py', 'vietsu/tools/build_v59.py', 'vietsu/data/sgk_kntt_lop*.json', 'vietsu/data/v59_*.json', 'vietsu/data/duong_dan.json', 'vietsu/tools/build_duong_dan.py', 'vietsu/tools/fonts/**', '.github/workflows/pages.yml']
+    paths: ['vietsu/static/**', 'vietsu/tools/build_v42.py', 'vietsu/tools/build_v43.py', 'vietsu/tools/build_v44.py', 'vietsu/tools/build_v45.py', 'vietsu/tools/build_v46.py', 'vietsu/tools/build_v47.py', 'vietsu/tools/build_v48.py', 'vietsu/tools/build_v49.py', 'vietsu/tools/build_v411.py', 'vietsu/tools/check_v411_exam.py', 'vietsu/tools/check_v48_assets.py', 'vietsu/tools/build_v52.py', 'vietsu/static/v52.js', 'vietsu/static/v52.css', 'vietsu/tools/build_v53.py', 'vietsu/tools/build_v54.py', 'vietsu/tools/build_v55.py', 'vietsu/tools/build_v56.py', 'vietsu/tools/build_v57.py', 'vietsu/tools/build_v58.py', 'vietsu/tools/build_v59.py', 'vietsu/data/sgk_kntt_lop*.json', 'vietsu/data/v59_*.json', 'vietsu/data/duong_dan.json', 'vietsu/tools/build_duong_dan.py', 'vietsu/tools/fonts/**', 'vietsu/*.py', 'vietsu/requirements.txt', 'vietsu/Dockerfile', 'vietsu/.dockerignore', 'vietsu/data/**', 'tools/vps/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: write   # đẩy bản dựng cho VPS lên nhánh ban-may-chu
@@ -65,6 +65,17 @@ jobs:
           cm=$(git -c user.name="github-actions" -c user.email="github-actions@users.noreply.github.com" commit-tree "$cay" -m "Bản dựng cho hoclichsu.com từ ${GITHUB_SHA::7}")
           git push -f origin "$cm:refs/heads/ban-may-chu"
           rm -rf _vps
+      - name: Mã máy chủ CMS cho VPS (nhánh ban-may-chu-api, container Docker hoclichsu-api)
+        run: |
+          mkdir -p _api
+          rsync -a --exclude-from=vietsu/.dockerignore --exclude=.dockerignore vietsu/ _api/
+          cp vietsu/.dockerignore tools/vps/docker-compose.yml tools/vps/cap_nhat_hoclichsu.sh _api/
+          export GIT_INDEX_FILE="$RUNNER_TEMP/api-index"
+          git --git-dir="$PWD/.git" --work-tree="$PWD/_api" -C _api add -A -f .
+          cay=$(git write-tree)
+          cm=$(git -c user.name="github-actions" -c user.email="github-actions@users.noreply.github.com" commit-tree "$cay" -m "Máy chủ CMS cho hoclichsu.com từ ${GITHUB_SHA::7}")
+          git push -f origin "$cm:refs/heads/ban-may-chu-api"
+          rm -rf _api
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
