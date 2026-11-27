@@ -1,0 +1,51 @@
+{
+ "cao": 1.55,
+ "tam_giac": 7000,
+ "anh": 1024,
+ "fps": 30,
+ "buoc": 2,
+ "kho": "/mnt/user-data/uploads/_KHO-CHUNG",
+ "nguon_rig": "nhan-vat/LinhTaySon/LinhTaySon.blend",
+ "ten": "dan-sg-nu",
+ "fbx": "/mnt/user-data/uploads/nhan-vat--_moi/Standing Clap.fbx",
+ "sua_chan": true,
+ "ghi_chu": "Người dân Sài Gòn 1975 — nữ mặc áo dài (Tripo + Mixamo, anh Thắng 24/11). sua_chan: sửa đỉnh chân trái bám nhầm xương chân phải. Động tác riêng của 'Standing Clap.fbx' là NGỒI vỗ tay → không dùng; vỗ tay lấy Clapping.fbx.",
+ "clip": [
+  [
+   "dung",
+   "DT_Standing_Idle_03",
+   1,
+   121,
+   "lap"
+  ],
+  [
+   "di",
+   "DT_Standard_Walk",
+   1,
+   36,
+   "lap"
+  ],
+  [
+   "vota",
+   "fbx:/mnt/user-data/uploads/nhan-vat--_moi/Clapping.fbx",
+   1,
+   36,
+   "lap"
+  ],
+  [
+   "vay",
+   "fbx:/mnt/user-data/uploads/nhan-vat--_moi/Waving (1).fbx",
+   1,
+   96,
+   "lap"
+  ],
+  [
+   "vay2",
+   "fbx:/mnt/user-data/uploads/nhan-vat--_moi/Waving (2).fbx",
+   1,
+   143,
+   "lap"
+  ]
+ ],
+ "ra": "/home/claude/xe/out/dan-sg-nu.raw.glb"
+}

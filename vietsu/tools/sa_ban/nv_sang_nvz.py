@@ -52,7 +52,10 @@ def convert(j, q):
             C = {"fps": c["fps"], "n": len(c["pos"]), "pos": p, "nor": n, "mg": B.add(np.asarray(c["mg"], np.float32))}
             if c.get("once"): C["once"] = 1
             if c.get("mt"): C["mt"] = B.add(np.asarray(c["mt"], np.float32))
+            if c.get("hip") is not None: C["hip"] = c["hip"]                # Như Nguyệt: điểm hông (ngồi ngựa)
             H["clips"][name] = C
+        for k, v in j.items():                                     # thông số kèm theo (h, seat, chest, side…): giữ nguyên
+            if k not in ("idx", "uv", "clips", "q", "v", "idx32", "tex") and k not in H: H[k] = v
     else:                                                          # ngựa (ani: có phần cứng + ma trận m) / voi (flip)
         H["type"] = "ani" if any("m" in c for c in j["clips"].values()) else "flip"
         parts, anim_ids = [], []

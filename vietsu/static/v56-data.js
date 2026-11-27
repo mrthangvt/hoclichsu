@@ -1,4 +1,4 @@
-/* Việt Sử V5.6 — dữ liệu nhân vật, sự kiện văn hóa (sinh tự động từ bản biên tập; bản thảo chờ duyệt). */
+/* Học Lịch Sử V5.6 — dữ liệu nhân vật, sự kiện văn hóa (sinh tự động từ bản biên tập). */
 window.VS56_DATA={
 "kings": {
 "Lộc Tục": {

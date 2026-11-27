@@ -26,7 +26,7 @@ rep('''import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-''', '''// Bộ máy sa bàn Việt Sử 1.0.0 — docs/KHUNG_SA_BAN.md. Tách từ sa bàn Ngọc Hồi – Đống Đa V10 (tools/sa_ban/tach_bo_may.py).
+''', '''// Bộ máy sa bàn Học Lịch Sử 1.0.0 — docs/KHUNG_SA_BAN.md. Tách từ sa bàn Ngọc Hồi – Đống Đa V10 (tools/sa_ban/tach_bo_may.py).
 // Mọi thứ riêng của một trận nằm trong gói: packs/<id>/pack.json, story.json, placement.json, terrain/, units/, props/, audio/.
 import * as THREE from "./vendor/three/three.module.min.js";
 import { OrbitControls } from "./vendor/three/addons/controls/OrbitControls.js";

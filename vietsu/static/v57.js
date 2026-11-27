@@ -1,6 +1,6 @@
-/* Việt Sử V5.7 — theo yêu cầu chủ dự án (23/11/2026): trang Bộ đề ôn Sử bỏ khung bao,
+/* Học Lịch Sử V5.7 — theo yêu cầu chủ dự án (23/11/2026): trang Bộ đề ôn Sử bỏ khung bao,
    dàn hết trang như các trang khác. Trang on-thi/ vẫn giữ nguyên khi mở độc lập;
-   chỉ khi nhúng trong Việt Sử mới ẩn thanh đầu trang và phần giới thiệu trùng lặp,
+   chỉ khi nhúng trong Học Lịch Sử mới ẩn thanh đầu trang và phần giới thiệu trùng lặp,
    nền trong suốt, và khung tự cao theo nội dung (không còn thanh cuộn riêng). */
 (function(){
 'use strict';

@@ -1,0 +1,324 @@
+# Sa bàn Chiến dịch Đường 9 – Khe Sanh 1968 — tư liệu, kịch bản nháp, tài sản
+
+Gói: `vietsu/static/khong-gian/packs/khe-sanh-1968/` · bộ máy 2.2.0 · nhánh `claude/sa-ban-khe-sanh-1968`.
+Trạng thái (25/11/2026, 6h): **GĐ0, GĐ1 xong** (anh duyệt) · kịch bản 11 hồi, cờ, PT-76 số 555, lính Mỹ thêm áo giáp (chờ gắn xương) · **GĐ2 xong, GĐ3 khung xong** (mục 9) · **GĐ4 bản đầu** (mục 9b), **GĐ4b dàn cảnh từng cú máy, căn cứ theo sơ đồ, lính TQLC** (mục 9c) · B-52D (anh làm, em sơn lại rằn ri 1968) · PR #55 · artifact xem trước https://claude.ai/artifact/DpNoFM5hMMrQPfE4quu1gA.
+**Anh Thắng chốt (25/11/2026, 0h29):** 11 hồi (phương án B, ~13,5 phút) · sửa lời dẫn theo mục 3 · cờ Quân Giải phóng là **cờ đỏ sao vàng** (`props/co-qgp.png`), cờ Mỹ 50 sao (`props/co-my.png`) · em sửa mẫu lính Mỹ, PT-76 trong Blender; **anh tự làm B-52D** · em được chạy lệnh trên máy anh để lấy OSM, độ cao. Địa hình anh chưa chọn → làm theo đề xuất hai tầng (mục 5). Kịch bản 11 hồi: `story.json`, dựng bằng `vietsu/tools/sa_ban/voice/nhap_story_khe_sanh.py` (thời lượng ước theo số chữ, 824 s).
+Nhãn bắt buộc: "Tái dựng mô phỏng". Mã nguồn `S…` (Việt Nam), `M…` (Mỹ) ở `sources.json`. Không đưa con số nào không có nguồn.
+
+Kịch bản gốc của anh: `docs/du-lieu/khe-sanh-1968_camera_timeline_v1.json` (13 cảnh, 81 cú máy, 930 s, lời dẫn từng cảnh). `story.json` hiện là bản 11 hồi đã sửa lời theo mục 3 (anh duyệt 25/11).
+
+Nguồn hiện là báo chí chính thống, niên giám TTXVN, Học viện Quốc phòng, và chuyên khảo của Cục Lịch sử TQLC Mỹ. Nên bổ sung sách: *Lịch sử Kháng chiến chống Mỹ cứu nước 1954–1975* tập 5 (Viện Lịch sử quân sự), *Chiến dịch tiến công Đường 9 – Khe Sanh xuân hè 1968* (Bộ Tổng Tham mưu), nếu anh có bản trong "Tài liệu sử".
+
+## 1. Lực lượng hai bên
+| Phe | Lực lượng | Chỉ huy | Nguồn |
+|---|---|---|---|
+| Quân Giải phóng (QĐND Việt Nam) | 4 sư đoàn bộ binh, 1 đoàn + 5 đại đội đặc công, 5 trung đoàn pháo binh, 3 trung đoàn cao xạ, 1 trung đoàn + 2 tiểu đoàn công binh, 4 đại đội xe tăng, 1 đội súng phun lửa. Sư đoàn nêu tên: 304, 325 (bao vây Khe Sanh), 320, 324 (Đường 9) | Tư lệnh Thiếu tướng Trần Quý Hai, Chính ủy Thiếu tướng Lê Quang Đạo | S3, S11, M1 |
+| Mỹ | Trung đoàn 26 TQLC (Tiểu đoàn 1, 2, 3); Tiểu đoàn 1, Trung đoàn pháo 13 TQLC; tổng 6.806 quân (5.905 TQLC) | Đại tá David E. Lownds | M1, M5, M15, M25 |
+| VNCH | Tiểu đoàn 37 Biệt động quân (trong căn cứ); Chiến đoàn 3 Dù (Pegasus) | — | M1, M2 |
+| Làng Vây | VN: 4 đại đội biệt kích, thám báo quân đội Sài Gòn có cố vấn Mỹ. Mỹ: 24 lính Lực lượng Đặc biệt, ~500 dân vệ CIDG, ~350 lính Lào; Tiểu đoàn BV-33 Hoàng gia Lào (rút từ Bản Huội San) ở Làng Vây cũ | — | S1, M12, M24 (bách khoa, số người cần đối chiếu) |
+
+Quân Mỹ ở các điểm cao (tháng 1/1968): 881 Nam (Đại đội I + 2 trung đội Đại đội M, Tiểu đoàn 3/26, có 3 khẩu 105 mm), 861 (Đại đội K), 861A (Đại đội E, Tiểu đoàn 2/26), 558 (Tiểu đoàn 2/26) (M5, M25). **881 Bắc không phải chốt của Mỹ trong thời gian vây**: ngày 20/1 Đại đội I còn đánh về phía 881 Bắc, và tới 14/4 TQLC mới đánh lên 881 Bắc (M5, M22).
+
+Vũ khí nặng Quân Giải phóng: pháo 130 mm, 152 mm trên núi Co Roc (Lào, ~13 km tây nam căn cứ), cối 82/120 mm, rốc-két 122 mm (từ hướng 881 Bắc) (M12, M14, M16). Pháo 130 mm bắn xa gần gấp đôi pháo 155 mm của TQLC (M14).
+
+## 2. Bảng mốc
+| Thời điểm | Sự kiện | Đơn vị | Nguồn | Ghi chú, chỗ lệch |
+|---|---|---|---|---|
+| đêm 20/1/1968 | Chiến dịch mở màn, 10 ngày trước Tết; tiến công quận lỵ Hướng Hóa | các sư đoàn | S1, S3, S4 | |
+| 20/1 | Đại đội I (3/26) đánh về phía 881 Bắc | TQLC | M5 | |
+| 0h30 21/1 | Pháo kích, tiến công điểm cao 861 | | M7 | Nguồn Mỹ thống nhất ngày 21/1; giờ chính xác lệch nhau (0h30 theo M7, "rạng sáng" theo S7) → **đề xuất lời dẫn nói "đêm 20, rạng sáng 21/1"** như kịch bản anh |
+| rạng sáng 21/1 | Pháo binh chiến dịch (Sư đoàn 304) bắn vào căn cứ, kho đạn 1.500 tấn nổ; hôm sau chỉ dùng được nửa đường băng | Sư đoàn 304 | S7, M7, M9 | M9: mất 98 % số đạn |
+| 21 – 22/1 | Quân Mỹ rút khỏi quận lỵ Hướng Hóa (làng Khe Sanh) | | M15, M17 | |
+| đêm 23 – 24/1 | Tiến công cụm cứ điểm Bản Huội San (Lào, sát biên giới); gần 400 quân rút về Làng Vây cũ | Trung đoàn 24, Sư đoàn 304; có PT-76 | S1, S17, M12, M13 | **Nguồn Mỹ: PT-76 được dùng lần đầu ở đây** (M13); nguồn VN gọi Làng Vây là "trận đầu đánh thắng" (S8). Xem mục 3, C05 |
+| đêm 29 rạng 30/1 | Tổng tiến công Tết Mậu Thân nổ súng ở miền Trung, Tây Nguyên | | S16 | |
+| đêm 30 rạng 31/1 | Nổ súng ở Sài Gòn (Đài phát thanh), Huế | | S16 | |
+| 17h 6/2 | Pháo binh chiến dịch và Sư đoàn 304 bắn vào Làng Vây | | S2 | |
+| 23h15 6/2 | Pháo chuyển làn vào trung tâm, các hướng mở cửa | Trung đoàn 24 (thiếu), Tiểu đoàn 3 (Trung đoàn 101, Sư đoàn 325), Tiểu đoàn xe tăng 198 | S2 | Một nguồn ghi bắt đầu 23h30 (blog, không dùng). Nguồn khác ghi tiểu đoàn bộ binh đi với Đại đội tăng 9 thuộc "Trung đoàn 1, Sư đoàn 325" (blog) — **dùng S2** |
+| 0h50 7/2 | Phía Mỹ phát hiện xe tăng ở hàng rào | | M12 | |
+| 3h 7/2 | Cơ bản làm chủ cứ điểm | | S8 | S9 ghi khoảng 4h; S10 "sau hai giờ" |
+| 10h 7/2 | Hoàn toàn làm chủ Làng Vây | | S2 | **Chờ anh chốt:** đề xuất lời dẫn "rạng sáng 7/2 cơ bản làm chủ, đến 10 giờ hoàn toàn làm chủ" (S8 + S2, không mâu thuẫn) |
+| — | Số xe: 16 PT-76 (VN) / ~12–14 (Mỹ) | Tiểu đoàn 198 (Đại đội 3, 9), Trung đoàn tăng 203 | S2, S8 / M12, M17 | Lời dẫn không cần nêu số. Xe số 555 (trưởng xe Lê Xuân Tấu) lập công; xe số 268 dựng làm tượng đài ở Làng Vây (S9, S10) |
+| 8 hoặc 10/2 – 31/3 | Đợt 2: vây lấn Tà Cơn ~50 ngày đêm; quân Mỹ chiếm thêm điểm cao 550, 595, 573 | Sư đoàn 304 ở nam Tà Cơn, cắt Đường 9 | S1, S4, S5 | Ngày đầu đợt 2: 10/2 (S1, S5, S17) / 8/2 (Wikipedia tiếng Việt, Dân Việt) → **dùng 10/2** |
+| 21/2 | Trận tiến công lớn cuối cùng vào chính căn cứ: tuyến Tiểu đoàn 37 BĐQ | | M17 | |
+| 23/2 | Ngày pháo kích nặng nhất: 1.307 quả 130/152 mm, nổ thêm một kho đạn | | M1, S7 | |
+| ~23/2 | Phía Mỹ thấy hệ thống hào vây lấn tiến sát căn cứ | | M21 | |
+| 0h30 24/3 | Một trận tiến công trong vây lấn (Tiểu đoàn 3, Trung đoàn 9, Sư đoàn 304) | | S12 | chi tiết MINH HOẠ được |
+| 21/1 – 8/4 | Niagara: mỗi ngày ~350 lượt cường kích, 60 B-52; B-52 tổng 2.548 lượt, 59.542 tấn; tổng Niagara 98.721 tấn | | M1, M9, M10 | Nguồn VN: riêng vây lấn Tà Cơn địch dùng ~100–110 nghìn tấn bom (S1, S17) — số khác cách tính |
+| 21/1 – 8/4 | Không vận: trung bình 165 tấn mỗi ngày; C-130, C-123, trực thăng; thả dù | | M9, M6 | |
+| 1/4 (7h) | Pegasus bắt đầu: 2 tiểu đoàn Trung đoàn 1 TQLC tiến từ Cà Lu theo Đường 9; Lữ đoàn 3 Kỵ binh bay đổ bộ | Sư đoàn 1 Kỵ binh bay, Sư đoàn 3 TQLC, Chiến đoàn 3 Dù | M2, M3, M4 | LZ Stud ở Cà Lu là bàn đạp |
+| 1 – 2/4 | Dựng chốt Làng Khoai chặn Đường 9; 4 ngày đánh hai tiểu đoàn kỵ binh không vận | Tiểu đoàn 3, Trung đoàn 9, Sư đoàn 304 | S13 | |
+| 1 – 30/4 | Đợt 3: đánh quân giải toả; giữ Làng Khoai, Cu Bốc, điểm cao 689, 622; mất một số trận địa phía nam, tây nam Tà Cơn | | S6 | |
+| 8/4 | Tiểu đoàn 2, Trung đoàn Kỵ binh 7 tới căn cứ — Mỹ coi là kết thúc vây | | M4, M2 | M22 ghi 6/4 → **dùng 8/4** (nhiều nguồn hơn). "77 ngày" (M1) tính 21/1 – 8/4; M15 ghi 78 ngày |
+| 11/4 | Đường 9 thông | | M2, M3 | |
+| 15/4 | Pegasus kết thúc; Trung đoàn 1 TQLC thay Trung đoàn 26 | | M2, M4 | |
+| 8/5 – 15/7 | Đợt 4: khôi phục thế vây lấn, đánh địch rút khỏi Khe Sanh | | S4, S17 | |
+| 27/6 | Mỹ bắt đầu rút, phá căn cứ | | M8 | Một blog ghi 19/6 (không dùng) |
+| 5/7 | Căn cứ Tà Cơn đã giải thể, tháo dỡ | | M8 | |
+| 9/7 | Lá cờ chiến thắng tung bay trên sân bay Tà Cơn; Hướng Hóa giải phóng | | S14, S15 | Mỹ coi 9/7 là kết thúc trận (M6) |
+| 15/7 | Chiến dịch Đường 9 – Khe Sanh kết thúc | | S1, S4 | **Lệch:** S15 (và VOV) ghi chiến dịch kết thúc 9/7. **Đề xuất:** lời dẫn nói "9/7 cờ tung bay trên Tà Cơn … 15/7 chiến dịch kết thúc" |
+
+## 3. Đối chiếu kịch bản camera của anh (từng cảnh)
+| Cảnh | Nhận xét | Đề xuất |
+|---|---|---|
+| C01 | Đúng ý. "Nối miền Đông với biên giới" dễ hiểu lầm | "nối đồng bằng ven biển (Đông Hà) với biên giới Việt – Lào" (M6) |
+| C02 | **"Đồi 881 Bắc" không phải chốt của Mỹ** lúc bị vây (M5, M22). Chốt Mỹ: 881 Nam, 861, 861A, 558, 64 (M25, M23) | Thay "Đồi 881 Bắc" bằng "Đồi 861A"; 881 Bắc để ở C04/C06 như vị trí của Quân Giải phóng (nơi bắn rốc-két) |
+| C03 | Đúng nguồn (S3, S4) | Có thể nêu tên Bộ Tư lệnh chiến dịch (S11) |
+| C04 | Đúng: đêm 20 rạng 21/1, kho đạn (S7, M7) | Thêm một câu: cùng đêm tiến công quận lỵ Hướng Hóa (S3). Không nêu giờ |
+| C05 | "Lần đầu tiên được sử dụng trong chiến đấu" — nguồn Mỹ ghi PT-76 đã ra trận ở Bản Huội San 23–24/1 (M13, M12). "Khoảng 10 giờ 7/2 làm chủ" đúng S2 nhưng lệch S8, S9 | Viết "trận đầu đánh thắng của bộ đội Tăng – Thiết giáp" (S8) thay "lần đầu tiên sử dụng"; giờ: xem bảng mốc 3h/10h |
+| C06 | Đúng (S1, S4) | Có thể thêm "khoảng 50 ngày đêm" (S5) |
+| C07 | Đúng (M1, M9). C-123 có nguồn (M9) | Không cần sửa |
+| C08 | **Sai thứ tự thời gian:** Tết (30–31/1) xảy ra trước Làng Vây (7/2) và trước vây lấn, nhưng đang đứng sau C05–C07 | Đưa C08 lên ngay sau C04 (mục 4) |
+| C09 | Cảnh cảm xúc, không có mốc — được, ghi MINH HOẠ | Giữ hoặc gộp vào C06 (mục 4) |
+| C10 | Đúng (M2–M4). "Đầu tháng 4 nối liên lạc" | Nói rõ 8/4; thêm câu chốt Làng Khoai (S13) cho cân hai phía |
+| C11 | Đúng nhưng chung chung, không có mốc | Gộp vào C12 hoặc thêm 14/4 TQLC đánh lên 881 Bắc (M22) / đợt 4 từ 8/5 (S17) |
+| C12 | Đúng: rút cuối 6 – đầu 7 (M8), kết thúc giữa 7 (S1) | Thêm 9/7 cờ tung bay trên Tà Cơn (S14) |
+| C13 | Đúng | Không cần sửa |
+
+Cách gọi các phe trong lời dẫn của anh ("Quân Giải phóng", "quân đội Sài Gòn", "quân Mỹ") trung lập, giữ nguyên.
+
+## 4. Đề xuất chia hồi
+**Phương án A (giữ 13 hồi, chỉ đổi thứ tự — đề xuất):**
+| Hồi | Cảnh của anh | Thời điểm | Tầng | Giây (theo kịch bản) |
+|---|---|---|---|---|
+| 1 | C01 Thung lũng Khe Sanh | 1968 | chiến dịch | 65 |
+| 2 | C02 Những pháo đài trên Đường 9 | cuối 1967 | Tà Cơn | 70 |
+| 3 | C03 Thế trận trước giờ nổ súng | cuối 1967 | chiến dịch | 70 |
+| 4 | C04 21/1 Khe Sanh bùng cháy | 20–21/1 | Tà Cơn | 80 |
+| 5 | **C08** Tết Mậu Thân — hai chiến trường | 30–31/1 | chiến dịch + thẻ bản đồ miền Nam | 70 |
+| 6 | C05 Làng Vây – PT-76 | 6–7/2 | Tà Cơn | 100 |
+| 7 | C06 Chiến hào siết chặt Tà Cơn | 10/2–31/3 | Tà Cơn | 80 |
+| 8 | C07 Bầu trời: mưa bom và tiếp tế | 21/1–8/4 | Tà Cơn | 85 |
+| 9 | C09 Cuộc chiến trong lòng đất | 2–3/1968 | Tà Cơn (cận) | 65 |
+| 10 | C10 Pegasus | 1–15/4 | chiến dịch | 80 |
+| 11 | C11 Chưa yên tiếng súng | 4–5/1968 | chiến dịch | 60 |
+| 12 | C12 Quân Mỹ rời Tà Cơn | 27/6–15/7 | Tà Cơn | 65 |
+| 13 | C13 Dấu ấn một chiến dịch | 1–7/1968 | chiến dịch | 40 |
+
+**Phương án B (11 hồi, ~13,5 phút):** như A nhưng gộp C09 vào cuối C06 (cùng chiến hào, cùng tầng) và C11 vào đầu C12. Bớt hai lần đổi chủ đề, bớt 125 s.
+
+Đổi tầng (tải lại trang) trong phương án A: 9 lần. Nếu anh chọn **một tầng** (mục 5), không phải tải lại.
+
+## 5. Địa hình (GĐ2, đề xuất để anh chọn)
+| Phương án | Tầng | Phạm vi | Ô lưới (1024) | Ưu, nhược |
+|---|---|---|---|---|
+| **Hai tầng (đề xuất)** | chiến dịch | Đường 9 từ Đông Hà tới Bản Huội San (Lào), gồm Cồn Tiên, Rockpile, Cà Lu, Co Roc; bán kính ~33 km | ~65 m | Kể được Pegasus từ Cà Lu, pháo Co Roc, Huội San, Tết (thẻ bản đồ). Phải đổi tầng 9 lần |
+| | Tà Cơn | Căn cứ, đường băng, 881 Nam/Bắc, 861, 861A, 558, 64, núi Động Tri, làng Khe Sanh, Làng Vây; bán kính ~9 km | ~18 m | Đủ nét cho hào, bao cát, xe tăng ở Làng Vây |
+| Một tầng | Khe Sanh – Cà Lu | Tâm giữa Tà Cơn và Cà Lu, bán kính ~18 km (từ Co Roc tới Cà Lu) | ~35 m | Không đổi tầng, nhẹ. Không có Đông Hà, Huội San; cận cảnh hào kém nét hơn |
+
+Độ cao: Copernicus GLO-30, OSM (sông Rào Quán, Sê Pôn, Đường 9) lấy qua máy anh theo `docs/KHUNG_SA_BAN.md` mục 7. Đường 9 năm 1968 có thể khác QL9 hiện nay ở vài đoạn — đối chiếu ảnh chụp căn cứ (M6, Shore 1969) trước khi dựng. Đường Hồ Chí Minh nhánh Tây nằm dọc khu sân bay hiện nay (S15) — làm sau 1968, phải bỏ khi dựng.
+
+## 6. Phe, cờ (quy tắc: một bảng phe, không để phe này mang cờ phe kia)
+`pack.json › sides`: 0 Quân Giải phóng (QĐND Việt Nam) · 1 Quân đội Hoa Kỳ · 2 Quân lực VNCH.
+- **Anh chốt 25/11: cờ đỏ sao vàng** (`props/co-qgp.png`). Ghi chú cũ: chưa tìm được nguồn ảnh. Các bài chỉ nói "lá cờ chiến thắng" trên Tà Cơn 9/7 (S14, S15), không mô tả. Các đơn vị là sư đoàn chủ lực QĐNDVN (S3), khác Chiến dịch HCM 1975 (cờ Mặt trận). Cần anh chốt: cờ đỏ sao vàng, cờ "Quyết chiến quyết thắng", hay cờ khác — tốt nhất theo một ảnh tư liệu TTXVN.
+- Cờ Mỹ 50 sao: đã vẽ (`props/co-my.png`). Cờ VNCH: dùng lại gói HCM.
+- BV-33 Hoàng gia Lào, dân vệ CIDG ở Làng Vây: đề xuất không dựng riêng, chỉ ghi trong lời dẫn (tránh thêm phe thứ tư).
+
+## 7. Tài sản
+### 7.1 Đã chép từ gói HCM 1975 (gói tự đủ tệp)
+| Tài sản | Tệp trong gói | Dùng cho |
+|---|---|---|
+| Bộ đội mũ tai bèo / đầu trần (đám đông, lưới thưa, bản cận có xương) | `units/linh-qgp-a|b(.nvz, -x.nvz, .jpg, -gan.glb)` | vây lấn, Làng Vây, Làng Khoai. **Cần xem lại quân phục 1968** (mũ cối/mũ tai bèo, ba lô) — chờ ảnh tư liệu anh duyệt |
+| Lính lái tăng có xương | `units/linh-tang.glb` | kíp PT-76 |
+| Lính VNCH | `units/linh-vnch(.nvz, -x.nvz, .jpg)` | Tiểu đoàn 37 BĐQ, Chiến đoàn 3 Dù (MINH HOẠ quân phục) |
+| Xe tăng M48 | `props/xe/xe-tang-m48.glb` | xe tăng TQLC trong căn cứ (M20: có vài xe tăng); M48 đi cùng quân phản kích đồi 64 ngày 8/2 (M23) |
+| Xe tải | `props/xe/xe-tai.glb` | vận tải Đường 9 (MINH HOẠ — chưa rõ loại xe) |
+| C-130A, UH-1 | `props/may-bay/c-130a.glb`, `uh-1.glb` | tiếp tế, thương binh. Biến thể C-130 ở Khe Sanh chưa đối chiếu — mẫu C-130A ghi MINH HOẠ |
+| Pháo M-46 130 mm | `props/phao/m-46-130mm.glb` | trận địa Co Roc (M12, M14) |
+| Cao xạ 37 mm | `props/phao/cao-xa-37-2-nong.glb` | 3 trung đoàn cao xạ (S3). **Năm 1968 có thể là loại một nòng** — cần xác minh trước khi đặt |
+| Cờ VNCH, tiếng động | `props/co-vnch.png`, `audio/*.mp3` (súng, nổ, pháo, xe tăng, gió, lửa) | |
+| Mã `rieng.js` V1.9 | `rieng.js` (chép nguyên làm nền) | giữ giaoTranh, uNap, don, tranDia, banTao, LINH_XE, buiXe, MOC_NGAY, camCot, camVai, `__kiem`; thay biên đạo Sài Gòn ở GĐ3–4 |
+
+**Không chép** (không có ở Khe Sanh 1968 theo nguồn đã đọc): T-54 (390, 843), K-63, M41, M113, A-37, AC-119K, D-74, dân Nam bộ, nhà phố, Dinh, tàu.
+
+### 7.2 Tái dùng từ sa bàn khác trong repo (chép khi dựng cảnh, cần anh đồng ý)
+| Mẫu | Ở đâu | Dùng cho |
+|---|---|---|
+| Bao cát công sự, dây thép gai, hố bom viền đất, tháp sắt quan sát, tháp nước thép | `thanh-co-quang-tri/models/static.glb` (BaoCat_CongSu, DayThepGai, HoBom_VienDat_GD5, ThapSat_QuanSat_GD5_SanGo, ThapNuoc_Thep) | căn cứ Tà Cơn, hố bom B-52 |
+| Lựu pháo 105 mm M101, ụ pháo 105/155, hầm, hào, ụ cối, ụ bảo vệ máy bay | `dien-bien-phu/models/mau.glb` (Phao_M101_105), `static.glb` (Phao_105_TrungTam_155, Ung_*, Ham_*, Hao_Phap, UngCoi_*, U_BaoVe_MayBay) | trận địa pháo Tiểu đoàn 1/13 TQLC, 3 khẩu 105 trên 881 Nam (M5). Hầm, hào Pháp 1954 chỉ làm MINH HOẠ, phải sửa theo ảnh 1968 |
+| Nhà sàn | `dien-bien-phu/models/static.glb` (NhaSan_Nho, NhaSan_Thai) | làng Bru – Vân Kiều quanh Khe Sanh (MINH HOẠ, cần ảnh nhà sàn Vân Kiều) |
+| Xe tải GMC | `dien-bien-phu/models/static.glb` (XeTai_GMC) | xe trong căn cứ (MINH HOẠ, chưa đối chiếu loại xe TQLC dùng) |
+
+### 7.3 Cần làm mới — hỏi anh trước khi dựng hay tải
+Anh đã có mẫu thô Tripo trong `_KHO-CHUNG` cho ba thứ đầu (em đã xem ảnh, chưa mở FBX):
+| Mẫu | Phe | Có trong nguồn | Tình trạng / việc | Ảnh tham chiếu đề xuất | Ưu tiên |
+|---|---|---|---|---|---|
+| **Lính thủy đánh bộ Mỹ** | Mỹ | M1, M5, M20 | **Đã sửa (25/11):** `nhan-vat/_moi/linh-my-ao-giap.fbx` — thêm áo giáp chống mảnh kiểu M1955 (phồng thân ~2 cm, tô ô liu sẫm, gân ngang ở vai, khoá kéo; MINH HOẠ) bằng `tools/sa_ban/nhan_vat_lai/them_ao_giap.py`. Mẫu 3D Tripo không có điếu thuốc, vòng tay (chỉ ảnh xem trước có). Súng M16 dính liền thân (đeo chéo) → động tác bắn cần súng rời ở tay như lính VNCH. **Còn:** gắn xương Mixamo (anh tải lên Mixamo, hoặc cho em dùng Chrome), nướng `.nvz` + bản cận | ảnh USMC trong M5, M6 (công khai) | 1 |
+| **Xe tăng PT-76** | QGP | S2, S8, M12 | **Xong (25/11):** `props/xe/xe-tang-pt76.glb` 0,45 MB, 30 nghìn tam giác, số 555 hai bên tháp pháo (S9). Tỉ lệ theo bề rộng 3,15 m, cao ra 2,30 m (công bố 3,14–3,15 m; 2,255–2,325 m — M26). Mẫu Tripo có vài khe hở trên nắp thân (giữ nguyên) | xe 268 tượng đài Làng Vây (S10), xe 555 (S9) | 1 |
+| **B-52** | Mỹ | M1, M9, M18 | **Anh Thắng tự làm B-52D (25/11).** Bản cũ `vat-dung/_moi/MayBay-B52.zip` (+ .webp): **giống B-52H xám hiện đại**. Năm 1968 là **B-52D "Big Belly"**, mặt trên rằn ri Đông Nam Á, bụng đen bóng; B-52H không bay Arc Light (M18, M19). Cần sơn lại (và động cơ J57 thon hơn TF33 nếu làm kỹ) | ảnh NMUSAF (M19), M18 | 2 · **Xong 25/11:** em sơn lại mẫu của anh bằng `tools/sa_ban/xe/son_b52d.py` (mặt trên rằn ri ba màu, bụng đen; xoá số đuôi), kích thước theo M31 (sải 56,39 m, dài 47,70 m) → `props/may-bay/b-52d.glb` 355 KB |
+| Căn cứ Tà Cơn: đường băng tấm nhôm ~1.190 m, tháp điều khiển, hầm bao cát, lô cốt, hàng rào, kho đạn | Mỹ | M11, M20, S15 | Dựng bằng mã (dải đường băng, `uNap` bao cát) + vài GLB mới; ghép 7.2 | ảnh chụp từ trên cao trong M6 và Shore 1969 (UPI); C-130 và đường băng tái dựng tại di tích Tà Cơn | 1 |
+| Các điểm cao | — | M5 | Từ DEM, không cần mẫu; ghim tên | — | 1 |
+| Trực thăng vận tải CH-46 (TQLC, "Super Gaggle"), CH-47 (Kỵ binh bay, Pegasus) | Mỹ | M2, M6 | Làm mới | ảnh USMC / US Army | 2 |
+| C-123 Provider | Mỹ | M9 | Làm mới (hoặc dùng C-130A, ghi MINH HOẠ) | NMUSAF | 3 |
+| Pháo 155 mm M114 | Mỹ | M14 | Có thể dùng `Phao_105_TrungTam_155` của ĐBP nếu đúng loại | — | 3 |
+| Pháo 152 mm (QGP, Co Roc) | QGP | M12, M16 | Làm mới hoặc dùng M-46 ghi MINH HOẠ | — | 3 |
+| Cối 82/120 mm, giá rốc-két 122 mm | QGP | M12, M16 | Làm mới (nhỏ) | — | 3 |
+| Xe Ontos M50 | Mỹ | M20 | Tuỳ chọn | — | 4 |
+| Máy bay cường kích A-4 / F-4 | Mỹ | M1 (Niagara) | Tuỳ chọn; có thể chỉ dùng tiếng + vệt bom | — | 4 |
+
+Mọi mẫu mới dựng trong Blender trên máy anh (MCP for Blender), không chạy việc nặng trong Blender anh đang mở; nướng bằng bpy làm thư viện như các gói trước.
+
+## 8. Câu hỏi đã hỏi trước GĐ2 (anh trả lời 25/11, xem đầu tệp)
+1. Thứ tự, số hồi: phương án A (13 hồi, đưa Tết lên hồi 5) hay B (11 hồi)?
+2. Sửa lời dẫn theo mục 3 (881 Bắc, "trận đầu đánh thắng", giờ Làng Vây, 8/4, 9/7 và 15/7)?
+3. Giờ làm chủ Làng Vây: "rạng sáng cơ bản làm chủ, 10 giờ hoàn toàn làm chủ" (S8 + S2)?
+4. Kết thúc chiến dịch: 15/7 (S1, S4) — kèm 9/7 cờ trên Tà Cơn?
+5. Cờ Quân Giải phóng ở Khe Sanh 1968 (mục 6), cờ Mỹ.
+6. Địa hình: hai tầng hay một tầng (mục 5)?
+7. Mẫu mới: em sửa ba mẫu Tripo của anh (lính Mỹ thêm áo giáp, PT-76 số hiệu, B-52 sơn lại thành B-52D) hay anh làm lại trên Tripo? Ưu tiên mục 7.3 có đúng ý anh?
+8. Lấy OSM, DEM qua máy anh cho GĐ2 (cần chạy `curl` trên máy anh).
+
+## 9. GĐ2 địa hình, GĐ3 khung (25/11/2026)
+- **Dữ liệu** lấy qua Chrome trên máy anh (máy chủ Claude và shell máy anh không ra được mạng tới OSM, DEM), chuyển vào `ChienDichKheSanh1968/` (không đưa lên repo): `khe-sanh-1968_dem.json` (Terrarium: tầng chiến dịch z12, 9×8 ô; tầng Tà Cơn z14, 10×10 ô), `khe-sanh-1968_osm.json` (Overpass: chiến dịch 1.208 phần tử — đường lớn, sông, làng, điểm cao, di tích; Tà Cơn 2.356 phần tử — mọi đường, suối, đất, rừng).
+- **Hai tầng** (`terrain/`, `terrain/ta-con/`), dựng bằng `vietsu/tools/sa_ban/dia_hinh/dung_dia_hinh_ks.py`:
+  - chiến dịch: tâm 16,70 B, 106,82 Đ, R 33 km, lưới 1024 (66 m/ô), độ cao 0,6–1.678 m, phóng đại ×2; gồm Đông Hà, Trại Carroll, Rockpile, Tà Cơn, Làng Vây, Bản Huội San, Co Roc.
+  - Tà Cơn: tâm 16,645 B, 106,69 Đ, R 10 km, lưới 1024 (20 m/ô), độ cao 55–1.198 m, ×1; gồm căn cứ, 881 Bắc/Nam, 861, 861A, 558, 950, làng Khe Sanh, Cu Bốc, Làng Vây, Co Roc.
+  - Lọc 1968 (sơ bộ, theo tên): bỏ hồ chứa (Rào Quán 6,9 km², La Ngà, Trúc Kinh, Hà Thượng, Kinh Môn, Triệu Ái, các hồ thuỷ điện Đakrông…) và lấp lại lòng hồ bằng nội suy từ bờ, hạ lòng suối cũ 4 m — **phỏng dựng**; bỏ 64 đoạn đường Hồ Chí Minh, cao tốc. Sông suối vùng núi chỉ tô màu và đánh dấu kênh nước. Màu đất là MINH HOẠ.
+- **Mốc** (`rieng.js › MOC`): căn cứ Tà Cơn, làng Khe Sanh, Cu Bốc, Làng Vây, Rockpile, Trại Carroll theo OSM; 881 Nam/Bắc (M27), 950 (M28), Bản Huội San (M29); 861, 861A, 558 theo lưới bản đồ quân sự (M30), khớp mô tả của Shore 1969 và Ringed by Fire; **Co Roc còn ước lượng** (~13 km tây nam căn cứ, M12).
+- **GĐ3 khung `rieng.js`**: dựng từ bản HCM V1.9 bằng `vietsu/tools/sa_ban/khe_sanh/rieng_tu_hcm.py` — tắt toàn bộ biên đạo Sài Gòn (cờ `HCM = false`), giữ các hàm dùng lại (giao tranh, ụ nấp, đồn, trận địa pháo, đạn vạch, bụi xe, chữ ngày giờ, `__kiem`); thay mốc, góc nhìn, nút đổi tầng, chỗ đứng xem; chữ ngày giờ theo từng hồi; **máy quay tạm** xoay quanh mốc chính của hồi theo cỡ cảnh (đại toàn / toàn / trung / cận) — chỉnh từng cú máy ở GĐ4.
+- **Kiểm tra:** `quet_phim.py khe-sanh-1968 chien-dich` 702 mốc, `ta-con` 946 mốc: `out = []`, `slow = []`. `kiem_tra_goi.py`: tải lần đầu 2,9 MB, tải sau 14,6 MB.
+- **Artifact xem trước (mới, không ghi đè HCM):** https://claude.ai/artifact/DpNoFM5hMMrQPfE4quu1gA (slug `67cb0de1-0c9a-4892-b8dd-0c5a2ac1af7f`). Đóng gói: `python3 vietsu/tools/sa_ban/dong_goi_artifact_2.py khe-sanh-1968 <thư mục>` rồi `publish_files` vào slug đó.
+- **Còn hạn chế:** đường, làng là OSM hôm nay (Đường 9 năm 1968 cần đối chiếu ảnh 1968, bản đồ 1:50 000); ảnh màu tầng chiến dịch mờ khi máy xuống thấp (2.048 điểm ảnh cho 68 km); chưa có căn cứ, đường băng, quân, xe (GĐ4).
+
+## 9b. GĐ4 dàn cảnh — bản đầu (25/11/2026)
+Mã biên đạo: `vietsu/tools/sa_ban/khe_sanh/bien_dao_gd4.js`, chèn vào `rieng.js` bằng `rieng_tu_hcm.py` (gọi `KS.cap` mỗi khung). Mọi vị trí, số lượng dưới đây là **MINH HOẠ** trừ chỗ ghi nguồn.
+
+| Hồi | Dựng | Nguồn / ghi chú |
+|---|---|---|
+| Căn cứ Tà Cơn (mọi hồi) | đường băng tấm nhôm ~1.190 m, hướng ~100° (Đông – Tây); vòng chiến hào, hàng rào dây thép gai ~2,0 × 0,9 km; ~260 hầm bao cát, 46 lều, tháp điều khiển, kho đạn đầu đông, 3 M48 | M11, M20 (chiều dài, tấm nhôm), S15 (cỡ căn cứ); **hướng đường băng chưa đối chiếu ảnh 1968** |
+| H04 | pháo kích vào căn cứ, kho đạn nổ cháy (21/1); 4 pháo 130 mm bắn từ Co Roc | S7, M7, M12, M16; vị trí Co Roc ước lượng |
+| H06 | Làng Vây: vòng hào, hàng rào, 14 hầm; 3 PT-76 theo Đường 9 từ phía tây, 2 từ phía nam; bộ binh bám xe; quân giữ đồn ngã dần; cờ đỏ sao vàng khi làm chủ | S2, S8, M12 (hai hướng tiến); số xe trên cảnh là MINH HOẠ |
+| H07 | 5 chiến hào răng cưa mọc dần từ nam, tây nam, tây về hàng rào; bộ đội trong hào | S1, S5, M21 |
+| H08 | 3 B-52D bay qua, thảm bom phía tây bắc ngoài căn cứ; C-130 hạ cánh từ phía đông; thả dù tiếp tế; UH-1 | M1, M9, M10, M31 |
+| H09 (chiến dịch) | mũi tên xanh Pegasus theo Đường 9 (Cà Lu → Tà Cơn, đường OSM), đoàn xe tải + M48, 6 UH-1 | M2, M3; chỉ hiện ở cảnh đại toàn để không che đoàn xe |
+| H03, H11 (chiến dịch) | mũi tên đỏ áp sát từ phía bắc và từ Lào theo Đường 9 | hướng MINH HOẠ |
+| H05 | thẻ chữ Tết Mậu Thân | S16 |
+| H10 | công sự căn cứ thưa dần (Mỹ rút, phá căn cứ 27/6 – 5/7) | M8 |
+
+Máy quay riêng: H04 (xoay quanh căn cứ), H06 (bám PT-76 dẫn đầu), H08 (bám C-130), H09 (bám đoàn xe); các hồi khác vẫn máy quay tạm GĐ3.
+Kiểm tra: `quet_phim.py` hai tầng sạch (`out = []`, `slow = []`; đã sửa một khung đứng 65 s ở 9:19 do xe M48 tải sau bước "dựng sẵn" — nay mẫu nạp lên GPU ngay khi tải xong). `kiem_tra_goi.py`: tải lần đầu 2,9 MB, tải sau 14,9 MB.
+Còn lại: lính TQLC Mỹ (chờ gắn xương) nên trong căn cứ chưa có người; giao tranh trên các điểm cao 881 Nam, 861 chưa dựng; máy quay hồi 1, 2, 3, 5, 7, 10, 11 còn tạm; lời dẫn, âm thanh chưa khớp (GĐ5).
+
+## 9c. GĐ4b — theo góp ý của anh Thắng (25/11/2026, 6h–7h)
+- **Tư liệu mới anh gửi** (ghi ở `sources.json`, không đưa ảnh lên repo): sơ đồ căn cứ Khe Sanh của phía Mỹ (M32), sơ đồ trận Làng Vây (S18), bản đồ chiến dịch 4 đợt (S19), ảnh sa bàn ở di tích (S20); danh mục tham khảo (M33 Pearson 1975; T1 các sách viết từ phía quân lực VNCH — chưa dùng cho số liệu).
+- **Căn cứ Tà Cơn dựng lại theo M32:** đường băng phương vị ~99° (đo trên sơ đồ), ở phía bắc căn cứ, đầu đông vượt hàng rào; hàng rào dò theo sơ đồ (Red Sector tây, FOB-3 tây nam, Gray Sector nam, Tiểu đoàn 37 BĐQ đông nam, Blue Sector bắc); kho đạn số 1 (đông nam đường băng, nổ 21/1), số 2; Tiểu đoàn 3 xe tăng (tây bắc) có 3 M48; sân đỗ, vòng lăn. **Chỗ lệch:** theo thước của sơ đồ, đường băng vẽ ~1,1 km, nguồn chữ ghi 3.900 ft (~1,19 km, M11) → em lấy tỉ lệ 2,347 m/điểm ảnh cho đủ 1,19 km (căn cứ rộng ~2,0 km, khớp S15). Tâm đường băng đặt ở mốc OSM "Sân bay Tà Cơn" — **ước lượng**.
+- **Làng Vây theo S18:** thêm mũi bộ binh từ phía bắc (cBB2); xe tăng vào từ phía tây theo Đường 9 và từ phía nam như bản trước — khớp sơ đồ.
+- **Mũi tên theo S19:** F.325 từ tây bắc vào 852/845/861, E.246 từ tây, F.304 từ Lào qua Làng Vây về Hướng Hoá (hồi 3, 11); chốt Làng Khoai (hồi 9, vị trí ước lượng). Kiểu mới theo anh: một khối liền, không hiệu ứng, trong suốt 70 %, đặt cao hơn đỉnh núi dọc đường 250 m.
+- **Lính thủy đánh bộ Mỹ:** mẫu Tripo anh gắn xương Mixamo → `tools/sa_ban/nhan_vat_lai/lam_linh_my.py` (thêm súng M16 cầm tay lấy từ mẫu VNCH, áp tỉ lệ xương FBX) → `nuong_nvz.py` với động tác của mẫu VNCH (đứng, bắn, quỳ bắn, chạy, đi ngắm, núp, trườn, nằm) → `units/linh-my.nvz` (2.808 tam giác) và `linh-my-x.nvz` (1.408 tam giác, xa). Mẫu còn khẩu M16 đeo chéo dính liền thân (không tách được), nên ở tư thế bắn có thêm khẩu cầm tay — MINH HOẠ.
+- **Dàn cảnh từng cú máy** (`tools/sa_ban/khe_sanh/dan_canh_gd4.js`): 76 cú, mỗi cú một chủ thể theo `story.json`: tuần tra trong hào phía bắc, ụ gác bao cát và dây thép gai cuộn (cận), các điểm cao có ụ và lính Mỹ, kíp pháo Co Roc (cận, trung), lính Mỹ chạy vào hầm khi kho đạn cháy, xe tăng PT-76 (bám xe, sát xích), bộ binh Làng Vây, đầu chiến hào đang đào (8 người dồn ở đầu hào), tổ cứu thương, lính Mỹ trong hầm, B-52D, C-130, kiện hàng dù, khu nhận hàng, đoàn xe rút về phía đông, cờ trên sân bay Tà Cơn 9/7 (S14, S15); tầng chiến dịch: ụ quan sát 881 Nam, đội hình hành quân (F.325), trận địa pháo, bàn bản đồ sở chỉ huy (giấy trơn, MINH HOẠ), đoàn vận tải, công binh mở Đường 9, bãi đổ quân trực thăng, đội hình UH-1, cờ chiến thắng, tựa đề cuối phim.
+- **Bỏ màn tối khi đổi tầng:** `pack.json › ui.theChuong: false` (tuỳ chọn mới của bộ máy 2.2.0; gói mẫu `_mau` đặt sẵn; HCM giữ như cũ).
+- **Kiểm tra:** `quet_phim.py` hai tầng sạch (`out = []`, `slow = []`; đã sửa ba chỗ đứng hình 40–100 s do xe, cờ tải muộn — nay nạp lên GPU ngay khi tải). `kiem_tra_goi.py` hợp lệ: tải lần đầu 2,9 MB, tải sau 16,5 MB, âm thanh 7,2 MB (thêm nhạc nền dùng lại của gói HCM).
+- **Còn hạn chế:** ảnh màu tầng chiến dịch mờ ở cú trung, cận (2.048 điểm ảnh cho 68 km); hồi 5 (Tết) chỉ có thẻ chữ, chưa có bản đồ miền Nam; mẫu lính Mỹ dùng cho cả kỵ binh bay Lục quân ở hồi 9 (MINH HOẠ).
+
+## 9d. Động tác Mixamo cho bộ binh cả hai bên (25/11/2026, 17h)
+- **Nguồn:** anh Thắng gửi mẫu TQLC mới `linh-my-2` (áo giáp, đã gắn xương — dùng bản có xương trong `Shooter Pack`) và ~45 động tác Mixamo trong `_KHO-CHUNG/dong-tac/_nguon_fbx`.
+- **Công cụ mới** `tools/sa_ban/nhan_vat_lai/chuyen_dong_tac.py`: chuyển động tác Mixamo sang mọi bộ xương `mixamorig` (Tripo FBX đứng chữ A, mẫu .glb Thành cổ đứng chữ T): đưa hai bộ xương về cùng hướng mặt và cùng tư thế chữ T, rồi áp độ xoay thế giới của từng xương; động tác có dời gốc (chạy, đi, trườn) chuyển thành tại chỗ. **Súng canh tự động**: báng ở tay phải, nòng (trục dài nhất của lưới súng) hướng về tay trái ở tư thế "Idle Aiming"; súng lấy từ mẫu gốc (M16 của mẫu VNCH, AK của mẫu QĐND Thành cổ), vẫn xoay quanh nòng theo `SUNG_XOAY` như cũ.
+- **Bộ động tác chung** (cả bộ đội mũ tai bèo / đầu trần, lính TQLC Mỹ mẫu mới, lính VNCH): `dung` Rifle Idle · `ngam` Idle Aiming · `ban` firing rifle · `quy` Crouch Rapid Fire · `chay`, `xung` rifle run (2,7 m/s) · `di` Rifle Walk (0,97 m/s) · `khom` Crouched Walking · `nup` Rifle Crouch Turn · `namban` Prone Firing Rifle · `truon` Prone Forward · `nap` Reloading · `nga` Death From The Front (3,4 s) · `nam` (khung cuối của `nga`); bộ đội giữ thêm `quansat`, `nem`, `ngoi` của mẫu QĐND. Gần máy 3.000 tam giác, xa 1.200.
+- **Chọn động tác theo cảnh:** tuần tra đi đúng nhịp bước; người đứng yên chỉ dùng động tác tại chỗ (ngắm, núp, quỳ bắn, thay đạn, quan sát — không dùng động tác đi khi không di chuyển để khỏi trượt chân); lính Mỹ chạy vào hầm (H04) rồi quỳ bắn / thay đạn; bộ binh Làng Vây chạy theo xe rồi bắn, ngắm, thay đạn; quân giữ Làng Vây trúng đạn ngã (động tác ngã thật, không còn nằm ngay); đầu chiến hào quỳ, núp, nằm bắn, ném lựu đạn, thay đạn; lúc B-52 ném bom nằm sát hoặc núp; bãi đổ quân (H09) lính nhảy khỏi trực thăng chạy ra vòng ngoài rồi quỳ bắn.
+- **Kiểm tra:** `quet_phim.py` hai tầng sạch; `kiem_tra_goi.py` hợp lệ (tải sau 20,9 MB do đám đông nhiều động tác hơn).
+- **Còn:** động tác `khom` (Crouched Walking) không cầm súng hai tay; các động tác Mixamo dáng chung, chưa có động tác riêng như đào hào, khiêng hàng, băng bó.
+
+## 9e. Bản V1.4 — sửa theo góp ý V1.3 của anh Thắng (25/11/2026, 17h–18h)
+| Góp ý | Đã làm |
+|---|---|
+| Tên sa bàn | "Không gian lịch sử · Học Lịch Sử" thay "Việt Sử" ở mọi bộ máy sa bàn (1.0.0, 1.1.0, 2.1.0, 2.2.0: chữ đầu trang, tên thẻ trình duyệt). Các trang khác của website vẫn còn chữ "Việt Sử" — chưa đổi |
+| 0:24–0:35 máy quay giật | cú C01-03 bay ở một độ cao cố định trên đỉnh núi dọc Đường 9, đường đi và hướng nhìn làm trơn (Đường 9 trên OSM gấp khúc), chậm lại; máy bám người, xe cũng lấy hướng trung bình ±6 m |
+| Đường băng trong vòng rào | vòng rào phía đông nới ra bao trọn đầu đông đường băng (sơ đồ M32 vẽ đầu đông vượt rào) — MINH HOẠ |
+| 1:33–1:44 dải hào cao tới đầu gối | mọi dải phủ (hào, rào, đường băng, sân đỗ) hạ sát mặt đất 6–12 cm, chia đoạn ≤ 6 m để bám địa hình; hào màu đất nhạt hơn |
+| Lính thủng lỗ | công cụ nướng hàn đỉnh trùng ở đường nối UV trước khi giảm lưới (`nuong_nvz.py`) — số cạnh hở sau giảm lưới từ ~3.600 xuống 0 |
+| Cầm súng | canh súng theo hình học của súng: tay phải ở tay cầm có cò, tay trái ở ốp lót, băng đạn quay xuống đất, súng đúng chiều dài thật (M16 0,99 m, AK 0,88 m) — `chuyen_dong_tac.py` |
+| Lính trong ụ quay đi quay lại | động tác `nup` đổi sang quỳ chờ (đoạn cuối "Rifle Crouch Walk To Kneel", chạy đi rồi về) — chỉ cử động nhẹ |
+| Bàn họp | năm người đứng quanh bàn, cùng động tác đứng cầm súng lắc lư nhẹ |
+| Màu địa hình | `tools/sa_ban/dia_hinh/mau_dat_ks.py`: đất đỏ quanh căn cứ (+450 m, nhạt dần tới ~2,6 km), đỉnh 881 Nam, 861, 861A, 558, 950, Làng Vây, Cu Bốc, dải thảm bom phía tây bắc; cỏ thưa lấm tấm, ~2.700 hố bom vẽ trên nền — theo ảnh căn cứ 1968 anh gửi (T2); MINH HOẠ |
+| Cờ | cờ Mỹ ở khu chỉ huy Trung đoàn 26 (hạ khi rút), ụ gác, các điểm cao có TQLC, xe M48 dẫn đầu Pegasus; cờ đỏ sao vàng trên PT-76, xe vận tải, trận địa pháo Co Roc, người cầm cờ đi đầu đội hình (hồi 3, hồi 6), Làng Vây, Tà Cơn 9/7; cờ bay phấp phới |
+| Ghim tên khí tài | M48 (căn cứ, Pegasus, rút quân, công binh), xe vận tải Quân Giải phóng, UH-1, pháo 130 mm M-46, cùng PT-76, B-52D, C-130 đã có. Phía Mỹ không còn dùng mẫu xe tải (mẫu xe tải của gói là xe Quân Giải phóng) |
+| Âm thanh, hố đạn | tiếng nổ đúng từng tiếng nổ trên hình (nhỏ dần theo khoảng cách, trễ theo tốc độ âm), kho đạn nổ, pháo bắn đi, PT-76 bắn, súng nhỏ, lửa cháy, xe tăng, máy bay (B-52, C-130), trực thăng (tổng hợp bằng nhiễu lọc); mỗi tiếng nổ để lại hố đất viền đất cày, một phần chỗ nổ cháy lửa ~26 s |
+| Kéo timeline lùi bị treo | đổi tầng chỉ khi thả tay khỏi thanh thời gian (trước đây đổi ngay giữa lúc kéo → tải lại trang dưới tay người xem); thêm pointerup/touchend |
+Kiểm tra: `quet_phim.py` hai tầng sạch; thử bản đóng gói: kéo từ hồi 4 về hồi 1 (khác tầng) — giữ nguyên khi đang kéo, thả tay mới chuyển, phim chạy tiếp.
+
+## 9f. Bản V1.5 — sửa theo góp ý V1.5 của anh Thắng (25/11/2026, 18h–20h)
+| Góp ý | Đã làm |
+|---|---|
+| Pháo để ngược | mẫu M-46 có đầu nòng theo trục +Z; bỏ phần xoay thêm 180° → 4 khẩu ở Co Roc (tầng Tà Cơn) và 3 khẩu hồi 3 (tầng chiến dịch) chĩa nòng về căn cứ (đo: lệch 0 rad). Kíp pháo đứng sau càng pháo; hai cú máy C04-02, C04-03 và C03-03 đổi góc theo |
+| Hồi 5 đơ hình, chỉ còn tiếng | nguyên nhân: từ bản Hồ Chí Minh (V1.6) bản artifact **nạp sẵn tầng kế tiếp trong một khung ẩn** khi máy ≥ 8 GB — hai sa bàn WebGL chạy cùng lúc, card đồ hoạ quá tải, khung mới hiện ra đứng hình (H04 Tà Cơn → H05 chiến dịch là lần đổi tầng đầu tiên có nạp sẵn). Sửa dứt điểm: bỏ nạp sẵn (`MAY_MANH = false`) ở cả gói Khe Sanh và gói Hồ Chí Minh; trang khung ngoài (`dong_goi_artifact_2.py`) trả ngữ cảnh WebGL của khung cũ **trước** khi tạo khung mới — không lúc nào có hai sa bàn cùng chạy. Đổi lại: lúc đổi tầng hiện màn tải vài giây rồi phim tự chạy tiếp |
+| 0:24–0:35 máy quay | C01-03 bay vòng tròn cao (bán kính 5,2 km, cao hơn đỉnh núi cao nhất trên vòng bay 2,6 km), quay đều quanh đoạn Đường 9 giữa Cà Lu và Khe Sanh |
+| Mũi tên trắng, opacity 90 % | mọi mũi tên một màu trắng, độ đục 0,9 (một hằng số trong `muiTenPhang`, đổi được); chú giải đổi theo. Mũi tên Pegasus (trước xanh) cũng trắng |
+| Pháo M2A1 105 mm anh gửi | nướng thành `props/phao/m2a1-105mm.glb` (9.000 tam giác, 269 KB; đo theo bề rộng 2,21 m — M35; nòng theo +Z như M-46). Đặt 6 khẩu trong hai cụm ụ bao cát tròn trong căn cứ, nòng hướng điểm cao 881 Nam — **MINH HOẠ** (M5 chỉ ghi các khẩu đội của Tiểu đoàn 1, Trung đoàn pháo 13 TQLC trong căn cứ, 3 khẩu 105 mm trên 881 Nam; chưa có sơ đồ trận địa pháo) |
+| Đường đất cho đoàn hành quân; nền đất ở trận địa pháo, nơi họp | hồi 3: đường mòn đất đỏ rộng 5 m dọc tuyến hành quân (kéo dài về sau đầu đội hình để cả hàng quân đứng trên đường), đường đất 6 m dọc tuyến vận tải; nền đất tròn ở từng khẩu pháo (Co Roc hai tầng), quanh cả trận địa và nơi họp bàn. Vị trí, độ rộng là MINH HOẠ. **18h40 anh Thắng: đất tới gối, tới đùi** → nền đất chỉ nhô 6 cm, giảm độ lệch chiều sâu; nay chỉ che đế giày |
+| Đất + cỏ lốm đốm, thêm cây cho cảnh hành quân (18h43) | nền đất dùng ảnh màu tự vẽ (đất đỏ nhiều sắc, vạt cỏ, túm cỏ, sỏi; lặp mỗi 14 m), mép mờ dần. Cây thấp và bụi tre (mẫu cây của bộ máy) hai bên 1,1 km đầu tuyến hành quân và 1,2 km đầu tuyến vận tải, vòng cây quanh nơi họp và trận địa Co Roc; cây nào đứng gần máy quay hoặc chắn giữa máy và chủ thể của bất kỳ cú máy nào thì tự bỏ — MINH HOẠ |
+| Cận cảnh pháo thủ C04-02 bị chói trắng | chớp lửa bắn đặt ở đầu nòng (trước ở giữa thân pháo, rộng 30 m); máy đứng sau-trái kíp pháo nhìn theo nòng về căn cứ |
+| Không gian trưng bày khí tài cuối phim | thêm phần **Kết (H12, 824–874 s, tầng Tà Cơn)**: sân trưng bày 290 × 165 m đặt ở khoảng đất bằng nhất cách mọi mốc chiến sự ≥ 3,5 km (phía bắc tầng Tà Cơn), chỉ hiện ở phần Kết và khi tự khám phá. Dãy bắc: Quân Giải phóng (chiến sĩ bộ binh, PT-76, pháo 130 mm M-46, pháo cao xạ 37 mm, xe vận tải, cờ đỏ sao vàng); dãy nam: Mỹ và VNCH (lính TQLC, Biệt động quân, M48A3, pháo 105 mm, UH-1, C-130A, B-52D, cờ Mỹ, cờ VNCH). Mỗi khí tài có ghim tên (đỏ: Quân Giải phóng, xanh: Mỹ/VNCH); bấm ghim mở thẻ thông số + "Ở Khe Sanh" + nguồn. Nút "🚶 Vào tham quan khí tài (đi bộ)" ở cuối phim và ở góc phải khi khám phá → xuống đi bộ ngay cổng sân, chạy (Shift / đẩy hết cần) |
+
+**Thông số trong thẻ và nguồn** (sources.json, thêm M34–M41, T3):
+- PT-76: ~14 tấn, kíp 3, pháo 76 mm D-56, 44 km/h đường bộ, 10 km/h dưới nước, tầm 260 km — M26 (inetres). Trận Làng Vây — S8, S2; Huội San — M13, M12.
+- M-46: tầm bắn 27.150 m, kíp 8, dài 38,6 ft, nặng 9,2 tấn Mỹ (~8,3 tấn) — M36 (tài liệu nhận dạng của CMH, Lục quân Mỹ). Co Roc — M12, M14.
+- Cao xạ 37 mm: S3 chỉ ghi "3 trung đoàn cao xạ", M6 ghi phòng không quanh căn cứ nhất là 12,7 mm → **cỡ 37 mm là MINH HOẠ**, thẻ ghi rõ.
+- Xe vận tải: kiểu xe MINH HOẠ (mẫu chung của dự án), S6.
+- M48A3: 48,5 tấn, kíp 4, pháo 90 mm M41, dài cả nòng 8,68 m, 48 km/h, tầm 480 km — M41; khu Tiểu đoàn 3 xe tăng — M32; 10 xe Ontos — M20.
+- M101A1 (M2A1): 2.258 kg, tầm 11.270 m, 10 phát/phút tối đa, 3 duy trì, kíp 8 — M34. **Lệch nguồn:** dài khi hành quân 5,991 m (M34) / 5,94 m (M35); bề rộng 2,159 m (M34) / 2,21 m (M35, dùng để đặt tỉ lệ mẫu).
+- UH-1H: cánh quạt 14,63 m, dài 17,4 m, 217 km/h, tầm 507 km — M40 (mẫu 3D là UH-1 chung). Pegasus — M2, M3.
+- C-130A: sải cánh 132 ft 7 in, dài 97 ft 9 in, 379 dặm/giờ, 92 lính / 64 lính dù — M38; 165 tấn/ngày — M9; lệnh cấm C-130 hạ cánh — M39.
+- B-52D: thông số theo M31 (bảo tàng Không quân Mỹ), "Big Belly" 84 bom 500 lb — M19; 2.548 lượt, 59.542 tấn — M9; tổng 98.721 tấn — M10.
+- Lính TQLC: ~6.000 quân Mỹ — M25; Trung đoàn 26 — M1; mũ sắt, áo giáp bắt buộc — M20. Biệt động quân: Tiểu đoàn 37 — M1, M32; 21/2 — M17.
+
+Kiểm tra: `quet_phim.py` hai tầng (thêm phần Kết), `kiem_tra_goi.py`, thử bấm ghim, thử nút đi bộ, thử bản đóng gói đổi tầng H04 → H05.
+
+## 9g. Bản V1.6 — sửa theo góp ý V1.6 của anh Thắng (25/11/2026, 20h)
+| Góp ý | Đã làm |
+|---|---|
+| Bỏ đoạn đen mờ khi chuyển hồi, sa bàn không bị tải lại | Hai tầng địa hình (chiến dịch 66 km, Tà Cơn 21 km) là hai trang sa bàn riêng, nên đổi tầng vẫn phải dựng trang mới; nạp sẵn trong khung ẩn thì treo máy (V1.5). Cách mới (bộ máy 2.2.0 `doiTang` + `dong_goi_artifact_2.py`): lúc đổi tầng chụp khung hình cuối của tầng cũ, khung ngoài phủ ảnh đó lên màn (phóng nhẹ dần, chữ nhỏ "Đang chuyển cảnh…"), dựng tầng mới phía sau, xong thì ảnh mờ dần — không còn màn tải tối, lúc nào cũng chỉ một sa bàn WebGL. Thử bản đóng gói H04 → H05: ảnh phủ ~8 s trên máy không card đồ hoạ, rồi phim chạy tiếp ở 4:45 |
+| Quân phục lính Mỹ màu ô liu như ảnh anh gửi | công cụ mới `nhan_vat_lai/doi_mau_quan_phuc.py`: dồn sắc vải xanh về ô liu (sắc 30/180, S × 0,85, V × 1,12; đo từ ảnh: áo ~RGB 82, 83, 65), giữ vân vải, da, giày, mũ |
+| Khám phá bảo tàng: nhân vật chạy đi lại | lỗi có từ bản nền HCM: thiếu bộ nghe phím W A S D / mũi tên và cần ảo ở chế độ đi bộ (đã chép lại từ gói Như Nguyệt vào cả gói HCM). Đo: đi 14 m trong 15 s, giữ Shift chạy. Thêm chặn bục: đi tới mép bục trưng bày bị đẩy ra, không xuyên qua; đi dưới cánh máy bay được |
+| Lính Mỹ chạy vào công sự phải nhảy qua tường bao cát | nướng thêm động tác "jump forward" (Mixamo) cho lính TQLC (`nhay`); tính chỗ đường chạy cắt vòng bao cát (bán kính 3,2 m), đoạn ±1,4 m quanh đó dùng động tác nhảy, nhấc người lên tối đa 0,55 m qua tường cao ~0,7 m. Đường chạy ngắn lại để cú nhảy nằm trong cú máy C04-06 |
+| Trực thăng: cánh quạt quay; để trực thăng ở đường băng Tà Cơn | mẫu UH-1 có cánh quạt đúc liền thân nằm dọc thân máy → bỏ các tam giác cánh quạt, gắn cụm cánh quạt dựng bằng mã (hai lá dài 14,6 m theo M40, vệt mờ, đĩa mờ khi quay; hiển thị ~1,3 vòng/s). Áp cho mọi UH-1 (hồi 8, Pegasus, bảo tàng — ở bảo tàng đứng yên). Hai chiếc đỗ ở sân đỗ đầu tây đường băng, cánh quạt quay, có ghim "Trực thăng UH-1 (Mỹ) · sân đỗ" — số chiếc, chỗ đỗ MINH HOẠ |
+
+## 9h. Bản V1.7 — sửa theo góp ý V1.7 của anh Thắng (25/11/2026, 21h)
+| Góp ý | Đã làm |
+|---|---|
+| B-52 bay ngược | đo mẫu: đuôi đứng ở z = −17,5 m → mũi theo +Z; bỏ phần xoay thêm 180°. Cùng lỗi ở UH-1 bay (hồi 8, Pegasus) — đã sửa; C-130 đúng sẵn. Cú máy C07-01, C10-03 chỉnh theo |
+| Chạy khi đánh: người cúi khom, người chạy thẳng | xung phong Làng Vây, bộ binh bám xe tăng: 1/3 số người cúi khom chạy (động tác đi khom phát nhanh 1,85 lần cho khớp bước), còn lại chạy thẳng; lính Mỹ chạy vào ụ (hồi 4) và ra khỏi trực thăng (Pegasus) cũng trộn khom/thẳng |
+| Cảnh giao tranh: bộ đội ngồi mà cả đường hào lẫn người trượt | nguyên nhân: tổ đào hào bám theo đầu hào đang dài ra (~20–30 m/s vì nén nhiều tuần vào 87 s), máy cận cũng bám đầu hào. Nay mỗi hào có 6 điểm đóng quân cố định, đầu hào tới đâu tổ ở đó hiện ra và ở yên; máy cận (C06-02/03/04, C09-02/03) nhìn vào điểm cố định đã có tổ khi cú máy bắt đầu |
+| Có cảnh bộ đội hy sinh và lính Mỹ bị tiêu diệt | Làng Vây: một chiến sĩ trúng đạn giữa đường xung phong, nằm lại. Hồi 7: một chiến sĩ trong hào trúng đạn, tổ cứu thương tới bên cạnh (cú C09-03 "Băng cứu thương"). Phía Mỹ: một lính trúng pháo ngã trước khi tới ụ (hồi 4), một lính đứng ngoài ụ trúng đạn (hồi 7); quân phòng thủ Làng Vây như cũ. Số người, thời điểm: MINH HOẠ; không cận cảnh vết thương |
+| Điện thoại gần các chương cuối bị tải lại từ đầu | (1) máy cảm ứng dùng độ phân giải 1,25 và bỏ khử răng cưa nhiều mẫu (bộ đệm đồ hoạ nhỏ đi nhiều lần) — giảm khả năng trình duyệt bỏ trang vì thiếu bộ nhớ; (2) khung ngoài ghi chỗ đang xem mỗi 3 s; nếu trang bị tải lại thì mở lại đúng tầng, đúng phút (giữ 6 giờ; xem hết phim thì xoá) |
+| Màn hình nghỉ khi không chạm | giữ màn hình sáng khi đang phát phim hoặc đang đi bộ: Screen Wake Lock nếu trình duyệt cho (khung sa bàn được cấp quyền `screen-wake-lock`), dự phòng một đoạn video câm 2 s, 16×16 điểm ảnh, lặp (cách NoSleep cho iOS) |
+| Nút Bảo tàng ở bộ nút phía trên | nút "🏛 Bảo tàng" cạnh "Tư liệu", có ở cả hai tầng: ở tầng Tà Cơn vào đi bộ ngay; ở tầng chiến dịch chuyển sang Tà Cơn rồi tự vào đi bộ |
+| Hết phim: "Vào Bảo tàng" (phải), về trang Không gian lịch sử (trái) | đã có. Địa chỉ trang Không gian lịch sử: `pack.json › ui.trangChu` (đang để "/"). Trong bản Artifact không mở được trang ngoài trong khung: có địa chỉ đầy đủ (https://…) thì mở thẻ mới, chưa có thì về màn mở đầu sa bàn — **chờ anh gửi địa chỉ** |
+
+## 9i. Bản V1.8 — sửa theo góp ý V1.8 của anh Thắng (25/11/2026, 22h)
+| Góp ý | Đã làm |
+|---|---|
+| Đi bộ: máy quay nhanh hơn nhân vật, trôi ra trước | lỗi bộ máy 2.2.0: `placeAvatarAt()` đã dời máy theo nhân vật, `walkTick()` dời thêm lần nữa → máy đi gấp đôi. Bỏ lần dời thứ hai (đo: khoảng cách máy – nhân vật giữ 8,7 m khi đi) — sửa chung cho các gói 2.2.0 |
+| Bấm vào khí tài mở thẻ, thẻ ở giữa màn hình | bấm vào khí tài, bục hoặc bảng thông tin đều mở thẻ; thẻ ở giữa màn hình, nền tối mờ quanh thẻ; Esc hoặc × để đóng |
+| Biển cổng mất chữ hai bên | cỡ chữ tự thu cho vừa 88 % bề ngang biển |
+| Biển hai mặt đều đọc xuôi | mỗi biển là hai tấm quay lưng vào nhau, mỗi tấm vẽ chữ xuôi |
+| Bảng thông tin cạnh khí tài như ở bảo tàng | bảng nghiêng trên chân, đặt ở mép bục phía lối đi (máy bay: trước vòng kẻ), ghi tên, bên, 4 thông số chính, "Bấm vào bảng hoặc khí tài để xem đầy đủ, có nguồn" |
+| Nút Bảo tàng trong nhóm chế độ | thứ tự: Phim tự động · Bảo tàng · Khám phá · Góc nhìn nhân vật; đang ở bảo tàng thì nút sáng; bấm Khám phá thì rời bảo tàng; ở tầng chiến dịch bấm Bảo tàng thì chuyển sang Tà Cơn rồi vào thẳng |
+| Nút quay về trên thẻ "Không gian lịch sử" | nút "←" đầu dòng "Không gian lịch sử · Học Lịch Sử" — cùng địa chỉ `ui.trangChu` với nút cuối phim (chờ anh gửi địa chỉ) |
+| Đoạn dừng "Đang chuyển cảnh" | xem ghi chú dưới bảng |
+| Bàn họp có bản đồ trận Khe Sanh | mặt bàn vẽ bằng mã trên nền ảnh địa hình của sa bàn (tông giấy cũ): Tà Cơn, các điểm cao 881 Nam/Bắc, 861, 558, 950, Làng Vây, Hướng Hóa, Co Roc, Đường 9, ba mũi tiến công đỏ (theo mũi tên trên sa bàn), tiêu đề "Phương án tiến công Đường 9 – Khe Sanh (minh hoạ)" — không chép bản đồ trong sách |
+| Hành quân có chướng ngại, bộ đội nhảy qua | cây đổ ngang đường (cả hai hàng nhảy qua) và tảng đá (hàng trái nhảy qua) trên đường mòn hồi 3; nướng thêm động tác "jump forward" cho mẫu bộ đội; mỗi người đi theo đường mòn ở khoảng cách riêng (trước cả khối người dịch theo đầu đội hình). Chỗ đặt chướng ngại để các hàng nhảy qua đúng trong cú máy C03-02 — MINH HOẠ |
+
+**Về đoạn dừng khi đổi tầng.** Điện Biên Phủ chỉ có một tầng địa hình nên không bao giờ đổi trang. Khe Sanh có hai tầng: toàn chiến dịch (66 km, phóng đại độ cao ×2) và Tà Cơn (21 km, độ cao thật) — mỗi tầng là một trang sa bàn riêng, đổi tầng là dựng trang mới (8 lần trong phim). Hai trang cùng chạy để nối liền thì treo máy (lỗi V1.5). Bản này: khoảng chờ hiện ảnh khung cuối kèm tên hồi kế tiếp (như màn mở chương), không còn chữ "Đang chuyển cảnh" to. **Liền mạch hẳn** cần gộp hai tầng vào một trang: đặt địa hình Tà Cơn chi tiết như một miếng vá giữa địa hình chiến dịch, chuyển mọi bố trí của tầng Tà Cơn sang hệ toạ độ và tỉ lệ độ cao của tầng chiến dịch — việc lớn của bộ máy (đề xuất bản 2.0). Với phim xuất bằng công cụ `xuat_phim` (đồng hồ ảo, dựng từng khung), khoảng chờ tải không vào phim nếu dựng từng tầng rồi nối — cần thêm bước nối đoạn.
+
+## 9j. GĐ5 — gắn voice, phụ đề (25/11/2026, 23h)
+
+- Voice: bản anh Thắng làm bằng phần mềm voice theo tài liệu "Kịch bản voice" (`docs/du-lieu/khe-sanh-1968_loi_doc_voice.md`), đọc cả tên hồi. Voice là đồng hồ chính của phim.
+- Nhận dạng (`tools/sa_ban/voice/asr_khe_sanh1968.json`) khớp 95,4 % số từ. Chỗ lệch chính: "Pê-ga-xớt" (nhận ra "pest"), "Khe Sanh" (nhận ra "khe xanh"), "vây lấn Tà Cơn đến" ở Hồi 11 (nhận dạng sót, mốc nội suy) — phụ đề vẫn theo câu chữ story.
+- Mốc số liệu, tên đơn vị không đổi so với story (phụ đề lấy câu chữ đã soát nguồn ở mục 3).
+
+## 9k. Bản V2.0 (26/11/2026, 0h)
+
+- Tia đạn (Làng Vây, chiến hào vây lấn) và tổ lính Mỹ giữ hàng rào trước đầu hào là MINH HOẠ hướng bắn, không phải số liệu.
+- Ụ bao cát ở khu trung tâm Tà Cơn: số người vào ụ / nấp ngoài là MINH HOẠ.
+
+## 9l. Bảng thống kê số liệu (V2.1, 26/11/2026) — đối chiếu nguồn
+
+- **qdnd.vn** (S5 2014, S6 Tạp chí Hậu cần 2016, S22 2016, S4 2024): loại khỏi vòng chiến đấu **11.900** (S4 ghi "gần 12.000"; S13 ghi "hơn 11.000"), **197** máy bay, 80 tàu vận tải, 78 xe (8 xe tăng), 46 pháo cối; khu vực Đường 9 – Khe Sanh khoảng 45.000 quân (28.000 Mỹ); phía Quân Giải phóng khoảng 57.500 người, thương vong 20.435 (S6).
+- **Nguồn khác** (VietnamPlus S24, Báo Quân khu 4 S11, TTXVN): **17.000** quân, **480** máy bay, 120 xe, 65 đại bác và cối, 55 kho, thu hàng nghìn súng. Bảng dùng số qdnd.vn, ghi chú số lệch.
+- **Quân số riêng Tà Cơn**: qdnd.vn không nêu. Dùng S1 (Trung đoàn 26 TQLC, Tiểu đoàn 37 BĐQ, 24 pháo, 2 trung đội xe tăng), S7 (5.880 lính Mỹ), M25 (~6.000).
+- **Vũ khí thu**: qdnd.vn chỉ nêu theo trận (Làng Vây: thu toàn bộ vũ khí, trang bị — S23), không có con số cả chiến dịch.
+
+## 10. Kiểm tra GĐ0 (25/11/2026)
+- `kiem_tra_goi.py khe-sanh-1968`: hợp lệ; tải lần đầu 0,3 MB (chưa có địa hình), tải sau 11,0 MB.
+- `soat_chu_thich.py rieng.js`: không có chú thích `//` nuốt mã.
+- `quet_phim.py`: **chưa chạy được** — chưa có địa hình và cảnh dựng (GĐ2–4).
+- Đối chiếu `KHUNG_SA_BAN.md` §10: chưa áp dụng (chưa có mã cảnh mới); `rieng.js` nền là bản V1.9 đã qua soát.

@@ -1,4 +1,4 @@
-"""Việt Sử V3.8 — CMS cho menu "Sách giáo khoa lịch sử" (lớp 6–12).
+"""Học Lịch Sử V3.8 — CMS cho menu "Sách giáo khoa lịch sử" (lớp 6–12).
 
 Mỗi bài học có 2 bản:
   * draft : bản đang biên tập trong /admin (lưu nháp không ảnh hưởng website)
@@ -299,6 +299,7 @@ def admin_create(item: LessonIn, request: Request, x_admin_token: str | None = H
                     (lesson_id, item.grade, order, "cms", blob, json.dumps(outline, ensure_ascii=False), "hidden", 1,
                      now(), role))
         _snapshot(con, lesson_id, "create", rec, role)
+        _xuat_ban(con, lesson_id, role)  # V5.9.2: tạo là xuất bản
         return _admin_view(_row(con, lesson_id))
 
 
@@ -319,35 +320,39 @@ def admin_save(lesson_id: str, item: LessonIn, request: Request, x_admin_token: 
         _snapshot(con, lesson_id, "save", old, role)
         con.execute("UPDATE textbook_lessons SET draft=?, dirty=1, updated_at=?, updated_by=?, sort_order=COALESCE(?,sort_order) "
                     "WHERE id=?", (json.dumps(rec, ensure_ascii=False), now(), role, item.sort_order, lesson_id))
+        _xuat_ban(con, lesson_id, role)  # V5.9.2: lưu là xuất bản
         return _admin_view(_row(con, lesson_id))
+
+
+def _xuat_ban(con, lesson_id: str, role: str) -> dict:
+    """V5.9.2: đưa bản đang soạn lên bản công khai (không cần mã thẩm định, không bắt buộc nguồn)."""
+    r = _row(con, lesson_id)
+    d = json.loads(r["draft"])
+    if not d.get("title"):
+        raise HTTPException(422, "Cần có tiêu đề trước khi xuất bản.")
+    state = "outline"
+    if has_content(d):
+        state = "published"
+        d["status"] = "đã có bài học · tóm tắt"
+    _snapshot(con, lesson_id, "publish", json.loads(r["live"]), role)
+    ts = now()
+    con.execute("UPDATE textbook_lessons SET live=?, draft=?, live_state=?, dirty=0, published_at=?, updated_at=?, "
+                "updated_by=? WHERE id=?", (json.dumps(d, ensure_ascii=False), json.dumps(d, ensure_ascii=False),
+                                            state, ts, ts, role, lesson_id))
+    bump_version(con)
+    return {"ok": True, "live_state": state, "url": public_url(d) if state == "published" else None}
 
 
 @router.post("/api/admin/textbook/lessons/{lesson_id}/publish")
 def admin_publish(lesson_id: str, request: Request, x_admin_token: str | None = Header(None)):
-    role = require_role(x_admin_token, reviewer=True, request=request)
+    role = require_role(x_admin_token, request=request)
     with db() as con:
-        r = _row(con, lesson_id)
-        d = json.loads(r["draft"])
-        if not d.get("title") or not d.get("summary"):
-            raise HTTPException(422, "Cần có tiêu đề và đoạn tóm tắt trước khi xuất bản.")
-        state = "outline"
-        if has_content(d):
-            if not d.get("sources"):
-                raise HTTPException(422, "Bài có nội dung cần ít nhất một nguồn tư liệu trước khi xuất bản.")
-            state = "published"
-            d["status"] = "đã có bài học · tóm tắt"
-        _snapshot(con, lesson_id, "publish", json.loads(r["live"]), role)
-        ts = now()
-        con.execute("UPDATE textbook_lessons SET live=?, draft=?, live_state=?, dirty=0, published_at=?, updated_at=?, "
-                    "updated_by=? WHERE id=?", (json.dumps(d, ensure_ascii=False), json.dumps(d, ensure_ascii=False),
-                                                state, ts, ts, role, lesson_id))
-        bump_version(con)
-        return {"ok": True, "live_state": state, "url": public_url(d) if state == "published" else None}
+        return _xuat_ban(con, lesson_id, role)
 
 
 @router.post("/api/admin/textbook/lessons/{lesson_id}/unpublish")
 def admin_unpublish(lesson_id: str, request: Request, x_admin_token: str | None = Header(None)):
-    role = require_role(x_admin_token, reviewer=True, request=request)
+    role = require_role(x_admin_token, request=request)
     with db() as con:
         r = _row(con, lesson_id)
         live = json.loads(r["live"])
@@ -476,10 +481,10 @@ def render_index(ads: dict, ads_head: str) -> str:
         counts = {g: sum(1 for d, s in _grade_lessons(con, g) if s == "published" and has_content(d)) for g in GRADES}
     items = "".join(f'<li><a href="/sach-giao-khoa/lop-{g}"><b>Lịch sử lớp {g}</b></a><br>'
                     f'<small>{counts[g]} bài học đã biên tập</small></li>' for g in GRADES)
-    body = ('<div class="crumb"><a href="/">Việt Sử</a> / Sách giáo khoa</div><h1>Sách giáo khoa Lịch sử lớp 6–12</h1>'
+    body = ('<div class="crumb"><a href="/">Học Lịch Sử</a> / Sách giáo khoa</div><h1>Sách giáo khoa Lịch sử lớp 6–12</h1>'
             '<p class="lede">Bài học tóm tắt theo chương trình, gắn với dòng thời gian Việt Nam – Trung Quốc – Phương Tây.</p>'
             + ad_slot_html(ads, "article_top") + f'<ul class="lessons">{items}</ul>' + ad_slot_html(ads, "article_bottom"))
-    return page_shell(title="Sách giáo khoa Lịch sử lớp 6–12 | Việt Sử",
+    return page_shell(title="Sách giáo khoa Lịch sử lớp 6–12 | Học Lịch Sử",
                       description="Tổng hợp bài học Lịch sử lớp 6 đến 12: tóm tắt, ý chính, câu hỏi ôn tập và liên kết dòng thời gian.",
                       canonical=SITE_URL + "/sach-giao-khoa", body=body, ads_head=ads_head, og_type="website")
 
@@ -502,10 +507,10 @@ def render_grade(grade: int, ads: dict, ads_head: str) -> str:
             else:
                 lis += f'<li><b>{esc(d.get("toc_title") or d["title"])}</b><br><small>Đang biên tập</small></li>'
         html_groups += f"<h2>{esc(key)}</h2><ul class=\"lessons\">{lis}</ul>"
-    body = (f'<div class="crumb"><a href="/">Việt Sử</a> / <a href="/sach-giao-khoa">Sách giáo khoa</a> / Lớp {grade}</div>'
+    body = (f'<div class="crumb"><a href="/">Học Lịch Sử</a> / <a href="/sach-giao-khoa">Sách giáo khoa</a> / Lớp {grade}</div>'
             f'<h1>Lịch sử lớp {grade}</h1><p class="lede">Danh sách bài học theo chương. Bài có liên kết là bài đã được biên tập đầy đủ.</p>'
             + ad_slot_html(ads, "article_top") + html_groups + ad_slot_html(ads, "article_bottom"))
-    return page_shell(title=f"Lịch sử lớp {grade} – danh sách bài học | Việt Sử",
+    return page_shell(title=f"Lịch sử lớp {grade} – danh sách bài học | Học Lịch Sử",
                       description=f"Mục lục và bài học tóm tắt môn Lịch sử lớp {grade}, kèm câu hỏi ôn tập và liên kết dòng thời gian.",
                       canonical=f"{SITE_URL}/sach-giao-khoa/lop-{grade}", body=body, ads_head=ads_head, og_type="website")
 
@@ -541,24 +546,24 @@ def render_lesson(grade: int, slug: str, ads: dict, ads_head: str) -> str | None
         timeline = f'<p><a href="/#bai-hoc={esc(d["id"])}">↗ Xem bài học trên dòng thời gian</a></p>'
     content = markdown_safe(d["content"], inline_ad_after=3, ad_html=ad_slot_html(ads, "article_inline"))
     desc = d.get("meta_description") or plain_text(d.get("summary") or d["content"], 160)
-    body = (f'<div class="crumb"><a href="/">Việt Sử</a> / <a href="/sach-giao-khoa">Sách giáo khoa</a> / '
+    body = (f'<div class="crumb"><a href="/">Học Lịch Sử</a> / <a href="/sach-giao-khoa">Sách giáo khoa</a> / '
             f'<a href="/sach-giao-khoa/lop-{grade}">Lớp {grade}</a></div>'
             f'<h1>{esc(d["title"])}</h1><div class="meta">' + "".join(f'<span class="chip">{esc(c)}</span>' for c in chips) + "</div>"
             f'<p class="lede">{esc(d.get("summary"))}</p>' + cover + ad_slot_html(ads, "article_top") + keys
             + f"<article>{content}</article>" + review + ad_slot_html(ads, "article_bottom")
             + (f'<div class="panel"><h2 style="margin-top:0">Nguồn tư liệu</h2><ul>{srcs}</ul>'
-               '<p style="font-size:13px;color:var(--muted)">Nội dung tóm tắt do nhóm biên tập Việt Sử thực hiện, không thay thế sách giáo khoa chính thức.</p></div>')
+               '<p style="font-size:13px;color:var(--muted)">Nội dung tóm tắt do nhóm biên tập Học Lịch Sử thực hiện, không thay thế sách giáo khoa chính thức.</p></div>')
             + timeline + f'<p class="back"><a href="/sach-giao-khoa/lop-{grade}">← Các bài lịch sử lớp {grade}</a></p>')
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "LearningResource", "name": d["title"], "description": desc, "url": url, "inLanguage": "vi",
          "educationalLevel": f"Lớp {grade}", "learningResourceType": "Bài học",
-         "author": {"@type": "Organization", "name": "Việt Sử"}},
+         "author": {"@type": "Organization", "name": "Học Lịch Sử"}},
         {"@type": "BreadcrumbList", "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Việt Sử", "item": SITE_URL + "/"},
+            {"@type": "ListItem", "position": 1, "name": "Học Lịch Sử", "item": SITE_URL + "/"},
             {"@type": "ListItem", "position": 2, "name": "Sách giáo khoa", "item": SITE_URL + "/sach-giao-khoa"},
             {"@type": "ListItem", "position": 3, "name": f"Lớp {grade}", "item": f"{SITE_URL}/sach-giao-khoa/lop-{grade}"},
             {"@type": "ListItem", "position": 4, "name": d["title"], "item": url}]}]}
-    return page_shell(title=(d.get("seo_title") or d["title"]) + f" – Lịch sử {grade} | Việt Sử", description=desc,
+    return page_shell(title=(d.get("seo_title") or d["title"]) + f" – Lịch sử {grade} | Học Lịch Sử", description=desc,
                       canonical=url, body=body, ads_head=ads_head, schema=schema, image=d.get("cover_image") or "")
 
 

@@ -1,0 +1,99 @@
+{
+ "ten": "linh-tang",
+ "fbx": "/mnt/user-data/uploads/nhan-vat--_moi/Driving.fbx",
+ "cao": 1.68,
+ "tam_giac": 7000,
+ "anh": 1024,
+ "fps": 30,
+ "buoc": 2,
+ "kho": "/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG",
+ "nguon_rig": "nhan-vat/LinhTaySon/LinhTaySon.blend",
+ "ghi_chu": "Lính lái tăng QĐVN (Tripo nhan-vat/_moi/LinhTangQDVN.zip, gắn xương Mixamo qua Driving.fbx). 'lai' = động tác riêng của Driving.fbx; 'ngam' = Pistol Aim.fbx; 'keo' = kéo dây (kéo cờ lên cột trên nóc Dinh).",
+ "clip": [
+  [
+   "dung",
+   "DT_Put_Back_Rifle_Behind_Shoulder",
+   100,
+   120,
+   "lap"
+  ],
+  [
+   "thu",
+   "DT_Standing_Idle_03",
+   1,
+   121,
+   "lap"
+  ],
+  [
+   "di",
+   "DT_Standard_Walk",
+   1,
+   36,
+   "lap"
+  ],
+  [
+   "chay",
+   "DT_Standing_Run_Forward_2",
+   1,
+   27,
+   "lap"
+  ],
+  [
+   "chaynhanh",
+   "DT_Fast_Run",
+   1,
+   17,
+   "lap"
+  ],
+  [
+   "lai",
+   "@rieng",
+   1,
+   151,
+   "lap"
+  ],
+  [
+   "ngam",
+   "fbx:nhan-vat/_moi/Pistol Aim.fbx",
+   1,
+   214,
+   "lap"
+  ],
+  [
+   "keo",
+   "DT_Pulling_A_Rope",
+   1,
+   120,
+   "lap"
+  ],
+  [
+   "leo",
+   "DT_Climbing_To_Top",
+   1,
+   121,
+   "mot"
+  ],
+  [
+   "trung",
+   "DT_Medium_Hit_To_Head",
+   1,
+   33,
+   "mot"
+  ],
+  [
+   "nga",
+   "DT_Flying_Back_Death",
+   1,
+   92,
+   "mot"
+  ],
+  [
+   "chet",
+   "DT_Dying_Backwards",
+   1,
+   139,
+   "mot"
+  ]
+ ],
+ "ra": "/home/claude/xe/out/linh-tang.raw.glb"
+}

@@ -1,4 +1,4 @@
-/* VIỆT SỬ CMS V3.8 — Biên tập Sách giáo khoa + cấu hình AdSense */
+/* HỌC LỊCH SỬ CMS V3.8 — Biên tập Sách giáo khoa + cấu hình AdSense */
 (function () {
   'use strict';
   var $ = function (id) { return document.getElementById(id); };

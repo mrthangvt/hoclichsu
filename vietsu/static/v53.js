@@ -1,6 +1,6 @@
-/* Việt Sử V5.3 — theo yêu cầu chủ dự án (22/11/2026):
+/* Học Lịch Sử V5.3 — theo yêu cầu chủ dự án (22/11/2026):
    1) Gom các mục "Sách lịch sử lớp 6–12" vào trong "Sách giáo khoa Lịch sử" (chọn lớp ở phần nội dung).
-   2) Thay logo Sử Việt (bản tối / bản sáng).
+   2) Thay logo Học Lịch Sử (bản tối / bản sáng).
    3) Popup chiến trận trên dòng thời gian: mục "Sa bàn tương tác" có nút vào sa bàn 3D nếu trận đó đã có sa bàn. */
 (function(){
 'use strict';
@@ -8,10 +8,13 @@ const $=id=>document.getElementById(id);
 
 /* Chỉ ghi những trận đã có trang sa bàn thật trong vietsu/static/khong-gian/. */
 const SA_BAN_3D={
+ battle938:{title:'Bạch Đằng 938',href:'khong-gian/engine/2.1.1/sa-ban.html?goi=bach-dang-938'},
+ battle1858:{title:'Đà Nẵng 1858',href:'khong-gian/tran-da-nang-1858/'},
  battle1785:{title:'Rạch Gầm – Xoài Mút 1785',href:'khong-gian/rach-gam-xoai-mut/'},
  battle1789:{title:'Ngọc Hồi – Đống Đa 1789',href:'khong-gian/ngoc-hoi-dong-da/'},
  war1954:{title:'Điện Biên Phủ 1954',href:'khong-gian/dien-bien-phu/'},
- war1972:{title:'Thành cổ Quảng Trị 1972',href:'khong-gian/thanh-co-quang-tri/'}
+ war1972:{title:'Thành cổ Quảng Trị 1972',href:'khong-gian/thanh-co-quang-tri/'},
+ war1975:{title:'Chiến dịch Hồ Chí Minh 1975',href:'khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975'}
 };
 
 /* ---------- 1. Logo ---------- */
@@ -21,7 +24,7 @@ function logoImgs(kind){
   const img=document.createElement('img');
   img.className='vs53-logo-'+theme;
   img.src='static/v53/'+(kind==='chu'?'logo-chu-':'logo-')+theme+'.webp';
-  img.alt=theme==='toi'?'Sử Việt — Dân ta phải biết sử ta':'';
+  img.alt=theme==='toi'?'Học Lịch Sử — Dân ta phải biết sử ta':'';
   if(theme==='sang')img.setAttribute('aria-hidden','true');
   img.decoding='async';
   wrap.append(img);
@@ -43,7 +46,7 @@ function setLogo(){
  }
  const mob=document.querySelector('.v31-mobile-brand');
  if(mob&&!mob.querySelector('.vs53-logo')){
-  mob.classList.add('vs53-mobile-brand');mob.append(logoImgs('chu'));mob.setAttribute('aria-label','Sử Việt');
+  mob.classList.add('vs53-mobile-brand');mob.append(logoImgs('chu'));mob.setAttribute('aria-label','Học Lịch Sử');
  }
 }
 

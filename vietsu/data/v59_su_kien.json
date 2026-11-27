@@ -1,0 +1,735 @@
+{
+ "ghi_chu": "Sự kiện bổ sung cho Dòng thời gian V5.9, theo Việt sử toàn thư (Phạm Văn Sơn); viết lại bằng lời mới. Số trang là trang của tệp PDF chủ dự án cung cấp.",
+ "su_kien": [
+  {
+   "id": "vs59-sk-722",
+   "nam": 722,
+   "bieu_tuong": "✦",
+   "ten": "Khởi nghĩa Mai Thúc Loan",
+   "doan": [
+    "Năm 722, Mai Thúc Loan ở Hoan Châu (Nghệ An – Hà Tĩnh ngày nay) dấy binh chống ách cai trị và thuế nặng của nhà Đường, liên kết được nhiều châu quận và cả các nước lân cận.",
+    "Ông xưng đế, sử gọi là Mai Hắc Đế, đóng căn cứ ở Vạn An. Nhà Đường phải huy động đại quân mới dập tắt được cuộc khởi nghĩa."
+   ],
+   "lien": [
+    "maithucloan"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 103"
+  },
+  {
+   "id": "vs59-sk-791",
+   "nam": 791,
+   "bieu_tuong": "✦",
+   "ten": "Phùng Hưng làm chủ phủ thành Tống Bình",
+   "doan": [
+    "Phùng Hưng, một hào trưởng ở Đường Lâm, cùng em là Phùng Hãi nổi dậy chống viên đô hộ tàn bạo, đánh chiếm phủ thành Tống Bình và tự quản lí đất nước trong một thời gian.",
+    "Sau khi ông mất, nhân dân tôn ông là Bố Cái Đại Vương. Con ông là Phùng An giữ quyền được ít lâu rồi nhà Đường lấy lại Giao Châu."
+   ],
+   "lien": [
+    "phunghung"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 103"
+  },
+  {
+   "id": "vs59-sk-863",
+   "nam": 863,
+   "bieu_tuong": "⚔",
+   "ten": "Nam Chiếu đánh chiếm Giao Châu",
+   "doan": [
+    "Quân Nam Chiếu từ vùng Vân Nam nhiều lần tràn xuống, đến năm 863 chiếm được phủ thành Giao Châu, gây cảnh tàn phá nặng nề.",
+    "Năm 865–866, nhà Đường cử Cao Biền sang đánh đuổi quân Nam Chiếu, sau đó đắp lại thành Đại La và lập Tĩnh Hải quân."
+   ],
+   "lien": [
+    "vs59-caobien"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 101"
+  },
+  {
+   "id": "vs59-sk-968",
+   "nam": 968,
+   "bieu_tuong": "⚑",
+   "ten": "Đinh Tiên Hoàng lên ngôi, quốc hiệu Đại Cồ Việt",
+   "doan": [
+    "Sau khi dẹp xong loạn 12 sứ quân, năm 968 Đinh Bộ Lĩnh lên ngôi hoàng đế, đặt tên nước là Đại Cồ Việt, đóng đô ở Hoa Lư.",
+    "Triều Đinh đặt ra triều nghi, phẩm hàm quan văn võ, chia quân đội thành các đạo, mở đầu việc xây dựng nhà nước quân chủ tập quyền."
+   ],
+   "lien": [
+    "dinhbolinh",
+    "vs56-dinhlien",
+    "nguyenbac"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 115"
+  },
+  {
+   "id": "vs59-sk-1010",
+   "nam": 1010,
+   "bieu_tuong": "◈",
+   "ten": "Chiếu dời đô ra Thăng Long",
+   "doan": [
+    "Năm 1010, Lý Thái Tổ ban chiếu dời đô từ Hoa Lư ra thành Đại La và đổi tên là Thăng Long, nơi có địa thế trung tâm, đất rộng và bằng phẳng.",
+    "Việc dời đô cho thấy tầm nhìn xây dựng một quốc gia ổn định, lâu dài; Thăng Long từ đó là kinh đô của nhiều triều đại."
+   ],
+   "lien": [
+    "lythaito",
+    "vanhanh"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 133"
+  },
+  {
+   "id": "vs59-sk-1044",
+   "nam": 1044,
+   "bieu_tuong": "⚔",
+   "ten": "Lý Thái Tông đánh Chiêm Thành",
+   "doan": [
+    "Do Chiêm Thành thường quấy nhiễu biên giới phía nam, năm 1044 vua Lý Thái Tông thân chinh đánh Chiêm, phá kinh thành Phật Thệ.",
+    "Chiến thắng làm yên biên cương phía nam trong một thời gian và nâng cao uy thế của nhà Lý."
+   ],
+   "lien": [
+    "vs56-lythaitong"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 138"
+  },
+  {
+   "id": "vs59-sk-1054",
+   "nam": 1054,
+   "bieu_tuong": "⚑",
+   "ten": "Quốc hiệu Đại Việt",
+   "doan": [
+    "Năm 1054, vua Lý Thánh Tông lên ngôi và đổi quốc hiệu từ Đại Cồ Việt thành Đại Việt.",
+    "Quốc hiệu Đại Việt được dùng suốt nhiều thế kỉ sau đó, gắn với các triều Lý, Trần, Lê."
+   ],
+   "lien": [
+    "vs56-lythanhtong"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 138"
+  },
+  {
+   "id": "vs59-sk-1069",
+   "nam": 1069,
+   "bieu_tuong": "⚔",
+   "ten": "Lý Thánh Tông đánh Chiêm, thu ba châu",
+   "doan": [
+    "Năm 1069, Lý Thánh Tông cùng Lý Thường Kiệt đem quân đánh Chiêm Thành, bắt được vua Chiêm là Chế Củ.",
+    "Để được tha về, Chế Củ dâng ba châu Địa Lý, Ma Linh, Bố Chính (vùng Quảng Bình, bắc Quảng Trị ngày nay) cho Đại Việt."
+   ],
+   "lien": [
+    "vs56-lythanhtong",
+    "lythuongkiet"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 151"
+  },
+  {
+   "id": "vs59-sk-1070",
+   "nam": 1070,
+   "bieu_tuong": "◈",
+   "ten": "Dựng Văn Miếu, mở khoa thi đầu tiên",
+   "doan": [
+    "Năm 1070, nhà Lý dựng Văn Miếu ở Thăng Long thờ Khổng Tử. Năm 1075 mở khoa thi Minh kinh bác học đầu tiên; năm 1076 lập Quốc Tử Giám.",
+    "Đây là bước khởi đầu của nền giáo dục, khoa cử Nho học, bên cạnh vai trò lớn của Phật giáo thời Lý."
+   ],
+   "lien": [
+    "vs56-lythanhtong",
+    "lynhantong",
+    "levanthinh"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 159"
+  },
+  {
+   "id": "vs59-sk-1282",
+   "nam": 1282,
+   "bieu_tuong": "⚑",
+   "ten": "Hội nghị Bình Than",
+   "doan": [
+    "Trước nguy cơ quân Nguyên mượn đường đánh Chiêm Thành để đánh Đại Việt, cuối năm 1282 triều Trần họp các vương hầu, quan lại ở Bình Than (Hải Dương) bàn kế giữ nước.",
+    "Hội nghị cử Trần Quốc Tuấn làm Quốc công tiết chế chỉ huy quân đội; tại đây có chuyện Trần Quốc Toản vì nhỏ tuổi không được dự họp, về tự lập đội quân riêng (theo truyền tụng)."
+   ],
+   "lien": [
+    "nhantong",
+    "hungdao",
+    "vs56-tranquoctoan"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 182"
+  },
+  {
+   "id": "vs59-sk-1284",
+   "nam": 1284,
+   "bieu_tuong": "⚑",
+   "ten": "Hội nghị Diên Hồng",
+   "doan": [
+    "Đầu năm 1285 (cuối năm Giáp Thân 1284 âm lịch), Thượng hoàng Trần Thánh Tông mời các bô lão trong nước về điện Diên Hồng hỏi ý nên hòa hay nên đánh.",
+    "Các bô lão đồng thanh xin đánh. Hội nghị thể hiện ý chí đồng lòng của toàn dân trước cuộc xâm lược lần thứ hai của quân Nguyên."
+   ],
+   "lien": [
+    "vs56-tranthanhtong",
+    "nhantong",
+    "vs59-toado"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 183"
+  },
+  {
+   "id": "vs59-sk-1306",
+   "nam": 1306,
+   "bieu_tuong": "⚑",
+   "ten": "Huyền Trân công chúa và châu Ô, châu Lý",
+   "doan": [
+    "Năm 1306, vua Trần Anh Tông gả em gái là công chúa Huyền Trân cho vua Chiêm Thành là Chế Mân; Chế Mân dâng hai châu Ô, Lý làm sính lễ.",
+    "Nhà Trần đổi tên thành châu Thuận, châu Hóa (vùng Quảng Trị, Thừa Thiên Huế ngày nay), mở rộng lãnh thổ về phía nam."
+   ],
+   "lien": [
+    "vs56-trananhtong",
+    "nhantong",
+    "vs59-huyentran",
+    "vs59-trankhacchung"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 204"
+  },
+  {
+   "id": "vs59-sk-1371",
+   "nam": 1371,
+   "bieu_tuong": "⚔",
+   "ten": "Chế Bồng Nga tiến vào Thăng Long",
+   "doan": [
+    "Dưới thời vua Chiêm Chế Bồng Nga, Chiêm Thành mạnh lên và nhiều lần tấn công Đại Việt; năm 1371 quân Chiêm vào tận Thăng Long cướp phá.",
+    "Các cuộc chiến kéo dài đến năm 1390, khi Chế Bồng Nga tử trận trên sông Hải Triều trong trận đánh với quân Trần do Trần Khát Chân chỉ huy."
+   ],
+   "lien": [
+    "vs56-trannghetong",
+    "vs56-tranduetong",
+    "vs59-chebongnga"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 223"
+  },
+  {
+   "id": "vs59-sk-1397",
+   "nam": 1397,
+   "bieu_tuong": "⚑",
+   "ten": "Cải cách của Hồ Quý Ly",
+   "doan": [
+    "Từ cuối thế kỉ XIV, Hồ Quý Ly nắm quyền và tiến hành nhiều cải cách: phát hành tiền giấy (1396), hạn điền, hạn nô, cải tổ thi cử, đề cao chữ Nôm.",
+    "Năm 1397, ông cho xây thành Tây Đô (Thanh Hóa) và năm 1400 lập ra nhà Hồ. Cải cách táo bạo nhưng chưa được lòng dân, góp phần làm nhà Hồ thất bại trước quân Minh."
+   ],
+   "lien": [
+    "hoquyly",
+    "vs56-hohanthuong"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 231",
+   "hang": [
+    "Nhà Trần",
+    "Cuối thời Trần · Hồ Quý Ly nắm quyền",
+    "tran"
+   ]
+  },
+  {
+   "id": "vs59-sk-1407",
+   "nam": 1407,
+   "bieu_tuong": "⚔",
+   "ten": "Nhà Hồ thất bại, quân Minh đô hộ",
+   "doan": [
+    "Cuối năm 1406, nhà Minh đem quân xâm lược. Thành Đa Bang thất thủ, quân Hồ thua ở Mộc Phàm Giang, Hàm Tử; giữa năm 1407 cha con Hồ Quý Ly bị bắt.",
+    "Đại Việt rơi vào ách đô hộ của nhà Minh hai mươi năm, chịu chính sách bóc lột và đồng hóa nặng nề."
+   ],
+   "lien": [
+    "hoquyly",
+    "vs56-hohanthuong",
+    "vs56-honguyentrung"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 235"
+  },
+  {
+   "id": "vs59-sk-1426",
+   "nam": 1426,
+   "bieu_tuong": "⚔",
+   "ten": "Trận Tốt Động – Chúc Động",
+   "doan": [
+    "Cuối năm 1426, nghĩa quân Lam Sơn phục kích và đánh tan đạo quân của Vương Thông ở Tốt Động – Chúc Động (Chương Mỹ, Hà Nội ngày nay).",
+    "Sau trận này, nghĩa quân vây hãm Đông Quan, quân Minh rơi vào thế bị động."
+   ],
+   "lien": [
+    "leloi",
+    "nguyentrai"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 250",
+   "hang": [
+    "Khởi nghĩa Lam Sơn",
+    "1418–1427",
+    "lamson"
+   ]
+  },
+  {
+   "id": "vs59-sk-1427",
+   "nam": 1427,
+   "bieu_tuong": "⚔",
+   "ten": "Trận Chi Lăng – Xương Giang",
+   "doan": [
+    "Tháng 10/1427, nghĩa quân Lam Sơn phục kích tại ải Chi Lăng, chém tướng Liễu Thăng, rồi tiêu diệt viện binh Minh ở Xương Giang.",
+    "Vương Thông ở Đông Quan phải xin hòa và rút quân về nước; đầu năm 1428 Lê Lợi lên ngôi, Nguyễn Trãi viết Bình Ngô đại cáo."
+   ],
+   "lien": [
+    "leloi",
+    "nguyentrai",
+    "vs56-trannguyenhan",
+    "vs59-lieuthang",
+    "vs59-nguyenchich"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 251",
+   "hang": [
+    "Khởi nghĩa Lam Sơn",
+    "1418–1427",
+    "lamson"
+   ]
+  },
+  {
+   "id": "vs59-sk-1442",
+   "nam": 1442,
+   "bieu_tuong": "⚑",
+   "ten": "Vụ án Lệ Chi Viên",
+   "doan": [
+    "Năm 1442, vua Lê Thái Tông đột ngột qua đời ở vườn vải Lệ Chi (Bắc Ninh) sau khi duyệt quân ở Chí Linh, nơi Nguyễn Trãi về ở.",
+    "Triều đình quy tội cho Nguyễn Trãi và người thiếp Nguyễn Thị Lộ, xử tru di ba họ. Năm 1464, vua Lê Thánh Tông minh oan cho Nguyễn Trãi."
+   ],
+   "lien": [
+    "nguyentrai",
+    "vs56-lethaitong",
+    "lethanhtong",
+    "vs59-nguyenthilo"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 272"
+  },
+  {
+   "id": "vs59-sk-1471",
+   "nam": 1471,
+   "bieu_tuong": "⚔",
+   "ten": "Lê Thánh Tông đánh Chiêm Thành",
+   "doan": [
+    "Năm 1471, Lê Thánh Tông thân chinh đánh Chiêm Thành, hạ kinh đô Đồ Bàn, bắt vua Chiêm là Trà Toàn.",
+    "Vùng đất phía bắc đèo Cù Mông được sáp nhập, lập thừa tuyên Quảng Nam; đây là lần mở rộng lãnh thổ lớn về phía nam."
+   ],
+   "lien": [
+    "lethanhtong"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 280"
+  },
+  {
+   "id": "vs59-sk-1527",
+   "nam": 1527,
+   "bieu_tuong": "⚑",
+   "ten": "Mạc Đăng Dung lập nhà Mạc",
+   "doan": [
+    "Đầu thế kỉ XVI, triều Lê suy yếu, các phe phái tranh giành quyền lực. Mạc Đăng Dung, một võ quan, dần nắm hết binh quyền.",
+    "Năm 1527, ông buộc vua Lê Cung Hoàng nhường ngôi, lập ra nhà Mạc, mở đầu thời kì chia cắt Nam – Bắc triều."
+   ],
+   "lien": [
+    "macdangdung",
+    "vs56-lecunghoang"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 293"
+  },
+  {
+   "id": "vs59-sk-1533",
+   "nam": 1533,
+   "bieu_tuong": "⚑",
+   "ten": "Nam triều – Bắc triều",
+   "doan": [
+    "Năm 1533, Nguyễn Kim lập con cháu nhà Lê là Lê Trang Tông ở vùng Thanh Hóa, Nghệ An, lấy danh nghĩa phù Lê diệt Mạc: sử gọi là Nam triều, còn nhà Mạc ở Thăng Long là Bắc triều.",
+    "Chiến tranh Nam – Bắc triều kéo dài hơn nửa thế kỉ; sau khi Nguyễn Kim mất, quyền hành Nam triều vào tay con rể là Trịnh Kiểm."
+   ],
+   "lien": [
+    "vs56-nguyenkim",
+    "vs56-letrangtong",
+    "vs56-trinhkiem"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang)"
+  },
+  {
+   "id": "vs59-sk-1558",
+   "nam": 1558,
+   "bieu_tuong": "⚑",
+   "ten": "Nguyễn Hoàng vào trấn thủ Thuận Hóa",
+   "doan": [
+    "Lo bị Trịnh Kiểm hãm hại, Nguyễn Hoàng (con thứ Nguyễn Kim) xin vào trấn thủ vùng Thuận Hóa năm 1558, sau kiêm cả Quảng Nam.",
+    "Từ đây, họ Nguyễn xây dựng cơ nghiệp ở phương Nam, mở đầu cho thời kì chúa Nguyễn ở Đàng Trong."
+   ],
+   "lien": [
+    "vs56-nguyenhoang",
+    "vs56-trinhkiem"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 324",
+   "hang": [
+    "Lê trung hưng – chúa Trịnh, chúa Nguyễn",
+    "1533–1789",
+    "letrung"
+   ]
+  },
+  {
+   "id": "vs59-sk-1592",
+   "nam": 1592,
+   "bieu_tuong": "⚔",
+   "ten": "Trịnh Tùng lấy lại Thăng Long",
+   "doan": [
+    "Năm 1592, Trịnh Tùng đem quân Nam triều tiến ra Bắc, đánh chiếm Thăng Long, bắt và giết vua Mạc Mậu Hợp.",
+    "Họ Mạc rút lên Cao Bằng giữ đất đến năm 1677. Nhà Lê trở lại Thăng Long nhưng thực quyền nằm trong tay họ Trịnh."
+   ],
+   "lien": [
+    "trinhtung",
+    "vs56-macmauhop"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 318"
+  },
+  {
+   "id": "vs59-sk-1627",
+   "nam": 1627,
+   "bieu_tuong": "⚔",
+   "ten": "Chiến tranh Trịnh – Nguyễn bùng nổ",
+   "doan": [
+    "Năm 1627, chúa Trịnh Tráng đem quân đánh chúa Nguyễn ở Đàng Trong, mở đầu cuộc chiến tranh Trịnh – Nguyễn.",
+    "Từ 1627 đến 1672 có bảy lần giao tranh lớn; chúa Nguyễn dựa vào hệ thống lũy Trường Dục, lũy Thầy (Đào Duy Từ đề xuất) để giữ đất."
+   ],
+   "lien": [
+    "vs56-daoduytu"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 327"
+  },
+  {
+   "id": "vs59-sk-1672",
+   "nam": 1672,
+   "bieu_tuong": "⚑",
+   "ten": "Sông Gianh thành ranh giới Đàng Trong – Đàng Ngoài",
+   "doan": [
+    "Sau lần giao tranh cuối năm 1672, hai bên không bên nào thắng nổi, đành ngừng chiến, lấy sông Gianh làm ranh giới.",
+    "Đất nước bị chia cắt khoảng một thế kỉ: Đàng Ngoài do chúa Trịnh, Đàng Trong do chúa Nguyễn cai quản."
+   ],
+   "lien": [],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 338",
+   "hang": [
+    "Lê trung hưng – chúa Trịnh, chúa Nguyễn",
+    "1533–1789",
+    "letrung"
+   ]
+  },
+  {
+   "id": "vs59-sk-1698",
+   "nam": 1698,
+   "bieu_tuong": "⚑",
+   "ten": "Lập phủ Gia Định",
+   "doan": [
+    "Năm 1698, chúa Nguyễn Phúc Chu sai Nguyễn Hữu Cảnh vào kinh lược đất Đồng Nai, lập phủ Gia Định với hai dinh Trấn Biên và Phiên Trấn.",
+    "Việc tổ chức hành chính đã xác lập quyền quản lí của chính quyền Đàng Trong ở vùng Nam Bộ."
+   ],
+   "lien": [
+    "vs59-nguyenhuucanh"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang)",
+   "hang": [
+    "Lê trung hưng – chúa Trịnh, chúa Nguyễn",
+    "1533–1789",
+    "letrung"
+   ]
+  },
+  {
+   "id": "vs59-sk-1771",
+   "nam": 1771,
+   "bieu_tuong": "✦",
+   "ten": "Khởi nghĩa Tây Sơn bùng nổ",
+   "doan": [
+    "Năm 1771, ba anh em Nguyễn Nhạc, Nguyễn Huệ, Nguyễn Lữ dựng cờ khởi nghĩa ở ấp Tây Sơn (Bình Định), chống lại chính quyền chúa Nguyễn đang mục nát.",
+    "Nghĩa quân lấy của nhà giàu chia cho dân nghèo, nhanh chóng lớn mạnh, chiếm được thành Quy Nhơn."
+   ],
+   "lien": [
+    "nguyennhac",
+    "quangtrung"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang)"
+  },
+  {
+   "id": "vs59-sk-1792",
+   "nam": 1792,
+   "bieu_tuong": "⚑",
+   "ten": "Vua Quang Trung qua đời",
+   "doan": [
+    "Sau chiến thắng quân Thanh, vua Quang Trung lo xây dựng đất nước: ban Chiếu khuyến nông, mở trường học, đề cao chữ Nôm, mở cửa buôn bán.",
+    "Năm 1792, ông đột ngột qua đời ở tuổi khoảng 40; con là Quang Toản còn nhỏ lên nối ngôi, triều Tây Sơn suy yếu dần."
+   ],
+   "lien": [
+    "quangtrung",
+    "vs56-canhthinh",
+    "ngothinham"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 387"
+  },
+  {
+   "id": "vs59-sk-1802",
+   "nam": 1802,
+   "bieu_tuong": "⚑",
+   "ten": "Nguyễn Ánh lập nhà Nguyễn",
+   "doan": [
+    "Năm 1802, Nguyễn Ánh lên ngôi ở Phú Xuân, đặt niên hiệu Gia Long, rồi đem quân ra Bắc đánh bại nhà Tây Sơn.",
+    "Năm 1804, đặt quốc hiệu là Việt Nam; nhà Nguyễn cai quản lãnh thổ từ Bắc vào Nam, đóng đô ở Huế."
+   ],
+   "lien": [
+    "gialong"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 400"
+  },
+  {
+   "id": "vs59-sk-1833",
+   "nam": 1833,
+   "bieu_tuong": "✦",
+   "ten": "Cuộc nổi dậy của Lê Văn Khôi",
+   "doan": [
+    "Năm 1833, Lê Văn Khôi chiếm thành Phiên An (Gia Định) chống lại triều Minh Mạng, được nhiều người ở Nam Kì hưởng ứng.",
+    "Quân triều đình vây thành gần ba năm mới chiếm lại được (1835). Cùng thời có các cuộc nổi dậy của Nông Văn Vân ở Cao Bằng, Phan Bá Vành ở Nam Định."
+   ],
+   "lien": [
+    "minhmang",
+    "vs59-levankhoi",
+    "vs59-nongvanvan"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 421"
+  },
+  {
+   "id": "vs59-sk-1838",
+   "nam": 1838,
+   "bieu_tuong": "⚑",
+   "ten": "Quốc hiệu Đại Nam",
+   "doan": [
+    "Năm 1838, vua Minh Mạng đổi quốc hiệu Việt Nam thành Đại Nam. Trước đó, những năm 1831–1832, ông chia cả nước thành 30 tỉnh và phủ Thừa Thiên.",
+    "Thời Minh Mạng, bộ máy nhà nước quân chủ tập quyền đạt đến mức chặt chẽ cao nhất của triều Nguyễn."
+   ],
+   "lien": [
+    "minhmang"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang)"
+  },
+  {
+   "id": "vs59-sk-1847",
+   "nam": 1847,
+   "bieu_tuong": "⚔",
+   "ten": "Pháp bắn phá Đà Nẵng lần đầu",
+   "doan": [
+    "Năm 1847, dưới thời vua Thiệu Trị, tàu chiến Pháp vào cửa Đà Nẵng, bắn chìm nhiều thuyền đồng của triều đình rồi bỏ đi.",
+    "Đây là cuộc đụng độ vũ trang đầu tiên giữa Pháp và nhà Nguyễn, báo trước cuộc xâm lược 11 năm sau."
+   ],
+   "lien": [
+    "vs56-thieutri"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 428"
+  },
+  {
+   "id": "vs59-sk-1861",
+   "nam": 1861,
+   "bieu_tuong": "⚔",
+   "ten": "Đại đồn Chí Hòa thất thủ",
+   "doan": [
+    "Tháng 2/1861, quân Pháp tấn công đại đồn Chí Hòa do Nguyễn Tri Phương chỉ huy; đồn vỡ, quân Pháp chiếm Định Tường, Biên Hòa, Vĩnh Long trong năm 1861–1862.",
+    "Cuối năm 1861, nghĩa quân Nguyễn Trung Trực đốt cháy tàu chiến Pháp Espérance trên vàm Nhật Tảo."
+   ],
+   "lien": [
+    "nguyenphuong",
+    "vs56-tuduc",
+    "vs59-nguyentrungtruc",
+    "vs59-truongdinh"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 442"
+  },
+  {
+   "id": "vs59-sk-1867",
+   "nam": 1867,
+   "bieu_tuong": "⚔",
+   "ten": "Pháp chiếm ba tỉnh miền Tây Nam Kì",
+   "doan": [
+    "Tháng 6/1867, quân Pháp chiếm Vĩnh Long, An Giang, Hà Tiên mà không gặp kháng cự lớn. Kinh lược sứ Phan Thanh Giản uống thuốc độc tự vẫn.",
+    "Toàn bộ Nam Kì trở thành thuộc địa của Pháp; phong trào kháng chiến của nhân dân vẫn tiếp tục."
+   ],
+   "lien": [
+    "vs56-tuduc",
+    "vs59-phanthanhgian"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 445"
+  },
+  {
+   "id": "vs59-sk-1873",
+   "nam": 1873,
+   "bieu_tuong": "⚔",
+   "ten": "Pháp đánh Bắc Kì lần thứ nhất",
+   "doan": [
+    "Tháng 11/1873, Francis Garnier đánh chiếm thành Hà Nội; Nguyễn Tri Phương bị thương, không chịu chữa và mất.",
+    "Ngày 21/12/1873, quân Cờ Đen của Lưu Vĩnh Phúc phối hợp với quân triều đình phục kích, giết Garnier ở Cầu Giấy. Năm 1874, triều Nguyễn kí Hòa ước Giáp Tuất."
+   ],
+   "lien": [
+    "nguyenphuong",
+    "vs56-tuduc",
+    "vs59-hoangkeviem"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 451"
+  },
+  {
+   "id": "vs59-sk-1882",
+   "nam": 1882,
+   "bieu_tuong": "⚔",
+   "ten": "Hà Nội thất thủ lần thứ hai",
+   "doan": [
+    "Tháng 4/1882, Henri Rivière đánh chiếm thành Hà Nội; Tổng đốc Hoàng Diệu tự vẫn để giữ khí tiết.",
+    "Ngày 19/5/1883, Rivière bị quân Cờ Đen phục kích giết ở Cầu Giấy. Pháp tăng viện, đánh thẳng vào Thuận An, buộc triều đình kí Hòa ước Quý Mùi (1883) và Patenôtre (1884)."
+   ],
+   "lien": [
+    "vs56-hoangdieu",
+    "vs59-hoangkeviem"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 455"
+  },
+  {
+   "id": "vs59-sk-1885",
+   "nam": 1885,
+   "bieu_tuong": "✦",
+   "ten": "Chiếu Cần Vương",
+   "doan": [
+    "Đêm 4 rạng 5/7/1885, phe chủ chiến do Tôn Thất Thuyết đứng đầu tấn công quân Pháp ở Huế nhưng thất bại. Ông đưa vua Hàm Nghi ra căn cứ Tân Sở (Quảng Trị) và xuống chiếu Cần Vương.",
+    "Văn thân, sĩ phu khắp nơi hưởng ứng: khởi nghĩa Ba Đình, Bãi Sậy, Hương Khê… Năm 1888 vua Hàm Nghi bị bắt và bị đày sang Algérie."
+   ],
+   "lien": [
+    "vs56-hamnghi",
+    "vs56-tonthatthuyet",
+    "vs56-phandinhphung",
+    "vs59-dinhcongtrang",
+    "vs59-nguyenthienthuat",
+    "vs59-nguyenquangbich"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 465"
+  },
+  {
+   "id": "vs59-sk-1896",
+   "nam": 1896,
+   "bieu_tuong": "✦",
+   "ten": "Khởi nghĩa Hương Khê kết thúc",
+   "doan": [
+    "Khởi nghĩa Hương Khê (Hà Tĩnh) do Phan Đình Phùng và Cao Thắng lãnh đạo kéo dài từ 1885 đến 1896, là cuộc khởi nghĩa lớn nhất của phong trào Cần Vương.",
+    "Nghĩa quân tự chế được súng theo mẫu của Pháp. Sau khi Phan Đình Phùng mất (12/1895), cuộc khởi nghĩa tan rã dần."
+   ],
+   "lien": [
+    "vs56-phandinhphung",
+    "vs59-caothang"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 468"
+  },
+  {
+   "id": "vs59-sk-1905",
+   "nam": 1905,
+   "bieu_tuong": "✦",
+   "ten": "Phong trào Đông Du",
+   "doan": [
+    "Năm 1905, Phan Bội Châu sang Nhật Bản, rồi đưa nhiều thanh niên Việt Nam sang học để chuẩn bị lực lượng cứu nước theo con đường bạo động.",
+    "Năm 1908–1909, Pháp cấu kết với Nhật trục xuất du học sinh, phong trào Đông Du tan rã."
+   ],
+   "lien": [
+    "phanboichau",
+    "vs59-cuongde",
+    "vs59-dangthaithan"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 473",
+   "hang": [
+    "Việt Nam thuộc địa",
+    "1858–1945 · triều Nguyễn dưới chế độ bảo hộ",
+    "nguyenvn"
+   ]
+  },
+  {
+   "id": "vs59-sk-1907",
+   "nam": 1907,
+   "bieu_tuong": "◈",
+   "ten": "Đông Kinh nghĩa thục",
+   "doan": [
+    "Năm 1907, Lương Văn Can, Nguyễn Quyền và các sĩ phu mở trường Đông Kinh nghĩa thục ở Hà Nội, dạy học miễn phí, truyền bá tư tưởng duy tân, cổ động chữ Quốc ngữ.",
+    "Trường hoạt động chưa đầy một năm thì bị Pháp đóng cửa. Năm 1908, phong trào chống thuế lan rộng ở Trung Kì."
+   ],
+   "lien": [
+    "huynhthuckhang",
+    "vs59-luongvancan",
+    "vs59-phanchautrinh",
+    "vs59-tranquycap"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 474",
+   "hang": [
+    "Việt Nam thuộc địa",
+    "1858–1945 · triều Nguyễn dưới chế độ bảo hộ",
+    "nguyenvn"
+   ]
+  },
+  {
+   "id": "vs59-sk-1916",
+   "nam": 1916,
+   "bieu_tuong": "✦",
+   "ten": "Vua Duy Tân mưu khởi nghĩa",
+   "doan": [
+    "Năm 1916, vua Duy Tân cùng Thái Phiên, Trần Cao Vân (Việt Nam Quang phục hội) bí mật chuẩn bị khởi nghĩa ở Trung Kì.",
+    "Kế hoạch bị lộ, vua bị bắt và đày sang đảo Réunion; Thái Phiên, Trần Cao Vân bị xử tử."
+   ],
+   "lien": [
+    "vs56-duytan",
+    "vs59-thaiphien",
+    "vs59-trancaovan"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 478",
+   "hang": [
+    "Việt Nam thuộc địa",
+    "1858–1945 · triều Nguyễn dưới chế độ bảo hộ",
+    "nguyenvn"
+   ]
+  },
+  {
+   "id": "vs59-sk-1930",
+   "nam": 1930,
+   "bieu_tuong": "✦",
+   "ten": "Khởi nghĩa Yên Bái",
+   "doan": [
+    "Đêm 9/2/1930, Việt Nam Quốc dân đảng do Nguyễn Thái Học lãnh đạo khởi nghĩa ở Yên Bái và một số nơi, nhưng nhanh chóng bị đàn áp.",
+    "Nguyễn Thái Học cùng 12 đồng chí bị xử chém ở Yên Bái tháng 6/1930. Cùng năm, phong trào cách mạng 1930–1931 bùng lên, đỉnh cao là Xô viết Nghệ – Tĩnh."
+   ],
+   "lien": [
+    "vs59-nguyenthaihoc"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 487",
+   "hang": [
+    "Việt Nam thuộc địa",
+    "1858–1945 · triều Nguyễn dưới chế độ bảo hộ",
+    "nguyenvn"
+   ]
+  },
+  {
+   "id": "vs59-sk-1940",
+   "nam": 1940,
+   "bieu_tuong": "⚔",
+   "ten": "Nhật vào Đông Dương, khởi nghĩa Bắc Sơn và Nam Kì",
+   "doan": [
+    "Tháng 9/1940, quân Nhật tiến vào Đông Dương; nhân dân chịu cảnh “một cổ hai tròng” Pháp – Nhật.",
+    "Cuối năm 1940 nổ ra khởi nghĩa Bắc Sơn (27/9) và khởi nghĩa Nam Kì (23/11); cả hai đều bị đàn áp nhưng để lại bài học về khởi nghĩa vũ trang."
+   ],
+   "lien": [
+    "vs59-nguyenvancu",
+    "vs59-phungchikien",
+    "vs59-nguyenthiminhkhai",
+    "vs59-vovantan"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang), tr. PDF 487",
+   "hang": [
+    "Việt Nam thuộc địa",
+    "1858–1945 · triều Nguyễn dưới chế độ bảo hộ",
+    "nguyenvn"
+   ]
+  },
+  {
+   "id": "vs59-sk-1945",
+   "nam": 1945,
+   "bieu_tuong": "⚑",
+   "ten": "Nhật đảo chính Pháp",
+   "doan": [
+    "Đêm 9/3/1945, Nhật đảo chính lật đổ Pháp ở Đông Dương, dựng chính phủ Trần Trọng Kim dưới danh nghĩa Đế quốc Việt Nam.",
+    "Nạn đói đầu năm 1945 làm khoảng hai triệu người chết ở miền Bắc. Tháng 8/1945, Nhật đầu hàng Đồng minh, Tổng khởi nghĩa giành chính quyền thắng lợi trên cả nước."
+   ],
+   "lien": [
+    "hochiminh",
+    "vs56-baodai",
+    "vs59-trantrongkim"
+   ],
+   "src": "Phạm Văn Sơn, Việt sử toàn thư (bản điện tử 520 trang)"
+  }
+ ]
+}

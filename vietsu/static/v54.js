@@ -1,4 +1,4 @@
-/* Việt Sử V5.4 — theo yêu cầu chủ dự án (22/11/2026): đổi nhãn "Hair & Hat" thành "Tóc & Mũ".
+/* Học Lịch Sử V5.4 — theo yêu cầu chủ dự án (22/11/2026): đổi nhãn "Hair & Hat" thành "Tóc & Mũ".
    Bố cục mobile (thẻ trang phục, thanh menu dưới) nằm trong v54.css.
    V5.4.2: nút Bộ đề tắt sáng khi chọn mục menu khác. */
 (function(){

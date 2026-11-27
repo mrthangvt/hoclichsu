@@ -1,4 +1,4 @@
-/* Việt Sử V5.2 — mở rộng giao diện chuẩn V4.11, không thay icon/tài nguyên gốc. */
+/* Học Lịch Sử V5.2 — mở rộng giao diện chuẩn V4.11, không thay icon/tài nguyên gốc. */
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
@@ -10,13 +10,13 @@ function openExam(){
  exam.hidden=false;
  const iframe=$('vs52ExamFrame');if(iframe&&!iframe.getAttribute('src'))iframe.src=new URL('on-thi/index.html',document.baseURI).href;
  document.querySelectorAll('.nav,.mobile-sections button').forEach(el=>{const yes=el.hasAttribute('data-vs-exam-new');el.classList.toggle('active',yes);if(yes)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
- const crumb=document.querySelector('.crumb');if(crumb)crumb.textContent='VIỆT SỬ / Bộ đề ôn Sử';
+ const crumb=document.querySelector('.crumb');if(crumb)crumb.textContent='HỌC LỊCH SỬ / Bộ đề ôn Sử';
  window.scrollTo({top:0,behavior:'smooth'});
 }
 function prepareExam(){
  const host=$('schoolHistory');if(!host||$('vs52ExamView'))return;
  exam=document.createElement('section');exam.id='vs52ExamView';exam.hidden=true;
- exam.innerHTML='<div class="vs52-exam-head"><div class="eyebrow">HỌC TẬP · ÔN LUYỆN</div><h1>BỘ ĐỀ ÔN SỬ</h1><p>Lựa chọn lớp 10, 11 hoặc 12 và làm bài ngay trong không gian Việt Sử.</p></div><div class="vs52-exam-shell"><iframe id="vs52ExamFrame" title="Bộ đề ôn Sử lớp 10, 11, 12" loading="lazy"></iframe></div>';
+ exam.innerHTML='<div class="vs52-exam-head"><div class="eyebrow">HỌC TẬP · ÔN LUYỆN</div><h1>BỘ ĐỀ ÔN SỬ</h1><p>Lựa chọn lớp 10, 11 hoặc 12 và làm bài ngay trong không gian Học Lịch Sử.</p></div><div class="vs52-exam-shell"><iframe id="vs52ExamFrame" title="Bộ đề ôn Sử lớp 10, 11, 12" loading="lazy"></iframe></div>';
  host.insertAdjacentElement('afterend',exam);
  document.addEventListener('click',e=>{if(!e.target.closest('[data-vs-exam-new]'))return;e.preventDefault();e.stopImmediatePropagation();openExam();},true);
  document.addEventListener('keydown',e=>{if(!e.target.closest('[data-vs-exam-new]')||!['Enter',' '].includes(e.key))return;e.preventDefault();e.stopImmediatePropagation();openExam();},true);
@@ -37,12 +37,17 @@ function addCampaign(){
 }
 function islands(){
  const svg=$('v23AtlasSVG');if(!svg||$('vs52ArchipelagoLabels'))return;
- const ns='http://www.w3.org/2000/svg',g=document.createElementNS(ns,'g');g.id='vs52ArchipelagoLabels';g.setAttribute('aria-label','Sơ đồ minh họa quần đảo Hoàng Sa và Trường Sa');
+ const ns='http://www.w3.org/2000/svg',g=document.createElementNS(ns,'g');g.id='vs52ArchipelagoLabels';g.setAttribute('aria-label','Sơ đồ minh họa quần đảo Hoàng Sa, Trường Sa và đảo Phú Quốc');
  for(const item of [{name:'HOÀNG SA',x:605,y:432},{name:'TRƯỜNG SA',x:650,y:672}]){
   const p=document.createElementNS(ns,'g');p.setAttribute('class','vs52-island');p.setAttribute('transform','translate('+item.x+' '+item.y+')');
   const c=document.createElementNS(ns,'circle');c.setAttribute('r','6');p.append(c);
   const t=document.createElementNS(ns,'text');t.setAttribute('y','-16');t.textContent=item.name;p.append(t);g.append(p);
  }
+ // Đảo Phú Quốc (26/11/2026): hình đảo giản lược theo tọa độ thật (cùng tỉ lệ với pin V23_SCENES, tâm 10,23 B · 103,96 Đ ≈ 269,6 · 737,5),
+ // dịch ra biển ~30 đơn vị vì đường bờ véc-tơ của bản đồ minh họa vẽ thô và để khỏi đè nhãn Rạch Gầm – Xoài Mút
+ {const p=document.createElementNS(ns,'g');p.setAttribute('class','vs52-island vs52-phu-quoc');p.setAttribute('transform','translate(262 770)');
+  const sh=document.createElementNS(ns,'path');sh.setAttribute('d','M-6.7 -7.2 L-0.6 -10.3 L3.9 -11.8 L6.1 -9.8 L4.4 -3.6 L5.5 1.5 L3.3 6.7 L2.8 10.8 L1.7 12.8 L0.6 9.2 L-0.6 4.1 L0.0 0.5 L-4.4 -3.6 Z');p.append(sh);
+  const t=document.createElementNS(ns,'text');t.setAttribute('x','-10');t.setAttribute('y','5');t.textContent='ĐẢO PHÚ QUỐC';p.append(t);g.append(p);}
  ($('v23MapPins')?.parentNode||svg).append(g);
  const note=document.querySelector('.v23-map-foot');if(note)note.textContent='Bản đồ véc-tơ minh họa; ký hiệu quần đảo không thể hiện đầy đủ tọa độ, ranh giới địa lý.';
 }

@@ -1,0 +1,147 @@
+{
+ "id": "ho-chi-minh-1975",
+ "version": "1.0.0",
+ "engine": "^2.2",
+ "kind": "battle",
+ "title": "Chiến dịch Hồ Chí Minh 1975",
+ "subtitle": "26 – 30/4/1975 · Sài Gòn – Gia Định và vùng ven",
+ "label": "Tái dựng mô phỏng",
+ "period": "vndcch",
+ "year": 1975,
+ "storyLabel": "Kịch bản 12 hồi",
+ "script": "rieng.js",
+ "coords": {
+  "system": "blender",
+  "note": "Hai tầng địa hình. Tầng chiến dịch (terrain/, mặc định): tâm 10,83 B, 106,83 Đ, bán kính 56,5 km, lưới 1024 (~113 m/ô). Tầng nội đô (terrain/noi-do/): tâm Dinh Độc Lập 10,7770 B, 106,6953 Đ, bán kính 6,8 km, lưới 1024 (~14 m/ô). Độ cao thật trong height.png; phóng đại khi hiển thị (đề xuất ×6 tầng chiến dịch, ×1 nội đô (Sài Gòn bằng phẳng, nhân độ cao làm mặt đất nhấp nhô))."
+ },
+ "ui": {
+  "layers": [
+   [
+    "nv",
+    "Xe, lính",
+    true
+   ],
+   [
+    "nha",
+    "Nhà cửa, ghe xuồng (minh hoạ)",
+    true
+   ],
+   [
+    "muiten",
+    "Mũi tên 5 hướng (phác thảo)",
+    true
+   ],
+   [
+    "nhac",
+    "Nhạc nền",
+    true
+   ]
+  ],
+  "legend": [
+   [
+    "r",
+    "Mũi đỏ: hướng tiến công của Quân Giải phóng (5 hướng)",
+    "width:22px;height:8px;border-radius:3px"
+   ],
+   [
+    "g",
+    "Mốc vàng: mục tiêu, cầu, căn cứ (bấm để đọc)"
+   ],
+   [
+    "p",
+    "Mốc đỏ: ghi chú review của nhóm"
+   ]
+  ],
+  "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ. Mốc giờ, đơn vị, số hiệu xe ghi theo nguồn trong sources.json; chỗ các nguồn ghi khác nhau được nêu rõ.",
+  "gauge": false,
+  "notePlaceholder": "VD: Dời mũi tên Quân đoàn 1 sang đường 13",
+  "loaderHtml": "\n  <div id=\"ldgo\" hidden><button id=\"bstart\" class=\"go\" aria-label=\"Phát phim\">▶ Xem phim</button><button id=\"bexplore\" class=\"go2\">🧭 Khám phá sa bàn</button><small>12 hồi · 16 phút · có lời dẫn, nhạc nền — nên bật âm thanh · Tái dựng mô phỏng</small></div>",
+  "css": "body:not(.ready) #splay { visibility: hidden; } #views .tang { font-weight: 700; }"
+ },
+ "views": [
+  [
+   "all",
+   "Toàn cảnh"
+  ],
+  [
+   "saigon",
+   "Sài Gòn"
+  ],
+  [
+   "dinh",
+   "Dinh Độc Lập"
+  ],
+  [
+   "tsn",
+   "Tân Sơn Nhất"
+  ],
+  [
+   "thinghe",
+   "Cầu Thị Nghè"
+  ],
+  [
+   "causg",
+   "Cầu Sài Gòn"
+  ]
+ ],
+ "roles": [],
+ "sides": [
+  {
+   "id": "qgp",
+   "name": "Quân Giải phóng (QĐND Việt Nam)",
+   "flag": "props/co-mtdtgp.png",
+   "note": "Cờ Mặt trận Dân tộc Giải phóng miền Nam Việt Nam (nửa trên đỏ, nửa dưới xanh, sao vàng) — cờ cắm trên nóc Dinh 11h30 ngày 30/4/1975 (sources: S12, S13)"
+  },
+  {
+   "id": "vnch",
+   "name": "Quân lực Việt Nam Cộng hòa",
+   "flag": "props/co-vnch.png"
+  }
+ ],
+ "units": {},
+ "placement": "placement.json",
+ "story": "story.json",
+ "audio": {
+  "dir": "audio/",
+  "voice": "audio/voice.mp3",
+  "music": "audio/nhac/",
+  "credits": "Lời dẫn: bản thu của anh Thắng (24/11/2026). Nhạc nền (Epidemic Sound): It Has Awoken, I Will Be Your Knight, The Thick of It, Final Battle, Arbitrary Enemy, Hero Epilogue. Hiệu ứng: tiengdong.com (xe tăng, súng AK, tiếng nổ, reo hò, vỗ tay), Epidemic Sound (Fire Burst, Whoosh, Riser, Vehicle Horn, Wind Drone); tiếng pháo dùng lại của gói Ngọc Hồi – Đống Đa."
+ },
+ "budget": {
+  "firstLoadMB": 15
+ },
+ "sources": "sources.json",
+ "taiSau": [
+  "props/xe/*.glb",
+  "terrain/noi-do/*",
+  "units/*.glb",
+  "units/*.nvz",
+  "units/*.jpg",
+  "props/phao/*.glb",
+  "props/may-bay/*.glb",
+  "props/dinh/*.glb",
+  "props/nha/*.glb",
+  "props/tau/*.glb",
+  "props/nha/*.json"
+ ],
+ "terrain": {
+  "data": "terrain/meta.json",
+  "height": "terrain/height.png",
+  "image": "terrain/color.jpg",
+  "tang": {
+   "chien-dich": {
+    "data": "terrain/meta.json",
+    "height": "terrain/height.png",
+    "image": "terrain/color.jpg",
+    "phongDai": 6
+   },
+   "noi-do": {
+    "data": "terrain/noi-do/meta.json",
+    "height": "terrain/noi-do/height.png",
+    "image": "terrain/noi-do/color.jpg",
+    "phongDai": 1
+   }
+  },
+  "note": "Bộ máy 2.1 mới đọc một tầng (terrain/); chuyển tầng là việc của bộ máy 2.2 (Giai đoạn 3)."
+ }
+}
