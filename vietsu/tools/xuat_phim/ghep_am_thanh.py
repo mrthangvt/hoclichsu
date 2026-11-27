@@ -139,10 +139,12 @@ def main():
     print('âm thanh:', am, f'({tong:.2f} s)')
     if a.chi_am:
         return
-    subprocess.run(['ffmpeg', '-y', '-v', 'error', '-framerate', str(fps), '-i', hinh, '-i', am,
+    subprocess.run(['ffmpeg', '-y', '-v', 'error', '-r', str(fps), '-i', hinh, '-i', am,
                     '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'copy', '-shortest',
                     '-movflags', '+faststart', '-metadata', 'title=' + cfg.get('tieu_de', ten), ra], check=True)
     print('phim:', ra)
+    # kiểm tra nhanh: số khung và thời lượng hình phải khớp (ffmpeg mới đọc H.264 thô sai nhịp nếu thiếu -r ở đầu vào)
+    subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=nb_frames,duration', '-of', 'default=nw=1', ra])
 
 
 if __name__ == '__main__':
