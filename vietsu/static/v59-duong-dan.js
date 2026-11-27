@@ -23,10 +23,11 @@ const MUC={
 let dangDinhTuyen=false,mucHienTai='dong-thoi-gian-su-viet';
 
 /* ---------- Bảng đường dẫn ---------- */
-let BANG=null;
+let BANG=null,themVao=null;
 function taoBang(){
  const theoDuong=Object.create(null),theoMa=Object.create(null);
  const them=(duong,ma,the)=>{let d=duong,i=2;while(theoDuong[d]&&theoDuong[d].ma!==ma){d=duong.replace(/\/$/,'')+'-'+i+'/';i++;}theoDuong[d]={ma,...the};theoMa[ma]=d;};
+ themVao=them;
  if(typeof details!=='undefined')for(const [id,d] of Object.entries(details)){if(d&&d.name)them('dong-thoi-gian-su-viet/'+slug(d.name)+'/',id,{loai:'trieu-dai'});}
  if(typeof persons!=='undefined')for(const [id,p] of Object.entries(persons)){if(!p||!p.name)continue;const s=typeof v25PersonSlug==='function'?v25PersonSlug(id):slug(p.name);them('nhan-vat-lich-su/'+s+'/',id,{loai:'nhan-vat'});}
  if(typeof battles!=='undefined')for(const [id,b] of Object.entries(battles)){if(b&&b.name)them('su-kien/'+slug(b.name)+'/',id,{loai:'su-kien'});}
@@ -109,7 +110,12 @@ function khoiDong(){
  if(q){const d=q.replace(/^\/+/,'');try{history.replaceState({hls:d},'',GOC+d+location.hash);}catch(_){}}
  const d=duongHienTai();
  if(d&&!/\.html?$/.test(d)){dinhTuyen(d);try{history.replaceState({hls:d},'',GOC+d);}catch(_){}}
- else datDiaChi('dong-thoi-gian-su-viet/',true);
+ else{
+  // Có nội dung sửa từ CMS → vẽ lại dòng thời gian (đã vẽ trước khi bản vá về).
+  const va=window.HLS_CMS&&window.HLS_CMS.banVa();
+  if(va&&Object.keys(va).length)dinhTuyen('');
+  datDiaChi('dong-thoi-gian-su-viet/',true);
+ }
  window.addEventListener('popstate',()=>{const d=duongHienTai();if(typeof closeModal==='function'&&document.getElementById('overlay')?.classList.contains('show')){dangDinhTuyen=true;try{closeModal();}finally{dangDinhTuyen=false;}}dinhTuyen(d);});
 }
 
@@ -132,8 +138,14 @@ function tatCa(){
  }
  return ds;
 }
-window.HLS_DUONG_DAN={slug,dinhTuyen,tatCa,bang:()=>bang()};
+// V6: nhân vật mới thêm trong CMS (không có trong bảng gốc) — thêm đường dẫn sau khi bản vá được áp.
+function boSung(){
+ const B=bang();
+ if(typeof persons!=='undefined')for(const [id,p] of Object.entries(persons)){if(p&&p.name&&!B.theoMa[id])themVao('nhan-vat-lich-su/'+slug(p.name)+'/',id,{loai:'nhan-vat'});}
+}
+window.HLS_DUONG_DAN={slug,dinhTuyen,tatCa,boSung,bang:()=>bang()};
 
-function chay(){setTimeout(khoiDong,300);}
+// V6: đợi nội dung sửa trong CMS (static/v60-cms.js) được áp xong rồi mới mở trang.
+function chay(){setTimeout(()=>Promise.resolve(window.HLS_CMS_SAN).then(khoiDong,khoiDong),300);}
 if(document.readyState==='complete')chay();else window.addEventListener('load',chay);
 })();

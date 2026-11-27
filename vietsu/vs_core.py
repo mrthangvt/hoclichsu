@@ -236,6 +236,9 @@ def _token_ok(given: str, expected: str) -> bool:
         given.encode("utf-8"), expected.encode("utf-8"))
 
 
+session_role_hook = None  # V6: vs_taikhoan gắn hàm nhận phiên đăng nhập (cookie)
+
+
 def require_role(token: str | None, reviewer: bool = False, request: Request | None = None) -> str:
     """Trả về 'reviewer' hoặc 'admin'. Chặn dò mã: 10 lần sai / 15 phút / IP."""
     ip = client_ip(request)
@@ -243,6 +246,12 @@ def require_role(token: str | None, reviewer: bool = False, request: Request | N
         raise HTTPException(503, f"Đặt VIETSU_ADMIN_TOKEN (tối thiểu {MIN_TOKEN_LEN} ký tự) trong file .env trên máy chủ.")
     if auth_fail_limiter.count(ip) >= auth_fail_limiter.limit:
         raise HTTPException(429, "Nhập sai mã quá nhiều lần. Thử lại sau 15 phút.")
+    if not token and session_role_hook is not None:
+        vai = session_role_hook(request)  # V6: người đã đăng nhập tài khoản quản trị/biên tập
+        if vai:
+            if request is not None and not write_limiter.hit("w:" + ip):
+                raise HTTPException(429, "Thao tác quá nhanh, vui lòng chờ một phút.")
+            return vai
     if not token:
         raise HTTPException(401, "Thiếu mã quản trị.")
     token = token.strip()

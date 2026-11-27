@@ -109,12 +109,12 @@ def build():
     n=du_lieu()
     source=(STATIC/"Viet_Su_Timeline_V5.8_Offline.html").read_text(encoding="utf-8")
     css='<link rel="stylesheet" href="static/v59.css">'
-    js='<script defer src="static/v59-data.js"></script><script defer src="static/v59.js"></script><script defer src="static/v59-duong-dan.js"></script>'
+    js='<script defer src="static/v59-data.js"></script><script defer src="static/v59.js"></script><script defer src="static/v59-duong-dan.js"></script><script defer src="static/v60-cms.js"></script>'
     if source.count("</head>")!=1 or source.count("</body>")!=1:
         raise AssertionError("Không đúng cấu trúc V5.8")
     if "static/v59" in source:
         raise AssertionError("V5.8 không được chứa mã V5.9")
-    for f in ["v59.css","v59.js","v59-data.js","v59-duong-dan.js"]:
+    for f in ["v59.css","v59.js","v59-data.js","v59-duong-dan.js","v60-cms.js"]:
         if not (STATIC/f).is_file():
             raise AssertionError("Thiếu tệp "+f)
     result=source.replace("</head>",css+"</head>",1).replace("</body>",js+"</body>",1)

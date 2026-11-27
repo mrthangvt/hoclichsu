@@ -41,7 +41,7 @@ if curl -fsS "http://127.0.0.1:$CONG/api/health" >/dev/null 2>&1; then
   echo
   echo "=== CMS đã chạy ở 127.0.0.1:$CONG ==="
   if [ "$MOI_TAO" = 1 ]; then
-    echo "MÃ QUẢN TRỊ (lưu lại cẩn thận, dùng để đăng nhập https://hoclichsu.com/admin):"
+    echo "MÃ QUẢN TRỊ (lưu lại cẩn thận; dùng MỘT lần để tạo tài khoản quản trị đầu tiên ở https://hoclichsu.com/admin):"
     echo "    $MA"
   else
     echo "Mã quản trị giữ nguyên như cũ (xem trong $DL/.env, dòng VIETSU_ADMIN_TOKEN)."
