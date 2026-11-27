@@ -26,6 +26,8 @@ from pydantic import BaseModel, Field, field_validator
 
 import vs_ads
 import vs_textbook
+import vs_taikhoan
+import vs_noidung
 import avatar_v46
 import periods_v47
 from vs_core import (ALLOWED_HOSTS, BASE, DATA, ENABLE_DOCS, MAX_BODY_BYTES, SITE_URL, STATIC, UPLOADS, VERSION,
@@ -82,7 +84,7 @@ def _csp(path: str) -> str:
                 "worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'")
     if path.startswith("/admin") or path.startswith("/static/admin") or path.startswith("/static/costumes_admin"):
         return ("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; "
-                "img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self'; frame-src 'none'; "
+                "img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self'; frame-src 'self'; "
                 "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'")
     ads = vs_ads.ads_enabled_live()
     script = "'self' 'unsafe-inline'" + (" https:" if ads else "")
@@ -202,11 +204,15 @@ def initialize():
         CREATE INDEX IF NOT EXISTS idx_articles_status ON articles(status, entity_id);
         """)
     vs_textbook.init_textbook()
+    vs_taikhoan.init_tai_khoan()
+    vs_noidung.init_noi_dung()
 
 
 initialize()
 app.include_router(vs_textbook.router)
 app.include_router(vs_ads.router)
+app.include_router(vs_taikhoan.router)  # V6: tài khoản, đăng nhập
+app.include_router(vs_noidung.router)   # V6: sửa nội dung các mục Menu
 
 
 # ============================================================ models
@@ -581,11 +587,17 @@ def robots():
 
 @app.get("/admin")
 def admin():
+    """V6: CMS mới (đăng nhập tài khoản). Giao diện cũ dùng mã quản trị vẫn ở /admin/cu."""
+    return FileResponse(STATIC / "quan-tri" / "index.html", headers={"X-Robots-Tag": "noindex, nofollow", "Cache-Control": "no-store"})
+
+
+@app.get("/admin/cu")
+def admin_cu():
     return FileResponse(STATIC / "admin.html", headers={"X-Robots-Tag": "noindex, nofollow", "Cache-Control": "no-store"})
 
 
 # ------------------------------------------------------------ home page
-HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V4.11_Offline.html", STATIC / "Viet_Su_Timeline_V4.9_Offline.html", STATIC / "Viet_Su_Timeline_V4.8_Offline.html", STATIC / "Viet_Su_Timeline_V4.7_Offline.html", STATIC / "Viet_Su_Timeline_V4.6_Offline.html", STATIC / "Viet_Su_Timeline_V4.5_Offline.html", STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
+HOME_CANDIDATES = [STATIC / "Viet_Su_Timeline_V5.9_Offline.html", STATIC / "Viet_Su_Timeline_V4.11_Offline.html", STATIC / "Viet_Su_Timeline_V4.9_Offline.html", STATIC / "Viet_Su_Timeline_V4.8_Offline.html", STATIC / "Viet_Su_Timeline_V4.7_Offline.html", STATIC / "Viet_Su_Timeline_V4.6_Offline.html", STATIC / "Viet_Su_Timeline_V4.5_Offline.html", STATIC / "Viet_Su_Timeline_V4.4_Offline.html", STATIC / "Viet_Su_Timeline_V4.3_Offline.html", STATIC / "Viet_Su_Timeline_V4.2_Offline.html", STATIC / "Viet_Su_Timeline_V4.1_Offline.html", STATIC / "build" / "index.html", STATIC / "Viet_Su_Timeline_V3.9_Offline.html",
                    STATIC / "Viet_Su_Timeline_V3.7_Offline.html"]
 _home_cache: dict = {}
 
