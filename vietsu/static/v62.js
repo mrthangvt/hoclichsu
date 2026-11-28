@@ -192,7 +192,7 @@ function caiDat(){
  const cuSpaces=window.showSpaces;
  if(typeof cuSpaces==='function')window.showSpaces=function(){const r=cuSpaces.apply(this,arguments);setTimeout(()=>{thuNap();if(MAP)MAP.resize();},60);return r;};
  thuNap();
- window.HLS_BAN_DO={nap,bienDoiKieu,map:()=>MAP};
+ window.HLS_BAN_DO={nap,bienDoiKieu,map:()=>MAP,chon:id=>{const s=canh().find(x=>x.id===id);if(MAP&&s){moThe(s);return true;}return false;}};
 }
 if(document.readyState==='complete')setTimeout(caiDat,400);else window.addEventListener('load',()=>setTimeout(caiDat,400));
 })();

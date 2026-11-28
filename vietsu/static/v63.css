@@ -1,0 +1,67 @@
+/* V6.3 — Không gian lịch sử trên điện thoại: bản đồ toàn màn hình + ngăn danh sách (xem v63.js) */
+:root{--v63-tren:58px;--v63-duoi:70px;--v63-thanh:78px}
+.v63-thanh{display:none}
+
+html:has(body.v63-kg),body.v63-kg{overflow:hidden!important;overscroll-behavior:none}
+body.v63-kg .v23-spaces-header{display:none!important}
+body.v63-kg #spacesHistory{padding:0!important;margin:0!important;min-height:0!important}
+
+/* Bản đồ: phủ từ dưới thanh đầu trang tới trên thanh menu dưới */
+body.v63-kg .v23-map-panel{position:fixed!important;left:0!important;right:0!important;top:var(--v63-tren)!important;bottom:var(--v63-duoi)!important;
+ margin:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;z-index:12;height:auto!important;max-height:none!important;overflow:hidden}
+body.v63-kg .v23-map-viewport{position:absolute!important;inset:0!important;height:auto!important;min-height:0!important;margin:0!important;border-radius:0!important}
+body.v63-kg .v23-map-foot{display:none!important}
+/* Thanh tiêu đề + nút + − ⌖ nổi trên bản đồ */
+body.v63-kg .v23-map-toolbar{position:absolute!important;z-index:5;top:10px;left:10px;right:10px;padding:0!important;border:0!important;background:none!important;
+ display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none}
+body.v63-kg .v23-map-toolbar>*{pointer-events:auto}
+body.v63-kg .v23-map-title{background:rgba(14,28,35,.9);border:1px solid rgba(226,185,111,.35);border-radius:999px;padding:8px 14px!important;font-size:11px!important;
+ letter-spacing:.08em;box-shadow:0 4px 14px rgba(0,0,0,.25);backdrop-filter:blur(6px)}
+body.v63-kg .v23-map-title small{display:none!important}
+body.v63-kg .v23-map-controls{display:flex;flex-direction:column;gap:6px}
+body.v63-kg .v23-map-controls button{width:40px!important;height:40px!important;border-radius:12px!important;background:rgba(14,28,35,.92)!important;
+ box-shadow:0 4px 14px rgba(0,0,0,.25)}
+/* Nguồn bản đồ (ⓘ) và lời nhắc nằm trên ngăn danh sách */
+body.v63-kg .maplibregl-ctrl-bottom-right,body.v63-kg .maplibregl-ctrl-bottom-left{bottom:calc(var(--v63-thanh) + 18px)}
+body.v63-kg .v61-goi-y{display:none!important}
+
+/* Ngăn danh sách: cố định trong khung điện thoại, thu gọn còn thanh tóm tắt */
+body.v63-kg .v23-map-list{position:fixed!important;left:8px!important;right:8px!important;top:calc(var(--v63-tren) + 8px)!important;bottom:calc(var(--v63-duoi) + 8px)!important;
+ z-index:14;margin:0!important;padding:0!important;max-height:none!important;min-height:0!important;height:auto!important;width:auto!important;display:flex!important;flex-direction:column;gap:0!important;overflow:hidden!important;
+ border-radius:20px!important;background:#10222b!important;border:1px solid rgba(226,185,111,.28)!important;box-shadow:0 -8px 28px rgba(0,0,0,.35)!important;
+ transform:translateY(calc(100% - var(--v63-thanh)));transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+body.v63-kg.v63-mo .v23-map-list{transform:none}
+body.v63-kg .v63-thanh{display:flex;flex:0 0 var(--v63-thanh);height:var(--v63-thanh);box-sizing:border-box;align-items:center;gap:12px;padding:14px 14px 10px 18px;position:relative;cursor:pointer;
+ touch-action:none;-webkit-tap-highlight-color:transparent}
+.v63-keo{position:absolute;top:7px;left:50%;width:40px;height:4px;margin-left:-20px;border-radius:4px;background:rgba(226,185,111,.45)}
+.v63-chu{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.v63-chu strong{font-size:17px;color:#f3e4c4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v63-chu small{font-size:12.5px;color:#9fb2b5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v63-nut{flex:0 0 auto;border:0;border-radius:14px;padding:11px 16px;font:600 14px/1 inherit;font-family:inherit;background:#e2b96f;color:#1b1407;cursor:pointer}
+/* Tiêu đề + bộ lọc đứng yên, chỉ các thẻ cuộn */
+body.v63-kg .v23-map-list .v23-list-heading{flex:0 0 auto;position:static!important;margin:0!important;padding:4px 14px 10px!important;border-bottom:1px solid rgba(226,185,111,.18)}
+body.v63-kg #v23SpaceCards{flex:1 1 auto;min-height:0;overflow-y:auto!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:12px!important;
+ max-height:none!important;height:auto!important;scrollbar-width:thin}
+body.v63-kg:not(.v63-mo) .v23-map-list .v23-list-heading,body.v63-kg:not(.v63-mo) #v23SpaceCards{visibility:hidden}
+
+/* Trợ lý AI đứng trên ngăn danh sách, ẩn khi mở danh sách */
+body.v63-kg #aiOpen{bottom:calc(var(--v63-duoi) + var(--v63-thanh) + 18px)!important}
+body.v63-kg.v63-mo #aiOpen{opacity:0;pointer-events:none}
+
+/* Giao diện sáng */
+body.theme-light.v63-kg .v23-map-title{background:rgba(255,250,241,.95);border-color:#e3d4bd;color:#5a3d1c}
+body.theme-light.v63-kg .v23-map-controls button{background:rgba(255,250,241,.96)!important;color:#5a3d1c!important;border-color:#e3d4bd!important}
+body.theme-light.v63-kg .v23-map-list{background:#fffaf1!important;border-color:#e3d4bd!important;box-shadow:0 -8px 28px rgba(96,69,42,.18)!important}
+body.theme-light .v63-chu strong{color:#3f2a12}
+body.theme-light .v63-chu small{color:#7b6a55}
+body.theme-light .v63-keo{background:#d9c4a0}
+body.theme-light .v63-nut{background:#24363e;color:#fff}
+body.theme-light.v63-kg .v23-map-list .v23-list-heading{border-bottom-color:#eadcc5}
+/* Thẻ địa điểm trong ngăn: cao theo nội dung, mô tả 2 dòng, nhãn 3D không đè chữ */
+body.v63-kg #v23SpaceCards{display:flex!important;flex-direction:column;gap:10px}
+body.v63-kg #v23SpaceCards .v23-space-card{height:auto!important;min-height:0!important;flex:0 0 auto;align-content:start;margin:0!important}
+body.v63-kg #v23SpaceCards .v42-place-card span:not(.v42-ready):not(.v46-3d-card-label){-webkit-line-clamp:2}
+body.v63-kg #v23SpaceCards .v42-ready{display:none!important}
+body.v63-kg #v23SpaceCards .v42-thumb{align-self:start}
+body.theme-light.v63-kg #v42FilterButtons button{background:#fff!important;color:#5a3d1c!important;border:1px solid #e3d4bd!important}
+body.theme-light.v63-kg #v42FilterButtons button[aria-pressed=true]{background:#24363e!important;color:#fff!important;border-color:#24363e!important}

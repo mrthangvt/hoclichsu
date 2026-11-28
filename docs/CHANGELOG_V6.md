@@ -93,3 +93,11 @@ Theo yêu cầu chủ dự án (học cách làm của 360batdongsan.net): thay 
 - Cử chỉ: máy tính **Ctrl/⌘ + cuộn** để phóng (cuộn thường vẫn cuộn trang), điện thoại **2 ngón** để di chuyển/phóng (1 ngón cuộn trang), có lời nhắc tiếng Việt.
 - Không có mạng, không WebGL, mở file offline hoặc nền lỗi → tự dùng lại bản đồ SVG cũ.
 - CSP máy chủ: thêm `tiles.openfreemap.org`, `s3.amazonaws.com` vào connect-src và `worker-src 'self' blob:`.
+
+## V6.3 (28/11/2026, nhánh `claude/ban-do-mobile-toan-man`) — Không gian lịch sử trên điện thoại kiểu Map Tour
+Theo yêu cầu chủ dự án (tham khảo vietnamchuyenminh.com): `static/v63.js`, `static/v63.css`.
+- Bản đồ phủ kín từ dưới thanh đầu trang tới thanh menu dưới; trang không cuộn nữa nên **1 ngón kéo bản đồ**, 2 ngón phóng to/thu nhỏ.
+- Nút + − ⌖ và nhãn tiêu đề nổi trên bản đồ.
+- Thanh **"Không gian lịch sử 3D · N địa điểm · Danh sách ↑"** ở đáy. Bấm hoặc vuốt lên để mở **ngăn danh sách** cố định trong khung điện thoại; trong ngăn, tiêu đề + bộ lọc đứng yên, các thẻ cuộn riêng. Nút "Bản đồ ↓", vuốt xuống hoặc Esc để đóng.
+- Chọn một thẻ trong danh sách: ngăn đóng lại, bản đồ bay tới điểm và mở thẻ "Xem không gian 3D".
+- Giao diện sáng/tối; trợ lý AI dời lên trên thanh đáy. Máy tính và bản đồ SVG dự phòng giữ như cũ (bản SVG: chọn thẻ mở hồ sơ như trước).
