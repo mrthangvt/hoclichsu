@@ -101,3 +101,4 @@ Theo yêu cầu chủ dự án (tham khảo vietnamchuyenminh.com): `static/v63.
 - Thanh **"Không gian lịch sử 3D · N địa điểm · Danh sách ↑"** ở đáy. Bấm hoặc vuốt lên để mở **ngăn danh sách** cố định trong khung điện thoại; trong ngăn, tiêu đề + bộ lọc đứng yên, các thẻ cuộn riêng. Nút "Bản đồ ↓", vuốt xuống hoặc Esc để đóng.
 - Chọn một thẻ trong danh sách: ngăn đóng lại, bản đồ bay tới điểm và mở thẻ "Xem không gian 3D".
 - Giao diện sáng/tối; trợ lý AI dời lên trên thanh đáy. Máy tính và bản đồ SVG dự phòng giữ như cũ (bản SVG: chọn thẻ mở hồ sơ như trước).
+- **Sửa (28/11, nhánh `claude/sua-zoom-doi-giao-dien`):** trên máy tính, sau khi đổi giao diện sáng/tối thì Ctrl/⌘ + cuộn không phóng bản đồ nữa. Nguyên nhân: v63.js gọi `map.resize()` mỗi lần thẻ body đổi lớp. Giờ v63 chỉ đụng tới bản đồ khi thật sự đổi chế độ điện thoại ↔ máy tính; đổi kích thước do ResizeObserver của v62 lo.
