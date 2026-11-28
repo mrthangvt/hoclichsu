@@ -54,7 +54,7 @@ function caiBanDo(){
  // Chặn bộ xử lý cũ (kéo bằng pointer + cuộn để phóng) ở pha bắt sự kiện của phần tử cha.
  const cha=el.parentElement;
  cha.addEventListener('wheel',e=>{
-  if(!el.contains(e.target))return;
+  if(!el.contains(e.target)||el.classList.contains('v62-co-map'))return;   // bản đồ MapLibre (v62) tự xử lý
   e.stopPropagation();
   if(e.ctrlKey||e.metaKey){ // Ctrl/⌘ + cuộn, hoặc chụm 2 ngón trên bàn rê (trình duyệt gửi kèm ctrlKey)
    e.preventDefault();
@@ -65,7 +65,7 @@ function caiBanDo(){
 
  let keo=null;
  cha.addEventListener('pointerdown',e=>{
-  if(!el.contains(e.target))return;
+  if(!el.contains(e.target)||el.classList.contains('v62-co-map'))return;
   if(e.target.closest('.v23-map-pin'))return;        // để bấm pin như cũ
   e.stopPropagation();                                // không cho bộ xử lý cũ chạy
   if(e.pointerType==='touch')return;                  // cảm ứng: xử lý bằng touch bên dưới
@@ -90,11 +90,12 @@ function caiBanDo(){
  const giua=t=>({x:(t[0].clientX+t[1].clientX)/2,y:(t[0].clientY+t[1].clientY)/2});
  const kc=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
  el.addEventListener('touchstart',e=>{
+  if(el.classList.contains('v62-co-map'))return;
   if(e.touches.length===2){e.preventDefault();cancelAnimationFrame(raf);raf=0;dongBo();
    const g=giua(e.touches);chum={d:kc(e.touches),g,P:sangBanDo(g.x,g.y),w:cur.w};}
  },{passive:false});
  el.addEventListener('touchmove',e=>{
-  if(e.touches.length!==2||!chum)return;
+  if(e.touches.length!==2||!chum||el.classList.contains('v62-co-map'))return;
   e.preventDefault();
   const g=giua(e.touches),w=kep(chum.w*chum.d/Math.max(10,kc(e.touches)));
   const r=el.getBoundingClientRect(),m=svg.getScreenCTM();if(!m||!chum.P)return;
@@ -105,7 +106,7 @@ function caiBanDo(){
  },{passive:false});
  el.addEventListener('touchend',e=>{if(e.touches.length<2)chum=null;});
  // Gợi ý cho người dùng điện thoại một lần.
- if(matchMedia('(pointer:coarse)').matches){let da=false;el.addEventListener('touchstart',e=>{if(!da&&e.touches.length===1){da=true;nhac('Dùng hai ngón tay để phóng to bản đồ');}},{passive:true});}
+ if(matchMedia('(pointer:coarse)').matches){let da=false;el.addEventListener('touchstart',e=>{if(!da&&e.touches.length===1&&!el.classList.contains('v62-co-map')){da=true;nhac('Dùng hai ngón tay để phóng to bản đồ');}},{passive:true});}
 }
 
 /* ================= 2. Bộ lọc gọn ================= */

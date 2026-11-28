@@ -81,3 +81,15 @@ Theo yêu cầu chủ dự án (`static/v61.css`, `static/v61.js`, nạp sau v60
 Kiểm tra (Chromium 1440 px, điện thoại 390 px có cảm ứng): cuộn thường không phóng bản đồ mà cuộn trang; Ctrl+cuộn phóng; kéo chuột; nút về giữa;
 chụm hai ngón phóng bản đồ, trang không bị phóng; danh sách hiện đủ 9 sa bàn; menu, biểu tượng Bác ở chế độ tối/sáng; đăng ký → đăng xuất → sai mật khẩu
 → đăng nhập; thành viên gọi API quản trị bị 403; CMS sửa/ẩn câu trích dẫn và khung ứng dụng; không lỗi JavaScript.
+
+
+## V6.2 (28/11/2026, nhánh `claude/ban-do-maplibre`) — Bản đồ Không gian lịch sử dạng bản đồ thật
+Theo yêu cầu chủ dự án (học cách làm của 360batdongsan.net): thay bản đồ SVG bằng **MapLibre GL + nền OpenFreeMap** (dữ liệu OpenStreetMap, miễn phí, không cần khóa API).
+- Thư viện tự host `static/v62/` (maplibre-gl 6.20.0, giấy phép BSD-3 kèm theo); mã `static/v62.js`, `static/v62.css`.
+- Nền tối/sáng theo giao diện trang; tên địa danh tiếng Việt (`name:vi`); bóng địa hình (Mapzen/AWS Terrain Tiles).
+- **Quần đảo Hoàng Sa (Việt Nam)**, **Quần đảo Trường Sa (Việt Nam)**: nhãn riêng; ẩn mọi nhãn nền trong vùng hai quần đảo và đường ranh "tranh chấp".
+- Pin = ảnh tròn của sa bàn + tên (nhìn xa/màn hình hẹp chỉ hiện ảnh); pin gần nhau **gom cụm** có số, bấm cụm thì phóng tới.
+- Bấm pin: bay tới và mở thẻ (ảnh, loại · năm, tên, mô tả, nút **Xem không gian 3D** → mở hồ sơ như cũ). Bộ lọc Di tích/Chiến dịch, nút + − ⌖ giữ nguyên.
+- Cử chỉ: máy tính **Ctrl/⌘ + cuộn** để phóng (cuộn thường vẫn cuộn trang), điện thoại **2 ngón** để di chuyển/phóng (1 ngón cuộn trang), có lời nhắc tiếng Việt.
+- Không có mạng, không WebGL, mở file offline hoặc nền lỗi → tự dùng lại bản đồ SVG cũ.
+- CSP máy chủ: thêm `tiles.openfreemap.org`, `s3.amazonaws.com` vào connect-src và `worker-src 'self' blob:`.

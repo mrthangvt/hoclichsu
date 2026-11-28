@@ -90,12 +90,13 @@ def _csp(path: str) -> str:
                 "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'")
     ads = vs_ads.ads_enabled_live()
     script = "'self' 'unsafe-inline'" + (" https:" if ads else "")
-    connect = "'self' https://vi.wikipedia.org" + (" https:" if ads else "")
+    # V6.2: bản đồ MapLibre — nền OpenFreeMap, ô độ cao AWS Terrarium; thư viện tạo worker từ blob:.
+    connect = "'self' https://vi.wikipedia.org https://tiles.openfreemap.org https://s3.amazonaws.com" + (" https:" if ads else "")
     frame = "https:" if ads else "'none'"
     up = " upgrade-insecure-requests;" if SITE_URL.startswith("https://") else ""
     return (f"default-src 'self'; script-src {script}; style-src 'self' 'unsafe-inline'; "
             f"img-src 'self' data: blob: https:; font-src 'self' data:; connect-src {connect}; frame-src {frame}; "
-            f"media-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'; "
+            f"media-src 'self' data: blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; "
             f"frame-ancestors 'self';{up}")
 
 
