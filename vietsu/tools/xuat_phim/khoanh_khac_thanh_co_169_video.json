@@ -1,0 +1,655 @@
+{
+ "_ghi_chu": "Phim đầy đủ 16:9 sinh bằng lap_phim_day_du.py từ data/episodes.json (sửa kịch bản thì chạy lại lệnh này). Máy quay = bộ dẫn chuyện của sa bàn; phụ đề = lời dẫn; nhạc theo chương (Epidemic Sound, thư mục thu_muc_nhac); tach_tep: ghi từng phần ~10 s (phim dài, khung 4K).",
+ "ten": "thanh_co_169_video",
+ "sa_ban": "thanh-co-quang-tri",
+ "khung": {
+  "w": 3840,
+  "h": 2160,
+  "fps": 30
+ },
+ "hat": 1972,
+ "tach_tep": true,
+ "ma_hoa": {
+  "bitrate": 35000000
+ },
+ "nhan": false,
+ "logo_rong": 170,
+ "thu_muc_nhac": "/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG/nhac-nen",
+ "nhac_doan": [
+  {
+   "tep": "ES_I Will Be Your Knight - Jo Wandrini.mp3",
+   "luc": 0.0,
+   "tu": 0,
+   "dai": 56,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Tough Return - Phoenix Tail.mp3",
+   "luc": 56.0,
+   "tu": 0,
+   "dai": 70,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Arbitrary Enemy - Experia.mp3",
+   "luc": 126.0,
+   "tu": 0,
+   "dai": 90,
+   "am_luong": 0.45,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Final Battle - Max Anson.mp3",
+   "luc": 216.0,
+   "tu": 7,
+   "dai": 90,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Run! STEMS MELODY - Christoffer Moe Ditlevsen.mp3",
+   "luc": 306.0,
+   "tu": 0,
+   "dai": 120,
+   "am_luong": 0.85,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_The Thick of It - Jon Bjork.mp3",
+   "luc": 426.0,
+   "tu": 0,
+   "dai": 110,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_It Has Awoken - Dream Cave.mp3",
+   "luc": 536.0,
+   "tu": 0,
+   "dai": 85,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_I Will Be Your Knight - Jo Wandrini.mp3",
+   "luc": 621.0,
+   "tu": 125,
+   "dai": 80,
+   "am_luong": 0.5,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Arbitrary Enemy - Experia.mp3",
+   "luc": 701.0,
+   "tu": 15,
+   "dai": 115,
+   "am_luong": 0.45,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_I Will Be Your Knight - Jo Wandrini.mp3",
+   "luc": 816.0,
+   "tu": 0,
+   "dai": 75,
+   "am_luong": 0.38,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Hero Epilogue - Experia.mp3",
+   "luc": 891.0,
+   "tu": 0,
+   "dai": 115,
+   "am_luong": 0.55,
+   "vao": 2.5,
+   "ra": 3
+  }
+ ],
+ "nhac": {
+  "ha_khi_doc": 0.45
+ },
+ "giong": {
+  "am_luong": 1.0
+ },
+ "hieu_ung": {
+  "tep_no": "bom-no.mp3",
+  "no_ghi_lai": 0.22,
+  "tep_nen": "sung-nen.mp3",
+  "nen": 0.32
+ },
+ "khoanh_khac": [
+  {
+   "id": "s01-toan-canh",
+   "ten": "Thành cổ trước cơn bão lửa",
+   "chuong": "s01-toan-canh",
+   "tu": 0,
+   "dai": 56,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s01-toan-canh-01.mp3",
+     "tu": 0.0,
+     "den": 9.979,
+     "luc": 1
+    },
+    {
+     "tep": "s01-toan-canh-02.mp3",
+     "tu": 0.0,
+     "den": 12.591,
+     "luc": 11.6
+    },
+    {
+     "tep": "s01-toan-canh-03.mp3",
+     "tu": 0.0,
+     "den": 12.591,
+     "luc": 25
+    },
+    {
+     "tep": "s01-toan-canh-04.mp3",
+     "tu": 0.0,
+     "den": 12.382,
+     "luc": 40
+    }
+   ],
+   "nen_sung": 0.0,
+   "den_vao": 1.2
+  },
+  {
+   "id": "s02-tien-cong-mua-xuan",
+   "ten": "Chiến dịch tiến công mùa xuân",
+   "chuong": "s02-tien-cong-mua-xuan",
+   "tu": 0,
+   "dai": 70,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s02-tien-cong-mua-xuan-01.mp3",
+     "tu": 0.0,
+     "den": 10.136,
+     "luc": 1
+    },
+    {
+     "tep": "s02-tien-cong-mua-xuan-02.mp3",
+     "tu": 0.0,
+     "den": 13.087,
+     "luc": 14
+    },
+    {
+     "tep": "s02-tien-cong-mua-xuan-03.mp3",
+     "tu": 0.0,
+     "den": 10.684,
+     "luc": 32
+    },
+    {
+     "tep": "s02-tien-cong-mua-xuan-04.mp3",
+     "tu": 0.0,
+     "den": 8.777,
+     "luc": 50
+    },
+    {
+     "tep": "s02-tien-cong-mua-xuan-05.mp3",
+     "tu": 0.0,
+     "den": 4.833,
+     "luc": 62
+    }
+   ],
+   "nen_sung": 0.15
+  },
+  {
+   "id": "s03-phan-cong",
+   "ten": "Phản công bắt đầu",
+   "chuong": "s03-phan-cong",
+   "tu": 0,
+   "dai": 90,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s03-phan-cong-01.mp3",
+     "tu": 0.0,
+     "den": 13.375,
+     "luc": 1
+    },
+    {
+     "tep": "s03-phan-cong-02.mp3",
+     "tu": 0.0,
+     "den": 12.774,
+     "luc": 20
+    },
+    {
+     "tep": "s03-phan-cong-03.mp3",
+     "tu": 0.0,
+     "den": 13.035,
+     "luc": 40
+    },
+    {
+     "tep": "s03-phan-cong-04.mp3",
+     "tu": 0.0,
+     "den": 15.151,
+     "luc": 60
+    }
+   ],
+   "nen_sung": 0.8
+  },
+  {
+   "id": "s04-duoi-hoa-luc",
+   "ten": "Dưới hoả lực",
+   "chuong": "s04-duoi-hoa-luc",
+   "tu": 0,
+   "dai": 90,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s04-duoi-hoa-luc-01.mp3",
+     "tu": 0.0,
+     "den": 11.99,
+     "luc": 1
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-02.mp3",
+     "tu": 0.0,
+     "den": 12.199,
+     "luc": 18
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-03.mp3",
+     "tu": 0.0,
+     "den": 12.434,
+     "luc": 38
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-04.mp3",
+     "tu": 0.0,
+     "den": 10.501,
+     "luc": 56
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-05.mp3",
+     "tu": 0.0,
+     "den": 6.217,
+     "luc": 70
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-06.mp3",
+     "tu": 0.0,
+     "den": 8.438,
+     "luc": 80
+    }
+   ],
+   "nen_sung": 0.78
+  },
+  {
+   "id": "s05-thach-han",
+   "ten": "Vượt sông Thạch Hãn",
+   "chuong": "s05-thach-han",
+   "tu": 0,
+   "dai": 120,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s05-thach-han-01.mp3",
+     "tu": 0.0,
+     "den": 7.497,
+     "luc": 2
+    },
+    {
+     "tep": "s05-thach-han-02.mp3",
+     "tu": 0.0,
+     "den": 12.251,
+     "luc": 11
+    },
+    {
+     "tep": "s05-thach-han-03.mp3",
+     "tu": 0.0,
+     "den": 17.345,
+     "luc": 30
+    },
+    {
+     "tep": "s05-thach-han-04.mp3",
+     "tu": 0.0,
+     "den": 11.755,
+     "luc": 50
+    },
+    {
+     "tep": "s05-thach-han-05.mp3",
+     "tu": 0.0,
+     "den": 12.826,
+     "luc": 70
+    },
+    {
+     "tep": "s05-thach-han-06.mp3",
+     "tu": 0.0,
+     "den": 14.994,
+     "luc": 89
+    },
+    {
+     "tep": "s05-thach-han-07.mp3",
+     "tu": 0.0,
+     "den": 9.169,
+     "luc": 108
+    }
+   ],
+   "nen_sung": 0.53
+  },
+  {
+   "id": "s06-tuong-thanh",
+   "ten": "Giành giật từng đoạn tường",
+   "chuong": "s06-tuong-thanh",
+   "tu": 0,
+   "dai": 110,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s06-tuong-thanh-01.mp3",
+     "tu": 0.0,
+     "den": 11.102,
+     "luc": 2
+    },
+    {
+     "tep": "s06-tuong-thanh-02.mp3",
+     "tu": 0.0,
+     "den": 9.378,
+     "luc": 17
+    },
+    {
+     "tep": "s06-tuong-thanh-03.mp3",
+     "tu": 0.0,
+     "den": 3.082,
+     "luc": 30
+    },
+    {
+     "tep": "s06-tuong-thanh-04.mp3",
+     "tu": 0.0,
+     "den": 7.079,
+     "luc": 40
+    },
+    {
+     "tep": "s06-tuong-thanh-05.mp3",
+     "tu": 0.0,
+     "den": 5.538,
+     "luc": 50
+    },
+    {
+     "tep": "s06-tuong-thanh-06.mp3",
+     "tu": 0.0,
+     "den": 7.602,
+     "luc": 59
+    },
+    {
+     "tep": "s06-tuong-thanh-07.mp3",
+     "tu": 0.0,
+     "den": 8.49,
+     "luc": 70
+    },
+    {
+     "tep": "s06-tuong-thanh-08.mp3",
+     "tu": 0.0,
+     "den": 9.143,
+     "luc": 82
+    },
+    {
+     "tep": "s06-tuong-thanh-09.mp3",
+     "tu": 0.0,
+     "den": 9.744,
+     "luc": 96
+    }
+   ],
+   "nen_sung": 0.83
+  },
+  {
+   "id": "s07-dem-cong-su",
+   "ten": "Một đêm trong công sự",
+   "chuong": "s07-dem-cong-su",
+   "tu": 0,
+   "dai": 85,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s07-dem-cong-su-01.mp3",
+     "tu": 0.0,
+     "den": 6.687,
+     "luc": 2
+    },
+    {
+     "tep": "s07-dem-cong-su-02.mp3",
+     "tu": 0.0,
+     "den": 12.408,
+     "luc": 14
+    },
+    {
+     "tep": "s07-dem-cong-su-03.mp3",
+     "tu": 0.0,
+     "den": 10.031,
+     "luc": 34
+    },
+    {
+     "tep": "s07-dem-cong-su-04.mp3",
+     "tu": 0.0,
+     "den": 9.273,
+     "luc": 52
+    },
+    {
+     "tep": "s07-dem-cong-su-05.mp3",
+     "tu": 0.0,
+     "den": 9.43,
+     "luc": 68
+    }
+   ],
+   "nen_sung": 0.25
+  },
+  {
+   "id": "s08-mua-lu",
+   "ten": "Mưa, nước dâng và Thành cổ đổ nát",
+   "chuong": "s08-mua-lu",
+   "tu": 0,
+   "dai": 80,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s08-mua-lu-01.mp3",
+     "tu": 0.0,
+     "den": 9.848,
+     "luc": 2
+    },
+    {
+     "tep": "s08-mua-lu-02.mp3",
+     "tu": 0.0,
+     "den": 12.539,
+     "luc": 16
+    },
+    {
+     "tep": "s08-mua-lu-03.mp3",
+     "tu": 0.0,
+     "den": 10.292,
+     "luc": 36
+    },
+    {
+     "tep": "s08-mua-lu-04.mp3",
+     "tu": 0.0,
+     "den": 15.752,
+     "luc": 54
+    }
+   ],
+   "nen_sung": 0.3
+  },
+  {
+   "id": "s09-nhung-ngay-cuoi",
+   "ten": "Những ngày cuối",
+   "chuong": "s09-nhung-ngay-cuoi",
+   "tu": 0,
+   "dai": 115,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s09-nhung-ngay-cuoi-01.mp3",
+     "tu": 0.0,
+     "den": 12.643,
+     "luc": 1
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-02.mp3",
+     "tu": 0.0,
+     "den": 15.543,
+     "luc": 18
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-03.mp3",
+     "tu": 0.0,
+     "den": 10.031,
+     "luc": 40
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-04.mp3",
+     "tu": 0.0,
+     "den": 23.092,
+     "luc": 54
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-05.mp3",
+     "tu": 0.0,
+     "den": 7.001,
+     "luc": 92
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-06.mp3",
+     "tu": 0.0,
+     "den": 7.027,
+     "luc": 104
+    }
+   ],
+   "nen_sung": 0.72
+  },
+  {
+   "id": "s10-tuong-niem",
+   "ten": "Từ chiến trường đến nơi tưởng niệm",
+   "chuong": "s10-tuong-niem",
+   "tu": 0,
+   "dai": 190,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "loi_dan": [
+    {
+     "tep": "s10-tuong-niem-01.mp3",
+     "tu": 0.0,
+     "den": 9.038,
+     "luc": 3
+    },
+    {
+     "tep": "s10-tuong-niem-02.mp3",
+     "tu": 0.0,
+     "den": 11.755,
+     "luc": 17
+    },
+    {
+     "tep": "s10-tuong-niem-03.mp3",
+     "tu": 0.0,
+     "den": 9.509,
+     "luc": 31
+    },
+    {
+     "tep": "s10-tuong-niem-04.mp3",
+     "tu": 0.0,
+     "den": 7.784,
+     "luc": 43
+    },
+    {
+     "tep": "s10-tuong-niem-05.mp3",
+     "tu": 0.0,
+     "den": 7.654,
+     "luc": 55
+    },
+    {
+     "tep": "s10-tuong-niem-06.mp3",
+     "tu": 0.0,
+     "den": 10.292,
+     "luc": 67
+    },
+    {
+     "tep": "s10-tuong-niem-07.mp3",
+     "tu": 0.0,
+     "den": 7.367,
+     "luc": 80
+    },
+    {
+     "tep": "s10-tuong-niem-08.mp3",
+     "tu": 0.0,
+     "den": 5.669,
+     "luc": 93
+    },
+    {
+     "tep": "s10-tuong-niem-09.mp3",
+     "tu": 0.0,
+     "den": 8.751,
+     "luc": 106
+    },
+    {
+     "tep": "s10-tuong-niem-10.mp3",
+     "tu": 0.0,
+     "den": 7.184,
+     "luc": 118
+    },
+    {
+     "tep": "s10-tuong-niem-11.mp3",
+     "tu": 0.0,
+     "den": 11.337,
+     "luc": 132
+    }
+   ],
+   "nen_sung": 0.0,
+   "den_ra": 2.5
+  }
+ ],
+ "logo_kenh": "/xuat_phim/tai_nguyen/logo-truong-thang.png",
+ "logo_kenh_rong": 260,
+ "logo_kenh_tren": true,
+ "logo_kenh_mo": 0.9
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><title>Xuất phim kèm giao diện</title>
+<style>
+  /* Khung cố định 1920×1080 điểm CSS (hoặc ?cw=&ch=): sa bàn bên trong thấy đúng màn hình 16:9 máy tính,
+     bố cục nút giống khi mở app; thu nhỏ cho vừa cửa sổ, không ảnh hưởng ảnh quay. */
+  html,body{margin:0;height:100%;background:#111;overflow:hidden}
+  iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;background:#000}
+</style></head><body>
+<iframe id="app" allow="autoplay"></iframe>
+<script>
+  const Q=new URLSearchParams(location.search);const cw=+Q.get('cw')||1920,ch=+Q.get('ch')||1080;
+  const f=document.getElementById('app');f.width=cw;f.height=ch;f.style.width=cw+'px';f.style.height=ch+'px';
+  const vua=()=>{const k=Math.min(innerWidth/cw,innerHeight/ch);f.style.transform=`scale(${k})`};addEventListener('resize',vua);vua();
+  Q.delete('cw');Q.delete('ch');Q.set('ui','1');if(!Q.has('auto'))Q.set('auto','');
+  const sb=Q.get('sa_ban')||'thanh-co-quang-tri';Q.delete('sa_ban');
+  f.src=`/quay/${sb}/?`+Q.toString().replace('auto=&','auto&').replace(/auto=$/,'auto');
+  window.XP=()=>f.contentWindow.__XP;   /* để theo dõi: XP().trangThai */
+</script>
+</body></html>

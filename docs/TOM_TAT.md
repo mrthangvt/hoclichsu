@@ -184,6 +184,11 @@ Không có trong repo (gitignore): `vietsu/.env`, `vietsu/data/vietsucms.sqlite3
 - **Tạm bỏ không gian Thành Cổ Loa** (theo yêu cầu chủ dự án 22/11): gỡ `co-loa` khỏi `V2_EXPERIENCES`, `V23_SCENES`, `experiences_seed.json`, `experience_locations.json`. Ảnh thẻ `co-loa` trong `v42.js` ART vẫn giữ để khôi phục sau.
 - Nội dung là tái dựng mô phỏng: số thuyền, số quân là mật độ minh họa; vị trí pháo, phục binh là giả định chiến thuật; cần đối chiếu tư liệu.
 
+## Xuất phim từ sa bàn (công cụ riêng, nhánh `claude/xuat-phim`, 23/11/2026)
+- `vietsu/tools/xuat_phim/` (ngoài `static/`, không lên GitHub Pages, không thêm nút/đường dẫn nào trên web, không sửa mã sa bàn). Máy chủ tại máy `may_chu.py` (127.0.0.1:8765) chèn `dong_ho_ao.js` vào trang `/quay/<sa-ban>/`: đồng hồ ảo 1/30 s thay `performance.now`/`requestAnimationFrame`/`setTimeout`, `Math.random` có hạt giống, khung vẽ cố định. `quay.js` gọi `__STORY.goto`, đặt máy quay dọc bám nhân vật (`__QT.anchor`), ghép chữ/nhãn/logo, mã hoá H.264 bằng WebCodecs trên card đồ hoạ Mac. `ghep_am_thanh.py` dựng âm thanh bằng ffmpeg từ voice gốc + nhạc nền. Hướng dẫn: `vietsu/tools/xuat_phim/README.md`.
+- Trailer dọc 9:16 Thành cổ (`khoanh_khac_thanh_co_916.json`, 9 đoạn, 52,5 s): xuất trên Mac M1 mất 57,5 s. Chữ trên trailer **không ghi ngày tháng** (mốc của kịch bản vượt sông chưa chốt, xem mục 1). Logo/địa chỉ: **Việt Sử – vietsu.com.vn** (logo "Sử Việt / suviet.com.vn" trong `static/v53/` là nhầm, theo anh Thắng 23/11; suviet.com.vn là trang của một công ty gốm sứ).
+- Nhạc: anh Thắng có tài khoản Epidemic Sound → nhạc Epidemic (`audio/nhac/*.mp3`) dùng được cho kênh YouTube Trường Thắng Documentary; không cần nhắc lại. Trailer hiện dùng `audio/dong-song-phang-lang.mp3` (bản phối AI bài "Dòng sông phẳng lặng", không thuộc Epidemic) — đổi sang bài Epidemic bằng trường `nhac.tep` nếu anh muốn. Dữ liệu OSM: ghi "© OpenStreetMap contributors" trong mô tả video.
+- Tiếp theo: phim 16:9 4K đầy đủ (`?w=3840&h=2160`, danh sách khoảnh khắc ngang riêng).
 
 ## Không gian lịch sử — thêm Khe Sanh 1968, Điện Biên Phủ trên không 1972; ảnh thẻ chụp từ sa bàn (26/11/2026, nhánh `claude/khong-gian-lich-su-anh`)
 

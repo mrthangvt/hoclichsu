@@ -1,0 +1,1058 @@
+{
+ "_ghi_chu": "Phim đầy đủ 16:9 sinh bằng lap_phim_day_du.py từ data/episodes.json (sửa kịch bản thì chạy lại lệnh này). Máy quay = bộ dẫn chuyện của sa bàn; phụ đề = lời dẫn; nhạc theo chương (Epidemic Sound, thư mục thu_muc_nhac); tach_tep: ghi từng phần ~10 s (phim dài, khung 4K).",
+ "ten": "thanh_co_169_day_du",
+ "sa_ban": "thanh-co-quang-tri",
+ "khung": {
+  "w": 3840,
+  "h": 2160,
+  "fps": 30
+ },
+ "hat": 1972,
+ "tach_tep": true,
+ "ma_hoa": {
+  "bitrate": 35000000
+ },
+ "nhan": "TÁI DỰNG MÔ PHỎNG",
+ "logo": "/xuat_phim/tai_nguyen/logo-hoc-lich-su-chu.webp",
+ "logo_rong": 170,
+ "thu_muc_nhac": "/Volumes/xMABUx/99_CA_NHAN/Hoc-lich-su/_KHO-CHUNG/nhac-nen",
+ "nhac_doan": [
+  {
+   "tep": "ES_I Will Be Your Knight - Jo Wandrini.mp3",
+   "luc": 0.0,
+   "tu": 0,
+   "dai": 56,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Tough Return - Phoenix Tail.mp3",
+   "luc": 56.0,
+   "tu": 0,
+   "dai": 70,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Arbitrary Enemy - Experia.mp3",
+   "luc": 126.0,
+   "tu": 0,
+   "dai": 90,
+   "am_luong": 0.45,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Final Battle - Max Anson.mp3",
+   "luc": 216.0,
+   "tu": 7,
+   "dai": 90,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Run! STEMS MELODY - Christoffer Moe Ditlevsen.mp3",
+   "luc": 306.0,
+   "tu": 0,
+   "dai": 120,
+   "am_luong": 0.85,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_The Thick of It - Jon Bjork.mp3",
+   "luc": 426.0,
+   "tu": 0,
+   "dai": 110,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_It Has Awoken - Dream Cave.mp3",
+   "luc": 536.0,
+   "tu": 0,
+   "dai": 85,
+   "am_luong": 0.42,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_I Will Be Your Knight - Jo Wandrini.mp3",
+   "luc": 621.0,
+   "tu": 125,
+   "dai": 80,
+   "am_luong": 0.5,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Arbitrary Enemy - Experia.mp3",
+   "luc": 701.0,
+   "tu": 15,
+   "dai": 115,
+   "am_luong": 0.45,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_I Will Be Your Knight - Jo Wandrini.mp3",
+   "luc": 816.0,
+   "tu": 0,
+   "dai": 75,
+   "am_luong": 0.38,
+   "vao": 2.5,
+   "ra": 3
+  },
+  {
+   "tep": "ES_Hero Epilogue - Experia.mp3",
+   "luc": 891.0,
+   "tu": 0,
+   "dai": 115,
+   "am_luong": 0.55,
+   "vao": 2.5,
+   "ra": 3
+  }
+ ],
+ "nhac": {
+  "ha_khi_doc": 0.45
+ },
+ "giong": {
+  "am_luong": 1.0
+ },
+ "hieu_ung": {
+  "tep_no": "bom-no.mp3",
+  "no_ghi_lai": 0.22,
+  "tep_nen": "sung-nen.mp3",
+  "nen": 0.32
+ },
+ "khoanh_khac": [
+  {
+   "id": "s01-toan-canh",
+   "ten": "Thành cổ trước cơn bão lửa",
+   "chuong": "s01-toan-canh",
+   "tu": 0,
+   "dai": 56,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Thành cổ trước cơn bão lửa",
+    "nho": "PHẦN 1",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 1,
+     "den": 11.48,
+     "text": "Mùa hè 1972, Thành cổ Quảng Trị vẫn trầm mặc giữa lòng thị xã. Nhưng cơn bão lửa đã ở rất gần."
+    },
+    {
+     "tu": 11.6,
+     "den": 24.69,
+     "text": "4 bức tường thành tạo thành hình vuông, mỗi cạnh khoảng 500 mét. Phía ngoài là hào nước. Xa hơn về phía tây, dòng Thạch Hãn lặng lẽ chảy qua."
+    },
+    {
+     "tu": 25,
+     "den": 38.09,
+     "text": "Không lâu sau, mảnh đất ấy trở thành chiến trường. Bom trút xuống từ bầu trời. Pháo dội vào từ mặt đất. Thành cổ bước vào mùa hè khốc liệt nhất của mình."
+    },
+    {
+     "tu": 40,
+     "den": 52.88,
+     "text": "Những con đường dẫn vào Thành cổ chìm trong khói lửa. Cuộc chiến làm thay đổi hình hài cả thị xã. Nhưng giữa tâm bão, những người lính vẫn bám trụ, chiến đấu từng ngày."
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s01-toan-canh-01.mp3",
+     "tu": 0.0,
+     "den": 9.979,
+     "luc": 1
+    },
+    {
+     "tep": "s01-toan-canh-02.mp3",
+     "tu": 0.0,
+     "den": 12.591,
+     "luc": 11.6
+    },
+    {
+     "tep": "s01-toan-canh-03.mp3",
+     "tu": 0.0,
+     "den": 12.591,
+     "luc": 25
+    },
+    {
+     "tep": "s01-toan-canh-04.mp3",
+     "tu": 0.0,
+     "den": 12.382,
+     "luc": 40
+    }
+   ],
+   "nen_sung": 0.0,
+   "den_vao": 1.2
+  },
+  {
+   "id": "s02-tien-cong-mua-xuan",
+   "ten": "Chiến dịch tiến công mùa xuân",
+   "chuong": "s02-tien-cong-mua-xuan",
+   "tu": 0,
+   "dai": 70,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Chiến dịch tiến công mùa xuân",
+    "nho": "PHẦN 2",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 1,
+     "den": 11.64,
+     "text": "Ngày 30/3/1972. 11 giờ 30 phút, chiến dịch Trị – Thiên mở màn. Chiến trường miền Trung rung chuyển."
+    },
+    {
+     "tu": 14,
+     "den": 27.59,
+     "text": "Từ phía bắc và phía tây, các mũi tiến công liên tiếp đánh vào tuyến phòng thủ Quảng Trị. Những vị trí chốt giữ lần lượt bị phá vỡ. Con đường tiến về thị xã dần mở ra giữa khói lửa."
+    },
+    {
+     "tu": 32,
+     "den": 43.18,
+     "text": "Đầu tháng 5/1972, lực lượng Việt Nam Cộng hòa rút khỏi thị xã Quảng Trị, lui về phòng tuyến phía nam sông Mỹ Chánh. Cục diện trên chiến trường đã thay đổi hoàn toàn."
+    },
+    {
+     "tu": 50,
+     "den": 59.28,
+     "text": "Quân Giải phóng làm chủ thị xã và Thành cổ Quảng Trị. Nhưng trận chiến quyết liệt nhất ở nơi này vẫn còn ở phía trước."
+    },
+    {
+     "tu": 62,
+     "den": 67.33,
+     "text": "Rạng sáng 2/5/1972, cờ giải phóng tung bay trên Thành cổ."
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s02-tien-cong-mua-xuan-01.mp3",
+     "tu": 0.0,
+     "den": 10.136,
+     "luc": 1
+    },
+    {
+     "tep": "s02-tien-cong-mua-xuan-02.mp3",
+     "tu": 0.0,
+     "den": 13.087,
+     "luc": 14
+    },
+    {
+     "tep": "s02-tien-cong-mua-xuan-03.mp3",
+     "tu": 0.0,
+     "den": 10.684,
+     "luc": 32
+    },
+    {
+     "tep": "s02-tien-cong-mua-xuan-04.mp3",
+     "tu": 0.0,
+     "den": 8.777,
+     "luc": 50
+    },
+    {
+     "tep": "s02-tien-cong-mua-xuan-05.mp3",
+     "tu": 0.0,
+     "den": 4.833,
+     "luc": 62
+    }
+   ],
+   "nen_sung": 0.15
+  },
+  {
+   "id": "s03-phan-cong",
+   "ten": "Phản công bắt đầu",
+   "chuong": "s03-phan-cong",
+   "tu": 0,
+   "dai": 90,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Phản công bắt đầu",
+    "nho": "PHẦN 3",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 1,
+     "den": 14.87,
+     "text": "Ngày 13/6/1972, chính quyền Sài Gòn quyết định mở cuộc hành quân Lam Sơn 72, nhằm tái chiếm Quảng Trị. Lực lượng dù và thủy quân lục chiến được huy động cho cuộc phản công lớn."
+    },
+    {
+     "tu": 20,
+     "den": 33.27,
+     "text": "Sáng 28/6/1972, quân đội Sài Gòn vượt sông Mỹ Chánh, tiến về Quảng Trị. Trên bầu trời, máy bay Mỹ liên tục yểm trợ. Ngoài khơi, pháo hạm nã đạn vào các vị trí phòng thủ."
+    },
+    {
+     "tu": 40,
+     "den": 53.54,
+     "text": "Xe tăng và bộ binh áp sát thị xã. Bom dội xuống những dãy nhà, pháo cày nát các tuyến đường. Trong Thành cổ, những người lính Quân Giải phóng bám vị trí, chờ đợt tiến công tiếp theo."
+    },
+    {
+     "tu": 60,
+     "den": 75.65,
+     "text": "Từ 28/6/1972, cuộc chiến giữ thành bắt đầu. Từng ngày, từng đêm, tiếng pháo không dứt. Mỗi mét đất đều phải đánh đổi bằng máu. Và phía trước những người lính, là 81 ngày đêm không thể nào quên."
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s03-phan-cong-01.mp3",
+     "tu": 0.0,
+     "den": 13.375,
+     "luc": 1
+    },
+    {
+     "tep": "s03-phan-cong-02.mp3",
+     "tu": 0.0,
+     "den": 12.774,
+     "luc": 20
+    },
+    {
+     "tep": "s03-phan-cong-03.mp3",
+     "tu": 0.0,
+     "den": 13.035,
+     "luc": 40
+    },
+    {
+     "tep": "s03-phan-cong-04.mp3",
+     "tu": 0.0,
+     "den": 15.151,
+     "luc": 60
+    }
+   ],
+   "nen_sung": 0.8
+  },
+  {
+   "id": "s04-duoi-hoa-luc",
+   "ten": "Dưới hoả lực",
+   "chuong": "s04-duoi-hoa-luc",
+   "tu": 0,
+   "dai": 90,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Dưới hoả lực",
+    "nho": "PHẦN 4",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 1,
+     "den": 13.49,
+     "text": "Tháng 7/1972. Thành cổ không còn một phút bình yên. Bom, pháo liên tiếp trút xuống, hất tung mái nhà, xé toạc công sự, khoét sâu những hố bom trên mặt đất."
+    },
+    {
+     "tu": 18,
+     "den": 30.7,
+     "text": "Có những lúc chưa thấy bóng người tiến công, nhưng mặt đất đã rung lên vì pháo. Những người lính co mình dưới hầm, chờ một loạt đạn đi qua, rồi lại nghe loạt khác ập tới."
+    },
+    {
+     "tu": 38,
+     "den": 50.93,
+     "text": "Suốt 81 ngày đêm, bom đạn dội xuống Quảng Trị. Những con đường biến dạng, những bức tường đổ sập. Có vị trí, chỉ sau một trận pháo, tất cả đã không còn như trước."
+    },
+    {
+     "tu": 56,
+     "den": 67.0,
+     "text": "Ngày 28/7/1972, bão ập đến. Sông Thạch Hãn dâng cao, nước tràn vào hầm trú ẩn. Trên đầu là bom đạn, dưới chân là nước lũ."
+    },
+    {
+     "tu": 70,
+     "den": 76.72,
+     "text": "Đây là Thành cổ Quảng Trị, trước khi bom Mỹ và pháo binh quân đội Sài Gòn dội xuống."
+    },
+    {
+     "tu": 80,
+     "den": 88.94,
+     "text": "Và đây, sau những trận bom phá: tường thành tan nát, công sự vùi sâu, cả thị xã chìm trong đổ nát."
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s04-duoi-hoa-luc-01.mp3",
+     "tu": 0.0,
+     "den": 11.99,
+     "luc": 1
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-02.mp3",
+     "tu": 0.0,
+     "den": 12.199,
+     "luc": 18
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-03.mp3",
+     "tu": 0.0,
+     "den": 12.434,
+     "luc": 38
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-04.mp3",
+     "tu": 0.0,
+     "den": 10.501,
+     "luc": 56
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-05.mp3",
+     "tu": 0.0,
+     "den": 6.217,
+     "luc": 70
+    },
+    {
+     "tep": "s04-duoi-hoa-luc-06.mp3",
+     "tu": 0.0,
+     "den": 8.438,
+     "luc": 80
+    }
+   ],
+   "nen_sung": 0.78
+  },
+  {
+   "id": "s05-thach-han",
+   "ten": "Vượt sông Thạch Hãn",
+   "chuong": "s05-thach-han",
+   "tu": 0,
+   "dai": 120,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Vượt sông Thạch Hãn",
+    "nho": "PHẦN 5",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 2,
+     "den": 10.0,
+     "text": "Đêm xuống. Bên kia dòng Thạch Hãn là Thành cổ. Bên này, những người lính chuẩn bị vượt sông."
+    },
+    {
+     "tu": 11,
+     "den": 23.75,
+     "text": "Muốn vào Thành cổ, họ phải vượt dòng sông nằm trong tầm pháo. Mỗi chuyến đi chở theo bộ đội, đạn dược, thuốc men và cả hy vọng của những người đang chờ tiếp viện phía bên kia."
+    },
+    {
+     "tu": 30,
+     "den": 47.85,
+     "text": "Những chiếc thuyền gỗ lặng lẽ rời bờ. Có người nằm sát đáy thuyền, có người mang đồ đạc rồi bơi qua sông. Trên đầu, pháo sáng bừng lên, xé toạc màn đêm. Chỉ một loạt pháo, dòng sông có thể thành biển lửa."
+    },
+    {
+     "tu": 50,
+     "den": 62.26,
+     "text": "Giữa mưa bom bão đạn, nhiều người lính đã không bao giờ tới được bờ bên kia. Dòng Thạch Hãn vẫn chảy, mang theo ký ức về những đồng đội mãi mãi ở tuổi đôi mươi."
+    },
+    {
+     "tu": 70,
+     "den": 83.33,
+     "text": "Bên những chuyến đò ấy còn có người dân Quảng Trị. Họ chèo thuyền xuyên đêm, đưa bộ đội và vật tư vượt sông. Giữa hiểm nguy, những mái chèo vẫn hướng về Thành cổ."
+    },
+    {
+     "tu": 89,
+     "den": 104.49,
+     "text": "Vừa chạm bờ, người kéo thuyền vào chỗ khuất, người ôm thùng đạn, người dìu đồng đội. Không ai có thể đứng thẳng giữa làn pháo sáng. Họ cúi thấp, men theo những chỗ nấp, rồi tiếp tục đi vào Thành cổ."
+    },
+    {
+     "tu": 108,
+     "den": 117.67,
+     "text": "Sau lưng là dòng sông đầy hiểm nguy. Trước mặt là trận địa. Không ai biết đêm ấy mình có còn được trở về."
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s05-thach-han-01.mp3",
+     "tu": 0.0,
+     "den": 7.497,
+     "luc": 2
+    },
+    {
+     "tep": "s05-thach-han-02.mp3",
+     "tu": 0.0,
+     "den": 12.251,
+     "luc": 11
+    },
+    {
+     "tep": "s05-thach-han-03.mp3",
+     "tu": 0.0,
+     "den": 17.345,
+     "luc": 30
+    },
+    {
+     "tep": "s05-thach-han-04.mp3",
+     "tu": 0.0,
+     "den": 11.755,
+     "luc": 50
+    },
+    {
+     "tep": "s05-thach-han-05.mp3",
+     "tu": 0.0,
+     "den": 12.826,
+     "luc": 70
+    },
+    {
+     "tep": "s05-thach-han-06.mp3",
+     "tu": 0.0,
+     "den": 14.994,
+     "luc": 89
+    },
+    {
+     "tep": "s05-thach-han-07.mp3",
+     "tu": 0.0,
+     "den": 9.169,
+     "luc": 108
+    }
+   ],
+   "nen_sung": 0.53
+  },
+  {
+   "id": "s06-tuong-thanh",
+   "ten": "Giành giật từng đoạn tường",
+   "chuong": "s06-tuong-thanh",
+   "tu": 0,
+   "dai": 110,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Giành giật từng đoạn tường",
+    "nho": "PHẦN 6",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 2,
+     "den": 13.6,
+     "text": "Cuộc phản công tiến sát Thành cổ. Xe tăng, bộ binh áp lên dưới làn pháo và bom. Phía trong, những người lính Quân Giải phóng bám trụ giữa những bức tường vỡ."
+    },
+    {
+     "tu": 17,
+     "den": 26.88,
+     "text": "Tường thành đổ sập, họ lui về công sự. Công sự bị phá, họ bám từng mô đất, từng hố bom, quyết không rời vị trí."
+    },
+    {
+     "tu": 30,
+     "den": 33.58,
+     "text": "Nhưng đây không chỉ là cuộc giành giật một tòa thành."
+    },
+    {
+     "tu": 40,
+     "den": 47.58,
+     "text": "Mỗi ngày cầm cự ở Quảng Trị đều vang tới bàn đàm phán Paris. Không bên nào muốn lùi bước."
+    },
+    {
+     "tu": 50,
+     "den": 56.04,
+     "text": "Giữ được Thành cổ thêm một ngày, là giữ thêm thế đứng cho cuộc đấu tranh ngoại giao."
+    },
+    {
+     "tu": 59,
+     "den": 67.1,
+     "text": "Phía đối phương cũng quyết giành bằng được ngọn cờ trên tường thành. Những đợt tiến công vì thế càng dồn dập."
+    },
+    {
+     "tu": 70,
+     "den": 78.99,
+     "text": "Giữa gạch vỡ và khói bụi, từng đoạn tường chỉ cách nhau vài bước chân. Trận đánh tiếp theo có thể ập đến bất cứ lúc nào."
+    },
+    {
+     "tu": 82,
+     "den": 91.64,
+     "text": "Muốn tiến vào, quân đội Sài Gòn phải vượt khoảng đất trống trước hào nước. Mỗi bước chân đều có thể trở thành mục tiêu giữa làn đạn."
+    },
+    {
+     "tu": 96,
+     "den": 106.24,
+     "text": "Từng đợt xung phong bị chặn lại. Từng vị trí bị đánh chiếm, rồi giành lại. Mặt đất Thành cổ thấm máu những người lính ở cả hai phía."
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s06-tuong-thanh-01.mp3",
+     "tu": 0.0,
+     "den": 11.102,
+     "luc": 2
+    },
+    {
+     "tep": "s06-tuong-thanh-02.mp3",
+     "tu": 0.0,
+     "den": 9.378,
+     "luc": 17
+    },
+    {
+     "tep": "s06-tuong-thanh-03.mp3",
+     "tu": 0.0,
+     "den": 3.082,
+     "luc": 30
+    },
+    {
+     "tep": "s06-tuong-thanh-04.mp3",
+     "tu": 0.0,
+     "den": 7.079,
+     "luc": 40
+    },
+    {
+     "tep": "s06-tuong-thanh-05.mp3",
+     "tu": 0.0,
+     "den": 5.538,
+     "luc": 50
+    },
+    {
+     "tep": "s06-tuong-thanh-06.mp3",
+     "tu": 0.0,
+     "den": 7.602,
+     "luc": 59
+    },
+    {
+     "tep": "s06-tuong-thanh-07.mp3",
+     "tu": 0.0,
+     "den": 8.49,
+     "luc": 70
+    },
+    {
+     "tep": "s06-tuong-thanh-08.mp3",
+     "tu": 0.0,
+     "den": 9.143,
+     "luc": 82
+    },
+    {
+     "tep": "s06-tuong-thanh-09.mp3",
+     "tu": 0.0,
+     "den": 9.744,
+     "luc": 96
+    }
+   ],
+   "nen_sung": 0.83
+  },
+  {
+   "id": "s07-dem-cong-su",
+   "ten": "Một đêm trong công sự",
+   "chuong": "s07-dem-cong-su",
+   "tu": 0,
+   "dai": 85,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Một đêm trong công sự",
+    "nho": "PHẦN 7",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 2,
+     "den": 9.19,
+     "text": "Đêm lại xuống trên Thành cổ. Tiếng súng thưa dần, nhưng không ai dám tin chiến trường đã yên."
+    },
+    {
+     "tu": 14,
+     "den": 26.91,
+     "text": "Sau một ngày chống chọi với bom pháo, những người lính trở về công sự. Không phải ai cũng có chỗ nằm. Họ chia nhau từng ngụm nước, lắng nghe tiếng động ngoài xa, chờ trời sáng."
+    },
+    {
+     "tu": 34,
+     "den": 44.53,
+     "text": "Người thay nhau canh gác. Người lau súng dưới ánh đèn leo lét. Có người vừa ngồi xuống đã ngủ thiếp đi, khẩu súng vẫn còn trong vòng tay."
+    },
+    {
+     "tu": 52,
+     "den": 61.77,
+     "text": "Ở nơi ấy, sự sống đôi khi chỉ cách cái chết một bức tường đất mỏng. Và người ngồi bên cạnh hôm nay, ngày mai có thể đã không còn."
+    },
+    {
+     "tu": 68,
+     "den": 77.93,
+     "text": "Nhưng họ vẫn ở lại. Vì sau lưng là đồng đội, là những vị trí vừa giữ được, và là nhiệm vụ chưa thể rời bỏ."
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s07-dem-cong-su-01.mp3",
+     "tu": 0.0,
+     "den": 6.687,
+     "luc": 2
+    },
+    {
+     "tep": "s07-dem-cong-su-02.mp3",
+     "tu": 0.0,
+     "den": 12.408,
+     "luc": 14
+    },
+    {
+     "tep": "s07-dem-cong-su-03.mp3",
+     "tu": 0.0,
+     "den": 10.031,
+     "luc": 34
+    },
+    {
+     "tep": "s07-dem-cong-su-04.mp3",
+     "tu": 0.0,
+     "den": 9.273,
+     "luc": 52
+    },
+    {
+     "tep": "s07-dem-cong-su-05.mp3",
+     "tu": 0.0,
+     "den": 9.43,
+     "luc": 68
+    }
+   ],
+   "nen_sung": 0.25
+  },
+  {
+   "id": "s08-mua-lu",
+   "ten": "Mưa, nước dâng và Thành cổ đổ nát",
+   "chuong": "s08-mua-lu",
+   "tu": 0,
+   "dai": 80,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Mưa, nước dâng và Thành cổ đổ nát",
+    "nho": "PHẦN 8",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 2,
+     "den": 12.35,
+     "text": "Cuối tháng 8, đầu tháng 9/1972. Mưa trút xuống Quảng Trị. Sông Thạch Hãn dâng cao, những con đường đầy hố bom lại ngập trong bùn nước."
+    },
+    {
+     "tu": 16,
+     "den": 29.04,
+     "text": "Nước len vào công sự, làm ướt quần áo, vũ khí và những chỗ trú ẩn cuối cùng. Muốn đi qua một khoảng trống, người lính phải lội bùn, tránh pháo, rồi lại tìm cách nằm xuống thật nhanh."
+    },
+    {
+     "tu": 36,
+     "den": 46.79,
+     "text": "Trong mưa, họ nhặt từng tấm ván, kéo từng bao đất về vá lại chiến hào. Công sự vừa đắp xong có thể bị phá tan chỉ sau một loạt đạn."
+    },
+    {
+     "tu": 54,
+     "den": 70.25,
+     "text": "Những ngày cuối đang đến gần. Thành cổ chỉ còn những bức tường gãy, những mái nhà sụp và những hố bom chồng lên nhau. Nhưng trong đống đổ nát ấy, trận chiến vẫn chưa dừng lại. Những người lính kiệt sức tiếp tục giữ các vị trí cuối cùng."
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s08-mua-lu-01.mp3",
+     "tu": 0.0,
+     "den": 9.848,
+     "luc": 2
+    },
+    {
+     "tep": "s08-mua-lu-02.mp3",
+     "tu": 0.0,
+     "den": 12.539,
+     "luc": 16
+    },
+    {
+     "tep": "s08-mua-lu-03.mp3",
+     "tu": 0.0,
+     "den": 10.292,
+     "luc": 36
+    },
+    {
+     "tep": "s08-mua-lu-04.mp3",
+     "tu": 0.0,
+     "den": 15.752,
+     "luc": 54
+    }
+   ],
+   "nen_sung": 0.3
+  },
+  {
+   "id": "s09-nhung-ngay-cuoi",
+   "ten": "Những ngày cuối",
+   "chuong": "s09-nhung-ngay-cuoi",
+   "tu": 0,
+   "dai": 115,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Những ngày cuối",
+    "nho": "PHẦN 9",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 1,
+     "den": 14.14,
+     "text": "Ngày 12/9/1972, 3 tiểu đoàn cùng 23 xe tăng, xe bọc thép của quân đội Sài Gòn tiến công từ 3 hướng. Pháo binh, không quân và pháo hạm Mỹ dồn dập yểm trợ."
+    },
+    {
+     "tu": 18,
+     "den": 34.04,
+     "text": "Giao tranh kéo dài sát mép tường thành. Một đoạn tường vừa bị chiếm, trận phản kích đã nổ ra. Lựu đạn, súng bộ binh, pháo sáng hòa vào tiếng nổ không dứt. Có nơi, hai chiến tuyến chỉ cách vài bước chân."
+    },
+    {
+     "tu": 40,
+     "den": 50.53,
+     "text": "Trong những ngày cuối, các đơn vị giữ Thành cổ vẫn bám trụ. Nhưng quân số, sức lực và từng vị trí phòng thủ đều bị bào mòn qua từng giờ."
+    },
+    {
+     "tu": 54,
+     "den": 77.59,
+     "text": "Đêm 15/9/1972. Sau nhiều ngày chống chọi với những đợt tiến công liên tiếp, lệnh rút khỏi thị xã được ban ra. Những người lính rời Thành cổ trong bóng tối, tìm đường trở lại bờ bên kia sông Thạch Hãn. Dòng sông từng đưa họ vào trận địa, giờ đón họ trở về. Nhưng không phải ai cũng còn sống để vượt qua lần nữa."
+    },
+    {
+     "tu": 92,
+     "den": 99.5,
+     "text": "Ngày 16/9/1972, quân đội Việt Nam Cộng hòa kiểm soát Thành cổ. Trận chiến 81 ngày đêm khép lại."
+    },
+    {
+     "tu": 104,
+     "den": 111.53,
+     "text": "Thành cổ im lặng giữa đống đổ nát. Nhưng dưới lớp đất ấy, ký ức của 81 ngày đêm vẫn còn."
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s09-nhung-ngay-cuoi-01.mp3",
+     "tu": 0.0,
+     "den": 12.643,
+     "luc": 1
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-02.mp3",
+     "tu": 0.0,
+     "den": 15.543,
+     "luc": 18
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-03.mp3",
+     "tu": 0.0,
+     "den": 10.031,
+     "luc": 40
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-04.mp3",
+     "tu": 0.0,
+     "den": 23.092,
+     "luc": 54
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-05.mp3",
+     "tu": 0.0,
+     "den": 7.001,
+     "luc": 92
+    },
+    {
+     "tep": "s09-nhung-ngay-cuoi-06.mp3",
+     "tu": 0.0,
+     "den": 7.027,
+     "luc": 104
+    }
+   ],
+   "nen_sung": 0.72
+  },
+  {
+   "id": "s10-tuong-niem",
+   "ten": "Từ chiến trường đến nơi tưởng niệm",
+   "chuong": "s10-tuong-niem",
+   "tu": 0,
+   "dai": 190,
+   "chuan_bi": 0,
+   "may": {
+    "dao_dien": true,
+    "fov": 50
+   },
+   "the": {
+    "chu": "Từ chiến trường đến nơi tưởng niệm",
+    "nho": "PHẦN 10",
+    "tu": 0.4,
+    "den": 4.6
+   },
+   "phu_de": [
+    {
+     "tu": 3,
+     "den": 12.54,
+     "text": "Nhiều năm đã qua. Bên dòng Thạch Hãn hôm nay, người ta thả những ngọn hoa đăng xuống nước, như gửi một lời nhắn tới những người đã nằm lại."
+    },
+    {
+     "tu": 17,
+     "den": 29.26,
+     "text": "Thành cổ Quảng Trị giờ là nơi người dân tìm về để tưởng nhớ. Mỗi năm, ngày 16/9, những người còn sống lại nhắc tên đồng đội của mình."
+    },
+    {
+     "tu": 31,
+     "den": 41.01,
+     "text": "Ngày ấy, một tòa thành nhỏ trở thành tâm điểm của cả cuộc chiến. Bom đạn từ 4 phía dồn về, biến từng con phố thành trận địa."
+    },
+    {
+     "tu": 43,
+     "den": 51.28,
+     "text": "Trong thành, nhiều người lính còn rất trẻ. Họ giữ từng vị trí, chứng kiến đồng đội ngã xuống ngay bên cạnh."
+    },
+    {
+     "tu": 55,
+     "den": 63.15,
+     "text": "Giấc ngủ giữa tiếng pháo, một ngụm nước chia nhau, một phút được yên lặng... cũng trở thành điều xa xỉ."
+    },
+    {
+     "tu": 67,
+     "den": 77.79,
+     "text": "Ngoài dòng sông, từng đêm vẫn có những chuyến đò lặng lẽ. Người ra đi mong tới được bờ; người ở lại chỉ mong thấy một bóng người trở về."
+    },
+    {
+     "tu": 80,
+     "den": 87.87,
+     "text": "Có những người lính đã nằm lại giữa dòng Thạch Hãn. Có những người chẳng kịp nhìn thấy Thành cổ, dù chỉ một lần."
+    },
+    {
+     "tu": 93,
+     "den": 99.17,
+     "text": "Có những người đã vượt qua tất cả, nhưng mang theo ký ức chiến trường suốt phần đời còn lại."
+    },
+    {
+     "tu": 106,
+     "den": 115.25,
+     "text": "81 ngày đêm không chỉ là thời gian. Đó là tuổi trẻ, những cuộc chia ly, và những cái tên còn mãi trong ký ức."
+    },
+    {
+     "tu": 118,
+     "den": 125.68,
+     "text": "Hôm nay, mỗi ngọn hoa đăng sáng trên sông như một lời tri ân gửi tới những người đã không trở về."
+    },
+    {
+     "tu": 132,
+     "den": 143.84,
+     "text": "Thành cổ vẫn ở đó. Không còn tiếng bom rơi, không còn tiếng súng. Chỉ còn dòng Thạch Hãn chảy qua, nhắc các thế hệ mai sau về cái giá của hòa bình."
+    },
+    {
+     "tu": 148,
+     "den": 154,
+     "text": "Nhạc nền: Epidemic Sound"
+    }
+   ],
+   "loi_dan": [
+    {
+     "tep": "s10-tuong-niem-01.mp3",
+     "tu": 0.0,
+     "den": 9.038,
+     "luc": 3
+    },
+    {
+     "tep": "s10-tuong-niem-02.mp3",
+     "tu": 0.0,
+     "den": 11.755,
+     "luc": 17
+    },
+    {
+     "tep": "s10-tuong-niem-03.mp3",
+     "tu": 0.0,
+     "den": 9.509,
+     "luc": 31
+    },
+    {
+     "tep": "s10-tuong-niem-04.mp3",
+     "tu": 0.0,
+     "den": 7.784,
+     "luc": 43
+    },
+    {
+     "tep": "s10-tuong-niem-05.mp3",
+     "tu": 0.0,
+     "den": 7.654,
+     "luc": 55
+    },
+    {
+     "tep": "s10-tuong-niem-06.mp3",
+     "tu": 0.0,
+     "den": 10.292,
+     "luc": 67
+    },
+    {
+     "tep": "s10-tuong-niem-07.mp3",
+     "tu": 0.0,
+     "den": 7.367,
+     "luc": 80
+    },
+    {
+     "tep": "s10-tuong-niem-08.mp3",
+     "tu": 0.0,
+     "den": 5.669,
+     "luc": 93
+    },
+    {
+     "tep": "s10-tuong-niem-09.mp3",
+     "tu": 0.0,
+     "den": 8.751,
+     "luc": 106
+    },
+    {
+     "tep": "s10-tuong-niem-10.mp3",
+     "tu": 0.0,
+     "den": 7.184,
+     "luc": 118
+    },
+    {
+     "tep": "s10-tuong-niem-11.mp3",
+     "tu": 0.0,
+     "den": 11.337,
+     "luc": 132
+    }
+   ],
+   "nen_sung": 0.0
+  }
+ ],
+ "ket": {
+  "chuong": "s10-tuong-niem",
+  "tu": 181,
+  "dai": 9,
+  "chuan_bi": 0,
+  "may": {
+   "dao_dien": true,
+   "fov": 50
+  },
+  "chu": "Khám phá sa bàn 3D tại Học Lịch Sử",
+  "web": "hoclichsu.com",
+  "logo": "/xuat_phim/tai_nguyen/logo-hoc-lich-su.webp",
+  "logo_rong": 400,
+  "logo_y": 330,
+  "cong": "Tái dựng mô phỏng, cần đối chiếu tư liệu · Lời dẫn và nguồn tư liệu trong sa bàn · Nhạc nền: Epidemic Sound · Dữ liệu bản đồ © OpenStreetMap contributors",
+  "den_ra": 1.2
+ }
+}
