@@ -93,6 +93,23 @@ function caiDat(){
  // Bản đồ MapLibre nạp xong sau → áp lại cử chỉ
  let n=0;const cho=setInterval(()=>{if(banDo()||++n>60){clearInterval(cho);henCapNhat();}},500);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('v63-mo'))moDanhSach(false);});
+ // iPhone (Safari): kéo vào chỗ không cuộn được (thanh đầu trang, thanh đáy, menu) làm cả trang “nảy” theo,
+ // thanh menu dưới bị kéo nổi lên. Ở chế độ toàn màn hình chỉ cho cuộn trong danh sách và kéo trên bản đồ.
+ let y0=0;
+ document.addEventListener('touchstart',e=>{if(dangBat&&e.touches.length===1)y0=e.touches[0].clientY;},{passive:true});
+ document.addEventListener('touchmove',e=>{
+  if(!dangBat||e.touches.length!==1)return;
+  const t=e.target;
+  if(t.closest&&t.closest('.maplibregl-canvas-container,.maplibregl-popup,#v23MapViewport'))return;   // bản đồ tự xử lý
+  if(t.closest&&t.closest('#overlay,#historyAI'))return;                                             // hồ sơ, trợ lý: giữ như cũ
+  const ds=t.closest&&t.closest('#v23SpaceCards');
+  if(ds&&document.body.classList.contains('v63-mo')){
+   const dy=e.touches[0].clientY-y0;                      // >0: kéo xuống (cuộn lên đầu)
+   const dau=ds.scrollTop<=0, cuoi=ds.scrollTop+ds.clientHeight>=ds.scrollHeight-1;
+   if(!((dy>0&&dau)||(dy<0&&cuoi)))return;                // còn cuộn được → để danh sách cuộn
+  }
+  if(e.cancelable)e.preventDefault();
+ },{passive:false});
  henCapNhat();
 }
 if(document.readyState==='complete')setTimeout(caiDat,450);else window.addEventListener('load',()=>setTimeout(caiDat,450));
