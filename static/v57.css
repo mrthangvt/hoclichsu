@@ -1,0 +1,5 @@
+/* Học Lịch Sử V5.7 — Bộ đề ôn Sử dàn hết trang, không khung bao. */
+#vs52ExamView .vs52-exam-shell{border:0!important;border-radius:0!important;background:transparent!important;max-width:none!important;margin:0!important;overflow:visible!important}
+#vs52ExamFrame{height:auto;min-height:0!important;background:transparent!important;width:100%;display:block}
+#vs52ExamView .vs52-exam-head{max-width:none}
+@media(max-width:700px){#vs52ExamView{padding:18px 14px 28px!important}#vs52ExamFrame{min-height:0!important}}

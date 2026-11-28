@@ -1,0 +1,219 @@
+{
+ "_ghi_chu": "Mọi sự kiện đang ở trạng thái NEEDS_HISTORICAL_REVIEW. Trạng thái mặc định của cứ điểm trước sự kiện đầu tiên: neutral.",
+ "events": [
+  {
+   "id": "EV_CASTOR",
+   "dateStart": "1953-11-20",
+   "dateEnd": null,
+   "precision": "DATE",
+   "placeIds": [
+    "AIRFIELD",
+    "HQ_DE_CASTRIES"
+   ],
+   "type": "airborne",
+   "newState": "french",
+   "narrative": "Chiến dịch Castor: quân Pháp đổ quân đường không xuống Điện Biên Phủ.",
+   "sourceIds": [
+    "kb_v1"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_XAY_DUNG",
+   "dateStart": "1953-12-15",
+   "dateEnd": null,
+   "precision": "APPROXIMATE",
+   "placeIds": [
+    "HIM_LAM",
+    "DOC_LAP",
+    "BAN_KEO",
+    "E1",
+    "E2",
+    "D1",
+    "C1",
+    "C2",
+    "F",
+    "A1",
+    "HQ_DE_CASTRIES",
+    "HUGUETTE",
+    "CLAUDINE",
+    "SOUTH"
+   ],
+   "type": "fortify",
+   "newState": "french",
+   "narrative": "Giai đoạn xây dựng hệ thống phòng ngự (mốc minh họa, cần chốt theo nguồn).",
+   "sourceIds": [
+    "kb_v1"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_C05_HIM_LAM_MO_MAN",
+   "dateStart": "1954-03-13T17:05",
+   "dateEnd": null,
+   "precision": "HOUR",
+   "placeIds": [
+    "HIM_LAM"
+   ],
+   "type": "attack",
+   "newState": "contested",
+   "narrative": "17 giờ 05: pháo binh mở màn, tiến công cụm cứ điểm Him Lam.",
+   "sourceIds": [
+    "kb_dans",
+    "kb_v1"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_C05_HIM_LAM",
+   "dateStart": "1954-03-13T23:59",
+   "dateEnd": null,
+   "precision": "DATE",
+   "placeIds": [
+    "HIM_LAM"
+   ],
+   "type": "captured",
+   "newState": "viet_minh",
+   "narrative": "Cụm cứ điểm Him Lam bị tiêu diệt (ngày 13/3/1954).",
+   "sourceIds": [
+    "kb_dans",
+    "kb_v1"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_C05_DOC_LAP",
+   "dateStart": "1954-03-15T23:59",
+   "dateEnd": null,
+   "precision": "DATE",
+   "placeIds": [
+    "DOC_LAP"
+   ],
+   "type": "attack",
+   "newState": "viet_minh",
+   "narrative": "Cứ điểm Độc Lập bị tiêu diệt.",
+   "sourceIds": [
+    "kb_dans"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_C05_BAN_KEO",
+   "dateStart": "1954-03-17T23:59",
+   "dateEnd": null,
+   "precision": "DATE",
+   "placeIds": [
+    "BAN_KEO"
+   ],
+   "type": "surrender",
+   "newState": "viet_minh",
+   "narrative": "Bức hàng cứ điểm Bản Kéo.",
+   "sourceIds": [
+    "kb_dans"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_C06_DOI_DONG",
+   "dateStart": "1954-03-30",
+   "dateEnd": null,
+   "precision": "DATE",
+   "placeIds": [
+    "E1",
+    "E2",
+    "D1",
+    "C1",
+    "C2",
+    "F",
+    "A1"
+   ],
+   "type": "attack",
+   "newState": "contested",
+   "narrative": "Đợt tiến công thứ hai vào các cao điểm phía Đông; nhiều vị trí giằng co (chi tiết đổi chủ từng đồi cần bổ sung theo nguồn).",
+   "sourceIds": [
+    "kb_dans",
+    "kb_v1"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_C07_SAN_BAY",
+   "dateStart": "1954-04-15",
+   "dateEnd": null,
+   "precision": "APPROXIMATE",
+   "placeIds": [
+    "AIRFIELD"
+   ],
+   "type": "pressure",
+   "newState": "contested",
+   "narrative": "Đường hào tiến sát, sân bay bị khống chế (mốc minh họa, không phải ngày đóng sân bay).",
+   "sourceIds": [
+    "kb_dans",
+    "kb_v1"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_C08_A1",
+   "dateStart": "1954-05-07T04:00",
+   "dateEnd": null,
+   "precision": "APPROXIMATE",
+   "placeIds": [
+    "A1"
+   ],
+   "type": "attack",
+   "newState": "viet_minh",
+   "narrative": "Đêm 6/5 khối bộc phá gần 1.000 kg nổ trong lòng đồi A1; quân ta làm chủ cao điểm.",
+   "sourceIds": [
+    "kb_dans",
+    "kb_v1"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_C09_TRUNG_TAM",
+   "dateStart": "1954-05-07T17:30",
+   "dateEnd": null,
+   "precision": "HOUR",
+   "placeIds": [
+    "HIM_LAM",
+    "DOC_LAP",
+    "BAN_KEO",
+    "E1",
+    "E2",
+    "D1",
+    "C1",
+    "C2",
+    "F",
+    "HQ_DE_CASTRIES",
+    "HUGUETTE",
+    "CLAUDINE",
+    "SOUTH"
+   ],
+   "type": "surrender",
+   "newState": "viet_minh",
+   "narrative": "Chiều 7/5/1954: Sở chỉ huy bị đánh chiếm, cờ \"Quyết chiến Quyết thắng\" tung bay trên nóc hầm; tập đoàn cứ điểm đầu hàng.",
+   "sourceIds": [
+    "kb_dans",
+    "kb_v1"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  },
+  {
+   "id": "EV_C09_AIRFIELD",
+   "dateStart": "1954-05-07T17:30",
+   "dateEnd": null,
+   "precision": "HOUR",
+   "placeIds": [
+    "AIRFIELD"
+   ],
+   "type": "surrender",
+   "newState": "viet_minh",
+   "narrative": "Toàn bộ khu trung tâm thất thủ.",
+   "sourceIds": [
+    "kb_dans"
+   ],
+   "reviewStatus": "NEEDS_HISTORICAL_REVIEW"
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Thành cổ Quảng Trị 1972</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap">
+<link rel="stylesheet" href="/static/fonts/be-vietnam-pro.css" onerror="this.remove()">
+<link rel="stylesheet" href="css/style.css">
+<!--ASSETS-->
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>
+</head><body>
+<canvas id="c" tabindex="0" aria-label="Không gian 3D Thành cổ Quảng Trị 1972"></canvas>
+<div id="labels"></div>
+<div id="cross" hidden></div>
+<div id="joy" hidden><span></span></div>
+
+<div id="load"><div class="box"><div class="title"><div class="eyebrow">Không gian lịch sử</div><h1>Thành cổ Quảng Trị 1972</h1></div>
+<div class="track"><div class="fill" id="fill"></div></div><small id="loadtxt">Đang tải mô hình…</small>
+<button id="go" hidden>▶ Xem sa bàn</button><small id="gohint" hidden>Có lời dẫn và nhạc nền · nên bật loa</small></div></div>
+
+<div class="hud top">
+  <div class="card title">
+    <div class="eyebrow">Không gian lịch sử · Học Lịch Sử</div>
+    <h1>Thành cổ Quảng Trị 1972</h1>
+    <p>Theo dòng lịch sử · tái dựng có dẫn chuyện</p>
+    <span class="tag">TÁI DỰNG MÔ PHỎNG</span>
+    <a id="back" class="tag" href="../../" hidden style="margin-left:6px;border-color:var(--edge);color:var(--fg);background:rgba(255,255,255,.06);text-decoration:none">← Về Học Lịch Sử</a>
+  </div>
+  <div class="tools">
+    <button class="chip" id="walk" aria-pressed="false">🚶 Đi bộ</button>
+    <button class="chip on" id="lbtn" aria-pressed="true">Chú thích</button>
+    <button class="chip" id="snd" aria-pressed="false">🔇 Âm thanh</button>
+    <button class="chip" id="pause" aria-pressed="false">⏸</button>
+  </div>
+</div>
+
+<div class="card" id="info" hidden><button class="x" id="infox" aria-label="Đóng">×</button><div id="infobody"></div></div>
+
+<div class="hud bottom">
+  <div class="views" id="views" hidden>
+    <button data-v="all" class="on">Toàn cảnh</button>
+    <button data-v="gate">Cổng Tiền</button>
+    <button data-v="inside">Trong thành</button>
+    <button data-v="river">Sông Thạch Hãn</button>
+    <button data-v="boat">Thuyền</button>
+    <button data-v="front">Chiến tuyến</button>
+    <button data-v="vatk">Phía tiến công</button>
+    <button data-v="bastion">Pháo đài góc</button>
+    <button data-v="towers">Tháp sắt</button>
+  </div>
+  <div class="help" id="help">Kéo để xoay · cuộn/chụm để phóng to · chạm chú thích để đọc tư liệu</div>
+</div>
+<script type="module" src="js/app.js"></script>
+</body></html>

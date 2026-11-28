@@ -1,0 +1,10 @@
+/* V4.5 avatar unified: same image in lists and popup, unchanged art inside timeline. */
+#charactersHistory .v25-char-avatar.v45-avatar,#modalbody .v45-avatar{position:relative;display:grid;place-items:center;flex:0 0 auto;width:64px;height:64px;border-radius:12px!important;border:1px solid #b79d70!important;overflow:hidden;background:linear-gradient(145deg,#40514e,#172e34)!important;color:#f3ddbb;box-shadow:0 3px 8px #0002}
+#charactersHistory .v45-avatar img,#modalbody .v45-avatar img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;display:block!important;border-radius:0!important}
+#charactersHistory .v45-avatar .v45-initial{font-size:25px;font-weight:700}
+#charactersHistory .v25-char-card{gap:13px;min-height:108px}
+#charactersHistory .v25-char-info{min-width:0}
+#modalbody img.v45-profile-image{width:156px!important;height:156px!important;max-width:100%!important;object-fit:contain!important;object-position:center center!important;background:linear-gradient(145deg,#40514e,#172e34)!important;border:1px solid #b79d70;border-radius:14px!important;padding:0!important}
+#modalbody .avatar:has(>img.v45-profile-image){width:156px!important;height:156px!important;flex:none!important;border-radius:14px!important;overflow:hidden}
+body.theme-light #charactersHistory .v45-avatar,body.theme-light #modalbody img.v45-profile-image{background:linear-gradient(145deg,#e7d7bd,#d7bf95)!important;border-color:#a8885b!important}
+@media(max-width:600px){#charactersHistory .v25-char-avatar.v45-avatar{width:54px;height:54px}#charactersHistory .v25-char-card{gap:9px;padding:12px 9px}#modalbody img.v45-profile-image{width:118px!important;height:118px!important}#modalbody .avatar:has(>img.v45-profile-image){width:118px!important;height:118px!important}}

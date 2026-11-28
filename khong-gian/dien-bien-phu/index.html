@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Điện Biên Phủ 1954</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<!--ASSETS-->
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>
+</head><body>
+<canvas id="c" tabindex="0" aria-label="Sa bàn 3D chiến dịch Điện Biên Phủ 1954"></canvas>
+<div id="labels"></div>
+<div id="fade"></div>
+<div id="divider" hidden><span>⟷</span></div>
+
+<div id="load"><div class="box"><div class="title"><div class="eyebrow">Không gian lịch sử</div><h1>Điện Biên Phủ 1954</h1></div>
+<div class="track"><div class="fill" id="fill"></div></div><small id="loadtxt">Đang tải sa bàn…</small></div></div>
+
+<div class="hud top">
+  <div class="card title">
+    <div class="eyebrow">Không gian lịch sử · Học Lịch Sử</div>
+    <h1>Điện Biên Phủ 1954</h1>
+    <p id="sdate">Lòng chảo Mường Thanh</p>
+    <span class="tag">TÁI DỰNG MÔ PHỎNG · CHƯA THẨM ĐỊNH SỬ HỌC</span>
+    <a id="back" class="tag" href="../../" hidden style="margin-left:6px;border-color:var(--edge);color:var(--fg);background:rgba(255,255,255,.06);text-decoration:none">← Về Học Lịch Sử</a>
+  </div>
+  <div class="right">
+    <div class="modes" id="modes" role="tablist">
+      <button data-m="film" class="on">🎬 Phim tự động</button><button data-m="explore">🧭 Khám phá</button><button data-m="compare">◧ So sánh</button>
+    </div>
+    <div class="tools">
+      <button class="chip" id="bsnd">🔇 Âm thanh</button>
+      <button class="chip" id="bvo">🗣 Lời bình</button>
+      <button class="chip" id="blayers">☰ Lớp</button>
+      <button class="chip" id="blegend">Chú giải</button>
+      <button class="chip" id="bdocs">📖 Tư liệu</button>
+      <button class="chip" id="bhide" title="Ẩn menu, chỉ xem hình (phím H)">🎞 Ẩn menu</button>
+    </div>
+    <div class="card panel" id="layerp" hidden><div class="eyebrow">Bật / tắt lớp</div><div id="layers"></div></div>
+    <div class="card panel" id="legend" hidden><div class="eyebrow">Trạng thái cứ điểm</div><div class="items"></div>
+      <p class="small muted">Màu trạng thái lấy từ data/events.json. Mọi sự kiện đang ở mức <b>chưa thẩm định</b>. Vị trí cứ điểm theo di tích hiện nay (OSM) hoặc ước lượng minh họa.</p></div>
+  </div>
+</div>
+
+<div class="card" id="info" hidden><button class="x" id="infox" aria-label="Đóng">×</button><div id="infobody"></div></div>
+<div id="sub" hidden></div>
+<div class="card docs" id="docs" hidden><button class="x" id="docsx" aria-label="Đóng">×</button><div id="docsbody"></div></div>
+<div id="endtitle" hidden><div class="eyebrow">Tái dựng mô phỏng</div><h2>ĐIỆN BIÊN PHỦ 1954</h2><p>Chiến thắng 7/5/1954 · Hiệp định Genève 1954</p></div>
+<div class="card picker" id="scenes" hidden><button class="x" id="scx" aria-label="Đóng">×</button><h3>10 cảnh · kịch bản V1</h3><ol id="slist"></ol></div>
+
+<div class="hud bottom">
+  <div class="card bar" id="filmbar">
+    <div class="row">
+      <button class="sb" id="sprev" aria-label="Cảnh trước">⏮</button>
+      <button class="sb play" id="splay" aria-label="Phát">▶</button>
+      <button class="sb" id="snext" aria-label="Cảnh sau">⏭</button>
+      <div class="t"><b id="stitle">Kịch bản V1 · 10 cảnh</b><small id="snote" hidden></small></div>
+      <small id="stime" class="time">0:00</small>
+      <select id="sspeed" aria-label="Tốc độ"><option value=".5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option><option value="2">2×</option></select>
+      <button class="sb" id="bscenes" aria-label="Danh sách cảnh">☰</button>
+    </div>
+    <div class="seekw"><input type="range" id="seek" min="0" max="1000" value="0" aria-label="Tua"><div id="ticks"></div></div>
+    <button id="sret" hidden>↩ Về góc máy của phim</button>
+  </div>
+  <div class="card bar" id="explorebar" hidden>
+    <div class="row"><span class="lbltxt">Mốc lịch sử</span><input type="range" id="dslider" aria-label="Chọn thời điểm"><b id="dlabel"></b></div>
+    <div class="views" id="views"></div>
+    <div class="row walkrow"><select id="role" aria-label="Chọn vai"><option value="bodoi">Vai: Bộ đội</option><option value="dancong">Vai: Dân công xe thồ</option><option value="phaothu">Vai: Pháo thủ kéo pháo</option><option value="linhphap">Vai: Lính Pháp</option><option value="linhdu">Vai: Lính dù Pháp</option></select><select id="pov" aria-label="Góc nhìn"><option value="3">Sau vai</option><option value="1">Qua mắt</option></select><button class="chip" id="bwalk">🚶 Xuống đi bộ</button><div class="views" id="areas"></div></div>
+    <small id="walkhelp" class="muted" hidden>W A S D hoặc phím mũi tên để đi · giữ Shift để chạy · kéo chuột để xoay góc nhìn · chọn khu vực để tới ngay</small>
+  </div>
+  <div class="card bar" id="comparebar" hidden>
+    <div class="row"><span class="lbltxt">Trái</span><select id="cmpA"></select><span class="lbltxt">Phải</span><select id="cmpB"></select><small class="muted">Kéo vạch giữa màn hình để so sánh</small></div>
+  </div>
+</div>
+<button id="bshow" class="chip" hidden title="Hiện lại menu (phím H)">☰ Hiện menu</button>
+<div id="joy" hidden><span></span></div>
+<div id="fps"></div>
+<script type="module" src="js/app.js"></script>
+</body></html>

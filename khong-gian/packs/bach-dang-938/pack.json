@@ -1,0 +1,213 @@
+{
+ "id": "bach-dang-938",
+ "version": "1.3.0",
+ "engine": "2.1.1",
+ "kind": "battle",
+ "title": "Bạch Đằng 938",
+ "subtitle": "Cuối năm 938 · cửa sông Bạch Đằng",
+ "label": "Tái dựng mô phỏng",
+ "period": "ngo",
+ "year": 938,
+ "storyLabel": "14 cảnh · lời dẫn thu âm",
+ "script": "rieng.js",
+ "coords": {
+  "system": "blender",
+  "note": "Sa bàn tròn: tâm 20.9650986 B, 106.7640089 Đ, bán kính 4 180 m (terrain/meta.json)"
+ },
+ "ui": {
+  "layers": [
+   [
+    "ten",
+    "Tên Ngô Quyền, các tướng ta và tướng giặc",
+    true
+   ],
+   [
+    "nha",
+    "Nhà lá, xóm ven sông",
+    true
+   ],
+   [
+    "cay",
+    "Rừng ngập mặn, cây, tre",
+    true
+   ],
+   [
+    "coc",
+    "Bãi cọc (vị trí giả định)",
+    true
+   ],
+   [
+    "nv",
+    "Thuyền chiến, quân lính, dân binh",
+    true
+   ],
+   [
+    "co",
+    "Cờ hiệu quân Ngô",
+    true
+   ],
+   [
+    "pt",
+    "Phân tích bãi cọc (nước trong, cọc sáng)",
+    false
+   ],
+   [
+    "mc",
+    "Mặt cắt bãi cọc",
+    false
+   ],
+   [
+    "gauge",
+    "Thước mực nước",
+    true
+   ],
+   [
+    "nhac",
+    "Nhạc nền",
+    true
+   ]
+  ],
+  "legend": [
+   [
+    "g",
+    "Mũi vàng: hướng hành quân, xuất kích của quân Ngô Quyền",
+    "width:22px;height:8px;border-radius:3px"
+   ],
+   [
+    "r",
+    "Mũi đỏ: đường tiến của thủy quân Nam Hán"
+   ],
+   [
+    "g",
+    "Mốc vàng: cửa sông, lạch, bãi cọc (bấm để đọc)"
+   ],
+   [
+    "p",
+    "Mốc đỏ: ghi chú review của nhóm"
+   ],
+   [
+    "w",
+    "Mặt nước: lên xuống theo thủy triều (+2,2 m đến −2,6 m)"
+   ]
+  ],
+  "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ; vị trí bãi cọc, sở chỉ huy, nơi phục binh là giả định. Sông nước theo OpenStreetMap hiện nay (© OpenStreetMap contributors, ODbL), cao độ AWS Terrarium; đồng bằng đã làm mượt. Ngoài vòng tròn bán kính 4,18 km là nền phẳng.",
+  "extraHtml": "<div class=\"c02\" id=\"c02\" hidden>\n  <div class=\"pp\" id=\"ppK\"><img src=\"{BASE}props/kieu-cong-tien.jpg\" alt=\"Kiều Công Tiễn\"><b>Kiều Công Tiễn</b></div>\n  <svg class=\"sw\" id=\"c02sw\" viewBox=\"0 0 120 40\" aria-hidden=\"true\"><g transform=\"translate(6 20)\"><rect x=\"0\" y=\"-3\" width=\"22\" height=\"6\" rx=\"2\" fill=\"#5a3a20\"/><rect x=\"20\" y=\"-9\" width=\"5\" height=\"18\" rx=\"1.5\" fill=\"#c9a24a\"/><path d=\"M25 -4 L100 -2.2 L110 0 L100 2.2 L25 4 Z\" fill=\"#d9dde2\" stroke=\"#7d848c\" stroke-width=\"1\"/></g></svg>\n  <div class=\"pp\" id=\"ppD\"><img src=\"{BASE}props/duong-dinh-nghe.jpg\" alt=\"Dương Đình Nghệ\"><b>Dương Đình Nghệ</b><i class=\"x\" id=\"c02x\"></i></div>\n</div>\n<div class=\"c02m\" id=\"c02m\" hidden><img src=\"{BASE}props/kieu-cong-tien.jpg\" alt=\"\"><span>Thư cầu viện gửi Nam Hán</span></div>",
+  "notePlaceholder": "VD: Dời bãi cọc lên phía thượng lưu 300 m",
+  "walkHelp": "Phím ảo bên trái (hoặc W A S D / mũi tên) để đi · đẩy hết cần hoặc giữ Shift để chạy · ra tới chỗ nước sâu thì tự lên thuyền chèo · kéo màn hình để xoay góc nhìn · bấm địa điểm để tới ngay",
+  "tide": {
+   "label": "Mực nước",
+   "min": -2.6,
+   "max": 2.2,
+   "step": 0.05,
+   "value": 2.2,
+   "button": "Triều theo cảnh"
+  }
+ },
+ "views": [
+  [
+   "all",
+   "Toàn cảnh"
+  ],
+  [
+   "cuasong",
+   "Cửa sông Bạch Đằng"
+  ],
+  [
+   "baicoc",
+   "Bãi cọc"
+  ],
+  [
+   "botay",
+   "Bờ Tây · phục binh"
+  ],
+  [
+   "lachgia",
+   "Lạch sông Giá"
+  ],
+  [
+   "lachchanh",
+   "Lạch sông Chanh"
+  ],
+  [
+   "ngaba",
+   "Ngã ba Đá Bạc"
+  ],
+  [
+   "uong",
+   "Cửa sông Uông"
+  ],
+  [
+   "chihuy",
+   "Sở chỉ huy Ngô Quyền"
+  ]
+ ],
+ "roles": [
+  [
+   "dan-binh",
+   "Vai: Dân binh quân Ngô"
+  ],
+  [
+   "linh-nam-han",
+   "Vai: Lính Nam Hán"
+  ]
+ ],
+ "sides": [
+  {
+   "id": "ngo",
+   "name": "Quân Ngô Quyền",
+   "flag": "props/co-trieu-ngo.png"
+  },
+  {
+   "id": "namhan",
+   "name": "Quân Nam Hán"
+  }
+ ],
+ "units": {
+  "dan-binh": {
+   "file": "units/dan-binh.nvz",
+   "image": "units/dan-binh.jpg",
+   "side": 0
+  },
+  "linh-nam-han": {
+   "file": "units/linh-nam-han.nvz",
+   "image": "units/linh-nam-han.jpg",
+   "side": 1
+  },
+  "ngo-quyen": {
+   "file": "units/ngo-quyen.nvz",
+   "image": "units/ngo-quyen.jpg",
+   "side": 0
+  },
+  "luu-hoang-thao": {
+   "file": "units/luu-hoang-thao.nvz",
+   "image": "units/luu-hoang-thao.jpg",
+   "side": 1
+  },
+  "thuyen-nam-han": {
+   "type": "mesh",
+   "file": "units/thuyen-nam-han.mesh.json",
+   "side": 1
+  },
+  "thuyen-ts": {
+   "type": "mesh",
+   "file": "units/thuyen-ts.mesh.json",
+   "side": 0
+  }
+ },
+ "terrain": {
+  "data": "terrain/meta.json",
+  "height": "terrain/height.png",
+  "image": "terrain/color.jpg"
+ },
+ "placement": "placement.json",
+ "story": "story.json",
+ "audio": {
+  "dir": "audio/",
+  "music": "audio/nhac/",
+  "credits": "Nhạc nền (Epidemic Sound): I Will Be Your Knight, Arbitrary Enemy, It Has Awoken, Tough Return, The Thick of It, Run!, Final Battle, Hero Epilogue."
+ },
+ "budget": {
+  "firstLoadMB": 15
+ },
+ "sources": "sources.json"
+}

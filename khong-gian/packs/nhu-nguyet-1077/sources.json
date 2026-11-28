@@ -1,0 +1,28 @@
+{
+ "pack": "nhu-nguyet-1077",
+ "reconstruction": "Tái dựng mô phỏng; hình dạng lũy, vị trí doanh trại, cầu phao, sở chỉ huy, nơi phục binh là giả định. Chuyển nguyên từ bản artifact Như Nguyệt 1077 V1.6, không đổi nội dung.",
+ "sources": [
+  {
+   "title": "OpenStreetMap: sông Cầu, sông Cà Lồ, làng (Overpass)",
+   "type": "OSM",
+   "license": "© OpenStreetMap contributors (ODbL)",
+   "used_for": "sông, làng"
+  },
+  {
+   "title": "AWS Terrain Tiles (Terrarium)",
+   "type": "DEM",
+   "url": "https://registry.opendata.aws/terrain-tiles/",
+   "used_for": "độ cao (phóng đại 1,35 lần)"
+  },
+  {
+   "title": "Nhân vật quân Lý, Lý Thường Kiệt, lính Tống, Quách Quỳ, ngựa, dân binh, lính Nam Hán — kho chung của dự án (Tripo, Mixamo, Blender)",
+   "type": "mô hình 3D",
+   "used_for": "nhân vật"
+  },
+  {
+   "title": "Nam quốc sơn hà (tương truyền) — văn bản cổ, bản dịch nghĩa trong sa bàn",
+   "type": "văn bản",
+   "used_for": "cảnh bài thơ"
+  }
+ ]
+}

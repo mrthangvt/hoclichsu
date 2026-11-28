@@ -1,0 +1,30 @@
+/* Học Lịch Sử V5.9 — sự kiện mới trên Dòng thời gian, nhân vật mới, dòng thời gian Hồ Chí Minh */
+.vs59-doc{display:flex;flex-direction:column;gap:12px;line-height:1.75}
+.vs59-doc p{margin:0;font-size:15px}
+.vs59-doc .vs59-nam{font-size:12px;letter-spacing:.12em;color:#dcb875;font-weight:600}
+.vs59-doc section{border:1px solid #506264;border-radius:12px;padding:12px 16px}
+.vs59-doc h3{margin:0 0 8px;font-size:15px;color:#dcb875}
+.vs59-nut{display:flex;flex-wrap:wrap;gap:8px}
+.vs59-nut .secondary{min-height:40px;cursor:pointer}
+.vs59-nguon{font-size:12.5px!important;opacity:.8}
+body.theme-light .vs59-doc .vs59-nam,body.theme-light .vs59-doc h3{color:#7a4f22}
+body.theme-light .vs59-doc section{border-color:#d6c4a6}
+/* Thẻ mốc Hồ Chí Minh: gọn để xếp 3 hàng */
+.hcm-board .hcm-event.vs59-the,.hcm-board.v18 .hcm-event.vs59-the{box-sizing:border-box!important;width:172px!important;min-height:0!important;height:72px!important;overflow:hidden;padding:7px 10px!important}
+.hcm-board.v18 .hcm-event.vs59-the b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
+.hcm-board.v18 .hcm-event.vs59-the span{display:none}
+/* V5.9.1: bài viết theo chặng Hồ Chí Minh */
+.vs59-bai p{line-height:1.75;margin:8px 0}
+.vs59-bai .vs59-moc{margin-top:12px;border-top:1px solid #506264;padding-top:10px}
+.vs59-bai .vs59-moc b{display:block;margin-bottom:8px;color:#dcb875;font-size:14px}
+.vs59-bai .vs59-nut .secondary{min-height:36px;font-size:13px;text-align:left}
+.vs59-bai .vs59-dang{border-color:#dcb875!important;color:#f1d7a0}
+body.theme-light .vs59-bai .vs59-moc{border-color:#d6c4a6}
+body.theme-light .vs59-bai .vs59-moc b{color:#7a4f22}
+
+/* 26/11/2026: đảo Phú Quốc trên bản đồ Không gian lịch sử; danh sách Địa điểm khám phá cuộn được */
+.vs52-phu-quoc path{fill:#1f5a63;stroke:#e7c784;stroke-width:1.6;stroke-linejoin:round}
+.vs52-phu-quoc text{text-anchor:end;font-size:12px}
+body.theme-light .vs52-phu-quoc path{fill:#cfe0d6;stroke:#9c7a4c}
+@media (min-width:901px){.v23-map-list{display:flex;flex-direction:column;min-height:0}
+ .v23-map-list #v23SpaceCards{flex:1 1 0;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:#d1a96e55 transparent;align-content:start}}

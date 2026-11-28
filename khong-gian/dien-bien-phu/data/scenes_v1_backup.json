@@ -1,0 +1,1885 @@
+{
+ "_ghi_chu": "Kịch bản V1.0 – 10 cảnh. shot: target (Blender X,Y) hoặc tên nhóm động; az = hướng đặt máy (0 Bắc, 90 Đông); el = góc chúc; dist = khoảng cách; high = góc cao luôn nằm trên đỉnh núi cao nhất. hist = khoảng thời gian lịch sử ánh xạ tuyến tính vào thời lượng cảnh (seek idempotent).",
+ "scenes": [
+  {
+   "id": "C01",
+   "title": "Lòng chảo trước chiến dịch",
+   "date_label": "TRƯỚC 20/11/1953",
+   "hist": [
+    "1953-11-01",
+    "1953-11-19"
+   ],
+   "durationSec": 50,
+   "layers": {
+    "fortifications": 0,
+    "vn": 0,
+    "trenches_vn": 0,
+    "villages": 1,
+    "routes": 0,
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 0
+   },
+   "shots": [
+    {
+     "id": "mo_dau_cao",
+     "dur": 8,
+     "target": [
+      -600,
+      -650
+     ],
+     "tz": 0,
+     "az": 200,
+     "el": 58,
+     "dist": 15000,
+     "daz": 12,
+     "high": true,
+     "blend": 0,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "nui_cao_phia_dong",
+     "dur": 6,
+     "target": [
+      2600,
+      -900
+     ],
+     "tz": 4,
+     "az": 250,
+     "el": 22,
+     "dist": 2600,
+     "daz": 15,
+     "high": true,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "ban_tem",
+     "dur": 6,
+     "target": [
+      -150,
+      -2522
+     ],
+     "tz": 4,
+     "az": 140,
+     "el": 16,
+     "dist": 260,
+     "daz": 25,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "song_nam_rom",
+     "dur": 8,
+     "target": [
+      -560,
+      -1600
+     ],
+     "tz": 4,
+     "az": 60,
+     "el": 14,
+     "dist": 420,
+     "daz": 30,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "ban_me",
+     "dur": 6,
+     "target": [
+      -2200,
+      -2467
+     ],
+     "tz": 4,
+     "az": 200,
+     "el": 15,
+     "dist": 240,
+     "daz": 20,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "ban_hong_lai",
+     "dur": 6,
+     "target": [
+      1594,
+      -817
+     ],
+     "tz": 4,
+     "az": 300,
+     "el": 18,
+     "dist": 260,
+     "daz": 20,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "muong_thanh_plain",
+     "dur": 10,
+     "target": [
+      -700,
+      -400
+     ],
+     "tz": 0,
+     "az": 190,
+     "el": 30,
+     "dist": 3200,
+     "daz": 10,
+     "high": false,
+     "blend": 3,
+     "cut": false,
+     "fov": 40
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "sang",
+     "rain": 0,
+     "wind": 0.5,
+     "fog": 1.6,
+     "may": 0.3,
+     "birds": 1
+    },
+    {
+     "t": 60,
+     "tod": "ngay",
+     "fog": 1.0
+    }
+   ],
+   "lines": [
+    {
+     "t": 2,
+     "text": "Giữa núi rừng Tây Bắc, thung lũng Điện Biên chuẩn bị trở thành tâm điểm của một cuộc quyết chiến lịch sử."
+    },
+    {
+     "t": 17,
+     "text": "Lòng chảo Mường Thanh trải dài giữa những dãy núi, sông Nậm Rốm chảy qua cánh đồng và các bản nhà sàn của đồng bào."
+    },
+    {
+     "t": 34,
+     "text": "Trên sa bàn, đây là mặt bằng trước chiến dịch: các công trình phòng ngự chưa xuất hiện."
+    }
+   ],
+   "actions": [],
+   "histKeys": [
+    [
+     0,
+     "1953-11-01"
+    ],
+    [
+     90,
+     "1953-11-19"
+    ]
+   ],
+   "seeing": "Lòng chảo Mường Thanh trước chiến dịch: sông Nậm Rốm, ruộng, bản nhà sàn. Công sự chưa xuất hiện."
+  },
+  {
+   "id": "C02",
+   "title": "Cuộc đổ quân & xây dựng tập đoàn cứ điểm",
+   "date_label": "TỪ 20/11/1953 · CHIẾN DỊCH CASTOR",
+   "hist": [
+    "1953-11-20",
+    "1954-03-12"
+   ],
+   "durationSec": 70,
+   "layers": {
+    "fortifications": "reveal",
+    "vn": 0,
+    "trenches_vn": 0,
+    "villages": 1,
+    "routes": 0,
+    "aircraft": 1,
+    "control": 0,
+    "attacks": 0
+   },
+   "shots": [
+    {
+     "id": "castor_wide",
+     "dur": 24,
+     "target": "may_bay",
+     "tz": 0,
+     "az": 120,
+     "el": 16,
+     "dist": 750,
+     "daz": -30,
+     "high": false,
+     "blend": 0,
+     "cut": false,
+     "fov": 42
+    },
+    {
+     "id": "san_bay_may_bay",
+     "dur": 9,
+     "target": [
+      -1450,
+      -250
+     ],
+     "tz": 4,
+     "az": 140,
+     "el": 20,
+     "dist": 520,
+     "daz": 20,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "xe_tang_m24",
+     "dur": 7,
+     "target": [
+      -650,
+      -765
+     ],
+     "tz": 4,
+     "az": 210,
+     "el": 18,
+     "dist": 120,
+     "daz": 25,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "phao_155",
+     "dur": 6,
+     "target": [
+      -880,
+      -850
+     ],
+     "tz": 4,
+     "az": 160,
+     "el": 20,
+     "dist": 110,
+     "daz": 20,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "cu_diem_him_lam",
+     "dur": 8,
+     "target": [
+      720,
+      1480
+     ],
+     "tz": 4,
+     "az": 200,
+     "el": 28,
+     "dist": 380,
+     "daz": 20,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "trung_tam_muong_thanh",
+     "dur": 8,
+     "target": [
+      -720,
+      -703
+     ],
+     "tz": 4,
+     "az": 230,
+     "el": 32,
+     "dist": 450,
+     "daz": 15,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "three_sectors_overview",
+     "dur": 8,
+     "target": [
+      -900,
+      -1300
+     ],
+     "tz": 0,
+     "az": 185,
+     "el": 52,
+     "dist": 10500,
+     "daz": 8,
+     "high": true,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "ngay",
+     "rain": 0,
+     "wind": 0.6,
+     "fog": 1.0,
+     "may": 0.35
+    }
+   ],
+   "lines": [
+    {
+     "t": 2,
+     "text": "Từ cuộc đổ quân đường không, quân Pháp củng cố Điện Biên Phủ thành một hệ thống phòng ngự gồm nhiều cứ điểm liên hoàn."
+    },
+    {
+     "t": 26,
+     "text": "Sân bay, công sự, lô cốt, chiến hào và hàng rào dây thép gai lần lượt được dựng lên giữa lòng chảo."
+    },
+    {
+     "t": 52,
+     "text": "Tập đoàn cứ điểm chia thành ba phân khu: Bắc, Trung tâm và Nam."
+    }
+   ],
+   "actions": [
+    {
+     "do": "castor",
+     "t0": 0,
+     "t1": 24
+    },
+    {
+     "do": "reveal",
+     "t0": 22,
+     "t1": 34
+    },
+    {
+     "do": "sectors",
+     "t0": 60,
+     "t1": 70
+    }
+   ],
+   "note": "Lính dù chỉ mô phỏng tượng trưng, không phản ánh quân số thực.",
+   "histKeys": [
+    [
+     0,
+     "1953-11-20"
+    ],
+    [
+     90,
+     "1954-03-12"
+    ]
+   ],
+   "seeing": "Máy bay thả dù xuống thung lũng (tượng trưng, không phải quân số thực); công sự Pháp dựng dần từ khu trung tâm ra; ba phân khu."
+  },
+  {
+   "id": "C03",
+   "title": "Quyết định chuyển phương châm tác chiến",
+   "date_label": "ĐẦU NĂM 1954",
+   "hist": [
+    "1954-01-20",
+    "1954-01-31"
+   ],
+   "durationSec": 50,
+   "hq": true,
+   "layers": {
+    "fortifications": 1,
+    "vn": 0,
+    "trenches_vn": 0,
+    "villages": 1,
+    "routes": 0,
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 0
+   },
+   "shots": [
+    {
+     "id": "hq_exterior",
+     "dur": 15,
+     "target": [
+      30000,
+      0
+     ],
+     "tz": 1.2,
+     "az": 200,
+     "el": 10,
+     "dist": 22,
+     "daz": 25,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 45
+    },
+    {
+     "id": "hq_map_table",
+     "dur": 19,
+     "target": [
+      30000,
+      -0.4
+     ],
+     "tz": 0.9,
+     "az": 175,
+     "el": 30,
+     "dist": 2.5,
+     "daz": -15,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 45
+    },
+    {
+     "id": "map_closeup",
+     "dur": 16,
+     "target": [
+      30000,
+      -0.4
+     ],
+     "tz": 0.9,
+     "az": 180,
+     "el": 72,
+     "dist": 1.5,
+     "daz": 10,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 45
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "dem",
+     "rain": 0.35,
+     "wind": 0.4,
+     "fog": 1.0,
+     "may": 0.8
+    }
+   ],
+   "lines": [
+    {
+     "t": 1.5,
+     "text": "Tại Sở Chỉ huy chiến dịch giữa rừng, Đại tướng Võ Nguyên Giáp và các cán bộ tham mưu cân nhắc thế trận."
+    },
+    {
+     "t": 18.0,
+     "text": "Phương châm tác chiến được thay đổi: chuẩn bị kỹ hơn, bao vây và tiến công từng bước để bảo đảm thắng lợi."
+    },
+    {
+     "t": 35.0,
+     "text": "Từ \"đánh nhanh, giải quyết nhanh\" chuyển sang \"đánh chắc, tiến chắc\"."
+    }
+   ],
+   "actions": [
+    {
+     "do": "maptext",
+     "t0": 27.5
+    }
+   ],
+   "note": "Phục trang nhân vật chưa được chốt theo tư liệu; mốc ngày cụ thể đưa vào sau kiểm chứng.",
+   "histKeys": [
+    [
+     0,
+     "1954-01-20"
+    ],
+    [
+     100,
+     "1954-01-31"
+    ]
+   ],
+   "seeing": "Lán Sở Chỉ huy giữa rừng, sa bàn thu nhỏ của lòng chảo. Phục trang nhân vật chưa được thẩm định."
+  },
+  {
+   "id": "C04",
+   "title": "Trận địa pháo & vòng vây",
+   "date_label": "GIAI ĐOẠN CHUẨN BỊ TIẾN CÔNG",
+   "hist": [
+    "1954-02-01",
+    "1954-03-12"
+   ],
+   "durationSec": 60,
+   "layers": {
+    "fortifications": 1,
+    "vn": 1,
+    "trenches_vn": "grow",
+    "villages": 1,
+    "routes": "draw",
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 0
+   },
+   "shots": [
+    {
+     "id": "ridge_wide",
+     "dur": 12,
+     "target": [
+      3500,
+      3600
+     ],
+     "tz": 0,
+     "az": 60,
+     "el": 24,
+     "dist": 2600,
+     "daz": -18,
+     "high": true,
+     "blend": 0,
+     "cut": true,
+     "fov": 40
+    },
+    {
+     "id": "xe_tho_follow",
+     "dur": 12,
+     "target": "xe_tho",
+     "tz": 0,
+     "az": 120,
+     "el": 12,
+     "dist": 16,
+     "daz": 40,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 45
+    },
+    {
+     "id": "xe_tho_side",
+     "dur": 9,
+     "target": "xe_tho",
+     "tz": 0,
+     "az": 260,
+     "el": 6,
+     "dist": 9,
+     "daz": 25,
+     "high": false,
+     "blend": 3,
+     "cut": false,
+     "fov": 45
+    },
+    {
+     "id": "keo_phao",
+     "dur": 12,
+     "target": "keo_phao",
+     "tz": 1.5,
+     "az": 90,
+     "el": 22,
+     "dist": 30,
+     "daz": 30,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 45
+    },
+    {
+     "id": "phao_thu_nghi",
+     "dur": 8,
+     "target": "phao_nghi",
+     "tz": 0,
+     "az": 200,
+     "el": 14,
+     "dist": 11,
+     "daz": 30,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 45
+    },
+    {
+     "id": "encirclement_overhead",
+     "dur": 7,
+     "target": [
+      -700,
+      -300
+     ],
+     "tz": 0,
+     "az": 200,
+     "el": 68,
+     "dist": 7800,
+     "daz": 8,
+     "high": true,
+     "blend": 0,
+     "cut": true,
+     "fov": 40
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "chieu",
+     "rain": 0.15,
+     "wind": 0.6,
+     "fog": 1.3,
+     "may": 0.35
+    },
+    {
+     "t": 55,
+     "tod": "ngay",
+     "rain": 0
+    }
+   ],
+   "lines": [
+    {
+     "t": 1.3,
+     "text": "Hệ thống trận địa, đường vận tải và đường hào dần hình thành, biến việc bao vây thành một thế trận chặt chẽ."
+    },
+    {
+     "t": 12.7,
+     "text": "Đoàn dân công cùng xe đạp thồ vượt núi đưa lương thực, đạn dược ra mặt trận."
+    },
+    {
+     "t": 33.3,
+     "text": "Những khẩu pháo nặng hàng tấn được bộ đội dùng sức người kéo qua đèo dốc."
+    },
+    {
+     "t": 45.3,
+     "text": "Ở trận địa đã ngụy trang, pháo thủ tranh thủ nghỉ ngơi, chờ ngày nổ súng."
+    },
+    {
+     "t": 53.3,
+     "text": "Từ chân núi, các đường hào bắt đầu tiến dần về phía các cứ điểm."
+    }
+   ],
+   "actions": [
+    {
+     "do": "trench",
+     "t0": 52.0,
+     "t1": 60.0,
+     "s0": 0,
+     "s1": 0.3
+    },
+    {
+     "do": "convoy"
+    },
+    {
+     "do": "keophao"
+    },
+    {
+     "do": "phao_nghi"
+    }
+   ],
+   "histKeys": [
+    [
+     0,
+     "1954-02-01"
+    ],
+    [
+     90,
+     "1954-03-12"
+    ]
+   ],
+   "seeing": "Đoàn xe đạp thồ trên đường núi, tổ kéo pháo bằng dây, pháo thủ nghỉ ở trận địa ngụy trang, hào bắt đầu tiến xuống."
+  },
+  {
+   "id": "C05",
+   "title": "Đợt 1: Cửa ngõ phía Bắc",
+   "date_label": "13 – 17/3/1954",
+   "hist": [
+    "1954-03-13T16:00",
+    "1954-03-17T18:00"
+   ],
+   "durationSec": 65,
+   "layers": {
+    "fortifications": 1,
+    "vn": 1,
+    "trenches_vn": 0.3,
+    "villages": 1,
+    "routes": 1,
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 1
+   },
+   "shots": [
+    {
+     "id": "north_overview",
+     "dur": 12,
+     "target": [
+      -400,
+      2200
+     ],
+     "tz": 0,
+     "az": 150,
+     "el": 42,
+     "dist": 6400,
+     "daz": 10,
+     "high": true,
+     "blend": 0,
+     "cut": true,
+     "fov": 40
+    },
+    {
+     "id": "him_lam_close",
+     "dur": 8,
+     "target": [
+      720,
+      1480
+     ],
+     "tz": 0,
+     "az": 135,
+     "el": 22,
+     "dist": 700,
+     "daz": 25,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "xung_phong_him_lam",
+     "dur": 9,
+     "target": "nhom:0",
+     "tz": 0,
+     "az": 200,
+     "el": 11,
+     "dist": 34,
+     "daz": 30,
+     "high": false,
+     "blend": 3,
+     "cut": false,
+     "fov": 45
+    },
+    {
+     "id": "doc_lap_close",
+     "dur": 6,
+     "target": [
+      -1172,
+      3300
+     ],
+     "tz": 0,
+     "az": 25,
+     "el": 24,
+     "dist": 780,
+     "daz": -20,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "xung_phong_doc_lap",
+     "dur": 7,
+     "target": "nhom:1",
+     "tz": 0,
+     "az": 200,
+     "el": 11,
+     "dist": 34,
+     "daz": 30,
+     "high": false,
+     "blend": 3,
+     "cut": false,
+     "fov": 45
+    },
+    {
+     "id": "ban_keo_close",
+     "dur": 12,
+     "target": [
+      -2603,
+      1807
+     ],
+     "tz": 0,
+     "az": 290,
+     "el": 24,
+     "dist": 760,
+     "daz": 20,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "north_overview2",
+     "dur": 11,
+     "target": [
+      -600,
+      2000
+     ],
+     "tz": 0,
+     "az": 170,
+     "el": 48,
+     "dist": 6800,
+     "daz": -10,
+     "high": true,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "chieu",
+     "rain": 0,
+     "wind": 0.5,
+     "fog": 1.2,
+     "may": 0.4
+    },
+    {
+     "t": 32,
+     "tod": "dem",
+     "rain": 0
+    },
+    {
+     "t": 48,
+     "tod": "sang"
+    },
+    {
+     "t": 58,
+     "tod": "dem"
+    },
+    {
+     "t": 80,
+     "tod": "sang",
+     "fog": 1.6
+    }
+   ],
+   "lines": [
+    {
+     "t": 1.1,
+     "text": "Ngày 13 tháng 3, chiến dịch mở màn."
+    },
+    {
+     "t": 6.5,
+     "text": "Pháo binh từ các trận địa trên núi bắn vào cụm cứ điểm Him Lam, cửa ngõ Đông Bắc của tập đoàn cứ điểm."
+    },
+    {
+     "t": 27.1,
+     "text": "Tiếp đó là cứ điểm Độc Lập ở phía Bắc."
+    },
+    {
+     "t": 41.2,
+     "text": "Cứ điểm Bản Kéo ở phía Tây Bắc bị bức hàng."
+    },
+    {
+     "t": 54.2,
+     "text": "Sau những trận đánh liên tiếp, tuyến phòng ngự vòng ngoài phía Bắc bị phá vỡ."
+    }
+   ],
+   "actions": [
+    {
+     "do": "barrage",
+     "t0": 5.4,
+     "t1": 21.7,
+     "target": "HIM_LAM"
+    },
+    {
+     "do": "assault",
+     "t0": 11.9,
+     "t1": 26.0,
+     "target": "HIM_LAM",
+     "from_": [
+      1900,
+      1700
+     ],
+     "n": 80
+    },
+    {
+     "do": "barrage",
+     "t0": 28.2,
+     "t1": 39.0,
+     "target": "DOC_LAP"
+    },
+    {
+     "do": "assault",
+     "t0": 30.3,
+     "t1": 41.2,
+     "target": "DOC_LAP",
+     "from_": [
+      -300,
+      4600
+     ],
+     "n": 60
+    },
+    {
+     "do": "assault",
+     "t0": 42.2,
+     "t1": 52.0,
+     "target": "BAN_KEO",
+     "from_": [
+      -3600,
+      2600
+     ],
+     "walk": true,
+     "n": 40
+    }
+   ],
+   "histKeys": [
+    [
+     0,
+     "1954-03-13T16:00"
+    ],
+    [
+     10,
+     "1954-03-13T17:05"
+    ],
+    [
+     46,
+     "1954-03-14T00:30"
+    ],
+    [
+     76,
+     "1954-03-16T00:30"
+    ],
+    [
+     96,
+     "1954-03-18T00:00"
+    ],
+    [
+     120,
+     "1954-03-18T06:00"
+    ]
+   ],
+   "seeing": "Pháo kích và các mũi tiến công vào Him Lam, Độc Lập, Bản Kéo; màu cứ điểm đổi theo data/events.json."
+  },
+  {
+   "id": "C06",
+   "title": "Đợt 2: Tranh đoạt các cao điểm phía Đông",
+   "date_label": "TỪ 30/3/1954",
+   "hist": [
+    "1954-03-30T18:00",
+    "1954-04-26"
+   ],
+   "durationSec": 65,
+   "layers": {
+    "fortifications": 1,
+    "vn": 1,
+    "trenches_vn": 0.55,
+    "villages": 1,
+    "routes": 1,
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 1
+   },
+   "shots": [
+    {
+     "id": "east_ridge_wide",
+     "dur": 13,
+     "target": [
+      0,
+      -300
+     ],
+     "tz": 0,
+     "az": 95,
+     "el": 36,
+     "dist": 5200,
+     "daz": -12,
+     "high": true,
+     "blend": 0,
+     "cut": true,
+     "fov": 40
+    },
+    {
+     "id": "E1",
+     "dur": 11,
+     "target": [
+      -356,
+      401
+     ],
+     "tz": 0,
+     "az": 60,
+     "el": 22,
+     "dist": 520,
+     "daz": 20,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "D1",
+     "dur": 11,
+     "target": [
+      58,
+      130
+     ],
+     "tz": 0,
+     "az": 80,
+     "el": 24,
+     "dist": 560,
+     "daz": 15,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "C1",
+     "dur": 6,
+     "target": [
+      33,
+      -500
+     ],
+     "tz": 0,
+     "az": 100,
+     "el": 20,
+     "dist": 520,
+     "daz": 18,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "xung_phong_C1",
+     "dur": 8,
+     "target": "nhom:2",
+     "tz": 0,
+     "az": 160,
+     "el": 11,
+     "dist": 34,
+     "daz": 30,
+     "high": false,
+     "blend": 3,
+     "cut": false,
+     "fov": 45
+    },
+    {
+     "id": "A1",
+     "dur": 16,
+     "target": [
+      -26,
+      -939
+     ],
+     "tz": 0,
+     "az": 120,
+     "el": 20,
+     "dist": 600,
+     "daz": 25,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "dem",
+     "rain": 0.6,
+     "wind": 0.7,
+     "fog": 1.6,
+     "may": 0.9,
+     "storm": 1
+    },
+    {
+     "t": 60,
+     "tod": "sang",
+     "rain": 0.85
+    },
+    {
+     "t": 95,
+     "tod": "ngay",
+     "rain": 0.5
+    }
+   ],
+   "lines": [
+    {
+     "t": 1.1,
+     "text": "Trận đánh bước vào các cao điểm án ngữ phía Đông Mường Thanh, nơi chiến sự diễn ra quyết liệt và giằng co."
+    },
+    {
+     "t": 15.2,
+     "text": "Các đồi E1, D1, C1 và A1 trở thành những điểm nóng; nhiều vị trí đổi chủ nhiều lần."
+    },
+    {
+     "t": 37.9,
+     "text": "Mưa rừng, bùn lầy, hầm hào ngập nước: cuộc giành giật từng tấc đất kéo dài nhiều ngày đêm."
+    },
+    {
+     "t": 53.1,
+     "text": "Đồi A1 trở thành cao điểm quyết định, nơi hai bên giằng co lâu nhất."
+    }
+   ],
+   "actions": [
+    {
+     "do": "barrage",
+     "t0": 2.2,
+     "t1": 59.6,
+     "target": "EAST"
+    },
+    {
+     "do": "assault",
+     "t0": 13.0,
+     "t1": 23.8,
+     "target": "E1",
+     "from_": [
+      700,
+      800
+     ],
+     "n": 40
+    },
+    {
+     "do": "assault",
+     "t0": 23.8,
+     "t1": 34.7,
+     "target": "D1",
+     "from_": [
+      900,
+      300
+     ],
+     "n": 40
+    },
+    {
+     "do": "assault",
+     "t0": 34.7,
+     "t1": 48.8,
+     "target": "C1",
+     "from_": [
+      1000,
+      -300
+     ],
+     "n": 60
+    },
+    {
+     "do": "assault",
+     "t0": 48.8,
+     "t1": 63.9,
+     "target": "A1",
+     "from_": [
+      1000,
+      -1200
+     ],
+     "n": 100
+    }
+   ],
+   "note": "Trạng thái \"giằng co\" là gộp; chi tiết từng lần đổi chủ cần nguồn.",
+   "histKeys": [
+    [
+     0,
+     "1954-03-30T18:00"
+    ],
+    [
+     120,
+     "1954-04-26"
+    ]
+   ],
+   "seeing": "Các mũi tiến công lên dãy đồi phía Đông (E1, D1, C1, A1) trong mưa; trạng thái \"giằng co\" là gộp."
+  },
+  {
+   "id": "C06b",
+   "title": "Một đêm trong giao thông hào",
+   "date_label": "THÁNG 4/1954 · GIỮA CÁC ĐỢT TIẾN CÔNG",
+   "hist": [
+    "1954-04-10T21:00",
+    "1954-04-11T04:00"
+   ],
+   "durationSec": 40,
+   "layers": {
+    "fortifications": 1,
+    "vn": 1,
+    "trenches_vn": 0.75,
+    "villages": 1,
+    "routes": 1,
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 0
+   },
+   "shots": [
+    {
+     "id": "hao_toan",
+     "dur": 11,
+     "target": "nghi",
+     "tz": 0,
+     "az": 150,
+     "el": 30,
+     "dist": 26,
+     "daz": 25,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 42
+    },
+    {
+     "id": "hao_doc",
+     "dur": 15,
+     "target": "nghi",
+     "tz": 0,
+     "az": 65,
+     "el": 9,
+     "dist": 7,
+     "daz": 20,
+     "high": false,
+     "blend": 5,
+     "cut": false,
+     "fov": 45
+    },
+    {
+     "id": "hao_gac",
+     "dur": 14,
+     "target": "nghi",
+     "tz": 0,
+     "az": 335,
+     "el": 22,
+     "dist": 10,
+     "daz": -25,
+     "high": false,
+     "blend": 5,
+     "cut": false,
+     "fov": 45
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "dem",
+     "rain": 0.55,
+     "wind": 0.5,
+     "fog": 1.4,
+     "may": 0.85,
+     "storm": 1
+    }
+   ],
+   "lines": [
+    {
+     "t": 1.1,
+     "text": "Giữa những trận đánh, bộ đội sống trong giao thông hào ngày càng áp sát khu trung tâm."
+    },
+    {
+     "t": 12.6,
+     "text": "Mưa rừng, hào ngập bùn. Người lau súng, người nạp đạn, người ăn vội nắm cơm vắt."
+    },
+    {
+     "t": 26.3,
+     "text": "Trạm gác vẫn quan sát về phía cứ điểm địch suốt đêm. “Năm mươi sáu ngày đêm khoét núi, ngủ hầm, mưa dầm, cơm vắt…”"
+    }
+   ],
+   "actions": [
+    {
+     "do": "hao_dem",
+     "x": -2300,
+     "y": -370,
+     "ang": 0.43662715981354133
+    }
+   ],
+   "note": "Cảnh dựng minh họa đời sống trong hào; vị trí đoạn hào là tượng trưng.",
+   "histKeys": [
+    [
+     0,
+     "1954-04-10T21:00"
+    ],
+    [
+     70,
+     "1954-04-11T04:00"
+    ]
+   ],
+   "seeing": "Bộ đội trong một đoạn giao thông hào ban đêm: nghỉ, nạp đạn, quan sát. Đoạn hào dựng minh họa."
+  },
+  {
+   "id": "C07",
+   "title": "Đường hào siết chặt & sân bay bị khống chế",
+   "date_label": "THÁNG 4/1954",
+   "hist": [
+    "1954-04-01",
+    "1954-04-30"
+   ],
+   "durationSec": 45,
+   "layers": {
+    "fortifications": 1,
+    "vn": 1,
+    "trenches_vn": "grow",
+    "villages": 1,
+    "routes": 1,
+    "aircraft": 1,
+    "control": "shrink",
+    "attacks": 0
+   },
+   "shots": [
+    {
+     "id": "trench_topdown",
+     "dur": 17,
+     "target": [
+      -800,
+      -500
+     ],
+     "tz": 0,
+     "az": 180,
+     "el": 80,
+     "dist": 5600,
+     "daz": 20,
+     "high": true,
+     "blend": 0,
+     "cut": true,
+     "fov": 40
+    },
+    {
+     "id": "airfield_tracking",
+     "dur": 14,
+     "target": [
+      -1510,
+      -120
+     ],
+     "tz": 0,
+     "az": 70,
+     "el": 18,
+     "dist": 1300,
+     "daz": -30,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "center_encirclement",
+     "dur": 14,
+     "target": [
+      -700,
+      -700
+     ],
+     "tz": 0,
+     "az": 230,
+     "el": 55,
+     "dist": 4800,
+     "daz": 15,
+     "high": true,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "ngay",
+     "rain": 0.4,
+     "wind": 0.6,
+     "fog": 1.4,
+     "may": 0.85
+    },
+    {
+     "t": 40,
+     "rain": 0.9,
+     "storm": 1
+    },
+    {
+     "t": 70,
+     "rain": 0.3,
+     "storm": 0
+    }
+   ],
+   "lines": [
+    {
+     "t": 1.0,
+     "text": "Các đường hào tiến sát hệ thống phòng ngự, không gian phòng thủ thu hẹp."
+    },
+    {
+     "t": 17.0,
+     "text": "Việc tiếp tế bằng đường không ngày càng khó khăn; dù tiếp tế có khi rơi lệch khỏi khu vực phòng ngự."
+    },
+    {
+     "t": 31.0,
+     "text": "Vòng vây siết chặt quanh khu trung tâm Mường Thanh."
+    }
+   ],
+   "actions": [
+    {
+     "do": "trench",
+     "t0": 0.0,
+     "t1": 30.0,
+     "s0": 0.55,
+     "s1": 1
+    },
+    {
+     "do": "airdrop",
+     "t0": 15.0,
+     "t1": 35.0
+    },
+    {
+     "do": "control",
+     "t0": 0.0,
+     "t1": 45.0,
+     "r0": 3200,
+     "r1": 1100
+    }
+   ],
+   "note": "Không thể hiện một ngày đóng sân bay cụ thể khi chưa kiểm chứng.",
+   "histKeys": [
+    [
+     0,
+     "1954-04-01"
+    ],
+    [
+     90,
+     "1954-04-30"
+    ]
+   ],
+   "seeing": "Hệ thống hào bao vây mọc dần; máy bay tiếp tế thả dù hàng; vùng kiểm soát của quân Pháp thu hẹp (tượng trưng)."
+  },
+  {
+   "id": "C08",
+   "title": "Đồi A1: giai đoạn quyết định",
+   "date_label": "ĐÊM 6/5 – RẠNG SÁNG 7/5/1954",
+   "hist": [
+    "1954-05-06T20:00",
+    "1954-05-07T06:00"
+   ],
+   "durationSec": 75,
+   "layers": {
+    "fortifications": 1,
+    "vn": 1,
+    "trenches_vn": 1,
+    "villages": 1,
+    "routes": 1,
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 1
+   },
+   "shots": [
+    {
+     "id": "A1_wide",
+     "dur": 12,
+     "target": [
+      -26,
+      -939
+     ],
+     "tz": 0,
+     "az": 115,
+     "el": 20,
+     "dist": 950,
+     "daz": 20,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 40
+    },
+    {
+     "id": "dao_ham_A1",
+     "dur": 14,
+     "target": "dao_ham",
+     "tz": 0,
+     "az": 200,
+     "el": 14,
+     "dist": 7.5,
+     "daz": 35,
+     "high": false,
+     "blend": 0,
+     "cut": true,
+     "fov": 50
+    },
+    {
+     "id": "A1_cutaway",
+     "dur": 18,
+     "target": [
+      -26,
+      -939
+     ],
+     "tz": -5,
+     "az": 190,
+     "el": 7,
+     "dist": 260,
+     "daz": 12,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "A1_ho_boc_pha",
+     "dur": 19,
+     "target": [
+      -26,
+      -939
+     ],
+     "tz": 0,
+     "az": 150,
+     "el": 34,
+     "dist": 170,
+     "daz": 40,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "xung_phong_A1",
+     "dur": 12,
+     "target": "nhom:0",
+     "tz": 0,
+     "az": 200,
+     "el": 11,
+     "dist": 34,
+     "daz": 30,
+     "high": false,
+     "blend": 3,
+     "cut": false,
+     "fov": 45
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "dem",
+     "rain": 0.25,
+     "wind": 0.4,
+     "fog": 1.4,
+     "may": 0.8
+    },
+    {
+     "t": 100,
+     "tod": "sang",
+     "rain": 0
+    }
+   ],
+   "lines": [
+    {
+     "t": 1.2,
+     "text": "Sau cuộc chiến kéo dài, đồi A1 bước vào giai đoạn quyết định."
+    },
+    {
+     "t": 21.2,
+     "text": "Mặt cắt minh họa: đường hầm đào vào lòng đồi và khối bộc phá gần một tấn. Hình học đường hầm chưa theo bản vẽ gốc."
+    },
+    {
+     "t": 37.5,
+     "text": "Đêm 6 tháng 5, khối bộc phá phát nổ."
+    },
+    {
+     "t": 46.2,
+     "text": "Sau tiếng nổ, đỉnh đồi A1 để lại một hố lớn, khói lửa bốc cao giữa đêm (hình dạng hố là minh họa)."
+    },
+    {
+     "t": 60.0,
+     "text": "Trận đánh trên đồi A1 góp phần mở đường cho đợt tổng tiến công cuối cùng."
+    }
+   ],
+   "actions": [
+    {
+     "do": "daoham",
+     "t0": 10,
+     "t1": 27
+    },
+    {
+     "do": "cutaway",
+     "t0": 26,
+     "t1": 41.2
+    },
+    {
+     "do": "a1blast",
+     "t": 38.8
+    },
+    {
+     "do": "barrage",
+     "t0": 41.2,
+     "t1": 68.8,
+     "target": "A1"
+    },
+    {
+     "do": "assault",
+     "t0": 42.5,
+     "t1": 72.5,
+     "target": "A1",
+     "from_": [
+      600,
+      -1300
+     ],
+     "n": 100
+    }
+   ],
+   "note": "Mặt cắt và đường hầm là MINH HỌA.",
+   "histKeys": [
+    [
+     0,
+     "1954-05-06T20:00"
+    ],
+    [
+     100,
+     "1954-05-07T04:30"
+    ],
+    [
+     120,
+     "1954-05-07T06:00"
+    ]
+   ],
+   "seeing": "Đồi A1 trước vụ nổ (lính Pháp, công sự), mặt cắt đường hầm minh họa, vụ nổ và hố lớn sau đó."
+  },
+  {
+   "id": "C09",
+   "title": "Chiều 7/5: Trung tâm Mường Thanh thất thủ",
+   "date_label": "CHIỀU 7/5/1954",
+   "hist": [
+    "1954-05-07T14:00",
+    "1954-05-07T18:30"
+   ],
+   "durationSec": 55,
+   "layers": {
+    "fortifications": 1,
+    "vn": 1,
+    "trenches_vn": 1,
+    "villages": 1,
+    "routes": 1,
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 1
+   },
+   "shots": [
+    {
+     "id": "center_wide",
+     "dur": 16,
+     "target": [
+      -600,
+      -650
+     ],
+     "tz": 0,
+     "az": 120,
+     "el": 40,
+     "dist": 3600,
+     "daz": -15,
+     "high": true,
+     "blend": 0,
+     "cut": true,
+     "fov": 40
+    },
+    {
+     "id": "bridge",
+     "dur": 13,
+     "target": "nhom:2",
+     "tz": 0,
+     "az": 110,
+     "el": 12,
+     "dist": 30,
+     "daz": 25,
+     "high": false,
+     "blend": 3,
+     "cut": false,
+     "fov": 45
+    },
+    {
+     "id": "hq_de_castries",
+     "dur": 14,
+     "target": [
+      -720,
+      -703
+     ],
+     "tz": 5,
+     "az": 200,
+     "el": 17,
+     "dist": 30,
+     "daz": 25,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "victory_rise",
+     "dur": 12,
+     "target": [
+      -720,
+      -703
+     ],
+     "tz": 0,
+     "az": 210,
+     "el": 40,
+     "dist": 520,
+     "daz": 20,
+     "high": false,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "chieu",
+     "rain": 0,
+     "wind": 0.4,
+     "fog": 1.1,
+     "may": 0.35
+    }
+   ],
+   "lines": [
+    {
+     "t": 1.1,
+     "text": "Chiều ngày 7 tháng 5 năm 1954, các mũi tiến công từ nhiều hướng tràn vào khu trung tâm Mường Thanh."
+    },
+    {
+     "t": 16.5,
+     "text": "Bộ đội vượt cầu Mường Thanh, tiến về hầm Sở chỉ huy của tướng De Castries."
+    },
+    {
+     "t": 30.8,
+     "text": "Sở chỉ huy quân Pháp tại Điện Biên Phủ bị đánh chiếm. Tập đoàn cứ điểm đi đến thất bại."
+    },
+    {
+     "t": 39.6,
+     "text": "Lá cờ \"Quyết chiến Quyết thắng\" tung bay trên nóc hầm De Castries."
+    }
+   ],
+   "actions": [
+    {
+     "do": "assault",
+     "t0": 2.2,
+     "t1": 16.5,
+     "target": "HQ_DE_CASTRIES",
+     "from_": [
+      300,
+      -400
+     ],
+     "n": 50
+    },
+    {
+     "do": "assault",
+     "t0": 2.2,
+     "t1": 16.5,
+     "target": "HQ_DE_CASTRIES",
+     "from_": [
+      -700,
+      -1700
+     ],
+     "n": 50
+    },
+    {
+     "do": "bridge_run",
+     "t0": 14.3,
+     "t1": 33.0
+    },
+    {
+     "do": "prisoners",
+     "t0": 31.9,
+     "t1": 55.0
+    },
+    {
+     "do": "flag",
+     "t": 38.5
+    },
+    {
+     "do": "roof_flag",
+     "t0": 34.5
+    }
+   ],
+   "note": "Mốc 17 giờ 30 cần xác minh theo nguồn chính thức mà dự án chọn.",
+   "histKeys": [
+    [
+     0,
+     "1954-05-07T14:00"
+    ],
+    [
+     70,
+     "1954-05-07T17:30"
+    ],
+    [
+     100,
+     "1954-05-07T18:30"
+    ]
+   ],
+   "seeing": "Bộ đội vượt cầu Mường Thanh, tiến vào hầm Sở chỉ huy; tù binh; cờ \"Quyết chiến Quyết thắng\"."
+  },
+  {
+   "id": "C10",
+   "title": "Toàn cảnh chiến thắng và di sản",
+   "date_label": "7/5/1954 · HIỆP ĐỊNH GENÈVE 1954",
+   "hist": [
+    "1954-05-07T18:30",
+    "1954-05-08"
+   ],
+   "durationSec": 45,
+   "layers": {
+    "fortifications": 1,
+    "vn": 1,
+    "trenches_vn": 1,
+    "villages": 1,
+    "routes": 1,
+    "aircraft": 0,
+    "control": 0,
+    "attacks": 0
+   },
+   "shots": [
+    {
+     "id": "victory_rise",
+     "dur": 10,
+     "target": [
+      -720,
+      -703
+     ],
+     "tz": 0,
+     "az": 220,
+     "el": 30,
+     "dist": 900,
+     "daz": 20,
+     "high": false,
+     "blend": 0,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "grand_overview",
+     "dur": 26,
+     "target": [
+      -800,
+      -1300
+     ],
+     "tz": 0,
+     "az": 200,
+     "el": 45,
+     "dist": 11000,
+     "daz": 60,
+     "high": true,
+     "blend": 8,
+     "cut": false,
+     "fov": 40
+    },
+    {
+     "id": "end_title",
+     "dur": 9,
+     "target": [
+      -800,
+      -1300
+     ],
+     "tz": 0,
+     "az": 260,
+     "el": 60,
+     "dist": 12500,
+     "daz": 6,
+     "high": true,
+     "blend": 4,
+     "cut": false,
+     "fov": 40
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "tod": "chieu",
+     "rain": 0,
+     "wind": 0.3,
+     "fog": 1.0,
+     "may": 0.25
+    }
+   ],
+   "lines": [
+    {
+     "t": 1.1,
+     "text": "Chiến thắng Điện Biên Phủ trở thành bước ngoặt quan trọng."
+    },
+    {
+     "t": 12.4,
+     "text": "Ba đợt tiến công: cửa ngõ phía Bắc, các cao điểm phía Đông, và trung tâm Mường Thanh."
+    },
+    {
+     "t": 28.1,
+     "text": "Chiến thắng góp phần kết thúc cuộc kháng chiến chống thực dân Pháp và mở ra một giai đoạn lịch sử mới, gắn với Hiệp định Genève năm 1954."
+    }
+   ],
+   "actions": [
+    {
+     "do": "recap",
+     "t0": 10.1,
+     "t1": 33.8
+    },
+    {
+     "do": "endtitle",
+     "t0": 39
+    }
+   ],
+   "histKeys": [
+    [
+     0,
+     "1954-05-07T18:30"
+    ],
+    [
+     80,
+     "1954-05-08"
+    ]
+   ],
+   "seeing": "Toàn cảnh ba đợt tiến công trên sa bàn; kết thúc."
+  }
+ ]
+}

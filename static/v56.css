@@ -1,0 +1,46 @@
+/* Học Lịch Sử V5.6 — các đời vua, sự kiện văn hóa, trò chơi trắc nghiệm theo triều đại. */
+.vs56{margin:16px 0;padding:18px;border:1px solid var(--edge);border-radius:16px;background:var(--panel)}
+.vs56-tag{display:block;font-size:10.5px;letter-spacing:1.6px;font-weight:700;color:var(--gold);margin-bottom:6px}
+.vs56-lead{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+.vs56-src{margin:10px 0 0;color:var(--muted);font-size:11.5px}
+/* Sơ đồ: nhánh vua dài nên cho cuộn trong nhánh */
+.graph .branch.vs56-kings{max-height:none}
+.graph .branch.vs56-kings button.vs56-aside{border-style:dashed;opacity:.8}
+/* Thẻ vua trong tab Nhân vật */
+.vs56-kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.vs56-kcard{display:flex;gap:9px;align-items:center;text-align:left;padding:9px 11px;border:1px solid var(--edge);border-radius:11px;background:rgba(226,183,104,.05);color:inherit;font:inherit;cursor:pointer}
+.vs56-kcard:hover{background:rgba(226,183,104,.12)}
+.vs56-kcard.vs56-aside{border-style:dashed;opacity:.85}
+.vs56-kn{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:11.5px;font-weight:800;background:var(--gold);color:#23190d}
+.vs56-kcard b{display:block;font-size:13.5px}
+.vs56-kcard small{display:block;font-size:11.5px;color:var(--muted)}
+/* Sự kiện văn hóa */
+.vs56-tl{display:grid;gap:10px}
+.vs56-ev{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:start;padding:10px 0;border-top:1px dashed var(--edge)}
+.vs56-ev:first-child{border-top:0;padding-top:0}
+.vs56-y{font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;font-size:13.5px}
+.vs56-ev b{font-size:14.5px}
+.vs56-ev p{margin:3px 0 0;color:var(--muted);font-size:13px;line-height:1.55}
+/* Trò chơi trắc nghiệm */
+.vs56-qhead{display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:var(--gold)}
+.vs56-bar{height:6px;border-radius:9px;background:rgba(255,255,255,.08);margin:6px 0 12px;overflow:hidden}
+.vs56-bar i{display:block;height:100%;background:var(--gold);transition:width .3s}
+.vs56-qq{font-size:17px;line-height:1.4;margin:0 0 12px}
+.vs56-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vs56-choice{text-align:left;padding:11px 13px;border:1px solid var(--edge);border-radius:11px;background:transparent;color:inherit;font:inherit;font-size:14px;cursor:pointer}
+.vs56-choice:hover:not([disabled]){background:rgba(226,183,104,.1)}
+.vs56-choice.ok{border-color:#5fb07a;background:rgba(95,176,122,.18)}
+.vs56-choice.bad{border-color:#d8705a;background:rgba(216,112,90,.16)}
+.vs56-fb{margin:12px 0;padding:10px 12px;border-radius:10px;font-size:13.5px;line-height:1.5}
+.vs56-fb.ok{background:rgba(95,176,122,.14)}
+.vs56-fb.bad{background:rgba(216,112,90,.12)}
+.vs56-end{text-align:center;padding:10px 0}
+.vs56-end b{font-size:20px;color:var(--gold)}
+body.theme-light .vs56-choice.ok{background:rgba(95,176,122,.22)}
+@media(max-width:700px){
+ .vs56{padding:12px;border-radius:12px}
+ .vs56-kgrid{grid-template-columns:1fr 1fr;gap:6px}
+ .vs56-choices{grid-template-columns:1fr}
+ .vs56-ev{grid-template-columns:78px 1fr;gap:8px}
+ .vs56-qq{font-size:15.5px}
+}

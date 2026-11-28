@@ -1,0 +1,35 @@
+/* Học Lịch Sử V6.2 — bản đồ MapLibre trong Không gian lịch sử (xem static/v62.js) */
+.v23-map-viewport .v62-map.maplibregl-map{position:absolute!important;inset:0;z-index:1;width:auto;height:auto}
+.v23-map-viewport.v62-co-map{cursor:default;background:#0e1c23}
+.v23-map-viewport.v62-co-map>svg,.v23-map-viewport.v62-co-map .v61-goi-y{display:none!important}
+body.theme-light .v23-map-viewport.v62-co-map{background:#f4eee2}
+.v62-map .maplibregl-canvas{outline:none}
+/* Pin: ảnh tròn + nhãn tên */
+.v62-pin{display:flex;align-items:center;gap:6px;padding:0;border:0;background:none;cursor:pointer;font:600 12px/1.2 "Be Vietnam Pro",system-ui,sans-serif}
+.v62-pin .anh{width:38px;height:38px;border-radius:50%;overflow:hidden;border:2.5px solid #e0b96d;background:#3a4a50;box-shadow:0 3px 10px rgba(0,0,0,.45);flex:0 0 38px;transition:transform .15s}
+.v62-pin .anh img{width:100%;height:100%;object-fit:cover;display:block}
+.v62-pin.v62-ditich .anh{border-color:#7fc4c9}
+.v62-pin .ten{background:rgba(14,28,35,.88);color:#f3e7cc;padding:4px 8px;border-radius:7px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.3);border:1px solid rgba(224,185,109,.35)}
+.v62-pin:hover .anh,.v62-pin:focus-visible .anh{transform:scale(1.12)}
+.v62-pin:focus-visible{outline:2px solid #e0b96d;outline-offset:3px;border-radius:20px}
+body.theme-light .v62-pin .ten{background:rgba(255,250,241,.95);color:#3d3125;border-color:#d6bea0}
+@media (max-width:700px){.v62-pin .ten{font-size:11px;padding:3px 6px}.v62-pin .anh{width:32px;height:32px;flex-basis:32px}}
+/* Cụm */
+.v62-cum{width:40px;height:40px;border-radius:50%;border:3px solid rgba(224,185,109,.55);background:#e0b96d;color:#1a2021;font:800 15px "Be Vietnam Pro",system-ui;cursor:pointer;box-shadow:0 0 0 6px rgba(224,185,109,.18),0 4px 12px rgba(0,0,0,.4)}
+.v62-cum:hover{transform:scale(1.08)}
+/* Thẻ */
+.v62-popup .maplibregl-popup-content{padding:0;border-radius:12px;overflow:hidden;background:#13232b;color:#eadfc8;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.v62-popup.maplibregl-popup-anchor-bottom .maplibregl-popup-tip{border-top-color:#13232b}
+.v62-popup.maplibregl-popup-anchor-top .maplibregl-popup-tip{border-bottom-color:#13232b}
+.v62-popup .maplibregl-popup-close-button{color:#fff;font-size:20px;right:4px;top:2px;text-shadow:0 1px 3px #000}
+.v62-the img{width:100%;height:130px;object-fit:cover;display:block}
+.v62-the .nd{padding:10px 14px 14px;font:13px/1.45 "Be Vietnam Pro",system-ui,sans-serif}
+.v62-the small{color:#d9b46e;font-weight:600}.v62-the strong{display:block;font-size:16px;margin:2px 0 4px;color:#fff}
+.v62-the p{margin:0 0 10px;color:#b8c4c6}
+.v62-the .mo{width:100%;border:0;border-radius:9px;padding:9px;background:#e0b96d;color:#1a2021;font:700 13px "Be Vietnam Pro",system-ui;cursor:pointer}
+body.theme-light .v62-popup .maplibregl-popup-content{background:#fffaf1;color:#3d3125}
+body.theme-light .v62-popup.maplibregl-popup-anchor-bottom .maplibregl-popup-tip{border-top-color:#fffaf1}
+body.theme-light .v62-the strong{color:#2b241c}body.theme-light .v62-the p{color:#6d5a48}body.theme-light .v62-the small{color:#a0702f}
+.v62-map .maplibregl-cooperative-gesture-screen{font-family:"Be Vietnam Pro",system-ui,sans-serif;font-size:16px}
+.v62-an-ten .v62-pin .ten{display:none}
+.v62-an-ten .v62-pin:hover .ten,.v62-an-ten .v62-pin:focus-visible .ten{display:block}

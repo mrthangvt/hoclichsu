@@ -1,0 +1,2426 @@
+{
+ "_ghi_chu": "Kịch bản kể chuyện sa bàn Thành cổ Quảng Trị 1972. Toạ độ camera theo Blender (x, y, z); B(x,y,z) -> three (x, z, -y). cam.t = giây trong phân cảnh. follow: boat | swimmer | <tên nhóm NPC>; off = [lùi sau, sang ngang, lên cao], look = [nhìn trước, độ cao]. env: đổi nhịp hiệu ứng từ giây t. cues: sự kiện một lần. ready=false: chưa dựng (giai đoạn B). env thêm: weather (0–1), intact (trạng thái trước tàn phá giản lược), layer, flag, flood (m), booms. compare=true: hiện nút Trước/Sau.",
+ "sources": {
+  "ttxvn81": {
+   "title": "TTXVN – Cuộc chiến đấu 81 ngày đêm bảo vệ Thành cổ Quảng Trị (28/6–16/9/1972)",
+   "url": "https://nvsk.vnanet.vn/cuoc-chien-dau-81-ngay-dem-bao-ve-thanh-co-quang-tri-ngay-28-6-den-16-9-1972-4-147823.vna"
+  },
+  "ttxvnTT": {
+   "title": "TTXVN – Chiến dịch Trị–Thiên (30/3–27/6/1972)",
+   "url": "https://nvsk.vnanet.vn/chien-dich-tri-thien-30-3-27-6-1972-1-34301.vna"
+  },
+  "nhandan": {
+   "title": "Báo Nhân Dân – Bảo vệ Thành cổ Quảng Trị (chuyên trang)",
+   "url": "https://nhandan.vn/special/bao-ve-Thanh-co-Quang-Tri/index.html"
+  },
+  "vufo": {
+   "title": "VUFO – Nhìn lại cuộc chiến đấu 81 ngày đêm bảo vệ Thành cổ Quảng Trị",
+   "url": "https://vufo.org.vn/Nhin-lai-cuoc-chien-dau-81-ngay-dem-bao-ve-Thanh-co-Quang-Tri-14-95998.html"
+  },
+  "vnplus1": {
+   "title": "VietnamPlus/TTXVN – Khúc tráng ca 81 ngày đêm bảo vệ Thành cổ Quảng Trị",
+   "url": "https://www.vietnamplus.vn/khuc-trang-ca-81-ngay-dem-bao-ve-thanh-co-quang-tri-post805326.vnp"
+  },
+  "vnplus2": {
+   "title": "VietnamPlus – Vang mãi khúc tráng ca Thành cổ Quảng Trị (người chèo đò trên sông Thạch Hãn)",
+   "url": "https://www.vietnamplus.vn/vang-mai-khuc-trang-ca-thanh-co-quang-tri-post1120957.vnp"
+  },
+  "usmc": {
+   "title": "U.S. Marine Corps History Division – U.S. Marines in Vietnam: The War That Would Not End, 1971–1973 (chương Quang Tri City Regained)",
+   "url": "https://www.marines.mil/Portals/1/Publications/U.S.%20Marines%20in%20Vietnam%20The%20war%20that%20would%20not%20end%201971-1973%20PCN%2019000311200_6.pdf"
+  },
+  "wiki": {
+   "title": "Wikipedia – Second Battle of Quảng Trị",
+   "url": "https://en.wikipedia.org/wiki/Second_Battle_of_Qu%E1%BA%A3ng_Tr%E1%BB%8B"
+  },
+  "osm": {
+   "title": "OpenStreetMap – dữ liệu sông, hào, thành, đường (ODbL)",
+   "url": "https://www.openstreetmap.org/#map=16/16.7538/107.1895"
+  },
+  "lsvn": {
+   "title": "Luật sư Việt Nam – Người Tiểu đoàn trưởng 81 ngày đêm chốt giữ Thành cổ Quảng Trị",
+   "url": "https://lsvn.vn/nguoi-tieu-doan-truong-81-ngay-dem-chot-giu-thanh-co-quang-tri1651806036-a118413.html"
+  },
+  "plo": {
+   "title": "Báo Pháp Luật – Huyền thoại Thành cổ: Cuộc chiến sinh tử",
+   "url": "https://baophapluat.vn/huyen-thoai-thanh-co-cuoc-chien-sinh-tu-post222119.html"
+  },
+  "plo2": {
+   "title": "Báo Pháp Luật – Huyền thoại Thành cổ: Thần tốc giải phóng Quảng Trị",
+   "url": "https://baophapluat.vn/huyen-thoai-thanh-co-than-toc-giai-phong-quang-tri-post220690.html"
+  },
+  "tienphong": {
+   "title": "Tiền Phong số đặc biệt 2/9/2026 – hồi ức cựu chiến binh Thành cổ (lũ tháng 9/1972)",
+   "url": "https://tienphong.vn/epaper/2026/TP-2-9-2026/35/"
+  },
+  "vov": {
+   "title": "VOV – 81 ngày đêm, khúc tráng ca Thành Cổ",
+   "url": "https://vov.vn/xa-hoi/81-ngay-dem-khuc-trang-ca-thanh-co-207875.vov"
+  },
+  "vnexpress": {
+   "title": "VnExpress – Thành cổ Quảng Trị xưa và nay",
+   "url": "https://vnexpress.net/thanh-co-quang-tri-xua-va-nay-4938680.html"
+  },
+  "hoadang": {
+   "title": "Đại biểu Nhân dân – Lễ thả hoa đăng tri ân anh hùng liệt sỹ trên sông Thạch Hãn",
+   "url": "https://daibieunhandan.vn/le-tha-hoa-dang-tri-an-anh-hung-liet-sy-tren-song-thach-han-10114810.html"
+  },
+  "bentha": {
+   "title": "Nông nghiệp & Môi trường – Nơi thả hoa đăng tri ân anh hùng liệt sỹ (bến sông Thạch Hãn)",
+   "url": "https://nongnghiepmoitruong.vn/noi-tha-hoa-dang-tri-an-anh-hung-liet-sy-trong-hanh-trinh-ve-dat-lua-i382560.html"
+  },
+  "dtn": {
+   "title": "Báo Pháp Luật – Hành trình Trường Sơn: Nghĩa trang không bia mộ (đài tưởng niệm giữa Thành cổ)",
+   "url": "https://baophapluat.vn/hanh-trinh-truong-son-nghia-trang-khong-bia-mo-post11630.html"
+  },
+  "vnplus3": {
+   "title": "VietnamPlus – Ngày giỗ chung 16/9 tại Thành cổ Quảng Trị",
+   "url": "https://www.vietnamplus.vn/ngay-gio-chung-tri-an-nhung-nguoi-nam-lai-thanh-co-quang-tri-post1136575.amp"
+  },
+  "usmcphoto": {
+   "title": "USMC History – Quang Tri City Regained (ảnh: Tiểu đoàn 6 TQLC VNCH kéo cờ trên cổng Tây)",
+   "url": "https://www.marines.mil/Portals/1/Publications/U.S.%20Marines%20in%20Vietnam%20The%20war%20that%20would%20not%20end%201971-1973%20PCN%2019000311200_6.pdf"
+  },
+  "tccs": {
+   "title": "Tạp chí Cộng sản (tapchicongsan.org.vn) – đoạn trích về Quảng Trị 1972 (do người biên tập cung cấp; cần bổ sung đường dẫn bài cụ thể)",
+   "url": "https://www.tapchicongsan.org.vn"
+  },
+  "vnexpressParis": {
+   "title": "VnExpress – vai trò chính trị, ngoại giao của Thành cổ với Hội nghị Paris (do người biên tập cung cấp; cần bổ sung đường dẫn bài cụ thể)",
+   "url": "https://vnexpress.net"
+  },
+  "ploParis": {
+   "title": "Báo Pháp Luật – Huyền thoại Thành cổ: Công phá chiến thuật 'lấn dũi' (lệnh cắm cờ trước phiên họp Paris 13/7)",
+   "url": "https://baophapluat.vn/huyen-thoai-thanh-co-cong-pha-chien-thuat-lan-dui-post221661.html"
+  },
+  "qlnn": {
+   "title": "Tạp chí Quản lý nhà nước – Chiến dịch giải phóng Quảng Trị và 81 ngày đêm bảo vệ Thành cổ",
+   "url": "https://www.quanlynhanuoc.vn/2022/04/25/chien-dich-giai-phong-quang-tri-va-cuoc-chien-dau-81-ngay-dem-bao-ve-thanh-co-nam-1972-diem-hoi-tu-nhung-sang-tao-ve-su-lanh-dao-chi-dao-chien-luoc-sac-ben-cua-dang"
+  },
+  "nhandan2": {
+   "title": "Báo Nhân Dân – Thành cổ Quảng Trị, 81 ngày đêm máu và hoa (số liệu tổng kết)",
+   "url": "https://special.nhandan.vn/bao-ve-Thanh-co-Quang-Tri/index.html"
+  },
+  "coGP": {
+   "title": "Báo Lai Châu – Cuộc tiến công chiến lược năm 1972 và giải phóng Quảng Trị (ảnh tư liệu: rạng sáng 2/5/1972 cờ giải phóng trên cổng Thành cổ)",
+   "url": "https://baolaichau.vn/chinh-tri/cuoc-tien-cong-chien-luoc-nam-1972-va-giai-phong-quang-tri-bieu-hien-tap-trung-cua-nghe-thuat-chi-dao-chien-tranh-doc-lap-tu-chu-dung-dan-sang-tao-cua-dang"
+  }
+ },
+ "episodes": [
+  {
+   "id": "s01-toan-canh",
+   "sequence": 1,
+   "ready": true,
+   "title": "Thành cổ trước cơn bão lửa",
+   "date_label": "TRƯỚC CAO ĐIỂM CHIẾN SỰ 1972",
+   "period": "overview",
+   "state": "overview",
+   "duration_sec": 56,
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      -620,
+      -980,
+      330
+     ],
+     "l": [
+      -300,
+      -80,
+      0
+     ]
+    },
+    {
+     "t": 16,
+     "p": [
+      -780,
+      240,
+      230
+     ],
+     "l": [
+      -280,
+      -60,
+      0
+     ]
+    },
+    {
+     "t": 32,
+     "p": [
+      -160,
+      -660,
+      130
+     ],
+     "l": [
+      0,
+      -250,
+      8
+     ]
+    },
+    {
+     "t": 46,
+     "p": [
+      14,
+      -362,
+      10
+     ],
+     "l": [
+      0,
+      -250,
+      6
+     ]
+    },
+    {
+     "t": 56,
+     "p": [
+      8,
+      -338,
+      8
+     ],
+     "l": [
+      0,
+      -250,
+      7
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "audio": {
+      "battle": 0,
+      "wind": 0.7,
+      "water": 0.25,
+      "rain": 0
+     },
+     "intact": true
+    },
+    {
+     "t": 44,
+     "intact": false
+    }
+   ],
+   "lines": [
+    {
+     "t": 1,
+     "text": "Mùa hè 1972, Thành cổ Quảng Trị vẫn trầm mặc giữa lòng thị xã. Nhưng cơn bão lửa đã ở rất gần."
+    },
+    {
+     "t": 11.6,
+     "text": "4 bức tường thành tạo thành hình vuông, mỗi cạnh khoảng 500 mét. Phía ngoài là hào nước. Xa hơn về phía tây, dòng Thạch Hãn lặng lẽ chảy qua."
+    },
+    {
+     "t": 25,
+     "text": "Không lâu sau, mảnh đất ấy trở thành chiến trường. Bom trút xuống từ bầu trời. Pháo dội vào từ mặt đất. Thành cổ bước vào mùa hè khốc liệt nhất của mình."
+    },
+    {
+     "t": 40,
+     "text": "Những con đường dẫn vào Thành cổ chìm trong khói lửa. Cuộc chiến làm thay đổi hình hài cả thị xã. Nhưng giữa tâm bão, những người lính vẫn bám trụ, chiến đấu từng ngày."
+    }
+   ],
+   "panel": {
+    "seeing": "Toàn cảnh Thành cổ trong trạng thái giản lược trước tàn phá, sông Thạch Hãn, hào nước; đến giây 44 chuyển sang hiện trạng sau 81 ngày đêm.",
+    "facts": [
+     {
+      "text": "Thành cổ Quảng Trị được xây đầu thế kỷ XIX thời Nguyễn.",
+      "src": [
+       "nhandan"
+      ]
+     },
+     {
+      "text": "Vị trí sông, hào, thành và đường phố dựng theo dữ liệu OpenStreetMap; sa bàn xoay 16,6° để các mặt thành thẳng trục.",
+      "src": [
+       "osm"
+      ]
+     },
+     {
+      "text": "Sau 81 ngày đêm, Thành cổ bị phá huỷ gần như hoàn toàn, chỉ còn một số đoạn tường; Cổng Tiền và Cổng Hậu chưa sụp đổ.",
+      "src": [
+       "vnexpress"
+      ]
+     }
+    ],
+    "simulated": [
+     "Trạng thái \"trước tàn phá\" là phục dựng GIẢN LƯỢC: tường liền mạch, ẩn đổ nát, hố bom, cây cháy; chưa dựng công trình bên trong thành và chưa đối chiếu ảnh tư liệu.",
+     "Nhà dân năm 1972 là khối minh hoạ, đặt thưa dọc trục đường thật.",
+     "Nút Trước / Sau trên thanh phân cảnh để tự so sánh."
+    ]
+   },
+   "compare": true,
+   "music": [
+    {
+     "src": "audio/nhac/hiep-si.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: I Will Be Your Knight – Jo Wandrini (Epidemic Sound)"
+    }
+   ]
+  },
+  {
+   "id": "s02-tien-cong-mua-xuan",
+   "sequence": 2,
+   "ready": true,
+   "title": "Chiến dịch tiến công mùa xuân",
+   "date_label": "30/3 – ĐẦU THÁNG 5/1972",
+   "period": "spring_offensive",
+   "duration_sec": 70,
+   "plan": "Bản đồ rộng có chú giải: tuyến phòng thủ thay đổi, VNCH rút khỏi thị xã (1/5), QĐND kiểm soát địa bàn (toàn tỉnh 1–2/5 tuỳ nguồn). Cần lớp bản đồ trước/sau.",
+   "panel": {
+    "seeing": "Góc nhìn bản đồ từ trên cao: mũi tên đỏ là hướng tiến công của QĐND, mũi tên vàng là hướng rút của quân VNCH về phía Nam.",
+    "facts": [
+     {
+      "text": "Chiến dịch Trị–Thiên mở màn lúc 11 giờ 30 ngày 30/3/1972.",
+      "src": [
+       "plo2",
+       "ttxvnTT"
+      ]
+     },
+     {
+      "text": "Ngày 1/5/1972 quân VNCH rút khỏi thị xã Quảng Trị; các nguồn ghi tỉnh được giải phóng hoàn toàn ngày 1/5 hoặc 2/5.",
+      "src": [
+       "vufo",
+       "ttxvnTT"
+      ]
+     },
+     {
+      "text": "Rạng sáng 2/5/1972, cờ giải phóng trong tay chiến sĩ Trung đoàn 9, Sư đoàn 304 tung bay trên cổng Thành cổ Quảng Trị (chú thích ảnh tư liệu).",
+      "src": [
+       "coGP"
+      ]
+     }
+    ],
+    "simulated": [
+     "Mũi tên chỉ hướng chung, không theo sơ đồ tác chiến của đơn vị nào; không mô phỏng trận đánh cụ thể.",
+     "Thành hiển thị ở trạng thái giản lược trước tàn phá.",
+     "Cờ giải phóng đặt trên Cổng Tiền là minh hoạ; ảnh tư liệu không ghi cổng nào. Cờ giữ nguyên trong các cảnh QĐND kiểm soát Thành cổ (03–09)."
+    ]
+   },
+   "state": "spring",
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      -300,
+      -2200,
+      1900
+     ],
+     "l": [
+      -250,
+      -100,
+      0
+     ]
+    },
+    {
+     "t": 24,
+     "p": [
+      -500,
+      -1300,
+      1400
+     ],
+     "l": [
+      -260,
+      0,
+      0
+     ]
+    },
+    {
+     "t": 48,
+     "p": [
+      -200,
+      -900,
+      700
+     ],
+     "l": [
+      -150,
+      -50,
+      0
+     ]
+    },
+    {
+     "t": 70,
+     "p": [
+      -160,
+      -780,
+      520
+     ],
+     "l": [
+      -100,
+      -60,
+      0
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "intact": true,
+     "audio": {
+      "battle": 0.15,
+      "wind": 0.6,
+      "water": 0.15,
+      "rain": 0
+     }
+    },
+    {
+     "t": 50,
+     "flagQ": true
+    }
+   ],
+   "lines": [
+    {
+     "t": 1,
+     "text": "Ngày 30/3/1972. 11 giờ 30 phút, chiến dịch Trị – Thiên mở màn. Chiến trường miền Trung rung chuyển."
+    },
+    {
+     "t": 14,
+     "text": "Từ phía bắc và phía tây, các mũi tiến công liên tiếp đánh vào tuyến phòng thủ Quảng Trị. Những vị trí chốt giữ lần lượt bị phá vỡ. Con đường tiến về thị xã dần mở ra giữa khói lửa."
+    },
+    {
+     "t": 32,
+     "text": "Đầu tháng 5/1972, lực lượng Việt Nam Cộng hòa rút khỏi thị xã Quảng Trị, lui về phòng tuyến phía nam sông Mỹ Chánh. Cục diện trên chiến trường đã thay đổi hoàn toàn."
+    },
+    {
+     "t": 50,
+     "text": "Quân Giải phóng làm chủ thị xã và Thành cổ Quảng Trị. Nhưng trận chiến quyết liệt nhất ở nơi này vẫn còn ở phía trước."
+    },
+    {
+     "t": 62,
+     "text": "Rạng sáng 2/5/1972, cờ giải phóng tung bay trên Thành cổ."
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/tro-ve.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Tough Return – Phoenix Tail (Epidemic Sound)"
+    }
+   ]
+  },
+  {
+   "id": "s03-phan-cong",
+   "sequence": 3,
+   "ready": true,
+   "title": "Phản công bắt đầu",
+   "date_label": "28/6/1972",
+   "period": "summer_defense",
+   "duration_sec": 90,
+   "plan": "Camera từ phía Nam; lớp bật/tắt hướng tiến công và khu vực kiểm soát. Dùng lại trạng thái wall_fight với cường độ tăng dần.",
+   "panel": {
+    "seeing": "Quân VNCH tiến từ phía Nam và phía Đông: xe tăng đi cùng bộ binh, máy bay bay thấp ném bom; QĐND phòng thủ trên mặt thành và công sự. Mũi tên vàng: hướng phản công; khung đỏ: khu vực QĐND giữ.",
+    "facts": [
+     {
+      "text": "Ngày 13/6/1972 quyết định mở cuộc hành quân Lam Sơn 72, huy động 4 sư đoàn; sáng 28/6 mở màn với sự chi viện của không quân, hải quân Mỹ.",
+      "src": [
+       "nhandan"
+      ]
+     },
+     {
+      "text": "Cuộc chiến đấu bảo vệ Thành cổ kéo dài từ 28/6 đến 16/9/1972.",
+      "src": [
+       "ttxvn81"
+      ]
+     }
+    ],
+    "simulated": [
+     "Hướng tiến công, vị trí xe tăng và từng người lính là minh hoạ.",
+     "Mẫu quân phục VNCH dùng chung, chưa phân biệt các binh chủng."
+    ]
+   },
+   "state": "counter_start",
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      0,
+      -1500,
+      280
+     ],
+     "l": [
+      0,
+      -300,
+      0
+     ]
+    },
+    {
+     "t": 16,
+     "p": [
+      60,
+      -760,
+      60
+     ],
+     "l": [
+      0,
+      -300,
+      30
+     ]
+    },
+    {
+     "t": 24,
+     "follow": "tank",
+     "i": 1,
+     "off": [
+      24,
+      7,
+      3.2
+     ],
+     "look": [
+      30,
+      3
+     ]
+    },
+    {
+     "t": 40,
+     "follow": "tank",
+     "i": 1,
+     "off": [
+      20,
+      -8,
+      3
+     ],
+     "look": [
+      30,
+      4
+     ]
+    },
+    {
+     "t": 48,
+     "follow": "vRun",
+     "i": 2,
+     "off": [
+      2.2,
+      0.8,
+      0.5
+     ],
+     "look": [
+      40,
+      -2
+     ]
+    },
+    {
+     "t": 60,
+     "follow": "qWall",
+     "i": 6,
+     "high": true,
+     "off": [
+      1.6,
+      0.5,
+      0.35
+     ],
+     "look": [
+      45,
+      -3
+     ]
+    },
+    {
+     "t": 74,
+     "p": [
+      -500,
+      -700,
+      420
+     ],
+     "l": [
+      -40,
+      -200,
+      0
+     ]
+    },
+    {
+     "t": 90,
+     "p": [
+      -520,
+      -720,
+      440
+     ],
+     "l": [
+      -40,
+      -190,
+      0
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "gap": [
+      2.5,
+      4.5
+     ],
+     "fire": 0.3,
+     "planes": true,
+     "tanks": true,
+     "audio": {
+      "battle": 0.55,
+      "wind": 0.3,
+      "water": 0
+     }
+    },
+    {
+     "t": 30,
+     "gap": [
+      1.2,
+      2.6
+     ],
+     "fire": 0.7,
+     "audio": {
+      "battle": 0.85
+     }
+    },
+    {
+     "t": 60,
+     "gap": [
+      0.9,
+      2
+     ],
+     "fire": 1,
+     "audio": {
+      "battle": 1
+     }
+    }
+   ],
+   "lines": [
+    {
+     "t": 1,
+     "text": "Ngày 13/6/1972, chính quyền Sài Gòn quyết định mở cuộc hành quân Lam Sơn 72, nhằm tái chiếm Quảng Trị. Lực lượng dù và thủy quân lục chiến được huy động cho cuộc phản công lớn."
+    },
+    {
+     "t": 20,
+     "text": "Sáng 28/6/1972, quân đội Sài Gòn vượt sông Mỹ Chánh, tiến về Quảng Trị. Trên bầu trời, máy bay Mỹ liên tục yểm trợ. Ngoài khơi, pháo hạm nã đạn vào các vị trí phòng thủ."
+    },
+    {
+     "t": 40,
+     "text": "Xe tăng và bộ binh áp sát thị xã. Bom dội xuống những dãy nhà, pháo cày nát các tuyến đường. Trong Thành cổ, những người lính Quân Giải phóng bám vị trí, chờ đợt tiến công tiếp theo."
+    },
+    {
+     "t": 60,
+     "text": "Từ 28/6/1972, cuộc chiến giữ thành bắt đầu. Từng ngày, từng đêm, tiếng pháo không dứt. Mỗi mét đất đều phải đánh đổi bằng máu. Và phía trước những người lính, là 81 ngày đêm không thể nào quên."
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/ke-thu.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.45,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Arbitrary Enemy – Experia (Epidemic Sound)"
+    }
+   ]
+  },
+  {
+   "id": "s04-duoi-hoa-luc",
+   "sequence": 4,
+   "ready": true,
+   "title": "Dưới hoả lực",
+   "date_label": "THÁNG 7/1972",
+   "period": "summer_defense",
+   "duration_sec": 90,
+   "plan": "Góc thấp trong công sự; pháo, bom theo đợt; thanh so sánh tàn phá theo thời gian (cần mô hình tường nguyên vẹn từ GD1–GD3).",
+   "panel": {
+    "seeing": "Các đợt pháo kích và ném bom vào trong thành; người lính QĐND khom che, núp trong công sự; không có đợt bộ binh tiến công. Giây 70–80: so sánh với trạng thái trước tàn phá.",
+    "facts": [
+     {
+      "text": "Trong 81 ngày đêm, thị xã và Thành cổ hứng chịu khoảng 328.000 tấn bom đạn (con số các nguồn trong nước thường dẫn).",
+      "src": [
+       "vov",
+       "vnplus3"
+      ]
+     },
+     {
+      "text": "Ngày 28/7/1972 có bão, nước dồn về sông Thạch Hãn làm ngập các hầm.",
+      "src": [
+       "plo"
+      ]
+     }
+    ],
+    "simulated": [
+     "Nhịp nổ, vị trí điểm nổ là dàn dựng; không thể hiện thương vong.",
+     "Trạng thái trước tàn phá là phục dựng giản lược.",
+     "Hai chòi sắt quan sát trong thành gãy gập sau các loạt bom (giây 23 và 45) là dàn dựng minh hoạ."
+    ]
+   },
+   "state": "under_fire",
+   "compare": true,
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      -420,
+      -460,
+      170
+     ],
+     "l": [
+      0,
+      -80,
+      0
+     ]
+    },
+    {
+     "t": 16,
+     "follow": "qShelter",
+     "i": 1,
+     "off": [
+      1.6,
+      0.5,
+      0.4
+     ],
+     "look": [
+      30,
+      -1
+     ]
+    },
+    {
+     "t": 36,
+     "follow": "qShelter",
+     "i": 7,
+     "off": [
+      2.0,
+      -0.6,
+      0.5
+     ],
+     "look": [
+      30,
+      0
+     ]
+    },
+    {
+     "t": 54,
+     "p": [
+      -330,
+      -330,
+      90
+     ],
+     "l": [
+      0,
+      -60,
+      0
+     ]
+    },
+    {
+     "t": 72,
+     "p": [
+      -360,
+      -360,
+      120
+     ],
+     "l": [
+      0,
+      -40,
+      0
+     ]
+    },
+    {
+     "t": 90,
+     "p": [
+      -380,
+      -380,
+      140
+     ],
+     "l": [
+      0,
+      -30,
+      0
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "gap": [
+      0.6,
+      1.4
+     ],
+     "fire": 0.15,
+     "planes": true,
+     "audio": {
+      "battle": 1,
+      "wind": 0.2
+     }
+    },
+    {
+     "t": 23,
+     "towersDown": 1
+    },
+    {
+     "t": 40,
+     "gap": [
+      1.8,
+      3.5
+     ],
+     "fire": 0.1,
+     "audio": {
+      "battle": 0.6
+     }
+    },
+    {
+     "t": 45,
+     "towersDown": 2
+    },
+    {
+     "t": 52,
+     "gap": [
+      0.5,
+      1.2
+     ],
+     "audio": {
+      "battle": 1
+     }
+    },
+    {
+     "t": 70,
+     "intact": true,
+     "booms": false,
+     "audio": {
+      "battle": 0.25
+     }
+    },
+    {
+     "t": 80,
+     "intact": false,
+     "booms": true
+    }
+   ],
+   "cues": [
+    {
+     "t": 22,
+     "do": "boom",
+     "at": [
+      -150,
+      -170
+     ],
+     "big": true
+    },
+    {
+     "t": 44,
+     "do": "boom",
+     "at": [
+      60,
+      -120
+     ],
+     "big": true
+    }
+   ],
+   "lines": [
+    {
+     "t": 1,
+     "text": "Tháng 7/1972. Thành cổ không còn một phút bình yên. Bom, pháo liên tiếp trút xuống, hất tung mái nhà, xé toạc công sự, khoét sâu những hố bom trên mặt đất."
+    },
+    {
+     "t": 18,
+     "text": "Có những lúc chưa thấy bóng người tiến công, nhưng mặt đất đã rung lên vì pháo. Những người lính co mình dưới hầm, chờ một loạt đạn đi qua, rồi lại nghe loạt khác ập tới."
+    },
+    {
+     "t": 38,
+     "text": "Suốt 81 ngày đêm, bom đạn dội xuống Quảng Trị. Những con đường biến dạng, những bức tường đổ sập. Có vị trí, chỉ sau một trận pháo, tất cả đã không còn như trước."
+    },
+    {
+     "t": 56,
+     "text": "Ngày 28/7/1972, bão ập đến. Sông Thạch Hãn dâng cao, nước tràn vào hầm trú ẩn. Trên đầu là bom đạn, dưới chân là nước lũ."
+    },
+    {
+     "t": 70,
+     "text": "Đây là Thành cổ Quảng Trị, trước khi bom Mỹ và pháo binh quân đội Sài Gòn dội xuống."
+    },
+    {
+     "t": 80,
+     "text": "Và đây, sau những trận bom phá: tường thành tan nát, công sự vùi sâu, cả thị xã chìm trong đổ nát."
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/quyet-chien.mp3",
+     "start": 0,
+     "from": 7,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Final Battle – Max Anson (Epidemic Sound)"
+    }
+   ]
+  },
+  {
+   "id": "s05-thach-han",
+   "sequence": 5,
+   "ready": true,
+   "title": "Vượt sông Thạch Hãn",
+   "date_label": "MỘT ĐÊM TIẾP VIỆN · THÁNG 7–9/1972",
+   "period": "summer_defense",
+   "state": "night_river_supply",
+   "duration_sec": 120,
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      -940,
+      -520,
+      170
+     ],
+     "l": [
+      -570,
+      -60,
+      0
+     ]
+    },
+    {
+     "t": 18,
+     "p": [
+      -860,
+      -250,
+      55
+     ],
+     "l": [
+      -560,
+      -40,
+      0
+     ]
+    },
+    {
+     "t": 30,
+     "follow": "boat",
+     "i": 1,
+     "off": [
+      6,
+      3.6,
+      2.4
+     ],
+     "look": [
+      4,
+      0.5
+     ]
+    },
+    {
+     "t": 56,
+     "follow": "boat",
+     "i": 1,
+     "off": [
+      4.5,
+      -3.2,
+      1.9
+     ],
+     "look": [
+      8,
+      0.6
+     ]
+    },
+    {
+     "t": 63,
+     "follow": "swimmer",
+     "i": 5,
+     "off": [
+      4.5,
+      2.2,
+      1.5
+     ],
+     "look": [
+      30,
+      0.4
+     ]
+    },
+    {
+     "t": 82,
+     "follow": "swimmer",
+     "i": 5,
+     "off": [
+      3.5,
+      -2.0,
+      1.2
+     ],
+     "look": [
+      30,
+      0.4
+     ]
+    },
+    {
+     "t": 89,
+     "follow": "qLand",
+     "i": 1,
+     "off": [
+      -7,
+      5,
+      3.2
+     ],
+     "look": [
+      0,
+      -0.6
+     ]
+    },
+    {
+     "t": 98,
+     "p": [
+      -482,
+      2,
+      4.5
+     ],
+     "l": [
+      -430,
+      24,
+      0.5
+     ]
+    },
+    {
+     "t": 106,
+     "p": [
+      -405,
+      -8,
+      4.5
+     ],
+     "l": [
+      -335,
+      12,
+      0.5
+     ]
+    },
+    {
+     "t": 113,
+     "p": [
+      -640,
+      -160,
+      70
+     ],
+     "l": [
+      -260,
+      0,
+      0
+     ]
+    },
+    {
+     "t": 120,
+     "p": [
+      -660,
+      -170,
+      80
+     ],
+     "l": [
+      -250,
+      0,
+      0
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "gap": [
+      4.5,
+      7.5
+     ],
+     "zones": {
+      "citadel": 0.45,
+      "southFar": 0.3,
+      "wallW": 0.25
+     },
+     "fire": 0.1,
+     "audio": {
+      "battle": 0.35,
+      "water": 0.9,
+      "wind": 0.35,
+      "rain": 0
+     }
+    },
+    {
+     "t": 40,
+     "gap": [
+      2.6,
+      4.5
+     ],
+     "zones": {
+      "citadel": 0.3,
+      "wallW": 0.2,
+      "river": 0.35,
+      "landing": 0.15
+     },
+     "fire": 0.15,
+     "audio": {
+      "battle": 0.55,
+      "water": 0.9
+     }
+    },
+    {
+     "t": 60,
+     "gap": [
+      1.6,
+      3.0
+     ],
+     "zones": {
+      "riverNear": 0.45,
+      "river": 0.2,
+      "landing": 0.2,
+      "wallW": 0.15
+     },
+     "fire": 0.2,
+     "audio": {
+      "battle": 0.75
+     }
+    },
+    {
+     "t": 92,
+     "gap": [
+      3.5,
+      6.5
+     ],
+     "zones": {
+      "citadel": 0.5,
+      "wallW": 0.3,
+      "southFar": 0.2
+     },
+     "fire": 0.12,
+     "audio": {
+      "battle": 0.5,
+      "water": 0.6
+     }
+    }
+   ],
+   "cues": [
+    {
+     "t": 24,
+     "do": "flare",
+     "at": [
+      -600,
+      -120,
+      170
+     ]
+    },
+    {
+     "t": 47,
+     "do": "boomNear",
+     "follow": "boat",
+     "i": 1,
+     "ahead": 28,
+     "side": 16
+    },
+    {
+     "t": 66,
+     "do": "flare",
+     "at": [
+      -640,
+      -40,
+      160
+     ]
+    },
+    {
+     "t": 72,
+     "do": "boomNear",
+     "follow": "swimmer",
+     "i": 5,
+     "ahead": 35,
+     "side": -14
+    },
+    {
+     "t": 85,
+     "do": "flare",
+     "at": [
+      -470,
+      10,
+      120
+     ]
+    },
+    {
+     "t": 96,
+     "do": "flare",
+     "at": [
+      -520,
+      20,
+      150
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "t": 2,
+     "text": "Đêm xuống. Bên kia dòng Thạch Hãn là Thành cổ. Bên này, những người lính chuẩn bị vượt sông."
+    },
+    {
+     "t": 11,
+     "text": "Muốn vào Thành cổ, họ phải vượt dòng sông nằm trong tầm pháo. Mỗi chuyến đi chở theo bộ đội, đạn dược, thuốc men và cả hy vọng của những người đang chờ tiếp viện phía bên kia."
+    },
+    {
+     "t": 30,
+     "text": "Những chiếc thuyền gỗ lặng lẽ rời bờ. Có người nằm sát đáy thuyền, có người mang đồ đạc rồi bơi qua sông. Trên đầu, pháo sáng bừng lên, xé toạc màn đêm. Chỉ một loạt pháo, dòng sông có thể thành biển lửa."
+    },
+    {
+     "t": 50,
+     "text": "Giữa mưa bom bão đạn, nhiều người lính đã không bao giờ tới được bờ bên kia. Dòng Thạch Hãn vẫn chảy, mang theo ký ức về những đồng đội mãi mãi ở tuổi đôi mươi."
+    },
+    {
+     "t": 70,
+     "text": "Bên những chuyến đò ấy còn có người dân Quảng Trị. Họ chèo thuyền xuyên đêm, đưa bộ đội và vật tư vượt sông. Giữa hiểm nguy, những mái chèo vẫn hướng về Thành cổ."
+    },
+    {
+     "t": 89,
+     "text": "Vừa chạm bờ, người kéo thuyền vào chỗ khuất, người ôm thùng đạn, người dìu đồng đội. Không ai có thể đứng thẳng giữa làn pháo sáng. Họ cúi thấp, men theo những chỗ nấp, rồi tiếp tục đi vào Thành cổ."
+    },
+    {
+     "t": 108,
+     "text": "Sau lưng là dòng sông đầy hiểm nguy. Trước mặt là trận địa. Không ai biết đêm ấy mình có còn được trở về."
+    }
+   ],
+   "panel": {
+    "seeing": "Một đêm tiếp viện: 6 thuyền gỗ và các tổ bơi qua sông từ bờ Tây vào bờ phía thành; pháo sáng, đạn pháo rơi xa rồi gần dần; người lên bờ đi khom về phía mặt Tây của thành. Ở bến: kéo thuyền, nhặt và chuyển thùng vật tư. Có thể bật \"⛈ Mưa giông\" — việc vượt sông vẫn tiếp tục.",
+    "facts": [
+     {
+      "text": "Cuộc chiến đấu bảo vệ Thành cổ kéo dài 81 ngày đêm, từ 28/6 đến 16/9/1972.",
+      "src": [
+       "ttxvn81",
+       "nhandan"
+      ]
+     },
+     {
+      "text": "Bộ đội vượt sông Thạch Hãn để tiếp viện quân số vào thị xã; theo hồi ức cựu chiến binh, tổn thất trên đường vượt sông rất lớn.",
+      "src": [
+       "vnplus1"
+      ]
+     },
+     {
+      "text": "Người dân Triệu Phong chèo đò đưa bộ đội vượt sông Thạch Hãn tiếp viện cho chiến trường.",
+      "src": [
+       "vnplus2"
+      ]
+     }
+    ],
+    "simulated": [
+     "Không gắn ngày cụ thể; số thuyền, số người, vị trí bến và lối đi là minh hoạ.",
+     "Động tác khiêng vác được thể hiện bằng nhặt đồ, kéo thuyền, đi khom; chưa có động tác vác trên vai.",
+     "Pháo sáng, đạn pháo và nhịp tăng dần được dàn dựng để kể chuyện."
+    ]
+   },
+   "music": [
+    {
+     "src": "audio/nhac/giai-dieu.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.85,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Run! (melody) – Christoffer Moe Ditlevsen (Epidemic Sound)"
+    }
+   ]
+  },
+  {
+   "id": "s06-tuong-thanh",
+   "sequence": 6,
+   "ready": true,
+   "title": "Giành giật từng đoạn tường",
+   "date_label": "THÁNG 7–9/1972 · DỰNG TỔNG HỢP",
+   "period": "summer_defense",
+   "state": "wall_fight",
+   "duration_sec": 110,
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      70,
+      -640,
+      95
+     ],
+     "l": [
+      0,
+      -260,
+      10
+     ]
+    },
+    {
+     "t": 14,
+     "p": [
+      30,
+      -540,
+      40
+     ],
+     "l": [
+      0,
+      -255,
+      10
+     ]
+    },
+    {
+     "t": 22,
+     "follow": "qWall",
+     "i": 0,
+     "clip": "NamBan",
+     "high": true,
+     "off": [
+      -1.3,
+      1.7,
+      0.4
+     ],
+     "look": [
+      0.5,
+      -0.25
+     ]
+    },
+    {
+     "t": 42,
+     "follow": "qWall",
+     "i": 0,
+     "clip": "NamBan",
+     "high": true,
+     "off": [
+      -1.1,
+      -1.8,
+      0.5
+     ],
+     "look": [
+      0.5,
+      -0.25
+     ]
+    },
+    {
+     "t": 50,
+     "view": "bastion"
+    },
+    {
+     "t": 68,
+     "p": [
+      -205,
+      -282,
+      22
+     ],
+     "l": [
+      100,
+      -262,
+      7
+     ]
+    },
+    {
+     "t": 75,
+     "follow": "vAtk",
+     "i": 1,
+     "off": [
+      1.8,
+      0.55,
+      0.5
+     ],
+     "look": [
+      40,
+      -3
+     ]
+    },
+    {
+     "t": 94,
+     "follow": "vAtk",
+     "i": 1,
+     "off": [
+      2.4,
+      -0.8,
+      0.7
+     ],
+     "look": [
+      40,
+      -3
+     ]
+    },
+    {
+     "t": 102,
+     "p": [
+      -70,
+      -720,
+      250
+     ],
+     "l": [
+      0,
+      -200,
+      0
+     ]
+    },
+    {
+     "t": 110,
+     "p": [
+      -80,
+      -740,
+      270
+     ],
+     "l": [
+      0,
+      -190,
+      0
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "gap": [
+      1.4,
+      3.0
+     ],
+     "fire": 0.45,
+     "planes": true,
+     "tanks": true,
+     "audio": {
+      "battle": 0.7,
+      "wind": 0.3,
+      "water": 0,
+      "rain": 0
+     }
+    },
+    {
+     "t": 20,
+     "gap": [
+      0.8,
+      1.8
+     ],
+     "fire": 1.0,
+     "audio": {
+      "battle": 1
+     }
+    },
+    {
+     "t": 44,
+     "gap": [
+      2.2,
+      4.5
+     ],
+     "fire": 0.3,
+     "planes": false,
+     "audio": {
+      "battle": 0.55
+     }
+    },
+    {
+     "t": 60,
+     "gap": [
+      0.7,
+      1.6
+     ],
+     "fire": 1.0,
+     "planes": true,
+     "audio": {
+      "battle": 1
+     }
+    },
+    {
+     "t": 96,
+     "gap": [
+      2.5,
+      5.0
+     ],
+     "fire": 0.35,
+     "audio": {
+      "battle": 0.6
+     }
+    }
+   ],
+   "cues": [
+    {
+     "t": 31,
+     "do": "boom",
+     "at": [
+      45,
+      -262
+     ],
+     "big": true
+    },
+    {
+     "t": 64,
+     "do": "boom",
+     "at": [
+      -120,
+      -300
+     ],
+     "big": false
+    },
+    {
+     "t": 83,
+     "do": "boom",
+     "at": [
+      -30,
+      -255
+     ],
+     "big": true
+    }
+   ],
+   "lines": [
+    {
+     "t": 2,
+     "text": "Cuộc phản công tiến sát Thành cổ. Xe tăng, bộ binh áp lên dưới làn pháo và bom. Phía trong, những người lính Quân Giải phóng bám trụ giữa những bức tường vỡ."
+    },
+    {
+     "t": 17,
+     "text": "Tường thành đổ sập, họ lui về công sự. Công sự bị phá, họ bám từng mô đất, từng hố bom, quyết không rời vị trí."
+    },
+    {
+     "t": 30,
+     "text": "Nhưng đây không chỉ là cuộc giành giật một tòa thành."
+    },
+    {
+     "t": 40,
+     "text": "Mỗi ngày cầm cự ở Quảng Trị đều vang tới bàn đàm phán Paris. Không bên nào muốn lùi bước."
+    },
+    {
+     "t": 50,
+     "text": "Giữ được Thành cổ thêm một ngày, là giữ thêm thế đứng cho cuộc đấu tranh ngoại giao."
+    },
+    {
+     "t": 59,
+     "text": "Phía đối phương cũng quyết giành bằng được ngọn cờ trên tường thành. Những đợt tiến công vì thế càng dồn dập."
+    },
+    {
+     "t": 70,
+     "text": "Giữa gạch vỡ và khói bụi, từng đoạn tường chỉ cách nhau vài bước chân. Trận đánh tiếp theo có thể ập đến bất cứ lúc nào."
+    },
+    {
+     "t": 82,
+     "text": "Muốn tiến vào, quân đội Sài Gòn phải vượt khoảng đất trống trước hào nước. Mỗi bước chân đều có thể trở thành mục tiêu giữa làn đạn."
+    },
+    {
+     "t": 96,
+     "text": "Từng đợt xung phong bị chặn lại. Từng vị trí bị đánh chiếm, rồi giành lại. Mặt đất Thành cổ thấm máu những người lính ở cả hai phía."
+    }
+   ],
+   "panel": {
+    "seeing": "Quân VNCH tiến từ phía Nam (và một phần phía Đông) về sát hào nước; QĐND phòng thủ trên mặt thành và trong công sự; xe tăng VNCH bắn vào mặt thành Nam; máy bay ném bom vào trong thành. Giao tranh theo đợt, có lúc tạm lắng.",
+    "facts": [
+     {
+      "text": "Cuộc hành quân Lam Sơn 72 của VNCH mở màn sáng 28/6/1972, có không quân và hải quân Mỹ chi viện.",
+      "src": [
+       "nhandan"
+      ]
+     },
+     {
+      "text": "Trong 81 ngày đêm, hai bên giằng co từng mét đất; thị xã và Thành cổ bị phá huỷ gần như hoàn toàn.",
+      "src": [
+       "vufo"
+      ]
+     },
+     {
+      "text": "Giai đoạn cuối, Thuỷ quân Lục chiến VNCH là lực lượng tiến công chính vào Thành cổ.",
+      "src": [
+       "usmc",
+       "wiki"
+      ]
+     },
+     {
+      "text": "Thành cổ có vai trò quan trọng về chính trị, ngoại giao; thành bại ở đây tác động trực tiếp tới vị thế các bên tại Hội nghị Paris. Trích: “Ta giữ được thành cổ càng lâu, lợi thế phái đoàn ngoại giao của ta tại Hội nghị Paris càng lớn. Mỹ muốn sớm cắm được cờ ở thành cổ để ép ta ký hiệp ước với điều khoản có lợi cho họ, nhưng ta không để điều đó xảy ra.”",
+      "src": [
+       "vnexpressParis"
+      ]
+     },
+     {
+      "text": "Trước phiên họp Hội nghị Paris ngày 13/7/1972, phía VNCH được lệnh tìm mọi cách cắm cờ lên Thành cổ để khẳng định vị thế trong đàm phán.",
+      "src": [
+       "ploParis"
+      ]
+     },
+     {
+      "text": "Cuộc chiến đấu 81 ngày đêm trở thành vấn đề chính trị trung tâm, diễn ra khi Hội nghị Paris đang bước vào giai đoạn quyết định.",
+      "src": [
+       "qlnn"
+      ]
+     }
+    ],
+    "simulated": [
+     "Hướng tiến công, số lượng và vị trí từng người lính là minh hoạ tổng hợp từ nhiều đợt giao tranh tháng 7–9.",
+     "Quân phục VNCH dùng tạm một mẫu chung, chưa phân biệt Thuỷ quân Lục chiến/Dù.",
+     "Xe tăng dùng mẫu M41; máy bay dùng mẫu A-37 cho mọi loại phi cơ.",
+     "Không thể hiện thương vong bằng hình ảnh."
+    ]
+   },
+   "music": [
+    {
+     "src": "audio/nhac/giua-tran.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: The Thick of It – Jon Bjork (Epidemic Sound)"
+    }
+   ]
+  },
+  {
+   "id": "s07-dem-cong-su",
+   "sequence": 7,
+   "ready": true,
+   "title": "Một đêm trong công sự",
+   "date_label": "MỘT ĐÊM TRONG 81 NGÀY ĐÊM",
+   "period": "summer_defense",
+   "duration_sec": 85,
+   "plan": "Camera gần, ánh đèn yếu, mưa, pháo xa. Thiếu động tác: ngồi nghỉ, băng bó, uống nước — cần tải thêm Mixamo bằng mẫu QĐND mới.",
+   "panel": {
+    "seeing": "Một nhóm người lính QĐND cạnh lô cốt mặt Tây, trong mưa: canh gác, ngồi nghỉ, nạp đạn bên đèn dầu.",
+    "facts": [
+     {
+      "text": "Hồi ức cựu chiến binh kể nước lũ tràn vào những căn hầm chật hẹp trong những ngày giữ Thành cổ.",
+      "src": [
+       "tienphong"
+      ]
+     }
+    ],
+    "simulated": [
+     "Nhân vật tổng hợp; không gán lời thoại, thư từ hay gương mặt của người thật.",
+     "Chưa có động tác băng bó, uống nước — dùng ngồi nghỉ, quỳ nghỉ, núp, nạp đạn.",
+     "Vật dụng (bi đông, mũ cối, hòm đạn, đèn dầu) là minh hoạ."
+    ]
+   },
+   "state": "bunker_night",
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      -190,
+      -60,
+      22
+     ],
+     "l": [
+      -214,
+      -84,
+      0
+     ]
+    },
+    {
+     "t": 12,
+     "follow": "qRest",
+     "i": 3,
+     "off": [
+      1.6,
+      0.7,
+      0.25
+     ],
+     "look": [
+      12,
+      -0.5
+     ]
+    },
+    {
+     "t": 30,
+     "follow": "qRest",
+     "i": 0,
+     "off": [
+      -2.7,
+      1.5,
+      0.5
+     ],
+     "look": [
+      0,
+      -0.55
+     ]
+    },
+    {
+     "t": 50,
+     "follow": "qRest",
+     "i": 1,
+     "off": [
+      -2.5,
+      -1.4,
+      0.6
+     ],
+     "look": [
+      0,
+      -0.55
+     ]
+    },
+    {
+     "t": 70,
+     "p": [
+      -200,
+      -72,
+      9
+     ],
+     "l": [
+      -216,
+      -86,
+      0
+     ]
+    },
+    {
+     "t": 85,
+     "p": [
+      -196,
+      -70,
+      14
+     ],
+     "l": [
+      -216,
+      -86,
+      0
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "weather": 1,
+     "audio": {
+      "battle": 0.25,
+      "wind": 0.3,
+      "water": 0,
+      "rain": 1
+     }
+    }
+   ],
+   "lines": [
+    {
+     "t": 2,
+     "text": "Đêm lại xuống trên Thành cổ. Tiếng súng thưa dần, nhưng không ai dám tin chiến trường đã yên."
+    },
+    {
+     "t": 14,
+     "text": "Sau một ngày chống chọi với bom pháo, những người lính trở về công sự. Không phải ai cũng có chỗ nằm. Họ chia nhau từng ngụm nước, lắng nghe tiếng động ngoài xa, chờ trời sáng."
+    },
+    {
+     "t": 34,
+     "text": "Người thay nhau canh gác. Người lau súng dưới ánh đèn leo lét. Có người vừa ngồi xuống đã ngủ thiếp đi, khẩu súng vẫn còn trong vòng tay."
+    },
+    {
+     "t": 52,
+     "text": "Ở nơi ấy, sự sống đôi khi chỉ cách cái chết một bức tường đất mỏng. Và người ngồi bên cạnh hôm nay, ngày mai có thể đã không còn."
+    },
+    {
+     "t": 68,
+     "text": "Nhưng họ vẫn ở lại. Vì sau lưng là đồng đội, là những vị trí vừa giữ được, và là nhiệm vụ chưa thể rời bỏ."
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/thuc-day.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.42,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: It Has Awoken – Dream Cave (Epidemic Sound)"
+    }
+   ]
+  },
+  {
+   "id": "s08-mua-lu",
+   "sequence": 8,
+   "ready": true,
+   "title": "Mưa, nước dâng và Thành cổ đổ nát",
+   "date_label": "CUỐI THÁNG 8 – ĐẦU THÁNG 9/1972",
+   "period": "summer_defense",
+   "duration_sec": 80,
+   "plan": "Mưa, nước đọng trong hố bom, bùn; tường hư hại hơn cảnh 03 (cần trạng thái tường theo thời gian).",
+   "panel": {
+    "seeing": "Mưa, sông và hào nước dâng; người lính QĐND gia cố công sự ở mặt Nam; pháo bắn thưa.",
+    "facts": [
+     {
+      "text": "Đầu tháng 9/1972, nước lũ tiếp tục dâng cao (hồi ức cựu chiến binh).",
+      "src": [
+       "tienphong"
+      ]
+     },
+     {
+      "text": "Bão lũ đến sớm năm 1972; nước sông Thạch Hãn làm ngập các hầm.",
+      "src": [
+       "plo"
+      ]
+     }
+    ],
+    "simulated": [
+     "Mức nước dâng (+0,7 m) là minh hoạ; chưa dựng nước đọng trong từng hố bom và bùn."
+    ]
+   },
+   "state": "rain_ruins",
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      -120,
+      -340,
+      40
+     ],
+     "l": [
+      0,
+      -220,
+      0
+     ]
+    },
+    {
+     "t": 16,
+     "follow": "qRepair",
+     "i": 2,
+     "off": [
+      2.0,
+      0.7,
+      0.4
+     ],
+     "look": [
+      8,
+      -1
+     ]
+    },
+    {
+     "t": 36,
+     "follow": "qRepair",
+     "i": 5,
+     "off": [
+      2.4,
+      -0.9,
+      0.6
+     ],
+     "look": [
+      8,
+      -1
+     ]
+    },
+    {
+     "t": 52,
+     "p": [
+      -560,
+      -360,
+      60
+     ],
+     "l": [
+      -260,
+      -60,
+      0
+     ]
+    },
+    {
+     "t": 80,
+     "p": [
+      -620,
+      -420,
+      140
+     ],
+     "l": [
+      -200,
+      -40,
+      0
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "weather": 1,
+     "flood": 0.7,
+     "audio": {
+      "battle": 0.3,
+      "wind": 0.5,
+      "water": 0.4,
+      "rain": 1
+     }
+    }
+   ],
+   "lines": [
+    {
+     "t": 2,
+     "text": "Cuối tháng 8, đầu tháng 9/1972. Mưa trút xuống Quảng Trị. Sông Thạch Hãn dâng cao, những con đường đầy hố bom lại ngập trong bùn nước."
+    },
+    {
+     "t": 16,
+     "text": "Nước len vào công sự, làm ướt quần áo, vũ khí và những chỗ trú ẩn cuối cùng. Muốn đi qua một khoảng trống, người lính phải lội bùn, tránh pháo, rồi lại tìm cách nằm xuống thật nhanh."
+    },
+    {
+     "t": 36,
+     "text": "Trong mưa, họ nhặt từng tấm ván, kéo từng bao đất về vá lại chiến hào. Công sự vừa đắp xong có thể bị phá tan chỉ sau một loạt đạn."
+    },
+    {
+     "t": 54,
+     "text": "Những ngày cuối đang đến gần. Thành cổ chỉ còn những bức tường gãy, những mái nhà sụp và những hố bom chồng lên nhau. Nhưng trong đống đổ nát ấy, trận chiến vẫn chưa dừng lại. Những người lính kiệt sức tiếp tục giữ các vị trí cuối cùng."
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/hiep-si.mp3",
+     "start": 0,
+     "from": 125,
+     "volume": 0.5,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: I Will Be Your Knight – Jo Wandrini (Epidemic Sound)"
+    }
+   ]
+  },
+  {
+   "id": "s09-nhung-ngay-cuoi",
+   "sequence": 9,
+   "ready": true,
+   "title": "Những ngày cuối",
+   "date_label": "9–16/9/1972",
+   "period": "final_assault",
+   "duration_sec": 115,
+   "plan": "Mũi tiến công cuối của Thuỷ quân Lục chiến VNCH; QĐND rút khỏi thành; cờ VNCH trên tường thành đến ngày 16/9 — nguồn ghi ngày 15 hoặc 16/9, dùng nhãn thời gian mềm.",
+   "panel": {
+    "seeing": "VNCH tiến vào từ phía Nam, Đông Nam, có người đã lên góc Đông Nam mặt thành; ban đêm QĐND rút về bờ sông và bơi sang bờ Tây; sáng 16/9 cờ VNCH trên cổng Tây.",
+    "facts": [
+     {
+      "text": "Ngày 12/9/1972, VNCH dùng 3 tiểu đoàn và 23 xe tăng, xe bọc thép tiến công trên ba hướng.",
+      "src": [
+       "plo"
+      ]
+     },
+     {
+      "text": "Cuộc chiến đấu bảo vệ thị xã và Thành cổ chấm dứt đêm 15/9/1972 khi ban chỉ huy quyết định rút quân về bên kia sông Thạch Hãn; ngày 16/9 đơn vị cuối cùng rời Thành cổ.",
+      "src": [
+       "plo",
+       "lsvn"
+      ]
+     },
+     {
+      "text": "Nguồn Mỹ: sáng sớm 11/9 Thuỷ quân Lục chiến VNCH lên được đỉnh tường thành; ảnh tư liệu ghi Tiểu đoàn 6 TQLC kéo cờ trên cổng Tây.",
+      "src": [
+       "usmcphoto"
+      ]
+     }
+    ],
+    "simulated": [
+     "Vị trí mũi tiến công và đường rút là minh hoạ; nhãn thời gian mềm (11–16/9).",
+     "Vị trí cờ đặt ở cổng Tây theo chú thích ảnh USMC; ngày kéo cờ ghi 15 hoặc 16/9 tuỳ nguồn.",
+     "Cờ giải phóng trên Cổng Tiền hạ xuống khi QĐND rút khỏi thành (đêm 15/9); cờ VNCH hiển thị mờ."
+    ]
+   },
+   "state": "final",
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      640,
+      -760,
+      240
+     ],
+     "l": [
+      150,
+      -200,
+      0
+     ]
+    },
+    {
+     "t": 16,
+     "follow": "vBreach",
+     "i": 0,
+     "off": [
+      1.6,
+      0.5,
+      0.35
+     ],
+     "look": [
+      45,
+      -4
+     ]
+    },
+    {
+     "t": 36,
+     "follow": "vAtk",
+     "i": 4,
+     "off": [
+      1.8,
+      0.6,
+      0.5
+     ],
+     "look": [
+      40,
+      -3
+     ]
+    },
+    {
+     "t": 54,
+     "follow": "qBack",
+     "i": 2,
+     "off": [
+      2.6,
+      1.0,
+      0.8
+     ],
+     "look": [
+      25,
+      -1
+     ]
+    },
+    {
+     "t": 72,
+     "p": [
+      -420,
+      -160,
+      40
+     ],
+     "l": [
+      -640,
+      -40,
+      0
+     ]
+    },
+    {
+     "t": 90,
+     "p": [
+      -300,
+      -26,
+      14
+     ],
+     "l": [
+      -252,
+      0,
+      11
+     ]
+    },
+    {
+     "t": 101,
+     "p": [
+      -292,
+      -20,
+      13
+     ],
+     "l": [
+      -252,
+      0,
+      11
+     ]
+    },
+    {
+     "t": 106,
+     "p": [
+      -420,
+      -520,
+      260
+     ],
+     "l": [
+      -100,
+      -60,
+      0
+     ]
+    },
+    {
+     "t": 115,
+     "p": [
+      -440,
+      -540,
+      280
+     ],
+     "l": [
+      -100,
+      -50,
+      0
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "night": 0,
+     "audio": {
+      "battle": 1,
+      "wind": 0.2,
+      "water": 0
+     }
+    },
+    {
+     "t": 56,
+     "flagQ": false
+    },
+    {
+     "t": 52,
+     "night": 0.75,
+     "fire": 0.5,
+     "gap": [
+      1.5,
+      3
+     ],
+     "audio": {
+      "battle": 0.6,
+      "water": 0.6
+     }
+    },
+    {
+     "t": 90,
+     "night": 0.15,
+     "fire": 0.2,
+     "gap": [
+      4,
+      8
+     ],
+     "audio": {
+      "battle": 0.3,
+      "water": 0.3
+     }
+    },
+    {
+     "t": 94,
+     "flag": true
+    }
+   ],
+   "lines": [
+    {
+     "t": 1,
+     "text": "Ngày 12/9/1972, 3 tiểu đoàn cùng 23 xe tăng, xe bọc thép của quân đội Sài Gòn tiến công từ 3 hướng. Pháo binh, không quân và pháo hạm Mỹ dồn dập yểm trợ."
+    },
+    {
+     "t": 18,
+     "text": "Giao tranh kéo dài sát mép tường thành. Một đoạn tường vừa bị chiếm, trận phản kích đã nổ ra. Lựu đạn, súng bộ binh, pháo sáng hòa vào tiếng nổ không dứt. Có nơi, hai chiến tuyến chỉ cách vài bước chân."
+    },
+    {
+     "t": 40,
+     "text": "Trong những ngày cuối, các đơn vị giữ Thành cổ vẫn bám trụ. Nhưng quân số, sức lực và từng vị trí phòng thủ đều bị bào mòn qua từng giờ."
+    },
+    {
+     "t": 54,
+     "text": "Đêm 15/9/1972. Sau nhiều ngày chống chọi với những đợt tiến công liên tiếp, lệnh rút khỏi thị xã được ban ra. Những người lính rời Thành cổ trong bóng tối, tìm đường trở lại bờ bên kia sông Thạch Hãn. Dòng sông từng đưa họ vào trận địa, giờ đón họ trở về. Nhưng không phải ai cũng còn sống để vượt qua lần nữa."
+    },
+    {
+     "t": 92,
+     "text": "Ngày 16/9/1972, quân đội Việt Nam Cộng hòa kiểm soát Thành cổ. Trận chiến 81 ngày đêm khép lại."
+    },
+    {
+     "t": 104,
+     "text": "Thành cổ im lặng giữa đống đổ nát. Nhưng dưới lớp đất ấy, ký ức của 81 ngày đêm vẫn còn."
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/ke-thu.mp3",
+     "start": 0,
+     "from": 15,
+     "volume": 0.45,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Arbitrary Enemy – Experia (Epidemic Sound)"
+    }
+   ]
+  },
+  {
+   "id": "s10-tuong-niem",
+   "sequence": 10,
+   "ready": true,
+   "title": "Từ chiến trường đến nơi tưởng niệm",
+   "date_label": "TỪ 1972 ĐẾN NAY",
+   "period": "memorial",
+   "duration_sec": 190,
+   "plan": "Âm thanh tắt dần, camera lên cao; cần ảnh hiện trạng có quyền sử dụng hoặc mô hình biểu tượng; phân biệt rõ di tích hiện tại và phần tái dựng.",
+   "panel": {
+    "seeing": "Hoàng hôn trên sông Thạch Hãn: người dân ngồi thuyền thả hoa đăng. Máy quay nâng dần lên toàn cảnh Thành cổ hôm nay: tường thành đã xây lại, bãi cỏ, hàng dừa, lối dạo; khí tài trưng bày hai bên đường dạo đỏ, khách tham quan đi lại; trên gò giữa thành, người dân thắp hương ở tháp biểu tượng và lầu hương.",
+    "facts": [
+     {
+      "text": "Thành cổ Quảng Trị và các địa điểm lưu niệm 81 ngày đêm được xếp hạng Di tích quốc gia đặc biệt ngày 9/12/2013.",
+      "src": [
+       "bentha"
+      ]
+     },
+     {
+      "text": "Lễ thả hoa đăng tri ân liệt sĩ được tổ chức tại bến thả hoa bên sông Thạch Hãn.",
+      "src": [
+       "hoadang",
+       "bentha"
+      ]
+     },
+     {
+      "text": "Ngày 16/9 được chọn làm ngày giỗ chung tưởng niệm những người hy sinh trong 81 ngày đêm.",
+      "src": [
+       "vnplus3"
+      ]
+     },
+     {
+      "text": "Đài tưởng niệm lớn được xây ở chính giữa Thành cổ.",
+      "src": [
+       "dtn"
+      ]
+     },
+     {
+      "text": "Từ một thị xã nhỏ, Quảng Trị trở thành trung tâm thu hút sự chú ý của cả nước và thế giới. Số liệu tổng kết theo trích dẫn: diệt hơn 24.000 quân, bắn rơi 180 máy bay, phá huỷ 140 xe quân sự (90 xe tăng, xe bọc thép), 20 khẩu pháo.",
+      "src": [
+       "tccs"
+      ]
+     },
+     {
+      "text": "Lượng bom đạn trong 81 ngày đêm khoảng 328.000 tấn, thường được so sánh tương đương 7 quả bom nguyên tử ném xuống Hiroshima.",
+      "src": [
+       "plo2",
+       "vov"
+      ]
+     },
+     {
+      "text": "Số liệu tổng kết khác nhau giữa các nguồn: Báo Nhân Dân ghi 26.000 quân, 205 máy bay, 349 xe quân sự (200 xe tăng, thiết giáp).",
+      "src": [
+       "nhandan2"
+      ]
+     }
+    ],
+    "simulated": [
+     "Thành cổ hôm nay được dựng phỏng theo ảnh chụp trên cao và ảnh khu tháp biểu tượng: tường thành xây lại (gạch cũ, rêu lốm đốm), cầu qua hào ở bốn cổng, bãi cỏ, hàng dừa, lối dạo, quảng trường tròn, gò cỏ có tháp biểu tượng bằng đồng và lầu hương mái ngói vàng. Đây là mô hình biểu tượng, không đo đạc. Khí tài đặt dọc đường dạo, người tham quan, thuyền thả hoa đăng là cảnh minh hoạ, không phải sơ đồ trưng bày thật của di tích.",
+     "Hoa đăng, ánh hoàng hôn là hình ảnh biểu tượng.",
+     "Nhạc nền: “Dòng sông phẳng lặng”, bản phối metal tạo bằng AI (phát từ 0:35), chỉ phát khi bật âm thanh. Tệp nhạc hiện chỉ có ở bản chạy trên máy: bản phối mới vẫn dùng giai điệu, lời của bài hát gốc nên cần xác nhận quyền của tác giả trước khi đưa lên bản công khai."
+    ]
+   },
+   "state": "memorial",
+   "cam": [
+    {
+     "t": 0,
+     "p": [
+      -588,
+      -6,
+      3.2
+     ],
+     "l": [
+      -618,
+      13,
+      0.2
+     ]
+    },
+    {
+     "t": 14,
+     "p": [
+      -596,
+      2,
+      4.5
+     ],
+     "l": [
+      -628,
+      16,
+      0.2
+     ]
+    },
+    {
+     "t": 26,
+     "p": [
+      -560,
+      -70,
+      22
+     ],
+     "l": [
+      -620,
+      20,
+      0
+     ]
+    },
+    {
+     "t": 50,
+     "p": [
+      -430,
+      -380,
+      120
+     ],
+     "l": [
+      -180,
+      0,
+      0
+     ]
+    },
+    {
+     "t": 90,
+     "p": [
+      -120,
+      -620,
+      260
+     ],
+     "l": [
+      -40,
+      0,
+      0
+     ]
+    },
+    {
+     "t": 130,
+     "p": [
+      380,
+      -480,
+      300
+     ],
+     "l": [
+      -40,
+      0,
+      0
+     ]
+    },
+    {
+     "t": 150,
+     "p": [
+      420,
+      260,
+      340
+     ],
+     "l": [
+      -80,
+      0,
+      0
+     ]
+    },
+    {
+     "t": 190,
+     "p": [
+      -300,
+      700,
+      520
+     ],
+     "l": [
+      -120,
+      0,
+      0
+     ]
+    }
+   ],
+   "env": [
+    {
+     "t": 0,
+     "audio": {
+      "battle": 0,
+      "wind": 0.25,
+      "water": 0.45,
+      "rain": 0
+     }
+    },
+    {
+     "t": 82,
+     "night": 0.12
+    },
+    {
+     "t": 146,
+     "night": 0.4
+    }
+   ],
+   "lines": [
+    {
+     "t": 3,
+     "text": "Nhiều năm đã qua. Bên dòng Thạch Hãn hôm nay, người ta thả những ngọn hoa đăng xuống nước, như gửi một lời nhắn tới những người đã nằm lại."
+    },
+    {
+     "t": 17,
+     "text": "Thành cổ Quảng Trị giờ là nơi người dân tìm về để tưởng nhớ. Mỗi năm, ngày 16/9, những người còn sống lại nhắc tên đồng đội của mình."
+    },
+    {
+     "t": 31,
+     "text": "Ngày ấy, một tòa thành nhỏ trở thành tâm điểm của cả cuộc chiến. Bom đạn từ 4 phía dồn về, biến từng con phố thành trận địa."
+    },
+    {
+     "t": 43,
+     "text": "Trong thành, nhiều người lính còn rất trẻ. Họ giữ từng vị trí, chứng kiến đồng đội ngã xuống ngay bên cạnh."
+    },
+    {
+     "t": 55,
+     "text": "Giấc ngủ giữa tiếng pháo, một ngụm nước chia nhau, một phút được yên lặng... cũng trở thành điều xa xỉ."
+    },
+    {
+     "t": 67,
+     "text": "Ngoài dòng sông, từng đêm vẫn có những chuyến đò lặng lẽ. Người ra đi mong tới được bờ; người ở lại chỉ mong thấy một bóng người trở về."
+    },
+    {
+     "t": 80,
+     "text": "Có những người lính đã nằm lại giữa dòng Thạch Hãn. Có những người chẳng kịp nhìn thấy Thành cổ, dù chỉ một lần."
+    },
+    {
+     "t": 93,
+     "text": "Có những người đã vượt qua tất cả, nhưng mang theo ký ức chiến trường suốt phần đời còn lại."
+    },
+    {
+     "t": 106,
+     "text": "81 ngày đêm không chỉ là thời gian. Đó là tuổi trẻ, những cuộc chia ly, và những cái tên còn mãi trong ký ức."
+    },
+    {
+     "t": 118,
+     "text": "Hôm nay, mỗi ngọn hoa đăng sáng trên sông như một lời tri ân gửi tới những người đã không trở về."
+    },
+    {
+     "t": 132,
+     "text": "Thành cổ vẫn ở đó. Không còn tiếng bom rơi, không còn tiếng súng. Chỉ còn dòng Thạch Hãn chảy qua, nhắc các thế hệ mai sau về cái giá của hòa bình."
+    },
+    {
+     "t": 148,
+     "text": "Nhạc nền: Epidemic Sound"
+    },
+    {
+     "t": 160,
+     "text": ""
+    }
+   ],
+   "music": [
+    {
+     "src": "audio/nhac/hiep-si.mp3",
+     "start": 0,
+     "from": 0,
+     "volume": 0.38,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: I Will Be Your Knight – Jo Wandrini (Epidemic Sound)"
+    },
+    {
+     "src": "audio/nhac/vi-thanh.mp3",
+     "start": 75,
+     "from": 0,
+     "volume": 0.55,
+     "fade_in": 2.5,
+     "fade_out": 3,
+     "credit": "Nhạc nền: Hero Epilogue – Experia (Epidemic Sound)"
+    }
+   ]
+  }
+ ],
+ "witness": [
+  {
+   "id": "defender",
+   "label": "Chiến sĩ phòng thủ trên mặt thành (QĐND)",
+   "state": "wall_fight",
+   "follow": "qWall",
+   "note": "Nhân vật tổng hợp, không phải một nhân chứng có thật. Góc nhìn quan sát, không bắn được."
+  },
+  {
+   "id": "supply",
+   "label": "Người làm công tác tiếp viện qua sông",
+   "state": "night_river_supply",
+   "follow": "boat",
+   "note": "Nhân vật tổng hợp ngồi trên thuyền tiếp viện. Góc nhìn quan sát."
+  },
+  {
+   "id": "rest",
+   "label": "Người lính trong công sự ban đêm (QĐND)",
+   "state": "bunker_night",
+   "follow": "qRest",
+   "env": {
+    "weather": 1
+   },
+   "note": "Nhân vật tổng hợp trong một đêm mưa. Góc nhìn quan sát."
+  },
+  {
+   "id": "attacker",
+   "label": "Quân nhân VNCH ở phía tiến công",
+   "state": "wall_fight",
+   "follow": "vAtk",
+   "note": "Nhân vật tổng hợp ở phía tiến công. Góc nhìn quan sát, không bắn được."
+  }
+ ],
+ "free_periods": [
+  {
+   "state": "spring",
+   "label": "30/3–2/5/1972 · Tiến công mùa xuân (lớp bản đồ)"
+  },
+  {
+   "state": "counter_start",
+   "label": "28/6/1972 · Phản công bắt đầu"
+  },
+  {
+   "state": "wall_fight",
+   "label": "Tháng 7–9/1972 · Giành giật từng đoạn tường"
+  },
+  {
+   "state": "under_fire",
+   "label": "Tháng 7/1972 · Dưới hoả lực"
+  },
+  {
+   "state": "night_river_supply",
+   "label": "Đêm tiếp viện qua sông Thạch Hãn"
+  },
+  {
+   "state": "bunker_night",
+   "label": "Một đêm trong công sự"
+  },
+  {
+   "state": "rain_ruins",
+   "label": "Cuối tháng 8–đầu tháng 9 · Mưa, nước dâng",
+   "env": {
+    "flood": 0.7
+   }
+  },
+  {
+   "state": "final",
+   "label": "11–16/9/1972 · Những ngày cuối",
+   "env": {
+    "flag": true
+   }
+  },
+  {
+   "state": "memorial",
+   "label": "Hôm nay · Nơi tưởng niệm (biểu tượng)"
+  },
+  {
+   "state": "overview",
+   "label": "Toàn cảnh yên tĩnh (không hiệu ứng)"
+  },
+  {
+   "state": "legacy",
+   "label": "Minh hoạ giả định: vượt sông đánh vào thành (bản cũ)"
+  }
+ ]
+}

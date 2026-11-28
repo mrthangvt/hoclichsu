@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0d171e">
+<meta name="description" content="Ôn tập và thi thử môn Lịch sử lớp 10, 11, 12: câu hỏi trắc nghiệm theo chủ đề, chấm điểm, giải thích đáp án và lưu kết quả trên thiết bị.">
+<title>Bộ đề ôn Sử lớp 10–11–12 | Học Lịch Sử</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <a class="brand" href="../" aria-label="Học Lịch Sử — trở về trang chủ">HỌC LỊCH SỬ</a>
+  <a class="back" href="../"><span aria-hidden="true">←</span> Trở về dòng thời gian</a>
+</div></header>
+<main>
+  <section class="intro" aria-labelledby="pageTitle">
+    <div class="eyebrow">THƯ VIỆN HỌC TẬP · TRẮC NGHIỆM LỊCH SỬ</div>
+    <h1 id="pageTitle">Bộ đề ôn Sử</h1>
+    <p>Ôn kiến thức theo từng lớp, từng chủ đề hoặc thi thử với đồng hồ đếm ngược. Chọn đáp án A/B/C/D, xem lời giải và kết quả theo thang 10. Bộ câu hỏi được biên soạn lại từ tài liệu ôn tập gửi cho Học Lịch Sử.</p>
+  </section>
+  <section id="setup" aria-label="Cấu hình bài ôn">
+    <h2 class="sr-only">Chọn lớp</h2>
+    <div id="gradeCards" class="grade-grid" aria-label="Lựa chọn lớp học"></div>
+    <div class="panel">
+      <h2>Thiết lập bài làm</h2>
+      <div class="config-grid">
+        <div class="field"><label for="topicSelect">Chọn chủ đề</label><select id="topicSelect"><option value="all">Tất cả chủ đề</option></select></div>
+        <div class="field"><label for="countSelect">Số câu hỏi</label><select id="countSelect"><option value="10">10 câu</option></select></div>
+        <div class="field"><label for="modeSelect">Hình thức</label><select id="modeSelect"><option value="study">Ôn tập · biết đúng/sai ngay</option><option value="exam">Thi thử · chấm điểm cuối bài</option></select></div>
+        <div class="field" id="timeField" hidden><label for="timeSelect">Thời gian thi thử</label><select id="timeSelect"><option value="10">10 phút</option><option value="15" selected>15 phút</option><option value="30">30 phút</option><option value="45">45 phút</option><option value="0">Không giới hạn</option></select></div>
+      </div>
+      <div class="actions"><button id="startButton" class="btn" type="button">Bắt đầu làm bài</button><span id="available" class="tag">Đang tải câu hỏi</span></div>
+      <p class="note" id="modeHelp">Ôn tập: biết đúng/sai ngay sau khi chọn.</p>
+      <p class="note" id="sourceHint">Dữ liệu chỉ phục vụ ôn tập.</p>
+      <p class="note" id="error" role="alert"></p>
+    </div>
+    <div class="panel">
+      <h2>Những lần làm bài gần đây</h2>
+      <div id="historyList" class="history" aria-live="polite"></div>
+      <div class="actions"><button id="clearHistory" class="btn secondary" type="button">Xóa lịch sử trên thiết bị</button><span class="note">Không cần đăng nhập; kết quả chỉ lưu trong trình duyệt hiện tại.</span></div>
+    </div>
+  </section>
+  <section id="quiz" class="panel hidden" aria-label="Bài trắc nghiệm" aria-live="off">
+    <div class="topbar">
+      <div><div class="eyebrow" id="examModeTag">ÔN TẬP</div><strong id="currentIndex">Câu 1</strong><div id="currentTopic" class="note"></div></div>
+      <div><span id="answeredCount" class="tag">0 câu đã làm</span> <span id="timer" class="timer hidden" aria-label="Thời gian còn lại">15:00</span></div>
+    </div>
+    <div class="progress" role="progressbar" aria-label="Tiến độ làm bài"><span id="progressFill"></span></div>
+    <div class="quiz-layout">
+      <div><div id="questionPane"></div>
+        <div class="actions"><button id="prevButton" class="btn secondary" type="button">← Câu trước</button><button id="nextButton" class="btn secondary" type="button">Câu tiếp →</button><button id="finishButton" class="btn" type="button">Nộp bài & chấm điểm</button><button id="exitButton" class="btn secondary" type="button">Thoát</button></div>
+      </div>
+      <aside class="qnav" aria-label="Danh sách câu hỏi"><h3>Đi tới câu hỏi</h3><div class="navnums" id="questionNav"></div><p class="nlegend">Viền vàng: câu hiện tại. Màu xanh: đã chọn đáp án. Ở chế độ ôn tập, màu đỏ là câu trả lời chưa đúng.</p></aside>
+    </div>
+  </section>
+  <section id="results" class="panel hidden" aria-label="Kết quả bài làm">
+    <div class="result-head">
+      <div><div class="eyebrow">KẾT QUẢ · THANG ĐIỂM 10</div><h2 style="margin:4px 0" id="resultHeadline">Đã hoàn thành</h2><p class="note" id="resultDesc"></p></div>
+      <div class="score" aria-label="Điểm số"><span id="scoreValue">0</span><span> / 10</span></div>
+    </div>
+    <div class="summary">
+      <div class="metric"><strong class="result-ok" id="correctValue">0 câu</strong><small>Đáp án đúng</small></div>
+      <div class="metric"><strong class="result-bad" id="wrongValue">0 câu</strong><small>Đáp án sai</small></div>
+      <div class="metric"><strong id="blankValue">0 câu</strong><small>Chưa trả lời</small></div>
+    </div>
+    <div class="actions"><button class="btn" type="button" id="againButton">Làm bộ đề mới</button><button class="btn secondary" type="button" id="newButton">Chọn lớp hoặc chủ đề khác</button></div>
+    <h2 style="margin-top:26px">Xem lại từng câu và lời giải</h2>
+    <p class="note">Mở từng câu để xem đáp án đúng, phần giải thích và trang tài liệu tham khảo.</p>
+    <div id="reviewList" class="review"></div>
+  </section>
+  <footer class="footer">
+    <strong>HỌC LỊCH SỬ · Bộ đề ôn Sử V4.11</strong>
+    <p>93 câu hỏi biên soạn mới từ tài liệu ôn tập lớp 10, 11, 12. Mỗi câu có dẫn trang tài liệu để kiểm tra. Nội dung phục vụ học tập và cần tiếp tục thẩm định trước khi sử dụng trong kì thi chính thức. Không đăng tải nguyên văn các bản PDF của tác giả bên thứ ba.</p>
+  </footer>
+</main>
+<script src="grade10.js"></script>
+<script src="grade11.js"></script>
+<script src="grade12.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

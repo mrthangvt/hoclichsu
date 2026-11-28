@@ -1,0 +1,946 @@
+{
+ "id": "rach-gam-xoai-mut",
+ "version": "1.0.0",
+ "engine": "^1.1",
+ "kind": "battle",
+ "title": "Rạch Gầm – Xoài Mút 1785",
+ "period": "tay-son",
+ "year": 1785,
+ "label": "Tái dựng mô phỏng",
+ "subtitle": "Sông Tiền · khúc giữa hai cửa rạch Rạch Gầm và Xoài Mút",
+ "storyLabel": "kịch bản V2",
+ "coords": {
+  "system": "blender",
+  "note": "Toạ độ mét; gốc lat0/lon0, kx, ky ở terrain/dia-hinh.json › meta"
+ },
+ "script": "rieng.js",
+ "credits": "Nhạc nền (Epidemic Sound): It Has Awoken – Dream Cave · Arbitrary Enemy, Hero Epilogue – Experia · I Will Be Your Knight – Jo Wandrini · Final Battle – Max Anson · The Thick of It – Jon Bjork · Tough Return – Phoenix Tail.",
+ "terrain": {
+  "data": "terrain/dia-hinh.json",
+  "height": "terrain/h_main.png",
+  "image": "terrain/tex_main.jpg",
+  "patchHeight": "terrain/h_{name}.png",
+  "patchImage": "terrain/tex_{name}.jpg",
+  "water": "shader",
+  "ground": "flat"
+ },
+ "props": {
+  "instances": [
+   [
+    "nha",
+    "nha_la",
+    true,
+    "nha"
+   ],
+   [
+    "cay",
+    "cay_song",
+    true,
+    "cay"
+   ],
+   [
+    "usung",
+    "usung_banhxe",
+    false,
+    "quan"
+   ]
+  ],
+  "models": [
+   {
+    "proxy": "cay_song",
+    "slot": 2,
+    "file": "props/cay-dua.glb"
+   },
+   {
+    "proxy": "nha_la",
+    "slot": 0,
+    "file": "props/nha-la.glb"
+   }
+  ],
+  "clearings": [
+   [
+    -372,
+    1150,
+    46
+   ],
+   [
+    -292,
+    1200,
+    22
+   ],
+   [
+    701,
+    22,
+    14
+   ],
+   [
+    699,
+    2,
+    16
+   ],
+   [
+    697,
+    -20,
+    18
+   ],
+   [
+    786,
+    48,
+    14
+   ],
+   [
+    785,
+    26,
+    16
+   ],
+   [
+    784,
+    4,
+    18
+   ]
+  ],
+  "thinOnLow": [
+   "cay"
+  ]
+ },
+ "labels": {
+  "anchors": {},
+  "big": [
+   "cua_rach_gam",
+   "cua_xoai_mut",
+   "song_tien",
+   "cu_lao_thoi_son"
+  ],
+  "rivers": [
+   [
+    "Sông Tiền",
+    10.3165,
+    106.2395
+   ],
+   [
+    "Rạch Gầm",
+    10.3335,
+    106.2235
+   ],
+   [
+    "Sông Tiền",
+    10.3285,
+    106.2905
+   ]
+  ]
+ },
+ "views": {
+  "all": {
+   "label": "Toàn cảnh",
+   "X": 600,
+   "Y": 300,
+   "dist": 13500,
+   "az": 190,
+   "el": 34
+  },
+  "rachgam": {
+   "label": "Cửa Rạch Gầm",
+   "target": "cua_rach_gam",
+   "dist": 1300,
+   "az": 200,
+   "el": 30,
+   "off": [
+    0,
+    150
+   ]
+  },
+  "giaochien": {
+   "label": "Khúc sông giao chiến",
+   "target": "song_tien",
+   "dist": 2600,
+   "az": 200,
+   "el": 30,
+   "off": [
+    1200,
+    200
+   ]
+  },
+  "phao": {
+   "label": "Trận địa pháo bờ Bắc",
+   "target": "phao_bo_song",
+   "dist": 420,
+   "az": 190,
+   "el": 22
+  },
+  "culao": {
+   "label": "Cù lao (phía Thới Sơn)",
+   "target": "cu_lao_thoi_son",
+   "dist": 2200,
+   "az": 210,
+   "el": 32
+  },
+  "xoaimut": {
+   "label": "Hướng Xoài Mút",
+   "target": "huong_xoai_mut",
+   "dist": 3000,
+   "az": 250,
+   "el": 26,
+   "off": [
+    -600,
+    0
+   ]
+  },
+  "thuongluu": {
+   "label": "Thượng lưu",
+   "target": "tuyen_tien_quan_xiem",
+   "dist": 3200,
+   "az": 120,
+   "el": 26,
+   "off": [
+    1200,
+    0
+   ]
+  },
+  "lang": {
+   "label": "Xóm ven rạch",
+   "target": "lang_ven_song",
+   "dist": 380,
+   "az": 200,
+   "el": 24
+  },
+  "chihuy": {
+   "label": "Chỉ huy Nguyễn Huệ",
+   "target": "nguyen_hue_1785",
+   "dist": 240,
+   "az": 200,
+   "el": 20
+  }
+ },
+ "ui": {
+  "layers": {
+   "nha": "Nhà lá, xóm ven rạch",
+   "cay": "Cây ven sông, vườn, tre",
+   "quan": "Đại bác ven bờ",
+   "nv": "Thuyền chiến, quân lính, người dân",
+   "co": "Cờ hiệu Tây Sơn",
+   "song": "Vệt sóng sau thuyền",
+   "duong": null,
+   "ld": null
+  },
+  "legend": [
+   [
+    "r",
+    "Mũi đỏ: thủy binh, hỏa lực Tây Sơn"
+   ],
+   [
+    "b",
+    "Mũi xanh nét đứt: đoàn thuyền Xiêm"
+   ],
+   [
+    "g",
+    "Mốc vàng: cửa rạch, cù lao, trận địa (bấm để đọc)"
+   ],
+   [
+    "p",
+    "Mốc đỏ: ghi chú review của nhóm"
+   ],
+   [
+    "w",
+    "Mặt nước: sông Tiền, các rạch"
+   ]
+  ],
+  "legendNote": "Sa bàn tương tác tái dựng mô phỏng, chưa phải tư liệu hiện trường chính thống. Mũi tên là quy ước đồ hoạ; vị trí pháo, nơi phục binh là giả định chiến thuật. Bờ sông, cù lao theo OpenStreetMap hiện nay (© OpenStreetMap contributors, ODbL). Ngoài vòng tròn sa bàn là nền phẳng.",
+  "unitsLoading": "Quân lính, chiến thuyền",
+  "compare": [
+   "",
+   ""
+  ],
+  "centerAnchor": "song_tien"
+ },
+ "sides": [
+  {
+   "id": "ts",
+   "name": "Quân Tây Sơn",
+   "flag": "props/co_tayson.jpg"
+  },
+  {
+   "id": "xi",
+   "name": "Quân Xiêm"
+  },
+  {
+   "id": "dan",
+   "name": "Người dân"
+  }
+ ],
+ "units": {
+  "ts": {
+   "file": "units/tayson.nvz",
+   "image": "units/tayson.jpg",
+   "side": 0,
+   "doubleSide": true,
+   "alias": {
+    "nghi": "dung",
+    "khom": "buoc",
+    "di": "chay",
+    "vapnga": "nga",
+    "vap": "nga",
+    "tuan": "chay",
+    "kiem": "danh",
+    "bodao": "danh"
+   },
+   "tint": [
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     0.74,
+     0.62,
+     0.54
+    ],
+    [
+     0.84,
+     0.58,
+     0.52
+    ],
+    [
+     0.92,
+     0.82,
+     0.74
+    ]
+   ]
+  },
+  "xi": {
+   "file": "units/xiem.nvz",
+   "image": "units/xiem.jpg",
+   "side": 1,
+   "doubleSide": true,
+   "alias": {
+    "nghi": "dung",
+    "di": "chay",
+    "buoc": "chay",
+    "tuan": "chay",
+    "khieng": "chay",
+    "vapnga": "vap",
+    "kiem": "chem",
+    "bua": "chem"
+   },
+   "tint": [
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     0.86,
+     0.84,
+     0.8
+    ],
+    [
+     0.76,
+     0.72,
+     0.7
+    ],
+    [
+     0.95,
+     0.9,
+     0.84
+    ]
+   ]
+  },
+  "dan": {
+   "file": "units/dan.nvz",
+   "image": "units/dan.jpg",
+   "side": 2,
+   "doubleSide": true,
+   "alias": {
+    "nghi": "dung",
+    "tuan": "di",
+    "vap": "chay"
+   },
+   "tint": [
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     0.85,
+     0.82,
+     0.78
+    ],
+    [
+     0.72,
+     0.7,
+     0.66
+    ],
+    [
+     0.95,
+     0.9,
+     0.82
+    ]
+   ]
+  },
+  "dan2": {
+   "file": "units/dan2.nvz",
+   "image": "units/dan2.jpg",
+   "side": 2,
+   "doubleSide": true,
+   "tint": [
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     0.85,
+     0.82,
+     0.78
+    ],
+    [
+     0.72,
+     0.7,
+     0.66
+    ],
+    [
+     0.95,
+     0.9,
+     0.82
+    ]
+   ]
+  },
+  "dan3": {
+   "file": "units/dan3.nvz",
+   "image": "units/dan3.jpg",
+   "side": 2,
+   "doubleSide": true,
+   "tint": [
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     0.85,
+     0.82,
+     0.78
+    ],
+    [
+     0.72,
+     0.7,
+     0.66
+    ],
+    [
+     0.95,
+     0.9,
+     0.82
+    ]
+   ]
+  },
+  "nh": {
+   "file": "units/nguyenhue.nvz",
+   "image": "units/nguyenhue.jpg",
+   "side": 0,
+   "doubleSide": true
+  },
+  "bts": {
+   "type": "boat",
+   "glb": "units/thuyen-ts.glb",
+   "draft": 0.07,
+   "deck": 0.45,
+   "side": 0,
+   "labelH": 5
+  },
+  "btx": {
+   "type": "boat",
+   "glb": "units/thuyen-xiem.glb",
+   "draft": 1.9,
+   "deck": 3.2,
+   "sails": [
+    "units/buom-xiem.glb",
+    "units/buom-xiem-rach.glb"
+   ],
+   "side": 1
+  },
+  "bdt": {
+   "type": "boat",
+   "glb": "units/dai-thuyen-ts.glb",
+   "draft": 1.35,
+   "deck": 2.8,
+   "sails": [
+    "units/buom-daits.glb",
+    "units/buom-daits-rach.glb"
+   ],
+   "side": 0
+  },
+  "bdn": {
+   "type": "boat",
+   "glb": "units/thuyen-dan.glb",
+   "draft": 0.07,
+   "deck": 0.55,
+   "side": 2,
+   "labelH": 5
+  }
+ },
+ "heroes": [],
+ "placement": "placement.json",
+ "boats": {
+  "lacRamp": [
+   6,
+   0.45
+  ],
+  "walkBoat": "bdn"
+ },
+ "roles": {
+  "tayson": {
+   "label": "Vai: Quân Tây Sơn",
+   "kind": "ts",
+   "idle": "dung",
+   "walk": "chay",
+   "run": "chay",
+   "walkSpeed": 0.6,
+   "weapon": 2,
+   "start": [
+    "phao_bo_song",
+    0,
+    25
+   ]
+  },
+  "dan": {
+   "label": "Vai: Người dân",
+   "kind": "dan",
+   "idle": "dung",
+   "walk": "di",
+   "run": "chay",
+   "walkSpeed": 1.25,
+   "weapon": 0,
+   "start": [
+    "lang_ven_song",
+    0,
+    0
+   ]
+  }
+ },
+ "pov": {
+  "places": [
+   [
+    "Bờ Bắc – trận địa pháo",
+    900,
+    120,
+    2.2
+   ],
+   [
+    "Cụm pháo Đông",
+    1800,
+    330,
+    2.2
+   ],
+   [
+    "Cửa Rạch Gầm (bờ Tây)",
+    -360,
+    -110,
+    2.5
+   ],
+   [
+    "Xóm ven rạch",
+    0,
+    0,
+    1.7
+   ],
+   [
+    "Mũi cù lao phía Thới Sơn",
+    3200,
+    -230,
+    3
+   ],
+   [
+    "Giữa dòng (trên mặt nước)",
+    1200,
+    -420,
+    6
+   ]
+  ],
+  "people": [
+   [
+    "Pháo thủ Tây Sơn bờ Bắc",
+    [
+     [
+      "ts_phao",
+      4,
+      1.6,
+      0.12
+     ]
+    ]
+   ],
+   [
+    "Lính hỏa khí ven bờ",
+    [
+     [
+      "ts_bo",
+      30,
+      1.6,
+      0.12
+     ]
+    ]
+   ],
+   [
+    "Thủy binh Tây Sơn – Rạch Gầm",
+    [
+     [
+      "ts_rg_linh",
+      3,
+      1.6,
+      0.12
+     ],
+     [
+      "ts_hq_linh",
+      3,
+      1.6,
+      0.12
+     ]
+    ]
+   ],
+   [
+    "Thủy binh Tây Sơn – phía Xoài Mút",
+    [
+     [
+      "ts_xm_linh",
+      3,
+      1.6,
+      0.12
+     ]
+    ]
+   ],
+   [
+    "Thủy binh Tây Sơn – sau cù lao",
+    [
+     [
+      "ts_cl_linh",
+      3,
+      1.6,
+      0.12
+     ]
+    ]
+   ],
+   [
+    "Lính Xiêm trên chiến thuyền",
+    [
+     [
+      "xi_linh",
+      50,
+      1.6,
+      0.12
+     ],
+     [
+      "xi_rut_linh",
+      2,
+      1.6,
+      0.12
+     ]
+    ]
+   ],
+   [
+    "Người dân xóm ven rạch",
+    [
+     [
+      "dan_lang",
+      3,
+      1.55,
+      0.1
+     ],
+     [
+      "dan_di",
+      1,
+      1.55,
+      0.1
+     ]
+    ]
+   ]
+  ]
+ },
+ "fx": {
+  "hitGroup": "xi_doan",
+  "cannons": [],
+  "shieldFire": [],
+  "campFire": []
+ },
+ "audio": {
+  "dir": "audio/",
+  "music": "audio/nhacnen.mp3",
+  "musicGain": 1.65,
+  "musicDuck": 0.935,
+  "beds": [
+   "chim",
+   "hanhquan",
+   "trong",
+   "chientruong",
+   "danhkiem",
+   "thaochay",
+   "buoc_co",
+   "buoc_rung",
+   "hetxung",
+   "bandan",
+   "song",
+   "songcuon"
+  ],
+  "layers": {
+   "hanhquan_b": [
+    "hanhquan",
+    0.9
+   ],
+   "hanhquan_c": [
+    "hanhquan",
+    1.12
+   ],
+   "buoc_co_b": [
+    "buoc_co",
+    1.08
+   ],
+   "buoc_rung_b": [
+    "buoc_rung",
+    0.93
+   ]
+  },
+  "march": {
+   "hanhquan": 0.5,
+   "hanhquan_b": 0.4,
+   "hanhquan_c": 0.3,
+   "buoc_co": 0.4,
+   "buoc_co_b": 0.3,
+   "buoc_rung": 0.28,
+   "buoc_rung_b": 0.22
+  },
+  "oneShots": [
+   "chem",
+   "daibac",
+   "daroi",
+   "tauchim"
+  ],
+  "steps": "buoc_co",
+  "water": [
+   0.3,
+   0.34,
+   0.12,
+   0.26,
+   0.14,
+   0.3,
+   0.34,
+   0.36,
+   0.34,
+   0.34,
+   0.3,
+   0.26,
+   0.18,
+   0.3
+  ],
+  "plan": [
+   [
+    [
+     0,
+     1,
+     {
+      "chim": 0.5
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "trong": 0.3,
+      "HQ": 0.25
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "chim": 0.15
+     }
+    ],
+    [
+     0.3,
+     1,
+     {
+      "thaochay": 0.18
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "trong": 0.4
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     0.85,
+     {
+      "trong": 0.12,
+      "chim": 0.12
+     }
+    ],
+    [
+     0.85,
+     1,
+     {
+      "chim": 0.12
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "trong": [
+       0.1,
+       0.3
+      ]
+     }
+    ]
+   ],
+   [
+    [
+     0.196,
+     1,
+     {
+      "trong": 0.55,
+      "bandan": 0.35
+     }
+    ],
+    [
+     0.196,
+     0.6,
+     {
+      "hetxung": 0.4
+     }
+    ],
+    [
+     0.6,
+     1,
+     {
+      "hetxung": 0.2
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "trong": 0.5,
+      "bandan": 0.4,
+      "chientruong": 0.35,
+      "hetxung": 0.3
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "trong": 0.45,
+      "bandan": 0.4,
+      "chientruong": 0.45,
+      "hetxung": 0.45
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "bandan": 0.5,
+      "chientruong": 0.55,
+      "danhkiem": 0.5,
+      "hetxung": 0.35,
+      "trong": 0.3
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "chientruong": 0.45,
+      "thaochay": 0.45,
+      "danhkiem": 0.35
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "thaochay": 0.25,
+      "trong": 0.25
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "trong": 0.45
+     }
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     {
+      "chim": 0.45
+     }
+    ]
+   ]
+  ],
+  "cues": [
+   [
+    6,
+    0.166,
+    "daibac",
+    0.9
+   ]
+  ],
+  "repeats": [
+   [
+    8,
+    0.5,
+    1,
+    "chem",
+    0.35,
+    0.8,
+    2
+   ],
+   [
+    9,
+    0,
+    1,
+    "chem",
+    0.4,
+    0.6,
+    1.6
+   ]
+  ]
+ },
+ "quality": {
+  "maxPixelRatio": 2,
+  "mobilePixelRatio": 1.5,
+  "unitDrawDist": 6000,
+  "mobileUnitDrawDist": 3500
+ },
+ "budget": {
+  "firstLoadMB": 15
+ },
+ "sources": "sources.json"
+}

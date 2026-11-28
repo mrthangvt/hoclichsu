@@ -1,0 +1,31 @@
+/* Học Lịch Sử V5.3 — logo mới, gom menu Sách giáo khoa, nút sa bàn 3D trong popup chiến trận. */
+
+/* Logo thanh bên (desktop) */
+aside .seal.vs53-seal{display:flex;justify-content:center;cursor:pointer;padding:2px 0 6px}
+aside .seal.vs53-seal>:not(.vs53-logo){display:none!important}
+.vs53-logo{display:block;line-height:0}
+.vs53-logo img{display:block;width:100%;height:auto}
+.vs53-logo-day-du{width:min(196px,100%)}
+.vs53-logo .vs53-logo-sang{display:none}
+body.theme-light .vs53-logo .vs53-logo-toi{display:none}
+body.theme-light .vs53-logo .vs53-logo-sang{display:block}
+aside .seal.vs53-seal:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:12px}
+
+/* Logo thanh trên (mobile) */
+.v31-mobile-brand.vs53-mobile-brand>:not(.vs53-logo){display:none!important}
+.vs53-logo-chu{height:34px;width:auto}
+.vs53-logo-chu img{height:34px;width:auto}
+
+/* Sách giáo khoa: ẩn danh sách lớp ở thanh bên, chọn lớp bằng các thẻ "Lớp 6…12" trong nội dung */
+#v21Grades,#v21Grades.expanded{display:none!important}
+#navSchool .v21-chevron{display:none!important}
+
+/* Nút vào sa bàn 3D trong mục "Sa bàn tương tác" của popup chiến trận */
+.vs53-3d{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:12px 0 16px;padding:14px 16px;border:1px solid var(--edge);border-radius:12px;background:rgba(226,183,104,.08)}
+.vs53-3d-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.vs53-3d-tag{font-size:10.5px;letter-spacing:1.6px;font-weight:700;color:var(--gold)}
+.vs53-3d-text b{font-size:16px}
+.vs53-3d-text small{color:var(--muted);font-size:12px}
+.vs53-3d .vs53-3d-button{flex:none;text-decoration:none}
+body.theme-light .vs53-3d{background:rgba(140,100,40,.08)}
+@media(max-width:700px){.vs53-3d{padding:12px}.vs53-3d .vs53-3d-button{width:100%;justify-content:center}}
