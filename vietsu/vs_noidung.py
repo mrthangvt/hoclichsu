@@ -14,17 +14,19 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from vs_core import db, now
+from vs_lamsach import lam_sach
 from vs_taikhoan import VAI_TRO_SUA, can_vai_tro, ghi_nhat_ky
 
 router = APIRouter()
 
 # s: chuỗi ngắn · t: đoạn văn · l: danh sách đoạn · n: số · b: có/không
+# h: bài viết định dạng (HTML từ trình biên tập: ảnh, căn lề, bảng, ghi chú) — làm sạch bằng vs_lamsach.
 TRUONG: dict[str, dict[str, str]] = {
-    "nhan-vat": {"name": "s", "period": "s", "role": "s", "desc": "t", "bioParagraphs": "l",
+    "nhan-vat": {"name": "s", "period": "s", "role": "s", "desc": "t", "bioParagraphs": "l", "bai": "h",
                  "sourceBook": "s", "sourcePage": "s", "moi": "b"},
-    "trieu-dai": {"name": "s", "period": "s", "desc": "t", "sourceBook": "s", "sourceCaution": "t"},
+    "trieu-dai": {"name": "s", "period": "s", "desc": "t", "bai": "h", "sourceBook": "s", "sourceCaution": "t"},
     "su-kien": {"name": "s", "desc": "t", "year": "n", "ten": "s", "nam": "n", "doan": "l", "src": "s", "bieu_tuong": "s"},
-    "hcm": {"title": "s", "date": "s", "detail": "t"},
+    "hcm": {"title": "s", "date": "s", "detail": "h"},
     "bai-sgk": {"ten": "s", "chuong": "s", "tom": "t", "nho": "l", "hoi": "l"},
 }
 TEN_LOAI = {"nhan-vat": "Nhân vật", "trieu-dai": "Triều đại", "su-kien": "Sự kiện", "hcm": "Mốc Hồ Chí Minh",
@@ -102,6 +104,16 @@ def _chuan(loai: str, du_lieu: dict, ma: str = "") -> dict:
                 raise HTTPException(422, f"“{k}” quá dài.")
             if "<" in v or ">" in v:
                 raise HTTPException(422, "Không dùng ký tự < > trong nội dung.")
+        elif kieu == "h":
+            v = str(v if v is not None else "")
+            if len(v) > 150_000:
+                raise HTTPException(422, f"“{k}” quá dài.")
+            if "<" not in v:   # chữ thường (bản cũ): mỗi đoạn cách nhau một dòng trống
+                import html as _h
+                v = "".join(f"<p>{_h.escape(x.strip(), quote=False)}</p>" for x in re.split(r"\n\s*\n", v) if x.strip())
+            v = lam_sach(v)
+            if not re.sub(r"<[^>]+>|&nbsp;|\s", "", v) and "<img" not in v:
+                v = ""
         elif kieu == "l":
             if isinstance(v, str):
                 v = [x.strip() for x in re.split(r"\n\s*\n|\n", v) if x.strip()]
@@ -162,7 +174,7 @@ def luu(loai: str, ma: str, item: NoiDungIn, request: Request):
     _kiem(loai, ma)
     du_lieu = _chuan(loai, item.du_lieu, ma)
     s = json.dumps(du_lieu, ensure_ascii=False)
-    if len(s) > 120_000:
+    if len(s) > 400_000:
         raise HTTPException(413, "Nội dung quá lớn.")
     with db() as con:
         if not du_lieu:

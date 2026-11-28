@@ -79,7 +79,7 @@ function taiGoc(){
           const sach=o=>JSON.parse(JSON.stringify(o));
           const ng={};for(const [k,p] of Object.entries(d.persons)){const {avatar,...r}=p;ng[k]=sach(r);}
           GOC={persons:ng,details:sach(d.details),battles:sach(d.battles||{}),su_kien:sach(d.su_kien),
-            hcm:sach(d.hcmEvents),sgk:sach(d.sgk),duong:sach(w.HLS_DUONG_DAN.bang().theoMa),goc:w.HLS_GOC||'/'};
+            hcm:sach(d.hcmEvents),sgk:sach(d.sgk),chuyen_de:d.chuyen_de?sach(d.chuyen_de):null,duong:sach(w.HLS_DUONG_DAN.bang().theoMa),goc:w.HLS_GOC||'/'};
           f.src='about:blank';$('#trangThai').textContent='';ok(GOC);
         }catch(e){loi(e);}},400);
         return;
@@ -99,7 +99,7 @@ const lienKet=ma=>GOC&&GOC.duong[ma]?'/'+GOC.duong[ma]:null;
 const LOAI={
  'trieu-dai':{ten:'Triều đại · thời kỳ',
    ds:()=>Object.entries(GOC.details).map(([ma,d])=>({ma,ten:d.name,phu:d.period,goc:d})),
-   truong:[['name','Tên','s'],['period','Thời gian','s'],['desc','Giới thiệu','t'],['sourceBook','Nguồn','s'],['sourceCaution','Lưu ý về nguồn','t']]},
+   truong:[['name','Tên','s'],['period','Thời gian','s'],['desc','Giới thiệu ngắn (hiện trên dòng thời gian)','t'],['bai','Bài chuyên đề (hiện trong hồ sơ triều đại)','r'],['sourceBook','Nguồn','s'],['sourceCaution','Lưu ý về nguồn','t']]},
  'su-kien':{ten:'Sự kiện lịch sử',
    ds:()=>[...Object.entries(GOC.battles).map(([ma,b])=>({ma,ten:b.name,phu:b.year?String(b.year):'',goc:b})),
      ...GOC.su_kien.map(e=>({ma:e.id,ten:e.ten,phu:(e.nam<0?(-e.nam)+' TCN':String(e.nam)),goc:e}))],
@@ -107,17 +107,37 @@ const LOAI={
      :[['name','Tên sự kiện','s'],['year','Năm','n'],['desc','Nội dung','t']]},
  'hcm':{ten:'Chủ tịch Hồ Chí Minh',
    ds:()=>GOC.hcm.map(e=>({ma:'hcm:'+e.year,ten:e.title,phu:e.date,goc:e})),
-   truong:[['date','Thời gian','s'],['title','Tiêu đề','s'],['detail','Nội dung (mỗi đoạn cách nhau một dòng trống)','h']]},
+   truong:[['date','Thời gian','s'],['title','Tiêu đề','s'],['detail','Nội dung','r']]},
  'nhan-vat':{ten:'Nhân vật lịch sử',them:true,
    ds:()=>{const ra=Object.entries(GOC.persons).map(([ma,p])=>({ma,ten:p.name,phu:[p.period,p.role].filter(Boolean).join(' · '),goc:p}));
      for(const [ma,v] of Object.entries(VA['nhan-vat']||{}))if(v.moi&&!GOC.persons[ma])ra.unshift({ma,ten:v.name,phu:v.period||'',goc:{},moi:true});return ra;},
    truong:[['name','Họ tên','s'],['period','Năm sinh – mất / thời gian hoạt động','s'],['role','Vai trò, chức vụ','s'],['desc','Tóm tắt','t'],
-     ['bioParagraphs','Tiểu sử (mỗi đoạn cách nhau một dòng trống)','p'],['sourceBook','Nguồn','s'],['sourcePage','Trang','s']]},
+     ['bai','Tiểu sử (bài viết)','r'],['sourceBook','Nguồn','s'],['sourcePage','Trang','s']]},
  'bai-sgk':{ten:'Sách giáo khoa',
    ds:()=>{const ra=[];for(const [g,l] of Object.entries(GOC.sgk))for(const b of l.bai){const so=String(b.so);
      ra.push({ma:'g'+g+'-sgk-'+so.toLowerCase().replace('cđ','cd'),ten:(/^\d+$/.test(so)?'Bài '+so:'Chủ đề '+so.replace(/\D/g,''))+': '+b.ten,phu:'Lớp '+g+' · '+b.chuong,goc:b,lop:g});}return ra;},
    truong:[['ten','Tên bài','s'],['chuong','Chương','s'],['tom','Tóm tắt','t'],['nho','Ghi nhớ (mỗi dòng một ý)','d'],['hoi','Câu hỏi ôn tập (mỗi dòng một câu)','d']]},
 };
+// r: bài viết định dạng (trình soạn thảo quan-tri-soan-thao.js). Nội dung gốc lấy từ dữ liệu trang:
+// triều đại → đoạn chuyên đề v34 (hoặc phần giới thiệu); nhân vật → đoạn hồ sơ v34 / tiểu sử; HCM → nội dung mốc.
+const doanHtml=a=>(a||[]).filter(t=>t&&!/^Nguồn:/i.test(String(t).trim())).map(t=>'<p>'+esc(t)+'</p>').join('');
+function gocGiau(loai,ma,goc){
+ const cd=GOC.chuyen_de;
+ if(loai==='trieu-dai'){const k=cd&&((cd.aliases[ma]&&cd.topics[cd.aliases[ma]])?cd.aliases[ma]:ma);const t=cd&&cd.topics[k];
+  return t&&t.paragraphs?doanHtml(t.paragraphs):doanHtml(String(goc.desc||'').split(/\n\s*\n/));}
+ if(loai==='nhan-vat'){const f=cd&&cd.figures[ma];const a=goc.bioParagraphs&&goc.bioParagraphs.length?goc.bioParagraphs:(f&&f.paragraphs)||[goc.desc];
+  return doanHtml(f&&f.paragraphs&&f.paragraphs.join(' ').length>(a||[]).join(' ').length?f.paragraphs:a);}
+ if(loai==='hcm'){const d=String(goc.detail||'').trim();return d?(/^<(p|h\d|div|figure|ul|ol|blockquote|table)\b/i.test(d)?d:'<p>'+d+'</p>'):'';}
+ return '';
+}
+function hienGiau(loai,ma,goc,va,k){
+ if(k in va){const v=va[k];return /<[a-z]/i.test(v)?v:doanHtml(String(v).split(/\n\s*\n/));}
+ if(loai==='nhan-vat'&&va.bioParagraphs)return doanHtml(va.bioParagraphs);   // bản sửa cũ dạng chữ
+ return gocGiau(loai,ma,goc);
+}
+const chuanHtml=h=>{const d=document.createElement('div');d.innerHTML=h||'';return d.innerHTML.trim();};
+const doanChu=h=>{const d=document.createElement('div');d.innerHTML=h||'';
+ return [...d.querySelectorAll('p,li,h2,h3,h4,blockquote,figcaption')].map(x=>x.textContent.replace(/\s+/g,' ').replace(/[<>]/g,'').trim()).filter(Boolean).slice(0,60).map(t=>t.slice(0,3900));};
 const truongCua=(loai,g)=>typeof LOAI[loai].truong==='function'?LOAI[loai].truong(g):LOAI[loai].truong;
 // h: đoạn HTML của trang gốc → chữ thường (đoạn cách dòng trống) để sửa; trang chính tự đổi lại thành HTML an toàn.
 const boThe=h=>{const d=document.createElement('textarea');d.innerHTML=String(h??'').replace(/<\/p>\s*<p[^>]*>/g,'\n\n').replace(/<br\s*\/?>/g,'\n').replace(/<[^>]+>/g,'');return d.value.trim();};
@@ -216,6 +236,9 @@ async function trangSua(v,loai,ma){
     '<div class="the"><h3>'+(moi?'Thêm nhân vật mới':esc(hien(truong[0][0])||muc.ten))+' '+(laMoi?'<span class="nhan moi">Mới</span>':Object.keys(va).length?'<span class="nhan sua">Đã sửa</span>':'<span class="nhan">Gốc</span>')+'</h3>'+
     '<div class="phu-dong">Mã: '+esc(moi?'(tự tạo theo tên)':ma)+(xem?' · <a href="'+esc(xem)+'" target="_blank">Xem trên trang ↗</a>':'')+'</div></div>'+
     '<form class="the bieu-mau" id="bm">'+truong.map(([k,nhan,kieu])=>{
+      if(kieu==='r')return '<div class="'+(k in va&&!laMoi?'doi':'')+'"><label style="display:block">'+esc(nhan)+'</label><div class="truong-giau" data-k="'+k+'"></div>'+
+        '<div class="ts-goi-y">Bôi đen chữ rồi bấm <b>✎ Ghi chú</b> để thêm chú thích · bấm vào ảnh để căn trái / giữa / phải · tên nhân vật, triều đại, sự kiện tự thành liên kết.</div>'+
+        (!laMoi&&k in va?'<div class="goc">Đã sửa — bấm “Khôi phục bản gốc” để trở về bài gốc.</div>':'')+'</div>';
       const gt=sangChu(hien(k),kieu),g=sangChu(goc[k],kieu);
       const o=kieu==='s'||kieu==='n'?'<input name="'+k+'" '+(kieu==='n'?'type="number"':'')+' value="'+esc(gt)+'">':
         '<textarea name="'+k+'" rows="'+(kieu==='p'||kieu==='h'?10:kieu==='t'?5:6)+'">'+esc(gt)+'</textarea>';
@@ -225,12 +248,24 @@ async function trangSua(v,loai,ma){
     (!moi&&Object.keys(va).length?'<button class="nut nguy" type="button" id="khoiPhuc">'+(laMoi?'Xóa nhân vật này':'Khôi phục bản gốc')+'</button>':'')+
     (!moi?'<button class="nut" type="button" id="lichSu">Lịch sử sửa</button>':'')+'</div></form><div id="ls"></div>';
   const f=$('#bm');
+  const giau={};
+  $$('.truong-giau',f).forEach(o=>{const k=o.dataset.k;giau[k]=QT.trinhSoan(o,moi?'':hienGiau(loai,ma,goc,va,k),{goiY:'Viết nội dung…'});});
   f.onsubmit=async e=>{
     e.preventDefault();
     const va2={};
-    for(const [k,,kieu] of truong){const gt=tuChu(f.elements[k].value,kieu);
+    for(const [k,,kieu] of truong){
+      if(kieu==='r'){const h=giau[k].lay();const coChu=/<img/i.test(h)||h.replace(/<[^>]+>|&nbsp;/g,'').trim();
+        if(laMoi){if(coChu)va2[k]=h;continue;}
+        if(h===giau[k].ban&&k in va){va2[k]=va[k];continue;}              // không sửa: giữ bản đã lưu
+        if(h!==giau[k].ban&&h!==chuanHtml(gocGiau(loai,ma,goc)))va2[k]=coChu?h:'';
+        continue;}
+      const gt=tuChu(f.elements[k].value,kieu);
       if(laMoi){if(gt!==''&&gt!==null&&!(Array.isArray(gt)&&!gt.length))va2[k]=gt;}
       else if(!giongNhau(gt,kieu==='h'?tuChu(boThe(goc[k]),'h'):kieu==='s'&&goc[k]!=null?String(goc[k]):goc[k]))va2[k]=gt===null?'':gt;}
+    if(loai==='nhan-vat'){   // tiểu sử chữ thường (mô tả chia sẻ, tìm kiếm) đi theo bài viết
+      if(va2.bai)va2.bioParagraphs=doanChu(va2.bai);else if(!('bai' in va2)&&va.bioParagraphs&&!('bai' in va))va2.bioParagraphs=va.bioParagraphs;}
+    if(va2.bai===''||va2.detail==='')bao('Nội dung trống — dùng lại bài gốc.');
+    for(const k of ['bai','detail'])if(va2[k]==='')delete va2[k];
     let ma2=ma;
     if(laMoi){if(!va2.name){bao('Nhập họ tên nhân vật.',true);return;}va2.moi=true;
       if(moi){ma2='cms-'+slug(va2.name);if(GOC.persons[ma2]||(VA['nhan-vat']||{})[ma2])ma2+='-'+Date.now().toString(36).slice(-4);}}

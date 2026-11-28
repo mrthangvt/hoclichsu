@@ -1,0 +1,76 @@
+/* Học Lịch Sử V6.4 — chữ thống nhất Be Vietnam Pro + cỡ chữ dễ đọc trên máy tính và điện thoại; kiểu bài viết từ CMS.
+   Thang chữ: nhãn chữ HOA ≥ 11px · chú thích/phụ ≥ 12px · nút ≥ 12–13px · đọc 16px (máy tính) / 15px (điện thoại), dòng 1,75. */
+
+/* ---------- Một font duy nhất ---------- */
+html,body,button,input,select,textarea{font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.aside-note{font-family:"Be Vietnam Pro",system-ui,sans-serif!important;font-style:italic!important;font-weight:500!important;font-size:14px!important;line-height:1.75!important}
+.maplibregl-map,.maplibregl-popup{font-family:"Be Vietnam Pro",system-ui,sans-serif}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+/* ---------- Nhãn nhỏ chữ HOA (kicker, overline, chip) ---------- */
+html body .dynasty .kicker,.v34-study .v34-overline,.mod-eyebrow,#modalbody .chip,.panel .chip,.legend-mid,.memory-label,
+.v34-era-figures span,.year-nav-label{font-size:11px!important;letter-spacing:.08em}
+.eyebrow{font-size:12px!important}
+
+/* ---------- Chữ phụ / chú thích ---------- */
+.dynasty small,.dynasty .memory-note,.v25-char-info small,.v25-char-info em,.v30-character-title small,
+.memory-name,.v25-app-copy span,.bottom-note,.atlas .footer,.v24-article-facts dt{font-size:12px!important}
+.dynasty b,.dynasty span>b{font-size:12px}
+.event .tag,.dynasty .west-more,.event span{font-size:11.5px!important}
+html body .v34-figure strong{font-size:11.5px!important;line-height:1.3}
+html body #timeline .v41-icons .v41-icon-chip small,html body #timeline .v42-experience span>small{font-size:11px!important}
+
+/* ---------- Nút ---------- */
+.year-nav-btn,.compare-btn,.size-btn,.v25-app-copy button,.v42-gallery-filters button{font-size:12.5px!important}
+.ai-open-text{font-size:13px!important}
+.v24-article-toc a,.v25-profile-link{font-size:13px!important}
+
+/* ---------- Nội dung đọc trong cửa sổ hồ sơ ---------- */
+.v34-study p,#modalbody .panel>p:not(.mini):not(.vs59-nguon),#modalbody .vs59-bai p,.v24-article p,.story-text p,.hls-bai{font-size:16px!important;line-height:1.8!important}
+.v34-study .v34-source,#modalbody p.vs59-nguon,#v24-footnote p{font-size:13px!important;line-height:1.7!important}
+.v34-study .v34-disclaimer{font-size:13px!important}
+.v24-article-facts dd{font-size:14px!important}
+
+/* ---------- Điện thoại (html body … để thắng các luật !important cũ) ---------- */
+@media (max-width:760px){
+ html body .v34-study p,html body #modalbody .panel>p:not(.mini):not(.vs59-nguon),html body #modalbody .vs59-bai p,html body .v24-article p,html body .story-text p,html body .hls-bai{font-size:15px!important;line-height:1.75!important}
+ html body .dynasty .kicker,html body .v34-study .v34-overline,html body .memory-label,html body .v34-era-figures span,html body .legend-mid{font-size:10.5px!important;letter-spacing:.06em!important}
+ html body .era-mid .year{font-size:11.5px!important}
+ html body .memory-name,html body .dynasty small{font-size:12px!important}
+ html body .v34-figure strong{font-size:11px!important}
+ html body .mobile-sections.mobile-sections.mobile-sections>button>span:not(.nav-icon){font-size:11px!important;line-height:1.2!important}
+ html body .legend .country{font-size:11px!important}
+}
+
+/* ---------- Bài viết định dạng từ CMS (triều đại, nhân vật, Hồ Chí Minh) ---------- */
+.hls-bai{color:inherit}
+.hls-bai p{margin:.75em 0}
+.hls-bai h2,.hls-bai h3,.hls-bai h4{line-height:1.35;margin:1.2em 0 .45em;color:inherit}
+.hls-bai h2{font-size:1.3em!important}.hls-bai h3{font-size:1.15em!important}.hls-bai h4{font-size:1.05em!important}
+.hls-bai img{max-width:100%;height:auto;border-radius:10px;display:block;margin:0 auto}
+.hls-bai figure{margin:1.2em 0;text-align:center}
+.hls-bai figcaption{font-size:13px;opacity:.8;margin-top:.45em;line-height:1.5}
+.hls-bai figure.anh-trai{float:left;max-width:45%;margin:.3em 1.3em .9em 0}
+.hls-bai figure.anh-phai{float:right;max-width:45%;margin:.3em 0 .9em 1.3em}
+.hls-bai figure.anh-giua{max-width:75%;margin-left:auto;margin-right:auto}
+.hls-bai figure.anh-rong img{width:100%}
+.hls-bai::after{content:"";display:block;clear:both}
+.hls-bai blockquote{border-left:4px solid #c9a35a;margin:1em 0;padding:.3em 1em;background:rgba(201,163,90,.1);border-radius:0 10px 10px 0}
+.hls-bai table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.92em}
+.hls-bai td,.hls-bai th{border:1px solid rgba(201,163,90,.4);padding:.45em .6em;text-align:left}
+.hls-bai ul,.hls-bai ol{padding-left:1.4em}
+.hls-bai a{color:#e3bf7f}
+body.theme-light .hls-bai a{color:#8a5a1c}
+.hls-bai a.hls-lk{color:inherit;text-decoration:underline;text-decoration-color:#c9a35a;text-decoration-thickness:2px;text-underline-offset:3px}
+.hls-bai a.hls-lk:hover{color:#e3bf7f}
+body.theme-light .hls-bai a.hls-lk:hover{color:#8a5a1c}
+.hls-bai .ghi-chu{border-bottom:1px dotted currentColor}
+.hls-gc-so{font-size:.7em;line-height:0;margin-left:1px}
+.hls-gc-so a{text-decoration:none;font-weight:700;padding:0 .2em;color:#e3bf7f!important}
+body.theme-light .hls-gc-so a{color:#8a5a1c!important}
+.hls-gc-ds{clear:both;margin-top:1.4em;padding-top:.8em;border-top:1px solid rgba(201,163,90,.4);font-size:14px;line-height:1.65}
+.hls-gc-ds h4{font-size:14px!important;margin:0 0 .3em!important;letter-spacing:.04em}
+.hls-gc-ds ol{padding-left:1.4em;margin:0}.hls-gc-ds li{margin:.3em 0;border-radius:6px;transition:background .3s}
+.hls-gc-ds li.dang{background:rgba(227,191,127,.25)}
+.hls-gc-ds li a{text-decoration:none;color:#e3bf7f}
+@media (max-width:600px){.hls-bai figure.anh-trai,.hls-bai figure.anh-phai{float:none;max-width:100%;margin:1em 0}.hls-bai figure.anh-giua{max-width:100%}}

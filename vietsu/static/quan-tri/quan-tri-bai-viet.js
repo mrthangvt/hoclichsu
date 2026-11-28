@@ -126,8 +126,8 @@ const SUA_CSS=`
 .bt-cu{display:flex;flex-wrap:wrap;gap:2px;padding:6px;border-bottom:1px solid var(--vien);background:#fff;position:sticky;top:61px;z-index:3}
 .bt-cu button,.bt-cu select{border:1px solid transparent;background:none;border-radius:6px;min-width:32px;height:32px;cursor:pointer;font-size:14px;padding:0 6px;width:auto}
 .bt-cu button:hover{background:#f2eee4;border-color:var(--vien)}.bt-cu .ngan{width:1px;background:var(--vien);margin:4px 4px}
-.bt-soan{min-height:460px;padding:22px 26px;outline:none;font-size:16px;line-height:1.75;font-family:Georgia,"Be Vietnam Pro",serif;color:#24292d}
-.bt-soan h2{font-family:"Be Vietnam Pro",sans-serif;font-size:1.45em;margin:1.2em 0 .5em}.bt-soan h3{font-family:"Be Vietnam Pro",sans-serif;font-size:1.2em}
+.bt-soan{min-height:460px;padding:22px 26px;outline:none;font-size:16px;line-height:1.75;font-family:"Be Vietnam Pro",system-ui,sans-serif;color:#24292d}
+.bt-soan h2{font-size:1.45em;margin:1.2em 0 .5em}.bt-soan h3{font-size:1.2em}
 .bt-soan img{max-width:100%;height:auto;border-radius:6px}.bt-soan figure{margin:1.2em 0;text-align:center}.bt-soan figcaption{font-size:.85em;color:#7b746a}
 .bt-soan blockquote{border-left:4px solid #c9a35a;margin:1em 0;padding:.2em 1em;background:#faf6ee}
 .bt-soan table{border-collapse:collapse;width:100%}.bt-soan td,.bt-soan th{border:1px dashed #c9c1b1;padding:6px 8px;min-width:40px}
@@ -201,6 +201,7 @@ QT.trang['viet-bai']=async(v,id)=>{
       '<span class="ngan"></span><button type="button" data-lenh="insertUnorderedList" title="Danh sách chấm">• ≡</button><button type="button" data-lenh="insertOrderedList" title="Danh sách số">1.≡</button><button type="button" data-lenh="formatBlock" data-gt="blockquote" title="Trích dẫn">❝</button>'+
       '<span class="ngan"></span><button type="button" data-lenh="justifyLeft" title="Căn trái">⇤</button><button type="button" data-lenh="justifyCenter" title="Căn giữa">↔</button><button type="button" data-lenh="justifyRight" title="Căn phải">⇥</button><button type="button" data-lenh="justifyFull" title="Căn đều">☰</button>'+
       '<span class="ngan"></span><button type="button" data-lenh="lienKet" title="Chèn liên kết (Ctrl+K)">🔗</button><button type="button" data-lenh="unlink" title="Bỏ liên kết">⛓︎̸</button><button type="button" data-lenh="anh" title="Thêm ảnh">🖼 Ảnh</button><button type="button" data-lenh="bang" title="Chèn bảng">▦</button><button type="button" data-lenh="insertHorizontalRule" title="Đường kẻ">―</button>'+
+      '<span class="ngan"></span><button type="button" data-lenh="ghiChu" title="Ghi chú: bôi đen chữ rồi bấm">✎ Ghi chú</button>'+
       '<span class="ngan"></span><button type="button" data-lenh="removeFormat" title="Xóa định dạng">⌫</button><button type="button" data-lenh="undo" title="Hoàn tác">↶</button><button type="button" data-lenh="redo" title="Làm lại">↷</button>'+
     '</div><div class="bt-soan" id="btSoan" contenteditable="true" data-goi-y="Bắt đầu viết nội dung…"></div><textarea class="bt-ma" id="btMa" hidden spellcheck="false"></textarea>'+
     '<div class="bt-chan"><span id="btDem">0 từ</span><span id="btLuuLuc"></span></div></div>'+
@@ -230,8 +231,9 @@ QT.trang['viet-bai']=async(v,id)=>{
   '</aside></div>';
 
   const soan=$('#btSoan'),ma=$('#btMa');soan.innerHTML=b.noi_dung||'';
+  if(QT.napCssSoan){QT.napCssSoan();QT.ganCongCuAnh(soan);}   // ghi chú + căn ảnh (quan-tri-soan-thao.js)
   let cheDo='truc-quan';
-  const layNoiDung=()=>cheDo==='ma'?ma.value:soan.innerHTML;
+  const layNoiDung=()=>(cheDo==='ma'?ma.value:soan.innerHTML).replace(/<img([^>]*?)\sclass="chon"/g,'<img$1');
   const thu=()=>({...b,tieu_de:$('#btTieuDe').value.trim(),duong_dan:$('#btDd').value.trim(),noi_dung:layNoiDung(),tom_tat:$('#btTomTat').value.trim(),
     seo_tieu_de:$('#btSeoTit').value.trim(),seo_mo_ta:$('#btSeoMt').value.trim(),tu_khoa:$('#btTuKhoa').value.trim(),cho_index:$('#btIndex').checked,
     chuyen_muc:$$('#btCm input:checked').map(i=>+i.value),xuat_ban_luc:$('#btNgay').value?new Date($('#btNgay').value).toISOString():''});
@@ -250,13 +252,13 @@ QT.trang['viet-bai']=async(v,id)=>{
   $$('#btCu button').forEach(bt=>bt.onmousedown=e=>e.preventDefault());
   $$('#btCu button').forEach(bt=>bt.onclick=async()=>{
     const c=bt.dataset.lenh;
+    if(c==='ghiChu'){QT.themGhiChu(soan);capNhat();return;}
     if(c==='lienKet'){const sel=window.getSelection();const r=sel.rangeCount?sel.getRangeAt(0).cloneRange():null;
       const u=prompt('Địa chỉ liên kết (https://… hoặc /nhan-vat-lich-su/…):','https://');if(!u||u==='https://')return;
       if(r){sel.removeAllRanges();sel.addRange(r);}if(r&&r.collapsed)lenh('insertHTML','<a href="'+esc(u)+'">'+esc(u)+'</a>');else lenh('createLink',u);
       if(/^https?:/.test(u)&&!/hoclichsu\.com/.test(u))$$('a[href="'+CSS.escape(u)+'"]',soan).forEach(a=>a.target='_blank');return;}
     if(c==='anh'){const sel=window.getSelection();const r=sel.rangeCount&&soan.contains(sel.anchorNode)?sel.getRangeAt(0).cloneRange():null;
-      const a=await chonAnh('Thêm ảnh vào bài');if(!a)return;soan.focus();if(r){sel.removeAllRanges();sel.addRange(r);}else{const rr=document.createRange();rr.selectNodeContents(soan);rr.collapse(false);sel.removeAllRanges();sel.addRange(rr);}
-      lenh('insertHTML','<figure><img src="'+esc(a.url)+'" alt="'+esc(a.alt)+'" width="'+a.rong+'" height="'+a.cao+'">'+(a.alt?'<figcaption>'+esc(a.alt)+'</figcaption>':'')+'</figure><p><br></p>');return;}
+      const a=await chonAnh('Thêm ảnh vào bài');if(!a)return;soan.focus();QT.chenAnh(soan,a,r);capNhat();return;}
     if(c==='bang'){const n=prompt('Số cột × số dòng (vd 2x3):','2x3');if(!n)return;const m=n.match(/(\d+)\s*[x×*]\s*(\d+)/);if(!m)return;
       const cot=Math.min(+m[1],8),dong=Math.min(+m[2],30);
       lenh('insertHTML','<table><thead><tr>'+'<th>Tiêu đề</th>'.repeat(cot)+'</tr></thead><tbody>'+('<tr>'+'<td>&nbsp;</td>'.repeat(cot)+'</tr>').repeat(dong)+'</tbody></table><p><br></p>');return;}

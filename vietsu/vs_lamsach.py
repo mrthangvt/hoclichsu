@@ -17,8 +17,11 @@ THUOC_TINH = {
     "img": {"src", "alt", "width", "height", "title"},
     "td": {"colspan", "rowspan"}, "th": {"colspan", "rowspan", "scope"},
     "ol": {"start"},
+    "span": {"class", "title"},
+    "figure": {"class"},          # căn ảnh: anh-trai · anh-phai · anh-giua · anh-rong   # chỉ class="ghi-chu" (ghi chú), title = nội dung ghi chú
 }
 CANH = {"left", "center", "right", "justify"}
+LOP_ANH = {"anh-trai", "anh-phai", "anh-giua", "anh-rong"}
 SO_RE = re.compile(r"^\d{1,4}$")
 
 
@@ -74,6 +77,17 @@ class _LamSach(HTMLParser):
                     continue
             elif k in ("width", "height", "colspan", "rowspan", "start"):
                 if not SO_RE.match(v):
+                    continue
+            elif k == "class":
+                if tag == "span" and v.strip() == "ghi-chu":
+                    v = "ghi-chu"
+                elif tag == "figure" and v.strip() in LOP_ANH:
+                    v = v.strip()
+                else:
+                    continue
+            elif k == "title" and tag == "span":
+                v = re.sub(r"\s+", " ", v).strip()[:1000]
+                if not v:
                     continue
             elif k == "target":
                 v = "_blank" if v == "_blank" else None

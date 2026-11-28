@@ -17,6 +17,7 @@ from pydantic import BaseModel, Field
 
 from vs_core import SITE_URL, db, now, slugify
 from vs_lamsach import chu_tron, lam_sach
+from vs_trang_tri import CSS as TRANG_TRI_CSS, trang_tri
 from vs_render import page_shell
 from vs_taikhoan import VAI_TRO_SUA, can_vai_tro, ghi_nhat_ky, tai_khoan_hien_tai
 
@@ -394,7 +395,7 @@ def trang_bai(r, xem_truoc: bool = False) -> HTMLResponse:
               "author": {"@type": "Person", "name": r["tac_gia"] or "Học Lịch Sử"}, "mainEntityOfPage": url,
               "image": anh if anh.startswith("https://") else SITE_URL + anh,
               "publisher": {"@type": "Organization", "name": "Học Lịch Sử", "logo": {"@type": "ImageObject", "url": SITE_URL + "/static/favicon/icon-512.png"}}}
-    body = (f'<style>{BAI_CSS}</style>'
+    body = (f'<style>{BAI_CSS}{TRANG_TRI_CSS}</style>'
             + ('<p style="background:#fff3cd;padding:.6em 1em;border-radius:8px">Bản xem trước — chưa công khai.</p>' if xem_truoc else "")
             + '<div class="crumb"><a href="/">Học Lịch Sử</a> / <a href="/bai-viet/">Bài viết</a>'
             + (f' / <a href="/bai-viet/chuyen-muc/{esc(cms[0]["duong_dan"])}">{esc(cms[0]["ten"])}</a>' if cms else "") + "</div>"
@@ -402,7 +403,7 @@ def trang_bai(r, xem_truoc: bool = False) -> HTMLResponse:
             + (f' · {esc(r["tac_gia"])}' if r["tac_gia"] else "") + "</div>"
             + (f'<img class="bv-anh" src="{esc(r["anh_dai_dien"])}" alt="{esc(r["tieu_de"])}">' if r["anh_dai_dien"] else "")
             + (f'<p class="lede">{esc(r["tom_tat"])}</p>' if r["tom_tat"] else "")
-            + f'<article>{lam_sach(r["noi_dung"])}</article>'
+            + f'<article>{trang_tri(lam_sach(r["noi_dung"]))}</article>'
             + ('<div class="bv-the">' + "".join(f"<a>#{esc(t)}</a>" for t in the) + "</div>" if the else "")
             + ('<h2>Bài liên quan</h2><div class="bv-ds">' + "".join(_o_bai(x) for x in lq) + "</div>" if lq else "")
             + '<p class="back"><a href="/bai-viet/">← Tất cả bài viết</a></p>')
