@@ -102,3 +102,46 @@ Theo yêu cầu chủ dự án (tham khảo vietnamchuyenminh.com): `static/v63.
 - Chọn một thẻ trong danh sách: ngăn đóng lại, bản đồ bay tới điểm và mở thẻ "Xem không gian 3D".
 - Giao diện sáng/tối; trợ lý AI dời lên trên thanh đáy. Máy tính và bản đồ SVG dự phòng giữ như cũ (bản SVG: chọn thẻ mở hồ sơ như trước).
 - **Sửa (28/11, nhánh `claude/sua-zoom-doi-giao-dien`):** trên máy tính, sau khi đổi giao diện sáng/tối thì Ctrl/⌘ + cuộn không phóng bản đồ nữa. Nguyên nhân: v63.js gọi `map.resize()` mỗi lần thẻ body đổi lớp. Giờ v63 chỉ đụng tới bản đồ khi thật sự đổi chế độ điện thoại ↔ máy tính; đổi kích thước do ResizeObserver của v62 lo.
+- **Sửa (28/11, nhánh `claude/sua-cuon-mobile-khong-gian`):** trên iPhone, kéo vào thanh đầu trang/thanh đáy/menu ở Không gian lịch sử làm cả trang “nảy”, thanh menu dưới bị kéo nổi lên. Giờ ở chế độ toàn màn hình trang bị khóa (`body` cố định), chỉ cuộn được trong danh sách và kéo trên bản đồ; cuộn tới đầu/cuối danh sách không kéo cả trang theo.
+
+## V6.4 (28/11/2026, nhánh `claude/cms-bien-tap-giau`): trình biên tập định dạng cho hồ sơ, ghi chú, tự liên kết, cỡ chữ
+Theo yêu cầu chủ dự án.
+
+**Trình biên tập** (`static/quan-tri/quan-tri-soan-thao.js`, giống trình biên tập bài viết)
+- Áp dụng cho:
+  - **Triều đại → Bài chuyên đề**: nội dung gốc là các đoạn chuyên đề v34 đang hiện trong hồ sơ triều đại;
+  - **Nhân vật → Tiểu sử (bài viết)**: nội dung gốc là đoạn hồ sơ v34 hoặc tiểu sử;
+  - **Chủ tịch Hồ Chí Minh → Nội dung**.
+- Công cụ:
+  - kiểu đoạn (tiêu đề 2–4, trích dẫn), đậm/nghiêng/gạch, danh sách;
+  - **căn lề trái/giữa/phải/đều**, liên kết, bảng, đường kẻ, chế độ Mã HTML;
+  - **ảnh từ thư viện**: bấm vào ảnh để **căn trái / giữa / phải / toàn khổ** (chữ chảy quanh ảnh), sửa chú thích, xóa ảnh.
+- **Ghi chú**: bôi đen chữ → "✎ Ghi chú" → nhập nội dung. Khi hiển thị, chữ có số chú thích [1] và mục "Ghi chú" cuối bài. Bấm số để xuống ghi chú, bấm ↩ để quay lại.
+- Trình biên tập bài viết cũng có nút Ghi chú và công cụ căn ảnh. Ảnh chèn vào được đặt sau đoạn đang đứng, không lồng trong đoạn (trước đây ảnh và chú thích có thể bị tách đôi).
+
+**Lưu và hiển thị**
+- Máy chủ (`vs_noidung.py`) có kiểu trường mới "h" (HTML làm sạch bằng `vs_lamsach.py`):
+  - trường mới: `trieu-dai.bai`, `nhan-vat.bai`;
+  - `hcm.detail` chuyển sang kiểu "h" (bản cũ dạng chữ vẫn đọc được).
+- Bộ làm sạch chỉ cho thêm `span.ghi-chu[title]` và `figure.anh-trai|anh-phai|anh-giua|anh-rong`.
+- Trang chính (`v60-cms.js`):
+  - hồ sơ triều đại: bài thay các đoạn chuyên đề;
+  - hồ sơ nhân vật: bài vào mục "Tiểu sử và thời đại", bỏ đoạn trùng ở thẻ v34;
+  - Hồ Chí Minh: bài hiện trong mốc.
+- Nhân vật: lưu bài thì tự cập nhật `bioParagraphs` (chữ thường) để mô tả chia sẻ và tìm kiếm khớp.
+- CMS đọc dữ liệu chuyên đề v34 qua `HLS_LAY_GOC().chuyen_de`.
+
+**Tự liên kết từ khóa**
+- Lần xuất hiện đầu tiên của tên nhân vật / triều đại / sự kiện có trên Học Lịch Sử thành liên kết.
+- Bỏ qua: chính mục đang xem, chữ đã có liên kết, tiêu đề, dòng "Nguồn:".
+- Phía trình duyệt: `HLS_NOI_DUNG.trangTri`; bấm liên kết là mở hồ sơ.
+- Trang `/bai-viet/…`: `vs_trang_tri.py`, theo `data/duong_dan.json`.
+
+**Chữ** (`static/v64.css`)
+- Toàn bộ dùng Be Vietnam Pro, kể cả câu trích dẫn cột trái (trước là Dancing Script) và khung soạn bài (trước là Georgia).
+- Thang cỡ chữ:
+  - nhãn chữ HOA ≥ 11px (điện thoại 10,5px);
+  - chú thích ≥ 12px;
+  - nút 12,5–13px;
+  - menu dưới điện thoại 11px;
+  - nội dung đọc trong hồ sơ 16px trên máy tính / 15px trên điện thoại, dòng 1,75–1,8.

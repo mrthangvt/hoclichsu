@@ -34,7 +34,10 @@ function apDung(nd){
   const e=sk.find(x=>x.id===ma);if(e){tron(e,va);doiNhanEras(ma,va.ten);}
  }
  if(typeof hcmEvents!=='undefined')for(const [ma,va] of Object.entries(L.hcm||{})){const y=+String(ma).replace('hcm:','');const e=hcmEvents.find(x=>x.year===y);if(!e)continue;
-   const v2={...va};if(typeof v2.detail==='string')v2.detail=v2.detail.split(/\n\s*\n/).map(t=>t.trim()).filter(Boolean).map(escH).join('</p><p>');
+   const v2={...va};
+   if(typeof v2.detail==='string'){
+    if(/<[a-z]/i.test(v2.detail))v2.detail='</p><div class="hls-bai" data-hls-bo="'+escH(ma)+'">'+v2.detail+'</div><p>';   // bài viết định dạng từ CMS
+    else v2.detail=v2.detail.split(/\n\s*\n/).map(t=>t.trim()).filter(Boolean).map(escH).join('</p><p>');}
    tron(e,v2);}
  const sgk=window.VS58_SGK&&window.VS58_SGK.lop;
  if(sgk)for(const [ma,va] of Object.entries(L['bai-sgk']||{})){const m=ma.match(/^g(\d+)-sgk-(.+)$/);if(!m||!sgk[m[1]])continue;
@@ -126,22 +129,123 @@ function nutSua(){
  }).catch(()=>{});
 }
 
-/* Thẻ “Hồ sơ nhân vật” (v34) dùng dữ liệu riêng đóng kín → sửa trực tiếp trên khung đã vẽ. */
-function suaTheV34(){
- const va=(BAN_VA['nhan-vat']||{});if(!Object.keys(va).length)return;
+/* ---------- Bài viết định dạng (CMS: Triều đại → Bài chuyên đề, Nhân vật → Tiểu sử) trong cửa sổ hồ sơ ---------- */
+function moiPhan(h){const d=document.createElement('div');d.className='hls-bai';d.innerHTML=h;return d;}
+function apBaiHoSo(){
  const body=document.getElementById('modalbody');if(!body)return;
- const chay=()=>{
-  const id=typeof active!=='undefined'?active:null;const v=id&&va[id];if(!v)return;
-  const sec=body.querySelector('.v34-study .v34-person-head');if(!sec)return;
-  const st=sec.closest('.v34-study');
-  if(v.name){const h=sec.querySelector('h2');if(h&&h.textContent!==v.name)h.textContent=v.name;}
-  if(v.role){const r=sec.querySelector('span');if(r&&r.textContent!==v.role)r.textContent=v.role;}
-  if(v.bioParagraphs&&!st.dataset.hlsDaSua){st.dataset.hlsDaSua='1';
+ const id=typeof active!=='undefined'?active:null;if(!id)return;
+ const kieu=typeof modalType==='function'?modalType():'';
+ const vaNV=(BAN_VA['nhan-vat']||{})[id],vaTD=(BAN_VA['trieu-dai']||{})[id];
+ if(kieu==='dynasty'&&vaTD&&vaTD.bai){
+  if(body.querySelector('.hls-bai[data-hls-bo="'+CSS.escape(id)+'"]'))return;
+  let st=[...body.querySelectorAll('.v34-study')].find(x=>!x.querySelector('.v34-person-head'));
+  if(!st){st=document.createElement('section');st.className='v34-study';
+   st.innerHTML='<div class="v34-overline">CHUYÊN ĐỀ SỬ LIỆU</div><h2></h2>';st.querySelector('h2').textContent=vaTD.name||(details[id]&&details[id].name)||'';
+   body.insertBefore(st,body.firstChild);}
+  st.querySelectorAll(':scope > p:not(.v34-source)').forEach(p=>p.remove());
+  const bai=moiPhan(vaTD.bai);bai.dataset.hlsBo=id;
+  st.insertBefore(bai,st.querySelector(':scope > .v34-people-wrap, :scope > .v34-source'));
+  trangTri(bai,id);return;
+ }
+ if(kieu!=='dynasty'&&vaNV){
+  const st=[...body.querySelectorAll('.v34-study')].find(x=>x.querySelector('.v34-person-head'));
+  if(st){
+   const h=st.querySelector('.v34-person-head h2');if(vaNV.name&&h&&h.textContent!==vaNV.name)h.textContent=vaNV.name;
+   const r=st.querySelector('.v34-person-head span');if(vaNV.role&&r&&r.textContent!==vaNV.role)r.textContent=vaNV.role;
+  }
+  if(vaNV.bai){
+   if(body.querySelector('.hls-bai[data-hls-bo="'+CSS.escape(id)+'"]'))return;
+   const tieuSu=body.querySelector('#v24-bio');
+   const bai=moiPhan(vaNV.bai);bai.dataset.hlsBo=id;
+   if(tieuSu){tieuSu.querySelectorAll(':scope > p').forEach(p=>p.remove());tieuSu.appendChild(bai);
+    if(st)st.querySelectorAll(':scope > p:not(.v34-source)').forEach(p=>p.remove());}   // bài đầy đủ ở mục Tiểu sử, bỏ đoạn trùng
+   else if(st)st.insertBefore(bai,st.querySelector(':scope > .v34-source'));
+   else body.insertBefore(bai,body.firstChild);
+   trangTri(bai,id);
+  }else if(vaNV.bioParagraphs&&st&&!st.dataset.hlsDaSua){   // bản sửa cũ (chữ thường)
+   st.dataset.hlsDaSua='1';
    st.querySelectorAll(':scope > p:not(.v34-source)').forEach(p=>p.remove());
    const nguon=st.querySelector('.v34-source');
-   v.bioParagraphs.slice(0,5).forEach(t=>{const p=document.createElement('p');p.textContent=t;st.insertBefore(p,nguon);});}
- };
- new MutationObserver(()=>chay()).observe(body,{childList:true,subtree:true});
+   vaNV.bioParagraphs.slice(0,5).forEach(t=>{const p=document.createElement('p');p.textContent=t;st.insertBefore(p,nguon);});
+  }
+ }
+}
+function theoDoiHoSo(){
+ const body=document.getElementById('modalbody');if(!body)return;
+ let hen=0;
+ const chay=()=>{hen=0;try{apBaiHoSo();}catch(e){console.warn('HLS bài viết',e);}
+  // Bài viết HCM và mọi khối .hls-bai khác chưa trang trí
+  body.querySelectorAll('.hls-bai:not([data-hls-tt])').forEach(b=>{
+   trangTri(b,b.dataset.hlsBo||'');
+   [b.previousElementSibling,b.nextElementSibling].forEach(p=>{if(p&&p.tagName==='P'&&!p.textContent.trim()&&!p.children.length)p.remove();});});};
+ new MutationObserver(()=>{if(!hen)hen=requestAnimationFrame(chay);}).observe(body,{childList:true,subtree:true});
+}
+
+/* ---------- Ghi chú + tự liên kết từ khóa (cùng quy tắc với vs_trang_tri.py của trang bài viết) ---------- */
+let TU_KHOA=null;
+function bienThe(ten){
+ ten=String(ten||'').replace(/\s*\([^)]*\)/g,'').trim();
+ const ra=[ten,...ten.split(/\s+[–—-]\s+/).map(x=>x.trim())];
+ return ra.filter((x,i)=>x.length>=5&&/\s/.test(x)&&ra.indexOf(x)===i);
+}
+function bangTuKhoa(){
+ if(TU_KHOA)return TU_KHOA;
+ const H=window.HLS_DUONG_DAN;let theoMa={};try{theoMa=H?H.bang().theoMa:{};}catch(_){}
+ const bang=new Map();
+ const them=(ma,ten)=>{if(!theoMa[ma])return;for(const t of bienThe(ten))if(!bang.has(t))bang.set(t,ma);};
+ if(typeof persons!=='undefined')for(const [ma,p] of Object.entries(persons))them(ma,p&&p.name);
+ if(typeof details!=='undefined')for(const [ma,d] of Object.entries(details))them(ma,d&&d.name);
+ if(typeof battles!=='undefined')for(const [ma,b] of Object.entries(battles))them(ma,b&&b.name);
+ const ten=[...bang.keys()].sort((a,b)=>b.length-a.length).map(t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+ TU_KHOA={bang,theoMa,re:ten.length?new RegExp('(?<![\\p{L}\\p{N}])('+ten.join('|')+')(?![\\p{L}\\p{N}])','u'):null};
+ return TU_KHOA;
+}
+function trangTri(el,boMa){
+ if(!el||el.dataset.hlsTt)return;el.dataset.hlsTt='1';
+ el.querySelectorAll('p').forEach(p=>{if(!p.textContent.trim()&&!p.querySelector('img'))p.remove();});   // đoạn trống sau ảnh
+ // 1) Ghi chú → số [n] + danh sách cuối bài
+ const gc=[...el.querySelectorAll('span.ghi-chu[title]')];
+ if(gc.length){
+  const ds=document.createElement('div');ds.className='hls-gc-ds';ds.innerHTML='<h4>Ghi chú</h4><ol></ol>';
+  gc.forEach((s,i)=>{const n=i+1,nd=s.getAttribute('title');
+   const sup=document.createElement('sup');sup.className='hls-gc-so';
+   const a=document.createElement('a');a.href='#';a.textContent=n;a.title=nd;sup.appendChild(a);s.after(sup);
+   const li=document.createElement('li');li.textContent=nd+' ';const ve=document.createElement('a');ve.href='#';ve.textContent='↩';ve.setAttribute('aria-label','Quay lại');li.appendChild(ve);
+   ds.querySelector('ol').appendChild(li);
+   a.onclick=e=>{e.preventDefault();li.scrollIntoView({behavior:'smooth',block:'center'});li.classList.add('dang');setTimeout(()=>li.classList.remove('dang'),1600);};
+   ve.onclick=e=>{e.preventDefault();sup.scrollIntoView({behavior:'smooth',block:'center'});};});
+  el.appendChild(ds);
+ }
+ // 2) Tự liên kết lần xuất hiện đầu tiên của tên nhân vật / triều đại / sự kiện
+ const T=bangTuKhoa();if(!T.re)return;
+ const da=new Set(boMa?[boMa]:[]);if(/^hcm:/.test(boMa||''))da.add('hochiminh');
+ el.querySelectorAll('a[data-ma]').forEach(a=>da.add(a.dataset.ma));
+ const di=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const c=n.parentElement;if(c.closest('a,h1,h2,h3,h4,sup,code,pre,figcaption,.hls-gc-ds'))return NodeFilter.FILTER_REJECT;
+  const k=c.closest('p,li');return k&&/^\s*Nguồn\s*:/i.test(k.textContent)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
+ const nut=[];while(di.nextNode())nut.push(di.currentNode);
+ const goc=window.HLS_GOC||'/';
+ for(let n of nut){
+  let m;
+  while(n&&(m=T.re.exec(n.data))){
+   const ma=T.bang.get(m[1]);
+   if(!ma||da.has(ma)){   // đã nối hoặc chính mục này: bỏ qua lần khớp này, tìm tiếp phía sau
+    const sau=n.splitText(m.index+m[0].length);n=sau;continue;}
+   da.add(ma);
+   const giua=n.splitText(m.index),sau=giua.splitText(m[0].length);
+   const a=document.createElement('a');a.className='hls-lk';a.dataset.ma=ma;a.href=goc+T.theoMa[ma];a.textContent=giua.data;
+   a.onclick=e=>{if(e.ctrlKey||e.metaKey||e.shiftKey||typeof openItem!=='function')return;e.preventDefault();openItem(ma);};
+   giua.replaceWith(a);n=sau;
+  }
+ }
+}
+window.HLS_NOI_DUNG={trangTri,bangTuKhoa};
+
+/* Dữ liệu chuyên đề v34 (bài triều đại, đoạn hồ sơ nhân vật) nằm trong khối script đóng → đọc lại cho CMS. */
+function layChuyenDe(){
+ try{const t=document.getElementById('v34-studies').textContent;const i=t.indexOf('const S=');if(i<0)return null;
+  const m=/;\s*const esc=/.exec(t.slice(i));const S=JSON.parse(t.slice(i+8,m?i+m.index:undefined).trim().replace(/;$/,''));
+  return {topics:S.topics||{},figures:Object.fromEntries(Object.entries(S.figures||{}).map(([k,f])=>[k,{paragraphs:f.paragraphs||[]}])),aliases:S.aliases||{}};}
+ catch(e){console.warn('HLS chuyên đề',e);return null;}
 }
 
 let xong;
@@ -150,7 +254,7 @@ function batDau(){
  if(!WEB||GOC_DU_LIEU){xong();return;}
  const hen=setTimeout(xong,2500);
  fetch('/api/v6/noi-dung',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{
-  if(j&&j.noi_dung){BAN_VA=j.noi_dung;try{apDung(BAN_VA);suaTheV34();}catch(e){console.warn('HLS CMS',e);}}
+  if(j&&j.noi_dung){BAN_VA=j.noi_dung;try{apDung(BAN_VA);theoDoiHoSo();}catch(e){console.warn('HLS CMS',e);}}
  }).catch(()=>{}).finally(()=>{clearTimeout(hen);xong();});
  nutSua();
 }
@@ -158,6 +262,6 @@ window.HLS_CMS={apDung,apMenu,banVa:()=>BAN_VA};
 // CMS (/admin) đọc dữ liệu gốc qua khung ẩn: các biến const/let của trang không nằm trên window nên đưa ra qua hàm này.
 window.HLS_LAY_GOC=()=>({persons:typeof persons!=='undefined'?persons:null,details:typeof details!=='undefined'?details:null,
  battles:typeof battles!=='undefined'?battles:{},hcmEvents:typeof hcmEvents!=='undefined'?hcmEvents:null,
- su_kien:(window.VS59_DATA&&window.VS59_DATA.su_kien)||[],sgk:window.VS58_SGK?window.VS58_SGK.lop:null});
+ su_kien:(window.VS59_DATA&&window.VS59_DATA.su_kien)||[],sgk:window.VS58_SGK?window.VS58_SGK.lop:null,chuyen_de:layChuyenDe()});
 if(document.readyState==='complete')batDau();else window.addEventListener('load',batDau);
 })();
