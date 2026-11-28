@@ -3,7 +3,7 @@
    Chỉ bật khi đang hiện thanh menu điện thoại và đang ở mục Không gian lịch sử; máy tính giữ nguyên bố cục cũ. */
 (function(){'use strict';
 const $=s=>document.querySelector(s);
-let dangBat=false,hen=0;
+let dangBat=false,hen=0,daApDung=null;
 
 const laDienThoai=()=>{const n=$('.mobile-sections');return !!n&&getComputedStyle(n).display!=='none';};
 const dangOKhongGian=()=>{const s=document.getElementById('spacesHistory');return !!s&&getComputedStyle(s).display!=='none'&&s.getClientRects().length>0;};
@@ -63,16 +63,20 @@ function doKichThuoc(){
 function capNhat(){
  hen=0;
  const bat=laDienThoai()&&dangOKhongGian();
+ const doi=bat!==dangBat;
  if(bat&&!dangBat)window.scrollTo(0,0);
  dangBat=bat;
  document.body.classList.toggle('v63-kg',bat);
  if(!bat)document.body.classList.remove('v63-mo');
  if(bat){taoThanh();doKichThuoc();capNhatChu();}
  const m=banDo();
- if(m){
+ // Chỉ đụng tới bản đồ khi thật sự đổi chế độ (hoặc bản đồ vừa nạp xong). Gọi map.resize() mỗi lần
+ // body đổi lớp (vd. đổi giao diện sáng/tối) làm hỏng Ctrl/⌘ + cuộn để phóng trên máy tính.
+ // Đổi kích thước khung đã có ResizeObserver trong v62.js lo.
+ if(m&&(doi||m!==daApDung)){
+  daApDung=m;
   // Toàn màn hình: trang không cuộn nữa → 1 ngón kéo bản đồ; ngoài chế độ này giữ cử chỉ hợp tác.
   try{bat?m.cooperativeGestures.disable():m.cooperativeGestures.enable();}catch(_){}
-  requestAnimationFrame(()=>m.resize());
  }
 }
 const henCapNhat=()=>{if(!hen)hen=requestAnimationFrame(capNhat);};
