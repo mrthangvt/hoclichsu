@@ -1,0 +1,38 @@
+/* Học Lịch Sử V5.5 — Các đời vua trong Sơ đồ triều đại. */
+.vs55{margin:18px 0 8px;padding:18px;border:1px solid var(--edge);border-radius:16px;background:var(--panel)}
+.vs55-head h3{margin:4px 0 4px;font-size:20px}
+.vs55-head p{margin:2px 0;color:var(--muted)}
+.vs55-head p b{color:var(--gold)}
+.vs55-tag{font-size:10.5px;letter-spacing:1.6px;font-weight:700;color:var(--gold)}
+.vs55-note{font-size:12.5px;font-style:italic}
+.vs55-kings{list-style:none;margin:14px 0 6px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;counter-reset:none}
+.vs55-king{position:relative;display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--edge);border-radius:12px;background:rgba(226,183,104,.05)}
+.vs55-king.vs55-aside{border-style:dashed;opacity:.85}
+.vs55-n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--gold);color:#23190d}
+.vs55-king div{display:flex;flex-direction:column;gap:1px;min-width:0}
+.vs55-king b{font-size:14.5px;line-height:1.25}
+.vs55-name{font-size:12.5px;color:var(--muted)}
+.vs55-year{font-size:12px;font-weight:700;color:var(--gold);font-variant-numeric:tabular-nums}
+.vs55-king small{font-size:11.5px;color:var(--muted);line-height:1.35;margin-top:2px}
+.vs55-src{font-size:11.5px;color:var(--muted);margin:8px 0 0}
+.vs55-all{margin-top:16px;padding-top:14px;border-top:1px dashed var(--edge)}
+.vs55-all h4{margin:0 0 10px;font-size:14px;letter-spacing:.3px}
+.vs55-strip{display:flex;flex-wrap:wrap;gap:6px}
+.vs55-chip{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:7px 10px;border:1px solid var(--edge);border-radius:10px;background:transparent;color:inherit;font:inherit;cursor:pointer;text-align:left}
+.vs55-chip b{font-size:12.5px;font-weight:700}
+.vs55-chip small{font-size:11px;color:var(--gold)}
+.vs55-chip:hover{background:rgba(226,183,104,.1)}
+.vs55-chip.on{background:var(--gold);border-color:var(--gold);color:#23190d;cursor:default}
+.vs55-chip.on small{color:#23190d}
+.vs55-chip[disabled]:not(.on){opacity:.5;cursor:default}
+@media(max-width:700px){
+ .vs55{padding:12px;border-radius:12px}
+ .vs55-kings{grid-template-columns:1fr 1fr;gap:6px}
+ .vs55-king{padding:8px;gap:7px}
+ .vs55-n{width:22px;height:22px;font-size:11px}
+ .vs55-king b{font-size:13px}
+ .vs55-strip{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+ .vs55-strip::-webkit-scrollbar{display:none}
+ .vs55-chip{flex:0 0 auto}
+}
+@media(max-width:360px){.vs55-kings{grid-template-columns:1fr}}

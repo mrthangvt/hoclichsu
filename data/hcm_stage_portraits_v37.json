@@ -1,0 +1,58 @@
+[
+  {
+    "stage": 1,
+    "period": "1890–1911",
+    "label": "Thơ ấu và trưởng thành",
+    "asset": "/static/assets/hcm_stages/01_tho_au.webp",
+    "illustration": true,
+    "status": "ảnh minh họa AI dựng từ ảnh tư liệu được cung cấp; không phải ảnh lịch sử gốc"
+  },
+  {
+    "stage": 2,
+    "period": "1911–1924",
+    "label": "Tìm đường cứu nước",
+    "asset": "/static/assets/hcm_stages/02_tim_duong.webp",
+    "illustration": true,
+    "status": "ảnh minh họa AI dựng từ ảnh tư liệu được cung cấp; không phải ảnh lịch sử gốc"
+  },
+  {
+    "stage": 3,
+    "period": "1924–1941",
+    "label": "Hoạt động cách mạng ở nước ngoài",
+    "asset": "/static/assets/hcm_stages/03_hoat_dong_quoc_te.webp",
+    "illustration": true,
+    "status": "ảnh minh họa AI dựng từ ảnh tư liệu được cung cấp; không phải ảnh lịch sử gốc"
+  },
+  {
+    "stage": 4,
+    "period": "1941–1945",
+    "label": "Trở về và lãnh đạo cách mạng",
+    "asset": "/static/assets/hcm_stages/04_tro_ve.webp",
+    "illustration": true,
+    "status": "ảnh minh họa AI dựng từ ảnh tư liệu được cung cấp; không phải ảnh lịch sử gốc"
+  },
+  {
+    "stage": 5,
+    "period": "1945–1954",
+    "label": "Kháng chiến chống Pháp",
+    "asset": "/static/assets/hcm_stages/05_chong_phap.webp",
+    "illustration": true,
+    "status": "ảnh minh họa AI dựng từ ảnh tư liệu được cung cấp; không phải ảnh lịch sử gốc"
+  },
+  {
+    "stage": 6,
+    "period": "1954–1969",
+    "label": "Hoạt động lãnh đạo giai đoạn 1954–1969",
+    "asset": "/static/assets/hcm_stages/06_1954_1969.webp",
+    "illustration": true,
+    "status": "ảnh minh họa AI dựng từ ảnh tư liệu được cung cấp; không phải ảnh lịch sử gốc"
+  },
+  {
+    "stage": 7,
+    "period": "1969–nay",
+    "label": "Di sản Hồ Chí Minh",
+    "asset": "/static/assets/hcm_stages/07_di_san.webp",
+    "illustration": true,
+    "status": "ảnh minh họa AI dựng từ ảnh tư liệu được cung cấp; không phải ảnh lịch sử gốc"
+  }
+]

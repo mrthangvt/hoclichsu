@@ -1,0 +1,195 @@
+[
+  {
+    "id": "xichquy",
+    "name": "Xích Quỷ / truyền thuyết Hồng Bàng",
+    "start": -2879,
+    "end": -700,
+    "china": [
+      "Truyền thuyết Phục Hi"
+    ],
+    "tag": "truyền thuyết",
+    "note": "Niên đại 2879 TCN thuộc hệ thống truyền thuyết, không phải mốc xác nhận khảo cổ.",
+    "source": ""
+  },
+  {
+    "id": "vanlang",
+    "name": "Văn Lang – Hùng Vương",
+    "start": -700,
+    "end": -257,
+    "china": [
+      "Đông Chu"
+    ],
+    "tag": "niên đại ước lệ",
+    "note": "Bảng nguồn dùng cách định niên đại Hồng Bàng truyền thống; V2.1 giữ phân biệt thời khảo cổ và truyền thuyết.",
+    "source": ""
+  },
+  {
+    "id": "aulac",
+    "name": "Âu Lạc",
+    "start": -257,
+    "end": -179,
+    "china": [
+      "Đông Chu cuối kỳ",
+      "Tần",
+      "Tây Hán"
+    ],
+    "tag": "cần thẩm định",
+    "note": "Nguồn ghi 257–208 TCN nhưng mốc kết thúc Âu Lạc còn có cách xác định khác; các khoảng không đồng nhất.",
+    "source": ""
+  },
+  {
+    "id": "ngo",
+    "name": "Ngô",
+    "start": 939,
+    "end": 965,
+    "china": [
+      "Ngũ Đại: Hậu Tấn – Hậu Hán – Hậu Chu",
+      "Nam Hán"
+    ],
+    "tag": "đối chiếu",
+    "note": "Không thể đồng nhất Nam Hán với toàn bộ Trung Hoa: nhiều chính quyền cùng tồn tại.",
+    "source": ""
+  },
+  {
+    "id": "dinh",
+    "name": "Đinh",
+    "start": 968,
+    "end": 980,
+    "china": [
+      "Bắc Tống",
+      "các nước còn tồn tại trong thời thống nhất Tống"
+    ],
+    "tag": "đối chiếu",
+    "note": "Nhà Tống hình thành 960, quá trình thống nhất kéo dài sau đó.",
+    "source": ""
+  },
+  {
+    "id": "tienle",
+    "name": "Tiền Lê",
+    "start": 980,
+    "end": 1009,
+    "china": [
+      "Bắc Tống"
+    ],
+    "tag": "đối chiếu",
+    "note": "Chiến tranh Tống – Đại Cồ Việt 981.",
+    "source": ""
+  },
+  {
+    "id": "ly",
+    "name": "Lý",
+    "start": 1009,
+    "end": 1225,
+    "china": [
+      "Bắc Tống",
+      "Nam Tống",
+      "Liêu",
+      "Tây Hạ",
+      "Kim"
+    ],
+    "tag": "đối chiếu",
+    "note": "Các chính quyền tồn tại song song. Dùng băng thời gian riêng để tránh hiểu rằng chỉ có một nhà Tống.",
+    "source": ""
+  },
+  {
+    "id": "tran",
+    "name": "Trần",
+    "start": 1225,
+    "end": 1400,
+    "china": [
+      "Nam Tống",
+      "Đế quốc Mông Cổ",
+      "Nhà Nguyên",
+      "Nhà Minh (từ 1368)"
+    ],
+    "tag": "đối chiếu",
+    "note": "Các cuộc chiến 1258, 1285, 1287–1288 diễn ra trong bối cảnh chính trị Trung Hoa khác nhau.",
+    "source": ""
+  },
+  {
+    "id": "ho",
+    "name": "Hồ",
+    "start": 1400,
+    "end": 1407,
+    "china": [
+      "Nhà Minh"
+    ],
+    "tag": "đối chiếu",
+    "note": "Nhà Hồ và nhà Minh cùng thời; tiếp theo là nhà Hậu Trần và cuộc kháng chiến chống Minh.",
+    "source": ""
+  },
+  {
+    "id": "hautran",
+    "name": "Hậu Trần",
+    "start": 1407,
+    "end": 1414,
+    "china": [
+      "Nhà Minh"
+    ],
+    "tag": "đối chiếu",
+    "note": "Bổ sung thời Hậu Trần (1407–1414) vốn chưa có thẻ độc lập ở V2.0.",
+    "source": ""
+  },
+  {
+    "id": "leso",
+    "name": "Lê sơ",
+    "start": 1428,
+    "end": 1527,
+    "china": [
+      "Nhà Minh"
+    ],
+    "tag": "đối chiếu",
+    "note": "Các mốc vua Lê tương ứng nhiều niên hiệu Minh.",
+    "source": ""
+  },
+  {
+    "id": "mac",
+    "name": "Mạc",
+    "start": 1527,
+    "end": 1592,
+    "china": [
+      "Nhà Minh"
+    ],
+    "tag": "đối chiếu",
+    "note": "Mạc ở Thăng Long đến 1592, còn những lực lượng họ Mạc về sau; đừng xem 1592 là chấm dứt mọi hoạt động.",
+    "source": ""
+  },
+  {
+    "id": "letrung",
+    "name": "Lê Trung hưng",
+    "start": 1533,
+    "end": 1789,
+    "china": [
+      "Nhà Minh",
+      "Nhà Thanh (từ 1644)"
+    ],
+    "tag": "đối chiếu",
+    "note": "Chồng lấn thời Mạc, chính quyền chúa Trịnh và chúa Nguyễn.",
+    "source": ""
+  },
+  {
+    "id": "tayson",
+    "name": "Tây Sơn",
+    "start": 1771,
+    "end": 1802,
+    "china": [
+      "Nhà Thanh"
+    ],
+    "tag": "đối chiếu",
+    "note": "Phân biệt phong trào Tây Sơn từ 1771 và các chính quyền Tây Sơn; chiến tranh Thanh–Tây Sơn 1788–1789.",
+    "source": ""
+  },
+  {
+    "id": "nguyenvn",
+    "name": "Nguyễn",
+    "start": 1802,
+    "end": 1945,
+    "china": [
+      "Nhà Thanh",
+      "Trung Hoa Dân quốc (từ 1912)"
+    ],
+    "tag": "đối chiếu",
+    "note": "Quan hệ thuộc địa Pháp và nhiều chính quyền Việt Nam biến đổi trong thế kỷ XX.",
+    "source": ""
+  }
+]

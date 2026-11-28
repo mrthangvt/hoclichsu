@@ -1,0 +1,302 @@
+[
+  {
+    "id": "rach-gam",
+    "title": "Rạch Gầm – Xoài Mút",
+    "period": "Tháng 1 năm 1785",
+    "entity_id": "battle1785",
+    "timeline_year": 1785,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/rach-gam-xoai-mut/",
+    "notes": "Sa bàn 3D thử nghiệm (three.js) tại /khong-gian/rach-gam-xoai-mut/ — tái dựng mô phỏng theo kịch bản V1 và lời dẫn thu âm; bờ sông theo OpenStreetMap hiện nay, số thuyền, số quân là mật độ minh họa, vị trí pháo và phục binh là giả định chiến thuật; cần đối chiếu tư liệu.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "song-tien",
+        "name": "Khúc sông Rạch Gầm – Xoài Mút",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "terrain",
+        "text": "Sông Tiền, cửa Rạch Gầm, cửa Xoài Mút, cù lao Thới Sơn (tái dựng)."
+      },
+      {
+        "id": "tran-dia",
+        "name": "Trận địa mai phục",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Pháo bờ Bắc, thủy binh trong rạch và sau cù lao (giả định chiến thuật)."
+      }
+    ]
+  },
+  {
+    "id": "quang-tri",
+    "title": "Thành cổ Quảng Trị",
+    "period": "1972",
+    "entity_id": "war1972",
+    "timeline_year": 1972,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/thanh-co-quang-tri/",
+    "notes": "NPC chiến đấu cần được thuyết minh trong bối cảnh lịch sử, phân biệt tư liệu và cảnh mô phỏng. Có chế độ giáo dục không bạo lực đồ họa. Sa bàn 3D thử nghiệm (three.js) tại /khong-gian/thanh-co-quang-tri/ — tái dựng mô phỏng, cần đối chiếu tư liệu.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "citadel",
+        "name": "Thành cổ",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "heritage",
+        "text": "Tái dựng kiến trúc và các điểm thuyết minh."
+      }
+    ]
+  },
+  {
+    "id": "dien-bien-phu",
+    "title": "Điện Biên Phủ",
+    "period": "13/3 – 7/5/1954",
+    "entity_id": "war1954",
+    "timeline_year": 1954,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/dien-bien-phu/",
+    "notes": "Sa bàn 3D thử nghiệm (three.js) tại /khong-gian/dien-bien-phu/ — tái dựng mô phỏng theo kịch bản & camera V2.0; số người, xe, pháo là tham số minh họa; cần đối chiếu tư liệu.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "long-chao",
+        "name": "Lòng chảo Mường Thanh",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Địa hình, tập đoàn cứ điểm và các đợt tiến công (tái dựng)."
+      }
+    ]
+  },
+  {
+    "id": "ngoc-hoi-dong-da",
+    "title": "Ngọc Hồi – Đống Đa",
+    "period": "Tết Kỷ Dậu 1789",
+    "entity_id": "battle1789",
+    "timeline_year": 1789,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/ngoc-hoi-dong-da/",
+    "notes": "Sa bàn 3D thử nghiệm (three.js) tại /khong-gian/ngoc-hoi-dong-da/ — tái dựng mô phỏng theo kịch bản V1 và lời dẫn thu âm; mật độ quân là minh họa, không phải quân số sử liệu; cần đối chiếu tư liệu.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "don-ngoc-hoi",
+        "name": "Đồn Ngọc Hồi",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Lũy, bãi chông, đội mộc và voi chiến (tái dựng)."
+      }
+    ]
+  },
+  {
+    "id": "ho-chi-minh-1975",
+    "title": "Chiến dịch Hồ Chí Minh 1975",
+    "period": "26 – 30/4/1975",
+    "entity_id": "war1975",
+    "timeline_year": 1975,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/engine/2.2.0/sa-ban.html?goi=ho-chi-minh-1975",
+    "notes": "Sa bàn 3D (bộ máy 2.2.0, gói packs/ho-chi-minh-1975 1.0.0) — tái dựng mô phỏng theo lời dẫn thu âm 16 phút; mốc giờ, đơn vị, số hiệu xe theo nguồn trong sources.json; số xe, vị trí lính, người dân là minh họa.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "nam-canh-quan",
+        "name": "Năm cánh quân",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Các hướng tiến công vào Sài Gòn (mũi tên là quy ước đồ hoạ)."
+      },
+      {
+        "id": "dinh-doc-lap",
+        "name": "Dinh Độc Lập",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Xe tăng 390, 843 vào Dinh; cắm cờ trên nóc Dinh lúc 11 giờ 30 ngày 30/4/1975."
+      }
+    ]
+  },
+  {
+    "id": "khe-sanh-1968",
+    "title": "Chiến dịch Đường 9 – Khe Sanh 1968",
+    "period": "20/1 – 15/7/1968",
+    "entity_id": "",
+    "timeline_year": 1968,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/engine/2.2.0/sa-ban.html?goi=khe-sanh-1968",
+    "notes": "Sa bàn 3D (bộ máy 2.2.0, gói packs/khe-sanh-1968) — tái dựng mô phỏng theo lời dẫn thu âm; mốc thời gian, đơn vị, số liệu theo nguồn trong sources.json; vị trí chiến hào, số người là minh họa.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "ta-con",
+        "name": "Cụm cứ điểm Tà Cơn",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Căn cứ Trung đoàn 26 Thủy quân lục chiến Mỹ, bị vây lấn."
+      },
+      {
+        "id": "lang-vay",
+        "name": "Làng Vây",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Trận đầu xe tăng Việt Nam xuất trận (6 – 7/2/1968)."
+      }
+    ]
+  },
+  {
+    "id": "dien-bien-phu-tren-khong-1972",
+    "title": "Hà Nội – Điện Biên Phủ trên không 1972",
+    "period": "18 – 29/12/1972",
+    "entity_id": "",
+    "timeline_year": 1972,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/engine/2.2.0/sa-ban.html?goi=dien-bien-phu-tren-khong-1972",
+    "notes": "Sa bàn 3D (bộ máy 2.2.0, gói packs/dien-bien-phu-tren-khong-1972) — tái dựng mô phỏng theo lời dẫn thu âm 14 phút 43 giây; số liệu hai phía ghi nguồn trong sources.json; vị trí trận địa (trừ Tiểu đoàn 77 ở Chèm), đường bay, điểm rơi là minh họa.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "phu-lo",
+        "name": "Cánh đồng Chuôm, xã Phù Lỗ",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Chiếc B-52 đầu tiên rơi tại chỗ đêm 18/12/1972."
+      },
+      {
+        "id": "kham-thien",
+        "name": "Phố Khâm Thiên",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Đêm 26/12/1972 bom B-52 làm 287 người chết."
+      }
+    ]
+  },
+  {
+    "id": "bach-dang-938",
+    "title": "Chiến thắng Bạch Đằng 938",
+    "period": "Cuối năm 938",
+    "entity_id": "",
+    "timeline_year": 938,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/engine/2.1.1/sa-ban.html?goi=bach-dang-938",
+    "notes": "Sa bàn 3D (bộ máy 2.1.1, gói packs/bach-dang-938) — tái dựng mô phỏng theo lời dẫn thu âm; vị trí bãi cọc, số thuyền, số người là minh họa; nguồn trong sources.json.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "bai-coc",
+        "name": "Bãi cọc Bạch Đằng",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Cọc gỗ đầu bịt sắt ẩn dưới nước triều lên; vị trí giả định."
+      },
+      {
+        "id": "cua-song",
+        "name": "Cửa sông Bạch Đằng",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Quân Ngô nhử thủy quân Nam Hán vào khi triều lên, phản công khi triều rút."
+      }
+    ]
+  },
+  {
+    "id": "tran-da-nang-1858",
+    "title": "Đà Nẵng 1858",
+    "period": "1858 – 1860",
+    "entity_id": "battle1858",
+    "timeline_year": 1858,
+    "mode": "battle3d",
+    "reconstruction_level": "concept",
+    "asset_url": "/khong-gian/tran-da-nang-1858/",
+    "notes": "Sa bàn 3D độc lập (three.js 0.160, thư mục khong-gian/tran-da-nang-1858/, chưa chuyển sang bộ máy chung) — tái dựng mô phỏng theo lời dẫn thu âm 9 phút 54 giây; vị trí đồn lũy (trừ Điện Hải), số tàu, số người là minh họa; nguồn trong sources.json và thẻ bảo tàng.",
+    "source_urls": [],
+    "status": "prototype",
+    "hotspots": [
+      {
+        "id": "dien-hai",
+        "name": "Thành Điện Hải",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Đồn Điện Hải xây năm 1813, dời vào vị trí hiện nay năm 1823; năm 1835 đổi tên thành Điện Hải."
+      },
+      {
+        "id": "lien-tri",
+        "name": "Đồn lũy Nguyễn Tri Phương",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "kind": "battle",
+        "text": "Hệ thống đồn lũy Liên Trì – Thạc Gián – Nại Hiên chặn bước tiến của liên quân trên bộ."
+      }
+    ]
+  }
+]

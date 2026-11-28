@@ -1,0 +1,200 @@
+{
+ "lop": 7,
+ "sach": "Lịch sử và Địa lí 7 (bộ Kết nối tri thức với cuộc sống, NXB Giáo dục Việt Nam), phần Lịch sử, tr. 7–94 và hai chủ đề chung tr. 166–174",
+ "ghi_chu": "Nội dung do Học Lịch Sử biên soạn lại bằng lời văn riêng theo mạch bài học của SGK; không chép nguyên văn, không dùng hình ảnh của sách. Học sinh mở SGK theo số trang để xem tư liệu, hình và hoạt động.",
+ "bai": [
+  {"so": 1, "chuong": "Chương 1. Tây Âu từ thế kỉ V đến nửa đầu thế kỉ XVI", "ten": "Quá trình hình thành và phát triển của chế độ phong kiến ở Tây Âu", "trang": [9, 13], "nam": null,
+   "tom": "Sau khi Đế quốc Tây La Mã sụp đổ (năm 476), các vương quốc của người Giéc-man hình thành, chế độ phong kiến Tây Âu ra đời với các lãnh địa, rồi thành thị trung đại xuất hiện, kinh tế hàng hoá phát triển.",
+   "muc": [
+    ["1. Sự hình thành chế độ phong kiến ở Tây Âu", ["Cuối thế kỉ V, người Giéc-man tràn vào, Đế quốc Tây La Mã diệt vong (476); nhiều vương quốc mới được lập ra.", "Người Giéc-man chiếm ruộng đất của chủ nô cũ, phong tước vị cho nhau; hình thành hai giai cấp lãnh chúa và nông nô."]],
+    ["2. Lãnh địa phong kiến và quan hệ trong xã hội", ["Lãnh địa là vùng đất do lãnh chúa làm chủ, có lâu đài, nhà thờ, ruộng đất, như một vương quốc thu nhỏ, tự cấp tự túc.", "Nông nô nhận ruộng canh tác, nộp tô thuế và chịu nhiều nghĩa vụ; lãnh chúa sống sung sướng nhờ bóc lột nông nô."]],
+    ["3. Thành thị trung đại và Thiên Chúa giáo", ["Từ thế kỉ XI, sản xuất phát triển, thợ thủ công và thương nhân tụ tập ở nơi đông người, lập ra thành thị.", "Thành thị thúc đẩy kinh tế hàng hoá, phá vỡ tính tự cấp tự túc của lãnh địa; tầng lớp thị dân ra đời.", "Thiên Chúa giáo có vai trò lớn trong đời sống tinh thần và chính trị; Giáo hội là thế lực phong kiến lớn."]]
+   ],
+   "nho": ["476: Tây La Mã diệt vong; chế độ phong kiến Tây Âu hình thành.", "Lãnh chúa và nông nô là hai giai cấp chính; lãnh địa là đơn vị kinh tế tự cấp tự túc.", "Thành thị trung đại thúc đẩy kinh tế hàng hoá."],
+   "hoi": ["Chế độ phong kiến Tây Âu hình thành như thế nào?", "Mô tả đời sống trong một lãnh địa phong kiến.", "Thành thị trung đại có vai trò gì đối với xã hội Tây Âu?"]},
+
+  {"so": 2, "chuong": "Chương 1. Tây Âu từ thế kỉ V đến nửa đầu thế kỉ XVI", "ten": "Các cuộc phát kiến địa lí và sự hình thành quan hệ sản xuất tư bản chủ nghĩa ở Tây Âu", "trang": [14, 17], "nam": 1492,
+   "tom": "Cuối thế kỉ XV – đầu thế kỉ XVI, những chuyến đi biển lớn tìm ra đường sang phương Đông, châu Mỹ và vòng quanh Trái Đất, đem lại nguồn vốn và thị trường cho quan hệ sản xuất tư bản chủ nghĩa ở Tây Âu.",
+   "muc": [
+    ["1. Các cuộc phát kiến địa lí", ["Nguyên nhân: nhu cầu vàng bạc, hương liệu, thị trường; con đường buôn bán qua Tây Á bị chặn; kĩ thuật hàng hải tiến bộ (la bàn, tàu ca-ra-ven, hiểu biết về địa lí).", "B. Đi-a-xơ vòng qua cực nam châu Phi (1487); C. Cô-lôm-bô đến châu Mỹ (1492); Va-xcô đơ Ga-ma đến Ấn Độ bằng đường biển (1497–1498); Ph. Ma-gien-lan thực hiện chuyến đi vòng quanh Trái Đất (1519–1522).", "Hệ quả: mở ra những con đường mới, đem về nhiều vàng bạc, nguyên liệu, mở rộng thị trường; nhưng cũng mở đầu quá trình xâm chiếm thuộc địa, buôn bán nô lệ."]],
+    ["2. Sự hình thành quan hệ sản xuất tư bản chủ nghĩa", ["Quý tộc, thương nhân tích luỹ vốn bằng cướp bóc thuộc địa, buôn bán; đuổi nông dân khỏi ruộng đất để có nhân công.", "Xuất hiện công trường thủ công, công ti thương mại, đồn điền.", "Xã hội hình thành hai giai cấp mới: tư sản (chủ xưởng, chủ đồn điền) và vô sản (người làm thuê)."]]
+   ],
+   "nho": ["1487 Đi-a-xơ; 1492 Cô-lôm-bô; 1497–1498 Va-xcô đơ Ga-ma; 1519–1522 Ma-gien-lan.", "Phát kiến địa lí đem lại vốn, thị trường nhưng mở đầu thời kì xâm chiếm thuộc địa.", "Giai cấp tư sản và vô sản hình thành."],
+   "hoi": ["Vì sao người châu Âu tiến hành các cuộc phát kiến địa lí?", "Trình bày hệ quả tích cực và tiêu cực của các cuộc phát kiến địa lí.", "Quan hệ sản xuất tư bản chủ nghĩa hình thành ở Tây Âu như thế nào?"]},
+
+  {"so": 3, "chuong": "Chương 1. Tây Âu từ thế kỉ V đến nửa đầu thế kỉ XVI", "ten": "Phong trào Văn hoá Phục hưng và Cải cách tôn giáo", "trang": [18, 22], "nam": 1517,
+   "tom": "Từ thế kỉ XIV ở I-ta-li-a, phong trào Văn hoá Phục hưng đề cao con người và khoa học; đầu thế kỉ XVI, phong trào Cải cách tôn giáo bùng nổ, đòi xoá bỏ những lạc hậu của Giáo hội Thiên Chúa.",
+   "muc": [
+    ["1. Phong trào Văn hoá Phục hưng", ["Bắt đầu ở I-ta-li-a (thế kỉ XIV), lan ra nhiều nước Tây Âu; giai cấp tư sản muốn có hệ tư tưởng riêng, chống lại sự kìm hãm của Giáo hội.", "Thành tựu: hội hoạ, điêu khắc của Lê-ô-na-đô đa Vin-xi, Mi-ken-lăng-giơ, Ra-pha-en; văn học của Sếch-xpia, Xéc-van-téc; khoa học của Cô-péc-ních, Ga-li-lê.", "Ý nghĩa: đề cao giá trị con người, khoa học, mở đường cho văn hoá châu Âu phát triển."]],
+    ["2. Phong trào Cải cách tôn giáo", ["Nguyên nhân: Giáo hội ngày càng giàu có, sa đoạ, cản trở sự phát triển của giai cấp tư sản.", "Năm 1517, M. Lu-thơ ở Đức công bố luận cương phê phán Giáo hội; sau đó Can-vanh ở Thuỵ Sĩ tiếp tục cải cách.", "Nội dung: phủ nhận vai trò thống trị của Giáo hội và Giáo hoàng, đòi bỏ các lễ nghi tốn kém, quay về giáo lí nguyên thuỷ.", "Tác động: Thiên Chúa giáo chia thành Cựu giáo và Tân giáo; thúc đẩy cuộc đấu tranh chống phong kiến."]]
+   ],
+   "nho": ["Phục hưng: bắt đầu ở I-ta-li-a, đề cao con người và khoa học.", "Lê-ô-na-đô đa Vin-xi, Sếch-xpia, Cô-péc-ních là những đại diện tiêu biểu.", "1517: Lu-thơ khởi đầu Cải cách tôn giáo."],
+   "hoi": ["Nêu một số thành tựu tiêu biểu của phong trào Văn hoá Phục hưng.", "Phong trào Văn hoá Phục hưng có ý nghĩa gì với xã hội Tây Âu?", "Trình bày nguyên nhân và tác động của phong trào Cải cách tôn giáo."]},
+
+  {"so": 4, "chuong": "Chương 2. Trung Quốc và Ấn Độ thời trung đại", "ten": "Trung Quốc từ thế kỉ III trước Công nguyên đến giữa thế kỉ XIX", "trang": [24, 28], "nam": 618,
+   "tom": "Từ nhà Tần đến nhà Thanh, chế độ phong kiến Trung Quốc hình thành, phát triển thịnh đạt dưới thời Đường và có mầm mống kinh tế tư bản thời Minh – Thanh, để lại nhiều thành tựu văn hoá lớn.",
+   "muc": [
+    ["1. Sơ lược tiến trình lịch sử", ["Năm 221 TCN, nhà Tần thống nhất Trung Quốc; tiếp theo là Hán, Tuỳ, Đường, Tống, Nguyên, Minh, Thanh.", "Chế độ phong kiến được xác lập với hai giai cấp chính: địa chủ và nông dân lĩnh canh."]],
+    ["2. Trung Quốc thời Đường", ["Nhà Đường (618–907) là thời thịnh trị: bộ máy nhà nước hoàn thiện, tuyển quan lại bằng thi cử.", "Kinh tế phát triển nhờ chính sách quân điền, giảm thuế; thủ công, thương nghiệp phát đạt, con đường tơ lụa nhộn nhịp.", "Lãnh thổ mở rộng; nhà Đường tăng cường chiến tranh xâm lược bên ngoài."]],
+    ["3. Kinh tế thời Minh – Thanh", ["Nông nghiệp tiến bộ, thủ công nghiệp có nhiều xưởng lớn thuê nhân công; buôn bán trong và ngoài nước mở rộng.", "Xuất hiện mầm mống quan hệ sản xuất tư bản chủ nghĩa."]],
+    ["4. Một số thành tựu văn hoá tiêu biểu", ["Tư tưởng: Nho giáo giữ vai trò chính thống; Phật giáo phát triển mạnh.", "Văn học: thơ Đường (Lý Bạch, Đỗ Phủ, Bạch Cư Dị); tiểu thuyết Tam quốc diễn nghĩa, Thuỷ hử, Tây du kí, Hồng lâu mộng.", "Sử học: Sử kí của Tư Mã Thiên và các bộ sử của triều đình.", "Kiến trúc, kĩ thuật: Vạn Lí Trường Thành, Cố Cung; giấy, la bàn, thuốc súng, kĩ thuật in."]]
+   ],
+   "nho": ["Nhà Đường (618–907): thời thịnh trị của phong kiến Trung Quốc.", "Thời Minh – Thanh xuất hiện mầm mống tư bản chủ nghĩa.", "Thơ Đường, tiểu thuyết Minh – Thanh, bốn phát minh kĩ thuật."],
+   "hoi": ["Vì sao nói thời Đường là thời thịnh trị của phong kiến Trung Quốc?", "Kinh tế thời Minh – Thanh có điểm gì mới so với thời Đường?", "Kể tên một số tác phẩm văn học Trung Quốc thời trung đại mà em biết."]},
+
+  {"so": 5, "chuong": "Chương 2. Trung Quốc và Ấn Độ thời trung đại", "ten": "Ấn Độ từ thế kỉ IV đến giữa thế kỉ XIX", "trang": [29, 33], "nam": null,
+   "tom": "Ấn Độ thời trung đại trải qua ba vương triều lớn: Gúp-ta, Hồi giáo Đê-li và Mô-gôn, với nền văn hoá đặc sắc ảnh hưởng sâu rộng tới Đông Nam Á.",
+   "muc": [
+    ["1. Các vương triều lớn", ["Vương triều Gúp-ta (thế kỉ IV – VI): thống nhất miền Bắc Ấn Độ; kinh tế, văn hoá phát triển, biết luyện sắt (cột sắt không gỉ).", "Vương triều Hồi giáo Đê-li (thế kỉ XIII – XVI): người Thổ Nhĩ Kì gốc Trung Á lập ra; truyền bá đạo Hồi; buôn bán với nhiều nước.", "Vương triều Mô-gôn (thế kỉ XVI – giữa XIX): người Mông Cổ gốc Trung Á lập ra; thời vua A-cơ-ba đất nước ổn định, phát triển; về sau suy yếu và bị thực dân Anh xâm chiếm."]],
+    ["2. Một số thành tựu văn hoá", ["Tôn giáo: Hin-đu giáo, Phật giáo, Hồi giáo cùng tồn tại.", "Chữ viết, văn học: chữ Phạn hoàn thiện; văn học Hin-đu giáo phong phú.", "Kiến trúc, điêu khắc: đền Kha-giu-ra-hô (Hin-đu giáo), lăng Ta-giơ Ma-han (thời Mô-gôn)."]]
+   ],
+   "nho": ["Ba vương triều: Gúp-ta, Hồi giáo Đê-li, Mô-gôn.", "Hin-đu giáo, Phật giáo, Hồi giáo cùng tồn tại.", "Lăng Ta-giơ Ma-han là công trình tiêu biểu thời Mô-gôn."],
+   "hoi": ["Nêu những nét chính về ba vương triều Gúp-ta, Hồi giáo Đê-li và Mô-gôn.", "Kể tên một số thành tựu văn hoá tiêu biểu của Ấn Độ thời trung đại.", "Văn hoá Ấn Độ đã ảnh hưởng thế nào đến các nước Đông Nam Á?"]},
+
+  {"so": 6, "chuong": "Chương 3. Đông Nam Á từ nửa sau thế kỉ X đến nửa đầu thế kỉ XVI", "ten": "Các vương quốc phong kiến Đông Nam Á từ nửa sau thế kỉ X đến nửa đầu thế kỉ XVI", "trang": [35, 38], "nam": null,
+   "tom": "Từ nửa sau thế kỉ X, các vương quốc phong kiến Đông Nam Á bước vào thời kì phát triển thịnh đạt, kinh tế mở rộng giao thương và văn hoá có nhiều thành tựu mang bản sắc riêng.",
+   "muc": [
+    ["1. Sự phát triển của các vương quốc phong kiến", ["Hình thành và phát triển nhiều quốc gia mạnh: Đại Việt, Cam-pu-chia thời Ăng-co, Pa-gan (Mi-an-ma), Su-khô-thay rồi A-du-thay-a (Thái Lan), Lan Xang (Lào), Ma-giắc-pa-hít (In-đô-nê-xi-a), Ma-lắc-ca…", "Kinh tế nông nghiệp lúa nước giữ vai trò chính; thủ công và thương mại biển phát triển, nhiều thương cảng sầm uất."]],
+    ["2. Một số thành tựu văn hoá", ["Tín ngưỡng – tôn giáo: Phật giáo, Hin-đu giáo, Hồi giáo cùng tín ngưỡng dân gian.", "Chữ viết – văn học: nhiều dân tộc sáng tạo chữ viết riêng trên cơ sở chữ Phạn, chữ Hán; văn học dân gian và viết phong phú.", "Kiến trúc – điêu khắc: Ăng-co Vát, Ăng-co Thom (Cam-pu-chia), chùa tháp Pa-gan (Mi-an-ma), Thạt Luổng (Lào)…"]]
+   ],
+   "nho": ["Từ nửa sau thế kỉ X, các vương quốc Đông Nam Á thịnh đạt.", "Nhiều dân tộc sáng tạo chữ viết riêng.", "Công trình tiêu biểu: Ăng-co Vát, Pa-gan, Thạt Luổng."],
+   "hoi": ["Kể tên một số vương quốc phong kiến lớn ở Đông Nam Á thời kì này.", "Việc nhiều quốc gia Đông Nam Á có chữ viết riêng có ý nghĩa gì?", "Giới thiệu một công trình kiến trúc tiêu biểu của Đông Nam Á."]},
+
+  {"so": 7, "chuong": "Chương 3. Đông Nam Á từ nửa sau thế kỉ X đến nửa đầu thế kỉ XVI", "ten": "Vương quốc Lào", "trang": [39, 41], "nam": 1353,
+   "tom": "Năm 1353, Pha Ngừm thống nhất các mường Lào, lập nước Lan Xang. Lan Xang phát triển thịnh vượng trong các thế kỉ XV – XVII, để lại nền văn hoá Phật giáo đặc sắc.",
+   "muc": [
+    ["1. Sự hình thành và phát triển", ["Người Lào Thơng là cư dân cổ, sau có người Lào Lùm di cư đến; tổ chức xã hội sơ khai là các mường cổ.", "Năm 1353, Pha Ngừm thống nhất các mường, lên ngôi vua, đặt tên nước là Lan Xang (Triệu Voi).", "Thời thịnh vượng: tổ chức bộ máy nhà nước chặt chẽ, quân đội mạnh, giữ quan hệ hoà hiếu với láng giềng, kiên quyết chống xâm lược."]],
+    ["2. Một số nét văn hoá", ["Phật giáo được tôn sùng, nhiều chùa tháp được xây dựng.", "Có chữ viết riêng trên cơ sở chữ của người Khơ-me; văn học dân gian phong phú.", "Công trình tiêu biểu: That Luổng (Thạt Luổng) ở Viêng Chăn; lễ hội té nước, nhảy lăm-vông."]]
+   ],
+   "nho": ["1353: Pha Ngừm lập nước Lan Xang.", "Lan Xang thịnh vượng thế kỉ XV – XVII.", "Phật giáo giữ vị trí quan trọng; Thạt Luổng là công trình tiêu biểu."],
+   "hoi": ["Vương quốc Lan Xang được thành lập như thế nào?", "Nêu những nét chính về sự phát triển của Lan Xang thời thịnh vượng.", "Kể tên một vài nét văn hoá tiêu biểu của Lào."]},
+
+  {"so": 8, "chuong": "Chương 3. Đông Nam Á từ nửa sau thế kỉ X đến nửa đầu thế kỉ XVI", "ten": "Vương quốc Cam-pu-chia", "trang": [42, 43], "nam": 802,
+   "tom": "Năm 802, vua Giay-a-vác-man II thống nhất đất nước, mở ra thời Ăng-co – thời kì phát triển huy hoàng của Cam-pu-chia với những công trình kiến trúc nổi tiếng thế giới.",
+   "muc": [
+    ["1. Sự hình thành và phát triển", ["Từ thế kỉ VI, vương quốc Chân Lạp của người Khơ-me hình thành.", "Năm 802, Giay-a-vác-man II thống nhất lãnh thổ, đổi tên nước là Cam-pu-chia, mở đầu thời Ăng-co.", "Thời Ăng-co: nông nghiệp có hệ thống thuỷ lợi lớn, lãnh thổ mở rộng; về sau đất nước suy yếu dần."]],
+    ["2. Một số nét văn hoá", ["Có chữ viết riêng (chữ Khơ-me cổ) bắt nguồn từ chữ Phạn.", "Hin-đu giáo và Phật giáo có ảnh hưởng lớn.", "Kiến trúc đền tháp Ăng-co Vát, Ăng-co Thom là di sản văn hoá thế giới."]]
+   ],
+   "nho": ["802: Giay-a-vác-man II mở ra thời Ăng-co.", "Ăng-co Vát, Ăng-co Thom là những công trình nổi tiếng."],
+   "hoi": ["Trình bày quá trình hình thành và phát triển của vương quốc Cam-pu-chia.", "Vì sao thời Ăng-co được coi là thời kì phát triển huy hoàng?"]},
+
+  {"so": 9, "chuong": "Chương 4. Đất nước dưới thời các vương triều Ngô – Đinh – Tiền Lê (939 – 1009)", "ten": "Đất nước buổi đầu độc lập (939 – 967)", "trang": [45, 47], "nam": 939,
+   "tom": "Năm 939, Ngô Quyền xưng vương, đóng đô ở Cổ Loa, xây dựng nền độc lập. Sau khi ông mất, đất nước rơi vào loạn 12 sứ quân cho đến khi Đinh Bộ Lĩnh thống nhất vào năm 967.",
+   "muc": [
+    ["1. Ngô Quyền dựng nền độc lập", ["Năm 939, Ngô Quyền bỏ chức Tiết độ sứ, xưng vương, đóng đô ở Cổ Loa.", "Đặt triều nghi, chế độ phục sức, đặt các chức quan văn võ; cử tướng lĩnh cai quản các châu.", "Việc xưng vương khẳng định nước ta là một quốc gia độc lập, không còn phụ thuộc phương Bắc."]],
+    ["2. Loạn 12 sứ quân và sự thống nhất", ["Năm 944, Ngô Quyền mất; triều đình suy yếu, các thế lực cát cứ nổi lên, gây nên loạn 12 sứ quân.", "Đinh Bộ Lĩnh xây dựng lực lượng ở Hoa Lư, được nhân dân ủng hộ, lần lượt dẹp các sứ quân.", "Năm 967, đất nước được thống nhất."]]
+   ],
+   "nho": ["939: Ngô Quyền xưng vương, đóng đô ở Cổ Loa.", "944: Ngô Quyền mất, loạn 12 sứ quân.", "967: Đinh Bộ Lĩnh dẹp loạn, thống nhất đất nước."],
+   "hoi": ["Việc Ngô Quyền xưng vương có ý nghĩa như thế nào?", "Vì sao xảy ra loạn 12 sứ quân?", "Đinh Bộ Lĩnh đã thống nhất đất nước như thế nào?"]},
+
+  {"so": 10, "chuong": "Chương 4. Đất nước dưới thời các vương triều Ngô – Đinh – Tiền Lê (939 – 1009)", "ten": "Đại Cồ Việt thời Đinh và Tiền Lê (968 – 1009)", "trang": [48, 50], "nam": 968,
+   "tom": "Năm 968, Đinh Bộ Lĩnh lên ngôi hoàng đế, đặt tên nước là Đại Cồ Việt, đóng đô ở Hoa Lư. Năm 981, Lê Hoàn lãnh đạo nhân dân đánh tan quân xâm lược Tống, bảo vệ nền độc lập.",
+   "muc": [
+    ["1. Tình hình chính trị", ["Năm 968, Đinh Bộ Lĩnh lên ngôi (Đinh Tiên Hoàng), đặt quốc hiệu Đại Cồ Việt, đóng đô ở Hoa Lư; định triều nghi, đặt luật pháp nghiêm.", "Năm 979, Đinh Tiên Hoàng bị ám hại; vua mới còn nhỏ, nhà Tống lăm le xâm lược. Năm 980, Lê Hoàn lên ngôi, lập nhà Tiền Lê.", "Năm 981, quân Tống tiến sang theo hai đường thuỷ, bộ; Lê Hoàn chặn đánh ở sông Bạch Đằng và vùng Chi Lăng, quân Tống thua to.", "Chính quyền Tiền Lê được tổ chức chặt chẽ hơn; chia nước thành các lộ, phủ, châu."]],
+    ["2. Tình hình xã hội và văn hoá", ["Xã hội gồm vua, quan lại, nhà sư; nông dân, thợ thủ công, thương nhân; một số ít nô tì.", "Nông nghiệp được chú trọng: vua Lê Hoàn làm lễ cày tịch điền, khai kênh đào.", "Phật giáo được đề cao, nhà sư có uy tín, tham gia việc nước; các lễ hội dân gian như đua thuyền, đấu vật phát triển."]]
+   ],
+   "nho": ["968: Đinh Bộ Lĩnh lập Đại Cồ Việt, kinh đô Hoa Lư.", "980: Lê Hoàn lên ngôi; 981: đánh tan quân Tống.", "Phật giáo được đề cao, nhà sư tham gia việc nước."],
+   "hoi": ["Việc đặt quốc hiệu Đại Cồ Việt và đóng đô ở Hoa Lư có ý nghĩa gì?", "Trình bày cuộc kháng chiến chống Tống năm 981 của Lê Hoàn.", "Đời sống văn hoá thời Đinh – Tiền Lê có điểm gì nổi bật?"]},
+
+  {"so": 11, "chuong": "Chương 5. Đại Việt thời Lý – Trần – Hồ (1009 – 1407)", "ten": "Nhà Lý xây dựng và phát triển đất nước (1009 – 1225)", "trang": [52, 57], "nam": 1010,
+   "tom": "Năm 1009, Lý Công Uẩn lập nhà Lý; năm 1010 dời đô về Thăng Long. Nhà Lý xây dựng bộ máy nhà nước, luật pháp, quân đội vững mạnh, phát triển kinh tế và văn hoá, giáo dục.",
+   "muc": [
+    ["1. Sự thành lập nhà Lý", ["Năm 1009, Lý Công Uẩn được triều thần tôn lên làm vua, lập ra nhà Lý.", "Năm 1010, vua ban Chiếu dời đô, chuyển kinh đô từ Hoa Lư về Đại La, đổi tên là Thăng Long.", "Năm 1054, nhà Lý đổi tên nước là Đại Việt."]],
+    ["2. Xây dựng đất nước", ["Bộ máy nhà nước: đứng đầu là vua; giúp vua có các quan văn, võ; cả nước chia thành các lộ, phủ.", "Luật pháp: năm 1042 ban hành bộ Hình thư; quân đội gồm cấm quân và quân địa phương, thực hiện chính sách “ngụ binh ư nông”.", "Đối nội: mềm dẻo với các tù trưởng miền núi; đối ngoại: giữ hoà hiếu nhưng kiên quyết bảo vệ chủ quyền."]],
+    ["3. Kinh tế, xã hội", ["Nông nghiệp: khuyến khích khai hoang, đắp đê (đê Cơ Xá năm 1108), lễ cày tịch điền.", "Thủ công: dệt (năm 1040 dệt được gấm vóc), gốm, đúc đồng phát triển; thương nghiệp có trao đổi trong nước và với nước ngoài, cảng Vân Đồn.", "Xã hội gồm vua quan, địa chủ, nông dân, thợ thủ công, thương nhân, nô tì."]],
+    ["4. Văn hoá, giáo dục", ["Phật giáo phát triển mạnh, chùa tháp được xây dựng nhiều: chùa Một Cột, tháp Báo Thiên.", "Năm 1070 dựng Văn Miếu; năm 1075 mở khoa thi đầu tiên; năm 1076 lập Quốc Tử Giám.", "Văn học chữ Hán phát triển; nghệ thuật điêu khắc, kiến trúc đặc sắc."]]
+   ],
+   "nho": ["1009: nhà Lý thành lập; 1010: dời đô về Thăng Long; 1054: quốc hiệu Đại Việt.", "1042: bộ Hình thư; chính sách “ngụ binh ư nông”.", "1070 Văn Miếu, 1075 khoa thi đầu tiên, 1076 Quốc Tử Giám."],
+   "hoi": ["Vì sao Lý Công Uẩn quyết định dời đô về Đại La?", "Nhà Lý đã làm gì để xây dựng bộ máy nhà nước, luật pháp và quân đội?", "Nêu những thành tựu về giáo dục thời Lý."]},
+
+  {"so": 12, "chuong": "Chương 5. Đại Việt thời Lý – Trần – Hồ (1009 – 1407)", "ten": "Cuộc kháng chiến chống quân xâm lược Tống (1075 – 1077)", "trang": [58, 61], "nam": 1075,
+   "tom": "Dưới sự chỉ huy của Lý Thường Kiệt, quân dân Đại Việt chủ động tấn công trước để chặn thế mạnh của giặc (1075), rồi lập phòng tuyến sông Như Nguyệt đánh bại quân Tống (1077).",
+   "muc": [
+    ["1. Giai đoạn thứ nhất (1075): tiến công để tự vệ", ["Nhà Tống chuẩn bị xâm lược Đại Việt; Lý Thường Kiệt chủ trương “ngồi yên đợi giặc không bằng đem quân ra trước để chặn thế mạnh của giặc”.", "Cuối năm 1075, quân Lý bất ngờ tấn công các căn cứ tập kết lương thảo, khí giới của quân Tống ở Khâm Châu, Liêm Châu, Ung Châu rồi rút về nước."]],
+    ["2. Giai đoạn thứ hai (1076 – 1077): phòng tuyến sông Như Nguyệt", ["Lý Thường Kiệt cho xây dựng phòng tuyến trên bờ nam sông Như Nguyệt (sông Cầu), đóng cọc, đắp luỹ.", "Năm 1077, quân Tống do Quách Quỳ chỉ huy kéo sang, nhiều lần vượt sông tấn công nhưng đều thất bại.", "Tương truyền bài thơ “Nam quốc sơn hà” vang lên, cổ vũ tinh thần quân ta. Quân ta phản công, quân Tống thua to.", "Lý Thường Kiệt chủ động giảng hoà để kết thúc chiến tranh; quân Tống rút về nước."]],
+    ["3. Ý nghĩa", ["Bảo vệ vững chắc nền độc lập của Đại Việt.", "Thể hiện nghệ thuật quân sự độc đáo: tiến công để tự vệ, chặn giặc bằng phòng tuyến, kết thúc chiến tranh bằng giảng hoà."]]
+   ],
+   "nho": ["1075: tiến công Khâm Châu, Liêm Châu, Ung Châu.", "1077: phòng tuyến sông Như Nguyệt, quân Tống thất bại.", "Lý Thường Kiệt chủ động giảng hoà để giữ hoà hiếu lâu dài."],
+   "hoi": ["Vì sao Lý Thường Kiệt chủ động tấn công sang đất Tống?", "Trình bày trận chiến trên phòng tuyến sông Như Nguyệt.", "Việc chủ động giảng hoà của Lý Thường Kiệt có ý nghĩa gì?"],
+   "sa_ban": {"ten": "Sa bàn 3D Phòng tuyến Như Nguyệt 1077", "url": "khong-gian/engine/2.1.0/sa-ban.html?goi=nhu-nguyet-1077"}},
+
+  {"so": 13, "chuong": "Chương 5. Đại Việt thời Lý – Trần – Hồ (1009 – 1407)", "ten": "Đại Việt thời Trần (1226 – 1400)", "trang": [62, 67], "nam": 1226,
+   "tom": "Năm 1226, nhà Trần thành lập, củng cố bộ máy nhà nước với chế độ Thái thượng hoàng, phát triển kinh tế, xã hội và đạt nhiều thành tựu văn hoá rực rỡ.",
+   "muc": [
+    ["1. Sự thành lập nhà Trần và tổ chức nhà nước", ["Cuối thời Lý, triều đình suy yếu; năm 1226, Lý Chiêu Hoàng nhường ngôi cho Trần Cảnh, nhà Trần thành lập.", "Thực hiện chế độ Thái thượng hoàng: vua cha nhường ngôi sớm cho con, cùng trông coi việc nước.", "Cả nước chia thành 12 lộ; ban hành bộ Quốc triều hình luật; quân đội theo chủ trương “quân lính cốt tinh nhuệ, không cốt đông”."]],
+    ["2. Kinh tế, xã hội", ["Nông nghiệp: khuyến khích khai hoang, lập điền trang; đặt chức Hà đê sứ trông coi đê điều.", "Thủ công, thương nghiệp phát triển; Thăng Long có nhiều phường nghề, chợ.", "Xã hội: tầng lớp quý tộc nắm quyền; nông dân, thợ thủ công, thương nhân; nông nô, nô tì làm việc trong điền trang."]],
+    ["3. Văn hoá", ["Tư tưởng, tôn giáo: Phật giáo phát triển, vua Trần Nhân Tông lập Thiền phái Trúc Lâm; Nho giáo ngày càng được coi trọng.", "Giáo dục, khoa cử: tổ chức nhiều khoa thi; Quốc Tử Giám mở rộng.", "Khoa học: Quốc sử viện, bộ Đại Việt sử kí của Lê Văn Hưu; y học có danh y Tuệ Tĩnh.", "Văn học, nghệ thuật: Hịch tướng sĩ của Trần Quốc Tuấn; chữ Nôm được dùng; tháp Phổ Minh, kiến trúc, điêu khắc đặc sắc."]]
+   ],
+   "nho": ["1226: nhà Trần thành lập; chế độ Thái thượng hoàng.", "Quốc triều hình luật; Hà đê sứ; quân đội tinh nhuệ.", "Thiền phái Trúc Lâm; Đại Việt sử kí của Lê Văn Hưu; Hịch tướng sĩ."],
+   "hoi": ["Chế độ Thái thượng hoàng có tác dụng gì?", "Nêu những nét chính về kinh tế thời Trần.", "Kể tên một số thành tựu văn hoá tiêu biểu thời Trần."]},
+
+  {"so": 14, "chuong": "Chương 5. Đại Việt thời Lý – Trần – Hồ (1009 – 1407)", "ten": "Ba lần kháng chiến chống quân xâm lược Mông – Nguyên", "trang": [68, 73], "nam": 1258,
+   "tom": "Trong các năm 1258, 1285 và 1287 – 1288, quân dân Đại Việt dưới sự lãnh đạo của nhà Trần ba lần đánh bại quân xâm lược Mông – Nguyên, đội quân mạnh nhất thế giới thời đó.",
+   "muc": [
+    ["1. Lần thứ nhất (1258)", ["Đầu năm 1258, quân Mông Cổ tiến vào Đại Việt; sau trận Bình Lệ Nguyên, quân ta rút lui để bảo toàn lực lượng, thực hiện “vườn không nhà trống”.", "Trần Thủ Độ khẳng định: “Đầu thần chưa rơi xuống đất, xin bệ hạ đừng lo”.", "Quân ta phản công ở Đông Bộ Đầu, quân Mông Cổ phải rút chạy."]],
+    ["2. Lần thứ hai (1285)", ["Nhà Trần mở Hội nghị Bình Than (1282) bàn kế đánh giặc, Hội nghị Diên Hồng (1285) hỏi ý các bô lão; quân sĩ thích hai chữ “Sát Thát” lên cánh tay.", "Quân Nguyên do Thoát Hoan chỉ huy tiến vào; quân ta tạm rút khỏi Thăng Long.", "Giữa năm 1285, quân ta phản công thắng lớn ở Tây Kết, Hàm Tử, Chương Dương, Vạn Kiếp; quân Nguyên thua chạy."]],
+    ["3. Lần thứ ba (1287 – 1288)", ["Trần Khánh Dư đánh tan đoàn thuyền lương của giặc ở Vân Đồn, làm quân Nguyên lâm vào cảnh thiếu lương.", "Trần Quốc Tuấn bố trí trận địa cọc trên sông Bạch Đằng; tháng 4/1288, đoàn thuyền giặc bị tiêu diệt, Ô Mã Nhi bị bắt."]],
+    ["4. Nguyên nhân thắng lợi và ý nghĩa", ["Toàn dân tham gia đánh giặc; vua tôi đoàn kết; sự lãnh đạo tài giỏi của vua Trần và các tướng như Trần Quốc Tuấn, Trần Quang Khải, Trần Thủ Độ.", "Đập tan ý chí xâm lược của Mông – Nguyên, bảo vệ nền độc lập; để lại bài học quý về đoàn kết và nghệ thuật quân sự."]]
+   ],
+   "nho": ["Ba lần kháng chiến: 1258, 1285, 1287 – 1288.", "Hội nghị Bình Than, Diên Hồng; hai chữ “Sát Thát”.", "1288: chiến thắng Bạch Đằng do Trần Quốc Tuấn chỉ huy."],
+   "hoi": ["Trình bày diễn biến chính của ba lần kháng chiến chống Mông – Nguyên.", "Nêu nguyên nhân thắng lợi của ba lần kháng chiến.", "Câu nói của Trần Thủ Độ thể hiện tinh thần gì?"]},
+
+  {"so": 15, "chuong": "Chương 5. Đại Việt thời Lý – Trần – Hồ (1009 – 1407)", "ten": "Nước Đại Ngu thời Hồ (1400 – 1407)", "trang": [74, 76], "nam": 1400,
+   "tom": "Năm 1400, Hồ Quý Ly lập nhà Hồ, đổi tên nước là Đại Ngu và tiến hành nhiều cải cách. Cuộc kháng chiến chống quân Minh của nhà Hồ thất bại vào năm 1407.",
+   "muc": [
+    ["1. Nhà Hồ thành lập và cải cách", ["Cuối thế kỉ XIV, nhà Trần suy yếu; năm 1400, Hồ Quý Ly phế vua Trần, lập nhà Hồ, đổi tên nước là Đại Ngu.", "Chính trị, quân sự: thay quan lại họ Trần bằng người tài; tăng cường quân đội; xây thành Tây Đô (Thanh Hoá).", "Kinh tế, xã hội: ban hành chính sách hạn điền, hạn nô; phát hành tiền giấy “Thông bảo hội sao”; thống nhất đo lường.", "Văn hoá, giáo dục: dịch sách chữ Hán ra chữ Nôm, đề cao chữ Nôm; sửa đổi chế độ thi cử."]],
+    ["2. Cuộc kháng chiến chống quân Minh", ["Năm 1406, quân Minh xâm lược Đại Ngu.", "Nhà Hồ không đoàn kết được toàn dân, chỉ dựa vào thành luỹ để phòng thủ; năm 1407 kháng chiến thất bại.", "Hồ Nguyên Trừng nói: “Thần không sợ đánh, chỉ sợ lòng dân không theo” – nêu rõ nguyên nhân thất bại."]]
+   ],
+   "nho": ["1400: nhà Hồ thành lập, quốc hiệu Đại Ngu.", "Cải cách: hạn điền, hạn nô, tiền giấy, đề cao chữ Nôm.", "1407: kháng chiến chống Minh thất bại vì không được lòng dân."],
+   "hoi": ["Nêu những nội dung chính trong cải cách của Hồ Quý Ly.", "Vì sao cuộc kháng chiến chống quân Minh của nhà Hồ thất bại?", "Thành Tây Đô có giá trị gì? Ngày nay thành này được công nhận là gì?"]},
+
+  {"so": 16, "chuong": "Chương 6. Khởi nghĩa Lam Sơn và Đại Việt thời Lê sơ (1418 – 1527)", "ten": "Khởi nghĩa Lam Sơn (1418 – 1427)", "trang": [78, 82], "nam": 1418,
+   "tom": "Năm 1418, Lê Lợi dựng cờ khởi nghĩa ở Lam Sơn. Sau mười năm chiến đấu gian khổ, nghĩa quân giành toàn thắng năm 1427, giải phóng đất nước khỏi ách đô hộ của nhà Minh.",
+   "muc": [
+    ["1. Lê Lợi dựng cờ khởi nghĩa", ["Dưới ách đô hộ của nhà Minh, nhân dân bị bóc lột nặng nề.", "Đầu năm 1418, Lê Lợi cùng Nguyễn Trãi và các hào kiệt dựng cờ khởi nghĩa ở Lam Sơn (Thanh Hoá), xưng Bình Định Vương."]],
+    ["2. Diễn biến chính", ["1418 – 1423: những năm đầu khó khăn, nghĩa quân nhiều lần bị vây ở núi Chí Linh; Lê Lai liều mình cứu chúa; có lúc phải tạm hoà với giặc.", "1424 – 1425: theo kế của Nguyễn Chích, nghĩa quân chuyển vào Nghệ An, rồi giải phóng Tân Bình, Thuận Hoá; giành thắng lợi đầu tiên.", "1426 – 1427: tiến quân ra Bắc; thắng lớn ở Tốt Động – Chúc Động (1426); trận Chi Lăng – Xương Giang (1427), Liễu Thăng tử trận, viện binh Minh bị tiêu diệt.", "Cuối năm 1427, Hội thề Đông Quan; quân Minh rút về nước. Nguyễn Trãi viết Bình Ngô đại cáo."]],
+    ["3. Nguyên nhân thắng lợi và ý nghĩa", ["Nhân dân đồng lòng ủng hộ; lòng yêu nước, ý chí bất khuất; đường lối đúng đắn và tài chỉ huy của Lê Lợi, Nguyễn Trãi.", "Kết thúc 20 năm đô hộ của nhà Minh, mở ra thời kì phát triển mới cho Đại Việt."]]
+   ],
+   "nho": ["1418: Lê Lợi dựng cờ khởi nghĩa ở Lam Sơn.", "1426 Tốt Động – Chúc Động; 1427 Chi Lăng – Xương Giang.", "Bình Ngô đại cáo của Nguyễn Trãi tuyên bố nền độc lập."],
+   "hoi": ["Khởi nghĩa Lam Sơn bùng nổ như thế nào?", "Trình bày các giai đoạn phát triển của cuộc khởi nghĩa.", "Vì sao khởi nghĩa Lam Sơn giành được thắng lợi?"]},
+
+  {"so": 17, "chuong": "Chương 6. Khởi nghĩa Lam Sơn và Đại Việt thời Lê sơ (1418 – 1527)", "ten": "Đại Việt thời Lê sơ (1428 – 1527)", "trang": [83, 88], "nam": 1428,
+   "tom": "Năm 1428, Lê Lợi lên ngôi, lập nhà Lê sơ. Dưới thời Lê Thánh Tông, Đại Việt đạt tới thời thịnh trị với bộ máy nhà nước hoàn chỉnh, luật Hồng Đức và nền giáo dục khoa cử phát triển.",
+   "muc": [
+    ["1. Tình hình chính trị", ["Năm 1428, Lê Lợi lên ngôi, khôi phục quốc hiệu Đại Việt, đóng đô ở Thăng Long (Đông Kinh).", "Lê Thánh Tông (1460 – 1497) cải cách: bỏ một số chức quan lớn, vua nắm mọi quyền; chia cả nước thành 13 đạo thừa tuyên.", "Ban hành bộ Quốc triều hình luật (luật Hồng Đức), có điểm tiến bộ như bảo vệ quyền lợi phụ nữ.", "Kiên quyết bảo vệ chủ quyền lãnh thổ: “một thước núi, một tấc sông của ta, lẽ nào lại tự tiện vứt bỏ”."]],
+    ["2. Kinh tế, xã hội", ["Nông nghiệp: chính sách quân điền, khuyến khích khai hoang, đắp đê.", "Thủ công nghiệp, thương nghiệp phát triển; nhiều làng nghề, chợ.", "Xã hội gồm vua quan, địa chủ, nông dân, thợ thủ công, thương nhân, nô tì; số nô tì giảm dần."]],
+    ["3. Văn hoá, giáo dục và danh nhân", ["Nho giáo chiếm vị trí độc tôn; giáo dục, khoa cử rất phát triển; năm 1484 bắt đầu dựng bia Tiến sĩ ở Văn Miếu.", "Nguyễn Trãi: nhà quân sự, chính trị, nhà văn hoá lớn (Bình Ngô đại cáo, Quốc âm thi tập).", "Lê Thánh Tông: vị vua anh minh, lập Hội Tao đàn, nhiều tác phẩm văn học.", "Ngô Sĩ Liên biên soạn Đại Việt sử kí toàn thư; Lương Thế Vinh viết Đại thành toán pháp."]]
+   ],
+   "nho": ["1428: nhà Lê sơ thành lập.", "Lê Thánh Tông: 13 đạo thừa tuyên, luật Hồng Đức.", "1484: dựng bia Tiến sĩ; danh nhân Nguyễn Trãi, Lê Thánh Tông, Ngô Sĩ Liên, Lương Thế Vinh."],
+   "hoi": ["Trình bày những cải cách của vua Lê Thánh Tông.", "Bộ luật Hồng Đức có những điểm tiến bộ nào?", "Giới thiệu một danh nhân văn hoá thời Lê sơ."]},
+
+  {"so": 18, "chuong": "Chương 7. Vùng đất phía Nam Việt Nam từ đầu thế kỉ X đến đầu thế kỉ XVI", "ten": "Vương quốc Chăm-pa và vùng đất Nam Bộ từ đầu thế kỉ X đến đầu thế kỉ XVI", "trang": [90, 94], "nam": null,
+   "tom": "Từ thế kỉ X, Chăm-pa bước vào thời kì Vi-giay-a với kinh đô ở Đồ Bàn, có nền kinh tế, văn hoá phát triển nhưng gặp nhiều khó khăn vì chiến tranh. Vùng đất Nam Bộ thời kì này dân cư còn thưa thớt.",
+   "muc": [
+    ["1. Vương quốc Chăm-pa", ["Năm 988, một quý tộc Chăm lập vương triều Vi-giay-a, kinh đô chuyển về Vi-giay-a (Đồ Bàn, Bình Định ngày nay).", "Chăm-pa nhiều lần xảy ra chiến tranh với Chân Lạp và xung đột với Đại Việt; năm 1069 cắt ba châu Bố Chính, Địa Lý, Ma Linh cho Đại Việt.", "Kinh tế: trồng lúa nước, khai thác lâm sản, buôn bán đường biển; văn hoá: theo Hin-đu giáo, Phật giáo, xây dựng nhiều đền tháp (tháp Bánh Ít, tháp Dương Long…)."]],
+    ["2. Vùng đất Nam Bộ", ["Sau khi Phù Nam sụp đổ (đầu thế kỉ VII), Nam Bộ thuộc quyền kiểm soát của Chân Lạp.", "Dân cư thưa thớt, nhiều vùng hoang vu, sình lầy; cư dân sống chủ yếu bằng nông nghiệp, khai thác sản vật."]]
+   ],
+   "nho": ["988: vương triều Vi-giay-a của Chăm-pa; kinh đô Đồ Bàn.", "Chăm-pa có kinh tế biển và văn hoá đền tháp phát triển.", "Nam Bộ thời kì này thuộc Chân Lạp, dân cư thưa thớt."],
+   "hoi": ["Nêu những nét chính về chính trị, kinh tế, văn hoá của Chăm-pa từ thế kỉ X đến đầu thế kỉ XVI.", "Vùng đất Nam Bộ thời kì này có đặc điểm gì?"]},
+
+  {"so": "CĐ1", "chuong": "Chủ đề chung", "ten": "Các cuộc đại phát kiến địa lí", "trang": [166, 169], "nam": 1492,
+   "tom": "Chủ đề tích hợp Lịch sử và Địa lí về các chuyến thám hiểm lớn cuối thế kỉ XV – đầu thế kỉ XVI, tiêu biểu là chuyến đi của C. Cô-lôm-bô và Ph. Ma-gien-lan, cùng tác động của chúng tới thế giới.",
+   "muc": [
+    ["1. Cô-lôm-bô và cuộc thám hiểm tìm ra châu Mỹ", ["Năm 1492, C. Cô-lôm-bô được hoàng gia Tây Ban Nha tài trợ, đi về phía tây Đại Tây Dương với ý định tới Ấn Độ.", "Đoàn thám hiểm đến được các đảo vùng Ca-ri-bê, mở ra con đường đến châu Mỹ cho người châu Âu."]],
+    ["2. Ma-gien-lan và chuyến đi vòng quanh Trái Đất", ["Năm 1519, Ph. Ma-gien-lan dẫn đoàn thuyền vượt Đại Tây Dương, qua eo biển ở cực nam châu Mỹ (sau mang tên ông), vào Thái Bình Dương.", "Ma-gien-lan bị giết ở Phi-líp-pin; những người còn lại tiếp tục hành trình, về đến Tây Ban Nha năm 1522, chứng minh Trái Đất hình cầu."]],
+    ["3. Tác động", ["Mở rộng hiểu biết về Trái Đất, thúc đẩy giao lưu kinh tế, văn hoá giữa các châu lục.", "Mở đầu quá trình xâm chiếm, cướp bóc thuộc địa và buôn bán nô lệ."]]
+   ],
+   "nho": ["1492: Cô-lôm-bô đến châu Mỹ.", "1519 – 1522: chuyến đi vòng quanh Trái Đất của đoàn Ma-gien-lan.", "Phát kiến địa lí mở rộng hiểu biết nhưng kéo theo chủ nghĩa thực dân."],
+   "hoi": ["Kể lại hành trình của Cô-lôm-bô hoặc Ma-gien-lan.", "Chuyến đi của Ma-gien-lan chứng minh điều gì?", "Các cuộc đại phát kiến địa lí tác động thế nào tới thế giới?"]},
+
+  {"so": "CĐ2", "chuong": "Chủ đề chung", "ten": "Đô thị: lịch sử và hiện tại", "trang": [170, 174], "nam": null,
+   "tom": "Chủ đề tích hợp về sự ra đời và vai trò của đô thị từ thời cổ đại đến trung đại, gắn với các nền văn minh phương Đông, Hy Lạp – La Mã và châu Âu trung đại.",
+   "muc": [
+    ["1. Đô thị thời cổ đại", ["Ở phương Đông, các làng ven sông lớn mở rộng thành những khu dân cư đông đúc, hình thành đô thị như Ba-bi-lon (Lưỡng Hà), Mem-phít (Ai Cập), Mô-hen-giô Đa-rô (Ấn Độ). Đô thị là trung tâm chính trị, kinh tế, văn hoá của các quốc gia cổ đại.", "Ở Hy Lạp, La Mã, đô thị gắn với thủ công nghiệp, thương nghiệp đường biển; là nơi ra đời thể chế dân chủ A-ten và nhiều thành tựu văn hoá."]],
+    ["2. Đô thị châu Âu thời trung đại", ["Từ thế kỉ XI, thợ thủ công, thương nhân lập ra các thành thị; thị dân lập phường hội, thương hội.", "Thương nhân buôn bán khắp châu Âu, góp phần phá vỡ kinh tế tự cấp tự túc của lãnh địa, thúc đẩy kinh tế hàng hoá và văn hoá phát triển."]],
+    ["3. Đô thị hôm nay", ["Đô thị ngày nay là trung tâm kinh tế, văn hoá, khoa học; đối mặt với các vấn đề dân số, môi trường, giao thông.", "Tìm hiểu lịch sử đô thị giúp ta hiểu và có ý thức gìn giữ di sản của thành phố nơi mình sống."]]
+   ],
+   "nho": ["Đô thị cổ đại: Ba-bi-lon, Mem-phít, Mô-hen-giô Đa-rô, A-ten, Rô-ma.", "Thành thị trung đại thúc đẩy kinh tế hàng hoá.", "Đô thị là trung tâm chính trị, kinh tế, văn hoá qua mọi thời kì."],
+   "hoi": ["Các đô thị cổ ở phương Đông có vai trò gì?", "Thương nhân có vai trò thế nào trong các đô thị châu Âu trung đại?", "Giới thiệu lịch sử một đô thị ở Việt Nam mà em biết."]}
+ ]
+}

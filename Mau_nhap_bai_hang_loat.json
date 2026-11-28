@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Nhà Trần – ba lần kháng chiến chống Mông – Nguyên",
+    "entity_id": "tran",
+    "timeline_year": 1285,
+    "category": "Triều đại",
+    "focus_keyword": "nhà Trần",
+    "intro": "Đề cương lịch sử triều Trần cần được thẩm định.",
+    "body": "",
+    "source_urls": [],
+    "tags": [
+      "SGK lớp 7",
+      "Cần thẩm định"
+    ]
+  },
+  {
+    "title": "Rạch Gầm – Xoài Mút 1785",
+    "entity_id": "tayson",
+    "timeline_year": 1785,
+    "category": "Trận chiến",
+    "focus_keyword": "Rạch Gầm Xoài Mút",
+    "source_urls": [],
+    "tags": [
+      "Tây Sơn",
+      "Cần thẩm định"
+    ]
+  }
+]

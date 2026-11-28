@@ -1,0 +1,92 @@
+[
+  {
+    "id": "quang-tri",
+    "kind": "battle",
+    "lat": 16.756,
+    "lon": 107.191,
+    "name": "Thành cổ Quảng Trị",
+    "year": 1972,
+    "category": "Chiến sự – di tích",
+    "source_note": "Vị trí đại diện cho di tích, không phải vị trí từng đơn vị quân."
+  },
+  {
+    "id": "ngoc-hoi-dong-da",
+    "kind": "battle",
+    "lat": 20.966,
+    "lon": 105.835,
+    "name": "Ngọc Hồi – Đống Đa",
+    "year": 1789,
+    "category": "Chiến trận – sa bàn",
+    "source_note": "Vị trí đại diện cho vùng Ngọc Hồi – Thăng Long (gốc sa bàn 20.96609 N, 105.8355 E), không phải vị trí từng đơn vị."
+  },
+  {
+    "id": "dien-bien-phu",
+    "kind": "battle",
+    "lat": 21.392,
+    "lon": 103.018,
+    "name": "Điện Biên Phủ",
+    "year": 1954,
+    "category": "Chiến dịch – sa bàn",
+    "source_note": "Vị trí đại diện cho lòng chảo Mường Thanh (gốc sa bàn 21.39166 N, 103.01811 E), không phải vị trí từng đơn vị."
+  },
+  {
+    "id": "rach-gam",
+    "kind": "battle",
+    "lat": 10.422,
+    "lon": 106.234,
+    "name": "Rạch Gầm – Xoài Mút",
+    "year": 1785,
+    "category": "Chiến trận – sa bàn",
+    "source_note": "Vị trí đại diện cho khúc sông Rạch Gầm – Xoài Mút (sông Tiền), không phải vị trí từng đơn vị."
+  },
+  {
+    "id": "ho-chi-minh-1975",
+    "kind": "battle",
+    "lat": 10.777,
+    "lon": 106.695,
+    "name": "Chiến dịch Hồ Chí Minh",
+    "year": 1975,
+    "category": "Chiến dịch – sa bàn",
+    "source_note": "Vị trí đại diện: Dinh Độc Lập (tâm tầng nội đô của sa bàn, 10,7770 B, 106,6953 Đ), không phải vị trí từng đơn vị."
+  },
+  {
+    "id": "khe-sanh-1968",
+    "kind": "battle",
+    "lat": 16.655,
+    "lon": 106.73,
+    "name": "Khe Sanh",
+    "year": 1968,
+    "category": "Chiến dịch – sa bàn",
+    "source_note": "Vị trí đại diện: cụm cứ điểm Tà Cơn (16,655 B, 106,730 Đ), không phải vị trí từng đơn vị."
+  },
+  {
+    "id": "dien-bien-phu-tren-khong-1972",
+    "kind": "battle",
+    "lat": 21.206,
+    "lon": 105.842,
+    "name": "Điện Biên Phủ trên không",
+    "year": 1972,
+    "category": "Chiến dịch – sa bàn",
+    "source_note": "Vị trí đại diện: cánh đồng Chuôm, xã Phù Lỗ (Đông Anh) — nơi chiếc B-52 đầu tiên rơi tại chỗ đêm 18/12/1972; sa bàn trải khắp Hà Nội và miền Bắc."
+  },
+  {
+    "id": "bach-dang-938",
+    "kind": "battle",
+    "lat": 20.94,
+    "lon": 106.79,
+    "name": "Bạch Đằng 938",
+    "year": 938,
+    "category": "Chiến trận – sa bàn",
+    "source_note": "Vị trí đại diện: cửa sông Bạch Đằng, khu bãi cọc Yên Giang – Quảng Yên (20,94 B, 106,79 Đ); địa điểm trận năm 938 còn là giả thuyết nghiên cứu."
+  },
+  {
+    "id": "tran-da-nang-1858",
+    "kind": "battle",
+    "lat": 16.076,
+    "lon": 108.222,
+    "name": "Đà Nẵng 1858",
+    "year": 1858,
+    "category": "Chiến trận – sa bàn",
+    "source_note": "Vị trí đại diện: thành Điện Hải, tả ngạn cửa sông Hàn (16,076 B, 108,222 Đ); sa bàn trải khắp vịnh Đà Nẵng, bán đảo Sơn Trà và tuyến đồn lũy phía nam."
+  }
+]

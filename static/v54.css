@@ -1,0 +1,33 @@
+/* Học Lịch Sử V5.4 — mobile: thẻ Trang phục / Tóc & Mũ gọn, thanh menu dưới một hàng. */
+@media(max-width:700px){
+ /* Hai thẻ nằm cạnh nhau, ảnh ở trên, chữ ở dưới (trước đây chữ bị ép thành cột một ký tự) */
+ body #timeline .era-cell .v41-icons,body #timeline .era-cell.left .v41-icons,#timeline .v41-icons{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+ body #timeline .era-cell.left .v41-icons .v41-icon-chip,#timeline .v41-icons .v41-icon-chip{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:4px!important;width:auto!important;min-width:0!important;min-height:0!important;height:auto!important;padding:7px 5px 8px!important;text-align:center!important}
+ #timeline .v41-icons .v41-icon-chip img{width:38px!important;height:38px!important;flex:none!important;object-fit:contain!important;margin:0!important}
+ #timeline .v41-icons .v41-icon-chip>span{display:flex!important;flex-direction:column!important;align-items:center!important;gap:2px!important;min-width:0!important;width:100%!important;writing-mode:horizontal-tb!important}
+ #timeline .v41-icons .v41-icon-chip b{display:block!important;font-size:11.5px!important;line-height:1.2!important;white-space:nowrap!important;word-break:normal!important}
+ #timeline .v41-icons .v41-icon-chip small{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important;font-size:9.5px!important;line-height:1.3!important;word-break:normal!important;overflow-wrap:anywhere!important;white-space:normal!important}
+
+ /* Thanh menu dưới: tất cả mục trên một hàng */
+ .mobile-sections{display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;grid-template-columns:none!important;grid-template-rows:auto!important;flex-wrap:nowrap!important;gap:4px!important}
+ .mobile-sections>button{min-width:0!important;width:auto!important;padding-left:2px!important;padding-right:2px!important}
+}
+@media(max-width:360px){
+ #timeline .v41-icons .v41-icon-chip b{white-space:normal!important;font-size:10.5px!important}
+ #timeline .v41-icons .v41-icon-chip small{font-size:9px!important}
+}
+
+/* V5.4.1 — mobile: hiện thanh chọn năm nhanh ở trên, dính đầu màn hình khi cuộn */
+@media(max-width:700px){
+ #mainHistory .year-navigator{display:flex!important;position:sticky!important;top:0!important;z-index:30!important;align-items:center!important;gap:6px!important;padding:7px 8px!important;margin:0!important;background:rgba(16,24,27,.96)!important;border-bottom:1px solid var(--edge)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+ #mainHistory .year-navigator .year-nav-label{display:none!important}
+ #mainHistory .year-navigator .year-nav-scroll{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:6px!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+ #mainHistory .year-navigator .year-nav-scroll::-webkit-scrollbar{display:none}
+ #mainHistory .year-navigator .year-nav-btn{flex:0 0 auto!important;padding:6px 11px!important;font-size:12.5px!important;min-height:32px!important;scroll-snap-align:start}
+ body.theme-light #mainHistory .year-navigator{background:rgba(247,240,226,.96)!important}
+}
+
+/* V5.4.2 — mobile: chữ ô nhập 16px để iPhone không tự phóng to trang khi bấm vào Trợ lý Học Lịch Sử / ô tìm kiếm; khung chat gọn trên màn hình */
+@media(max-width:700px){
+ #aiQuestion,#v31SearchInput,.mobile-search input,input[type="search"],input[type="text"],textarea{font-size:16px!important}
+}

@@ -1,0 +1,20 @@
+# Container CMS/API của hoclichsu.com. Dữ liệu bền ở /www/hoclichsu-du-lieu (không mất khi dựng lại).
+services:
+  hoclichsu-api:
+    build: .
+    image: hoclichsu-api:latest
+    container_name: hoclichsu-api
+    restart: unless-stopped
+    network_mode: host          # lắng nghe 127.0.0.1:8010, Nginx aaPanel chuyển tiếp vào
+    env_file: /www/hoclichsu-du-lieu/.env
+    environment:
+      VIETSU_DB: /du-lieu/vietsucms.sqlite3
+      VIETSU_DU_LIEU: /du-lieu/data
+    volumes:
+      - /www/hoclichsu-du-lieu:/du-lieu
+      - /www/hoclichsu-du-lieu/uploads:/app/static/uploads
+      - /www/hoclichsu-du-lieu/trang-phuc:/app/static/assets/costumes/custom
+    mem_limit: 450m
+    logging:
+      driver: json-file
+      options: {max-size: "5m", max-file: "2"}

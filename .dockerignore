@@ -1,0 +1,15 @@
+.venv
+__pycache__
+*.pyc
+.env
+data/*.sqlite3*
+data/*.tmp
+static/uploads
+static/khong-gian
+static/*_Offline.html
+backups
+sao-luu
+frontend
+docs
+tools
+*.command
