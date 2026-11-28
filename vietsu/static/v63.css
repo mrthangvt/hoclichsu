@@ -2,9 +2,10 @@
 :root{--v63-tren:58px;--v63-duoi:70px;--v63-thanh:78px}
 .v63-thanh{display:none}
 
-html:has(body.v63-kg),body.v63-kg{overflow:hidden!important;overscroll-behavior:none}
-/* Khóa trang (iPhone vẫn “nảy” cả trang dù overflow:hidden) */
-body.v63-kg{position:fixed!important;inset:0;width:100%;height:100%}
+/* Khóa cuộn ở cấp trang (html → khung nhìn). KHÔNG đặt overflow/position:fixed cho body: trên iPhone, body như vậy
+   cắt mất bản đồ, danh sách và menu dưới (chúng là phần tử cố định nằm trong body). Chặn “nảy” trang: v63.js (touchmove). */
+html:has(body.v63-kg){overflow:hidden!important;overscroll-behavior:none}
+body.v63-kg{overscroll-behavior:none}
 body.v63-kg .v23-spaces-header{display:none!important}
 body.v63-kg #spacesHistory{padding:0!important;margin:0!important;min-height:0!important}
 

@@ -145,3 +145,4 @@ Theo yêu cầu chủ dự án.
   - nút 12,5–13px;
   - menu dưới điện thoại 11px;
   - nội dung đọc trong hồ sơ 16px trên máy tính / 15px trên điện thoại, dòng 1,75–1,8.
+- **Sửa (28/11, nhánh `claude/sua-nen-che-ban-do`):** sau bản sửa trên, iPhone mở Không gian lịch sử thì nền trống đồng che hết bản đồ, mất danh sách và menu dưới. Nguyên nhân: `body` đặt `position:fixed` + `overflow:hidden` làm Safari cắt các phần tử cố định bên trong (bản đồ, ngăn danh sách, menu) theo chiều cao thật của trang (~130px). Bỏ hai thuộc tính đó trên `body`; giữ khóa cuộn ở `html` và chặn “nảy” trang bằng `touchmove` trong v63.js.
